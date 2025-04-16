@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>공지사항 상세</title>
+        <link rel="stylesheet" href="/css/notice/notice.css" />
+        <link rel="stylesheet" href="../main/header.html" />
+        <style>
+            @font-face {
+                font-family: "Postype Sans-serif KR";
+                font-display: swap;
+                src: local("Pretendard SemiBold"),
+                    url(https://cdn.jsdelivr.net/gh/orioncactus/pretendard/packages/pretendard/dist/web/static/woff2/Pretendard-SemiBold.woff2)
+                        format("woff2"),
+                    url(https://cdn.jsdelivr.net/gh/orioncactus/pretendard/packages/pretendard/dist/web/static/woff/Pretendard-SemiBold.woff)
+                        format("woff");
+            }
+        </style>
+    </head>
+    <body>
+        <div class="feelog-header-mainDiv" id="header-container"></div>
+        <script>
+            // Load header.html and insert it in#header-placeholder
+            fetch("../main/header.html")
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("header-container").innerHTML =
+                        data;
+                })
+                .catch((error) =>
+                    console.error("Error loading header:", error)
+                );
+        </script>
+        <section>
+            <div class="section-container">
+                <div class="section-main-container">
+                    <div class="section-main-wrap">
+                        <main class="main_main">
+                            <div class="main-div-01">
+                                <article class="main-article01">
+                                    <header class="main-header">
+                                        <div class="header-hWarp">
+                                            <h4 class="h4-tag">
+                                                <a href="" class="header-aTag01"
+                                                    >포스타입 공지사항</a
+                                                >
+                                            </h4>
+                                            <h1 class="header-h1Wrap">
+                                                3월 수익에 관한 가상 출금 정보
+                                                제공 안내
+                                            </h1>
+                                            <h2 class="header-h2Wrap">
+                                                5월 수수료 정책 변경에 따른 후속
+                                                안내입니다.
+                                            </h2>
+                                            <div class="header-div01">
+                                                <a href="" class="header-aTag02"
+                                                    ><div class="a-div01">
+                                                        <img
+                                                            alt="채널 포스타입"
+                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2022/10/14/09/27/66fc5bd61c3d9969c7e6cb8845fb3e3e.png?w=100&amp;h=100&amp;q=65"
+                                                            loading="lazy"
+                                                            class="img01"
+                                                        /></div
+                                                ></a>
+                                                <div class="siteName-container">
+                                                    <a
+                                                        class="siteName-aTag01"
+                                                        href=""
+                                                        ><p
+                                                            class="siteName-pTag01"
+                                                        >
+                                                            포스타입
+                                                        </p></a
+                                                    >
+                                                    <div class="postInfo-wrap">
+                                                        <p
+                                                            class="createdDate-wrap"
+                                                        >
+                                                            2025. 4. 2.
+                                                        </p>
+                                                        <p class="center-point">
+                                                            ·
+                                                        </p>
+                                                        <p
+                                                            class="createdDate-wrap"
+                                                        >
+                                                            조회 2.3천
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <div class="mainDiv-wrap">
+                                        <div
+                                            class=""
+                                            style="
+                                                width: 100%;
+                                                max-width: 700px;
+                                            "
+                                        >
+                                            <div
+                                                class="post-content text-justify font-size-level3"
+                                                id="post-content"
+                                                style="visibility: visible"
+                                            >
+                                                <p>
+                                                    안녕하세요, 포스타입입니다.
+                                                </p>
+                                                <p>
+                                                    3월 17일 포스타입 수익 출금
+                                                    수수료 정책의 변경에 대해
+                                                    안내해 드린 바 있습니다.
+                                                    당시 안내에서 말씀드렸던 3월
+                                                    수익에 관한 가상 출금
+                                                    시뮬레이션 정보가 모두
+                                                    집계되어 추가 안내해
+                                                    드립니다.
+                                                </p>
+                                                <blockquote
+                                                    class="blockquote-type2"
+                                                >
+                                                    <p>
+                                                        5월 1일부터 적용될
+                                                        수수료 정책 변경 안내는
+                                                        <a
+                                                            href=""
+                                                            target="_blank"
+                                                            >여기</a
+                                                        >에서 확인하실 수
+                                                        있습니다.
+                                                    </p>
+                                                </blockquote>
+                                                <div>
+                                                    <hr
+                                                        class="hr hr-solid-short"
+                                                    />
+                                                </div>
+                                                <ul>
+                                                    <li>
+                                                        <strong>수익</strong> :
+                                                        각 월에 실제 발생한
+                                                        수익원별 수익입니다. 이
+                                                        가운데 '발견에서 발생한
+                                                        수익'에 대해 발견
+                                                        수수료가 추가 적용되는
+                                                        것입니다.
+                                                    </li>
+                                                    <li>
+                                                        <strong>수수료</strong>:
+                                                        수익을 기반으로 적용될
+                                                        수수료입니다.
+                                                        <ul>
+                                                            <li>
+                                                                <strong
+                                                                    >기본 수수료
+                                                                    총계 및 실질
+                                                                    수수료율</strong
+                                                                >
+                                                                : 발견 수수료가
+                                                                반영되지 않았을
+                                                                때 예상되는
+                                                                수수료의 총계와
+                                                                실제
+                                                                수수료율(수익을
+                                                                수수료로 나눈
+                                                                값)입니다.
+                                                            </li>
+                                                            <li>
+                                                                <strong
+                                                                    >발견 수수료
+                                                                    반영 후
+                                                                    수수료 총계
+                                                                    및 실질
+                                                                    수수료율</strong
+                                                                >
+                                                                : 발견 수수료가
+                                                                반영됐을 때
+                                                                예상되는
+                                                                수수료의 총계와
+                                                                실제
+                                                                수수료율(수익을
+                                                                수수료로 나눈
+                                                                값)입니다.
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <strong
+                                                            >시뮬레이션</strong
+                                                        >: 각 월 발생한 수익으로
+                                                        실제 출금 신청이
+                                                        이뤄졌을 때 예상되는
+                                                        입금액입니다. 입금액은
+                                                        수수료에 대한
+                                                        부가가치세를 반영한
+                                                        값입니다.
+                                                        <ul>
+                                                            <li>
+                                                                <strong
+                                                                    >발견 수수료
+                                                                    반영
+                                                                    전</strong
+                                                                >
+                                                                : 기본 수수료만
+                                                                적용될 경우의
+                                                                입금액입니다.
+                                                            </li>
+                                                            <li>
+                                                                <strong
+                                                                    >발견 수수료
+                                                                    반영
+                                                                    후</strong
+                                                                >
+                                                                : 발견 수수료가
+                                                                적용될 경우의
+                                                                입금액입니다.
+                                                            </li>
+                                                            <li>
+                                                                <strong
+                                                                    >발견 미표시
+                                                                    설정
+                                                                    시</strong
+                                                                >
+                                                                : 채널 내 '발견
+                                                                기능 내 포스트
+                                                                표시' 설정을
+                                                                꺼서 '발견에서
+                                                                발생한 수익'이
+                                                                전혀 발생하지
+                                                                않았을 때를
+                                                                가정한 수익,
+                                                                수수료,
+                                                                입금액입니다.
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <div>
+                                                    <hr
+                                                        class="hr hr-solid-short"
+                                                    />
+                                                </div>
+                                                <h4>
+                                                    수수료 정책 변경에 대한
+                                                    배경을 추가로 설명해
+                                                    드립니다.
+                                                </h4>
+                                                <p>
+                                                    3월 17일 포스타입의 정책
+                                                    변경 안내 이후, 많은
+                                                    크리에이터와 이용자께서
+                                                    다양한 의견을
+                                                    전달해주셨습니다. 포스타입은
+                                                    2년 이상 긴 검토 끝에 정책
+                                                    변경을 결정했지만,
+                                                    안내해드리는 과정에서 설명이
+                                                    충분하지 않았거나 이용자
+                                                    여러분의 기대에 미치지 못한
+                                                    부분이 있었습니다.
+                                                </p>
+                                                <p>
+                                                    이번 정책 변경을 결정하게 된
+                                                    배경과 우리의 고민을 더욱
+                                                    자세히 설명해 드리고자
+                                                    합니다.
+                                                </p>
+                                                <h5>
+                                                    수수료 정책을 변경하게 된
+                                                    배경
+                                                </h5>
+                                                <p>
+                                                    지난 공지에서 말씀드린 대로
+                                                    발견 수수료 적용 대상인
+                                                    경우, 기본 수수료(13%)에
+                                                    발견 수수료(17%)가 더해져
+                                                    출금 시 수수료가 최대
+                                                    30%까지 적용될 수 있는 것은
+                                                    맞습니다. 다만 실제 수익으로
+                                                    볼 때 예상되는 전체 평균
+                                                    최종 수수료는 20%
+                                                    미만입니다. 3월 시뮬레이션
+                                                    결과 역시 최종 수수료는 약
+                                                    19.2%입니다.
+                                                </p>
+                                                <p>
+                                                    20%는 포스타입이 내부
+                                                    회계・데이터 분석과 시장
+                                                    조사 등을 거쳐 도출한 적정
+                                                    수수료였습니다. 서비스의
+                                                    매출과 비용 구조를
+                                                    살펴보았을 때 서비스 존속과
+                                                    성장에 필요한 요율을 그렇게
+                                                    보았기 때문입니다. 20%는
+                                                    포스타입이 과거 2018년
+                                                    초까지 적용했던 수수료이기도
+                                                    합니다.
+                                                </p>
+                                                <p>
+                                                    기존 수수료 정책에 따르면
+                                                    이용자 여러분께서 1만 원
+                                                    상당의 1만 포인트를 충전해
+                                                    사용하셨을 때 포스타입이
+                                                    기대할 수 있는 미래 수익은
+                                                    10%인 1천 원입니다. 이
+                                                    가운데 300원 이상은 결제
+                                                    수단을 제공하는 업체(PG)에
+                                                    정률 수수료에 따라 지급해야
+                                                    합니다. 또 통상 거래액과
+                                                    비례해서 증가하는 인프라
+                                                    비용(서버비, API 비용,
+                                                    본인인증 비용 등)을 비례
+                                                    적용하면 200원을 훌쩍
+                                                    넘어섭니다. 포스타입이 1천
+                                                    원을 벌었을 때 이미 두
+                                                    비용만으로 절반 이상을
+                                                    지출해야 합니다. 여기에
+                                                    인건비, 업무 툴 사용료,
+                                                    사무실 등 각종 임차료,
+                                                    운영비 등을 모두 합했을 때
+                                                    막대한 손실이 발생하는
+                                                    구조입니다.
+                                                </p>
+                                                <p>
+                                                    포스타입과 가장 유사한 사업
+                                                    구조로 긴 시간 생존해 온
+                                                    해외 선행 서비스들 역시
+                                                    최종적인 실질 수수료율은
+                                                    통상 20% 이상입니다. 공지
+                                                    이후 포스타입이 국내 대형
+                                                    웹툰・웹소설 플랫폼의 계약
+                                                    요율을 참고한 것으로
+                                                    오해하시기도 하지만,
+                                                    포스타입은 UGC 중개 형태의
+                                                    사업 구조를 가지고 있기
+                                                    때문에 해당 서비스들의 사업
+                                                    구조와 요율을 참고하지
+                                                    않았습니다.
+                                                </p>
+                                                <h5>
+                                                    발견 수수료를 도입하게 된
+                                                    배경
+                                                </h5>
+                                                <p>
+                                                    포스타입은 위 의사결정에
+                                                    따라 기본 수수료를 20%로
+                                                    단순 인상하는 것 역시
+                                                    검토했습니다.
+                                                </p>
+                                                <p>
+                                                    하지만 모든 크리에이터에게
+                                                    수수료를 높은 폭으로 일괄
+                                                    인상하는 것은 합리적이지
+                                                    않다고 판단했습니다.
+                                                    포스타입의 각 기능이
+                                                    제공하는 부가가치와 이용
+                                                    데이터를 두루 살펴봤을 때
+                                                    크리에이터마다 수익의 경로가
+                                                    천차만별이었기 때문입니다.
+                                                </p>
+                                                <p>
+                                                    특히 기존에 확보한 구독자가
+                                                    많거나 외부 유입 경로(SNS
+                                                    등)를 통해 주로 수익을
+                                                    올리는 크리에이터에게 수수료
+                                                    20%는 우리가 제공하는
+                                                    부가가치에 비해 지나치게
+                                                    높다고 판단했습니다. 긴 고민
+                                                    끝에 기본 수수료와 발견
+                                                    수수료를 분리해, 발견이라는
+                                                    부가가치에 따라 수수료가
+                                                    차등 적용될 수 있도록 하는
+                                                    것이 가장 합리적이라는
+                                                    결론을 내렸습니다.
+                                                </p>
+                                                <p>
+                                                    포스타입의 입장에서도 발견
+                                                    수수료는 발견 기능을
+                                                    고도화할 강한 유인이 됩니다.
+                                                    메인 화면을 개인화 추천으로
+                                                    전환하기 직전과 현재를
+                                                    비교했을 때 매달 수익을
+                                                    올리는 크리에이터 수가 40%
+                                                    가까이 증가했습니다. 또,
+                                                    지난달 메인을 목록형에서
+                                                    피드형으로 개편한 직후, 매일
+                                                    메인에서 발생한 거래 건수가
+                                                    40% 이상 크게 올랐습니다.
+                                                </p>
+                                                <p>
+                                                    이러한 성과는 디지털
+                                                    콘텐츠의 특성상 크리에이터가
+                                                    부담해야 할 수수료가
+                                                    올라가더라도 순수익은 더
+                                                    높을 수 있는 근간이 됩니다.
+                                                    포스타입은 발견 수수료로
+                                                    얻은 수익을 크리에이터의
+                                                    순수익 증가로 이어지는 제품
+                                                    개선에 활용해 지속 가능한
+                                                    창작 생태계를 구축하고자
+                                                    합니다.
+                                                </p>
+                                                <div>
+                                                    <hr
+                                                        class="hr hr-solid-short"
+                                                    />
+                                                </div>
+                                                <p>
+                                                    크리에이터 여러분께 큰
+                                                    부담이 될 수 있는 결정을
+                                                    내리게 되어 마음이
+                                                    무겁습니다. 그럼에도 이런
+                                                    결정을 내릴 수밖에 없었던
+                                                    것은 포스타입이 재정적인
+                                                    어려움을 겪다 하루아침에
+                                                    사라지는 서비스가 아니라
+                                                    크리에이터 여러분께
+                                                    영속적으로 창작과 수익화의
+                                                    장을 열어드릴 수 있는
+                                                    서비스가 되기 위함임을 다시
+                                                    한번 양해를 구하고자 합니다.
+                                                </p>
+                                                <p>
+                                                    제공된 가상 출금 정보에 대해
+                                                    궁금하신 점이 있다면
+                                                    <a href="" target="_blank"
+                                                        >도움 센터</a
+                                                    >를 통해 문의해주시기
+                                                    바랍니다.
+                                                </p>
+                                                <p>
+                                                    다시 한번 감사와 양해의
+                                                    말씀을 전합니다.
+                                                </p>
+                                                <p>감사합니다.</p>
+                                                <p>포스타입 드림</p>
+                                            </div>
+                                            <!-- wheel Click 방지-->
+                                        </div>
+                                    </div>
+                                    <section class="post-footer">
+                                        <h6 class="tag_h6_01">태그</h6>
+                                        <a
+                                            href=""
+                                            class="postFooter-aTag01 postFooter-aTag02 postFooter-aTag03"
+                                            ><span
+                                                class="Md aTag01-comment"
+                                                id=":Rq7aekvffafl7lqakq:"
+                                                >포스타입</span
+                                            ></a
+                                        ><a
+                                            href=""
+                                            class="postFooter-aTag01 postFooter-aTag02 postFooter-aTag03"
+                                            ><span
+                                                class="Md aTag01-comment"
+                                                id=":R1a7aekvffafl7lqakq:"
+                                                >공지사항</span
+                                            ></a
+                                        >
+                                    </section>
+                                    <section
+                                        class="post-navigation post-navigationBar"
+                                    >
+                                        <a
+                                            class="post_buttonContainer_01"
+                                            href=""
+                                            ><div
+                                                class="navigationBar-leftbutton"
+                                                role="button"
+                                                tabindex="0"
+                                            >
+                                                <svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="leftButton-Img"
+                                                >
+                                                    <path
+                                                        d="M8.713 11.332a.934.934 0 0 0 0 1.325l5.25 5.254a.937.937 0 0 0 1.324-1.324l-4.586-4.59 4.59-4.586a.937.937 0 0 0-1.324-1.324l-5.254 5.245Z"
+                                                        fill="currentcolor"
+                                                    ></path>
+                                                </svg>
+                                                <div
+                                                    class="previousPost-ContentWrap"
+                                                >
+                                                    <div
+                                                        class="previousPost-titleWrap"
+                                                    >
+                                                        <h5
+                                                            class="previousPost-title"
+                                                        >
+                                                            포스타입 프리미엄을
+                                                            출시합니다.
+                                                        </h5>
+                                                    </div>
+                                                    <h6
+                                                        class="preiviousPost-Content"
+                                                    >
+                                                        4월 1일부터 프리미엄으로
+                                                        광고 제거, 태그 차단,
+                                                        비밀 댓글 등 다양한
+                                                        기능을 만나볼 수 있어요!
+                                                    </h6>
+                                                </div>
+                                            </div></a
+                                        >
+                                        <div class="center-line"></div>
+                                        <div class="nextPost-ContentWrap">
+                                            <p class="empty-content">
+                                                다음 포스트가 없어요.
+                                            </p>
+                                            <svg
+                                                focusable="false"
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="nonePost_svg_01"
+                                            >
+                                                <path
+                                                    d="M15.291 11.332a.934.934 0 0 1 0 1.325l-5.25 5.254a.937.937 0 0 1-1.324-1.324L13.303 12l-4.59-4.59a.937.937 0 0 1 1.324-1.324l5.254 5.245Z"
+                                                    fill="currentcolor"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </section>
+                                    <section class="aithink_container_01">
+                                        <div class="aithink_wrap_01">
+                                            <a
+                                                href="/@blog"
+                                                class="channelWrap_01"
+                                                ><div
+                                                    class="channel_imgContainer_01"
+                                                >
+                                                    <div class="imgWrap_03">
+                                                        <div
+                                                            class="img_wrap_01"
+                                                            data-first-child=""
+                                                        >
+                                                            <img
+                                                                alt="채널 포스타입"
+                                                                loading="lazy"
+                                                                decoding="async"
+                                                                data-nimg="fill"
+                                                                style="
+                                                                    position: absolute;
+                                                                    height: 100%;
+                                                                    width: 100%;
+                                                                    left: 0;
+                                                                    top: 0;
+                                                                    right: 0;
+                                                                    bottom: 0;
+                                                                    object-fit: cover;
+                                                                    color: transparent;
+                                                                "
+                                                                src="https://d3mcojo3jv0dbr.cloudfront.net/2023/03/16/15/23/5d8c2513698820107444144488.png?w=50&amp;h=50&amp;q=65"
+                                                            />
+                                                        </div>
+                                                    </div></div
+                                            ></a>
+                                            <div class="aithink_div_01">
+                                                <a
+                                                    href="/@blog"
+                                                    class="channelWrap_01"
+                                                    ><span
+                                                        class="channel_span_01"
+                                                        >포스타입 공식
+                                                        채널</span
+                                                    ></a
+                                                >
+                                                <p class="post_point_01">
+                                                    구독자 13,108명
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="add_channelWrap_01">
+                                            <button
+                                                class="more_diaryButton_01 add_channelButton_01"
+                                                type="button"
+                                            >
+                                                구독
+                                            </button>
+                                        </div>
+                                    </section>
+                                </article>
+                            </div>
+                            <nav class="footer_navBar">
+                                <div class="nav_container_02">
+                                    <div class="nav_wrap_01">
+                                        <button
+                                            aria-label="좋아요"
+                                            class="upload-buttonSize_01 like_button_01"
+                                            type="button"
+                                        >
+                                            <span
+                                                class="more_diaryButton_span_01"
+                                                ><svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="menuButton_svg_01"
+                                                >
+                                                    <path
+                                                        d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
+                                                        fill="currentcolor"
+                                                    ></path></svg
+                                            ></span>
+                                            <p class="">12</p></button
+                                        ><button
+                                            aria-label="댓글"
+                                            class="upload-buttonSize_01 like_button_01"
+                                            type="button"
+                                        >
+                                            <span
+                                                class="more_diaryButton_span_01"
+                                                ><svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="menuButton_svg_01"
+                                                >
+                                                    <path
+                                                        d="M6.832 17.535a1.877 1.877 0 0 1 1.742-.25c1.035.375 2.194.59 3.428.59 4.87 0 8.123-3.145 8.123-6.25s-3.253-6.25-8.123-6.25c-4.87 0-8.122 3.145-8.122 6.25 0 1.25.484 2.453 1.394 3.484.336.38.5.88.46 1.387a6.92 6.92 0 0 1-.44 1.93 9.811 9.811 0 0 0 1.538-.887v-.004Zm-3.999 1.586c.07-.105.137-.21.2-.316.39-.649.76-1.5.835-2.457-1.172-1.332-1.863-2.961-1.863-4.723 0-4.488 4.475-8.125 9.997-8.125C17.526 3.5 22 7.137 22 11.625c0 4.488-4.475 8.125-9.998 8.125-1.448 0-2.823-.25-4.065-.7-.465.34-1.222.805-2.12 1.196a9.564 9.564 0 0 1-1.957.629c-.031.008-.062.012-.094.02-.171.03-.34.058-.515.074-.008 0-.02.004-.027.004-.2.02-.399.03-.598.03a.625.625 0 0 1-.445-1.066 5.606 5.606 0 0 0 .629-.797l.011-.019h.012Z"
+                                                        fill="currentcolor"
+                                                    ></path></svg
+                                            ></span>
+                                            <p class="">0</p></button
+                                        ><button
+                                            class="uploadButton_01 noComent_01"
+                                            type="button"
+                                        >
+                                            <svg
+                                                focusable="false"
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="menuButton_svg_01"
+                                            >
+                                                <path
+                                                    d="M4.5 3.875C4.5 2.84 5.34 2 6.375 2v17.242l5.082-3.629a.933.933 0 0 1 1.09 0l5.078 3.63V3.874H6.375h11.25c1.035 0 1.875.84 1.875 1.875v17.188a.938.938 0 0 1-1.48.762L12 17.526l-6.02 4.297a.938.938 0 0 1-1.48-.762V3.875Z"
+                                                    fill="currentcolor"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="moveButton_container_01">
+                                        <a
+                                            href="/@blog/post/19143537"
+                                            class="upload-buttonSize_01 like_button_01"
+                                            ><span
+                                                class="more_diaryButton_span_01"
+                                                ><svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="menuButton_svg_01"
+                                                >
+                                                    <path
+                                                        d="M7.588 11.332a.934.934 0 0 0 0 1.325l7.5 7.504a.937.937 0 0 0 1.324-1.324l-6.836-6.84 6.84-6.836a.937.937 0 0 0-1.324-1.324l-7.504 7.495Z"
+                                                        fill="currentcolor"
+                                                    ></path></svg
+                                            ></span>
+                                            <p class="button_text_01">
+                                                이전
+                                            </p></a
+                                        ><button
+                                            aria-label="시리즈의 모든 포스트 보기"
+                                            class="uploadButton_01 moreReply_button_01"
+                                            type="button"
+                                        >
+                                            <svg
+                                                focusable="false"
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="post_moreButton_svg_01"
+                                            >
+                                                <path
+                                                    d="M3.875 4.5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Zm4.688.313a.935.935 0 0 0-.938.937c0 .52.418.938.938.938h11.874c.52 0 .938-.418.938-.938a.935.935 0 0 0-.938-.938H8.563Zm0 6.25a.935.935 0 0 0-.938.937c0 .52.418.938.938.938h11.874c.52 0 .938-.418.938-.938a.935.935 0 0 0-.938-.938H8.563Zm0 6.25a.935.935 0 0 0-.938.937c0 .52.418.938.938.938h11.874c.52 0 .938-.418.938-.938a.935.935 0 0 0-.938-.938H8.563ZM5.124 12a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0Zm-1.25 5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z"
+                                                    fill="currentcolor"
+                                                ></path>
+                                            </svg></button
+                                        ><a
+                                            class="button_disabled_01 upload-buttonSize_01 like_button_01"
+                                            role="button"
+                                            tabindex="-1"
+                                            aria-disabled="true"
+                                            ><p class="joy-1f06h34">다음</p>
+                                            <span class="moveButton_span_01"
+                                                ><svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="menuButton_svg_01"
+                                                >
+                                                    <path
+                                                        d="M16.416 11.332a.934.934 0 0 1 0 1.325l-7.5 7.504a.937.937 0 0 1-1.324-1.324L14.428 12l-6.84-6.84a.937.937 0 0 1 1.324-1.324l7.504 7.495Z"
+                                                        fill="currentcolor"
+                                                    ></path></svg></span
+                                        ></a>
+                                    </div>
+                                </div>
+                            </nav>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script src="/js/main/main-modal.js"></script>
+</html>
