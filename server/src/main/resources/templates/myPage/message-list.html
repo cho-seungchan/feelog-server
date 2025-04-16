@@ -1,0 +1,493 @@
+<!-- 2025.04.06 조승찬 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/myPage/message-list.css" />
+        <title>알림 목록</title>
+    </head>
+    <body>
+        <div class="FeelogStack-root flog-div-1">
+            <!-- 헤더 넣을 곳 -->
+
+            <div class="feelog-header-mainDiv" id="header-container"></div>
+            <script>
+                // Load header.html and insert it in#header-placeholder
+                fetch("../main/header.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("header-container").innerHTML = data;
+                    })
+                    .catch((error) => console.error("Error loading header:", error));
+            </script>
+            <!-- 헤더 넣을 곳 -->
+            <div class="FeelogStack-root flog-div-12">
+                <div class="FeelogStack-root flog-div-13">
+                    <nav class="subnavigation FeelogBox-root flog-nav-2">
+                        <ul
+                            class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-1"
+                        >
+                            <a
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
+                                href="/messages"
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
+                                    메시지 목록
+                                </p></a
+                            ><a
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                                href="/messages/blockList"
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                                    이용자 차단
+                                </p></a
+                            >
+                        </ul>
+                    </nav>
+                    <main class="FeelogStack-root flog-main-4">
+                        <div class="FeelogStack-root flog-div-69">
+                            <div class="FeelogStack-root flog-div-20">
+                                <button
+                                    class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-button-16"
+                                >
+                                    <div
+                                        class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                    >
+                                        <img
+                                            alt=""
+                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                            loading="lazy"
+                                            class="FeelogAvatar-img flog-img-1"
+                                        />
+                                    </div>
+                                    <div class="FeelogStack-root flog-div-87">
+                                        <div class="FeelogStack-root flog-div-88">
+                                            <span class="FeelogTypography-root FeelogTypography-title-md flog-span-14"
+                                                >박정근</span
+                                            ><span class="FeelogTypography-root FeelogTypography-body-xs flog-span-19"
+                                                >2025. 4. 2.</span
+                                            >
+                                        </div>
+                                        <div class="FeelogStack-root flog-div-89">
+                                            <span class="FeelogTypography-root FeelogTypography-body-sm flog-span-20"
+                                                >안녕하십니까</span
+                                            >
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-3" />
+                            <div class="FeelogStack-root flog-div-20">
+                                <button
+                                    class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-button-16"
+                                >
+                                    <div
+                                        class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                    >
+                                        <img
+                                            alt=""
+                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                            loading="lazy"
+                                            class="FeelogAvatar-img flog-img-1"
+                                        />
+                                    </div>
+                                    <div class="FeelogStack-root flog-div-87">
+                                        <div class="FeelogStack-root flog-div-88">
+                                            <span class="FeelogTypography-root FeelogTypography-title-md flog-span-14"
+                                                >박정근</span
+                                            ><span class="FeelogTypography-root FeelogTypography-body-xs flog-span-19"
+                                                >2025. 4. 2.</span
+                                            >
+                                        </div>
+                                        <div class="FeelogStack-root flog-div-89">
+                                            <span class="FeelogTypography-root FeelogTypography-body-sm flog-span-20"
+                                                >안녕하십니까</span
+                                            >
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-3" />
+                            <div class="FeelogStack-root flog-div-20">
+                                <button
+                                    class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-button-16"
+                                >
+                                    <div
+                                        class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                    >
+                                        <img
+                                            alt=""
+                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                            loading="lazy"
+                                            class="FeelogAvatar-img flog-img-1"
+                                        />
+                                    </div>
+                                    <div class="FeelogStack-root flog-div-87">
+                                        <div class="FeelogStack-root flog-div-88">
+                                            <span class="FeelogTypography-root FeelogTypography-title-md flog-span-14"
+                                                >박정근</span
+                                            ><span class="FeelogTypography-root FeelogTypography-body-xs flog-span-19"
+                                                >2025. 4. 2.</span
+                                            >
+                                        </div>
+                                        <div class="FeelogStack-root flog-div-89">
+                                            <span class="FeelogTypography-root FeelogTypography-body-sm flog-span-20"
+                                                >안녕하십니까</span
+                                            >
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-3" />
+                            <div class="FeelogStack-root flog-div-20">
+                                <button
+                                    class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-button-16"
+                                >
+                                    <div
+                                        class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                    >
+                                        <img
+                                            alt=""
+                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                            loading="lazy"
+                                            class="FeelogAvatar-img flog-img-1"
+                                        />
+                                    </div>
+                                    <div class="FeelogStack-root flog-div-87">
+                                        <div class="FeelogStack-root flog-div-88">
+                                            <span class="FeelogTypography-root FeelogTypography-title-md flog-span-14"
+                                                >박정근</span
+                                            ><span class="FeelogTypography-root FeelogTypography-body-xs flog-span-19"
+                                                >2025. 4. 2.</span
+                                            >
+                                        </div>
+                                        <div class="FeelogStack-root flog-div-89">
+                                            <span class="FeelogTypography-root FeelogTypography-body-sm flog-span-20"
+                                                >안녕하십니까</span
+                                            >
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-3" />
+                            <div class="FeelogBox-root flog-div-68">
+                                <div class="FeelogStack-root flog-div-31" data-google-interstitial="false">
+                                    <a
+                                        type="button"
+                                        class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-a-20"
+                                        href="?type=comment_and_community&amp;page=1"
+                                        >더보기</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <!-- footer 넣을 곳 -->
+            <div class="joy-17imqrx" id="footer-container"></div>
+            <script>
+                // Load footer.html and insert it into #footer-placeholder
+                fetch("../main/footer.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("footer-container").innerHTML = data;
+                    })
+                    .catch((error) => console.error("Error loading footer:", error));
+            </script>
+            <!-- footer 넣을 곳 -->
+        </div>
+        <div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
+            <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
+            <div tabindex="0" data-testid="sentinelStart"></div>
+            <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby=":r48:"
+                aria-describedby=":r49:"
+                data-google-interstitial="false"
+                tabindex="-1"
+                class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAdaptive flog-div-90"
+            >
+                <div class="FeelogStack-root flog-div-91" data-first-child="">
+                    <div class="FeelogStack-root flog-div-92">
+                        <button
+                            class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeMd flog-button-17"
+                            type="button"
+                        >
+                            <svg
+                                focusable="false"
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                            >
+                                <path
+                                    d="M3.54 12.682a.949.949 0 0 1-.29-.68c0-.258.105-.5.29-.68l6.874-6.562a.937.937 0 0 1 1.293 1.355l-5.18 4.95h13.286c.519 0 .937.418.937.937 0 .52-.418.938-.938.938H6.527l5.184 4.945a.938.938 0 0 1-1.293 1.355l-6.875-6.562-.004.004Z"
+                                    fill="currentcolor"
+                                ></path>
+                            </svg></button
+                        ><a
+                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-24"
+                            href="/profile/@lr3uee"
+                            ><div
+                                class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeMd flog-div-19"
+                            >
+                                <img
+                                    alt=""
+                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                    loading="lazy"
+                                    class="FeelogAvatar-img flog-img-1"
+                                /></div
+                        ></a>
+                        <p class="FeelogTypography-root FeelogTypography-title-md flog-p-18">박정근</p>
+                    </div>
+                    <div class="FeelogStack-root flog-div-93">
+                        <button
+                            tabindex="0"
+                            aria-haspopup="menu"
+                            aria-expanded="false"
+                            aria-controls=":r4a:"
+                            class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeMd FeelogMenuButton-root FeelogMenuButton-variantOutlined FeelogMenuButton-colorNeutral FeelogMenuButton-sizeMd flog-button-18"
+                            type="button"
+                        >
+                            <svg
+                                focusable="false"
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                            >
+                                <path
+                                    d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
+                                    fill="currentcolor"
+                                ></path>
+                            </svg></button
+                        ><button
+                            class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-19"
+                            type="button"
+                        >
+                            <svg
+                                focusable="false"
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                data-testid="CloseIcon"
+                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
+                            >
+                                <path
+                                    d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <hr class="FeelogDivider-root FeelogDivider-horizontal FeelogDivider-insetContext flog-hr-4" />
+                <div class="FeelogStack-root flog-div-94">
+                    <div class="FeelogStack-root flog-div-95">
+                        <div class="FeelogBox-root flog-div-96">
+                            <div role="separator" class="FeelogDivider-root FeelogDivider-horizontal flog-div-97">
+                                <p class="FeelogTypography-root FeelogTypography-body-xs flog-p-7">2025. 4. 2.</p>
+                            </div>
+                        </div>
+                        <div class="FeelogStack-root flog-div-98">
+                            <div class="FeelogStack-root flog-div-99">
+                                <div class="FeelogStack-root flog-div-100">
+                                    <button
+                                        class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-20 delete-button"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-7"
+                                        >
+                                            <path
+                                                d="M10.168 3.875h3.66a.31.31 0 0 1 .262.14l.742 1.11H9.168l.742-1.11a.319.319 0 0 1 .262-.14h-.004Zm6.918 1.25-1.434-2.152A2.196 2.196 0 0 0 13.832 2h-3.664c-.73 0-1.414.367-1.82.973L6.914 5.125H4.187a.935.935 0 0 0-.937.938c0 .519.418.937.938.937h.453l.937 12.684A2.502 2.502 0 0 0 8.07 22h7.86a2.502 2.502 0 0 0 2.492-2.316L19.359 7h.453c.52 0 .938-.418.938-.938a.935.935 0 0 0-.938-.937h-2.726ZM17.48 7l-.93 12.547a.624.624 0 0 1-.625.578H8.07a.63.63 0 0 1-.625-.578L6.52 7h10.96Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <div class="FeelogBox-root flog-div-101">
+                                        <span class="FeelogTypography-root FeelogTypography-body-md flog-span-21"
+                                            >뭥가요?</span
+                                        >
+                                    </div>
+                                </div>
+                                <p class="FeelogTypography-root FeelogTypography-body-xs flog-p-19">
+                                    2025. 4. 2. 15:28
+                                </p>
+                            </div>
+                        </div>
+                        <div class="FeelogStack-root flog-div-98">
+                            <div class="FeelogStack-root flog-div-99">
+                                <div class="FeelogStack-root flog-div-100">
+                                    <button
+                                        class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-20 delete-button"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-7"
+                                        >
+                                            <path
+                                                d="M10.168 3.875h3.66a.31.31 0 0 1 .262.14l.742 1.11H9.168l.742-1.11a.319.319 0 0 1 .262-.14h-.004Zm6.918 1.25-1.434-2.152A2.196 2.196 0 0 0 13.832 2h-3.664c-.73 0-1.414.367-1.82.973L6.914 5.125H4.187a.935.935 0 0 0-.937.938c0 .519.418.937.938.937h.453l.937 12.684A2.502 2.502 0 0 0 8.07 22h7.86a2.502 2.502 0 0 0 2.492-2.316L19.359 7h.453c.52 0 .938-.418.938-.938a.935.935 0 0 0-.938-.937h-2.726ZM17.48 7l-.93 12.547a.624.624 0 0 1-.625.578H8.07a.63.63 0 0 1-.625-.578L6.52 7h10.96Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <div class="FeelogBox-root flog-div-101">
+                                        <span class="FeelogTypography-root FeelogTypography-body-md flog-span-21"
+                                            >엄지가 크네요 우왕 엄청 크네요</span
+                                        >
+                                    </div>
+                                </div>
+                                <p class="FeelogTypography-root FeelogTypography-body-xs flog-p-19">
+                                    2025. 4. 2. 15:29
+                                </p>
+                            </div>
+                        </div>
+                        <div class="FeelogStack-root flog-div-102" aria-live="polite">
+                            <a
+                                href="/profile/@lr3uee"
+                                class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-25"
+                                ><div
+                                    class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeXs flog-div-103"
+                                >
+                                    <img
+                                        alt=""
+                                        src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=50&amp;h=50&amp;q=65"
+                                        loading="lazy"
+                                        class="FeelogAvatar-img flog-img-1"
+                                    /></div
+                            ></a>
+                            <div class="FeelogStack-root flog-div-104">
+                                <div class="FeelogStack-root flog-div-100">
+                                    <div class="FeelogBox-root flog-div-105">
+                                        <span class="FeelogTypography-root FeelogTypography-body-md flog-span-22"
+                                            >안녕하십니까</span
+                                        >
+                                    </div>
+                                    <button
+                                        class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-21 delete-button"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                                        >
+                                            <path
+                                                d="M10.168 3.875h3.66a.31.31 0 0 1 .262.14l.742 1.11H9.168l.742-1.11a.319.319 0 0 1 .262-.14h-.004Zm6.918 1.25-1.434-2.152A2.196 2.196 0 0 0 13.832 2h-3.664c-.73 0-1.414.367-1.82.973L6.914 5.125H4.187a.935.935 0 0 0-.937.938c0 .519.418.937.938.937h.453l.937 12.684A2.502 2.502 0 0 0 8.07 22h7.86a2.502 2.502 0 0 0 2.492-2.316L19.359 7h.453c.52 0 .938-.418.938-.938a.935.935 0 0 0-.938-.937h-2.726ZM17.48 7l-.93 12.547a.624.624 0 0 1-.625.578H8.07a.63.63 0 0 1-.625-.578L6.52 7h10.96Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg></button
+                                    ><button
+                                        class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-21 report-button"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                                        >
+                                            <path
+                                                d="M5.875 2.938A.935.935 0 0 0 4.937 2 .935.935 0 0 0 4 2.938v18.125c0 .519.418.937.938.937.519 0 .937-.418.937-.938V15.75h14.688a.935.935 0 0 0 .75-1.5L17.75 9.5l3.563-4.75a.935.935 0 0 0-.75-1.5H5.874v-.313Zm0 2.187h12.813l-2.438 3.25c-.5.668-.5 1.582 0 2.25l2.438 3.25H5.874v-8.75Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p class="FeelogTypography-root FeelogTypography-body-xs flog-p-19">
+                                    2025. 4. 2. 15:30
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="FeelogDivider-root FeelogDivider-horizontal FeelogDivider-insetContext flog-hr-4" />
+                <div class="FeelogStack-root flog-div-106">
+                    <div
+                        class="FeelogTextarea-root FeelogTextarea-variantOutlined FeelogTextarea-colorNeutral FeelogTextarea-sizeMd flog-div-107"
+                    >
+                        <textarea
+                            rows="1"
+                            placeholder="메시지를 입력하세요."
+                            class="FeelogTextarea-textarea flog-textarea-1"
+                            style="height: 28px; overflow: hidden"
+                        ></textarea
+                        ><textarea
+                            aria-hidden="true"
+                            class="FeelogTextarea-textarea flog-textarea-1"
+                            readonly=""
+                            tabindex="-1"
+                            style="
+                                visibility: hidden;
+                                position: absolute;
+                                overflow: hidden;
+                                height: 0px;
+                                top: 0px;
+                                left: 0px;
+                                transform: translateZ(0px);
+                                padding-top: 0px;
+                                padding-bottom: 0px;
+                                width: 426px;
+                            "
+                        ></textarea>
+                        <div class="FeelogTextarea-endDecorator flog-div-108">
+                            <button
+                                class="FeelogIconButton-root Feelog-disabled FeelogIconButton-variantSolid FeelogIconButton-colorPrimary FeelogIconButton-sizeMd flog-button-22"
+                                type="button"
+                                disabled=""
+                            >
+                                <svg
+                                    focusable="false"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                                >
+                                    <path
+                                        d="M12.682 3.54a.949.949 0 0 0-.68-.29c-.258 0-.5.105-.68.29L4.76 10.413a.937.937 0 0 0 1.355 1.293l4.95-5.18v13.286c0 .519.418.937.937.937.52 0 .938-.418.938-.938V6.527l4.945 5.184a.938.938 0 0 0 1.355-1.293l-6.562-6.875.004-.004Z"
+                                        fill="currentcolor"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div tabindex="0" data-testid="sentinelEnd"></div>
+        </div>
+    </body>
+    <script src="/js/myPage/message-list-event.js"></script>
+    <script src="/js/main/main-modal.js"></script>
+</html>

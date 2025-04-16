@@ -1,0 +1,271 @@
+<!-- 2025.04.05 조승찬 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/myPage/making-channel.css" />
+        <title>채널 만들기</title>
+    </head>
+    <body>
+        <div class="FeelogStack-root flog-div-1">
+            <!-- 헤더 넣을 곳 -->
+
+            <div class="feelog-header-mainDiv" id="header-container"></div>
+            <script>
+                // Load header.html and insert it in#header-placeholder
+                fetch("../main/header.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("header-container").innerHTML = data;
+                    })
+                    .catch((error) => console.error("Error loading header:", error));
+            </script>
+            <!-- 헤더 넣을 곳 -->
+            <div class="FeelogStack-root flog-div-12">
+                <div class="FeelogStack-root flog-div-13">
+                    <nav class="subnavigation FeelogBox-root flog-nav-2">
+                        <ul
+                            class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-1"
+                        ></ul>
+                    </nav>
+                    <main class="FeelogStack-root flog-main-4">
+                        <div class="FeelogStack-root flog-div-76">
+                            <form class="FeelogStack-root flog-form-1">
+                                <div
+                                    class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49"
+                                >
+                                    <label
+                                        for=":R19ukvf9ul7rlqakq:"
+                                        id=":Rr9ukvf9ul7rlqakq:-label"
+                                        class="FeelogFormLabel-root flog-label-3"
+                                        >채널 프로필 이미지</label
+                                    >
+                                    <div class="FeelogStack-root flog-div-77">
+                                        <div class="FeelogBox-root flog-div-78">
+                                            <img
+                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png"
+                                                alt="channel-profile"
+                                            />
+                                        </div>
+                                        <div class="FeelogStack-root flog-div-79" data-testid="ImageUpload-data">
+                                            <input
+                                                id=":R19ukvf9ul7rlqakq:"
+                                                accept="image/jpeg, image/png, image/heic, image/heif, image/webp"
+                                                type="file"
+                                                style="display: none"
+                                                name="avatar"
+                                            />
+                                            <div
+                                                class="FeelogSheet-root FeelogSheet-variantOutlined FeelogSheet-colorNeutral flog-div-80"
+                                            >
+                                                <p class="FeelogTypography-root FeelogTypography-body-md flog-p-17">
+                                                    파일을 선택해 주세요.
+                                                </p>
+                                                <button
+                                                    type="button"
+                                                    class="FeelogButton-root FeelogButton-variantOutlined FeelogButton-colorNeutral FeelogButton-sizeMd flog-button-14"
+                                                >
+                                                    파일 선택
+                                                </button>
+                                            </div>
+                                            <div class="FeelogStack-root flog-div-81">
+                                                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-11">
+                                                    최대 10MB의 이미지 파일을 올려 주세요.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49"
+                                >
+                                    <label
+                                        for=":R1b9ukvf9ul7rlqakq:"
+                                        id=":R1b9ukvf9ul7rlqakq:-label"
+                                        required=""
+                                        class="FeelogFormLabel-root flog-label-3"
+                                        >채널 제목<span aria-hidden="true" class="FeelogFormLabel-asterisk flog-label-4"
+                                            > <!-- -->*</span
+                                        ></label
+                                    >
+                                    <div class="FeelogBox-root flog-div-82">
+                                        <div
+                                            class="FeelogInput-root FeelogInput-variantOutlined FeelogInput-colorNeutral FeelogInput-sizeMd FeelogInput-formControl flog-div-83"
+                                        >
+                                            <input
+                                                id=":R1b9ukvf9ul7rlqakq:"
+                                                maxlength="45"
+                                                aria-required="true"
+                                                class="FeelogInput-input flog-input-1"
+                                                name="title"
+                                                aria-describedby=":R1b9ukvf9ul7rlqakq:-helper-text"
+                                            />
+                                        </div>
+                                        <div
+                                            class="FeelogFormHelperText-root flog-div-52"
+                                            id=":R1b9ukvf9ul7rlqakq:-helper-text"
+                                        >
+                                            채널에 이름을 붙여 주세요. (최대 45자)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49"
+                                >
+                                    <label
+                                        for=":R1r9ukvf9ul7rlqakq:"
+                                        id=":R1r9ukvf9ul7rlqakq:-label"
+                                        class="FeelogFormLabel-root flog-label-3"
+                                        >채널 설명</label
+                                    >
+                                    <div class="FeelogBox-root flog-div-84">
+                                        <div
+                                            class="FeelogTextarea-root FeelogTextarea-variantOutlined FeelogTextarea-colorNeutral FeelogTextarea-sizeMd FeelogTextarea-formControl flog-div-85"
+                                        >
+                                            <textarea
+                                                rows="4"
+                                                style="height: 96px"
+                                                id=":R1r9ukvf9ul7rlqakq:"
+                                                name="description"
+                                                maxlength="255"
+                                                class="FeelogTextarea-textarea flog-textarea-1"
+                                                aria-describedby=":R1r9ukvf9ul7rlqakq:-helper-text"
+                                            ></textarea
+                                            ><textarea
+                                                aria-hidden="true"
+                                                class="FeelogTextarea-textarea flog-textarea-1"
+                                                readonly=""
+                                                tabindex="-1"
+                                                style="
+                                                    visibility: hidden;
+                                                    position: absolute;
+                                                    overflow: hidden;
+                                                    height: 0px;
+                                                    top: 0px;
+                                                    left: 0px;
+                                                    transform: translateZ(0px);
+                                                    padding-top: 0px;
+                                                    padding-bottom: 0px;
+                                                    width: 626px;
+                                                "
+                                            ></textarea>
+                                        </div>
+                                        <div
+                                            class="FeelogFormHelperText-root flog-div-52"
+                                            id=":R1r9ukvf9ul7rlqakq:-helper-text"
+                                        >
+                                            채널을 더 자세하게 소개해 주세요. (최대 255자)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49"
+                                >
+                                    <label
+                                        for=":R2b9ukvf9ul7rlqakq:"
+                                        id=":R2b9ukvf9ul7rlqakq:-label"
+                                        required=""
+                                        class="FeelogFormLabel-root flog-label-3"
+                                        >채널 URL<span aria-hidden="true" class="FeelogFormLabel-asterisk flog-label-4"
+                                            > <!-- -->*</span
+                                        ></label
+                                    >
+                                    <div class="FeelogBox-root flog-div-82">
+                                        <div
+                                            class="FeelogInput-root FeelogInput-variantOutlined FeelogInput-colorNeutral FeelogInput-sizeMd FeelogInput-formControl flog-div-83"
+                                        >
+                                            <div class="FeelogInput-startDecorator flog-div-86">
+                                                <p class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
+                                                    feelog.com/@
+                                                </p>
+                                            </div>
+                                            <input
+                                                id=":R2b9ukvf9ul7rlqakq:"
+                                                placeholder="URL을 입력해 주세요."
+                                                aria-required="true"
+                                                maxlength="45"
+                                                class="FeelogInput-input flog-input-4"
+                                                name="subDomain"
+                                                aria-describedby=":R2b9ukvf9ul7rlqakq:-helper-text"
+                                            />
+                                        </div>
+                                        <div
+                                            class="FeelogFormHelperText-root flog-div-52"
+                                            id=":R2b9ukvf9ul7rlqakq:-helper-text"
+                                        >
+                                            URL은 영문 소문자, 숫자, 대시(-)만 입력할 수 있어요. (최소 6자, 최대 45자)
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    type="submit"
+                                    class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-15"
+                                >
+                                    새 채널 만들기
+                                </button>
+                            </form>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <!-- footer 넣을 곳 -->
+            <div class="joy-17imqrx" id="footer-container"></div>
+            <script>
+                // Load footer.html and insert it into #footer-placeholder
+                fetch("../main/footer.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("footer-container").innerHTML = data;
+                    })
+                    .catch((error) => console.error("Error loading footer:", error));
+            </script>
+            <!-- footer 넣을 곳 -->
+        </div>
+        <div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
+            <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
+            <div tabindex="0" data-testid="sentinelStart"></div>
+            <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby=":r2:"
+                aria-describedby=":r3:"
+                tabindex="-1"
+                class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAlert flog-div-42"
+            >
+                <h2 id=":r2:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
+                    알림
+                </h2>
+                <button
+                    aria-label="닫기"
+                    class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-9"
+                    type="button"
+                >
+                    <svg
+                        focusable="false"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        data-testid="CloseIcon"
+                        class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
+                    >
+                        <path
+                            d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        ></path>
+                    </svg>
+                </button>
+                <div id=":r3:" class="FeelogDialogContent-root flog-div-43"></div>
+                <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
+                    <button
+                        class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
+                        type="button"
+                    >
+                        확인
+                    </button>
+                </div>
+            </div>
+            <div tabindex="0" data-testid="sentinelEnd"></div>
+        </div>
+    </body>
+    <script src="/js/myPage/making-channel-event.js"></script>
+    <script src="/js/main/main-modal.js"></script>
+</html>

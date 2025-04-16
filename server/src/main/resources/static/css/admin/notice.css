@@ -1,0 +1,250 @@
+.AppLayout_contents {
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+}
+
+@media screen and (min-width: 1096px) {
+    .AppLayout_container_adminList .AppLayout_main_adminList .AppLayout_contents {
+        position: relative;
+        flex: 1;
+        box-shadow: -2px 0px 0px -1px #0000000f;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100vw;
+    }
+}
+
+@media screen and (min-width: 1096px) {
+    .AppLayout_container_adminList .AppLayout_main_adminList .AppLayout_contents {
+        position: relative;
+        flex: 1;
+        box-shadow: 0 0 0 1px #0000000f;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.FundingPage_container_main {
+    display: flex
+;
+    width: 100vw;
+}
+
+@media screen and (min-width: 1096px) {
+    .FundingPage_container_main .FundingPage_box_main {
+        height: calc(100vh - 72px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
+.FundingPage_container_main .FundingPage_box_main {
+    flex: 1;
+    width: 100%;
+}
+
+.FundingPage_headBanner_section {
+    position: relative;
+}
+
+@media screen and (min-width: 1096px) {
+    .FundingPage_container_main .FundingPage_presentation_section {
+        /* padding: 40px 64px; */
+        position: relative;
+        left: 50px;
+    }
+}
+
+@media screen and (min-width: 1096px) {
+    .FundingPage_content_section {
+        margin-top: 120px;
+    }
+}
+
+.FundingPage_content_section {
+    position: relative;
+    margin-bottom: 120px;
+}
+
+@media screen and (min-width: 1096px) {
+    .FundingPage_container_main .FundingPage_content_section {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 1096px) {
+    .Funding_wrapper {
+        margin-top: -80px;
+    }
+}
+
+.section-Container {
+    width: 72%;
+    height: auto;
+    transition: opacity 200ms ease-in-out;
+    display: none;
+    opacity: 0;
+    min-width: 0px;
+    min-height: 1px;
+}
+
+.h3_wrapper {
+    width: 100%;
+    display: flex
+;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 65px;
+    position: relative;
+    top: -35px;
+}
+
+.h3_wrapper h3 {
+    font-size: 40px;
+    line-height: 26px;
+    letter-spacing: -0.54px;
+    color: rgb(51, 51, 51);
+    text-align: center;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.noticeRegistBtn, .noticeUpdateBtn, .noticeDeleteBtn, .noticeConfirmBtn {
+    width: 83px;
+    white-space: nowrap;
+    overflow-x: auto;
+    line-height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+    left: 93.5%;
+}
+
+.NoticePage__NoticeListWrapper {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mainNoticeListDiv {
+    font-weight: bold;
+    background-color: #f8f8f8;
+}
+
+.mainNoticeListDiv.noticeList, .noticeListDiv {
+    display: grid
+;
+    grid-template-columns: 100px 800px 70px 200px 200px;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.noticeTitleDiv {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.mainUserListDiv, .userListDiv, .reportListDiv, .noticeListDiv {
+    display: flex
+;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.userListDiv, .reportListDiv, .noticeListDiv {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex
+;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.userListDiv, .reportListDiv, .noticeListDiv {
+    background-color: #fff;
+}
+
+.mainNoticeListDiv.noticeList, .noticeListDiv {
+    display: grid
+;
+    grid-template-columns: 100px 800px 70px 200px 200px;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.noticeListDiv .noticeTitleDiv {
+    text-align: left;
+    padding-left: 10px;
+}
+
+#searchWrap {
+    display: flex
+;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.custom-select {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 5px;
+    transition: border-color 0.3s ease-in-out;
+    margin-right: 25px;
+}
+
+select, input[type="text"] {
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type=text] {
+    word-break: normal;
+}
+
+.search.button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-container{
+    display: flex;
+    justify-content: center;
+}
+
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto;
+}

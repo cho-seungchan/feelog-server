@@ -1,0 +1,2948 @@
+body {
+    margin: 0;
+    color: #202022;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    background-color: #FFFFFF;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    height: 100dvh;
+    /* font-family: "Postype Sans-serif KR", Apple SD Gothic Neo, Malgun Gothic, sans-serif; */
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #ffffff;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+body {
+    margin: 0px;
+    color: #202022;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    background-color: #ffffff;
+}
+
+.feelog-header-mainDiv {
+    /* display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100dvh;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; */
+    width: 100%;
+}
+
+.feelog-header-mainHeader {
+    position: -webkit-sticky;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+@media (min-width: 744px) {
+    .feelog-header-mainNav {
+        padding: 12px 32px;
+        height: 64px;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-mainNav {
+        padding: 4px 8px;
+        height: 48px;
+    }
+}
+
+.feelog-header-mainNav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 1144px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+@media (min-width: 744px) {
+    .feelog-header-nav-div {
+        gap: 8px;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-nav-div {
+        gap: 0px;
+    }
+}
+
+.feelog-header-nav-div {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    position: relative;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+:-webkit-any(article, aside, nav, section) h1 {
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+}
+
+.sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+}
+
+*, ::before, ::after {
+    box-sizing: inherit;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+@media (min-width: 744px) {
+    .feelog-header-logo {
+        /* display: -webkit-box; */
+        /* display: -webkit-flex; */
+        display: -ms-flexbox;
+        display: flex;
+        padding: 0 8px 0 0;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-logo {
+        display: flex;
+        padding: 11px 8px;
+    }
+}
+
+.feelog-header-logo {
+    cursor: pointer;
+}
+
+.feelog-header-logo-svg {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    width: 127.99992px;
+    height: 24px;
+    display: inline-block;
+    fill: currentColor;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: black;
+}
+
+:not(svg) {
+    transform-origin: 0px 0px;
+}
+
+@media (min-width: 744px) {
+    .feelog-header-home {
+        display: flex;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-home {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: none;
+    }
+}
+
+.feelog-header-home {
+    cursor: pointer;
+    padding: 8px;
+}
+
+.feelog-header-home-svg {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    width: 95.99994px;
+    height: 18px;
+    display: inline-block;
+    fill: currentColor;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: black;
+}
+
+@media (min-width: 0px) {
+    .feelog-header-write {
+        gap: 4px;
+    }
+}
+
+@media (min-width: 744px) {
+    .feelog-header-write {
+        gap: 8px;
+    }
+}
+
+
+
+.feelog-header-write {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+@media (min-width: 0px) {
+    .feelog-header-write02 {
+        display: none;
+    }
+}
+
+@media (min-width: 744px) {
+    .feelog-header-write02 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+.feelog-header-write03.feelog-header-write-btn {
+    min-height: 40px;
+}
+
+.feelog-header-write03 {
+    min-height: 2.25rem;
+    font-size: 16px;
+    padding-block: 0.375rem;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 600;
+    line-height: 1.5;
+    color: #202022;
+    background-color: #F2F2F3;
+    font-weight: 500;
+}
+
+.feelog-header-write-open {
+    display: inherit;
+    margin-right: 0.5rem;
+}
+
+.feelog-header-write-opened-svgs {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: currentcolor;
+}
+
+.feelog-header-emoji.feelog-header-topside {
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.feelog-header-emoji {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    font-size: 16px;
+    padding-inline: 0.25rem;
+    -webkit-tap-highlight-color: transparent;
+    padding-block: 0;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 500;
+    margin: 0;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    color: #202022;
+}
+
+.feelog-header-alert {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 8px;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.feelog-header-alert02 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 8px;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+@media (min-width: 0px) {
+    .feelog-header-alert02 {
+        display: none;
+    }
+}
+
+@media (min-width: 744px) {
+    .feelog-header-alert02 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+
+
+.feelog-header-topSpan {
+    position: relative;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.feelog-header-topSpan01 {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: none;
+    line-height: 1.5;
+    padding: 0 0.375rem;
+    min-height: 1.25rem;
+    min-width: 1.25rem;
+    border-radius: 1.25rem;
+    z-index: 1;
+    background-color: #3478FF;
+    top: 0;
+    right: 0;
+    -webkit-transform: scale(1) translateX(50%) translateY(-50%);
+    -moz-transform: scale(1) translateX(50%) translateY(-50%);
+    -ms-transform: scale(1) translateX(50%) translateY(-50%);
+    transform: scale(1) translateX(50%) translateY(-50%);
+    transform-origin: 100% 0%;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 14px;
+    color: #FFFFFF;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.feelog-header-topsice-msg {
+    position: relative;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.feelog-header-topSpan02.feelog-header-topRight {
+    -webkit-transform: scale(0) translateX(50%) translateY(-50%);
+    -moz-transform: scale(0) translateX(50%) translateY(-50%);
+    -ms-transform: scale(0) translateX(50%) translateY(-50%);
+    transform: scale(0) translateX(50%) translateY(-50%);
+}
+
+.feelog-header-topDiv {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 40px;
+    height: 40px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+@media (min-width: 0px) {
+    .feelog-header-topDiv01 {
+        display: none;
+    }
+}
+
+@media (min-width: 744px) {
+    .feelog-header-topDiv01 {
+        display: initial;
+    }
+}
+
+
+.feelog-header-topBtn.feelog-header-usermenu {
+    min-height: 32px;
+}
+
+.feelog-header-topBtn {
+    min-height: 2rem;
+    font-size: 14px;
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 600;
+    line-height: 1.5;
+    color: #202022;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.feelog-header-topDiv02 {
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    color: #202022;
+    width: 32px;
+    height: 32px;
+    margin-inline-start: 0;
+    box-shadow: none;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.feelog-header-topImages {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+    color: transparent;
+    text-indent: 10000px;
+}
+
+
+
+@media (min-width: 0px) {
+    .feelog-header-topDiv03 {
+        display: initial;
+    }
+}
+@media (min-width: 744px) {
+    .feelog-header-topDiv03 {
+        display: none;
+    }
+}
+
+.feelog-header-topSpan03 {
+    position: relative;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.feelog-header-topUserMenu {
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(52, 120, 255, 1);
+    font-weight: 400;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    text-decoration-thickness: max(0.08em, 1px);
+    text-underline-offset: 0.15em;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    margin: 0;
+    border-radius: 6px;
+    padding: 0;
+    cursor: pointer;
+    text-decoration-color: currentcolor;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+}
+
+.feelog-header-topDiv04 {
+    margin-inline-start: 0;
+    box-shadow: none;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    line-height: 1;
+    overflow: hidden;
+    border-radius: 50%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #202022;
+    width: 24px;
+    height: 24px;
+}
+
+.joy-p6k0bu {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: none;
+    line-height: 1.5;
+    padding: 0 0.25rem;
+    min-height: 1rem;
+    min-width: 1rem;
+    border-radius: 1rem;
+    z-index: 1;
+    background-color: #3478FF;
+    top: 0;
+    right: 0;
+    -webkit-transform: scale(1) translateX(50%) translateY(-50%);
+    -moz-transform: scale(1) translateX(50%) translateY(-50%);
+    -ms-transform: scale(1) translateX(50%) translateY(-50%);
+    transform: scale(1) translateX(50%) translateY(-50%);
+    transform-origin: 100% 0%;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 500;
+    font-size: 12px;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.feelog-header-mdl-div {
+    position: fixed;
+    z-index: 1300;
+    inset: 0px;
+}
+
+animation-os2n7p animation {
+    opacity: 1;
+}
+
+.feelog-header-mdl-div01 {
+    z-index: -1;
+    position: fixed;
+    inset: 0px;
+    background-color: rgba(32, 32, 34, 0.25);
+    -webkit-tap-highlight-color: transparent;
+    backdrop-filter: none;
+    animation: 0.2s ease-in-out 0s 1 normal forwards running animation-os2n7p;
+}
+
+.feelog-header-mdl-div {
+    position: fixed;
+    z-index: 1300;
+    inset: 0px;
+}
+
+.feelog-header-mdl-div02.feelog-header-modal {
+    width: 400px;
+}
+
+.feelog-header-mdl-div02 {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 14px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    box-sizing: border-box;
+    box-shadow: 0 0 #000, 0px 2px 8px -2px rgba(21, 21, 21, 0.08), 0px 6px 12px -2px rgba(21, 21, 21, 0.08);
+    min-width: min(calc(100vw - 40px), 300px);
+    position: absolute;
+    top: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: calc(100% - 80px);
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    border-color: #DADADC;
+    outline: 0px;
+    border-width: 0px;
+    gap: 0px;
+}
+
+.feelog-header-topDivs {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.feelog-header-mdl-h2 {
+    display: flex;
+    gap: clamp(4px, 0.375em, 0.75rem);
+    margin: 0px;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.33334;
+    color: inherit;
+    flex: 1 1 0%;
+}
+
+@media (min-width: 744px) {
+    .feelog-header-mdl-div03 {
+        display: none;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-mdl-div03 {
+        display: flex;
+    }
+}
+
+.feelog-header-mdl-div03 {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: -12px;
+    margin-bottom: -12px;
+    margin-right: -16px;
+}
+
+.feelog-header-mdl-closebtn {
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 14px;
+    padding-inline: 2px;
+    -webkit-tap-highlight-color: transparent;
+    padding-block: 0px;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 500;
+    margin: 0;
+    border: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    border-radius: 8px;
+    color: #3E3E43;
+    top: 16px;
+    left: none;
+    right: 16px;
+    display: flex;
+}
+
+.feelog-header-mdl-svg1 {
+    user-select: none;
+    margin: 0;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #76767F;
+}
+
+.feelog-header-mdl-ul01.feelog-header-menuUi {
+    --ListItem-minHeight: 48px;
+}
+
+.feelog-header-mdl-ul01 {
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    padding-block: 0.5rem;
+    padding-inline: 0;
+    box-sizing: border-box;
+    border-radius: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    color: #202022;
+    padding: 0px;
+    margin: 12px -12px -12px;
+}
+
+.feelog-header-mdl-li01:not([hidden]) {
+    display: flex;
+}
+
+.feelog-header-mdl-li01 {
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-inline: 0;
+    box-sizing: border-box;
+    border-radius: 0;
+    display: flex;
+    flex: 0 0 auto;
+    list-style-type: disc;
+    position: relative;
+    padding-block-start: 0.375rem;
+    padding-block-end: 0.375rem;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+    min-block-size: 2.75rem;
+    color: #202022;
+}
+
+.feelog-header-profileMenu > .feelog-header-mdl-a01 {
+    flex: 1 0 0%;
+}
+
+.feelog-header-mdl-a01 {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    position: relative;
+    font: inherit;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: stretch;
+    gap: 0.75rem;
+    text-align: initial;
+    text-decoration: initial;
+    background-color: initial;
+    cursor: pointer;
+    margin-inline: 0;
+    margin-block: 0;
+    padding-block: 0.375rem;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+    min-block-size: 2.75rem;
+    border: 1px solid transparent;
+    flex: 1 0 0%;
+    min-inline-size: 0px;
+    color: #202022;
+    padding: 8px 16px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.feelog-header-mdl-div04 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.feelog-header-mdl-p01 {
+    display: block;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    margin-bottom: 2px;
+}
+
+.feelog-header-top-multipleLi:not([hidden]) {
+    display: flex;
+}
+
+.feelog-header-top-multipleLi {
+    align-items: center;
+    gap: 0.75rem;
+    margin-inline: 0;
+    box-sizing: border-box;
+    border-radius: 0;
+    display: flex;
+    flex: none;
+    list-style-type: disc;
+    position: relative;
+    padding-block-start: 0.375rem;
+    padding-block-end: 0.375rem;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+    margin-block-start: 0px;
+    min-block-size: 2.75rem;
+    color: #202022;
+}
+
+.feelog-header-topDivs-02 {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.feelog-header-topDivs-02 {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.feelog-header-topDivs-02 {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.joy-1vzv6co.feelog-header-menuAlert {
+    --Chip-paddingInline: 6px;
+    --_Chip-minHeight: 20px;
+    --Chip-decoratorChildHeight: 18px;
+    font-size: 12px;
+    min-width: 32px;
+}
+
+.joy-1vzv6co {
+    gap: 3px;
+    min-height: 24px;
+    max-width: max-content;
+    padding-inline: 8px;
+    border-radius: 24px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: middle;
+    box-sizing: border-box;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    line-height: 1.5;
+    background-color: #EBF2FF;
+    color: #145FF5;
+    font-size: 14px;
+    text-align: center;
+    min-width: 40px;
+    font-weight: 400;
+}
+
+.feelog-header-topSpan06 {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    min-inline-size: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.feelog-header-topDivs-02 {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+}
+
+@media (min-width: 744px) {
+    .feelog-header-topMenu {
+        display: initial;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-topMenu {
+        display: none;
+    }
+}
+
+.feelog-header-topMenu {
+    margin: initial;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    padding-block: 0.375rem;
+    padding-inline: 0;
+    box-sizing: border-box;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    box-shadow: 0 0 #000, 0px 2px 8px -2px rgba(21, 21, 21, 0.08), 0px 6px 12px -2px rgba(21, 21, 21, 0.08);
+    z-index: 1000;
+    background-color: #FFFFFF;
+    color: #202022;
+    width: 338px;
+    max-width: 338px;
+    min-height: 400px;
+    border-radius: 12px;
+    padding: 0px;
+    overflow: auto;
+    position: absolute;
+    inset: 0px 0px auto auto;
+    margin: 0;
+    transform: translate(-45px, 55px);
+}
+
+.menu-ui01.feelog-header-menuUi {
+    --ListItem-minHeight: 48px;
+}
+
+.menu-ui01 {
+    padding: 0px 0px 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-block-start: 0px;
+    margin-block-end: initial;
+    box-sizing: border-box;
+    border-radius: 12px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    color: #202022;
+}
+
+.menu-li01:not([hidden]) {
+    display: flex;
+}
+
+.menu-li01 {
+    align-items: center;
+    gap: 0.75rem;
+    margin-inline: 0px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    display: flex;
+    flex: 0 0 auto;
+    list-style-type: disc;
+    position: relative;
+    padding-block-start: 0.375rem;
+    padding-block-end: 0.375rem;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+    min-block-size: 2.75rem;
+    color: #202022;
+    padding: 8px 16px;
+}
+
+.menu-01-btn {
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(118, 118, 127, 1);
+    font-weight: 400;
+    text-decoration: none max(0.08em, 1px) currentcolor;
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    border-radius: 6px;
+    padding: 0px;
+    cursor: pointer;
+    user-select: none;
+    appearance: none;
+    position: relative;
+    gap: 12px;
+}
+
+.feelog-header-topDiv05 {
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 600;
+    font-size: 16px; 
+    line-height: 1;
+    color: #202022;
+    margin-inline-start: 0;
+    box-shadow: none; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    user-select: none;
+    width: 40px;
+    height: 40px;
+}
+
+.feelog-header-topImages {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+    color: transparent;
+    text-indent: 10000px;
+}
+
+.feelog-header-topDiv06 {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.feelog-header-topSpan04 {
+    margin: 0px;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.25;
+    color: #101014;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.feelog-header-topDiv07 {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(-200px + 100dvh);
+    overflow: hidden auto;
+}
+
+/* ************************************************************************ */
+/* ************************************************************************ */
+/* ************************************************************************ */
+/* ************************************************************************ */
+/* ************************************************************************ */
+
+@media (min-width: 744px) {
+    .feelog-header-topMenu {
+        display: initial;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-topMenu {
+        display: none;
+    }
+}
+
+.feelog-header-topMenu {
+    margin: initial;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    padding-block: 6px;
+    padding-inline: 0px;
+    box-sizing: border-box;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    color: #202022;
+    box-shadow: 0 0 #000, 0px 2px 8px -2px rgba(21, 21, 21, 0.08), 0px 6px 12px -2px rgba(21, 21, 21, 0.08);
+    z-index: 1000;
+    width: 338px;
+    max-width: 338px;
+    min-height: 400px;
+    padding: 0px;
+    overflow: auto;
+}
+  
+.menu-ui01.feelog-header-menuUi {
+    --ListItem-minHeight: 48px;
+}
+
+.menu-ui01 {
+    padding: 8px 0px 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-block-start: 0px;
+    margin-block-end: initial;
+    box-sizing: border-box;
+    border-radius: 12px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    color: #202022;
+}
+  
+.menu-li01:not([hidden]) {
+    display: flex;
+}
+
+.menu-li01 {
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+    margin-inline: 0px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    display: flex;
+    flex: 0 0 auto;
+    list-style-type: disc;
+    position: relative;
+    min-block-size: 44px;
+    color: #202022;
+    padding: 8px 16px;
+}
+  
+.menu-01-btn {
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(118, 118, 127, 1);
+    font-weight: 400;
+    text-decoration: none max(0.08em, 1px) currentcolor;
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    border-radius: 6px;
+    padding: 0px;
+    cursor: pointer;
+    user-select: none;
+    appearance: none;
+    position: relative;
+    gap: 12px;
+}
+  
+.feelog-header-topDiv05 {
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+    color: #202022;
+    margin-inline-start: 0px;
+    box-shadow: none;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    user-select: none;
+    width: 40px;
+    height: 40px;
+}
+  
+.feelog-header-topImages {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+    color: transparent;
+    text-indent: 10000px;
+}
+
+.feelog-header-topDiv06 {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.feelog-header-topSpan04 {
+    margin: 0px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.33334;
+    color: #202022;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+  
+.joy-qh7pez {
+    user-select: none;
+    margin: 0px;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 24px;
+    transform: rotate(0deg);
+    width: 18px;
+    height: 18px;
+    color: currentcolor;
+}
+  
+.feelog-header-topDiv07 {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(-200px + 100dvh);
+    overflow: hidden auto;
+}
+
+.joy-10bj94j.feelog-header-menuUi {
+    --ListItem-minHeight: 48px;
+}
+
+.joy-10bj94j {
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-block-start: 0px;
+    margin-block-end: initial;
+    box-sizing: border-box;
+    border-radius: 12px;
+    list-style: none;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    color: #202022;
+    padding: 0px;
+    display: none;
+}
+  
+.feelog-header-top1stp {
+    margin: 0px;
+    display: block;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #76767F;
+    padding: 4px 16px;
+  }
+  
+  .feelog-header-top-multipleLi {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 12px;
+    margin-inline: 0px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    display: flex;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    list-style-type: disc;
+    position: relative;
+    padding-block-start: 0px;
+    padding-block-end: 0px;
+    -webkit-padding-start: 16px;
+    padding-inline-start: 16px;
+    -webkit-padding-end: 16px;
+    padding-inline-end: 16px;
+    margin-block-start: 0px;
+    min-block-size: 44px;
+    color: #202022;
+  }
+  
+.feelog-header-profileMenu > .feelog-header-topDiv08 {
+    --unstable_ListItem-flex: 1 0 0%;
+}
+
+/* .feelog-header-topDiv08 {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    position: relative;
+    font: inherit;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: stretch;
+    gap: 12px;
+    text-align: initial;
+    text-decoration: initial;
+    background-color: initial;
+    cursor: pointer;
+    margin-inline: 0px;
+    margin-block: 0px;
+    border: 0px solid transparent;
+    border-radius: 12px;
+    flex: none;
+    min-inline-size: 0px;
+    color: #202022;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0px;
+  } */
+  
+  .feelog-header-topDiv08 {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    position: relative;
+    font: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0px;
+    margin: 0px;
+    border: 0;
+    border-radius: 12px;
+    color: #202022;
+    width: 100%; /* ← 핵심 */
+  }
+
+.feelog-header-topA01 {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 0px;
+    flex: 1;
+    text-decoration: none;
+    align-items: center;
+}
+
+.feelog-header-topDiv09 {
+    margin-inline-start: 0px;
+    box-shadow: none;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    overflow: hidden;
+    border-radius: 50%;
+    user-select: none;
+    color: #202022;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+.feelog-header-top2ndp {
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    overflow-wrap: anywhere;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    margin-left: 12px;
+    overflow: hidden;
+  }
+  
+.menu-02-btn.feelog-header-menuBtns {
+    min-width: 32px;
+    min-height: 32px;
+}
+  
+.menu-02-btn {
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 14px;
+    -webkit-tap-highlight-color: transparent;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    color: #202022;
+    background-color: #F2F2F3;
+    /* margin-right: 16px; */
+    padding-inline: 2px;
+    padding-block: 0px;
+    border-radius: 8px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+
+.feelog-header-write-opened-svgs {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0px;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: currentcolor;
+  }
+
+.feelog-header-profileMenu > .joy-1l9tf61 {
+    --unstable_ListItem-flex: 1 0 0%;
+}
+
+
+.joy-1l9tf61 {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    position: relative;
+    font: inherit;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: stretch;
+    gap: 12px;
+    text-align: initial;
+    text-decoration: initial;
+    background-color: initial;
+    cursor: pointer;
+    margin-inline: 0px;
+    margin-block: 0px;
+    border: 0px solid transparent;
+    border-radius: 12px;
+    flex: none;
+    min-inline-size: 0px;
+    color: #202022;
+    padding: 8px 16px;
+  }
+
+
+.feelog-header-topDivs {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+.feelog-header-topDivs-01 {
+    display: flex;
+    margin-left: -1px;
+    color: #76767F;
+  }
+  
+
+.feelog-header-top2ndp {
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    margin-left: 12px;
+    overflow: hidden;
+  }
+
+
+.joy-ivlxwj {
+    padding: 8px 16px 16px;
+}
+
+.joy-1ue8tpi.FlgAlert-sizeSm {
+    --Alert-decoratorChildHeight: 32px;
+    --Alert-padding: 12px;
+}
+
+
+.joy-1ue8tpi {
+    gap: 8px;
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    color: #202022;
+    border-radius: 12px;
+    background-color: #F9F9FA;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    overflow: auto;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  
+
+.joy-1nw1ybu {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    border-radius: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background: linear-gradient(97deg, rgb(232, 129, 234) -2.23%, rgb(52, 120, 255) 93.61%);
+    height: 24px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+.joy-1ydly9a {
+    user-select: none;
+    margin: 0px;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 24px;
+    width: 12px;
+    height: 12px;
+    color: #FFFFFF;
+  }
+
+.joy-cvqmdk {
+    user-select: none;
+    margin: 0px;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #FFFFFF;
+    width: 58px;
+    height: 10px;
+  }
+  
+.joy-1bgk1a3 {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: right;
+}
+
+.swiper-autoheight, .swiper-autoheight .swiper-slide {
+    height: auto;
+}
+
+.swiper-vertical {
+    touch-action: pan-x;
+}
+
+.swiper {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    display: block;
+}
+
+.swiper-autoheight .swiper-wrapper {
+    align-items: flex-start;
+    transition-property: transform, height;
+}
+
+.swiper-vertical>.swiper-wrapper {
+    flex-direction: column;
+}
+
+.swiper-android .swiper-slide, .swiper-ios .swiper-slide, .swiper-wrapper {
+    transform: translateZ(0);
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    transition-timing-function: initial;
+    box-sizing: content-box;
+  }
+  
+
+.swiper-backface-hidden .swiper-slide {
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.joy-1bfbxm1 {
+    margin: 0px;
+    display: block;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.42858;
+    color: #202022;
+  }
+  
+.menu-ui02.feelog-header-menuUi {
+    --ListItem-minHeight: 48px;
+}
+
+
+.menu-ui02 {
+    padding: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-block-start: 0px;
+    margin-block-end: initial;
+    box-sizing: border-box;
+    border-radius: 12px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    color: #202022;
+  }
+  
+.menu-ui03.feelog-header-menuUi {
+    --ListItem-minHeight: 48px;
+}
+
+
+.menu-ui03 {
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-block-start: 0px;
+    margin-block-end: initial;
+    box-sizing: border-box;
+    border-radius: 12px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #202022;
+    padding: 0px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+  }
+  
+.menu-li02:not([hidden]) {
+    display: flex;
+}
+
+.menu-li02 {
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+    margin-inline: 0px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    display: flex;
+    flex: 0 0 auto;
+    list-style-type: disc;
+    position: relative;
+    padding-block-start: 6px;
+    padding-block-end: 6px;
+    padding-inline-start: 16px;
+    padding-inline-end: 16px;
+    margin-block-start: 0px;
+    min-block-size: 44px;
+    color: #202022;
+    cursor: default;
+    padding: 8px 16px;
+}
+
+.feelog-header-topA02 {
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(52, 120, 255, 1);
+    font-weight: 400;
+    text-decoration: none max(0.08em, 1px) currentcolor;
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    border-radius: 6px;
+    padding: 0px;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+  }
+  
+
+  .feelog-header-topDiv10 {
+    display: block;
+    flex-grow: initial;
+    flex-basis: initial;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-right: 12px;
+    overflow: hidden;
+    border-radius: 6px;
+  }
+  
+
+  .feelog-header-topDiv11 {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+    border-radius: inherit;
+    height: 24px;
+    padding-bottom: 0px;
+    overflow: hidden;
+    -webkit-transition: inherit;
+    transition: inherit;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    background-color: #F2F2F3;
+  }
+  
+
+  .feelog-header-topDiv11 [data-first-child] {
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+
+  .feelog-header-topDiv12 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.feelog-header-topDiv11 [data-first-child]>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.feelog-header-topSpan05 {
+    margin: 0px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+.feelog-header-topDiv13 {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.joy-ubyl7c.FlgButton-sizeSm-need {
+    min-height: 32px;
+    font-size: 14px;
+}
+  
+.joy-ubyl7c {
+    min-height: 32px;
+    font-size: 14px;
+    padding-block: 4px;
+    padding-inline: 12px;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: 0px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    color: #202022;
+    background-color: #F2F2F3;
+    font-weight: 500;
+  }
+
+
+  .jk-feelog-btn015.feelog-header-menuBtns {
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+
+.jk-feelog-btn015 {
+  min-width: 32px;
+  min-height: 32px;
+  font-size: 14px;
+  padding-inline: 2px;
+  -webkit-tap-highlight-color: transparent;
+  padding-block: 0px;
+  font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-weight: 500;
+  margin: 0px;
+  border-radius: 8px;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  color: #202022;
+  background-color: #F2F2F3;
+}
+
+.menu-li03 {
+    margin-top: initial;
+    margin-bottom: initial;
+    margin-inline: 0px;
+    position: relative;
+    align-self: stretch;
+    flex-shrink: 0;
+    border: none;
+    list-style: none;
+    background-color: rgba(118, 118, 127, 0.15);
+    inline-size: initial;
+    block-size: 1px;
+    /* margin-block-start: 12px;
+    margin-block-end: 8px; */
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  
+
+  .feelog-header-profileMenu > .feelog-header-top-as {
+    --unstable_ListItem-flex: 1 0 0%;
+}
+
+.feelog-header-top-as {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    position: relative;
+    font: inherit;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: stretch;
+    gap: 12px;
+    text-align: initial;
+    text-decoration: initial;
+    background-color: initial;
+    cursor: pointer;
+    margin-inline: 0px;
+    margin-block: 0px;
+    border: 0px solid transparent;
+    border-radius: 12px;
+    flex: none;
+    min-inline-size: 0px;
+    color: #202022;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+    /* padding: 8px 16px; */
+  }
+  
+  .feelog-header-top-ps {
+    display: block;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    margin-left: 12px;
+  }
+  
+
+  .feelog-header-topDiv14.feelog-header-topDiv14 {
+    min-width: 0px;
+  }
+
+.feelog-header-topDiv14.feelog-header-menuAlert {
+    --Chip-paddingInline: 6px;
+    --_Chip-minHeight: 20px;
+    --Chip-decoratorChildHeight: 18px;
+    font-size: 14px;
+    min-width: 24px;
+}
+
+
+.feelog-header-topDiv14 {
+    gap: 3px;
+    min-height: 24px;
+    max-width: max-content;
+    padding-inline: 8px;
+    border-radius: 24px;
+    position: relative;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: middle;
+    box-sizing: border-box;
+    /* font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; */
+    line-height: 1;
+    background-color: #3478FF;
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: center;
+    min-width: 40px;
+    font-weight: 400;
+  }
+  
+  .feelog-header-topSpan06 {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    min-inline-size: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px !important; 
+    unicode-bidi: isolate;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+@media (min-width: 744px) {
+    .feelog-header-login-div {
+        margin-left: 8px;
+        margin-right: 0px;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-login-div {
+        margin-left: 0px;
+        margin-right: 4px;
+    }
+}
+
+@media (min-width: 744px) {
+    .feelog-header-login-div {
+        gap: 8px;
+    }
+}
+
+@media (min-width: 0px) {
+    .feelog-header-login-div {
+        gap: 4px;
+    }
+}
+
+.feelog-header-login-div {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.login-a01.feelog-header-2as {
+    min-height: 40px;
+    font-size: 16px;
+}
+
+@media (min-width: 744px) {
+    .login-a01 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+@media (min-width: 0px) {
+    .login-a01 {
+        display: none;
+    }
+}
+
+.login-a01 {
+    --Icon-margin: initial;
+    --Icon-color: #76767F;
+    --Icon-fontSize: 20px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    --Button-gap: 0.5rem;
+    min-height: 2.25rem;
+    font-size: 14px;
+    padding-block: 0.375rem;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: var(--Button-margin);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    --variant-borderWidth: 1px;
+    color: #202022;
+    border: 1px solid;
+    border-color: #DADADC;
+    min-width: max-content;
+}
+
+
+.joy-vzer23.FlgButton-sizeSm-need {
+    min-height: 32px;
+    font-size: 14px;
+}
+
+
+@media (min-width: 744px) {
+    .joy-vzer23 {
+        display: none;
+    }
+}
+
+@media (min-width: 0px) {
+    .joy-vzer23 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+.joy-vzer23 {
+    --Icon-margin: initial;
+    --Icon-color: currentColor;
+    --Icon-fontSize: 18px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    --Button-gap: 0.375rem;
+    min-height: 2rem;
+    font-size: 14px;
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: var(--Button-margin);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    --variant-borderWidth: 0px;
+    color: #FFFFFF;
+    background-color: #202022;
+    min-width: max-content;
+}
+
+.signup-a01.feelog-header-2as {
+    min-height: 40px;
+    font-size: 16px;
+}
+
+@media (min-width: 744px) {
+    .signup-a01 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+@media (min-width: 0px) {
+    .signup-a01 {
+        display: none;
+    }
+}
+
+.signup-a01 {
+    --Icon-margin: initial;
+    --Icon-color: currentColor;
+    --Icon-fontSize: 20px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    --Button-gap: 0.5rem;
+    min-height: 2.25rem;
+    font-size: 14px;
+    padding-block: 0.375rem;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: var(--Button-margin);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    --variant-borderWidth: 0px;
+    color: #FFFFFF;
+    background-color: #202022;
+    min-width: max-content;
+}
+
+.joy-1xfmk7u {
+    margin: initial;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    box-sizing: border-box;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 0 #000, 
+                0px 2px 8px -2px rgba(21, 21, 21, 0.08), 
+                0px 6px 12px -2px rgba(21, 21, 21, 0.08);
+    overflow: auto;
+    z-index: 1000;
+    background-color: #FFFFFF;
+    color: #202022;
+    width: 100%;
+    max-width: 480px;
+}
+
+.jk-feelog-div031 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.joy-dmwqxb {
+    display: flex;
+    flex-direction: row;
+    padding: 4px 8px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    height: 47px;
+}
+
+.joy-zok3ae {
+    min-height: 2.25rem;
+    font-size: 14px;
+    padding-block: 0.375rem;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 500;
+}
+
+.joy-zok3ae.FlgButton-sizeMd-need {
+    min-height: 40px;
+    font-size: 16px;
+}
+
+.joy-mkgk3h {
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.33334;
+    color: #202022;
+}
+
+.joy-1w4q56z {
+    user-select: none;
+    margin: 0;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 24px;
+    width: 16px;
+    height: 16px;
+    color: currentcolor;
+}
+
+.joy-fsdjpg {
+    min-height: 2rem;
+    font-size: 14px;
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 500;
+}
+
+.joy-fsdjpg.FlgButton-sizeSm-need {
+    min-height: 32px;
+    font-size: 14px;
+}
+
+.jk-feelog-hr01 {
+    margin: initial;
+    margin-inline: 0;
+    margin-block: initial;
+    position: relative;
+    align-self: stretch;
+    flex-shrink: 0;
+    border: none;
+    list-style: none;
+    background-color: rgba(118, 118, 127, 0.15);
+    inline-size: initial;
+    block-size: 1px;
+}
+
+.joy-14vbmfy {
+    display: flex;
+    flex-direction: column;
+    height: 593px;
+    overflow: auto;
+}
+
+.joy-fwihks {
+    display: flex;
+    padding: 20px;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.jk-feelog-span012 {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.jk-feelog-a-012 {
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(52, 120, 255, 1);
+    font-weight: 400;
+    text-decoration: none max(0.08em, 1px) currentcolor;
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    border-radius: 6px;
+    padding: 0px;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+}
+
+.joy-1725qqy {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.jk-feelog-div056 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.joy-yhhqut {
+    display: inline-flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    place-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: none;
+    line-height: 1.5;
+    padding: 0 calc(0.25rem - 0px);
+    min-height: 0.5rem;
+    min-width: 0.5rem;
+    border-radius: 0.5rem;
+    z-index: 1;
+    background-color: #D41724;
+    top: 0px;
+    left: 0px;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    transform-origin: 0% 0%;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.joy-1ofqig9 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.joy-4c2guu {
+    display: flex;
+    flex-flow: wrap;
+    align-items: flex-end;
+}
+
+.joy-suf4y6 {
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+}
+
+.joy-ko48tn {
+    font: inherit;
+    text-decoration: none max(0.08em, 1px) currentcolor;
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    border-radius: 6px;
+    padding: 0px;
+    cursor: pointer;
+    color: rgba(52, 120, 255, 1);
+    appearance: none;
+    position: relative;
+}
+
+.joy-9avztx {
+    margin: 0px;
+    display: inline;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.42858;
+    color: #202022;
+}
+
+.joy-colylv {
+    margin: 0px;
+    display: inline;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+}
+
+.joy-ap3vt9 {
+    margin: 0px;
+    display: inline;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #76767F;
+}
+
+.joy-suf4y6 span {
+    padding-right: 4px;
+}
+
+.joy-1efus4g {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-top: 16px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.joy-kynq33 {
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(52, 120, 255, 1);
+    font-weight: 400;
+    text-decoration: none max(0.08em, 1px) currentcolor;
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    border-radius: 6px;
+    padding: 0px;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    width: 100%;
+}
+
+.joy-16besyk {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 10px;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #DADADC;
+}
+
+.joy-mbssy4 {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.joy-1uuuh8o {
+    margin: 0px;
+    display: inline;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.42858;
+    color: #202022;
+    word-break: break-word;
+}
+
+.joy-16ts1gy {
+    margin: 0px;
+    display: inline;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #76767F;
+}
+
+.joy-3rf2es {
+    position: relative;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.joy-3rf2es::after {
+    display: block;
+    content: "";
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.075);
+}
+
+.jk-feelog-div056 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
