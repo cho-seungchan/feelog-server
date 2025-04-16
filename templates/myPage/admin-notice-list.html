@@ -1,0 +1,607 @@
+<!-- 2025.04.06 조승찬 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../../static/css/myPage/admin-notice-list.css" />
+        <title>관리자 알림 목록</title>
+    </head>
+    <body>
+        <div class="FeelogStack-root flog-div-1">
+            <header class="navigation FeelogBox-root flog-header-1" data-google-interstitial="false">
+                <nav class="FeelogStack-root flog-nav-1">
+                    <div class="FeelogStack-root flog-div-2">
+                        <h1>
+                            <span class="sr-only">필로그</span
+                            ><a class="FeelogBox-root flog-a-1" href="/" aria-label="필로그 홈으로 가기"
+                                ><svg
+                                    focusable="false"
+                                    aria-hidden="true"
+                                    viewBox="0 0 128 24"
+                                    width="128"
+                                    height="24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-1"
+                                >
+                                    <g clip-path="url(#clipPath-1)">
+                                        <path
+                                            d="M12.6986 3.34592C13.9374 3.90654 14.89 4.70214 15.5592 5.73143C16.2284 6.76072 16.563 7.98157 16.563 9.39142C16.563 10.7834 16.2284 11.9991 15.5592 13.0386C14.89 14.0781 13.9374 14.8737 12.6986 15.4241C11.4599 15.9758 10.0003 16.2517 8.31968 16.2517H4.49622V21.485H0.104492V2.50563H8.32095C10.0015 2.50563 11.4612 2.7853 12.6986 3.34592ZM11.0857 11.8191C11.7728 11.2495 12.1163 10.4411 12.1163 9.3927C12.1163 8.32637 11.7728 7.50779 11.0857 6.93951C10.3987 6.36995 9.39494 6.08517 8.07576 6.08517H4.49622V12.6747H8.07576C9.39494 12.6734 10.3987 12.3886 11.0857 11.8191Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                        <path
+                                            d="M23.1909 20.5374C21.6086 19.6882 20.3712 18.5171 19.476 17.0256C18.5808 15.534 18.1338 13.8572 18.1338 11.9953C18.1338 10.1334 18.5808 8.45664 19.476 6.96506C20.3712 5.47348 21.6086 4.30371 23.1909 3.45321C24.7731 2.60525 26.5495 2.18 28.5199 2.18C30.4904 2.18 32.2617 2.60525 33.835 3.45448C35.4083 4.30499 36.6457 5.47476 37.5499 6.96634C38.454 8.45792 38.9048 10.1347 38.9048 11.9966C38.9048 13.8585 38.4527 15.5353 37.5499 17.0268C36.6457 18.5184 35.407 19.6882 33.835 20.5387C32.2629 21.3892 30.4904 21.8132 28.5199 21.8132C26.5495 21.8119 24.7731 21.3867 23.1909 20.5374ZM31.5567 17.2963C32.4609 16.7804 33.1709 16.0627 33.6856 15.1407C34.2002 14.2186 34.4582 13.1702 34.4582 11.9953C34.4582 10.8204 34.2002 9.77199 33.6856 8.84997C33.1696 7.92795 32.4609 7.20898 31.5567 6.69433C30.6526 6.17968 29.6399 5.92172 28.5199 5.92172C27.3987 5.92172 26.3873 6.17968 25.4831 6.69433C24.579 7.21025 23.869 7.92795 23.3543 8.84997C22.8384 9.77199 22.5817 10.8204 22.5817 11.9953C22.5817 13.1702 22.8397 14.2186 23.3543 15.1407C23.869 16.0627 24.579 16.7817 25.4831 17.2963C26.3873 17.8109 27.3987 18.0689 28.5199 18.0689C29.6399 18.0702 30.6526 17.8122 31.5567 17.2963Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                        <path
+                                            d="M43.5762 21.2015C42.1753 20.7954 41.0502 20.2667 40.1997 19.6154L41.6913 16.3079C42.5048 16.9043 43.4715 17.3831 44.5927 17.7445C45.7127 18.1059 46.8339 18.2873 47.9552 18.2873C49.2028 18.2873 50.1248 18.1021 50.7212 17.7318C51.3176 17.3614 51.6164 16.8685 51.6164 16.2542C51.6164 15.8022 51.4402 15.4267 51.0877 15.1292C50.7353 14.8303 50.2832 14.5915 49.7315 14.4102C49.1798 14.2301 48.434 14.0309 47.4941 13.8138C46.0473 13.4703 44.8634 13.1268 43.9414 12.7832C43.0194 12.4397 42.2289 11.888 41.5687 11.1295C40.9085 10.3696 40.579 9.35823 40.579 8.09269C40.579 6.9906 40.8765 5.99068 41.4729 5.09676C42.0693 4.20155 42.9683 3.4928 44.1713 2.96793C45.3743 2.44179 46.8441 2.18 48.5796 2.18C49.7903 2.18 50.9741 2.32431 52.1323 2.61419C53.2881 2.90408 54.302 3.31912 55.1691 3.86186L53.8129 7.19748C52.0596 6.20395 50.3062 5.7059 48.5528 5.7059C47.323 5.7059 46.415 5.90512 45.8276 6.30228C45.2402 6.70072 44.9465 7.2243 44.9465 7.87431C44.9465 8.52433 45.2849 9.00832 45.963 9.32503C46.6411 9.64173 47.6755 9.95333 49.0675 10.2598C50.5131 10.6033 51.6969 10.9469 52.6202 11.2904C53.5422 11.6339 54.3327 12.1767 54.9929 12.9173C55.6519 13.6593 55.9826 14.6618 55.9826 15.9273C55.9826 17.0115 55.68 18.0012 55.0746 18.8964C54.4693 19.7916 53.5601 20.5004 52.3494 21.0253C51.1375 21.5488 49.6651 21.8119 47.9296 21.8119C46.4278 21.8119 44.9771 21.6089 43.5762 21.2015Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                        <path
+                                            d="M62.9232 6.08389H56.8496V2.50563H73.3898V6.08517H67.3162V21.4862H62.9232V6.08389Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                        <path
+                                            d="M85.7196 14.7614V21.4862H81.3266V14.7077L73.9785 2.50563H78.6423L83.7134 10.9392L88.7832 2.50563H93.0945L85.7196 14.7614Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                        <path
+                                            d="M107.268 3.34592C108.507 3.90654 109.46 4.70214 110.129 5.73143C110.798 6.76072 111.133 7.98157 111.133 9.39142C111.133 10.7834 110.798 11.9991 110.129 13.0386C109.46 14.0781 108.507 14.8737 107.268 15.4241C106.03 15.9758 104.57 16.2517 102.889 16.2517H99.0659V21.485H94.6729V2.50563H102.889C104.57 2.50563 106.03 2.7853 107.268 3.34592ZM105.655 11.8191C106.342 11.2495 106.686 10.4411 106.686 9.3927C106.686 8.32637 106.342 7.50779 105.655 6.93951C104.968 6.36995 103.965 6.08517 102.645 6.08517H99.0659V12.6747H102.645C103.965 12.6734 104.967 12.3886 105.655 11.8191Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                        <path
+                                            d="M127.808 17.9616V21.4862H113.111V2.50563H127.455V6.03026H117.476V10.1513H126.289V13.5673H117.476V17.9603H127.808V17.9616Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clipPath-1">
+                                            <rect width="128" height="24" fill="currentcolor"></rect>
+                                        </clipPath>
+                                    </defs></svg></a
+                            ><a class="FeelogBox-root flog-a-2" href="/" aria-label="필로그 홈으로 가기"
+                                ><svg
+                                    focusable="false"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-2"
+                                >
+                                    <g clip-path="url(#clipPath-2)">
+                                        <rect class="bg" width="24" height="24" rx="5"></rect>
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M13.9863 5.5C16.6171 5.5 18.75 7.63295 18.75 10.2641C18.75 12.8953 16.6171 15.0283 13.9863 15.0283L12.2457 15.0311V18.5H10.5104V7.44196H8.99858V18.5H7.26273V7.44196H5.75V5.5H13.9863ZM14.1352 7.45H12.25V13.04H14.1352C15.6787 13.04 16.93 11.7887 16.93 10.2452C16.93 8.70178 15.6787 7.45 14.1352 7.45Z"
+                                        ></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clipPath-2"><rect width="24" height="24"></rect></clipPath>
+                                    </defs></svg
+                            ></a>
+                        </h1>
+                        <h2 class="FeelogBox-root flog-h2-1"></h2>
+                    </div>
+                    <div class="FeelogStack-root flog-div-3">
+                        <div class="FeelogBox-root flog-div-4">
+                            <button
+                                aria-haspopup="menu"
+                                aria-expanded="false"
+                                aria-controls=":R16dad7rlqakq:"
+                                tabindex="0"
+                                class="FeelogMenuButton-root FeelogMenuButton-variantSoft FeelogMenuButton-colorNeutral FeelogMenuButton-sizeMd flog-button-1"
+                                type="button"
+                            >
+                                <span class="FeelogMenuButton-startDecorator flog-span-1"
+                                    ><svg
+                                        focusable="false"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                                    >
+                                        <path
+                                            d="M12.938 4.813A.935.935 0 0 0 12 3.875a.935.935 0 0 0-.938.938v6.25h-6.25a.935.935 0 0 0-.937.937c0 .52.418.938.938.938h6.25v6.25c0 .519.417.937.937.937s.938-.418.938-.938v-6.25h6.25c.519 0 .937-.417.937-.937a.935.935 0 0 0-.938-.938h-6.25v-6.25Z"
+                                            fill="currentcolor"
+                                        ></path></svg></span
+                                >만들기
+                            </button>
+                        </div>
+                        <button
+                            aria-label="검색"
+                            class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeMd flog-button-2"
+                            type="button"
+                        >
+                            <svg
+                                focusable="false"
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                            >
+                                <path
+                                    d="M16.375 10.125a6.25 6.25 0 1 0-12.5 0 6.25 6.25 0 0 0 12.5 0Zm-1.207 6.371a8.086 8.086 0 0 1-5.043 1.754A8.124 8.124 0 0 1 2 10.125 8.124 8.124 0 0 1 10.125 2a8.124 8.124 0 0 1 8.125 8.125c0 1.906-.656 3.66-1.754 5.043l5.23 5.23a.937.937 0 0 1-1.324 1.324l-5.234-5.226Z"
+                                    fill="currentcolor"
+                                ></path>
+                            </svg>
+                        </button>
+                        <div class="FeelogStack-root flog-div-5">
+                            <div class="FeelogStack-root flog-div-6">
+                                <button
+                                    tabindex="0"
+                                    aria-haspopup="menu"
+                                    aria-expanded="false"
+                                    aria-controls=":r0:"
+                                    aria-label="알림"
+                                    class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeMd FeelogMenuButton-root FeelogMenuButton-variantOutlined FeelogMenuButton-colorNeutral FeelogMenuButton-sizeMd flog-button-2"
+                                    type="button"
+                                >
+                                    <span class="FeelogBadge-root flog-span-3"
+                                        ><svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                clip-rule="evenodd"
+                                                d="M10.606 2.118C11.191 2 12 2 12 2s.809 0 1.394.118a6.967 6.967 0 0 1 5.571 6.825v1.819c0 2.045.753 4.022 2.111 5.554l.322.361c.366.41.453.997.231 1.497a1.39 1.39 0 0 1-1.271.823H3.642a1.39 1.39 0 0 1-1.271-.823 1.398 1.398 0 0 1 .23-1.497l.323-.361a8.378 8.378 0 0 0 2.11-5.554V8.943a6.967 6.967 0 0 1 5.572-6.825Zm6.484 6.825a5.092 5.092 0 0 0-4.068-4.987h-2.044A5.092 5.092 0 0 0 6.91 8.943v1.819a10.25 10.25 0 0 1-2.216 6.36h14.612a10.25 10.25 0 0 1-2.216-6.36V8.943Zm-4.713-5.056c.246.013.487.037.645.07h-2.044c.158-.033.399-.057.645-.07a9.014 9.014 0 0 1 .36-.012h.034a6.795 6.795 0 0 1 .36.012Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                            <path
+                                                d="M12 22.5A3.5 3.5 0 0 1 8.5 19h1.875a1.625 1.625 0 1 0 3.25 0H15.5a3.5 3.5 0 0 1-3.5 3.5Z"
+                                                fill="currentcolor"
+                                            ></path></svg
+                                        ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopRight FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeMd flog-span-2"
+                                        ></span
+                                    ></span></button
+                                ><button
+                                    tabindex="0"
+                                    aria-haspopup="menu"
+                                    aria-expanded="false"
+                                    aria-controls=""
+                                    aria-label="메시지"
+                                    class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeMd FeelogMenuButton-root FeelogMenuButton-variantOutlined FeelogMenuButton-colorNeutral FeelogMenuButton-sizeMd flog-button-2"
+                                    type="button"
+                                >
+                                    <span class="FeelogBadge-root flog-span-3"
+                                        ><svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
+                                        >
+                                            <path
+                                                d="M4.5 5.875a.627.627 0 0 0-.625.625v.863l6.738 5.532a2.185 2.185 0 0 0 2.778 0l6.734-5.532V6.5a.627.627 0 0 0-.625-.625h-15Zm-.625 3.914V17.5c0 .344.281.625.625.625h15a.627.627 0 0 0 .625-.625V9.79l-5.547 4.554a4.063 4.063 0 0 1-5.156 0L3.875 9.789ZM2 6.5C2 5.121 3.121 4 4.5 4h15C20.879 4 22 5.121 22 6.5v11c0 1.379-1.121 2.5-2.5 2.5h-15A2.502 2.502 0 0 1 2 17.5v-11Z"
+                                                fill="currentcolor"
+                                            ></path></svg
+                                        ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopRight FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeMd flog-span-2"
+                                        ></span
+                                    ></span>
+                                </button>
+                            </div>
+                            <div class="FeelogStack-root flog-div-7">
+                                <div class="FeelogBox-root flog-div-8">
+                                    <button
+                                        aria-haspopup="menu"
+                                        aria-expanded="false"
+                                        aria-controls=""
+                                        tabindex="0"
+                                        aria-label="사용자 메뉴"
+                                        class="FeelogMenuButton-root FeelogMenuButton-variantPlain FeelogMenuButton-colorNeutral FeelogMenuButton-sizeSm flog-button-3"
+                                        type="button"
+                                    >
+                                        <div
+                                            class="FeelogAvatar-root FeelogAvatar-variantPlain FeelogAvatar-colorNeutral FeelogAvatar-sizeSm flog-div-9"
+                                        >
+                                            <img
+                                                alt=""
+                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                loading="lazy"
+                                                class="FeelogAvatar-img flog-img-1"
+                                            />
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="FeelogBox-root flog-div-10">
+                                    <span class="FeelogBadge-root flog-span-4"
+                                        ><button
+                                            aria-label="사용자 메뉴"
+                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-button-4"
+                                        >
+                                            <div
+                                                class="FeelogAvatar-root FeelogAvatar-variantPlain FeelogAvatar-colorNeutral FeelogAvatar-sizeXs flog-div-11"
+                                            >
+                                                <img
+                                                    alt=""
+                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=50&amp;h=50&amp;q=65"
+                                                    loading="lazy"
+                                                    class="FeelogAvatar-img flog-img-1"
+                                                />
+                                            </div></button
+                                        ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopRight FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-5"
+                                        ></span
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div class="FeelogStack-root flog-div-12">
+                <div class="FeelogStack-root flog-div-13">
+                    <nav class="subnavigation FeelogBox-root flog-nav-2">
+                        <ul
+                            class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-1"
+                        >
+                            <a
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                                href="?type=comment_and_community"
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                                    댓글
+                                </p></a
+                            ><a
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                                href="?type=order_and_payments"
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                                    커뮤니티
+                                </p></a
+                            ><a
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
+                                href="?type=admin_notification"
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
+                                    관리자 알림
+                                </p></a
+                            >
+                        </ul>
+                    </nav>
+                    <main class="FeelogStack-root flog-main-4">
+                        <div class="FeelogStack-root flog-div-60">
+                            <div class="FeelogStack-root flog-div-61">
+                                <div class="FeelogBox-root flog-div-62">
+                                    <span class="FeelogBadge-root flog-span-4"
+                                        ><a
+                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-18"
+                                            ><div
+                                                class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                            >
+                                                <img
+                                                    alt=""
+                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/brand/symbol-80.png?w=100&amp;h=100&amp;q=65"
+                                                    loading="lazy"
+                                                    class="FeelogAvatar-img flog-img-1"
+                                                /></div></a
+                                        ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopLeft FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-11"
+                                        ></span
+                                    ></span>
+                                    <div class="FeelogStack-root flog-article-1">
+                                        <div class="FeelogBox-root flog-div-64">
+                                            <h6 class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
+                                                <span
+                                                    class="FeelogTypography-root FeelogTypography-title-md flog-span-12"
+                                                    >포스트를 썸네일 없이 발행하고 있진 않으신가요? 썸네일만 넣어도
+                                                    조회수가 36% 높아져요!</span
+                                                ><span
+                                                    class="FeelogTypography-root FeelogTypography-body-sm flog-span-13"
+                                                >
+                                                    3일 전</span
+                                                >
+                                            </h6>
+                                        </div>
+                                        <div class="FeelogBox-root flog-div-65">
+                                            <div
+                                                class="FeelogSheet-root FeelogSheet-variantSoft FeelogSheet-colorNeutral flog-div-66"
+                                            >
+                                                <div class="FeelogStack-root flog-div-67">
+                                                    <a
+                                                        class="FeelogBox-root flog-a-19"
+                                                        href="https://www.postype.com/notification/2317727988"
+                                                        ><p
+                                                            class="FeelogTypography-root FeelogTypography-body-md flog-p-12"
+                                                        >
+                                                            조승찬 님, 썸네일을 포함한 포스트의 경우 그렇지 않은
+                                                            포스트에 비해 조회수는 36%, 구매·후원 수는 40% 더 높다는
+                                                            사실 알고 계셨나요?&nbsp; 지금 바로 제목과 작품 내용,
+                                                            분위기와 관련성이 높은 이미지를 썸네일로 설정하여 작품을 좀
+                                                            더 매력적으로 세팅해 보세요. 관련하여 더욱 자세한 팁은
+                                                            크리에이터 가이드 '#2. 조회수 높이는 포스트 제목&amp;썸네일
+                                                            노하우' 를 통해 확인하실 수 있어요. 그럼, 한 단계 더 성장한
+                                                            크리에이터 조승찬 님의 모습 기대할게요! 창작에 수익을
+                                                            더하다, 필로그.
+                                                        </p></a
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
+                                <div class="FeelogBox-root flog-div-62">
+                                    <span class="FeelogBadge-root flog-span-4"
+                                        ><a
+                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-18"
+                                            ><div
+                                                class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                            >
+                                                <img
+                                                    alt=""
+                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/brand/symbol-80.png?w=100&amp;h=100&amp;q=65"
+                                                    loading="lazy"
+                                                    class="FeelogAvatar-img flog-img-1"
+                                                /></div></a
+                                        ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopLeft FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-11"
+                                        ></span
+                                    ></span>
+                                    <div class="FeelogStack-root flog-article-1">
+                                        <div class="FeelogBox-root flog-div-64">
+                                            <h6 class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
+                                                <span
+                                                    class="FeelogTypography-root FeelogTypography-title-md flog-span-12"
+                                                    >누구나 팬을 모으고 수익을 올릴 수 있는 필로그에 오신 것을
+                                                    환영합니다!</span
+                                                ><span
+                                                    class="FeelogTypography-root FeelogTypography-body-sm flog-span-13"
+                                                >
+                                                    4일 전</span
+                                                >
+                                            </h6>
+                                        </div>
+                                        <div class="FeelogBox-root flog-div-65">
+                                            <div
+                                                class="FeelogSheet-root FeelogSheet-variantSoft FeelogSheet-colorNeutral flog-div-66"
+                                            >
+                                                <div class="FeelogStack-root flog-div-67">
+                                                    <a
+                                                        class="FeelogBox-root flog-a-19"
+                                                        href="https://www.postype.com/notification/2315901526"
+                                                        ><p
+                                                            class="FeelogTypography-root FeelogTypography-body-md flog-p-12"
+                                                        >
+                                                            창작에 수익을 더하다,&nbsp;필로그에 오신 것을 환영합니다.
+                                                            필로그에서는 자신만의 세계를 키워 나갈 크리에이터,
+                                                            크리에이터를 열렬히 응원할 팬을 찾고 있어요.그 출발점에 서
+                                                            계신 조승찬 님을 위해 필로그에서 가이드를 준비했어요.아래
+                                                            가이드를 참고하시고, 필로그에서의 활동을 시작해
+                                                            보세요!&nbsp;Q. 팬을 모으고 창작 수익을 올리고
+                                                            싶다면?&nbsp;➡️ 필로그 크리에이터 첫 걸음 가이드와 튜토리얼
+                                                            영상을 참고해 보세요. 크리에이터로 내딛는 첫 걸음이 보다
+                                                            수월할 거예요. Q. 내 취향의 콘텐츠를 즐기고 크리에이터를
+                                                            응원하고 싶다면?➡️ 필로그 팬·구독자 첫 걸음 가이드를 참고해
+                                                            보세요. 필로그의 수많은 크리에이터가 소중한 팬을 기다리고
+                                                            있어요!
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
+                                <div class="FeelogBox-root flog-div-62">
+                                    <span class="FeelogBadge-root flog-span-4"
+                                        ><a
+                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-18"
+                                            ><div
+                                                class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                            >
+                                                <img
+                                                    alt=""
+                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/brand/symbol-80.png?w=100&amp;h=100&amp;q=65"
+                                                    loading="lazy"
+                                                    class="FeelogAvatar-img flog-img-1"
+                                                /></div></a
+                                        ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopLeft FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-11"
+                                        ></span
+                                    ></span>
+                                    <div class="FeelogStack-root flog-article-1">
+                                        <div class="FeelogBox-root flog-div-64">
+                                            <h6 class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
+                                                <span
+                                                    class="FeelogTypography-root FeelogTypography-title-md flog-span-12"
+                                                    >누구나 팬을 모으고 수익을 올릴 수 있는 필로그에 오신 것을
+                                                    환영합니다!</span
+                                                ><span
+                                                    class="FeelogTypography-root FeelogTypography-body-sm flog-span-13"
+                                                >
+                                                    4일 전</span
+                                                >
+                                            </h6>
+                                        </div>
+                                        <div class="FeelogBox-root flog-div-65">
+                                            <div
+                                                class="FeelogSheet-root FeelogSheet-variantSoft FeelogSheet-colorNeutral flog-div-66"
+                                            >
+                                                <div class="FeelogStack-root flog-div-67">
+                                                    <a
+                                                        class="FeelogBox-root flog-a-19"
+                                                        href="https://www.postype.com/notification/2315901526"
+                                                        ><p
+                                                            class="FeelogTypography-root FeelogTypography-body-md flog-p-12"
+                                                        >
+                                                            창작에 수익을 더하다,&nbsp;필로그에 오신 것을 환영합니다.
+                                                            필로그에서는 자신만의 세계를 키워 나갈 크리에이터,
+                                                            크리에이터를 열렬히 응원할 팬을 찾고 있어요.그 출발점에 서
+                                                            계신 조승찬 님을 위해 필로그에서 가이드를 준비했어요.아래
+                                                            가이드를 참고하시고, 필로그에서의 활동을 시작해
+                                                            보세요!&nbsp;Q. 팬을 모으고 창작 수익을 올리고
+                                                            싶다면?&nbsp;➡️ 필로그 크리에이터 첫 걸음 가이드와 튜토리얼
+                                                            영상을 참고해 보세요. 크리에이터로 내딛는 첫 걸음이 보다
+                                                            수월할 거예요. Q. 내 취향의 콘텐츠를 즐기고 크리에이터를
+                                                            응원하고 싶다면?➡️ 필로그 팬·구독자 첫 걸음 가이드를 참고해
+                                                            보세요. 필로그의 수많은 크리에이터가 소중한 팬을 기다리고
+                                                            있어요!
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
+                                <div class="FeelogBox-root flog-div-62">
+                                    <span class="FeelogBadge-root flog-span-4"
+                                        ><a
+                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-18"
+                                            ><div
+                                                class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                            >
+                                                <img
+                                                    alt=""
+                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/brand/symbol-80.png?w=100&amp;h=100&amp;q=65"
+                                                    loading="lazy"
+                                                    class="FeelogAvatar-img flog-img-1"
+                                                /></div></a
+                                        ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopLeft FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-11"
+                                        ></span
+                                    ></span>
+                                    <div class="FeelogStack-root flog-article-1">
+                                        <div class="FeelogBox-root flog-div-64">
+                                            <h6 class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
+                                                <span
+                                                    class="FeelogTypography-root FeelogTypography-title-md flog-span-12"
+                                                    >누구나 팬을 모으고 수익을 올릴 수 있는 필로그에 오신 것을
+                                                    환영합니다!</span
+                                                ><span
+                                                    class="FeelogTypography-root FeelogTypography-body-sm flog-span-13"
+                                                >
+                                                    4일 전</span
+                                                >
+                                            </h6>
+                                        </div>
+                                        <div class="FeelogBox-root flog-div-65">
+                                            <div
+                                                class="FeelogSheet-root FeelogSheet-variantSoft FeelogSheet-colorNeutral flog-div-66"
+                                            >
+                                                <div class="FeelogStack-root flog-div-67">
+                                                    <a
+                                                        class="FeelogBox-root flog-a-19"
+                                                        href="https://www.postype.com/notification/2315901526"
+                                                        ><p
+                                                            class="FeelogTypography-root FeelogTypography-body-md flog-p-12"
+                                                        >
+                                                            창작에 수익을 더하다,&nbsp;필로그에 오신 것을 환영합니다.
+                                                            필로그에서는 자신만의 세계를 키워 나갈 크리에이터,
+                                                            크리에이터를 열렬히 응원할 팬을 찾고 있어요.그 출발점에 서
+                                                            계신 조승찬 님을 위해 필로그에서 가이드를 준비했어요.아래
+                                                            가이드를 참고하시고, 필로그에서의 활동을 시작해
+                                                            보세요!&nbsp;Q. 팬을 모으고 창작 수익을 올리고
+                                                            싶다면?&nbsp;➡️ 필로그 크리에이터 첫 걸음 가이드와 튜토리얼
+                                                            영상을 참고해 보세요. 크리에이터로 내딛는 첫 걸음이 보다
+                                                            수월할 거예요. Q. 내 취향의 콘텐츠를 즐기고 크리에이터를
+                                                            응원하고 싶다면?➡️ 필로그 팬·구독자 첫 걸음 가이드를 참고해
+                                                            보세요. 필로그의 수많은 크리에이터가 소중한 팬을 기다리고
+                                                            있어요!
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
+                                <div class="FeelogBox-root flog-div-62">
+                                    <span class="FeelogBadge-root flog-span-4"
+                                        ><a
+                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-18"
+                                            ><div
+                                                class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                            >
+                                                <img
+                                                    alt=""
+                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/brand/symbol-80.png?w=100&amp;h=100&amp;q=65"
+                                                    loading="lazy"
+                                                    class="FeelogAvatar-img flog-img-1"
+                                                /></div></a
+                                        ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopLeft FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-11"
+                                        ></span
+                                    ></span>
+                                    <div class="FeelogStack-root flog-article-1">
+                                        <div class="FeelogBox-root flog-div-64">
+                                            <h6 class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
+                                                <span
+                                                    class="FeelogTypography-root FeelogTypography-title-md flog-span-12"
+                                                    >누구나 팬을 모으고 수익을 올릴 수 있는 필로그에 오신 것을
+                                                    환영합니다!</span
+                                                ><span
+                                                    class="FeelogTypography-root FeelogTypography-body-sm flog-span-13"
+                                                >
+                                                    4일 전</span
+                                                >
+                                            </h6>
+                                        </div>
+                                        <div class="FeelogBox-root flog-div-65">
+                                            <div
+                                                class="FeelogSheet-root FeelogSheet-variantSoft FeelogSheet-colorNeutral flog-div-66"
+                                            >
+                                                <div class="FeelogStack-root flog-div-67">
+                                                    <a
+                                                        class="FeelogBox-root flog-a-19"
+                                                        href="https://www.postype.com/notification/2315901526"
+                                                        ><p
+                                                            class="FeelogTypography-root FeelogTypography-body-md flog-p-12"
+                                                        >
+                                                            창작에 수익을 더하다,&nbsp;필로그에 오신 것을 환영합니다.
+                                                            필로그에서는 자신만의 세계를 키워 나갈 크리에이터,
+                                                            크리에이터를 열렬히 응원할 팬을 찾고 있어요.그 출발점에 서
+                                                            계신 조승찬 님을 위해 필로그에서 가이드를 준비했어요.아래
+                                                            가이드를 참고하시고, 필로그에서의 활동을 시작해
+                                                            보세요!&nbsp;Q. 팬을 모으고 창작 수익을 올리고
+                                                            싶다면?&nbsp;➡️ 필로그 크리에이터 첫 걸음 가이드와 튜토리얼
+                                                            영상을 참고해 보세요. 크리에이터로 내딛는 첫 걸음이 보다
+                                                            수월할 거예요. Q. 내 취향의 콘텐츠를 즐기고 크리에이터를
+                                                            응원하고 싶다면?➡️ 필로그 팬·구독자 첫 걸음 가이드를 참고해
+                                                            보세요. 필로그의 수많은 크리에이터가 소중한 팬을 기다리고
+                                                            있어요!
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
+                                <div class="FeelogBox-root flog-div-68">
+                                    <div class="FeelogStack-root flog-div-31" data-google-interstitial="false">
+                                        <a
+                                            type="button"
+                                            class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-a-20"
+                                            href="?type=comment_and_community&amp;page=1"
+                                            >더보기</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../../static/js/myPage/admin-notice-list-event.js"></script>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>포스트신고 목록</title>
+        <link rel="stylesheet" href="../../static/css/admin/admin-all.css" />
+        <link rel="stylesheet" href="../../static/css/admin/aside-var.css" />
+        <link rel="stylesheet" href="../../static/css/admin/report.css" />
+        <link rel="stylesheet" href="../../static/css/admin/button.css" />
+        <link rel="stylesheet" href="../../static/css/admin/report-modal.css" />
+    </head>
+    <body>
+        <div id="root">
+            <div id="AppLayout_Container" class="AppLayout_container_adminList">
+                <div
+                    class="AppGNBbar_container_adminList"
+                    id="AppLayout_AppGNBbar"
+                >
+                    <div class="AppGNBbar_flex_adminList">
+                        <div class="StudioLogo_container_adminList">
+                            <button
+                                class="StudioLogo_logo_adminList"
+                                type="button"
+                                aria-label="로고 버튼"
+                            ></button>
+                        </div>
+                        <div class="StudioStatus_stateBox_adminList">
+                            <span class="Badge_container"></span>
+                        </div>
+                    </div>
+                    <div
+                        class="AppGNBbar_flex_adminList AppGNBbar_rightBox_adminList"
+                    >
+                        <div class="PreviewExitButtons_container_adminList">
+                            <form
+                                id="logoutForm"
+                                action="/admin/logout"
+                                method="post"
+                                style="display: inline"
+                            >
+                                <div id="logout-section" class="">
+                                    <button
+                                        class="Button_button_adminList PreviewExitButtons_button_adminList"
+                                        type="submit"
+                                    >
+                                        <span
+                                            ><span
+                                                class="Button_children_feelog2"
+                                                >나가기</span
+                                            ></span
+                                        >
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="AppLayout_main_adminList">
+                    <nav
+                        id="AppNavbarLayout_Nav"
+                        class="AppNavbarLayout_container AppNavbarLayout_expand AppNavbarLayout_scroll"
+                    >
+                        <div class="AppNavbarLayout_content">
+                            <div
+                                class="ProjectInfo_container AppNavbar_projectInfoPC ProjectInfo_dropDownContainer"
+                            >
+                                <a
+                                    type="button"
+                                    id="project-info-box"
+                                    class="ProjectInfo_infoButton"
+                                    aria-controls="project-info-box"
+                                    aria-expanded="false"
+                                    href="/admin/admin"
+                                >
+                                    <div class="">
+                                        <span
+                                            class="ProjectInfo_emphasis"
+                                        ></span>
+                                        님
+                                    </div>
+
+                                    <span class="">환영 합니다.</span
+                                    ><svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        focusable="false"
+                                        role="presentation"
+                                        class="withIcon_icon"
+                                        aria-hidden="true"
+                                        style="width: 12px; height: 12px"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M2.576 7.924l.848-.848L12 15.652l8.576-8.576.848.848L12 17.35 2.576 7.924z"
+                                        ></path>
+                                    </svg>
+                                </a>
+
+                                <a
+                                    type="button"
+                                    id="project-info-box1"
+                                    class="ProjectInfo_infoButton"
+                                    aria-controls="project-info-box"
+                                    aria-expanded="false"
+                                    th:if="${session.admin == null}"
+                                    href="/admin/adminLogin"
+                                >
+                                    <span class="">로그인이 필요합니다.</span
+                                    ><svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        focusable="false"
+                                        role="presentation"
+                                        class="withIcon_icon"
+                                        aria-hidden="true"
+                                        style="width: 12px; height: 12px"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M2.576 7.924l.848-.848L12 15.652l8.576-8.576.848.848L12 17.35 2.576 7.924z"
+                                        ></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="AppNavbar_menu">
+                                <div
+                                    id="AppNavbar_LinkMenu"
+                                    class="AppNavbar_linkMenu"
+                                    style="overflow: auto"
+                                >
+                                    <div class="MenuItems_section">
+                                        <a
+                                            aria-current="page"
+                                            class="MenuItems_menu MenuItems_hasSubmenu MenuItems_active"
+                                            href="/studio/reward/337882/funding"
+                                            ><span class="MenuItems_label"
+                                                ><svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M9.40039 12C9.40039 11.6686 9.66902 11.4 10.0004 11.4H14.0004C14.3318 11.4 14.6004 11.6686 14.6004 12C14.6004 12.3313 14.3318 12.6 14.0004 12.6H10.0004C9.66902 12.6 9.40039 12.3313 9.40039 12Z"
+                                                        fill="#212529"
+                                                    ></path>
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                        d="M7.57523 2.40002C6.94799 2.40002 6.3419 2.62677 5.86868 3.03847L2.29286 6.14943C1.72528 6.64323 1.39941 7.35867 1.39941 8.11099V19C1.39941 20.436 2.56347 21.6 3.99941 21.6H19.9994C21.4354 21.6 22.5994 20.436 22.5994 19V8.01974C22.5994 7.33688 22.3308 6.68144 21.8515 6.195L18.8764 3.17528C18.3878 2.67929 17.7206 2.40002 17.0243 2.40002H7.57523ZM6.65632 3.9438C6.91113 3.72212 7.23749 3.60002 7.57523 3.60002H17.0243C17.3992 3.60002 17.7585 3.7504 18.0216 4.01747L20.8615 6.89999H3.2584L6.65632 3.9438ZM2.59946 8.09999C2.59943 8.10366 2.59941 8.10732 2.59941 8.11099V19C2.59941 19.7732 3.22622 20.4 3.99941 20.4H19.9994C20.7726 20.4 21.3994 19.7732 21.3994 19V8.09999H2.59946Z"
+                                                        fill="#212529"
+                                                    ></path></svg
+                                                >회원 관리</span
+                                            ></a
+                                        >
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist1"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList"
+                                                href="/admin/member-list"
+                                                >회원 목록</a
+                                            >
+                                        </div>
+                                        <a
+                                            aria-current="page"
+                                            class="MenuItems_menu MenuItems_hasSubmenu MenuItems_active"
+                                            href="/studio/reward/337882/funding"
+                                            ><span class="MenuItems_label"
+                                                ><svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M9.40039 12C9.40039 11.6686 9.66902 11.4 10.0004 11.4H14.0004C14.3318 11.4 14.6004 11.6686 14.6004 12C14.6004 12.3313 14.3318 12.6 14.0004 12.6H10.0004C9.66902 12.6 9.40039 12.3313 9.40039 12Z"
+                                                        fill="#212529"
+                                                    ></path>
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                        d="M7.57523 2.40002C6.94799 2.40002 6.3419 2.62677 5.86868 3.03847L2.29286 6.14943C1.72528 6.64323 1.39941 7.35867 1.39941 8.11099V19C1.39941 20.436 2.56347 21.6 3.99941 21.6H19.9994C21.4354 21.6 22.5994 20.436 22.5994 19V8.01974C22.5994 7.33688 22.3308 6.68144 21.8515 6.195L18.8764 3.17528C18.3878 2.67929 17.7206 2.40002 17.0243 2.40002H7.57523ZM6.65632 3.9438C6.91113 3.72212 7.23749 3.60002 7.57523 3.60002H17.0243C17.3992 3.60002 17.7585 3.7504 18.0216 4.01747L20.8615 6.89999H3.2584L6.65632 3.9438ZM2.59946 8.09999C2.59943 8.10366 2.59941 8.10732 2.59941 8.11099V19C2.59941 19.7732 3.22622 20.4 3.99941 20.4H19.9994C20.7726 20.4 21.3994 19.7732 21.3994 19V8.09999H2.59946Z"
+                                                        fill="#212529"
+                                                    ></path></svg
+                                                >신고 목록</span
+                                            ></a
+                                        >
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList noticeList"
+                                                >포스트신고 목록</a
+                                            >
+                                        </div>
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList noticeList"
+                                                >감정일기신고 목록</a
+                                            >
+                                        </div>
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList noticeList"
+                                                >댓글신고 목록</a
+                                            >
+                                        </div>
+                                        <a
+                                            aria-current="page"
+                                            class="MenuItems_menu MenuItems_hasSubmenu MenuItems_active"
+                                            href="/studio/reward/337882/funding"
+                                            ><span class="MenuItems_label"
+                                                ><svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M9.40039 12C9.40039 11.6686 9.66902 11.4 10.0004 11.4H14.0004C14.3318 11.4 14.6004 11.6686 14.6004 12C14.6004 12.3313 14.3318 12.6 14.0004 12.6H10.0004C9.66902 12.6 9.40039 12.3313 9.40039 12Z"
+                                                        fill="#212529"
+                                                    ></path>
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                        d="M7.57523 2.40002C6.94799 2.40002 6.3419 2.62677 5.86868 3.03847L2.29286 6.14943C1.72528 6.64323 1.39941 7.35867 1.39941 8.11099V19C1.39941 20.436 2.56347 21.6 3.99941 21.6H19.9994C21.4354 21.6 22.5994 20.436 22.5994 19V8.01974C22.5994 7.33688 22.3308 6.68144 21.8515 6.195L18.8764 3.17528C18.3878 2.67929 17.7206 2.40002 17.0243 2.40002H7.57523ZM6.65632 3.9438C6.91113 3.72212 7.23749 3.60002 7.57523 3.60002H17.0243C17.3992 3.60002 17.7585 3.7504 18.0216 4.01747L20.8615 6.89999H3.2584L6.65632 3.9438ZM2.59946 8.09999C2.59943 8.10366 2.59941 8.10732 2.59941 8.11099V19C2.59941 19.7732 3.22622 20.4 3.99941 20.4H19.9994C20.7726 20.4 21.3994 19.7732 21.3994 19V8.09999H2.59946Z"
+                                                        fill="#212529"
+                                                    ></path></svg
+                                                >공지</span
+                                            ></a
+                                        >
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList noticeList"
+                                                >공지 목록</a
+                                            >
+                                        </div>
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList noticeList"
+                                                >자주 묻는 질문 목록</a
+                                            >
+                                        </div>
+                                        <a
+                                            aria-current="page"
+                                            class="MenuItems_menu MenuItems_hasSubmenu MenuItems_active"
+                                            href="/studio/reward/337882/funding"
+                                            ><span class="MenuItems_label"
+                                                ><svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M9.40039 12C9.40039 11.6686 9.66902 11.4 10.0004 11.4H14.0004C14.3318 11.4 14.6004 11.6686 14.6004 12C14.6004 12.3313 14.3318 12.6 14.0004 12.6H10.0004C9.66902 12.6 9.40039 12.3313 9.40039 12Z"
+                                                        fill="#212529"
+                                                    ></path>
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                        d="M7.57523 2.40002C6.94799 2.40002 6.3419 2.62677 5.86868 3.03847L2.29286 6.14943C1.72528 6.64323 1.39941 7.35867 1.39941 8.11099V19C1.39941 20.436 2.56347 21.6 3.99941 21.6H19.9994C21.4354 21.6 22.5994 20.436 22.5994 19V8.01974C22.5994 7.33688 22.3308 6.68144 21.8515 6.195L18.8764 3.17528C18.3878 2.67929 17.7206 2.40002 17.0243 2.40002H7.57523ZM6.65632 3.9438C6.91113 3.72212 7.23749 3.60002 7.57523 3.60002H17.0243C17.3992 3.60002 17.7585 3.7504 18.0216 4.01747L20.8615 6.89999H3.2584L6.65632 3.9438ZM2.59946 8.09999C2.59943 8.10366 2.59941 8.10732 2.59941 8.11099V19C2.59941 19.7732 3.22622 20.4 3.99941 20.4H19.9994C20.7726 20.4 21.3994 19.7732 21.3994 19V8.09999H2.59946Z"
+                                                        fill="#212529"
+                                                    ></path></svg
+                                                >챌린지</span
+                                            ></a
+                                        >
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList adminCourseList"
+                                                >챌린지 목록</a
+                                            >
+                                        </div>
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList adminCourseList"
+                                                >개인 챌린지</a
+                                            >
+                                        </div>
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList adminCourseList"
+                                                >공동 챌린지</a
+                                            >
+                                        </div>
+                                        <a
+                                            aria-current="page"
+                                            class="MenuItems_menu MenuItems_hasSubmenu MenuItems_active"
+                                            href="/studio/reward/337882/funding"
+                                            ><span class="MenuItems_label"
+                                                ><svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M9.40039 12C9.40039 11.6686 9.66902 11.4 10.0004 11.4H14.0004C14.3318 11.4 14.6004 11.6686 14.6004 12C14.6004 12.3313 14.3318 12.6 14.0004 12.6H10.0004C9.66902 12.6 9.40039 12.3313 9.40039 12Z"
+                                                        fill="#212529"
+                                                    ></path>
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                        d="M7.57523 2.40002C6.94799 2.40002 6.3419 2.62677 5.86868 3.03847L2.29286 6.14943C1.72528 6.64323 1.39941 7.35867 1.39941 8.11099V19C1.39941 20.436 2.56347 21.6 3.99941 21.6H19.9994C21.4354 21.6 22.5994 20.436 22.5994 19V8.01974C22.5994 7.33688 22.3308 6.68144 21.8515 6.195L18.8764 3.17528C18.3878 2.67929 17.7206 2.40002 17.0243 2.40002H7.57523ZM6.65632 3.9438C6.91113 3.72212 7.23749 3.60002 7.57523 3.60002H17.0243C17.3992 3.60002 17.7585 3.7504 18.0216 4.01747L20.8615 6.89999H3.2584L6.65632 3.9438ZM2.59946 8.09999C2.59943 8.10366 2.59941 8.10732 2.59941 8.11099V19C2.59941 19.7732 3.22622 20.4 3.99941 20.4H19.9994C20.7726 20.4 21.3994 19.7732 21.3994 19V8.09999H2.59946Z"
+                                                        fill="#212529"
+                                                    ></path></svg
+                                                >관리자</span
+                                            ></a
+                                        >
+                                        <div
+                                            class="MenuItems_submenuContainer MenuItems_show Menulist3"
+                                        >
+                                            <a
+                                                class="MenuItems_submenu_adminList"
+                                                href="/admin/manage-admin-list"
+                                                >관리자 목록</a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <div id="AppLayout_Contents" class="AppLayout_contents">
+                        <main class="FundingPage_container_main">
+                            <div
+                                id="FundingPage_Content"
+                                class="FundingPage_box_main"
+                            >
+                                <section>
+                                    <div
+                                        class="FundingPage_headBanner_section"
+                                    ></div>
+                                </section>
+                                <section
+                                    class="FundingPage_presentation_section"
+                                >
+                                    <div class="FundingPage_content_section">
+                                        <div class="Funding_wrapper">
+                                            <div
+                                                class="admin-Wrapper section-Container"
+                                                style="
+                                                    opacity: 1;
+                                                    display: block;
+                                                "
+                                            >
+                                                <div class="">
+                                                    <h3>포스트신고 목록</h3>
+                                                </div>
+                                                <ul
+                                                    class="NoticePage__NoticeListWrapper"
+                                                >
+                                                    <div
+                                                        class="mainUserListDiv reportList"
+                                                    >
+                                                        <div
+                                                            class="reportIdDiv"
+                                                            style="
+                                                                display: none;
+                                                            "
+                                                        >
+                                                            Id
+                                                        </div>
+                                                        <div class="SourceDiv">
+                                                            타입
+                                                        </div>
+                                                        <div
+                                                            class="reportedReason"
+                                                        >
+                                                            신고내용
+                                                        </div>
+                                                        <div
+                                                            class="moreDiv"
+                                                        ></div>
+                                                        <div
+                                                            class="createdDateDiv"
+                                                        >
+                                                            신고날짜
+                                                        </div>
+                                                        <div
+                                                            class="memberNicknameDiv"
+                                                        >
+                                                            신고자
+                                                        </div>
+                                                        <div
+                                                            class="memberIdDiv"
+                                                            style="
+                                                                display: none;
+                                                            "
+                                                        >
+                                                            Reporting Member Id
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="reportList-container"
+                                                    >
+                                                        <li>
+                                                            <div
+                                                                class="reportListDiv"
+                                                            >
+                                                                <div
+                                                                    class="reportIdDiv"
+                                                                    style="
+                                                                        display: none;
+                                                                    "
+                                                                >
+                                                                    2
+                                                                </div>
+                                                                <div
+                                                                    class="sourceDiv"
+                                                                >
+                                                                    POST
+                                                                </div>
+                                                                <div
+                                                                    class="reportedIdDiv"
+                                                                    style="
+                                                                        display: none;
+                                                                    "
+                                                                >
+                                                                    41
+                                                                </div>
+                                                                <div
+                                                                    class="reportedReason"
+                                                                >
+                                                                    님도신고요
+                                                                </div>
+                                                                <span
+                                                                    class="noMore"
+                                                                ></span>
+                                                                <div
+                                                                    class="createdDateDiv"
+                                                                >
+                                                                    2025-04-03
+                                                                    15:13:45
+                                                                </div>
+                                                                <div
+                                                                    class="memberNicknameDiv"
+                                                                >
+                                                                    박정근
+                                                                </div>
+                                                                <div
+                                                                    class="memberIdDiv"
+                                                                    style="
+                                                                        display: none;
+                                                                    "
+                                                                >
+                                                                    25
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </div>
+                                                </ul>
+                                                <footer
+                                                    class="footer-wrapper button-container"
+                                                >
+                                                    <div
+                                                        class="button-container"
+                                                        style="display: flex"
+                                                    >
+                                                        <div
+                                                            class="button_hover left-button-wrap"
+                                                        >
+                                                            <button
+                                                                data-index="1"
+                                                                width="40px"
+                                                                height="40px"
+                                                                font-size="18px"
+                                                                disabled="true"
+                                                                class="left_end_button status-none start-page"
+                                                            >
+                                                                <img
+                                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                                    class="img_left_end start-img"
+                                                                /></button
+                                                            ><button
+                                                                data-index="0"
+                                                                width="40px"
+                                                                height="40px"
+                                                                font-size="18px"
+                                                                disabled="true"
+                                                                class="left_end_button status-none left-button"
+                                                            >
+                                                                <img
+                                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                                    class="img_left_end left-img"
+                                                                />
+                                                            </button>
+                                                        </div>
+                                                        <div id="button-wrap">
+                                                            <button
+                                                                data-index="1"
+                                                                width="40px"
+                                                                height="40px"
+                                                                color="#3397ff"
+                                                                font-size="18px"
+                                                                font-weight="bold"
+                                                                class="left_end_button emphasis buttonAll thisButton"
+                                                            >
+                                                                1
+                                                            </button>
+                                                            <button
+                                                                data-index="1"
+                                                                width="40px"
+                                                                height="40px"
+                                                                color="#3397ff"
+                                                                font-size="18px"
+                                                                font-weight="bold"
+                                                                class="left_end_button emphasis buttonAll anotherButton"
+                                                            >
+                                                                2
+                                                            </button>
+                                                        </div>
+                                                        <div
+                                                            class="right_button right-button-wrap"
+                                                        >
+                                                            <button
+                                                                data-index="2"
+                                                                width="40px"
+                                                                height="40px"
+                                                                font-size="18px"
+                                                                class="left_end_button right-button status-on"
+                                                                disabled="true"
+                                                            >
+                                                                <img
+                                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                                    class="right-img"
+                                                                /></button
+                                                            ><button
+                                                                data-index="1"
+                                                                width="40px"
+                                                                height="40px"
+                                                                font-size="18px"
+                                                                class="left_end_button last-page status-on"
+                                                                disabled="true"
+                                                            >
+                                                                <img
+                                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E"
+                                                                    class="last-img"
+                                                                />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </footer>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </main>
+                    </div>
+                    <button
+                        type="button"
+                        class="AppLayout_expandNavButton AppLayout_expand_button"
+                    >
+                        <i class="AppLayout_icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="admin-modal-body" style="display: none"></div>
+    </body>
+    <script src="../../static/js/admin/admin.js"></script>
+    <script src="../../static/js/admin/report-all-layout.js"></script>
+    <script src="../../static/js/admin/diary-report-event.js"></script>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../static/css/main/mind-log.css" />
+        <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Dongle&family=Gamja+Flower&family=Gaegu&family=Gowun+Dodum&family=Hi+Melody&family=Jua&family=Noto+Sans+KR&family=Poor+Story&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            /* 에디터의 폭과 최소 높이 명확히 지정 */
+            .note-editor {
+                width: 100% !important;
+                max-width: 742px;
+            }
+
+            .note-editable {
+                min-height: 300px;
+                width: 100% !important;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+
+            .summernote {
+                width: 100% !important;
+                max-width: 700px;
+                display: none !important;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="MuiStack-root joy-1k8t7d9">
+            <div class="MuiBox-root joy-1czzq9i">
+                <div class="MuiBox-root joy-1ugbopb">
+                    <div class="MuiStack-root joy-ck4ebb">
+                        <div class="MuiStack-root joy-1l037wq">
+                            <div class="MuiStack-root joy-16a347x">
+                                <button
+                                    aria-label="종료"
+                                    class="cancel-bnt MuiIconButton-root MuiIconButton-variantPlain MuiIconButton-colorNeutral MuiIconButton-sizeSm joy-1ja7f1b"
+                                    type="button"
+                                >
+                                    <svg
+                                        focusable="false"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                    >
+                                        <path
+                                            d="M3.54 12.682a.949.949 0 0 1-.29-.68c0-.258.105-.5.29-.68l6.874-6.562a.937.937 0 0 1 1.293 1.355l-5.18 4.95h13.286c.519 0 .937.418.937.937 0 .52-.418.938-.938.938H6.527l5.184 4.945a.938.938 0 0 1-1.293 1.355l-6.875-6.562-.004.004Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                    </svg>
+                                </button>
+                                <button
+                                    aria-label="뒤로가기"
+                                    class="back-btn MuiIconButton-root MuiIconButton-variantPlain MuiIconButton-colorNeutral MuiIconButton-sizeSm joy-1ja7f1b"
+                                    type="button"
+                                    style="display: none"
+                                >
+                                    <svg
+                                        focusable="false"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                    >
+                                        <path
+                                            d="M3.54 12.682a.949.949 0 0 1-.29-.68c0-.258.105-.5.29-.68l6.874-6.562a.937.937 0 0 1 1.293 1.355l-5.18 4.95h13.286c.519 0 .937.418.937.937 0 .52-.418.938-.938.938H6.527l5.184 4.945a.938.938 0 0 1-1.293 1.355l-6.875-6.562-.004.004Z"
+                                            fill="currentcolor"
+                                        ></path>
+                                    </svg>
+                                </button>
+                                <p
+                                    class="MuiTypography-root MuiTypography-title-md joy-nmd7go"
+                                >
+                                    제목 없음
+                                </p>
+                            </div>
+                            <div class="MuiStack-root joy-2j5iyq">
+                                <p
+                                    class="MuiTypography-root MuiTypography-body-xs joy-1mff26x"
+                                >
+                                    0<span
+                                        class="MuiTypography-endDecorator joy-styn74"
+                                        >자</span
+                                    >
+                                </p>
+                                <div class="MuiStack-root joy-1u5xrkq">
+                                    <button
+                                        tabindex="0"
+                                        aria-haspopup="menu"
+                                        aria-expanded="false"
+                                        aria-controls=":r0:"
+                                        title="더 보기"
+                                        class="MuiIconButton-root MuiIconButton-variantPlain MuiIconButton-colorNeutral MuiIconButton-sizeSm MuiMenuButton-root MuiMenuButton-variantOutlined MuiMenuButton-colorNeutral MuiMenuButton-sizeMd joy-1ja7f1b"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                        >
+                                            <path
+                                                d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg></button
+                                    ><button
+                                        title="단축키 도움말"
+                                        class="MuiIconButton-root MuiIconButton-variantPlain MuiIconButton-colorNeutral MuiIconButton-sizeMd joy-rntywo"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                        >
+                                            <path
+                                                d="M20.125 12a8.125 8.125 0 1 0-16.25 0 8.125 8.125 0 0 0 16.25 0ZM2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm6.633-3.543A2.191 2.191 0 0 1 10.695 7h2.278a2.465 2.465 0 0 1 1.226 4.605l-1.261.723a.94.94 0 0 1-.938.922.935.935 0 0 1-.938-.938v-.527c0-.336.18-.644.473-.812l1.73-.993a.59.59 0 0 0-.292-1.101h-2.278a.308.308 0 0 0-.293.207l-.015.047a.937.937 0 0 1-1.196.57.94.94 0 0 1-.57-1.195l.016-.047-.004-.004Zm2.117 7.293a1.25 1.25 0 1 1 2.5 0 1.25 1.25 0 0 1-2.5 0Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="MuiStack-root joy-1u5xrkq">
+                                    <button
+                                        class="preview-btn MuiButton-root MuiButton-variantSolid MuiButton-colorNeutral MuiButton-sizeSm joy-3oxsei"
+                                        type="button"
+                                        style="display: block"
+                                        id="preview-btn"
+                                    >
+                                        다음
+                                    </button>
+                                    <button
+                                        class="post-btn MuiButton-root MuiButton-variantSolid MuiButton-colorNeutral MuiButton-sizeSm joy-3oxsei"
+                                        type="button"
+                                        style="display: none"
+                                    >
+                                        발행
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="keep-editor-selection-zone MuiBox-root joy-2l1lnm"
+                    >
+                        <div
+                            class="summernote MuiStack-root joy-am1eco"
+                            style="display: none !important"
+                        >
+                            <!-- <div class="MuiBox-root joy-vidjsr"></div> -->
+                        </div>
+                        <hr
+                            class="MuiDivider-root MuiDivider-horizontal joy-w2e6ki"
+                        />
+                    </div>
+                </div>
+
+                <button
+                    aria-label="하단에 공백 추가"
+                    tabindex="-1"
+                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1o8es1f"
+                ></button>
+                <div class="MuiStack-root joy-dpawjy">
+                    <div class="MuiStack-root joy-1c6iqpe">
+                        <button
+                            title="블록 위로 이동 (Ctrl+Shift+↑)"
+                            class="MuiIconButton-root MuiIconButton-variantPlain MuiIconButton-colorNeutral MuiIconButton-sizeSm joy-1ja7f1b"
+                            type="button"
+                        >
+                            <svg
+                                focusable="false"
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                            >
+                                <path
+                                    d="M11.332 8.713a.934.934 0 0 1 1.325 0l5.254 5.25a.937.937 0 0 1-1.324 1.324L12 10.701l-4.59 4.59a.937.937 0 0 1-1.324-1.324l5.245-5.254Z"
+                                    fill="currentcolor"
+                                ></path>
+                            </svg></button
+                        ><button
+                            title="블록 아래로 이동 (Ctrl+Shift+↓)"
+                            class="MuiIconButton-root MuiIconButton-variantPlain MuiIconButton-colorNeutral MuiIconButton-sizeSm joy-1ja7f1b"
+                            type="button"
+                        >
+                            <svg
+                                focusable="false"
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                            >
+                                <path
+                                    d="M12.666 15.291a.934.934 0 0 1-1.324 0l-5.254-5.25a.937.937 0 0 1 1.324-1.324l4.586 4.586 4.59-4.59a.937.937 0 0 1 1.324 1.324l-5.246 5.254Z"
+                                    fill="currentcolor"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <button
+                        title="새 줄 추가"
+                        class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeLg joy-1g4jath"
+                        type="button"
+                    >
+                        <svg
+                            focusable="false"
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-i72iq8"
+                        >
+                            <path
+                                d="M19.135 4.959c0-.508.39-.938.937-.938a.95.95 0 0 1 .938.938v6.563a3.443 3.443 0 0 1-3.438 3.437H6.174l3.398 3.398c.39.391.39.977 0 1.329a.855.855 0 0 1-1.289 0l-5-5a.855.855 0 0 1 0-1.29l5-5.039a.92.92 0 0 1 1.29 0c.39.391.39.977 0 1.329l-3.4 3.398h11.4c.859 0 1.562-.703 1.562-1.563V4.96Z"
+                                fill="currentcolor"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <div role="presentation" class="MuiModal-root joy-8ijia1">
+            <div
+                aria-hidden="true"
+                open=""
+                class="MuiModal-backdrop joy-qivq4z"
+            ></div>
+            <div tabindex="0" data-testid="sentinelStart"></div>
+            <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby=":r2j:"
+                aria-describedby=":r2k:"
+                tabindex="-1"
+                class="MuiModalDialog-root MuiModalDialog-variantOutlined MuiModalDialog-colorNeutral MuiModalDialog-sizeLg MuiModalDialog-layoutAdaptive joy-1q8rjmd"
+            >
+                <div class="MuiBox-root joy-u4p24i">
+                    <h2
+                        id=":r2j:"
+                        class="MuiDialogTitle-root MuiDialogTitle-title-lg joy-1w4kr2w"
+                    >
+                        발행하기
+                    </h2>
+                    <button
+                        aria-label="닫기"
+                        class="MuiModalClose-root MuiModalClose-variantPlain MuiModalClose-colorNeutral MuiModalClose-sizeLg joy-nkdq34"
+                        type="button"
+                    >
+                        <svg
+                            focusable="false"
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            data-testid="CloseIcon"
+                            class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-c6bb0f"
+                        >
+                            <path
+                                d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+                <hr
+                    class="MuiDivider-root MuiDivider-horizontal MuiDivider-insetContext joy-1ap846h"
+                />
+                <div id=":r2k:" class="MuiDialogContent-root joy-6e2g87">
+                    <div class="MuiStack-root joy-rkuzwa">
+                        <div
+                            id="preview-section"
+                            style="
+                                height: 315px;
+                                width: 100%;
+                                border: 1px solid #dadadc;
+                                margin-bottom: 30px;
+                                border-radius: 8px;
+                            "
+                        ></div>
+                        <div class="MuiStack-root joy-cvmh1c">
+                            <div class="MuiStack-root joy-1xke0zy">
+                                <p
+                                    class="MuiTypography-root MuiTypography-title-md joy-1vu460e"
+                                >
+                                    대표 이미지
+                                </p>
+                                <p
+                                    class="MuiTypography-root MuiTypography-body-md joy-1f06h34"
+                                >
+                                    0/20
+                                </p>
+                            </div>
+                            <div class="MuiBox-root joy-1rr4qq7">
+                                <div class="MuiStack-root joy-yd8sa2">
+                                    <div class="MuiStack-root joy-1821gv5">
+                                        <div class="MuiStack-root joy-17bx2hm">
+                                            <button
+                                                class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeMd joy-47tdnw"
+                                                type="button"
+                                            >
+                                                <svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-eczppw"
+                                                >
+                                                    <path
+                                                        d="M12.938 4.813A.935.935 0 0 0 12 3.875a.935.935 0 0 0-.938.938v6.25h-6.25a.935.935 0 0 0-.937.937c0 .52.418.938.938.938h6.25v6.25c0 .519.417.937.937.937s.938-.418.938-.938v-6.25h6.25c.519 0 .937-.417.937-.937a.935.935 0 0 0-.938-.938h-6.25v-6.25Z"
+                                                        fill="currentcolor"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div
+                                            class="file-preview"
+                                            style="
+                                                margin-top: 10px;
+                                                font-size: 14px;
+                                                color: #555;
+                                            "
+                                        ></div>
+                                        <input
+                                            type="file"
+                                            id="hidden-file-input"
+                                            multiple
+                                            hidden
+                                        />
+                                    </div>
+                                    <p
+                                        class="MuiTypography-root MuiTypography-body-sm joy-zpfz47"
+                                    >
+                                        최대 50MB의 이미지 파일을 올릴 수
+                                        있어요. 첫 번째 이미지는 썸네일로
+                                        등록돼요.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="MuiStack-root joy-cvmh1c">
+                            <div class="MuiStack-root joy-1xke0zy">
+                                <p
+                                    class="MuiTypography-root MuiTypography-title-md joy-1vu460e"
+                                >
+                                    태그
+                                </p>
+                            </div>
+                            <div class="MuiBox-root joy-1rr4qq7">
+                                <div class="MuiStack-root joy-1km5lab">
+                                    <div
+                                        class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeMd joy-1ucw9sk"
+                                    >
+                                        <input
+                                            aria-label="태그"
+                                            id="input-tag"
+                                            placeholder=""
+                                            class="MuiInput-input joy-1u0jcuo"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="MuiFormHelperText-root joy-aii27q">
+                                    <p
+                                        class="MuiTypography-root MuiTypography-body-sm MuiTypography-colorNeutral joy-3rmr09"
+                                    >
+                                        태그는 띄어쓰기(space)로 구분해 주세요.
+                                        각 20자 이하로 5개까지 입력할 수 있어요.
+                                        한글, 영문, 숫자, 밑줄(_)만 입력할 수
+                                        있어요.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="MuiStack-root joy-cvmh1c">
+                            <div class="MuiStack-root joy-1xke0zy">
+                                <p
+                                    class="MuiTypography-root MuiTypography-title-md joy-1vu460e"
+                                >
+                                    포스트 타입
+                                </p>
+                            </div>
+                            <div class="MuiBox-root joy-1rr4qq7">
+                                <div class="MuiStack-root joy-bco1gb">
+                                    <div
+                                        class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd joy-k54e1s"
+                                    >
+                                        <button
+                                            id=""
+                                            type="button"
+                                            class="MuiFormLabel-root joy-eq4nw9"
+                                        >
+                                            포스트 타입
+                                        </button>
+                                        <div
+                                            class="MuiSelect-root MuiSelect-variantOutlined MuiSelect-colorNeutral MuiSelect-sizeMd joy-1y14eq7"
+                                        >
+                                            <button
+                                                role="combobox"
+                                                aria-expanded="false"
+                                                aria-controls=":r2o:"
+                                                aria-labelledby=":r2n:-label"
+                                                id="select-toggle"
+                                                name="visibilityOption"
+                                                class="MuiSelect-button joy-1qmzz5g"
+                                                type="button"
+                                            ></button
+                                            ><span
+                                                class="MuiSelect-indicator joy-o1yc9m"
+                                                ><svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-qtrhn5"
+                                                >
+                                                    <path
+                                                        d="M12.666 15.291a.934.934 0 0 1-1.324 0l-5.254-5.25a.937.937 0 0 1 1.324-1.324l4.586 4.586 4.59-4.59a.937.937 0 0 1 1.324 1.324l-5.246 5.254Z"
+                                                        fill="currentcolor"
+                                                    ></path></svg></span
+                                            ><input
+                                                tabindex="-1"
+                                                aria-hidden="true"
+                                                value="SUBSCRIBER"
+                                                name="visibilityOption"
+                                                style="
+                                                    border: 0px;
+                                                    clip: rect(
+                                                        0px,
+                                                        0px,
+                                                        0px,
+                                                        0px
+                                                    );
+                                                    height: 1px;
+                                                    margin: -1px;
+                                                    overflow: hidden;
+                                                    padding: 0px;
+                                                    position: absolute;
+                                                    white-space: nowrap;
+                                                    width: 1px;
+                                                "
+                                            />
+                                        </div>
+                                        <ul
+                                            role="listbox"
+                                            id="select-options"
+                                            tabindex="-1"
+                                            class="select-options base-Popper-root MuiSelect-listbox Mui-expanded joy-vcb2co"
+                                            hidden
+                                            style="
+                                                position: absolute;
+                                                inset: 0px auto auto 0px;
+                                                margin: 0px;
+                                                transform: translate(
+                                                    719px,
+                                                    497px
+                                                );
+                                                width: 814px;
+                                                z-index: 11111;
+                                            "
+                                            data-popper-placement="bottom"
+                                        >
+                                            <li
+                                                tabindex="0"
+                                                id=":r39:"
+                                                role="option"
+                                                aria-selected="false"
+                                                class="MuiOption-root joy-1m461fr"
+                                            >
+                                                포스트
+                                            </li>
+                                            <li
+                                                tabindex="-1"
+                                                id=":r3a:"
+                                                role="option"
+                                                aria-selected="false"
+                                                class="MuiOption-root joy-1m461fr"
+                                            >
+                                                응원글
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div
+                                        class="MuiFormHelperText-root joy-aii27q"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="MuiStack-root joy-j7qwjs"></div>
+                    </div>
+                </div>
+                <hr
+                    class="MuiDivider-root MuiDivider-horizontal MuiDivider-insetContext joy-1d7jsmy"
+                />
+                <div
+                    data-last-child=""
+                    class="MuiDialogActions-root joy-804tuw"
+                >
+                    <button
+                        class="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd joy-wvkfjm"
+                        type="button"
+                    >
+                        <span>발행하기</span></button
+                    ><button
+                        class="MuiButton-root MuiButton-variantSoft MuiButton-colorNeutral MuiButton-sizeMd joy-vcgvac"
+                        type="button"
+                    >
+                        <span>취소</span>
+                    </button>
+                </div>
+            </div>
+            <div tabindex="0" data-testid="sentinelEnd"></div>
+        </div>
+    </body>
+    <script src="../../static/js/main/post-edit.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".summernote").summernote({
+                height: 650,
+                // width: 700,
+                fontNames: [
+                    "Arial",
+                    "Noto Sans KR",
+                    "Jua",
+                    "Dongle",
+                    "Do Hyeon",
+                    "Gowun Dodum",
+                    "Poor Story",
+                    "Hi Melody",
+                    "Gamja Flower",
+                    "Gaegu",
+                ],
+                fontNamesIgnoreCheck: [
+                    "Noto Sans KR",
+                    "Jua",
+                    "Dongle",
+                    "Do Hyeon",
+                    "Gowun Dodum",
+                    "Poor Story",
+                    "Hi Melody",
+                    "Gamja Flower",
+                    "Gaegu",
+                ],
+                disableResizeEditor: true,
+                callbacks: {
+                    onImageUpload: function (files) {
+                        // upload image to server and create imgNode...
+                        $.ajax({
+                            url: "files/upload",
+                            method: "POST",
+                            data: files[0],
+                            processData: false,
+                            contentType: "multipart/form-data",
+                            success: () => {
+                                $(this).summernote(
+                                    "insertImage",
+                                    "/file/display?fileName=icon1.png"
+                                );
+                            },
+                        });
+                    },
+                },
+            });
+            $("#preview-btn").on("click", function () {
+                const content = $(".summernote").summernote("code");
+                $("#editor-section").hide(); // 에디터 전체 숨기기
+                $("#preview-content").html(content); // 작성한 HTML 삽입
+                $("#preview-section").show(); // 미리보기 보이기
+            });
+        });
+    </script>
+</html>

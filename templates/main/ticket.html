@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../static/css/main/ticket.css" />
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="https://www.postype.com/">
+                        <span class="logo-img" title="로고"></span>
+                    </a>
+                    <a class="brand-link" href="https://help.postype.com/hc/ko"
+                        >도움 센터</a
+                    >
+                </div>
+                <div class="nav-wrapper-desktop">
+                    <nav
+                        class="user-nav"
+                        id="user-nav"
+                        aria-label="사용자 탐색"
+                    >
+                        <ul class="user-nav-list"></ul>
+                    </nav>
+
+                    <div class="user-info dropdown">
+                        <button class="dropdown-toggle" aria-haspopup="true" id="header-dropdown-toggle">
+                            <img
+                                class="user-avatar"
+                                alt=""
+                                data-user-avatar="true"
+                                src="https://secure.gravatar.com/avatar/f2a410d748383469cfb4990621211a2e?default=https%3A%2F%2Fassets.zendesk.com%2Fhc%2Fassets%2Fdefault_avatar.png&amp;r=g"
+                            />
+                            <span></span>
+                                <span id="emailSpan"
+                                    >kor.jakejung@gmail.com</span
+                                >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    focusable="false"
+                                    viewBox="0 0 12 12"
+                                    class="dropdown-chevron-icon"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"
+                                    ></path>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="dropdown-menu" role="menu" id="header-dropdown-menu" style="display: none;">
+                            <a
+                                role="menuitem"
+                                href="/access/logout?return_to=https%3A%2F%2Fhelp.postype.com%2Fhc%2Fko"
+                                >로그아웃</a
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-wrapper-mobile">
+                    <button
+                        class="menu-button-mobile"
+                        aria-controls="user-nav-mobile"
+                        aria-expanded="false"
+                        aria-label="탐색 메뉴 토글"
+                    >
+                        <img
+                            class="user-avatar"
+                            alt=""
+                            data-user-avatar="true"
+                            src="https://secure.gravatar.com/avatar/f2a410d748383469cfb4990621211a2e?default=https%3A%2F%2Fassets.zendesk.com%2Fhc%2Fassets%2Fdefault_avatar.png&amp;r=g"
+                        />
+
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            focusable="false"
+                            viewBox="0 0 16 16"
+                            class="icon-menu"
+                        >
+                            <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                d="M1.5 3.5h13m-13 4h13m-13 4h13"
+                            ></path>
+                        </svg>
+                    </button>
+                    <nav
+                        class="menu-list-mobile"
+                        id="user-nav-mobile"
+                        aria-expanded="false"
+                    >
+                        <ul class="menu-list-mobile-items">
+                            <li class="user-avatar-item item"></li>
+                            <li class="nav-divider"></li>
+
+                            <li class="nav-divider"></li>
+
+                            <li class="item">
+                                <a
+                                    role="menuitem"
+                                    href="/access/logout?return_to=https%3A%2F%2Fhelp.postype.com%2Fhc%2Fko"
+                                    >로그아웃</a
+                                >
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main role="main">
+            <br /><br />
+            <div class="new-request-body">
+                <div class="body-layout">
+                    <div class="form">
+                        <div class="form-header">
+                            <h1 class="request-page-header">문의 등록</h1>
+                            <!-- <p></p>
+              <p><b>[안내] 9/28(목)~10/3(화) 추석 연휴 기간 동안 도움센터 문의 답변, 신분증 인증 및 사업자 인증 등의 운영이 잠시 중단됩니다. 연휴 기간 중 요청 및 문의 접수가 많이 누적되는 경우 답변을 받아보시기까지 시간이 좀 더 소요될 수 있는 점 참고 부탁드립니다.</b></p> 
+              <p></p>-->
+                            <p>
+                                포스타입은 항상 고객님의 편입니다. 포스타입 이용
+                                중 궁금한 점 또는 건의가 있다면 언제든 편하게
+                                말씀해 주세요. 영업일 기준(주말·공휴일 제외) 3일
+                                이내에 답변드리겠습니다. 단, 문의가 집중되는
+                                경우 답변이 지연될 수 있는 점 너그러이 양해
+                                부탁드립니다.
+                            </p>
+                            <p>
+                                <b
+                                    >계정 찾기 문의는
+                                    <a
+                                        href="https://findaccount.zendesk.com/hc/ko/requests/new?"
+                                        target="_blank"
+                                        rel="noopener"
+                                        ><span class="wysiwyg-color-blue"
+                                            >계정 찾기</span
+                                        ></a
+                                    >, 결제 관련 문의는
+                                    <a
+                                        href="https://postypepayment.zendesk.com/hc/ko/requests/new"
+                                        target="_blank"
+                                        rel="noopener"
+                                        ><span class="wysiwyg-color-blue"
+                                            >결제 문의</span
+                                        ></a
+                                    >, 스토어/리퀘스트 관련 문의는
+                                    <a
+                                        href="https://postystore.zendesk.com/hc/ko/requests/new"
+                                        target="_blank"
+                                        rel="noopener"
+                                        ><span class="wysiwyg-color-blue"
+                                            >스토어/리퀘스트 문의</span
+                                        ></a
+                                    >를 통해 접수해주세요.</b
+                                >
+                            </p>
+                            <div class="request-block">
+                                <b
+                                    >산업안전보건법에 따라 폭언, 욕설, 성희롱,
+                                    반말, 비하, 반복적인 요구 등에는 회신 없이
+                                    상담을 즉시 종료하며, 이후 다른 문의에도
+                                    회신하지 않습니다.</b
+                                >
+                                포스타입에게는 고객응대 근로자를 보호하기 위해
+                                이같은 이용자의 서비스 이용을 제한하고 업무방해,
+                                모욕죄 등으로 민형사상 조치를 취할 권리와 책임이
+                                있습니다.
+                            </div>
+                            포스타입 계정 이메일 주소로 문의에 대한 답변이
+                            전송됩니다. 다른 이메일 주소로 답변을 받기 원하실
+                            경우, 우측 상단 [프로필] &gt; [로그아웃]을 선택해
+                            주세요.
+                        </div>
+
+                        <form
+                            id="new_request"
+                            class="request-form"
+                            data-form=""
+                            data-form-type="request"
+                            action="/hc/ko/requests"
+                            accept-charset="UTF-8"
+                            method="post"
+                        >
+                            <input
+                                name="utf8"
+                                type="hidden"
+                                value="✓"
+                                autocomplete="off"
+                            />
+
+                            <div
+                                class="form-field select optional request_ticket_form_id"
+                            >
+                                <label for="request_issue_type_select"
+                                    >다음 중 주제를 골라주세요.</label
+                                >
+                                <a
+                                    class="nesty-input"
+                                    tabindex="0"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    aria-controls="_n3w813m4q"
+                                    aria-label="다음 중 주제를 골라주세요."
+                                    style="max-width: 100%"
+                                    >-</a
+                                >
+                            </div>
+
+                            <div
+                                class="form-field string required request_custom_fields_900008472883"
+                            >
+                                <label
+                                    id="request_custom_fields_900008472883_label"
+                                    for="request_custom_fields_900008472883"
+                                    >포스타입 계정 이메일 주소</label
+                                >
+                                <input
+                                    type="text"
+                                    name="request[custom_fields][900008472883]"
+                                    id="request_custom_fields_900008472883"
+                                    aria-required="true"
+                                    aria-describedby="request_custom_fields_900008472883_hint"
+                                    aria-labelledby="request_custom_fields_900008472883_label"
+                                />
+
+                                <p id="request_custom_fields_900008472883_hint">
+                                    [설정] &gt; [계정]&nbsp;내 표시되는 이메일
+                                    계정 정보를 입력해주세요.
+                                </p>
+                            </div>
+
+                            <div
+                                class="form-field string required request_custom_fields_900002967223"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="request[custom_fields][900002967223]"
+                                    id="request_custom_fields_900002967223"
+                                    autocomplete="off"
+                                    data-tagger='[{"label":"-","value":""},{"label":"모바일 웹브라우저","value":"모바일_브라우저"},{"label":"PC 웹브라우저","value":"pc_또는_모바일_웹브라우저"},{"label":"안드로이드 애플리케이션","value":"안드로이드_애플리케이션"},{"label":"iOS 애플리케이션","value":"ios_애플리케이션"}]'
+                                    aria-required="true"
+                                    aria-labelledby="request_custom_fields_900002967223_label"
+                                    value=""
+                                />
+                            </div>
+
+                            <div
+                                class="form-field string required request_subject"
+                            >
+                                <label
+                                    id="request_subject_label"
+                                    for="request_subject"
+                                    >문의 제목</label
+                                >
+                                <input
+                                    type="text"
+                                    name="request[subject]"
+                                    id="request_subject"
+                                    maxlength="150"
+                                    size="150"
+                                    aria-required="true"
+                                    aria-labelledby="request_subject_label"
+                                />
+                            </div>
+
+                            <div
+                                class="suggestion-list"
+                                data-hc-class="searchbox"
+                                data-hc-suggestion-list="true"
+                            ></div>
+
+                            <div
+                                class="form-field text required request_description"
+                            >
+                                <label
+                                    id="request_description_label"
+                                    for="request_description"
+                                    >문의 내용</label
+                                >
+                                <textarea
+                                    name="request[description]"
+                                    id="request_description"
+                                    aria-required="true"
+                                    aria-describedby="request_description_hint"
+                                    aria-labelledby="request_description_label"
+                                ></textarea
+                                ><input
+                                    type="hidden"
+                                    name="request[description_mimetype]"
+                                    id="request_description_mimetype"
+                                    value="text/plain"
+                                    style="display: none"
+                                    autocomplete="off"
+                                />
+
+                                <p id="request_description_hint">
+                                    문제가 발생한 스크린샷, URL, 검색 키워드
+                                    등을 포함하여 최대한 구체적으로
+                                    작성해주세요.
+                                </p>
+                            </div>
+
+                            <div
+                                class="form-field boolean required request_custom_fields_360009496894"
+                            >
+                                <label
+                                    id="request_custom_fields_360009496894_label"
+                                    for="request_custom_fields_360009496894"
+                                    >개인정보 수집·이용 동의</label
+                                >
+                                <input
+                                    name="request[custom_fields][360009496894]"
+                                    type="hidden"
+                                    value="off"
+                                    autocomplete="off"
+                                /><input
+                                    aria-required="true"
+                                    aria-describedby="request_custom_fields_360009496894_hint"
+                                    aria-labelledby="request_custom_fields_360009496894_label"
+                                    type="checkbox"
+                                    value="on"
+                                    name="request[custom_fields][360009496894]"
+                                    id="request_custom_fields_360009496894"
+                                />
+
+                                <p id="request_custom_fields_360009496894_hint">
+                                    1. 개인정보 수집·이용 목적: 문의 접수 및
+                                    처리를 위한 본인 식별, 답변 전달 및 기타
+                                    원활한 양질의 서비스 제공 2. 개인정보 수집
+                                    항목: (필수) 답변 받을 이메일 주소, 포스타입
+                                    로그인 이메일 (선택) 문의 내용, 휴대전화
+                                    번호, 마스킹된 신분증 사본, 통장 사본,
+                                    OS/브라우저 정보 등 회원님께서 추가로
+                                    제출하시는 개인정보 3. 개인정보의 보유 및
+                                    이용기간: 전자상거래법 및 포스타입
+                                    개인정보처리방침에 따라 3년간 보관 후
+                                    파기되며, 마스킹된 신분증 사본, 통장 사본은
+                                    본인 식별이 완료된 후 지체 없이 파기합니다.
+                                    4. 개인정보 수집·이용에 대한 동의를 거부할
+                                    수 있으며, 동의 거부 시 문의 등록에 제한이
+                                    있습니다.
+                                </p>
+                            </div>
+
+                            <div
+                                class="form-field text optional request_custom_fields_360018479074"
+                                style="display: none"
+                            >
+                                <label
+                                    id="request_custom_fields_360018479074_label"
+                                    for="request_custom_fields_360018479074"
+                                    >사용 환경<span class="optional"
+                                        >(선택 사항)</span
+                                    ></label
+                                >
+                                <textarea
+                                    name="request[custom_fields][360018479074]"
+                                    id="request_custom_fields_360018479074"
+                                    aria-required="false"
+                                    aria-labelledby="request_custom_fields_360018479074_label"
+                                ></textarea>
+                            </div>
+
+                            <script data-conditional-fields="[]"></script>
+
+                            <div class="form-field">
+                                <label for="request-attachments">
+                                    첨부 파일<span class="optional"
+                                        >(선택 사항)</span
+                                    >
+                                </label>
+                                <div
+                                    id="upload-dropzone"
+                                    class="upload-dropzone"
+                                >
+                                    <input
+                                        type="file"
+                                        multiple="true"
+                                        id="request-attachments"
+                                        data-fileupload="true"
+                                        data-dropzone="upload-dropzone"
+                                        data-error="upload-error"
+                                        data-create-url="/hc/ko/request_uploads"
+                                        data-name="request[attachments][]"
+                                        data-pool="request-attachments-pool"
+                                        data-delete-confirm-msg=""
+                                        aria-describedby="upload-error"
+                                    />
+                                    <span>
+                                        <a>파일 추가</a> 또는 파일을 여기로
+                                        드래그
+                                    </span>
+                                </div>
+
+                                <div
+                                    id="upload-error"
+                                    class="notification notification-error notification-inline"
+                                    style="display: none"
+                                >
+                                    <span data-upload-error-message=""></span>
+                                </div>
+
+                                <ul
+                                    id="request-attachments-pool"
+                                    class="upload-pool"
+                                    data-template="upload-template"
+                                ></ul>
+
+                                <script type="text/html" id="upload-template">
+                                    <li class="upload-item" data-upload-item>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="12"
+                                            height="12"
+                                            focusable="false"
+                                            viewBox="0 0 12 12"
+                                            aria-hidden="true"
+                                            class="upload-item-icon"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-linecap="round"
+                                                d="M2.5 4v4.5c0 1.7 1.3 3 3 3s3-1.3 3-3v-6c0-1.1-.9-2-2-2s-2 .9-2 2v6c0 .6.4 1 1 1s1-.4 1-1V4"
+                                            />
+                                        </svg>
+                                        <div
+                                            aria-hidden="true"
+                                            class="upload-item-icon-spacer"
+                                        ></div>
+                                        <a
+                                            class="upload-link"
+                                            target="_blank"
+                                            data-upload-link
+                                        ></a>
+                                        <p
+                                            class="upload-path"
+                                            data-upload-path
+                                        ></p>
+                                        <p
+                                            class="upload-path"
+                                            data-upload-size
+                                        ></p>
+                                        <p
+                                            data-upload-issue
+                                            class="notification notification-alert notification-inline"
+                                            aria-hidden="true"
+                                        ></p>
+                                        <span
+                                            class="upload-remove"
+                                            aria-label="첨부 파일 제거"
+                                            role="button"
+                                            tabindex="0"
+                                            data-upload-remove
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="12"
+                                                height="12"
+                                                focusable="false"
+                                                viewBox="0 0 12 12"
+                                                class="upload-item-icon"
+                                            >
+                                                <path
+                                                    stroke="currentColor"
+                                                    stroke-linecap="round"
+                                                    d="M3 9l6-6m0 6L3 3"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <div
+                                            class="upload-progress"
+                                            data-upload-progress
+                                        ></div>
+                                        <input type="hidden" />
+                                    </li>
+                                </script>
+                            </div>
+
+                            <footer>
+                                <input
+                                    type="submit"
+                                    name="commit"
+                                    value="제출"
+                                />
+                            </footer>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-logo">
+                    <a title="홈" href="/hc/ko">Postype</a>
+                </div>
+                <div class="d-flex">
+                    <ul>
+                        <li>주식회사 포스타입</li>
+                        <li>대표이사 신규섭</li>
+                        <li>
+                            <a href="https://help.postype.com">도움 센터</a>
+                        </li>
+                        <li>
+                            <a href="https://right.postype.com"
+                                >권리침해 신고센터</a
+                            >
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <div
+            class="nesty-panel"
+            id="request_issue_type_select"
+            style="display: none; top: 610px; left: 366px; width: 640px; height: 100%;"
+        >
+            <ul role="listbox" style="transition: left 0.2s" >
+                <li tabindex="-1" id="-" role="option" aria-selected="false">
+                    -
+                </li>
+                <li
+                    tabindex="-1"
+                    id="360000687894"
+                    role="option"
+                    aria-selected="true"
+                >
+                    오류/버그 제보
+                </li>
+                <li
+                    tabindex="-1"
+                    id="360000682073"
+                    role="option"
+                    aria-selected="false"
+                >
+                    계정/로그인 문의
+                </li>
+                <li
+                    tabindex="-1"
+                    id="360000682273"
+                    role="option"
+                    aria-selected="false"
+                >
+                    본인 인증 문의
+                </li>
+                <li
+                    tabindex="-1"
+                    id="360000682293"
+                    role="option"
+                    aria-selected="false"
+                >
+                    채널/포스트 문의
+                </li>
+                <li
+                    tabindex="-1"
+                    id="360000687874"
+                    role="option"
+                    aria-selected="false"
+                >
+                    수익 문의
+                </li>
+                <li
+                    tabindex="-1"
+                    id="4417350759449"
+                    role="option"
+                    aria-selected="false"
+                >
+                    이벤트 문의
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script src="../../static/js/main/ticket.js"></script>
+</html>
