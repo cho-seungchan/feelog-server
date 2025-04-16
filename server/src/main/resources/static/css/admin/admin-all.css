@@ -1,0 +1,299 @@
+html {
+    box-sizing: border-box;
+    cursor: default;
+    font-family: sans-serif;
+    line-height: 1.5;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    line-height: inherit;
+    font-size: 15px;
+    font-weight: 400;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -o-text-size-adjust: none;
+}
+
+html, body {
+    width: 100%;
+    font-size: 14px;
+    color: black;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
+*, *:before, *:after {
+    font-family: "pickers";
+    font-size: 15px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+*, ::before, ::after {
+    background-repeat: no-repeat;
+    box-sizing: inherit;
+}
+
+* {
+    outline: none;
+    font-family: inherit;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    margin: 0;
+    padding: 0;
+}
+
+body, #root {
+    height: 100%;
+    overflow: auto;
+}
+
+button {
+    background-color: transparent;
+}
+
+a, button {
+    outline: none;
+}
+
+button:not(:disabled) {
+    cursor: pointer;
+}
+
+address, article, aside, b, body, a, button, canvas, caption, dl, dt, dd, div, html, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, big, cite, code, del, dfn, em, img, small, strike, strong, sub, sup, var, u, i, center, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, select, textarea, input {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+    display: block;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+@media screen and (min-width: 1096px) {
+    .AppLayout_container {
+        overflow-y: hidden;
+    }
+}
+
+.AppLayout_container_adminList .AppLayout_main_adminList {
+    padding-top: 72px;
+}
+
+@media screen and (min-width: 1096px) {
+    .AppLayout_container_adminList .AppLayout_main_adminList {
+        display: flex
+;
+        padding-top: 72px;
+        height: 100%;
+    }
+}
+
+.AppLayout_container {
+    position: relative;
+}
+
+.AppGNBbar_container {
+    box-shadow: 0 1px #0a16460f;
+    display: flex
+;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 18;
+    background-color: #fff;
+    padding: 0 16px;
+    width: 100%;
+    height: 72px;
+}
+
+.AppGNBbar_flex {
+    display: flex
+;
+    flex: 1 1;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.StudioLogo_container {
+    display: flex
+;
+    align-items: center;
+    padding: 20px 16px;
+}
+
+.StudioStatus_stateBox {
+    display: flex
+;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.AppGNBbar_flex {
+    display: flex
+;
+    flex: 1 1;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.AppGNBbar_rightBox {
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+.PreviewExitButtons_container {
+    display: flex
+;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+}
+
+@media screen and (min-width: 1096px) {
+    .AppLayout_container .AppLayout_main {
+        display: flex
+;
+        padding-top: 72px;
+        height: 100%;
+    }
+}
+
+.AppLayout_container .AppLayout_main {
+    padding-top: 72px;
+}
+
+article, aside, figcaption, figure, footer, header, main, nav, section {
+    display: block;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+input, textarea {
+    background: none;
+}
+
+.PreviewExitButtons_container_adminList .PreviewExitButtons_button_adminList[class*=Button_button] {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    display: block;
+    border-radius: 0;
+    border-color: #e9ecef;
+    padding: 8px 24px;
+    height: auto;
+    color: #495057;
+}
+
+.PreviewExitButtons_container_adminList .PreviewExitButtons_button_adminList[class*=Button_button]:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.PreviewExitButtons_container_adminList {
+    display: flex
+;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+}
+
+.AppGNBbar_flex_adminList {
+    display: flex
+;
+    flex: 1 1;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.AppGNBbar_rightBox_adminList {
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+@media screen and (min-width: 1096px) {
+    .StudioLogo_container_adminList {
+        padding: 0;
+    }
+}
+
+.StudioLogo_container_adminList {
+    display: flex
+;
+    align-items: center;
+    padding: 20px 16px;
+}
+
+.StudioLogo_logo_adminList {
+    display: block;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    outline: 0;
+    background-image: url(../../images/common/mainpagelogo.png);
+    background-size: cover;
+    width: 190px;
+    height: 26px;
+    z-index: 25;
+}
+
+.StudioStatus_stateBox_adminList {
+    display: flex
+;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+@media screen and (min-width: 1096px) {
+    .AppGNBbar_container_adminList {
+        height: 72px;
+    }
+}
+
+.AppGNBbar_container_adminList {
+    box-shadow: 0 1px #0a16460f;
+    display: flex
+;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 18;
+    background-color: #fff;
+    padding: 0 16px;
+    width: 100%;
+    height: 72px;
+}
+
+@media screen and (min-width: 1096px) {
+    .AppLayout_container_adminList {
+        overflow-y: hidden;
+    }
+}
+
+.AppLayout_container_adminList {
+    position: relative;
+}

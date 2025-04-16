@@ -1,0 +1,630 @@
+/* 2025.04.03조승찬 */
+body {
+    margin: 0;
+    min-width: 320px;
+    height: 100dvh;
+    font-family: "Postype Sans-serif KR", Apple SD Gothic Neo, Malgun Gothic, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #ffffff;
+    /* padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom); */
+}
+body {
+    margin: 0;
+    color: #202022;
+    /* font-family: ; */
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    background-color: #ffffff;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+.flog-div-45 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+@media (min-width: 0px) {
+    .flog-div-45 {
+        gap: 28px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-45 {
+        gap: 100px;
+    }
+}
+/* 헤더 여기서 부터 */
+.flog-header-5 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid;
+    border-color: 118 118 127;
+}
+.flog-nav-3 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1144px;
+}
+@media (min-width: 0px) {
+    .flog-nav-3 {
+        height: 48px;
+        padding: 4px 8px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-nav-3 {
+        height: 64px;
+        padding: 12px 32px;
+    }
+}
+.flog-a-14 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+@media (min-width: 0px) {
+    .flog-a-14 {
+        padding-left: 8px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-a-14 {
+        padding-left: 0px;
+    }
+}
+.flog-div-35 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+@media (min-width: 0px) {
+    .flog-div-35 {
+        display: none;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-35 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+.flog-svg-5 {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: var(--Icon-margin);
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #76767f;
+    width: 128px;
+    height: 24px;
+    color: black;
+}
+.flog-div-36 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+@media (min-width: 0px) {
+    .flog-div-36 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-36 {
+        display: none;
+    }
+}
+.flog-svg-4 {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: var(--Icon-margin);
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #76767f;
+    width: 95.99994000000001px;
+    height: 18px;
+    color: black;
+}
+.flog-div-37 .flog-a-15 {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    color: #666666;
+    background-color: #f9f9f9;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.flog-div-37 .flog-a-15:hover {
+    background-color: #eeeeee;
+    border-color: #cccccc;
+    color: #555555;
+    transform: scale(1.02);
+}
+@media (min-width: 0px) {
+    .flog-div-37 {
+        display: none;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-37 {
+        display: block;
+    }
+}
+.flog-a-15 {
+    --Icon-margin: initial;
+    --Icon-color: #76767f;
+    --Icon-fontSize: 20px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    --Button-gap: 0.5rem;
+    min-height: 2.25rem;
+    font-size: 14px;
+    padding-block: 0.375rem;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    /* margin: var(--Button-margin); */
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    --variant-borderWidth: 1px;
+    color: #202022;
+    border: ipx solid;
+    border-color: #dadadc;
+    font-weight: 500;
+}
+.flog-a-15.FeelogButton-sizeMd {
+    min-height: 40px;
+    font-size: 16px;
+}
+/* 헤더 여기까지 */
+
+.flog-main-3 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+@media (min-width: 0px) {
+    .flog-main-3 {
+        padding: 0 16px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-main-3 {
+        padding: 0;
+    }
+}
+.flog-div-46 {
+    width: 100%;
+}
+@media (min-width: 0px) {
+    .flog-div-46 {
+        margin-left: -45px;
+        max-width: 320px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-46 {
+        max-width: 320px;
+    }
+}
+.flog-div-47 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 32px;
+}
+.flog-h1-4 {
+    --Icon-fontSize: calc(1em * 1.33334);
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    line-height: 1.33334;
+    letter-spacing: -0.025em;
+    color: #202022;
+    font-size: 24px;
+}
+.flog-div-54 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 12px;
+}
+.flog-a-13 {
+    --Icon-margin: initial;
+    --Icon-color: #76767f;
+    --Icon-fontSize: 20px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    --Button-gap: 0.5rem;
+    padding-block: 0.375rem;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    /* margin: var(--Button-margin); */
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    --variant-borderWidth: 0px;
+    color: #202022;
+    background-color: #f2f2f3;
+}
+.flog-a-13.FeelogButton-sizeMd {
+    min-height: 40px;
+    font-size: 16px;
+}
+.flog-span-1 {
+    --Icon-margin: 0 0 0 calc(0.5rem / -2);
+    --CircularProgress-margin: 0 0 0 calc(0.5rem / -2);
+    display: inherit;
+    margin-right: 0.5rem;
+}
+.flog-img-3 {
+    --Icon-fontSize: 24px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0 0 0 calc(0.5rem / -2);
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #76767f;
+    width: 1em;
+    height: 1em;
+    color: currentcolor;
+}
+.flog-div-55 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 20px;
+}
+.flog-div-56 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 10px;
+}
+.flog-div-57 {
+    height: 16px;
+}
+.flog-span-6 {
+    --Icon-fontSize: 1rem;
+    --Checkbox-size: 1rem;
+    font-size: 14px;
+    gap: 0.5rem;
+    position: relative;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1rem;
+    color: #202022;
+}
+.flog-span-7 {
+    --Icon-color: #76767f;
+    box-sizing: border-box;
+    border-radius: min(8px, 0.25rem);
+    width: 1rem;
+    height: 1rem;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    --variant-borderWidth: 1px;
+    color: #202022;
+    border: 1px solid;
+    border-color: #dadadc;
+    background-color: #ffffff;
+}
+.flog-span-8 {
+    border-radius: inherit;
+    /* border-radius: var(--Checkbox-actionRadius, inherit); */
+    text-align: left;
+    position: absolute;
+    top: calc(-1 * 1px);
+    left: calc(-1 * 1px);
+    bottom: calc(-1 * 1px);
+    right: calc(-1 * 1px);
+    z-index: 1;
+}
+.flog-input-3 {
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.flog-label-2 {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.flog-hr-2 {
+    --Divider-thickness: 1px;
+    --Divider-lineColor: rgba(118 118 127 / 0.15);
+    margin: initial;
+    /* margin-inline: var(--_Divider-inset); */
+    margin-block: initial;
+    position: relative;
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border: none;
+    list-style: none;
+    background-color: rgba(118 118 127 / 0.15);
+    inline-size: initial;
+    block-size: 1px;
+}
+.flog-div-58 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 8px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.flog-a-16 {
+    --Icon-fontSize: calc(1em * 1.5);
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    color: #76767f;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+.flog-p-11 {
+    --Icon-fontSize: calc(1em * 1.5);
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    color: #76767f;
+}
+/* hover */
+.flog-a-13:hover {
+    background-color: #e0e0e2; /* 기존 색상보다 살짝 더 진한 색 */
+    color: #1a1a1d; /* 글자 색상도 조금 더 진하게 설정 */
+}
+
+/* 밑줄 hover */
+.flog-a-16:hover {
+    text-decoration: underline;
+}
+/* 경고문구 */
+.flog-p-24 {
+    --Icon-fontSize: calc(1em * 1.5);
+    --Icon-color: currentColor;
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: red;
+    font-weight: 400;
+}
+/* 14세 체크박스 */
+.flog-svg-6 {
+    user-select: none;
+    margin: 0px;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: #ffffff;
+}
+.flog-span-9 {
+    --Icon-fontSize: 1rem;
+    --Checkbox-size: 1rem;
+    font-size: 14px;
+    gap: 0.5rem;
+    position: relative;
+    display: inline-flex;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1rem;
+    color: #202022;
+}
+.flog-span-10 {
+    --Icon-color: currentColor;
+    box-sizing: border-box;
+    border-radius: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-shrink: 0;
+    --variant-borderWidth: 0px;
+    color: #ffffff;
+    background-color: #3478ff;
+}

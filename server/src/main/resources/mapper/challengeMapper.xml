@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.feelog.mapper.ChallengeMapper">
+    <insert id="insertCommonTask">
+        INSERT INTO tbl_common_task (
+            common_task_name,
+            common_task_img,
+            common_task_tell,
+            common_task_url,
+            common_task_addr,
+            common_task_lot,
+            common_task_lat,
+            common_task_service_name,
+            common_task_req_page
+        ) VALUES (
+            #{commonTaskName},
+            #{commonTaskImg},
+            #{commonTaskTell},
+            #{commonTaskUrl},
+            #{commonTaskAddr},
+            #{commonTaskLot},
+            #{commonTaskLat},
+            #{commonTaskServiceName},
+            #{commonTaskReqPage}
+        );
+    </insert>
+</mapper>

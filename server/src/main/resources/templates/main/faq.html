@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/main/faq.css" />
+    </head>
+    <body>
+        <div class="alertbox"></div>
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="https://www.postype.com/">
+                        <span class="logo-img" title="로고"></span>
+                    </a>
+                    <a class="brand-link" href="https://help.postype.com/hc/ko"
+                        >도움 센터</a
+                    >
+                </div>
+                <div class="nav-wrapper-desktop">
+                    <!-- 로그인 안했을때-->
+                    <!-- <nav
+                        class="user-nav"
+                        id="user-nav"
+                        aria-label="사용자 탐색"
+                    >
+                        <ul class="user-nav-list">
+                            <li>
+                                <a
+                                    class="sign-in"
+                                    rel="nofollow"
+                                    data-auth-action="signin"
+                                    title="대화 상자를 엽니다."
+                                    role="button"
+                                    href="/hc/ko/signin?return_to=https%3A%2F%2Fhelp.postype.com%2Fhc%2Fko%2Farticles%2F360000143594-%25EC%25B1%2584%25EB%2584%2590-%25EB%25A7%258C%25EB%2593%25A4%25EA%25B3%25A0-%25EC%25B2%25AB-%25ED%258F%25AC%25EC%258A%25A4%25ED%258A%25B8-%25EC%259E%2591%25EC%2584%25B1%25ED%2595%2598%25EA%25B8%25B0"
+                                >
+                                    로그인
+                                </a>
+                            </li>
+                        </ul>
+                    </nav> -->
+                    <!-- 로그인 안했을때 끝 -->
+                    <!-- 로그인 했을때 -->
+                    <div class="user-info dropdown">
+                        <button class="dropdown-toggle" aria-haspopup="true">
+                            <img
+                                class="user-avatar"
+                                alt=""
+                                data-user-avatar="true"
+                                src="https://secure.gravatar.com/avatar/f2a410d748383469cfb4990621211a2e?default=https%3A%2F%2Fassets.zendesk.com%2Fhc%2Fassets%2Fdefault_avatar.png&amp;r=g"
+                            />
+                            <span>
+                                <script>
+                                    const getEmailFromProfile = async () => {
+                                        try {
+                                            const response = await fetch(
+                                                "https://help.postype.com/hc/api/internal/ko/aggregated_user_profile.json",
+                                                {
+                                                    method: "GET",
+                                                    headers: {
+                                                        "Content-Type":
+                                                            "application/json",
+                                                    },
+                                                }
+                                            );
+
+                                            if (!response.ok)
+                                                throw new Error(
+                                                    "Network response was not ok"
+                                                );
+
+                                            const data = await response.json();
+                                            const email = data.user_info.email; // email 부분만 추출
+
+                                            // 가져온 email을 id가 emailSpan인 span에 삽입
+                                            document.getElementById(
+                                                "emailSpan"
+                                            ).textContent = email;
+                                        } catch (error) {
+                                            console.error(
+                                                "Error fetching email:",
+                                                error
+                                            );
+                                        }
+                                    };
+
+                                    getEmailFromProfile();
+                                </script>
+                                <span id="emailSpan"
+                                    >kor.jakejung@gmail.com</span
+                                >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    focusable="false"
+                                    viewBox="0 0 12 12"
+                                    class="dropdown-chevron-icon"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"
+                                    ></path>
+                                </svg>
+                            </span>
+                        </button>
+                        <div
+                            class="dropdown-menu"
+                            role="menu"
+                            aria-expanded="true"
+                        >
+                            <a
+                                role="menuitem"
+                                href="/access/logout?return_to=https%3A%2F%2Fhelp.postype.com%2Fhc%2Fko"
+                                >로그아웃</a
+                            >
+                        </div>
+                    </div>
+                    <!-- 로그인 했을때 끝 -->
+                </div>
+                <div class="nav-wrapper-mobile">
+                    <button
+                        class="menu-button-mobile"
+                        aria-controls="user-nav-mobile"
+                        aria-expanded="false"
+                        aria-label="탐색 메뉴 토글"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            focusable="false"
+                            viewBox="0 0 16 16"
+                            class="icon-menu"
+                        >
+                            <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                d="M1.5 3.5h13m-13 4h13m-13 4h13"
+                            ></path>
+                        </svg>
+                    </button>
+                    <nav
+                        class="menu-list-mobile"
+                        id="user-nav-mobile"
+                        aria-expanded="false"
+                    >
+                        <ul class="menu-list-mobile-items">
+                            <li class="item">
+                                <a
+                                    role="button"
+                                    rel="nofollow"
+                                    data-auth-action="signin"
+                                    title="대화 상자를 엽니다."
+                                    href="/hc/ko/signin?return_to=https%3A%2F%2Fhelp.postype.com%2Fhc%2Fko%2Farticles%2F360000143594-%25EC%25B1%2584%25EB%2584%2590-%25EB%25A7%258C%25EB%2593%25A4%25EA%25B3%25A0-%25EC%25B2%25AB-%25ED%258F%25AC%25EC%258A%25A4%25ED%258A%25B8-%25EC%259E%2591%25EC%2584%25B1%25ED%2595%2598%25EA%25B8%25B0"
+                                >
+                                    로그인
+                                </a>
+                            </li>
+                            <li class="nav-divider"></li>
+                            <li class="nav-divider"></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main role="main">
+            <div class="base">
+                <div class="body-layout">
+                    <nav class="sub-nav">
+                        <div class="hero-inner">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                focusable="false"
+                                viewBox="0 0 12 12"
+                                class="search-icon"
+                                aria-hidden="true"
+                            >
+                                <circle
+                                    cx="4.5"
+                                    cy="4.5"
+                                    r="4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                ></circle>
+                                <path
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    d="M11 11L7.5 7.5"
+                                ></path>
+                            </svg>
+                            <div class="clear-btn">
+                                <img
+                                    src="/hc/theming_assets/01HZKPZT5QVVCYXJPKV6ZJ9SSR"
+                                />
+                            </div>
+                            <form
+                                role="search"
+                                class="search search-full"
+                                data-search=""
+                                data-instant="true"
+                                autocomplete="off"
+                                action="/hc/ko/search"
+                                accept-charset="UTF-8"
+                                method="get"
+                            >
+                                <input
+                                    name="utf8"
+                                    type="hidden"
+                                    value="✓"
+                                    autocomplete="off"
+                                /><input
+                                    type="search"
+                                    name="query"
+                                    id="query"
+                                    placeholder="키워드를 검색해보세요"
+                                    autocomplete="off"
+                                    aria-label="키워드를 검색해보세요"
+                                /><button
+                                    type="button"
+                                    aria-controls="query"
+                                    class="clear-button"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="12"
+                                        height="12"
+                                        focusable="false"
+                                        role="img"
+                                        viewBox="0 0 12 12"
+                                        aria-label="검색 지우기"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-width="2"
+                                            d="M3 9l6-6m0 6L3 3"
+                                        ></path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </nav>
+                    <div class="breadcrumbs-container">
+                        <nav aria-label="현재 위치">
+                            <ol class="breadcrumbs">
+                                <li>
+                                    <a href="/hc/ko">포스타입 도움 센터</a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="/hc/ko/sections/19832918291481-%EC%B1%84%EB%84%90-%EA%B0%9C%EC%84%A4-%EC%82%AD%EC%A0%9C"
+                                        >채널 개설/삭제</a
+                                    >
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <!-- 	바디시작	 -->
+                    <div class="basic-layout">
+                        <!--  바디 해더   -->
+                        <article class="article-main-content">
+                            <header class="article-header">
+                                <h1
+                                    title="채널 만들고 첫 포스트 작성하기"
+                                    class="article-title"
+                                >
+                                    채널 만들고 첫 포스트 작성하기
+                                </h1>
+                            </header>
+
+                            <section class="article-info">
+                                <div class="article-content">
+                                    <div class="article-body">
+                                        <h2 id="h_01HJ5MBCEGWZGM4WBNR3WQ393M">
+                                            채널 만들기
+                                        </h2>
+                                        <h2
+                                            id="h_01HJ5MBCEGWSX6KC95BJNN4N3Q"
+                                            class="wysiwyg-text-align-center"
+                                        >
+                                            <img
+                                                src="/hc/article_attachments/37347828918681"
+                                                alt="채널 생성하기.png"
+                                            />
+                                        </h2>
+                                        <ul>
+                                            <li>
+                                                첫 포스트를 쓰기 위해 먼저
+                                                포스트를 발행할 채널을 만들어
+                                                주세요.
+                                                <ul>
+                                                    <li>
+                                                        <span
+                                                            style="
+                                                                font-family: -apple-system,
+                                                                    BlinkMacSystemFont,
+                                                                    'Segoe UI',
+                                                                    Helvetica,
+                                                                    Arial,
+                                                                    sans-serif;
+                                                            "
+                                                            ><strong>웹</strong
+                                                            >:
+                                                            <span
+                                                                class="wysiwyg-color-black"
+                                                                ><a
+                                                                    href="https://www.postype.com/channel/create"
+                                                                    target="_blank"
+                                                                    rel="noopener"
+                                                                    ><span
+                                                                        class="wysiwyg-color-blue"
+                                                                        >[My
+                                                                        메뉴]
+                                                                        &gt; [내
+                                                                        채널
+                                                                        만들기]</span
+                                                                    ></a
+                                                                ></span
+                                                            ></span
+                                                        ><span
+                                                            class="wysiwyg-color-black"
+                                                            >에서 채널 제목,
+                                                            URL, 포스트 소장본
+                                                            제공 기간을 입력해
+                                                            주세요.</span
+                                                        >
+                                                    </li>
+                                                    <li>
+                                                        <span
+                                                            style="
+                                                                font-family: -apple-system,
+                                                                    BlinkMacSystemFont,
+                                                                    'Segoe UI',
+                                                                    Helvetica,
+                                                                    Arial,
+                                                                    sans-serif;
+                                                            "
+                                                            ><strong>앱</strong
+                                                            >:&nbsp;</span
+                                                        >[계정 탭] &gt; [새 채널
+                                                        만들기]<span
+                                                            class="wysiwyg-color-black"
+                                                            >에서 채널 제목,
+                                                            URL, 포스트 소장본
+                                                            제공 기간을 입력해
+                                                            주세요.</span
+                                                        >
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    style="
+                                                        background-color: #ffffff;
+                                                        font-family: -apple-system,
+                                                            BlinkMacSystemFont,
+                                                            'Segoe UI',
+                                                            Helvetica, Arial,
+                                                            sans-serif;
+                                                    "
+                                                    href="/hc/ko/articles/360008746434"
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                    ><span
+                                                        class="wysiwyg-color-blue"
+                                                        >멀티 프로필</span
+                                                    ></a
+                                                ><span
+                                                    style="
+                                                        font-family: -apple-system,
+                                                            BlinkMacSystemFont,
+                                                            'Segoe UI',
+                                                            Helvetica, Arial,
+                                                            sans-serif;
+                                                    "
+                                                >
+                                                    개수와 무관하게 계정당 최대
+                                                    5개의 채널을 만들 수
+                                                    있어요.</span
+                                                >
+                                            </li>
+                                        </ul>
+                                        <p>&nbsp;</p>
+                                        <h2 id="h_01HJ5MBCEG3QTHSMDJBHAFCBEX">
+                                            <strong
+                                                ><span
+                                                    style="
+                                                        font-family: -apple-system,
+                                                            BlinkMacSystemFont,
+                                                            'Segoe UI',
+                                                            Helvetica, Arial,
+                                                            sans-serif;
+                                                    "
+                                                    >포스트 쓰기</span
+                                                ></strong
+                                            ><span
+                                                style="
+                                                    font-family: -apple-system,
+                                                        BlinkMacSystemFont,
+                                                        'Segoe UI', Helvetica,
+                                                        Arial, sans-serif;
+                                                "
+                                            ></span>
+                                        </h2>
+                                        <h3 id="h_01HJ5MBCEG6WGQ3NN440AZWH23">
+                                            <span class="wysiwyg-color-black"
+                                                >웹에서 작성하기</span
+                                            >
+                                        </h3>
+                                        <ul>
+                                            <li data-renderer-start-pos="7450">
+                                                <span
+                                                    class="fabric-text-color-mark"
+                                                    data-renderer-mark="true"
+                                                    data-text-custom-color="#bf2600"
+                                                    >[My 메뉴] &gt; 채널의
+                                                    [스튜디오 아이콘] &gt; [새
+                                                    포스트 쓰기]
+                                                    또는&nbsp;</span
+                                                ><span
+                                                    class="fabric-text-color-mark"
+                                                    data-renderer-mark="true"
+                                                    data-text-custom-color="#bf2600"
+                                                    >[My 메뉴] &gt; 채널의 '+'를
+                                                    눌러 새 포스트를 작성할 수
+                                                    있어요.</span
+                                                >
+                                            </li>
+                                            <li data-renderer-start-pos="7450">
+                                                <span
+                                                    class="fabric-text-color-mark"
+                                                    data-renderer-mark="true"
+                                                    data-text-custom-color="#bf2600"
+                                                ></span
+                                                ><span
+                                                    class="fabric-text-color-mark"
+                                                    data-renderer-mark="true"
+                                                    data-text-custom-color="#bf2600"
+                                                    >내 채널에서 [채널 설정]
+                                                    &gt; [새 포스트 쓰기]를 눌러
+                                                    새 포스트를 작성할 수도
+                                                    있어요.</span
+                                                >
+                                            </li>
+                                        </ul>
+                                        <h3 id="h_01HJ5MBCEG3WHBTFK07MCN8T44">
+                                            <span class="wysiwyg-color-black"
+                                                >앱에서 작성하기</span
+                                            >
+                                        </h3>
+                                        <ul>
+                                            <li data-renderer-start-pos="7450">
+                                                <span
+                                                    class="fabric-text-color-mark"
+                                                    data-renderer-mark="true"
+                                                    data-text-custom-color="#bf2600"
+                                                    >[계정 탭] &gt; 채널의 '+'
+                                                    또는 [계정 탭] &gt; 채널의
+                                                    [스튜디오 아이콘] &gt; '+'를
+                                                    눌러 새 포스트를 작성할 수
+                                                    있어요.</span
+                                                >
+                                            </li>
+                                            <li data-renderer-start-pos="7450">
+                                                내 채널에서 [채널 설정] &gt;
+                                                '+'를 눌러 새 포스트를 작성할
+                                                수도 있어요.
+                                            </li>
+                                        </ul>
+                                        <p>
+                                            <span
+                                                class="fabric-text-color-mark"
+                                                data-renderer-mark="true"
+                                                data-text-custom-color="#bf2600"
+                                                >포스트를 모두 작성하셨다면,
+                                                <a
+                                                    href="https://help.postype.com/hc/ko/articles/4411577836313"
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                    ><span
+                                                        class="wysiwyg-color-blue"
+                                                        >포스트를 발행</span
+                                                    ></a
+                                                >해 독자와 공유해 보세요.</span
+                                            >
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!--    도움이 되었나요 컴포넌트    -->
+                            <footer>
+                                <section class="article-footer">
+                                    <!--      공유하기 컴포넌트      -->
+                                    <div class="article-share">
+                                        <a
+                                            href="/hc/ko/requests/new"
+                                            class="icon-text-box"
+                                        >
+                                            <p>문의하기</p>
+                                            <i class="icon-arrow-11">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 320 512"
+                                                >
+                                                    <path
+                                                        d="M305 239c9.4 9.4 9.4 24.6 0 33.9L113 465c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l175-175L79 81c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L305 239z"
+                                                    ></path>
+                                                </svg>
+                                            </i>
+                                        </a>
+                                    </div>
+                                    <!--관련 포스트  -->
+                                    <div class="article-relatives"></div>
+                                </section>
+                            </footer>
+                        </article>
+
+                        <!-- 사이드 헤더 -->
+                        <section
+                            class="article-sidebar"
+                            aria-labelledby="section-articles-title"
+                        >
+                            <div class="collapsible-sidebar">
+                                <span
+                                    id="section-articles-title"
+                                    class="collapsible-sidebar-title sidenav-title"
+                                >
+                                    채널 개설/삭제
+                                </span>
+                                <div class="collapsible-sidebar-body">
+                                    <ul>
+                                        <li>
+                                            <a
+                                                href="/hc/ko/articles/360000143594-%EC%B1%84%EB%84%90-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EC%B2%AB-%ED%8F%AC%EC%8A%A4%ED%8A%B8-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0"
+                                                class="sidenav-item current-article"
+                                                >채널 만들고 첫 포스트
+                                                작성하기</a
+                                            >
+                                        </li>
+
+                                        <li>
+                                            <a
+                                                href="/hc/ko/articles/22925823711129-%ED%8F%AC%EC%8A%A4%ED%83%80%EC%9E%85-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC-%EC%98%81%EC%83%81"
+                                                class="sidenav-item"
+                                                >포스타입 튜토리얼 영상</a
+                                            >
+                                        </li>
+
+                                        <li>
+                                            <a
+                                                href="/hc/ko/articles/360000143834-%EC%B1%84%EB%84%90-%EC%82%AD%EC%A0%9C%ED%95%98%EA%B8%B0"
+                                                class="sidenav-item"
+                                                >채널 삭제하기</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-logo">
+                    <a title="홈" href="/hc/ko">Postype</a>
+                </div>
+                <div class="d-flex">
+                    <ul>
+                        <li>주식회사 포스타입</li>
+                        <li>대표이사 신규섭</li>
+                        <li>
+                            <a href="https://help.postype.com">도움 센터</a>
+                        </li>
+                        <li>
+                            <a href="https://right.postype.com"
+                                >권리침해 신고센터</a
+                            >
+                        </li>
+                        <li>
+                            <div class="footer-language-selector" align="right">
+                                <div
+                                    class="dropdown language-selector"
+                                    aria-haspopup="true"
+                                >
+                                    <a class="dropdown-toggle"> 한국어 </a>
+                                    <span
+                                        class="dropdown-menu dropdown-menu-end"
+                                        role="menu"
+                                    >
+                                        <a
+                                            href="/hc/change_language/en-us?return_to=%2Fhc%2Fen-us%2Farticles%2F360000143594-Create-a-new-blog-and-write-the-first-post"
+                                            dir="ltr"
+                                            rel="nofollow"
+                                            role="menuitem"
+                                        >
+                                            English (US)
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <script src="/js/main/faq.js"></script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/main/intro.css" />
+    </head>
+    <body>
+        <!-- 헤더 넣을 곳 -->
+
+        <div class="feelog-header-mainDiv" id="header-container"></div>
+        <script>
+            // Load header.html and insert it in#header-placeholder
+            fetch("../main/header.html")
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("header-container").innerHTML =
+                        data;
+                })
+                .catch((error) =>
+                    console.error("Error loading header:", error)
+                );
+        </script>
+        <!-- 헤더 넣을 곳 -->
+        <div class="intro">
+            <img
+                src="/assets/intro.png"
+                width="992px"
+                height="5042px"
+            />
+        </div>
+        <!--
+            footer
+            넣을
+            곳
+        -->
+        <div class="jk-feelog-footer" id="footer-container"></div>
+        <script>
+            // Load footer.html and insert it into #footer-placeholder
+            fetch("../main/footer.html")
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("footer-container").innerHTML =
+                        data;
+                })
+                .catch((error) =>
+                    console.error("Error loading footer:", error)
+                );
+        </script>
+        <!-- footer 넣을 곳 -->
+    </body>
+    <script src="/js/main/main-modal.js"></script>
+</html>
