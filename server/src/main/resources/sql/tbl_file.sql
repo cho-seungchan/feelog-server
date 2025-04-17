@@ -4,7 +4,7 @@ create table tbl_file(
                          file_path 	     	varchar(500) default '',
                          file_name 	     	varchar(500) default '',
                          file_size 	     	varchar(500) default '',
-                         file_status        varchar(50)  default '',
+                         file_status        varchar(50)  default '정상',
                          created_date 	    datetime default current_timestamp,
                          updated_date 	    datetime default current_timestamp
 );

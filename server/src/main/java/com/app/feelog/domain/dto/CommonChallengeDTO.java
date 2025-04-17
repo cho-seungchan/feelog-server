@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.CommonChallengeStatus;
 import com.app.feelog.domain.vo.CommonChallengeVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class CommonChallengeDTO {
     private Long id;
     private Long memberId;
     private Long taskId;
-    private String commonChallengeStatus;
+    private CommonChallengeStatus commonChallengeStatus;
     private String createdDate;
     private String updatedDate;
 

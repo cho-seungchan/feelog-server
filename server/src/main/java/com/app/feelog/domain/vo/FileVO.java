@@ -1,5 +1,6 @@
 package com.app.feelog.domain.vo;
 
+import com.app.feelog.domain.enumeration.FileStatus;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +15,10 @@ public class FileVO extends Period {
     private String filePath;
     private String fileName;
     private String fileSize;
-    private String fileStatus;
+    private FileStatus fileStatus;
 
     @Builder
-    public FileVO(String createdDate, String updatedData, Long id, String filePath, String fileName, String fileSize, String fileStatus) {
+    public FileVO(String createdDate, String updatedData, Long id, String filePath, String fileName, String fileSize, FileStatus fileStatus) {
         super(createdDate, updatedData);
         this.id = id;
         this.filePath = filePath;

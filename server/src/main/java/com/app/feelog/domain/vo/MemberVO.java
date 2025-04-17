@@ -1,5 +1,7 @@
 package com.app.feelog.domain.vo;
 
+import com.app.feelog.domain.enumeration.MemberStatus;
+import com.app.feelog.domain.enumeration.MemberType;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ public class MemberVO extends Period {
     private String memberFilePath;
     private String memberFileName;
     private String memberFileSize;
-    private String memberType;
+    private MemberType memberType;
     private String memberSuspend;
     private String memberNotificationPostReply;
     private String memberNotificationPostReplyLike;
@@ -26,10 +28,10 @@ public class MemberVO extends Period {
     private String memberNotificationSubscribe;
     private String memberNotificationCommunityPost;
     private String memberNotificationMessage;
-    private String memberStatus;
+    private MemberStatus memberStatus;
 
     @Builder
-    public MemberVO(String createdDate, String updatedData, Long id, String memberEmail, String memberPassword, String memberNickname, String memberIntroduce, String memberFilePath, String memberFileName, String memberFileSize, String memberType, String memberSuspend, String memberNotificationPostReply, String memberNotificationPostReplyLike, String memberNotificationPostLike, String memberNotificationSubscribe, String memberNotificationCommunityPost, String memberNotificationMessage, String memberStatus) {
+    public MemberVO(String createdDate, String updatedData, Long id, String memberEmail, String memberPassword, String memberNickname, String memberIntroduce, String memberFilePath, String memberFileName, String memberFileSize, MemberType memberType, String memberSuspend, String memberNotificationPostReply, String memberNotificationPostReplyLike, String memberNotificationPostLike, String memberNotificationSubscribe, String memberNotificationCommunityPost, String memberNotificationMessage, MemberStatus memberStatus) {
         super(createdDate, updatedData);
         this.id = id;
         this.memberEmail = memberEmail;

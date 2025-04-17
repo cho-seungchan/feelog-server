@@ -3,7 +3,7 @@ create table tbl_common_challenge (
                                       id 			                    bigint  primary key,
                                       member_id 		                bigint not null,
                                       task_id 		                    bigint not null,
-                                      common_challenge_status 		    varchar(50) default '',
+                                      common_challenge_status 		    varchar(50) default '정상',
                                       constraint fk_common_challenge_challenge foreign key (id)
                                           references tbl_challenge (id) ,
                                       constraint fk_common_challenge_member foreign key (member_id)

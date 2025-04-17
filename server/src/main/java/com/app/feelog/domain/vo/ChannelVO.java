@@ -1,5 +1,6 @@
 package com.app.feelog.domain.vo;
 
+import com.app.feelog.domain.enumeration.ChannelStatus;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +18,11 @@ public class ChannelVO extends Period {
     private String channelFilePath;
     private String channelFileName;
     private String channelFileSize;
-    private Long memberId;
-    private String channelStatus;
+    private Long   memberId;
+    private ChannelStatus channelStatus;
 
     @Builder
-    public ChannelVO(String createdDate, String updatedData, Long id, String channelTitle, String channelIntroduce, String channelUrl, String channelFilePath, String channelFileName, String channelFileSize, Long memberId, String channelStatus) {
+    public ChannelVO(String createdDate, String updatedData, Long id, String channelTitle, String channelIntroduce, String channelUrl, String channelFilePath, String channelFileName, String channelFileSize, Long memberId, ChannelStatus channelStatus) {
         super(createdDate, updatedData);
         this.id = id;
         this.channelTitle = channelTitle;

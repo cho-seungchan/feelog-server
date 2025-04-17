@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.MemberTaskStatus;
 import com.app.feelog.domain.vo.MemberTaskVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -12,9 +13,9 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class MemberTaskDTO {
     @EqualsAndHashCode.Include
-    private Long id;
-    private Long taskPoolId;
-    private String memberTaskStatus;
+    private Long   id;
+    private Long   taskPoolId;
+    private MemberTaskStatus memberTaskStatus;
     private String createdDate;
     private String updatedDate;
 

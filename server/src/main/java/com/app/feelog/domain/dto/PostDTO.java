@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.PostStatus;
 import com.app.feelog.domain.vo.PostVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ public class PostDTO {
     private String postTitle;
     private String postSubTitle;
     private String postContent;
-    private String postStatus;
+    private PostStatus postStatus;
     private String createdDate;
     private String updatedDate;
 

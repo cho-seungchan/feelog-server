@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.MemberTaskPoolStatus;
 import com.app.feelog.domain.vo.MemberTaskPoolVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class MemberTaskPoolDTO {
     private String mamberTaskPoolFilePath;
     private String mamberTaskPoolFileName;
     private String mamberTaskPoolFileSize;
-    private String memberTaskPoolStatus;
+    private MemberTaskPoolStatus memberTaskPoolStatus;
     private String createdDate;
     private String updatedDate;
 

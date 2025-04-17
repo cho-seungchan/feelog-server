@@ -22,7 +22,6 @@ public class CommonTaskDTO {
     private Double commonTaskLat;
     private String commonTaskServiceName;
     private String commonTaskReqPage;
-    private String commonTaskStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -38,7 +37,6 @@ public class CommonTaskDTO {
                 .commonTaskLat(commonTaskLat)
                 .commonTaskServiceName(commonTaskServiceName)
                 .commonTaskReqPage(commonTaskReqPage)
-                .commonTaskStatus(commonTaskStatus)
                 .createdDate(createdDate)
                 .updatedData(updatedDate)
                 .build();
