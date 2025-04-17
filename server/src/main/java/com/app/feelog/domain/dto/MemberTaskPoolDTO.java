@@ -31,7 +31,7 @@ public class MemberTaskPoolDTO {
                 .mamberTaskPoolFileSize(mamberTaskPoolFileSize)
                 .memberTaskPoolStatus(memberTaskPoolStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

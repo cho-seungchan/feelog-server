@@ -38,7 +38,7 @@ public class CommonTaskDTO {
                 .commonTaskServiceName(commonTaskServiceName)
                 .commonTaskReqPage(commonTaskReqPage)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

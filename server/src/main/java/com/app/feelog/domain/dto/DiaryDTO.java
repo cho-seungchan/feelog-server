@@ -40,7 +40,7 @@ public class DiaryDTO {
                 .feelId(feelId)
                 .diaryStatus(diaryStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

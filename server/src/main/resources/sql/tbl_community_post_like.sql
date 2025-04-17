@@ -3,7 +3,6 @@ create table tbl_community_post_like (
     id 		            bigint primary key,
     member_id 	        bigint not null,
     community_id 	    bigint not null,
-    status 		        varchar(50) ,
     constraint fk_community_post_like_like foreign key (id)
     references tbl_like (id) ,
     constraint fk_community_post_like_member foreign key (member_id)

@@ -37,7 +37,7 @@ public class ChannelDTO {
                 .memberId(memberId)
                 .channelStatus(channelStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

@@ -25,7 +25,7 @@ public class ChannelPostFileDTO {
                 .postId(postId)
                 .channelPostFileStatus(channelPostFileStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }
