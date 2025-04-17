@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 public class Period {
     protected String status;
     protected String createdDate;
-    protected String updatedData;
+    protected String updatedDate;
 
-    public Period(String createdDate, String updatedData) {
+    public Period(String createdDate, String updatedDate) {
         this.createdDate = createdDate;
-        this.updatedData = updatedData;
+        this.updatedDate = updatedDate;
     }
 }

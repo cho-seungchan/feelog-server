@@ -54,7 +54,7 @@ public class MemberDTO {
                 .memberNotificationMessage(memberNotificationMessage)
                 .memberStatus(memberStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

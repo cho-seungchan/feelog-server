@@ -3,7 +3,6 @@ create table tbl_community_post_report (
         id 			    bigint primary key ,
         member_id 		bigint not null,
         community_id 	bigint not null,
-        status 		    varchar(50) ,
         constraint fk_community_post_report_report foreign key (id)
         references tbl_report (id) ,
         constraint fk_community_post_report_member foreign key (member_id)

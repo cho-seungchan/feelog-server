@@ -24,8 +24,8 @@ public class DiaryVO extends Period {
     private DiaryStatus diaryStatus;
 
     @Builder
-    public DiaryVO(String createdDate, String updatedData, Long id, String diaryContent, DiaryOpen diaryOpen, String diaryFilePath, String diaryFileName, String diaryFileSize, String diaryWeather, Long memberId, Long feelId, DiaryStatus diaryStatus) {
-        super(createdDate, updatedData);
+    public DiaryVO(String createdDate, String updatedDate, Long id, String diaryContent, DiaryOpen diaryOpen, String diaryFilePath, String diaryFileName, String diaryFileSize, String diaryWeather, Long memberId, Long feelId, DiaryStatus diaryStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.diaryContent = diaryContent;
         this.diaryOpen = diaryOpen;

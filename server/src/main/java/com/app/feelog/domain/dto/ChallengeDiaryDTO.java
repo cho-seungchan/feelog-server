@@ -25,7 +25,7 @@ public class ChallengeDiaryDTO {
                 .challengeId(challengeId)
                 .challengeDiaryStatus(challengeDiaryStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

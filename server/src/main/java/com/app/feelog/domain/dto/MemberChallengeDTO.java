@@ -27,7 +27,7 @@ public class MemberChallengeDTO {
                 .taskId(taskId)
                 .memberChallengeStatus(memberChallengeStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

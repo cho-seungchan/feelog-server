@@ -18,8 +18,8 @@ public class FileVO extends Period {
     private FileStatus fileStatus;
 
     @Builder
-    public FileVO(String createdDate, String updatedData, Long id, String filePath, String fileName, String fileSize, FileStatus fileStatus) {
-        super(createdDate, updatedData);
+    public FileVO(String createdDate, String updatedDate, Long id, String filePath, String fileName, String fileSize, FileStatus fileStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.filePath = filePath;
         this.fileName = fileName;
