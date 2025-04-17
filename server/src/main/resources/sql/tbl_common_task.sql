@@ -10,7 +10,6 @@ create table tbl_common_task (
                                  common_task_lat              decimal(10,6),                 -- 경도
                                  common_task_service_name 	  varchar(100) not null,    -- 열린광장 서비스 명
                                  common_task_req_page 	      varchar(20) not null,     -- 열린광장 페이지
-                                 common_task_status		      varchar(50) default '',
                                  created_date 	            datetime default current_timestamp,
                                  updated_date 	            datetime default current_timestamp
 );

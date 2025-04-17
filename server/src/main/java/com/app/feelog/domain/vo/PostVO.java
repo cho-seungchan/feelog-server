@@ -1,5 +1,6 @@
 package com.app.feelog.domain.vo;
 
+import com.app.feelog.domain.enumeration.PostStatus;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +15,10 @@ public class PostVO extends Period {
     private String postTitle;
     private String postSubTitle;
     private String postContent;
-    private String postStatus;
+    private PostStatus postStatus;
 
     @Builder
-    public PostVO(String createdDate, String updatedData, Long id, String postTitle, String postSubTitle, String postContent, String postStatus) {
+    public PostVO(String createdDate, String updatedData, Long id, String postTitle, String postSubTitle, String postContent, PostStatus postStatus) {
         super(createdDate, updatedData);
         this.id = id;
         this.postTitle = postTitle;

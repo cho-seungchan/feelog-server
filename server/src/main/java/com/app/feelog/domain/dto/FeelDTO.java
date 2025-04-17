@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.FileStatus;
 import com.app.feelog.domain.vo.FeelVO;
 import lombok.*;
 import org.springframework.stereotype.Component;

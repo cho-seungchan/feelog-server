@@ -1,5 +1,6 @@
 package com.app.feelog.domain.vo;
 
+import com.app.feelog.domain.enumeration.MemberTaskPoolStatus;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +16,10 @@ public class MemberTaskPoolVO extends Period {
     private String mamberTaskPoolFilePath;
     private String mamberTaskPoolFileName;
     private String mamberTaskPoolFileSize;
-    private String memberTaskPoolStatus;
+    private MemberTaskPoolStatus memberTaskPoolStatus;
 
     @Builder
-    public MemberTaskPoolVO(String createdDate, String updatedData, Long id, String mamberTaskPoolContent, String mamberTaskPoolFilePath, String mamberTaskPoolFileName, String mamberTaskPoolFileSize, String memberTaskPoolStatus) {
+    public MemberTaskPoolVO(String createdDate, String updatedData, Long id, String mamberTaskPoolContent, String mamberTaskPoolFilePath, String mamberTaskPoolFileName, String mamberTaskPoolFileSize, MemberTaskPoolStatus memberTaskPoolStatus) {
         super(createdDate, updatedData);
         this.id = id;
         this.mamberTaskPoolContent = mamberTaskPoolContent;

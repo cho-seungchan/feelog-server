@@ -1,5 +1,7 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.ChannelPostStatus;
+import com.app.feelog.domain.enumeration.PostType;
 import com.app.feelog.domain.vo.ChannelPostVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -13,13 +15,13 @@ import org.springframework.stereotype.Component;
 public class ChannelPostDTO {
     @EqualsAndHashCode.Include
     private Long id;
-    private String postType;
+    private PostType postType;
     private String postFilePath;
     private String postFileName;
     private String postFileSize;
     private Long memberId;
     private Long channelId;
-    private String channelPostStatus;
+    private ChannelPostStatus channelPostStatus;
     private String createdDate;
     private String updatedDate;
 

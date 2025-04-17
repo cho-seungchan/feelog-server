@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.DiaryReplyLikeStatus;
 import com.app.feelog.domain.vo.DiaryReplyLikeVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class DiaryReplyLikeDTO {
     private Long id;
     private Long memberId;
     private Long replyId;
-    private String diaryReplyLikeStatus;
+    private DiaryReplyLikeStatus diaryReplyLikeStatus;
     private String createdDate;
     private String updatedDate;
 

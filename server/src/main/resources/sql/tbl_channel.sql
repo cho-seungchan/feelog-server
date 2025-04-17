@@ -7,7 +7,7 @@ create table tbl_channel (
                              channel_file_path 		varchar(500) default '',
                              channel_file_name 		varchar(500) default '',
                              channel_file_size 		varchar(100) default '',
-                             channel_status 		 varchar(50) default '',
+                             channel_status 		 varchar(50) default '정상',
                              created_date 	        datetime default current_timestamp,
                              updated_date 	        datetime default current_timestamp,
                              constraint fk_channel_member foreign key (member_id)

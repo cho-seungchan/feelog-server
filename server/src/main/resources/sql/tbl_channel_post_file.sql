@@ -3,7 +3,7 @@
 create table tbl_channel_post_file (
                                        id 		            bigint primary key,
                                        post_id 		        bigint not null,
-                                       channel_post_file_status 		        varchar(50) default '',
+                                       channel_post_file_status 		        varchar(50) default '정상',
                                        constraint fk_channel_post_file_channel_post foreign key (post_id)
                                            references tbl_channel_post (id)
 );

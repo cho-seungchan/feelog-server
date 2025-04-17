@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.ChannelStatus;
 import com.app.feelog.domain.vo.ChannelVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,8 @@ public class ChannelDTO {
     private String channelFilePath;
     private String channelFileName;
     private String channelFileSize;
-    private Long memberId;
-    private String channelStatus;
+    private Long   memberId;
+    private ChannelStatus channelStatus;
     private String createdDate;
     private String updatedDate;
 

@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.FileStatus;
 import com.app.feelog.domain.vo.FileVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ public class FileDTO {
     private String filePath;
     private String fileName;
     private String fileSize;
-    private String fileStatus;
+    private FileStatus fileStatus;
     private String createdDate;
     private String updatedDate;
 
