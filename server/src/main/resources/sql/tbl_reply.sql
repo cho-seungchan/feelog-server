@@ -5,7 +5,8 @@ create table tbl_reply (
     reply_file_path 		varchar(500) default '',
     reply_file_name 		varchar(500) default '',
     reply_file_size 		varchar(100) default '',
-    reply_status               varchar(50) ,
+    reply_status               varchar(50) default '정상',
     created_date 	    datetime default current_timestamp,
     updated_date 	    datetime default current_timestamp
 );
+

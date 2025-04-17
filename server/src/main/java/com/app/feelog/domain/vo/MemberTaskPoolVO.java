@@ -19,8 +19,8 @@ public class MemberTaskPoolVO extends Period {
     private MemberTaskPoolStatus memberTaskPoolStatus;
 
     @Builder
-    public MemberTaskPoolVO(String createdDate, String updatedData, Long id, String mamberTaskPoolContent, String mamberTaskPoolFilePath, String mamberTaskPoolFileName, String mamberTaskPoolFileSize, MemberTaskPoolStatus memberTaskPoolStatus) {
-        super(createdDate, updatedData);
+    public MemberTaskPoolVO(String createdDate, String updatedDate, Long id, String mamberTaskPoolContent, String mamberTaskPoolFilePath, String mamberTaskPoolFileName, String mamberTaskPoolFileSize, MemberTaskPoolStatus memberTaskPoolStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.mamberTaskPoolContent = mamberTaskPoolContent;
         this.mamberTaskPoolFilePath = mamberTaskPoolFilePath;

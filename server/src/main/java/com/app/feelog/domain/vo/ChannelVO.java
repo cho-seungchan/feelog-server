@@ -22,8 +22,8 @@ public class ChannelVO extends Period {
     private ChannelStatus channelStatus;
 
     @Builder
-    public ChannelVO(String createdDate, String updatedData, Long id, String channelTitle, String channelIntroduce, String channelUrl, String channelFilePath, String channelFileName, String channelFileSize, Long memberId, ChannelStatus channelStatus) {
-        super(createdDate, updatedData);
+    public ChannelVO(String createdDate, String updatedDate, Long id, String channelTitle, String channelIntroduce, String channelUrl, String channelFilePath, String channelFileName, String channelFileSize, Long memberId, ChannelStatus channelStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.channelTitle = channelTitle;
         this.channelIntroduce = channelIntroduce;

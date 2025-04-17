@@ -18,8 +18,8 @@ public class PostVO extends Period {
     private PostStatus postStatus;
 
     @Builder
-    public PostVO(String createdDate, String updatedData, Long id, String postTitle, String postSubTitle, String postContent, PostStatus postStatus) {
-        super(createdDate, updatedData);
+    public PostVO(String createdDate, String updatedDate, Long id, String postTitle, String postSubTitle, String postContent, PostStatus postStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.postTitle = postTitle;
         this.postSubTitle = postSubTitle;

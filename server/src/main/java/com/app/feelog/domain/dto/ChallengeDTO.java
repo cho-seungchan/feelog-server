@@ -25,7 +25,7 @@ public class ChallengeDTO {
                 .challengeComplete(challengeComplete)
                 .challengeStatus(challengeStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

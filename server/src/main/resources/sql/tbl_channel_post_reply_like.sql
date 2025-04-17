@@ -3,7 +3,6 @@ create table tbl_channel_post_reply_like (
         id 		   bigint primary key,
         member_id  bigint not null,
         reply_id   bigint not null,
-        channel_post_reply_like_status 	   varchar(50) ,
         constraint fk_channel_post_reply_like foreign key (id)
         references tbl_like (id) ,
         constraint fk_channel_post_reply_like_member foreign key (member_id)

@@ -31,8 +31,8 @@ public class MemberVO extends Period {
     private MemberStatus memberStatus;
 
     @Builder
-    public MemberVO(String createdDate, String updatedData, Long id, String memberEmail, String memberPassword, String memberNickname, String memberIntroduce, String memberFilePath, String memberFileName, String memberFileSize, MemberType memberType, String memberSuspend, String memberNotificationPostReply, String memberNotificationPostReplyLike, String memberNotificationPostLike, String memberNotificationSubscribe, String memberNotificationCommunityPost, String memberNotificationMessage, MemberStatus memberStatus) {
-        super(createdDate, updatedData);
+    public MemberVO(String createdDate, String updatedDate, Long id, String memberEmail, String memberPassword, String memberNickname, String memberIntroduce, String memberFilePath, String memberFileName, String memberFileSize, MemberType memberType, String memberSuspend, String memberNotificationPostReply, String memberNotificationPostReplyLike, String memberNotificationPostLike, String memberNotificationSubscribe, String memberNotificationCommunityPost, String memberNotificationMessage, MemberStatus memberStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;

@@ -3,7 +3,6 @@ create table tbl_channel_post_reply_report (
     id 		            bigint primary key ,
     member_id 	        bigint not null,
     reply_id 		    bigint not null,
-    status 		        varchar(50) ,
     constraint fk_channel_post_reply_report_report foreign key (id)
     references tbl_report (id) ,
     constraint fk_channel_post_reply_report_member foreign key (member_id)

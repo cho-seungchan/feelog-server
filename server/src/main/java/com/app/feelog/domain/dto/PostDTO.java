@@ -29,7 +29,7 @@ public class PostDTO {
                 .postContent(postContent)
                 .postStatus(postStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

@@ -16,8 +16,8 @@ public class MemberTaskVO extends Period {
     private MemberTaskStatus memberTaskStatus;
 
     @Builder
-    public MemberTaskVO(String createdDate, String updatedData, Long id, Long taskPoolId, MemberTaskStatus memberTaskStatus) {
-        super(createdDate, updatedData);
+    public MemberTaskVO(String createdDate, String updatedDate, Long id, Long taskPoolId, MemberTaskStatus memberTaskStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.taskPoolId = taskPoolId;
         this.memberTaskStatus = memberTaskStatus;

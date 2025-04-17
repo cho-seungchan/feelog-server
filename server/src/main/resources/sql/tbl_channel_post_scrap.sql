@@ -3,7 +3,7 @@ create table tbl_channel_post_scrap (
     id               bigint 		auto_increment primary key,
     member_id 	    bigint not null,
     post_id 		    bigint not null,
-    channel_post_scrap_status 		    varchar(50) ,
+    channel_post_scrap_status 		    varchar(50) default '정상',
     created_date 	datetime default current_timestamp,
     updated_date 	datetime default current_timestamp,
     constraint fk_channel_post_scrap_member foreign key (member_id)
