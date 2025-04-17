@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
             renderer: "svg",
             loop: true,
             autoplay: true,
-            path: "/static/assets/clock.json",
+            path: "/assets/clock.json",
         });
     }
 
