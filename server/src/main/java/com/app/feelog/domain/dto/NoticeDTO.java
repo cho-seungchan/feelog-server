@@ -29,7 +29,7 @@ public class NoticeDTO extends Period {
                 .memberId(memberId)
                 .noticeStatus(noticeStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

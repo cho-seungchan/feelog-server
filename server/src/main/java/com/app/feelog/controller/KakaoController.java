@@ -52,7 +52,6 @@ public class KakaoController {
             return "redirect:" + redirectUrl;
         }
 
-        return "join/certified";
-//        return "redirect:/";
+        return "redirect:/";
     }
 }

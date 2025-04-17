@@ -22,7 +22,7 @@ public class MessageDTO {
                 .id(id)
                 .messageContent(messageContent)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 

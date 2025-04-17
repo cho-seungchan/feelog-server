@@ -27,7 +27,7 @@ public class NotificationDTO {
                 .receiverId(receiverId)
                 .notificationChecked(notificationChecked)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }
