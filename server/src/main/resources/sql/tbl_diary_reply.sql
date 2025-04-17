@@ -3,7 +3,6 @@ create table tbl_diary_reply (
                                  id 		                    bigint primary key ,
                                  member_id 	                    bigint not null,
                                  diary_id	                    bigint not null,
-                                 diary_reply_status 		    varchar(50) default '정상',
                                  constraint fk_diary_reply_reply foreign key (id)
                                      references tbl_reply (id) ,
                                  constraint fk_diary_reply_member foreign key (member_id)

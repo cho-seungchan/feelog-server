@@ -1,6 +1,5 @@
 package com.app.feelog.domain.vo;
 
-import com.app.feelog.domain.enumeration.ChannelPostFileStatus;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -9,17 +8,14 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class ChannelPostFileVO extends Period {
+public class ChannelPostFileVO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long postId;
-    private ChannelPostFileStatus channelPostFileStatus;
 
     @Builder
-    public ChannelPostFileVO(String createdDate, String updatedDate, Long id, Long postId, ChannelPostFileStatus channelPostFileStatus) {
-        super(createdDate, updatedDate);
+    public ChannelPostFileVO(Long id, Long postId) {
         this.id = id;
         this.postId = postId;
-        this.channelPostFileStatus = channelPostFileStatus;
     }
 }

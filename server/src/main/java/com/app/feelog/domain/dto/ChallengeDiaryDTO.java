@@ -1,6 +1,5 @@
 package com.app.feelog.domain.dto;
 
-import com.app.feelog.domain.enumeration.ChallengeDiaryStatus;
 import com.app.feelog.domain.vo.ChallengeDiaryVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -15,17 +14,11 @@ public class ChallengeDiaryDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long challengeId;
-    private ChallengeDiaryStatus challengeDiaryStatus;
-    private String createdDate;
-    private String updatedDate;
 
     public ChallengeDiaryVO toVO() {
         return ChallengeDiaryVO.builder()
                 .id(id)
                 .challengeId(challengeId)
-                .challengeDiaryStatus(challengeDiaryStatus)
-                .createdDate(createdDate)
-                .updatedDate(updatedDate)
                 .build();
     }
 }

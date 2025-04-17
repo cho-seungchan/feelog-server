@@ -25,7 +25,7 @@ public class ChallengeService {
         }
         common.setCommonTaskTell(row.getString("P_ADMINTEL"));          // 전화번호
         common.setCommonTaskUrl(row.getString("TEMPLATE_URL"));         // 바로가기 URL
-        common.setCommonTaskAddr(row.getString("P_ADDR"));           // 주소
+        common.setCommonTaskAddr(row.getString("P_ADDR"));              // 주소
         common.setCommonTaskLot(row.optDouble("LONGITUDE", 0.0));    // X좌표(WGS84)
         common.setCommonTaskLat(row.optDouble("LATITUDE", 0.0));      // Y좌표(WGS84)
 

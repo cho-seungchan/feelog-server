@@ -1,6 +1,5 @@
 package com.app.feelog.domain.vo;
 
-import com.app.feelog.domain.enumeration.CommonChallengeStatus;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -9,19 +8,16 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class CommonChallengeVO extends Period {
+public class CommonChallengeVO{
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
     private Long taskId;
-    private CommonChallengeStatus commonChallengeStatus;
 
     @Builder
-    public CommonChallengeVO(String createdDate, String updatedDate, Long id, Long memberId, Long taskId, CommonChallengeStatus commonChallengeStatus) {
-        super(createdDate, updatedDate);
+    public CommonChallengeVO(Long id, Long memberId, Long taskId) {
         this.id = id;
         this.memberId = memberId;
         this.taskId = taskId;
-        this.commonChallengeStatus = commonChallengeStatus;
     }
 }
