@@ -23,8 +23,8 @@ public class CommonTaskVO extends Period {
     private String commonTaskStatus;
 
     @Builder
-    public CommonTaskVO(String createdDate, String updatedData, Long id, String commonTaskName, String commonTaskImg, String commonTaskTell, String commonTaskUrl, String commonTaskAddr, Double commonTaskLot, Double commonTaskLat, String commonTaskServiceName, String commonTaskReqPage, String commonTaskStatus) {
-        super(createdDate, updatedData);
+    public CommonTaskVO(String createdDate, String updatedDate, Long id, String commonTaskName, String commonTaskImg, String commonTaskTell, String commonTaskUrl, String commonTaskAddr, Double commonTaskLot, Double commonTaskLat, String commonTaskServiceName, String commonTaskReqPage, String commonTaskStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.commonTaskName = commonTaskName;
         this.commonTaskImg = commonTaskImg;

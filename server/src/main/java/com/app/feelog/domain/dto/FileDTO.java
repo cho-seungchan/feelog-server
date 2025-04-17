@@ -29,7 +29,7 @@ public class FileDTO {
                 .fileSize(fileSize)
                 .fileStatus(fileStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

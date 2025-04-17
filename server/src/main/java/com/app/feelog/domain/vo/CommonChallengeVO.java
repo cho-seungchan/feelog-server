@@ -17,8 +17,8 @@ public class CommonChallengeVO extends Period {
     private CommonChallengeStatus commonChallengeStatus;
 
     @Builder
-    public CommonChallengeVO(String createdDate, String updatedData, Long id, Long memberId, Long taskId, CommonChallengeStatus commonChallengeStatus) {
-        super(createdDate, updatedData);
+    public CommonChallengeVO(String createdDate, String updatedDate, Long id, Long memberId, Long taskId, CommonChallengeStatus commonChallengeStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.memberId = memberId;
         this.taskId = taskId;

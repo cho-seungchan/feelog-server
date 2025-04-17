@@ -27,7 +27,7 @@ public class CommonChallengeDTO {
                 .taskId(taskId)
                 .commonChallengeStatus(commonChallengeStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

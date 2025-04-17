@@ -17,8 +17,8 @@ public class FeelVO extends Period {
     private String feelFileSize;
 
     @Builder
-    public FeelVO(String createdDate, String updatedData, Long id, Integer feelCode, String feelFilePath, String feelFileName, String feelFileSize) {
-        super(createdDate, updatedData);
+    public FeelVO(String createdDate, String updatedDate, Long id, Integer feelCode, String feelFilePath, String feelFileName, String feelFileSize) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.feelCode = feelCode;
         this.feelFilePath = feelFilePath;

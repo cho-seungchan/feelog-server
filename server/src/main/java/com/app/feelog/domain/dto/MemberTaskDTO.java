@@ -25,7 +25,7 @@ public class MemberTaskDTO {
                 .taskPoolId(taskPoolId)
                 .memberTaskStatus(memberTaskStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

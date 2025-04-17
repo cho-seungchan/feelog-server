@@ -36,7 +36,7 @@ public class ChannelPostDTO {
                 .channelId(channelId)
                 .channelPostStatus(channelPostStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

@@ -29,7 +29,7 @@ public class FeelDTO {
                 .feelFileName(feelFileName)
                 .feelFileSize(feelFileSize)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }
