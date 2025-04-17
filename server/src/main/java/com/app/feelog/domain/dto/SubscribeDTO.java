@@ -27,7 +27,7 @@ public class SubscribeDTO extends Period {
                 .memberId(memberId)
                 .subscribeStatus(subscribeStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedData)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

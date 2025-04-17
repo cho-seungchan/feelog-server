@@ -5,26 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>메인페이지</title>
         <link rel="stylesheet" href="/css/main/main-jg.css" />
-        <!-- <link rel="stylesheet" href="/css/main/main.css" /> -->
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/footer.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
         <link rel="stylesheet" href="/css/all/message.css" />
+
+
     </head>
     <body>
         <div class="joy-91keta">
             <!-- 헤더 넣을 곳 -->
-
-            <div class="feelog-header-mainDiv" id="header-container"></div>
-            <script>
-                // Load header.html and insert it in#header-placeholder
-                fetch("../main/header.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("header-container").innerHTML =
-                            data;
-                    })
-                    .catch((error) =>
-                        console.error("Error loading header:", error)
-                    );
-            </script>
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
             <!-- 헤더 넣을 곳 -->
             <div class="joy-1j46z6j">
                 <nav class="MuiBox-root joy-18lu9f5">
@@ -757,19 +749,8 @@
             <!-- 검색창 들어가야하는 곳 -->
         </div>
         <!-- footer 넣을 곳 -->
-        <div class="joy-17imqrx" id="footer-container"></div>
-        <script>
-            // Load footer.html and insert it into #footer-placeholder
-            fetch("../main/footer.html")
-                .then((response) => response.text())
-                .then((data) => {
-                    document.getElementById("footer-container").innerHTML =
-                        data;
-                })
-                .catch((error) =>
-                    console.error("Error loading footer:", error)
-                );
-        </script>
+        <footer id="main-footer"
+                th:replace="~{main/footer.html :: #main-footer}"></footer>
         <!-- footer 넣을 곳 -->
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>

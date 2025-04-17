@@ -4,23 +4,23 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/challenge/challenge-list.css" />
+        <link rel="stylesheet" href="../../static/css/challenge/challenge-list.css" />
         <title>첼린지 목록</title>
     </head>
     <body>
         <div class="FeelogStack-root flog-div-1">
             <!-- 헤더 넣을 곳 -->
-        <header th:replace="~{main/header.html :: #main-header}"></header>
-<!--            <div class="feelog-header-mainDiv" id="header-container"></div>-->
-<!--            <script>-->
-<!--                // Load header.html and insert it in#header-placeholder-->
-<!--                fetch("../main/header.html")-->
-<!--                    .then((response) => response.text())-->
-<!--                    .then((data) => {-->
-<!--                        document.getElementById("header-container").innerHTML = data;-->
-<!--                    })-->
-<!--                    .catch((error) => console.error("Error loading header:", error));-->
-<!--            </script>-->
+
+            <div class="feelog-header-mainDiv" id="header-container"></div>
+            <script>
+                // Load header.html and insert it in#header-placeholder
+                fetch("../main/header.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("header-container").innerHTML = data;
+                    })
+                    .catch((error) => console.error("Error loading header:", error));
+            </script>
             <!-- 헤더 넣을 곳 -->
 
             <div class="FeelogStack-root flog-div-12">
@@ -453,19 +453,19 @@
             </div>
 
             <!-- footer 넣을 곳 -->
-<!--            <div class="joy-17imqrx" id="footer-container"></div>-->
-<!--            <script>-->
-<!--                // Load footer.html and insert it into #footer-placeholder-->
-<!--                fetch("../main/footer.html")-->
-<!--                    .then((response) => response.text())-->
-<!--                    .then((data) => {-->
-<!--                        document.getElementById("footer-container").innerHTML = data;-->
-<!--                    })-->
-<!--                    .catch((error) => console.error("Error loading footer:", error));-->
-<!--            </script>-->
+            <div class="joy-17imqrx" id="footer-container"></div>
+            <script>
+                // Load footer.html and insert it into #footer-placeholder
+                fetch("../main/footer.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("footer-container").innerHTML = data;
+                    })
+                    .catch((error) => console.error("Error loading footer:", error));
+            </script>
             <!-- footer 넣을 곳 -->
         </div>
     </body>
-    <script src="/js/challenge/challenge-list-event.js"></script>
-    <script src="/js/main/main-modal.js"></script>
+    <script src="../../static/js/challenge/challenge-list-event.js"></script>
+    <script src="../../static/js/main/main-modal.js"></script>
 </html>
