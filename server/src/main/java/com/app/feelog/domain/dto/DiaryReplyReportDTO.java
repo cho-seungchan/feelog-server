@@ -16,7 +16,6 @@ public class DiaryReplyReportDTO {
     private Long id;
     private Long memberId;
     private Long replyId;
-    private DiaryReplyReportStatus diaryReplyReportStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -25,7 +24,6 @@ public class DiaryReplyReportDTO {
                 .id(id)
                 .memberId(memberId)
                 .replyId(replyId)
-                .diaryReplyReportStatus(diaryReplyReportStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
                 .build();

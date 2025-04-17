@@ -16,7 +16,6 @@ public class MemberChallengeDTO {
     private Long id;
     private Long memberId;
     private Long taskId;
-    private MemberChallengeStatus memberChallengeStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -25,7 +24,6 @@ public class MemberChallengeDTO {
                 .id(id)
                 .memberId(memberId)
                 .taskId(taskId)
-                .memberChallengeStatus(memberChallengeStatus)
                 .createdDate(createdDate)
                 .updatedData(updatedDate)
                 .build();

@@ -13,13 +13,11 @@ public class ChallengeDiaryVO extends Period {
     @EqualsAndHashCode.Include
     private Long id;
     private Long challengeId;
-    private ChallengeDiaryStatus challengeDiaryStatus;
 
     @Builder
-    public ChallengeDiaryVO(String createdDate, String updatedData, Long id, Long challengeId, ChallengeDiaryStatus challengeDiaryStatus) {
+    public ChallengeDiaryVO(String createdDate, String updatedData, Long id, Long challengeId) {
         super(createdDate, updatedData);
         this.id = id;
         this.challengeId = challengeId;
-        this.challengeDiaryStatus = challengeDiaryStatus;
     }
 }

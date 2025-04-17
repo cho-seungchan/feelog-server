@@ -13,13 +13,11 @@ public class ChannelPostFileVO extends Period {
     @EqualsAndHashCode.Include
     private Long id;
     private Long postId;
-    private ChannelPostFileStatus channelPostFileStatus;
 
     @Builder
-    public ChannelPostFileVO(String createdDate, String updatedData, Long id, Long postId, ChannelPostFileStatus channelPostFileStatus) {
+    public ChannelPostFileVO(String createdDate, String updatedData, Long id, Long postId) {
         super(createdDate, updatedData);
         this.id = id;
         this.postId = postId;
-        this.channelPostFileStatus = channelPostFileStatus;
     }
 }

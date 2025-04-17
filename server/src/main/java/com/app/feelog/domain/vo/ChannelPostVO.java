@@ -19,10 +19,9 @@ public class ChannelPostVO extends Period {
     private String postFileSize;
     private Long   memberId;
     private Long   channelId;
-    private ChannelPostStatus channelPostStatus;
 
     @Builder
-    public ChannelPostVO(String createdDate, String updatedData, Long id, PostType postType, String postFilePath, String postFileName, String postFileSize, Long memberId, Long channelId, ChannelPostStatus channelPostStatus) {
+    public ChannelPostVO(String createdDate, String updatedData, Long id, PostType postType, String postFilePath, String postFileName, String postFileSize, Long memberId, Long channelId) {
         super(createdDate, updatedData);
         this.id = id;
         this.postType = postType;
@@ -31,6 +30,5 @@ public class ChannelPostVO extends Period {
         this.postFileSize = postFileSize;
         this.memberId = memberId;
         this.channelId = channelId;
-        this.channelPostStatus = channelPostStatus;
     }
 }

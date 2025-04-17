@@ -21,7 +21,6 @@ public class ChannelPostDTO {
     private String postFileSize;
     private Long memberId;
     private Long channelId;
-    private ChannelPostStatus channelPostStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -34,7 +33,6 @@ public class ChannelPostDTO {
                 .postFileSize(postFileSize)
                 .memberId(memberId)
                 .channelId(channelId)
-                .channelPostStatus(channelPostStatus)
                 .createdDate(createdDate)
                 .updatedData(updatedDate)
                 .build();

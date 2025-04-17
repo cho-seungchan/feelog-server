@@ -16,7 +16,6 @@ public class DiaryLikeDTO {
     private Long id;
     private Long memberId;
     private Long diaryId;
-    private DiaryLikeStatus diaryLikeStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -25,7 +24,6 @@ public class DiaryLikeDTO {
                 .id(id)
                 .memberId(memberId)
                 .diaryId(diaryId)
-                .diaryLikeStatus(diaryLikeStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
                 .build();

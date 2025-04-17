@@ -14,14 +14,12 @@ public class MemberChallengeVO extends Period {
     private Long id;
     private Long memberId;
     private Long taskId;
-    private MemberChallengeStatus memberChallengeStatus;
 
     @Builder
-    public MemberChallengeVO(String createdDate, String updatedData, Long id, Long memberId, Long taskId, MemberChallengeStatus memberChallengeStatus) {
+    public MemberChallengeVO(String createdDate, String updatedData, Long id, Long memberId, Long taskId) {
         super(createdDate, updatedData);
         this.id = id;
         this.memberId = memberId;
         this.taskId = taskId;
-        this.memberChallengeStatus = memberChallengeStatus;
     }
 }

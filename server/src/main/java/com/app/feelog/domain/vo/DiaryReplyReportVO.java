@@ -14,14 +14,12 @@ public class DiaryReplyReportVO extends Period {
     private Long id;
     private Long memberId;
     private Long replyId;
-    private DiaryReplyReportStatus diaryReplyReportStatus;
 
     @Builder
-    public DiaryReplyReportVO(String createdDate, String updatedDate, Long id, Long memberId, Long replyId, DiaryReplyReportStatus diaryReplyReportStatus) {
+    public DiaryReplyReportVO(String createdDate, String updatedDate, Long id, Long memberId, Long replyId) {
         super(createdDate, updatedDate);
         this.id = id;
         this.memberId = memberId;
         this.replyId = replyId;
-        this.diaryReplyReportStatus = diaryReplyReportStatus;
     }
 }

@@ -15,7 +15,6 @@ public class ChannelPostFileDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long postId;
-    private ChannelPostFileStatus channelPostFileStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -23,7 +22,6 @@ public class ChannelPostFileDTO {
         return ChannelPostFileVO.builder()
                 .id(id)
                 .postId(postId)
-                .channelPostFileStatus(channelPostFileStatus)
                 .createdDate(createdDate)
                 .updatedData(updatedDate)
                 .build();

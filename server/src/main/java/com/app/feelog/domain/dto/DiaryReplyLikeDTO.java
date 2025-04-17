@@ -16,7 +16,6 @@ public class DiaryReplyLikeDTO {
     private Long id;
     private Long memberId;
     private Long replyId;
-    private DiaryReplyLikeStatus diaryReplyLikeStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -25,7 +24,6 @@ public class DiaryReplyLikeDTO {
                 .id(id)
                 .memberId(memberId)
                 .replyId(replyId)
-                .diaryReplyLikeStatus(diaryReplyLikeStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
                 .build();

@@ -8,7 +8,6 @@ create table tbl_channel_post (
                                   post_file_size 		varchar(500) default '',
                                   member_id            bigint not null,
                                   channel_id 		    bigint not null,
-                                  channel_post_status 	varchar(50) default '정상',
                                   constraint fk_channel_post_post foreign key (id)
                                       references tbl_post (id),
                                   constraint fk_channel_post_member foreign key (member_id)

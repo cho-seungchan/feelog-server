@@ -15,7 +15,6 @@ public class ChallengeDiaryDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long challengeId;
-    private ChallengeDiaryStatus challengeDiaryStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -23,7 +22,6 @@ public class ChallengeDiaryDTO {
         return ChallengeDiaryVO.builder()
                 .id(id)
                 .challengeId(challengeId)
-                .challengeDiaryStatus(challengeDiaryStatus)
                 .createdDate(createdDate)
                 .updatedData(updatedDate)
                 .build();
