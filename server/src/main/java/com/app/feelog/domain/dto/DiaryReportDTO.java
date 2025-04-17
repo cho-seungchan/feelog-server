@@ -1,6 +1,5 @@
 package com.app.feelog.domain.dto;
 
-import com.app.feelog.domain.enumeration.DiaryReportStatus;
 import com.app.feelog.domain.vo.DiaryReportVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -16,16 +15,12 @@ public class DiaryReportDTO {
     private Long id;
     private Long memberId;
     private Long diaryId;
-    private String createdDate;
-    private String updatedDate;
 
     public DiaryReportVO toVO() {
         return DiaryReportVO.builder()
                 .id(id)
                 .memberId(memberId)
                 .diaryId(diaryId)
-                .createdDate(createdDate)
-                .updatedDate(updatedDate)
                 .build();
     }
 }

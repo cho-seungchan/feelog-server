@@ -1,6 +1,5 @@
 package com.app.feelog.domain.dto;
 
-import com.app.feelog.domain.enumeration.ChannelPostStatus;
 import com.app.feelog.domain.enumeration.PostType;
 import com.app.feelog.domain.vo.ChannelPostVO;
 import lombok.*;
@@ -21,8 +20,6 @@ public class ChannelPostDTO {
     private String postFileSize;
     private Long memberId;
     private Long channelId;
-    private String createdDate;
-    private String updatedDate;
 
     public ChannelPostVO toVO() {
         return ChannelPostVO.builder()
@@ -33,8 +30,6 @@ public class ChannelPostDTO {
                 .postFileSize(postFileSize)
                 .memberId(memberId)
                 .channelId(channelId)
-                .createdDate(createdDate)
-                .updatedData(updatedDate)
                 .build();
     }
 }
