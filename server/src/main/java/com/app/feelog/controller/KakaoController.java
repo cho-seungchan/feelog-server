@@ -34,15 +34,16 @@ public class KakaoController {
 
         MemberDTO memberDTO = kakaoInfo.orElseThrow(() -> new RuntimeException("카카오 사용자 정보 조회 실패"));
 
-//        Optional<MemberDTO> foundMember = joinService.getMemberByEmail(memberDTO.getMemberEmail());
-//
-//        if (!foundMember.isPresent()) {
-//            joinService.kakaoJoin(memberDTO);
-//            foundMember = joinService.getMemberByEmail(memberDTO.getMemberEmail());
-//        }
-//
-//        session.setAttribute("memberStatus", "kakao");
-//        session.setAttribute("member", foundMember.get());
+        Optional<MemberDTO> foundMember = joinService.getMemberByEmail(memberDTO.getMemberEmail());
+
+        if (!foundMember.isPresent()) {
+            log.info("kakao join !!! ");
+            joinService.kakaoJoin(memberDTO);
+            foundMember = joinService.getMemberByEmail(memberDTO.getMemberEmail());
+        }
+
+        session.setAttribute("memberStatus", "kakao");
+        session.setAttribute("member", foundMember.get());
 
         log.info("memberDTO: {}", memberDTO);
 
