@@ -29,7 +29,7 @@ public class FaqDTO {
                 .memberId(memberId)
                 .faqStatus(faqStatus)
                 .createdDate(createdDate)
-                .updatedData(updatedDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 

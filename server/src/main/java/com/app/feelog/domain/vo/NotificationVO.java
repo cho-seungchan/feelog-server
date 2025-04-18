@@ -17,8 +17,8 @@ public class NotificationVO extends  Period{
     private NotificationChecked notificationChecked;
 
     @Builder
-    public NotificationVO(String createdDate, String updatedData, Long id, Long senderId, Long receiverId, NotificationChecked notificationChecked) {
-        super(createdDate, updatedData);
+    public NotificationVO(String createdDate, String updatedDate, Long id, Long senderId, Long receiverId, NotificationChecked notificationChecked) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.senderId = senderId;
         this.receiverId = receiverId;

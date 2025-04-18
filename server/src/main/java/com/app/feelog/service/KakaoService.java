@@ -1,3 +1,5 @@
+// 2025.04.17 조승찬
+
 package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.MemberDTO;
@@ -15,6 +17,8 @@ import java.util.Optional;
 @Slf4j
 @Service
 public class KakaoService {
+
+    // 2025.04.17 조승찬 :: Authorization Code로 Access Token 요청
     public String getKakaoAccessToken(String code){
         String accessToken = null;
         String requestURI = "https://kauth.kakao.com/oauth/token";
@@ -61,6 +65,7 @@ public class KakaoService {
         return accessToken;
     }
 
+    // 2025.04.17 조승찬 :: Access Token으로 사용자 정보 요청
     public Optional<MemberDTO> getKakaoInfo(String token){
         log.info("getKakaoInfo: {}", token);
         String accessToken = null;

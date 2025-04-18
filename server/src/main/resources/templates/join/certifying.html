@@ -117,28 +117,31 @@
         <main class="FeelogBox-root flog-main-2">
             <div class="FeelogStack-root flog-div-38">
                 <h1 class="FeelogTypography-root FeelogTypography-body-md flog-h1-3">이메일 인증</h1>
-                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-9">
-                    ‘인증 메일 보내기’ 버튼을 눌러 주세요. 등록한 이메일 주소로 인증 메일을 보내 드릴게요. 24시간 안에
-                    링크를 열어 이메일 인증을 완료해 주세요. 인증 메일을 받지 못했거나, 이메일 주소를 바꾸려면 아래 입력
-                    칸에 이메일 주소를 올바르게 입력하고 다시 ‘인증 메일 보내기' 버튼을 눌러 주세요.
+                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-9" style="white-space: pre-line;">
+                    ‘인증 메일 보내기’ 버튼을 눌러 주세요.<br /> 등록한 이메일 주소로 인증 메일을 보내 드릴게요.
+                    10분 안에 링크를 열어 이메일 인증을 완료해 주세요.<br /> 인증 메일을 받지 못했다면 <br />다시 ‘인증 메일 보내기' 버튼을 눌러 주세요.
                 </p>
-                <div
-                    class="FeelogInput-root FeelogInput-variantOutlined FeelogInput-colorNeutral FeelogInput-sizeMd flog-div-39"
-                >
-                    <input
-                        aria-label="이메일 인증"
-                        maxlength="320"
-                        class="FeelogInput-input flog-input-1"
-                        value="jfk6725@naver.com"
-                        readonly
-                    />
-                </div>
-                <button
-                    class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-8"
-                    type="button"
-                >
-                    인증 메일 보내기
-                </button>
+                <form id="signupForm" method="post" action="/join/certifying" class="Form__RegisterPageForm-sc-1l5lis6-0 fLECcs">
+                    <div
+                            class="FeelogInput-root FeelogInput-variantOutlined FeelogInput-colorNeutral FeelogInput-sizeMd flog-div-39"
+                    >
+                        <input type="email"
+                               aria-label="이메일 인증"
+                               maxlength="320"
+                               class="FeelogInput-input flog-input-1"
+                               th:value="${email}"
+                               readonly
+                        />
+                        <p th:if="${errorMessage}" class="bViOzS">[[${errorMessage}]]</p>
+                    </div>
+                    <button
+                            class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-8"
+                            type="button"
+                    >
+                        인증 메일 보내기
+                    </button>
+                </form>
+
             </div>
         </main>
         <div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
@@ -188,4 +191,6 @@
         </div>
     </body>
     <script src="/js/join/certifying-event.js"></script>
+    <script src="/js/join/certifying-service.js"></script>
+    <script src="/js/join/certifying-layout.js"></script>
 </html>

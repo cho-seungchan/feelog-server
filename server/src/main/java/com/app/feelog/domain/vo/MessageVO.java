@@ -14,8 +14,8 @@ public class MessageVO extends Period{
     private String messageContent;
 
     @Builder
-    public MessageVO(String createdDate, String updatedData, Long id, String messageContent) {
-        super(createdDate, updatedData);
+    public MessageVO(String createdDate, String updatedDate, Long id, String messageContent) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.messageContent = messageContent;
     }

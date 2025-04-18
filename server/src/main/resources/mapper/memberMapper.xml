@@ -1,4 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.MemberMapper">
+    <select id="getMemberByEmail" resultType="memberDTO">
+        SELECT
+            id,
+            member_email,
+            member_password,
+            member_nickname,
+            member_introduce,
+            member_file_path,
+            member_file_name,
+            member_notification_post_reply,
+            member_notification_post_reply_like,
+            member_notification_post_like,
+            member_notification_subscribe,
+            member_notification_community_post,
+            member_notification_message
+        from   tbl_member
+        where  member_email = #{memberEmail}
+    </select>
+
+    <select id="getMemberByNickname" resultType="memberDTO">
+        SELECT
+            id,
+            member_email,
+            member_password,
+            member_nickname,
+            member_introduce,
+            member_file_path,
+            member_file_name,
+            member_notification_post_reply,
+            member_notification_post_reply_like,
+            member_notification_post_like,
+            member_notification_subscribe,
+            member_notification_community_post,
+            member_notification_message
+        from   tbl_member
+        where  member_nickname = #{memberNickname}
+    </select>
+
+    <insert id="kakaoJoin">
+        insert into tbl_member
+            ( member_email,
+              member_nickname
+              )
+        values (
+                #{memberEmail},
+                #{memberNickname}
+               )
+    </insert>
+
+    <insert id="emailJoin">
+        insert into tbl_member
+        ( member_email,
+          member_password,
+          member_nickname
+        )
+        values (
+                   #{memberEmail},
+                   #{memberPassword},
+                   #{memberNickname}
+               )
+    </insert>
 </mapper>

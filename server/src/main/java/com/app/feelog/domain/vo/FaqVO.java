@@ -19,8 +19,8 @@ public class FaqVO extends Period{
 
     @Builder
 
-    public FaqVO(String createdDate, String updatedData, Long id, String faqTitle, String faqContent, Long memberId, FaqStatus faqStatus) {
-        super(createdDate, updatedData);
+    public FaqVO(String createdDate, String updatedDate, Long id, String faqTitle, String faqContent, Long memberId, FaqStatus faqStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.faqTitle = faqTitle;
         this.faqContent = faqContent;
