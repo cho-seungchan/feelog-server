@@ -8,3 +8,4 @@ create table tbl_feel (
                           created_date 	    datetime default current_timestamp,
                           updated_date 	    datetime default current_timestamp
 );
+

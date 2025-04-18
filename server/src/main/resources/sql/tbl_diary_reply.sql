@@ -10,3 +10,5 @@ create table tbl_diary_reply (
                                  constraint fk_diary_reply_diary foreign key (diary_id)
                                      references tbl_diary (id)
 );
+
+

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ".FlgModal-root-need .jk-feelog-div018"
     );
 
+
     // note-editor 찾기
     let noteEditor = summernote;
     while (noteEditor && !noteEditor.classList.contains("note-editor")) {
@@ -132,6 +133,7 @@ function initSelectDropdown(container) {
     const toggleBtn = container.querySelector("#select-toggle");
     const optionList = container.querySelector("#select-options");
     const options = optionList?.querySelectorAll("li");
+
 
     if (!toggleBtn || !optionList) return;
 

@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class DiaryTagVO extends Period {
     @EqualsAndHashCode.Include
-    private Long id;
+    private Long diaryId;
     private Long tagId;
 
     @Builder
-    public DiaryTagVO(String createdDate, String updatedDate, Long id, Long tagId) {
+    public DiaryTagVO(String createdDate, String updatedDate, Long diaryId, Long tagId) {
         super(createdDate, updatedDate);
-        this.id = id;
+        this.diaryId = diaryId;
         this.tagId = tagId;
     }
 }

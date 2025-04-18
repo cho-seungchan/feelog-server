@@ -9,4 +9,6 @@ create table tbl_notification(
                              references tbl_member(id),
     constraint fk_notification_receiver foreign key (receiver_id)
                              references tbl_member(id)
-)
+);
+
+

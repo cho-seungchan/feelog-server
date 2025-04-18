@@ -10,3 +10,4 @@ create table tbl_reply (
     updated_date 	    datetime default current_timestamp
 );
 
+

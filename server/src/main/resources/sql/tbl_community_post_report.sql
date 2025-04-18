@@ -10,3 +10,4 @@ create table tbl_community_post_report (
         constraint fk_community_post_report_community_post foreign key (community_id)
         references tbl_community_post (id)
 );
+

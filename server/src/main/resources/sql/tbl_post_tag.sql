@@ -6,4 +6,4 @@ create table tbl_post_tag (
     references tbl_post (id),
     constraint fk_post_tag_tag foreign key (tag_id)
     references tbl_tag (id)
-)
+);

@@ -7,3 +7,4 @@ create table tbl_community_post_notification (
          references tbl_community_post(id)
 );
 
+

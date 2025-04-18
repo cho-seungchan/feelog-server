@@ -6,7 +6,8 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.app.feelog.domain.vo.ChannelPostLikeVO" alias="channelPostLikeVO"/>
+        <typeAlias type="com.app.feelog.domain.vo.DiaryVO" alias="diaryVO"/>
+        <typeAlias type="com.app.feelog.domain.dto.DiaryDTO" alias="diaryDTO"/>
     </typeAliases>
 
 </configuration>
