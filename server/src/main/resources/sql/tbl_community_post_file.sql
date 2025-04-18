@@ -7,3 +7,4 @@ create table tbl_community_post_file (
     constraint fk_community_post_file_community_post foreign key (community_id)
     references tbl_community_post (id)
 );
+

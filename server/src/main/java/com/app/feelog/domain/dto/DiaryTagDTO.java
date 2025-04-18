@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class DiaryTagDTO {
     @EqualsAndHashCode.Include
-    private Long id;
+    private Long diaryId;
     private Long tagId;
     private String createdDate;
     private String updatedDate;
 
     public DiaryTagVO toVO() {
         return DiaryTagVO.builder()
-                .id(id)
+                .diaryId(diaryId)
                 .tagId(tagId)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)

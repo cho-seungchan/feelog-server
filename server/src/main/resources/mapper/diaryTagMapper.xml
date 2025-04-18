@@ -2,4 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.DiaryTagMapper">
 
+    <select id="findByContent" resultType="com.app.feelog.domain.vo.TagVO">
+        SELECT * FROM tbl_tag
+        WHERE contents = #{content} AND tag_status = '정상'
+    </select>
+
+    <insert id="insertTag" parameterType="com.app.feelog.domain.vo.TagVO">
+        INSERT INTO tbl_tag (contents, tag_status)
+        VALUES (#{contents}, #{tagStatus})
+    </insert>
+
+    <insert id="insertDiaryTag" parameterType="com.app.feelog.domain.vo.DiaryTagVO">
+        INSERT INTO tbl_diary_tag (diary_id, tag_id)
+        VALUES (#{diaryId}, #{tagId})
+    </insert>
+
+    <delete id="deleteByDiaryId" parameterType="long">
+        DELETE FROM tbl_diary_tag WHERE diary_id = #{diaryId}
+    </delete>
+
+    <insert id="save">
+        INSERT INTO tbl_diary_tag (diary_id, tag_id)
+        VALUES (#{diaryId}, #{tagId})
+    </insert>
+
 </mapper>

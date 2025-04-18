@@ -7,3 +7,4 @@ create table tbl_post_reply_notification (
          references tbl_channel_post_reply(id)
 );
 
+

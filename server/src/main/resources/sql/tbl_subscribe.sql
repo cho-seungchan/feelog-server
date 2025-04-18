@@ -9,4 +9,4 @@ create table tbl_subscribe(
                           references tbl_member(id),
     constraint fk_subscribe_channel foreign key (channel_id)
                           references tbl_channel(id)
-)
+);

@@ -10,3 +10,4 @@ create table tbl_faq(
                        references tbl_member(id)
 );
 
+

@@ -22,12 +22,21 @@ public class MemberDTO {
     private String memberFileName;
     private String memberFileSize;
     private MemberType memberType;
+<<<<<<< HEAD
     private MemberNotificationPostReply memberNotificationPostReply;
     private MemberNotificationPostReplyLike memberNotificationPostReplyLike;
     private MemberNotificationPostLike       memberNotificationPostLike;
     private MemberNotificationSubscribe memberNotificationSubscribe;
     private MemberNotificationCommunityPost  memberNotificationCommunityPost;
     private MemberNotificationMessage        memberNotificationMessage;
+=======
+    private String memberNotificationPostReply;
+    private String memberNotificationPostReplyLike;
+    private String memberNotificationPostLike;
+    private String memberNotificationSubscribe;
+    private String memberNotificationCommunityPost;
+    private String memberNotificationMessage;
+>>>>>>> c90771130bcf5aa5d70c6135dc39c10be7dbec83
     private MemberStatus memberStatus;
     private String createdDate;
     private String updatedDate;

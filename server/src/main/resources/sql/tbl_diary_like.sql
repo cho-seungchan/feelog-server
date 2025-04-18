@@ -11,3 +11,4 @@ create table tbl_diary_like (
                                 constraint fk_diary_like_diary foreign key (diary_id)
                                     references tbl_diary (id)
 );
+

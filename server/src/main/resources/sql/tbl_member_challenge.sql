@@ -10,3 +10,5 @@ create table tbl_member_challenge (
       constraint fk_member_challenge_member_task foreign key (task_id)
           references tbl_member_task (id)
 );
+
+

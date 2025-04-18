@@ -14,7 +14,16 @@ create table tbl_member (
                             member_notification_subscribe               varchar(50) default '설정',
                             member_notification_community_post          varchar(50) default '설정',
                             member_notification_message                 varchar(50) default '설정',
+=======
+                            member_notification_post_reply              varchar(50) ,
+                            member_notification_post_reply_like         varchar(50) ,
+                            member_notification_post_like               varchar(50) ,
+                            member_notification_subscribe               varchar(50) ,
+                            member_notification_community_post          varchar(50) ,
+                            member_notification_message                 varchar(50) ,
+>>>>>>> c90771130bcf5aa5d70c6135dc39c10be7dbec83
                             member_status 		                        varchar(50) default '정상',
                             created_date 	                            datetime default current_timestamp,
                             updated_date 	                            datetime default current_timestamp
 );
+

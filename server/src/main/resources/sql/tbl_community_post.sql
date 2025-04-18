@@ -10,3 +10,4 @@ create table tbl_community_post (
     constraint fk_community_post_channel foreign key (channel_id)
     references tbl_channel (id)
 );
+

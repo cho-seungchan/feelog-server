@@ -5,4 +5,5 @@ create table tbl_message(
     updated_date datetime default current_timestamp
 );
 
+
 alter table tbl_message drop column message_status;

@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="/css/admin/admin-all.css" />
         <link rel="stylesheet" href="/css/admin/aside-var.css" />
         <link rel="stylesheet" href="/css/admin/admin-main.css" />
+        <link rel="stylesheet" href="/css/admin/admin-list.css">
+        <link rel="stylesheet" href="/css/admin/button.css">
         <style>
             @font-face {
                 font-family: "pickers";
@@ -316,8 +318,7 @@
                                             class="MenuItems_submenuContainer MenuItems_show Menulist3"
                                         >
                                             <a
-                                                class="MenuItems_submenu_adminList"
-                                                href="/admin/manage-admin-list"
+                                                class="MenuItems_submenu_adminList adminLists"
                                                 >관리자 목록</a
                                             >
                                         </div>
@@ -499,4 +500,7 @@
         <div class="admin-modal-body"></div>
     </body>
     <script src="/js/admin/admin.js"></script>
+    <script src="/js/admin/admin-list-service.js"></script>
+    <script src="/js/admin/admin-list-layout.js"></script>
+    <script src="/js/admin/admin-list-event.js"></script>
 </html>

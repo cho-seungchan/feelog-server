@@ -26,16 +26,16 @@ public enum MemberType {
 //    JsonCreator
 //    RESTful API에서 json형식으로 enum을 받아야할 때,
 //    직접 작성한 code 혹은 label이 있을 경우 재정의해야한다.
-    @JsonCreator
-    public static MemberType forCode(String code){
-//        화면에서 전달받은 문자열(code)을
-        for(MemberType memberType : MemberType.values()){
-//            전체 code와 비교하여 같다면
-            if(memberType.getCode().equals(code)){
-//                해당 code의 memberType 객체를 리턴한다.
-                return memberType;
-            }
-        }
-        throw new IllegalArgumentException("존재하지 않는 값");
-    }
+//    @JsonCreator
+//    public static MemberType forCode(String code){
+////        화면에서 전달받은 문자열(code)을
+//        for(MemberType memberType : MemberType.values()){
+////            전체 code와 비교하여 같다면
+//            if(memberType.getCode().equals(code)){
+////                해당 code의 memberType 객체를 리턴한다.
+//                return memberType;
+//            }
+//        }
+//        throw new IllegalArgumentException("존재하지 않는 값");
+//    }
 }
