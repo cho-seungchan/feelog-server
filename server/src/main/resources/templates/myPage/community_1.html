@@ -1,0 +1,1523 @@
+<!-- 2025.04.12 조승찬 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/myPage/community.css" />
+        <title>개인 채널 커뮤니티</title>
+    </head>
+    <body>
+        <div class="Toastify"></div>
+        <section>
+            <div class="MuiStack-root joy-5635ou">
+                <div class="MuiStack-root joy-155l5r7">
+                    <div class="MuiStack-root joy-nta7m6">
+                        <div class="navigation-alert-container MuiBox-root joy-8atqhb"></div>
+                        <!-- 헤더 넣을 곳 -->
+
+                        <div class="feelog-header-mainDiv" id="header-container"></div>
+                        <script>
+                            // Load header.html and insert it in#header-placeholder
+                            fetch("../main/header.html")
+                                .then((response) => response.text())
+                                .then((data) => {
+                                    document.getElementById("header-container").innerHTML = data;
+                                })
+                                .catch((error) => console.error("Error loading header:", error));
+                        </script>
+                        <a id="skip" class="sr-only" href="#main">주요 내용으로 건너뛰기</a>
+                        <header class="MuiStack-root joy-bs3mrn">
+                            <section class="MuiStack-root joy-1l9tbu6">
+                                <div class="MuiStack-root joy-9jay18">
+                                    <div class="MuiStack-root joy-16v1edh">
+                                        <div class="MuiBox-root joy-1gi51ua">
+                                            <div class="MuiBox-root joy-2v1uk4">
+                                                <img
+                                                    alt="채널 썸네일"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    data-nimg="fill"
+                                                    style="
+                                                        position: absolute;
+                                                        height: 100%;
+                                                        width: 100%;
+                                                        left: 0;
+                                                        top: 0;
+                                                        right: 0;
+                                                        bottom: 0;
+                                                        object-fit: cover;
+                                                        color: transparent;
+                                                    "
+                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png?w=100&amp;h=100&amp;q=65"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="MuiStack-root joy-1dgzupb">
+                                            <a
+                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone channel-title joy-1yh0ndl"
+                                                href="/@jffkkk"
+                                                ><h1 class="MuiTypography-root MuiTypography-h1 joy-1hzx3ae">
+                                                    jffkkk
+                                                </h1></a
+                                            >
+                                            <div class="MuiStack-root joy-1frzndx">
+                                                <a
+                                                    href="/profile/@nwjhyj"
+                                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1ntyri5"
+                                                    ><span class="MuiTypography-root MuiTypography-body-sm joy-867kah"
+                                                        >조승찬</span
+                                                    ></a
+                                                >·
+                                                <p class="MuiTypography-root MuiTypography-body-sm joy-pknn8w">
+                                                    구독자
+                                                </p>
+                                                <p class="MuiTypography-root MuiTypography-body-sm joy-pknn8w">1명</p>
+                                                ·
+                                                <p class="MuiTypography-root MuiTypography-body-sm joy-pknn8w">
+                                                    포스트
+                                                </p>
+                                                <p class="MuiTypography-root MuiTypography-body-sm joy-pknn8w">7개</p>
+                                            </div>
+                                            <div class="MuiStack-root joy-1apg8ro">
+                                                <p class="MuiTypography-root MuiTypography-body-sm joy-11b7qhk">
+                                                    테스트입니다.
+                                                </p>
+                                                <svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1uq22jq"
+                                                >
+                                                    <path
+                                                        d="M16.416 11.332a.934.934 0 0 1 0 1.325l-7.5 7.504a.937.937 0 0 1-1.324-1.324L14.428 12l-6.84-6.84a.937.937 0 0 1 1.324-1.324l7.504 7.495Z"
+                                                        fill="currentcolor"
+                                                    ></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="MuiStack-root joy-odf186">
+                                        <a
+                                            href="/studio/jffkkk/dashboard"
+                                            class="MuiButton-root MuiButton-variantSoft MuiButton-colorNeutral MuiButton-sizeMd joy-1o8qrlt"
+                                            >스튜디오</a
+                                        ><button
+                                            aria-label="공유하기"
+                                            class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeMd joy-1h3evr4"
+                                            type="button"
+                                        >
+                                            <svg
+                                                focusable="false"
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                            >
+                                                <path
+                                                    d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
+                                                    fill="currentcolor"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                                        <button
+                                            aria-label="공유하기"
+                                            class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeMd joy-1i8nhlx"
+                                            type="button"
+                                        >
+                                            <svg
+                                                focusable="false"
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                            >
+                                                <path
+                                                    d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
+                                                    fill="currentcolor"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="MuiStack-root joy-nm557z">
+                                    <a
+                                        href="/studio/jffkkk/dashboard"
+                                        class="MuiButton-root MuiButton-variantSoft MuiButton-colorNeutral MuiButton-sizeSm joy-14apjbq"
+                                        >스튜디오</a
+                                    ><button
+                                        aria-label="공유하기"
+                                        class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeSm joy-100vsse"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                        >
+                                            <path
+                                                d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg></button
+                                    ><button
+                                        aria-label="공유하기"
+                                        class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeSm joy-5lxrv5"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                        >
+                                            <path
+                                                d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </section>
+                        </header>
+                        <nav class="MuiStack-root joy-b8eqj">
+                            <div class="MuiStack-root joy-bs3mrn">
+                                <ul
+                                    aria-label="채널 탭 리스트"
+                                    class="MuiList-root MuiList-vertical MuiList-variantPlain MuiList-colorNeutral MuiList-sizeMd joy-crzgw0"
+                                >
+                                    <li
+                                        data-first-child=""
+                                        class="MuiListItem-root MuiListItem-colorNeutral MuiListItem-variantPlain joy-19cwwul"
+                                    >
+                                        <a
+                                            style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                            data-first-child=""
+                                            href="/@blog"
+                                            ><span class="MuiTypography-root MuiTypography-body-md joy-b61o4v"
+                                                >홈</span
+                                            ></a
+                                        >
+                                    </li>
+                                    <li
+                                        class="MuiListItem-root MuiListItem-colorNeutral MuiListItem-variantPlain joy-19cwwul"
+                                    >
+                                        <a
+                                            style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                            data-first-child=""
+                                            href="/@blog/post"
+                                            ><span class="MuiTypography-root MuiTypography-body-md joy-b61o4v"
+                                                >포스트</span
+                                            ></a
+                                        >
+                                    </li>
+                                    <li
+                                        class="MuiListItem-root MuiListItem-colorNeutral MuiListItem-variantPlain joy-19cwwul"
+                                    >
+                                        <a
+                                            style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                            data-first-child=""
+                                            href="/@blog/series"
+                                            ><span class="MuiTypography-root MuiTypography-body-md joy-b61o4v"
+                                                >시리즈</span
+                                            ></a
+                                        >
+                                    </li>
+                                    <li
+                                        class="MuiListItem-root MuiListItem-colorNeutral MuiListItem-variantPlain joy-9rvcue"
+                                    >
+                                        <a
+                                            style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                            data-first-child=""
+                                            href="/@blog/series"
+                                            ><span class="MuiTypography-root MuiTypography-body-md joy-b61o4v"
+                                                >커뮤니티</span
+                                            ></a
+                                        >
+                                    </li>
+                                    <li
+                                        data-last-child=""
+                                        class="MuiListItem-root MuiListItem-colorNeutral MuiListItem-variantPlain joy-19cwwul"
+                                    >
+                                        <a
+                                            style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                            aria-label="검색"
+                                            data-first-child=""
+                                            href="/@blog/search"
+                                            ><svg
+                                                focusable="false"
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-dqchmy"
+                                            >
+                                                <path
+                                                    d="M16.375 10.125a6.25 6.25 0 1 0-12.5 0 6.25 6.25 0 0 0 12.5 0Zm-1.207 6.371a8.086 8.086 0 0 1-5.043 1.754A8.124 8.124 0 0 1 2 10.125 8.124 8.124 0 0 1 10.125 2a8.124 8.124 0 0 1 8.125 8.125c0 1.906-.656 3.66-1.754 5.043l5.23 5.23a.937.937 0 0 1-1.324 1.324l-5.234-5.226Z"
+                                                    fill="currentcolor"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="MuiDivider-root MuiDivider-horizontal joy-w2e6ki" />
+                        </nav>
+                        <main class="MuiStack-root joy-1tvgzv2" id="main">
+                            <section class="MuiStack-root joy-1rp0ri1">
+                                <button
+                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-cqpx6y"
+                                >
+                                    <div
+                                        class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-10iw5pi"
+                                    >
+                                        <img
+                                            alt=""
+                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                            loading="lazy"
+                                            class="MuiAvatar-img joy-1hy9t21"
+                                        />
+                                    </div>
+                                    <span class="MuiTypography-root MuiTypography-body-md joy-nqbc4s"
+                                        >독자에게 하고 싶은 말을 남겨 주세요.</span
+                                    >
+                                </button>
+                                <hr class="MuiDivider-root MuiDivider-horizontal joy-b3bhtg" />
+                                <div class="MuiBox-root joy-1ut66b">
+                                    <div class="MuiStack-root joy-hcdgbf">
+                                        <div class="MuiStack-root joy-1wn4vyh">
+                                            <div class="MuiStack-root joy-19xhkd9">
+                                                <div class="MuiStack-root joy-1155zbk">
+                                                    <a
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-gc678g"
+                                                        href="/profile/@nwjhyj"
+                                                        ><div
+                                                            class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-1eok34p"
+                                                        >
+                                                            <img
+                                                                alt="글 작성자 조승찬"
+                                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                                loading="lazy"
+                                                                class="MuiAvatar-img joy-1hy9t21"
+                                                            /></div
+                                                    ></a>
+                                                    <div class="MuiStack-root joy-lt33nj">
+                                                        <div class="MuiStack-root joy-ct9q29">
+                                                            <div class="MuiBox-root joy-12e5m3r">
+                                                                <a
+                                                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1liaz7p"
+                                                                    href="/profile/@nwjhyj"
+                                                                    ><span
+                                                                        class="MuiTypography-root MuiTypography-title-md joy-oqc1dx"
+                                                                        >조승찬</span
+                                                                    ></a
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="MuiStack-root joy-1o8jgee">
+                                                            <a
+                                                                href="/@jffkkk/community/custom/2540561/19531680"
+                                                                aria-label="2025. 4. 11. 21:39"
+                                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-b6ftch"
+                                                                ><time
+                                                                    class="MuiTypography-root MuiTypography-body-sm joy-ap3vt9"
+                                                                    >10시간 전</time
+                                                                ></a
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    aria-haspopup="menu"
+                                                    aria-expanded="false"
+                                                    aria-controls=":R26hi6csvakv4vafl7lqakq:"
+                                                    tabindex="0"
+                                                    aria-label="더보기"
+                                                    class="MuiMenuButton-root MuiMenuButton-variantOutlined MuiMenuButton-colorNeutral MuiMenuButton-sizeSm joy-ccwyls"
+                                                    type="button"
+                                                >
+                                                    <svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                    >
+                                                        <path
+                                                            d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="MuiStack-root joy-1fzkbs5">
+                                                <div class="MuiStack-root joy-j7qwjs">
+                                                    <p
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1yh0ndl"
+                                                    >
+                                                        <span
+                                                            aria-expanded="true"
+                                                            id=":R1ki6csvakv4vafl7lqakq:"
+                                                            class="MuiTypography-root MuiTypography-inherit joy-14eqw6i"
+                                                            >더 써봅시다</span
+                                                        >
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="MuiStack-root joy-95g4uk">
+                                                <div class="MuiStack-root joy-axlq1k">
+                                                    <button
+                                                        type="button"
+                                                        aria-label="좋아요 버튼"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span></button
+                                                    ><button
+                                                        type="button"
+                                                        aria-label="댓글"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-reply-1j1ow5l"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-9bgpn"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="M6.832 17.535a1.877 1.877 0 0 1 1.742-.25c1.035.375 2.194.59 3.428.59 4.87 0 8.123-3.145 8.123-6.25s-3.253-6.25-8.123-6.25c-4.87 0-8.122 3.145-8.122 6.25 0 1.25.484 2.453 1.394 3.484.336.38.5.88.46 1.387a6.92 6.92 0 0 1-.44 1.93 9.811 9.811 0 0 0 1.538-.887v-.004Zm-3.999 1.586c.07-.105.137-.21.2-.316.39-.649.76-1.5.835-2.457-1.172-1.332-1.863-2.961-1.863-4.723 0-4.488 4.475-8.125 9.997-8.125C17.526 3.5 22 7.137 22 11.625c0 4.488-4.475 8.125-9.998 8.125-1.448 0-2.823-.25-4.065-.7-.465.34-1.222.805-2.12 1.196a9.564 9.564 0 0 1-1.957.629c-.031.008-.062.012-.094.02-.171.03-.34.058-.515.074-.008 0-.02.004-.027.004-.2.02-.399.03-.598.03a.625.625 0 0 1-.445-1.066 5.606 5.606 0 0 0 .629-.797l.011-.019h.012Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg></span
+                                                        >2
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="MuiDivider-root MuiDivider-horizontal joy-7xfzfj" />
+                                        <div class="MuiStack-root joy-1wn4vyh">
+                                            <div class="MuiStack-root joy-19xhkd9">
+                                                <div class="MuiStack-root joy-1155zbk">
+                                                    <a
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-gc678g"
+                                                        href="/profile/@nwjhyj"
+                                                        ><div
+                                                            class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-1eok34p"
+                                                        >
+                                                            <img
+                                                                alt="글 작성자 조승찬"
+                                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                                loading="lazy"
+                                                                class="MuiAvatar-img joy-1hy9t21"
+                                                            /></div
+                                                    ></a>
+                                                    <div class="MuiStack-root joy-lt33nj">
+                                                        <div class="MuiStack-root joy-ct9q29">
+                                                            <div class="MuiBox-root joy-12e5m3r">
+                                                                <a
+                                                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1liaz7p"
+                                                                    href="/profile/@nwjhyj"
+                                                                    ><span
+                                                                        class="MuiTypography-root MuiTypography-title-md joy-oqc1dx"
+                                                                        >조승찬</span
+                                                                    ></a
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="MuiStack-root joy-1o8jgee">
+                                                            <a
+                                                                href="/@jffkkk/community/custom/2540561/19531675"
+                                                                aria-label="2025. 4. 11. 21:38"
+                                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-b6ftch"
+                                                                ><time
+                                                                    class="MuiTypography-root MuiTypography-body-sm joy-ap3vt9"
+                                                                    >10시간 전</time
+                                                                ></a
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    aria-haspopup="menu"
+                                                    aria-expanded="false"
+                                                    aria-controls=":R26hiecsvakv4vafl7lqakq:"
+                                                    tabindex="0"
+                                                    aria-label="더보기"
+                                                    class="MuiMenuButton-root MuiMenuButton-variantOutlined MuiMenuButton-colorNeutral MuiMenuButton-sizeSm joy-ccwyls"
+                                                    type="button"
+                                                >
+                                                    <svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                    >
+                                                        <path
+                                                            d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="MuiStack-root joy-1fzkbs5">
+                                                <div class="MuiStack-root joy-j7qwjs">
+                                                    <p
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1yh0ndl"
+                                                    >
+                                                        <span
+                                                            aria-expanded="true"
+                                                            id=":R1kiecsvakv4vafl7lqakq:"
+                                                            class="MuiTypography-root MuiTypography-inherit joy-14eqw6i"
+                                                            >더보기가 없나봐요????</span
+                                                        >
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="MuiStack-root joy-95g4uk">
+                                                <div class="MuiStack-root joy-axlq1k">
+                                                    <button
+                                                        type="button"
+                                                        aria-label="좋아요 버튼"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span></button
+                                                    ><button
+                                                        type="button"
+                                                        aria-label="댓글"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="M6.832 17.535a1.877 1.877 0 0 1 1.742-.25c1.035.375 2.194.59 3.428.59 4.87 0 8.123-3.145 8.123-6.25s-3.253-6.25-8.123-6.25c-4.87 0-8.122 3.145-8.122 6.25 0 1.25.484 2.453 1.394 3.484.336.38.5.88.46 1.387a6.92 6.92 0 0 1-.44 1.93 9.811 9.811 0 0 0 1.538-.887v-.004Zm-3.999 1.586c.07-.105.137-.21.2-.316.39-.649.76-1.5.835-2.457-1.172-1.332-1.863-2.961-1.863-4.723 0-4.488 4.475-8.125 9.997-8.125C17.526 3.5 22 7.137 22 11.625c0 4.488-4.475 8.125-9.998 8.125-1.448 0-2.823-.25-4.065-.7-.465.34-1.222.805-2.12 1.196a9.564 9.564 0 0 1-1.957.629c-.031.008-.062.012-.094.02-.171.03-.34.058-.515.074-.008 0-.02.004-.027.004-.2.02-.399.03-.598.03a.625.625 0 0 1-.445-1.066 5.606 5.606 0 0 0 .629-.797l.011-.019h.012Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="MuiDivider-root MuiDivider-horizontal joy-7xfzfj" />
+                                        <div class="MuiStack-root joy-1wn4vyh">
+                                            <div class="MuiStack-root joy-19xhkd9">
+                                                <div class="MuiStack-root joy-1155zbk">
+                                                    <a
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-gc678g"
+                                                        href="/profile/@nwjhyj"
+                                                        ><div
+                                                            class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-1eok34p"
+                                                        >
+                                                            <img
+                                                                alt="글 작성자 조승찬"
+                                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                                loading="lazy"
+                                                                class="MuiAvatar-img joy-1hy9t21"
+                                                            /></div
+                                                    ></a>
+                                                    <div class="MuiStack-root joy-lt33nj">
+                                                        <div class="MuiStack-root joy-ct9q29">
+                                                            <div class="MuiBox-root joy-12e5m3r">
+                                                                <a
+                                                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1liaz7p"
+                                                                    href="/profile/@nwjhyj"
+                                                                    ><span
+                                                                        class="MuiTypography-root MuiTypography-title-md joy-oqc1dx"
+                                                                        >조승찬</span
+                                                                    ></a
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="MuiStack-root joy-1o8jgee">
+                                                            <a
+                                                                href="/@jffkkk/community/custom/2540561/19531671"
+                                                                aria-label="2025. 4. 11. 21:38"
+                                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-b6ftch"
+                                                                ><time
+                                                                    class="MuiTypography-root MuiTypography-body-sm joy-ap3vt9"
+                                                                    >10시간 전</time
+                                                                ></a
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    aria-haspopup="menu"
+                                                    aria-expanded="false"
+                                                    aria-controls=":R26himcsvakv4vafl7lqakq:"
+                                                    tabindex="0"
+                                                    aria-label="더보기"
+                                                    class="MuiMenuButton-root MuiMenuButton-variantOutlined MuiMenuButton-colorNeutral MuiMenuButton-sizeSm joy-ccwyls"
+                                                    type="button"
+                                                >
+                                                    <svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                    >
+                                                        <path
+                                                            d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="MuiStack-root joy-1fzkbs5">
+                                                <div class="MuiStack-root joy-j7qwjs">
+                                                    <p
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1yh0ndl"
+                                                    >
+                                                        <span
+                                                            aria-expanded="true"
+                                                            id=":R1kimcsvakv4vafl7lqakq:"
+                                                            class="MuiTypography-root MuiTypography-inherit joy-14eqw6i"
+                                                            >게속 써 보께요
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="MuiBox-root joy-0">
+                                                    <div class="MuiBox-root joy-79elbk">
+                                                        <div class="slider-container" data-total="1">
+                                                            <div class="slider">
+                                                                <div class="swiper-slide active" data-index="1">
+                                                                    <div class="MuiBox-root joy-k20l12">
+                                                                        <img
+                                                                            class="MuiBox-root joy-1hwj4hf"
+                                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2025/04/11/21/38/894e0213970592337167606864.jfif?w=600&q=65"
+                                                                            loading="lazy"
+                                                                            alt="유저가 업로드한 1개의 이미지 중 1번째 이미지"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button
+                                                                aria-label="Previous slide"
+                                                                class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeSm prev-button joy-1fq8sld swiper-button-disabled swiper-button-lock"
+                                                                tabindex="-1"
+                                                                aria-controls="swiper-wrapper-172fcbff61d66550"
+                                                                aria-disabled="true"
+                                                                type="button"
+                                                            >
+                                                                <svg
+                                                                    focusable="false"
+                                                                    aria-hidden="true"
+                                                                    viewBox="0 0 24 24"
+                                                                    width="24"
+                                                                    height="24"
+                                                                    fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                                >
+                                                                    <path
+                                                                        d="M8.713 11.332a.934.934 0 0 0 0 1.325l5.25 5.254a.937.937 0 0 0 1.324-1.324l-4.586-4.59 4.59-4.586a.937.937 0 0 0-1.324-1.324l-5.254 5.245Z"
+                                                                        fill="currentcolor"
+                                                                    ></path>
+                                                                </svg></button
+                                                            ><button
+                                                                aria-label="Next slide"
+                                                                class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeSm next-button joy-dc70aw swiper-button-disabled swiper-button-lock"
+                                                                tabindex="-1"
+                                                                aria-controls="swiper-wrapper-172fcbff61d66550"
+                                                                aria-disabled="true"
+                                                                type="button"
+                                                            >
+                                                                <svg
+                                                                    focusable="false"
+                                                                    aria-hidden="true"
+                                                                    viewBox="0 0 24 24"
+                                                                    width="24"
+                                                                    height="24"
+                                                                    fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                                >
+                                                                    <path
+                                                                        d="M15.291 11.332a.934.934 0 0 1 0 1.325l-5.25 5.254a.937.937 0 0 1-1.324-1.324L13.303 12l-4.59-4.59a.937.937 0 0 1 1.324-1.324l5.254 5.245Z"
+                                                                        fill="currentcolor"
+                                                                    ></path>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="MuiStack-root joy-95g4uk">
+                                                <div class="MuiStack-root joy-axlq1k">
+                                                    <button
+                                                        type="button"
+                                                        aria-label="좋아요 버튼"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span></button
+                                                    ><button
+                                                        type="button"
+                                                        aria-label="댓글"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="M6.832 17.535a1.877 1.877 0 0 1 1.742-.25c1.035.375 2.194.59 3.428.59 4.87 0 8.123-3.145 8.123-6.25s-3.253-6.25-8.123-6.25c-4.87 0-8.122 3.145-8.122 6.25 0 1.25.484 2.453 1.394 3.484.336.38.5.88.46 1.387a6.92 6.92 0 0 1-.44 1.93 9.811 9.811 0 0 0 1.538-.887v-.004Zm-3.999 1.586c.07-.105.137-.21.2-.316.39-.649.76-1.5.835-2.457-1.172-1.332-1.863-2.961-1.863-4.723 0-4.488 4.475-8.125 9.997-8.125C17.526 3.5 22 7.137 22 11.625c0 4.488-4.475 8.125-9.998 8.125-1.448 0-2.823-.25-4.065-.7-.465.34-1.222.805-2.12 1.196a9.564 9.564 0 0 1-1.957.629c-.031.008-.062.012-.094.02-.171.03-.34.058-.515.074-.008 0-.02.004-.027.004-.2.02-.399.03-.598.03a.625.625 0 0 1-.445-1.066 5.606 5.606 0 0 0 .629-.797l.011-.019h.012Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="MuiDivider-root MuiDivider-horizontal joy-7xfzfj" />
+                                        <div class="MuiStack-root joy-1wn4vyh">
+                                            <div class="MuiStack-root joy-19xhkd9">
+                                                <div class="MuiStack-root joy-1155zbk">
+                                                    <a
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-gc678g"
+                                                        href="/profile/@nwjhyj"
+                                                        ><div
+                                                            class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-1eok34p"
+                                                        >
+                                                            <img
+                                                                alt="글 작성자 조승찬"
+                                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                                loading="lazy"
+                                                                class="MuiAvatar-img joy-1hy9t21"
+                                                            /></div
+                                                    ></a>
+                                                    <div class="MuiStack-root joy-lt33nj">
+                                                        <div class="MuiStack-root joy-ct9q29">
+                                                            <div class="MuiBox-root joy-12e5m3r">
+                                                                <a
+                                                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1liaz7p"
+                                                                    href="/profile/@nwjhyj"
+                                                                    ><span
+                                                                        class="MuiTypography-root MuiTypography-title-md joy-oqc1dx"
+                                                                        >조승찬</span
+                                                                    ></a
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="MuiStack-root joy-1o8jgee">
+                                                            <a
+                                                                href="/@jffkkk/community/custom/2540561/19531663"
+                                                                aria-label="2025. 4. 11. 21:37"
+                                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-b6ftch"
+                                                                ><time
+                                                                    class="MuiTypography-root MuiTypography-body-sm joy-ap3vt9"
+                                                                    >10시간 전</time
+                                                                ></a
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    aria-haspopup="menu"
+                                                    aria-expanded="false"
+                                                    aria-controls=":R26hiucsvakv4vafl7lqakq:"
+                                                    tabindex="0"
+                                                    aria-label="더보기"
+                                                    class="MuiMenuButton-root MuiMenuButton-variantOutlined MuiMenuButton-colorNeutral MuiMenuButton-sizeSm joy-ccwyls"
+                                                    type="button"
+                                                >
+                                                    <svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                    >
+                                                        <path
+                                                            d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="MuiStack-root joy-1fzkbs5">
+                                                <div class="MuiStack-root joy-j7qwjs">
+                                                    <p
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1yh0ndl"
+                                                    >
+                                                        <span
+                                                            aria-expanded="true"
+                                                            id=":R1kiucsvakv4vafl7lqakq:"
+                                                            class="MuiTypography-root MuiTypography-inherit joy-14eqw6i"
+                                                            >많이 서보께요 많이 서보께요많이 서보께요많이 서보께요많이
+                                                            서보께요많이 서보께요많이 서보께요많이 서보께요많이
+                                                            서보께요많이 서보께요많이 서보께요많이 서보께요많이
+                                                            서보께요많이 서보께요많이 서보께요많이 서보께요많이
+                                                            서보께요많이 서보께요많이 서보께요많이 서보께요</span
+                                                        >
+                                                    </p>
+                                                </div>
+                                                <div class="MuiBox-root joy-0">
+                                                    <div class="MuiBox-root joy-79elbk">
+                                                        <div class="slider-container" data-total="3">
+                                                            <div class="slider">
+                                                                <div class="swiper-slide active" data-index="1">
+                                                                    <div class="MuiBox-root joy-k20l12">
+                                                                        <img
+                                                                            class="MuiBox-root joy-1hwj4hf"
+                                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2025/04/11/21/37/bfcc7015208701979801588765.png?w=600&q=65"
+                                                                            loading="lazy"
+                                                                            alt="유저가 업로드한 3개의 이미지 중 1번째 이미지"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide" data-index="2">
+                                                                    <div class="MuiBox-root joy-k20l12">
+                                                                        <img
+                                                                            class="MuiBox-root joy-1hwj4hf"
+                                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2025/04/11/21/37/329bb11428554882840966157.png?w=600&q=65"
+                                                                            loading="lazy"
+                                                                            alt="유저가 업로드한 3개의 이미지 중 2번째 이미지"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide" data-index="3">
+                                                                    <div class="MuiBox-root joy-k20l12">
+                                                                        <img
+                                                                            class="MuiBox-root joy-1hwj4hf"
+                                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2025/04/11/21/37/07ece816475727182875282558.png?w=600&q=65"
+                                                                            loading="lazy"
+                                                                            alt="유저가 업로드한 3개의 이미지 중 3번째 이미지"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Previous Button -->
+                                                            <button
+                                                                aria-label="Previous slide"
+                                                                class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeSm prev-button joy-1fq8sld swiper-button-disabled"
+                                                                tabindex="0"
+                                                                aria-controls="swiper-wrapper-b86af18d10f2780f1"
+                                                                aria-disabled="false"
+                                                                type="button"
+                                                            >
+                                                                <svg
+                                                                    focusable="false"
+                                                                    aria-hidden="true"
+                                                                    viewBox="0 0 24 24"
+                                                                    width="24"
+                                                                    height="24"
+                                                                    fill="none"
+                                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                                >
+                                                                    <path
+                                                                        d="M8.713 11.332a.934.934 0 0 0 0 1.325l5.25 5.254a.937.937 0 0 0 1.324-1.324l-4.586-4.59 4.59-4.586a.937.937 0 0 0-1.324-1.324l-5.254 5.245Z"
+                                                                        fill="currentcolor"
+                                                                    ></path>
+                                                                </svg>
+                                                            </button>
+
+                                                            <!-- Next Button -->
+                                                            <button
+                                                                aria-label="Next slide"
+                                                                class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeSm next-button joy-dc70aw"
+                                                                tabindex="0"
+                                                                aria-controls="swiper-wrapper-b86af18d10f2780f1"
+                                                                aria-disabled="false"
+                                                                type="button"
+                                                            >
+                                                                <svg
+                                                                    focusable="false"
+                                                                    aria-hidden="true"
+                                                                    viewBox="0 0 24 24"
+                                                                    width="24"
+                                                                    height="24"
+                                                                    fill="none"
+                                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                                >
+                                                                    <path
+                                                                        d="M15.291 11.332a.934.934 0 0 1 0 1.325l-5.25 5.254a.937.937 0 0 1-1.324-1.324L13.303 12l-4.59-4.59a.937.937 0 0 1 1.324-1.324l5.254 5.245Z"
+                                                                        fill="currentcolor"
+                                                                    ></path>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="MuiStack-root joy-95g4uk">
+                                                <div class="MuiStack-root joy-axlq1k">
+                                                    <button
+                                                        type="button"
+                                                        aria-label="좋아요 버튼"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span></button
+                                                    ><button
+                                                        type="button"
+                                                        aria-label="댓글"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="M6.832 17.535a1.877 1.877 0 0 1 1.742-.25c1.035.375 2.194.59 3.428.59 4.87 0 8.123-3.145 8.123-6.25s-3.253-6.25-8.123-6.25c-4.87 0-8.122 3.145-8.122 6.25 0 1.25.484 2.453 1.394 3.484.336.38.5.88.46 1.387a6.92 6.92 0 0 1-.44 1.93 9.811 9.811 0 0 0 1.538-.887v-.004Zm-3.999 1.586c.07-.105.137-.21.2-.316.39-.649.76-1.5.835-2.457-1.172-1.332-1.863-2.961-1.863-4.723 0-4.488 4.475-8.125 9.997-8.125C17.526 3.5 22 7.137 22 11.625c0 4.488-4.475 8.125-9.998 8.125-1.448 0-2.823-.25-4.065-.7-.465.34-1.222.805-2.12 1.196a9.564 9.564 0 0 1-1.957.629c-.031.008-.062.012-.094.02-.171.03-.34.058-.515.074-.008 0-.02.004-.027.004-.2.02-.399.03-.598.03a.625.625 0 0 1-.445-1.066 5.606 5.606 0 0 0 .629-.797l.011-.019h.012Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="MuiDivider-root MuiDivider-horizontal joy-7xfzfj" />
+                                        <div class="MuiStack-root joy-1wn4vyh">
+                                            <div class="MuiStack-root joy-19xhkd9">
+                                                <div class="MuiStack-root joy-1155zbk">
+                                                    <a
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-gc678g"
+                                                        href="/profile/@nwjhyj"
+                                                        ><div
+                                                            class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-1eok34p"
+                                                        >
+                                                            <img
+                                                                alt="글 작성자 조승찬"
+                                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                                loading="lazy"
+                                                                class="MuiAvatar-img joy-1hy9t21"
+                                                            /></div
+                                                    ></a>
+                                                    <div class="MuiStack-root joy-lt33nj">
+                                                        <div class="MuiStack-root joy-ct9q29">
+                                                            <div class="MuiBox-root joy-12e5m3r">
+                                                                <a
+                                                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1liaz7p"
+                                                                    href="/profile/@nwjhyj"
+                                                                    ><span
+                                                                        class="MuiTypography-root MuiTypography-title-md joy-oqc1dx"
+                                                                        >조승찬</span
+                                                                    ></a
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="MuiStack-root joy-1o8jgee">
+                                                            <a
+                                                                href="/@jffkkk/community/custom/2540561/19531544"
+                                                                aria-label="2025. 4. 11. 21:27"
+                                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-b6ftch"
+                                                                ><time
+                                                                    class="MuiTypography-root MuiTypography-body-sm joy-ap3vt9"
+                                                                    >11시간 전</time
+                                                                ></a
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    aria-haspopup="menu"
+                                                    aria-expanded="false"
+                                                    aria-controls=":R26hj6csvakv4vafl7lqakq:"
+                                                    tabindex="0"
+                                                    aria-label="더보기"
+                                                    class="MuiMenuButton-root MuiMenuButton-variantOutlined MuiMenuButton-colorNeutral MuiMenuButton-sizeSm joy-ccwyls"
+                                                    type="button"
+                                                >
+                                                    <svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                    >
+                                                        <path
+                                                            d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="MuiStack-root joy-1fzkbs5">
+                                                <div class="MuiStack-root joy-j7qwjs">
+                                                    <p
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1yh0ndl"
+                                                    >
+                                                        <span
+                                                            aria-expanded="true"
+                                                            id=":R1kj6csvakv4vafl7lqakq:"
+                                                            class="MuiTypography-root MuiTypography-inherit joy-14eqw6i"
+                                                            >테스트입니다.</span
+                                                        >
+                                                    </p>
+                                                </div>
+                                                <div class="MuiBox-root joy-0">
+                                                    <div class="MuiBox-root joy-79elbk">
+                                                        <div class="slider-container" data-total="2">
+                                                            <div class="slider">
+                                                                <div class="swiper-slide active" data-index="1">
+                                                                    <div class="MuiBox-root joy-k20l12">
+                                                                        <img
+                                                                            class="MuiBox-root joy-1hwj4hf"
+                                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2025/04/11/21/27/bf8e732112702223273528601.png?w=600&q=65"
+                                                                            loading="lazy"
+                                                                            alt="유저가 업로드한 2개의 이미지 중 1번째 이미지"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide" data-index="2">
+                                                                    <div class="MuiBox-root joy-k20l12">
+                                                                        <img
+                                                                            class="MuiBox-root joy-1hwj4hf"
+                                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2025/04/11/21/27/4bdcb313993912203806044297.png?w=600&q=65"
+                                                                            loading="lazy"
+                                                                            alt="유저가 업로드한 2개의 이미지 중 2번째 이미지"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button
+                                                                aria-label="Previous slide"
+                                                                class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeSm prev-button joy-1fq8sld swiper-button-disabled"
+                                                                tabindex="-1"
+                                                                aria-controls="swiper-wrapper-310e2625c174b728"
+                                                                aria-disabled="true"
+                                                                type="button"
+                                                            >
+                                                                <svg
+                                                                    focusable="false"
+                                                                    aria-hidden="true"
+                                                                    viewBox="0 0 24 24"
+                                                                    width="24"
+                                                                    height="24"
+                                                                    fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                                >
+                                                                    <path
+                                                                        d="M8.713 11.332a.934.934 0 0 0 0 1.325l5.25 5.254a.937.937 0 0 0 1.324-1.324l-4.586-4.59 4.59-4.586a.937.937 0 0 0-1.324-1.324l-5.254 5.245Z"
+                                                                        fill="currentcolor"
+                                                                    ></path>
+                                                                </svg></button
+                                                            ><button
+                                                                aria-label="Next slide"
+                                                                class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeSm next-button joy-dc70aw"
+                                                                tabindex="0"
+                                                                aria-controls="swiper-wrapper-310e2625c174b728"
+                                                                aria-disabled="false"
+                                                                type="button"
+                                                            >
+                                                                <svg
+                                                                    focusable="false"
+                                                                    aria-hidden="true"
+                                                                    viewBox="0 0 24 24"
+                                                                    width="24"
+                                                                    height="24"
+                                                                    fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                                >
+                                                                    <path
+                                                                        d="M15.291 11.332a.934.934 0 0 1 0 1.325l-5.25 5.254a.937.937 0 0 1-1.324-1.324L13.303 12l-4.59-4.59a.937.937 0 0 1 1.324-1.324l5.254 5.245Z"
+                                                                        fill="currentcolor"
+                                                                    ></path>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="MuiStack-root joy-95g4uk">
+                                                <div class="MuiStack-root joy-axlq1k">
+                                                    <button
+                                                        type="button"
+                                                        aria-label="좋아요 버튼"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span></button
+                                                    ><button
+                                                        type="button"
+                                                        aria-label="댓글"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="M6.832 17.535a1.877 1.877 0 0 1 1.742-.25c1.035.375 2.194.59 3.428.59 4.87 0 8.123-3.145 8.123-6.25s-3.253-6.25-8.123-6.25c-4.87 0-8.122 3.145-8.122 6.25 0 1.25.484 2.453 1.394 3.484.336.38.5.88.46 1.387a6.92 6.92 0 0 1-.44 1.93 9.811 9.811 0 0 0 1.538-.887v-.004Zm-3.999 1.586c.07-.105.137-.21.2-.316.39-.649.76-1.5.835-2.457-1.172-1.332-1.863-2.961-1.863-4.723 0-4.488 4.475-8.125 9.997-8.125C17.526 3.5 22 7.137 22 11.625c0 4.488-4.475 8.125-9.998 8.125-1.448 0-2.823-.25-4.065-.7-.465.34-1.222.805-2.12 1.196a9.564 9.564 0 0 1-1.957.629c-.031.008-.062.012-.094.02-.171.03-.34.058-.515.074-.008 0-.02.004-.027.004-.2.02-.399.03-.598.03a.625.625 0 0 1-.445-1.066 5.606 5.606 0 0 0 .629-.797l.011-.019h.012Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="MuiDivider-root MuiDivider-horizontal joy-7xfzfj" />
+                                        <div class="MuiStack-root joy-1wn4vyh">
+                                            <div class="MuiStack-root joy-19xhkd9">
+                                                <div class="MuiStack-root joy-1155zbk">
+                                                    <a
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-gc678g"
+                                                        href="/profile/@lr3uee"
+                                                        ><div
+                                                            class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-1eok34p"
+                                                        >
+                                                            <img
+                                                                alt="댓글 작성자 박정근"
+                                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                                loading="lazy"
+                                                                class="MuiAvatar-img joy-1hy9t21"
+                                                            /></div
+                                                    ></a>
+                                                    <div class="MuiStack-root joy-lt33nj">
+                                                        <div class="MuiStack-root joy-ct9q29">
+                                                            <div class="MuiBox-root joy-12e5m3r">
+                                                                <a
+                                                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1liaz7p"
+                                                                    href="/profile/@lr3uee"
+                                                                    ><span
+                                                                        class="MuiTypography-root MuiTypography-title-md joy-oqc1dx"
+                                                                        >박정근</span
+                                                                    ></a
+                                                                >
+                                                            </div>
+                                                            <div class="MuiStack-root joy-2nqau9"></div>
+                                                        </div>
+                                                        <div class="MuiStack-root joy-1o8jgee">
+                                                            <a
+                                                                href="/@jffkkk/community/post/19423041"
+                                                                aria-label="2025. 4. 2. 15:53"
+                                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-b6ftch"
+                                                                ><time
+                                                                    class="MuiTypography-root MuiTypography-body-sm joy-ap3vt9"
+                                                                    >1주 전</time
+                                                                ></a
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    aria-haspopup="menu"
+                                                    aria-expanded="false"
+                                                    aria-controls=":r5:"
+                                                    tabindex="0"
+                                                    aria-label="더보기"
+                                                    class="MuiMenuButton-root MuiMenuButton-variantOutlined MuiMenuButton-colorNeutral MuiMenuButton-sizeSm joy-ccwyls"
+                                                    type="button"
+                                                >
+                                                    <svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"
+                                                    >
+                                                        <path
+                                                            d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="MuiStack-root joy-1fzkbs5">
+                                                <div class="MuiStack-root joy-yd8sa2">
+                                                    <div class="MuiStack-root joy-17qbax3">
+                                                        <div class="MuiStack-root joy-j7qwjs">
+                                                            <p
+                                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1yh0ndl"
+                                                            >
+                                                                <span
+                                                                    aria-expanded="true"
+                                                                    id=":r7:"
+                                                                    class="MuiTypography-root MuiTypography-inherit joy-14eqw6i"
+                                                                    >안녕하세요<br
+                                                                /></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="MuiStack-root joy-95g4uk">
+                                                <div class="MuiStack-root joy-axlq1k">
+                                                    <button
+                                                        type="button"
+                                                        aria-label="좋아요 버튼"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span></button
+                                                    ><button
+                                                        type="button"
+                                                        aria-label="댓글"
+                                                        class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeSm joy-1ut0ahw"
+                                                    >
+                                                        <span class="MuiButton-startDecorator joy-1312rwg"
+                                                            ><svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                                            >
+                                                                <path
+                                                                    d="M6.832 17.535a1.877 1.877 0 0 1 1.742-.25c1.035.375 2.194.59 3.428.59 4.87 0 8.123-3.145 8.123-6.25s-3.253-6.25-8.123-6.25c-4.87 0-8.122 3.145-8.122 6.25 0 1.25.484 2.453 1.394 3.484.336.38.5.88.46 1.387a6.92 6.92 0 0 1-.44 1.93 9.811 9.811 0 0 0 1.538-.887v-.004Zm-3.999 1.586c.07-.105.137-.21.2-.316.39-.649.76-1.5.835-2.457-1.172-1.332-1.863-2.961-1.863-4.723 0-4.488 4.475-8.125 9.997-8.125C17.526 3.5 22 7.137 22 11.625c0 4.488-4.475 8.125-9.998 8.125-1.448 0-2.823-.25-4.065-.7-.465.34-1.222.805-2.12 1.196a9.564 9.564 0 0 1-1.957.629c-.031.008-.062.012-.094.02-.171.03-.34.058-.515.074-.008 0-.02.004-.027.004-.2.02-.399.03-.598.03a.625.625 0 0 1-.445-1.066 5.606 5.606 0 0 0 .629-.797l.011-.019h.012Z"
+                                                                    fill="currentcolor"
+                                                                ></path></svg
+                                                        ></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="MuiBox-root joy-6yavch"></div>
+                                </div>
+                                <hr class="MuiDivider-root MuiDivider-horizontal joy-b3bhtg" />
+                            </section>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div role="presentation" class="MuiModal-root joy-8ijia1" style="display: none">
+            <div aria-hidden="true" open="" class="MuiModal-backdrop joy-qivq4z"></div>
+            <div tabindex="0" data-testid="sentinelStart"></div>
+            <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby=":r4:"
+                aria-describedby=":r5:"
+                tabindex="-1"
+                class="MuiModalDialog-root MuiModalDialog-variantOutlined MuiModalDialog-colorNeutral MuiModalDialog-sizeMd MuiModalDialog-layoutAdaptive joy-1ovga0x"
+            >
+                <div class="MuiBox-root joy-u4p24i">
+                    <h2 id=":r4:" class="MuiDialogTitle-root MuiDialogTitle-title-lg joy-1w4kr2w">커뮤니티 글 쓰기</h2>
+                    <button
+                        aria-label="닫기"
+                        class="MuiModalClose-root MuiModalClose-variantPlain MuiModalClose-colorNeutral MuiModalClose-sizeMd joy-dp90vh"
+                        type="button"
+                    >
+                        <svg
+                            focusable="false"
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            data-testid="CloseIcon"
+                            class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-c6bb0f"
+                        >
+                            <path
+                                d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id=":r5:" class="MuiDialogContent-root joy-1fagmb2">
+                    <div class="MuiStack-root joy-z0ctgv">
+                        <div class="MuiStack-root joy-yd8sa2">
+                            <div
+                                class="MuiTextarea-root MuiTextarea-variantOutlined MuiTextarea-colorNeutral MuiTextarea-sizeMd joy-1wj408h"
+                            >
+                                <textarea
+                                    rows="1"
+                                    aria-label="게시글 본문"
+                                    placeholder="내용을 입력하세요. (최대 2,000자)"
+                                    maxlength="2000"
+                                    class="MuiTextarea-textarea joy-12xes5x"
+                                    style="height: 24px; overflow: hidden"
+                                ></textarea
+                                ><textarea
+                                    aria-hidden="true"
+                                    class="MuiTextarea-textarea joy-12xes5x"
+                                    readonly=""
+                                    tabindex="-1"
+                                    style="
+                                        visibility: hidden;
+                                        position: absolute;
+                                        overflow: hidden;
+                                        height: 0px;
+                                        top: 0px;
+                                        left: 0px;
+                                        transform: translateZ(0px);
+                                        padding-top: 0px;
+                                        padding-bottom: 0px;
+                                        width: 446px;
+                                    "
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div class="MuiBox-root joy-0">
+                            <div class="MuiStack-root joy-1kkt86i">
+                                <div class="MuiStack-root joy-1xtd9ku">
+                                    <p class="MuiTypography-root MuiTypography-title-lg joy-mkgk3h">이미지</p>
+                                    <p class="MuiTypography-root MuiTypography-body-sm joy-abqe9u">최대 5장</p>
+                                </div>
+                            </div>
+                            <ul class="MuiStack-root joy-1p6iz8l">
+                                <li
+                                    class="MuiListItem-root MuiListItem-colorNeutral MuiListItem-variantPlain joy-1kmdnav"
+                                >
+                                    <button
+                                        aria-label="이미지 업로드 하기"
+                                        class="MuiIconButton-root MuiIconButton-variantSoft MuiIconButton-colorNeutral MuiIconButton-sizeMd joy-15s0qw7"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-2ik9c9"
+                                        >
+                                            <path
+                                                d="M12.938 4.813A.935.935 0 0 0 12 3.875a.935.935 0 0 0-.938.938v6.25h-6.25a.935.935 0 0 0-.937.937c0 .52.418.938.938.938h6.25v6.25c0 .519.417.937.937.937s.938-.418.938-.938v-6.25h6.25c.519 0 .937-.417.937-.937a.935.935 0 0 0-.938-.938h-6.25v-6.25Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                </li>
+                            </ul>
+                            <input
+                                accept="image/jpeg, image/png, image/heic, image/heif, image/webp"
+                                multiple=""
+                                type="file"
+                                style="display: none"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <hr class="MuiDivider-root MuiDivider-horizontal MuiDivider-insetContext joy-kn5871" />
+                <div data-last-child="" class="MuiDialogActions-root joy-1egx941">
+                    <button
+                        class="MuiButton-root MuiButton-variantSoft MuiButton-colorNeutral MuiButton-sizeMd joy-pikfwj post"
+                        type="button"
+                    >
+                        게시</button
+                    ><button
+                        class="MuiButton-root MuiButton-variantSoft MuiButton-colorNeutral MuiButton-sizeMd joy-pikfwj cancel"
+                        type="button"
+                    >
+                        취소
+                    </button>
+                </div>
+            </div>
+            <div tabindex="0" data-testid="sentinelEnd"></div>
+        </div>
+    </body>
+    <script src="/js/myPage/community-event.js"></script>
+    <script src="/js/main/main-modal.js"></script>
+</html>
