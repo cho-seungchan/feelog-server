@@ -18,7 +18,6 @@
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_community_post_reply_report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_community_post_report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_file.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_like.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_reply.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_reply_like.sql" dialect="MySQL" />
@@ -41,6 +40,5 @@
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_subscribe.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_tag.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/total.sql" dialect="MySQL" />
   </component>
 </project>
