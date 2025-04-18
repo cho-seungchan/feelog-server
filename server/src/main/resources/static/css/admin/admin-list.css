@@ -53,6 +53,7 @@
 .FundingPage_content_section {
     position: relative;
     margin-bottom: 120px;
+    left: 130px;
 }
 
 @media screen and (min-width: 1096px) {
@@ -68,7 +69,7 @@
 }
 
 .section-Container {
-    width: 72%;
+    width: 50%;
     height: auto;
     transition: opacity 200ms ease-in-out;
     display: none;
@@ -112,7 +113,7 @@
     margin-bottom: 15px;
     overflow: hidden;
     position: relative;
-    left: 82.5%;
+    left: 76.5%;
 }
 
 button, html [type="button"], [type="reset"], [type="submit"] {
@@ -131,7 +132,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     margin-bottom: 15px;
     overflow: hidden;
     position: relative;
-    left: 83.5%;
+    left: 78.5%;
 }
 
 .NoticePage__NoticeListWrapper {
@@ -153,7 +154,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
 .mainUserListDiv, .userListDiv {
     display: grid
 ;
-    grid-template-columns: 50px 100px 200px 450px 300px 200PX;
+    grid-template-columns: 50px 100px 400px 450px;
     align-items: center;
     text-align: center;
     border-bottom: 1px solid #ccc;
@@ -188,6 +189,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     margin-top: 10px;
     align-items: center;
     border-radius: 4px;
+    justify-content: center;
 }
 
 .hidden {
@@ -276,4 +278,8 @@ input[type=text] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.list-wrap{
+    max-width: 100%;
 }

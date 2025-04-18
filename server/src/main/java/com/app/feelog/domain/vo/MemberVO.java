@@ -21,7 +21,6 @@ public class MemberVO extends Period {
     private String memberFileName;
     private String memberFileSize;
     private MemberType memberType;
-    private String memberSuspend;
     private String memberNotificationPostReply;
     private String memberNotificationPostReplyLike;
     private String memberNotificationPostLike;
@@ -42,7 +41,6 @@ public class MemberVO extends Period {
         this.memberFileName = memberFileName;
         this.memberFileSize = memberFileSize;
         this.memberType = memberType;
-        this.memberSuspend = memberSuspend;
         this.memberNotificationPostReply = memberNotificationPostReply;
         this.memberNotificationPostReplyLike = memberNotificationPostReplyLike;
         this.memberNotificationPostLike = memberNotificationPostLike;

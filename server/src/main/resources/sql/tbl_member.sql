@@ -8,7 +8,6 @@ create table tbl_member (
                             member_file_path 		                    varchar(500) default '',
                             member_file_name 		                    varchar(500) default '',
                             member_type 		                        varchar(50) default '일반 회원',
-                            member_suspend 		                        varchar(50) default '',
                             member_notification_post_reply              varchar(50) ,
                             member_notification_post_reply_like         varchar(50) ,
                             member_notification_post_like               varchar(50) ,

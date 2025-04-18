@@ -23,7 +23,6 @@ public class MemberDTO {
     private String memberFileName;
     private String memberFileSize;
     private MemberType memberType;
-    private String memberSuspend;
     private String memberNotificationPostReply;
     private String memberNotificationPostReplyLike;
     private String memberNotificationPostLike;
@@ -45,7 +44,6 @@ public class MemberDTO {
                 .memberFileName(memberFileName)
                 .memberFileSize(memberFileSize)
                 .memberType(memberType)
-                .memberSuspend(memberSuspend)
                 .memberNotificationPostReply(memberNotificationPostReply)
                 .memberNotificationPostReplyLike(memberNotificationPostReplyLike)
                 .memberNotificationPostLike(memberNotificationPostLike)
