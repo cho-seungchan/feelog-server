@@ -22,6 +22,7 @@ public class KakaoController {
     private final KakaoService kakaoService;
     private final JoinService joinService;
 
+    // 2025.04.17 조승찬 :: 카카오 로그인
     @GetMapping("/kakao/login")
     public String login(String code) {
         // Authorization Code를 html a tag에서 요청해서 받아옴

@@ -28,7 +28,7 @@ public class CommonChallengeTask {
     private final ChallengeService challengeService;
 
     @SneakyThrows
-    @Scheduled(cron = "0 6 * * * *")
+    @Scheduled(cron = "0 0 10 * * *")
     public void park() throws UnsupportedEncodingException {
 
         System.out.println("======================================");

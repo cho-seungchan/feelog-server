@@ -160,7 +160,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // 로그인 버튼 이벤트 :: 서버에서 결과 받아서 뿌리는 거로 변경 필요
     document.querySelector(".flog-button-11").addEventListener("click", (e) => {
         e.preventDefault();
-        document.querySelector(".flog-div-40").style.display = "block";
+        // 입력 정보
+        const email = document.querySelector("input[name='email']").value;
+        const password = document.querySelector("input[name='password']").value;
+
+        // json 형태로 변환해서 서버로 전송
+        const data = { memberEmail: email, memberPassword: password };
+        requestLogin(data);
+
     });
 
     // 모달창 확인, x 버튼 클릭 이벤트

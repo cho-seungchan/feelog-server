@@ -1,7 +1,6 @@
 package com.app.feelog.domain.vo;
 
-import com.app.feelog.domain.enumeration.MemberStatus;
-import com.app.feelog.domain.enumeration.MemberType;
+import com.app.feelog.domain.enumeration.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -21,17 +20,20 @@ public class MemberVO extends Period {
     private String memberFileName;
     private String memberFileSize;
     private MemberType memberType;
-    private String memberSuspend;
-    private String memberNotificationPostReply;
-    private String memberNotificationPostReplyLike;
-    private String memberNotificationPostLike;
-    private String memberNotificationSubscribe;
-    private String memberNotificationCommunityPost;
-    private String memberNotificationMessage;
+    private MemberNotificationPostReply     memberNotificationPostReply;
+    private MemberNotificationPostReplyLike memberNotificationPostReplyLike;
+    private MemberNotificationPostLike      memberNotificationPostLike;
+    private MemberNotificationSubscribe     memberNotificationSubscribe;
+    private MemberNotificationCommunityPost memberNotificationCommunityPost;
+    private MemberNotificationMessage       memberNotificationMessage;
     private MemberStatus memberStatus;
 
     @Builder
-    public MemberVO(String createdDate, String updatedDate, Long id, String memberEmail, String memberPassword, String memberNickname, String memberIntroduce, String memberFilePath, String memberFileName, String memberFileSize, MemberType memberType, String memberSuspend, String memberNotificationPostReply, String memberNotificationPostReplyLike, String memberNotificationPostLike, String memberNotificationSubscribe, String memberNotificationCommunityPost, String memberNotificationMessage, MemberStatus memberStatus) {
+    public MemberVO(String createdDate, String updatedDate, Long id, String memberEmail, String memberPassword, String memberNickname, String memberIntroduce, String memberFilePath, String memberFileName, String memberFileSize, MemberType memberType,
+                    MemberNotificationPostReply memberNotificationPostReply, MemberNotificationPostReplyLike memberNotificationPostReplyLike,
+                    MemberNotificationPostLike memberNotificationPostLike, MemberNotificationSubscribe memberNotificationSubscribe,
+                    MemberNotificationCommunityPost memberNotificationCommunityPost, MemberNotificationMessage memberNotificationMessage,
+                    MemberStatus memberStatus) {
         super(createdDate, updatedDate);
         this.id = id;
         this.memberEmail = memberEmail;
@@ -42,7 +44,6 @@ public class MemberVO extends Period {
         this.memberFileName = memberFileName;
         this.memberFileSize = memberFileSize;
         this.memberType = memberType;
-        this.memberSuspend = memberSuspend;
         this.memberNotificationPostReply = memberNotificationPostReply;
         this.memberNotificationPostReplyLike = memberNotificationPostReplyLike;
         this.memberNotificationPostLike = memberNotificationPostLike;
