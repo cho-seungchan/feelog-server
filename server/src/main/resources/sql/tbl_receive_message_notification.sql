@@ -7,3 +7,4 @@ create table tbl_receive_message_notification (
           references tbl_receive_message(id)
 );
 
+

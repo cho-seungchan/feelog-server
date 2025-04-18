@@ -8,3 +8,5 @@ create table tbl_channel_post_file (
                                        constraint fk_channel_post_file_channel_post foreign key (post_id)
                                            references tbl_channel_post (id)
 );
+
+

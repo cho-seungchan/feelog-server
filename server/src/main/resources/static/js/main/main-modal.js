@@ -8,19 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const backdrop = document.querySelector(".feelog-header-mdl-div01");
 
         if (modal && openBtn && closeBtn && backdrop) {
-            console.log("들어옴 1");
             openBtn.addEventListener("click", () => {
-                console.log("들어옴 2");
                 modal.style.display = "flex";
             });
 
             closeBtn.addEventListener("click", () => {
-                console.log("들어옴 3");
                 modal.style.display = "none";
             });
 
             backdrop.addEventListener("click", () => {
-                console.log("들어옴 4");
                 modal.style.display = "none";
             });
         }

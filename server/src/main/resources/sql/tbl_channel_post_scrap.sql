@@ -11,3 +11,5 @@ create table tbl_channel_post_scrap (
     constraint fk_channel_post_scrap_channel_post foreign key (post_id)
     references tbl_post (id)
 );
+
+

@@ -8,4 +8,4 @@ create table tbl_notice(
     updated_date datetime default current_timestamp,
     constraint fk_notice_member foreign key (member_id)
                        references tbl_member(id)
-)
+);

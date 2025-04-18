@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.feelog.mapper.DiaryFileMapper">
+
+    <insert id="insert" parameterType="com.app.feelog.domain.vo.DiaryFileVO">
+        INSERT INTO tbl_diary_file (diary_id, file_id)
+        VALUES (#{diaryId}, #{fileId})
+    </insert>
+
+    <delete id="deleteByDiaryId" parameterType="long">
+        DELETE FROM tbl_diary_file WHERE diary_id = #{diaryId}
+    </delete>
+
+    <select id="selectFilesByDiaryId" resultType="com.app.feelog.domain.vo.FileVO">
+        SELECT f.id,
+               f.file_path,
+               f.file_name,
+               f.file_size,
+               f.file_status,
+               f.created_date,
+               f.updated_date
+        FROM tbl_file f
+                 JOIN tbl_diary_file df ON f.id = df.file_id
+        WHERE df.diary_id = #{diaryId}
+    </select>
+
+</mapper>
