@@ -14,7 +14,6 @@ import java.util.List;
 @Repository
 public class AdminDAO {
     private final AdminMapper adminMapper;
-    private final Pagination pagination;
 
     public void saveAdmin(MemberVO adminVO) {
         adminMapper.insertAdmin(adminVO);
