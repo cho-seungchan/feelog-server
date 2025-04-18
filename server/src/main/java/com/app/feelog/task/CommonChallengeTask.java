@@ -23,17 +23,17 @@ import java.util.Random;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class ChallengeTask {
+public class CommonChallengeTask {
 
     private final ChallengeService challengeService;
 
     @SneakyThrows
-//    @Scheduled(cron = "0 6 * * * *")
+    @Scheduled(cron = "0 0 10 * * *")
     public void park() throws UnsupportedEncodingException {
 
         System.out.println("======================================");
-        System.out.println("챌린지 선정 작업 시작................");
-        System.out.println("챌린지 선정 작업 시작................");
+        System.out.println(" 공통 챌린지 선정 작업 시작................");
+        System.out.println(" 공통 챌린지 선정 작업 시작................");
         System.out.println("======================================");
 
         // 공원 선정하기
@@ -43,8 +43,8 @@ public class ChallengeTask {
         selectIndoor();
 
         System.out.println("======================================");
-        System.out.println("챌린지 선정 작업 종료................");
-        System.out.println("챌린지 선정 작업 종료................");
+        System.out.println(" 공통 챌린지 선정 작업 종료................");
+        System.out.println(" 공통 챌린지 선정 작업 종료................");
         System.out.println("======================================");
 
 

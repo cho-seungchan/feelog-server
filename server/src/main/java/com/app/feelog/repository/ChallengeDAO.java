@@ -17,4 +17,16 @@ public class ChallengeDAO {
     public void insertCommonTask(CommonTaskVO common) {
         challengeMapper.insertCommonTask(common);
     }
+
+    public Long getmaxIdOfTask() {
+        return challengeMapper.getmaxIdOfTask();
+    };
+
+    public int checkIfExists(Long id) {
+        return challengeMapper.checkIfExists(id);
+    }
+
+    public void insertMemberTask(Long id) {
+        challengeMapper.insertMemberTask(id);
+    }
 }

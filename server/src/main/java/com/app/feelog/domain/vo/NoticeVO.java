@@ -19,8 +19,8 @@ public class NoticeVO extends Period{
 
     @Builder
 
-    public NoticeVO(String createdDate, String updatedData, Long id, String noticeTitle, String noticeContent, Long memberId, NoticeStatus noticeStatus) {
-        super(createdDate, updatedData);
+    public NoticeVO(String createdDate, String updatedDate, Long id, String noticeTitle, String noticeContent, Long memberId, NoticeStatus noticeStatus) {
+        super(createdDate, updatedDate);
         this.id = id;
         this.noticeTitle = noticeTitle;
         this.noticeContent = noticeContent;

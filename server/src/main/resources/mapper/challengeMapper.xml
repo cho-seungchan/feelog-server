@@ -24,4 +24,28 @@
             #{commonTaskReqPage}
         );
     </insert>
+
+    <select id="getmaxIdOfTask" resultType="long">
+        select coalesce(max(id), 0) FROM tbl_member_task_pool;
+    </select>
+
+    <select id="checkIfExists" resultType="_int">
+        select exists (
+            select 1 from  tbl_member_task_pool
+            where id = #{id}
+            and   member_task_pool_status = '정상'
+        )
+    </select>
+
+    <insert  id="insertMemberTask">
+        insert into tbl_member_task
+            (member_id, task_pool_id)
+        select
+            id,
+            #{id}
+        from tbl_member
+        where member_type = '일반 회원'
+          and member_status = '정상';
+    </insert>
+
 </mapper>

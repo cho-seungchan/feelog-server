@@ -1,7 +1,6 @@
 package com.app.feelog.domain.dto;
 
-import com.app.feelog.domain.enumeration.MemberStatus;
-import com.app.feelog.domain.enumeration.MemberType;
+import com.app.feelog.domain.enumeration.*;
 import com.app.feelog.domain.vo.MemberVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -23,12 +22,12 @@ public class MemberDTO {
     private String memberFileName;
     private String memberFileSize;
     private MemberType memberType;
-    private String memberNotificationPostReply;
-    private String memberNotificationPostReplyLike;
-    private String memberNotificationPostLike;
-    private String memberNotificationSubscribe;
-    private String memberNotificationCommunityPost;
-    private String memberNotificationMessage;
+    private MemberNotificationPostReply memberNotificationPostReply;
+    private MemberNotificationPostReplyLike memberNotificationPostReplyLike;
+    private MemberNotificationPostLike       memberNotificationPostLike;
+    private MemberNotificationSubscribe memberNotificationSubscribe;
+    private MemberNotificationCommunityPost  memberNotificationCommunityPost;
+    private MemberNotificationMessage        memberNotificationMessage;
     private MemberStatus memberStatus;
     private String createdDate;
     private String updatedDate;

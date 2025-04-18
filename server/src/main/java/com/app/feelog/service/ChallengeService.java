@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -51,5 +53,29 @@ public class ChallengeService {
         common.setCommonTaskReqPage(String.valueOf(index));
 
         challengeDAO.insertCommonTask(common.toVO());
+    }
+
+    public void challengePrivate() {
+
+        // 개인 task pool에서 최대 id 가져오기
+        Long maxIdOfTask = challengeDAO.getmaxIdOfTask();
+
+        boolean isTask = false;
+        Long id = 0l;
+        while(!isTask) {
+
+            // 랜덤 인덱스 추출
+            Random random = new Random();
+            id = random.nextLong(maxIdOfTask) + 1;
+
+            // 해당 id에 task가 존재하는지 확인
+            if (challengeDAO.checkIfExists(id) == 1){
+                isTask = true;
+            }
+        }
+
+        // 멤버 task 생성
+        challengeDAO.insertMemberTask(id);
+
     }
 }

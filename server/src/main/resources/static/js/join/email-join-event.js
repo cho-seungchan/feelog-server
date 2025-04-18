@@ -203,11 +203,11 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "../join/join.html";
     });
 
-    // 로그인 버튼 이벤트 :: 서버에서 결과 받아서 뿌리는 거로 변경 필요
-    document.querySelector(".flog-button-11").addEventListener("click", (e) => {
-        e.preventDefault();
-        document.querySelector(".flog-div-40").style.display = "block";
-    });
+    // 회원가입 버튼 이벤트 :: 서버에서 결과 받아서 뿌리는 거로 변경 필요
+    // document.querySelector(".flog-button-11").addEventListener("click", (e) => {
+    //     e.preventDefault();
+    //     document.querySelector(".flog-div-40").style.display = "block";
+    // });
 
     // 모달창 확인, x 버튼 클릭 이벤트
     document.querySelector(".flog-button-10").addEventListener("click", (e) => {

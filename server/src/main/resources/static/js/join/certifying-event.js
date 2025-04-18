@@ -2,7 +2,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     // 인증메일 보내기 버튼 이벤트 :: 서버에서 결과 받아서 뿌리는 거로 변경 필요
     document.querySelector(".flog-button-8").addEventListener("click", (e) => {
-        document.querySelector(".flog-div-40").style.display = "block";
+        e.preventDefault();
+        sendConfirmEmail();
     });
 
     // 모달창 확인, x 버튼 클릭 이벤트
@@ -12,4 +13,5 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".flog-svg-6").addEventListener("click", (e) => {
         document.querySelector(".flog-div-40").style.display = "none";
     });
+
 });
