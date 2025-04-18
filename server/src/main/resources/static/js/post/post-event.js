@@ -41,8 +41,6 @@ scrapButtons.forEach((button) => {
 
         if (!svg) return;
 
-        console.log("현재 svg 클래스:", svg.className);
-
         if (svg.classList.contains("post_menuButton_svg_01")) {
             svg.classList.remove("post_menuButton_svg_01");
             svg.classList.add("joy-1wbk7pq");
