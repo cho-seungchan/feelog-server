@@ -10,3 +10,4 @@ create table tbl_common_challenge (
                                       constraint fk_common_challenge_task foreign key (task_id)
                                           references tbl_common_task (id)
 );
+

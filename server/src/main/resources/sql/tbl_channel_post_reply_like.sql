@@ -10,3 +10,4 @@ create table tbl_channel_post_reply_like (
         constraint fk_channel_post_reply_like_reply foreign key (reply_id)
         references tbl_channel_post_reply (id)
 );
+

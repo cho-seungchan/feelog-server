@@ -6,3 +6,4 @@ create table tbl_post_like_notification (
         constraint fk_post_like_notification foreign key(post_like_id)
             references tbl_channel_post_like(id)
 );
+

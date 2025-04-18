@@ -9,3 +9,4 @@ create table tbl_member_task_pool (
         created_date 	            datetime default current_timestamp,
         updated_date 	            datetime default current_timestamp
 );
+

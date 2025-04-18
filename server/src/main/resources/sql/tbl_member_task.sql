@@ -8,3 +8,4 @@ create table tbl_member_task(
        constraint fk_member_challenge_task foreign key (task_pool_id)
            references tbl_member_task_pool (id)
 );
+

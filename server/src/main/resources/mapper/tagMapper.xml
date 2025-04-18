@@ -2,4 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.TagMapper">
 
+    <!-- 태그 저장 -->
+    <insert id="insertTag">
+        INSERT INTO tbl_tag (contents)
+        VALUES (#{contents})
+    </insert>
+
+    <!-- 다이어리-태그 연결 저장 -->
+    <insert id="insertDiaryTag">
+        INSERT INTO tbl_diary_tag (diary_id, tag_id)
+        VALUES (#{diaryId}, #{tagId})
+    </insert>
+
+    <!-- contents로 태그 검색 -->
+    <select id="findTagsByContents" resultType="com.app.feelog.domain.vo.TagVO">
+        SELECT id, contents, tag_status, created_date, updated_date
+        FROM tbl_tag
+        WHERE contents = #{contents}
+    </select>
+
 </mapper>

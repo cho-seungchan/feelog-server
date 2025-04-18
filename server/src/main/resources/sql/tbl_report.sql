@@ -6,3 +6,4 @@ create table tbl_report (
     updated_date 	    datetime default current_timestamp
 );
 
+

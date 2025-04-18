@@ -10,3 +10,5 @@ create table tbl_community_post_like (
     constraint fk_community_post_like_community_post foreign key (community_id)
     references tbl_community_post (id)
 );
+
+

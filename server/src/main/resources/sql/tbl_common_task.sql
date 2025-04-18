@@ -13,3 +13,4 @@ create table tbl_common_task (
                                  created_date 	            datetime default current_timestamp,
                                  updated_date 	            datetime default current_timestamp
 );
+

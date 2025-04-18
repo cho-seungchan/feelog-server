@@ -10,3 +10,6 @@ create table tbl_community_post_reply_like (
     constraint fk_community_post_reply_like_reply foreign key (reply_id)
     references tbl_community_post_reply (id)
 );
+
+
+
