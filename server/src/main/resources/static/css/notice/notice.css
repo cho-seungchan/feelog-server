@@ -89,9 +89,6 @@ body {
 }
 
 .main-div-01 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex
 ;
     -webkit-flex-direction: column;
@@ -1649,4 +1646,59 @@ strong, b {
     background-color: #f2f2f3;
     width: 32px;
     height: 32px;
+}
+
+.joy-1wbk7pq {
+    user-select: none;
+    margin: initial;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: calc(32px / 1.6);
+    width: 1em;
+    height: 1em;
+    color: #3478ff;
+}
+
+.joy-13ig9df {
+    user-select: none;
+    margin: 0 0 0 calc(0.375rem / -2);
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 18px;
+    width: 1em;
+    height: 1em;
+    color: #d41724;
+}
+
+.post_menuButton_svg_01 {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0 0 0 calc(-0.1875rem);
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 20px;
+    width: 1em;
+    height: 1em;
+    color: currentcolor;
+}
+
+.scrap-button_svg_01 {
+    user-select: none;
+    margin: initial;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: calc(32px / 1.6);
+    width: 1em;
+    height: 1em;
+    color: #76767f;
 }

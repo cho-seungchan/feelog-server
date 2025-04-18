@@ -43,8 +43,8 @@ scrapButtons.forEach((button) => {
 
         console.log("현재 svg 클래스:", svg.className);
 
-        if (svg.classList.contains("menuButton_svg_01")) {
-            svg.classList.remove("menuButton_svg_01");
+        if (svg.classList.contains("post_menuButton_svg_01")) {
+            svg.classList.remove("post_menuButton_svg_01");
             svg.classList.add("joy-1wbk7pq");
 
             svg.innerHTML = `
@@ -54,7 +54,7 @@ scrapButtons.forEach((button) => {
             console.log("----check----");
 
             svg.classList.remove("joy-1wbk7pq");
-            svg.classList.add("menuButton_svg_01");
+            svg.classList.add("post_menuButton_svg_01");
 
             svg.innerHTML = `
                 <path d="M4.5 3.875C4.5 2.84 5.34 2 6.375 2v17.242l5.082-3.629a.933.933 0 0 1 1.09 0l5.078 3.63V3.874H6.375V2h11.25c1.035 0 1.875.84 1.875 1.875v17.188a.938.938 0 0 1-1.48.762L12 17.526l-6.02 4.297a.938.938 0 0 1-1.48-.762V3.875Z" fill="currentcolor"></path>

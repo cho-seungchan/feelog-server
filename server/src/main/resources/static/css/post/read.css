@@ -2128,7 +2128,7 @@ textarea {
     margin-right: 0.375rem;
 }
 
-.menuButton_svg_01 {
+.post_menuButton_svg_01 {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -2141,7 +2141,7 @@ textarea {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    font-size: 18px;
+    font-size: 20px;
     width: 1em;
     height: 1em;
     color: currentcolor;
@@ -2774,6 +2774,15 @@ textarea {
 }
 
 .button_text_01 {
+    margin: 0;
+    display: block;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #d41724;
+}
+
+.button_text_02 {
     margin: 0;
     display: block;
     font-size: 16px;
