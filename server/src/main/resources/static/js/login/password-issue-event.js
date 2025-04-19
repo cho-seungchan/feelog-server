@@ -71,8 +71,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // 이메일 보내기 클릭 이벤트 ::
+    document.querySelector(".flog-button-11").addEventListener("click", (e) => {
+        e.preventDefault();
+        // 입력 정보
+        const email = document.querySelector("input[name='email']").value;
+        const data = { memberEmail: email };
+        requestPasswordIssue(data);
+
+    });
+
     // 뒤로가기 버튼 클릭 :: 로그인 첫 페이지로 이동
     document.querySelector(".flog-p-10").addEventListener("click", () => {
-        window.location.href = "../login/login.html";
+        window.location.href = "/login/login";
+    });
+
+
+    // 모달창 확인, x 버튼 클릭 이벤트
+    document.querySelector(".flog-button-10").addEventListener("click", (e) => {
+        document.querySelector(".flog-div-40").style.display = "none";
+    });
+    document.querySelector(".flog-svg-6").addEventListener("click", (e) => {
+        document.querySelector(".flog-div-40").style.display = "none";
     });
 });

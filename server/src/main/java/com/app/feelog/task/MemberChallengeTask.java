@@ -2,30 +2,21 @@
 
 package com.app.feelog.task;
 
-import com.app.feelog.service.ChallengeService;
+import com.app.feelog.mypage.service.ChallengeTaskService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Random;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class MemberChallengeTask {
 
-    private final ChallengeService challengeService;
+    private final ChallengeTaskService challengeService;
 
     @SneakyThrows
     @Scheduled(cron = "0 0 10 * * *")

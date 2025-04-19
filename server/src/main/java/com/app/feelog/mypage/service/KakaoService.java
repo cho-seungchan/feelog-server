@@ -1,6 +1,6 @@
 // 2025.04.17 조승찬
 
-package com.app.feelog.service;
+package com.app.feelog.mypage.service;
 
 import com.app.feelog.domain.dto.MemberDTO;
 import com.google.gson.JsonElement;

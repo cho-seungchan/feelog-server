@@ -1,20 +1,24 @@
 // 2025.04.16 조승찬
-package com.app.feelog.service;
+package com.app.feelog.mypage.service;
 
+import com.app.feelog.domain.dto.MemberTaskPoolDTO;
+import com.app.feelog.mypage.repository.ChallengeTaskDAO;
 import com.app.feelog.domain.dto.CommonTaskDTO;
-import com.app.feelog.repository.ChallengeDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class ChallengeService {
-    private final ChallengeDAO challengeDAO;
+public class ChallengeTaskService implements ToDTO{
+    private final ChallengeTaskDAO challengeTaskDAO;
 
     // 2025.04.16 조승찬 :: 서울시 공원 데이타를 공통 과제에 넣기
     public void challengePark(int index, JSONObject row) {
@@ -34,7 +38,7 @@ public class ChallengeService {
         common.setCommonTaskServiceName("SearchParkInfoService");
         common.setCommonTaskReqPage(String.valueOf(index));
 
-        challengeDAO.insertCommonTask(common.toVO());
+        challengeTaskDAO.insertCommonTask(common.toVO());
     }
 
     // 2025.04.16 조승찬 :: 서울시 문화 공간 데이타를 공통 과제 생성
@@ -52,13 +56,14 @@ public class ChallengeService {
         common.setCommonTaskServiceName("culturalSpaceInfo");
         common.setCommonTaskReqPage(String.valueOf(index));
 
-        challengeDAO.insertCommonTask(common.toVO());
+        challengeTaskDAO.insertCommonTask(common.toVO());
     }
 
+    // 2025.04.16 조승찬 :: 개인과제 생성하기
     public void challengePrivate() {
 
         // 개인 task pool에서 최대 id 가져오기
-        Long maxIdOfTask = challengeDAO.getmaxIdOfTask();
+        Long maxIdOfTask = challengeTaskDAO.getmaxIdOfTask();
 
         boolean isTask = false;
         Long id = 0l;
@@ -69,13 +74,39 @@ public class ChallengeService {
             id = random.nextLong(maxIdOfTask) + 1;
 
             // 해당 id에 task가 존재하는지 확인
-            if (challengeDAO.checkIfExists(id) == 1){
+            if (challengeTaskDAO.checkIfExists(id) == 1){
                 isTask = true;
             }
         }
 
         // 멤버 task 생성
-        challengeDAO.insertMemberTask(id);
+        challengeTaskDAO.insertMemberTask(id);
+
+    }
+
+    // 2025.04.19 조승찬 :: 개인과제 가져오기
+    public Optional<MemberTaskPoolDTO> getMemberTask(Long memberId) {
+
+        return Optional.ofNullable(
+                toMemberTaskPoolDTO(challengeTaskDAO.getMemberTask(memberId)
+                        .orElse(null)));
+    }
+
+    // 2025.04.19 조승찬 :: 공통 과제 가져오기
+    public List<CommonTaskDTO> getCommonTasks() {
+
+        return challengeTaskDAO.getCommonTasks()
+            .stream()
+            .map(this::toCommonTaskDTO)
+            .collect(Collectors.toList());
+    }
+
+    public void postMemberChallenge(Long memberId, Long taskId) {
+        challengeTaskDAO.postMemberChallenge(memberId, taskId);
+    }
+
+    public void postCommonChallenge(Long memberId, Long taskId) {
+        challengeTaskDAO.postCommonChallenge(memberId, taskId);
 
     }
 }

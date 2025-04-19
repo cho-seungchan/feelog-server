@@ -1,4 +1,4 @@
-/* 2025.04.05 조승찬 */
+/* 2025.04.08 조승찬 */
 body {
     margin: 0;
     min-width: 320px;
@@ -9,13 +9,10 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #ffffff;
-    /* padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom); */
 }
 body {
     margin: 0;
     color: #202022;
-    /* font-family: ; */
     font-size: 16px;
     line-height: 1.5;
     font-weight: 400;
@@ -145,28 +142,6 @@ body {
     font-size: 16px;
 }
 
-.flog-button-10 {
-    margin: initial;
-    color: #ffffff;
-    font-size: 14px;
-    min-height: 2.25rem;
-    padding-block: 0.375rem;
-    padding-inline: 1rem;
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-    border-radius: 8px;
-    border: none;
-    background-color: #1976d2;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    text-decoration: none;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    line-height: 1.5;
-    font-weight: 500;
-}
 .flog-a-2 {
     cursor: pointer;
     padding: 8px;
@@ -631,8 +606,7 @@ body {
     white-space: nowrap;
 }
 /* 헤더 여기까지 */
-
-/* 2단 헤더 여기부터 */
+/* 2단 헤더 시작 */
 .flog-div-12 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -664,44 +638,78 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
+
 .flog-nav-2 {
     width: 100%;
+    position: -webkit-sticky;
     position: sticky;
     background-color: #ffffff;
     z-index: 499;
-    border-bottom: 1px solid #dadadc;
+    border-bottom: 1px solid;
+    border-color: rgba(118 118 127 / 0.15);
 }
 @media (min-width: 0px) {
     .flog-nav-2 {
+        padding-left: 10px;
         top: 48px;
     }
 }
 @media (min-width: 744px) {
     .flog-nav-2 {
+        padding-left: 0px;
         min-height: 56px;
         top: 56px;
     }
 }
 .flog-ul-1 {
+    --ListDivider-gap: 0.375rem;
+    --ListItem-minHeight: 2.25rem;
+    --ListItem-paddingY: 0.25rem;
+    --ListItem-paddingX: 0.75rem;
+    --ListItem-gap: 0.625rem;
+    --ListItemDecorator-size: 2.5rem;
+    --Icon-fontSize: 24px;
+    --List-gap: 0px;
+    --List-nestedInsetStart: 0px;
+    --ListItem-paddingLeft: 0.75rem;
+    --ListItem-paddingRight: 0.75rem;
+    --unstable_List-childRadius: calc(max(8px - 12px, min(12px / 2, 8px / 2)) - 0px);
+    --ListItem-radius: calc(max(8px - 12px, min(12px / 2, 8px / 2)) - 0px);
+    --ListItem-startActionTranslateX: calc(0.5 * 0.75rem);
+    --ListItem-endActionTranslateX: calc(-0.5 * 0.75rem);
     margin: initial;
     font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    color: #202022;
+    color: #333333;
     font-weight: 400;
-    padding-block: 0.375rem;
-    padding-inline: 0.75rem;
+    padding-block: 12px;
+    padding-inline: 12px;
     box-sizing: border-box;
     border-radius: 8px;
     list-style: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
     position: relative;
+    --variant-borderWidth: 0px;
+    color: #333333;
+    --unstable_List-borderWidth: 0px;
     overflow-x: auto;
     max-width: 1144px;
     margin-inline: auto;
     padding-block: 0px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     scrollbar-width: none;
 }
 @media (min-width: 0px) {
@@ -710,7 +718,7 @@ body {
         gap: 16px;
         -webkit-box-pack: start;
         -ms-flex-pack: start;
-        -webkit-justify-content: flex-start;
+        -webkit-justify-content: center;
         justify-content: flex-start;
     }
 }
@@ -724,28 +732,90 @@ body {
         justify-content: center;
     }
 }
+.flog-a-7:not([hidden]) {
+    --_ListItem-display: flex;
+}
+
+.flog-a-7 {
+    --ListItemButton-marginInline: calc(-1 * 12px) calc(-1 * 12px);
+    --ListItemButton-marginBlock: calc(-1 * 8px);
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 10px;
+    margin-inline: 0px;
+    --unstable_actionRadius: calc(8px - 0px);
+    box-sizing: border-box;
+    display: flex;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    list-style-type: disc;
+    position: relative;
+    padding-block-start: 8px;
+    padding-block-end: 8px;
+    -webkit-padding-start: 12px;
+    padding-inline-start: 12px;
+    -webkit-padding-end: 12px;
+    padding-inline-end: 12px;
+    margin-block-start: 0px;
+    min-block-size: 36px;
+    --variant-borderWidth: 0px;
+    color: #333333;
+    padding-inline: 4px;
+    border-bottom: 2px solid;
+    border-color: #666666;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+@media (min-width: 0px) {
+    .flog-a-7 {
+        height: 48px;
+    }
+}
+
+@media (min-width: 744px) {
+    .flog-a-7 {
+        height: 56px;
+    }
+}
+
 .flog-ul-1.FeelogList-sizeMd {
     --ListItem-minHeight: 40px;
 }
 .flog-a-6 {
-    top: -4px;
-    margin-inline: 1.25rem 1.25rem;
-    margin-block: -0.25rem;
+    --ListItemButton-marginInline: calc(-1 * 12px) calc(-1 * 12px);
+    --ListItemButton-marginBlock: calc(-1 * 8px);
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    gap: 0.625rem;
+    gap: 10px;
+    margin-inline: 0px;
+    --unstable_actionRadius: calc(8px - 0px);
     box-sizing: border-box;
+    border-radius: 8px;
     display: flex;
+    -webkit-flex: none;
+    -ms-flex: none;
     flex: none;
     list-style-type: disc;
     position: relative;
-    padding-block-start: 0.25rem;
-    padding-block-end: 0.25rem;
-    padding-inline-start: 0.75rem;
-    padding-inline-end: 0.75rem;
+    padding-block-start: 8px;
+    padding-block-end: 8px;
+    -webkit-padding-start: 12px;
+    padding-inline-start: 12px;
+    -webkit-padding-end: 12px;
+    padding-inline-end: 12px;
     margin-block-start: 0px;
-    min-height: 2.25rem;
-    color: #202022;
-    border-bottom: 2px solid #ffffff;
+    min-block-size: 36px;
+    --variant-borderWidth: 0px;
+    color: #333333;
+    padding-inline: 4px;
+    border-bottom: 2px solid;
+    border-color: #f5f5f5;
+    -webkit-text-decoration: none;
     text-decoration: none;
 }
 @media (min-width: 0px) {
@@ -759,69 +829,36 @@ body {
     }
 }
 .flog-a-6:not([hidden]) {
-    display: flex;
+    --_ListItem-display: flex;
 }
 .flog-p-4 {
-    font-size: calc(1em * 1.5);
+    --Icon-fontSize: calc(1em * 1.5);
     margin: 0px;
     display: block;
     font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    color: #a4a4a8;
+    color: #333333;
     font-weight: 400;
+    color: #b3b3b3;
+    -webkit-text-decoration: none;
     text-decoration: none;
     white-space: nowrap;
-}
-
-.flog-a-7 {
-    top: -4px;
-    margin-inline: 1.25rem 1.25rem;
-    margin-block: -0.25rem;
-    align-items: center;
-    gap: 0.625rem;
-    box-sizing: border-box;
-    display: flex;
-    flex: none;
-    list-style-type: disc;
-    position: relative;
-    padding-block-start: 0.25rem;
-    padding-block-end: 0.25rem;
-    padding-inline-start: 0.75rem;
-    padding-inline-end: 0.75rem;
-    margin-block-start: 0px;
-    min-height: 2.25rem;
-    color: #202022;
-    border-bottom: 2px solid #202022;
-    text-decoration: none;
-}
-@media (min-width: 0px) {
-    .flog-a-7 {
-        height: 48px;
-    }
-}
-@media (min-width: 744px) {
-    .flog-a-7 {
-        height: 60px;
-    }
-}
-.flog-a-7:not([hidden]) {
-    display: flex;
 }
 .flog-p-5 {
-    font-size: calc(1em * 1.5);
+    --Icon-fontSize: calc(1em * 1.5);
     margin: 0px;
     display: block;
     font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    color: #202022;
-    font-weight: 700;
+    color: #333333;
     text-decoration: none;
     white-space: nowrap;
+    font-weight: 700;
 }
-/* 2단 헤더 여기까지 */
-.flog-main-5 {
+/* 2단 헤더 끝 */
+.flog-main-1 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -830,40 +867,25 @@ body {
     -ms-flex-direction: column;
     flex-direction: column;
     width: 100%;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-}
-.flog-form-3 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 100%;
-    max-width: 640px;
+    max-width: 1144px;
 }
 @media (min-width: 0px) {
-    .flog-form-3 {
-        width: 360px;
-        gap: 32px;
-        padding-top: 80px;
+    .flog-main-1 {
+        padding: 65px 16px;
     }
 }
 @media (min-width: 744px) {
-    .flog-form-3 {
-        width: 100%;
-        gap: 40px;
-        padding-top: 90px;
+    .flog-main-1 {
+        padding: 85px 32px;
     }
 }
-.flog-form-1 {
+@media (min-width: 1132px) {
+    .flog-main-1 {
+        padding: 85px 32px;
+    }
+}
+
+.flog-section-2 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -871,9 +893,24 @@ body {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 40px;
+    width: 100%;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
 }
-.flog-div-56 {
+@media (min-width: 0px) {
+    .flog-section-2 {
+        margin-left: 15px;
+        gap: 12px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-section-2 {
+        margin-left: 0px;
+        gap: 24px;
+    }
+}
+.flog-div-25 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -881,29 +918,7 @@ body {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 10px;
-}
-.flog-label-3 {
-    font-size: calc(1.25 * 1em);
-    -webkit-tap-highlight-color: transparent;
-    align-self: flex-start;
-    display: flex;
-    gap: 2px;
-    align-items: center;
-    flex-wrap: wrap;
-    user-select: none;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.5;
-    color: #202022;
-    margin: 0px;
-}
-.flog-div-114 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+    width: 100%;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -911,40 +926,127 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    gap: 16px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
-.flog-div-115 {
-    width: 96px;
-    height: 96px;
-    position: relative;
+@media (min-width: 0px) {
+    .flog-section-2 {
+        gap: 12px;
+    }
 }
-.flog-div-59 {
-    position: relative;
+@media (min-width: 744px) {
+    .flog-section-2 {
+        gap: 24px;
+    }
 }
-.flog-div-116 {
-    margin-inline-start: 0px;
-    box-shadow: none;
-    position: relative;
+
+.flog-h2-3 {
+    --Icon-fontSize: 1.33334em;
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.33334;
+    letter-spacing: -0.025em;
+    color: #666666;
+}
+
+@media (min-width: 0px) {
+    .flog-h2-3 {
+        font-size: 16px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-h2-3 {
+        margin-left: 0px;
+        font-size: 24px;
+    }
+}
+.flog-div-26 {
+    --Grid-columns: 1;
+    --Grid-columnSpacing: 24px;
+    --Grid-rowSpacing: 16px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    min-width: 0;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    line-height: 1;
-    overflow: hidden;
-    border-radius: 50%;
-    user-select: none;
-    color: #202022;
-    background-color: #f2f2f3;
-    width: 96px;
-    height: 96px;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: calc(24px / -2) calc(24px / -2);
 }
-.flog-div-29 {
-    position: relative;
+@media (min-width: 744px) {
+    .flog-div-26 {
+        --Grid-columns: 2;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-26 {
+        --Grid-rowSpacing: 24px;
+    }
+}
+@media (min-width: 0px) {
+    .flog-div-26 {
+        margin-bottom: 4px;
+        gap: 0px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-26 {
+        margin-left: 0px;
+        margin-bottom: 14px;
+        gap: 24px;
+    }
+}
+.flog-div-26 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flog-section-3 {
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 8.33%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 8px 8px;
+    overflow: hidden;
+}
+
+@media (min-width: 0px) {
+    .flog-section-3 {
+        flex: 0 0 calc(100% - 12px);
+        box-sizing: border-box;
+    }
+}
+@media (min-width: 744px) {
+    .flog-section-3 {
+        flex: 0 0 calc(50% - 12px);
+        box-sizing: border-box;
+    }
+}
+.flog-section-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
 }
-.flog-div-117 {
+
+.flog-div-27 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -952,607 +1054,331 @@ body {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 6px;
-    overflow: hidden;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    min-width: 0;
-}
-.flog-div-80 {
-    background-color: #ffffff;
-    position: relative;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #202022;
-    font-weight: 400;
-    border: 1px solid #dadadc;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 8px;
-    overflow: hidden;
-}
-.flog-p-17 {
-    font-size: calc(1em * 1.5);
-    margin: 0px;
-    display: block;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #a4a4a8;
-    font-weight: 400;
-    padding-left: 12px;
-    overflow: hidden;
-    overflow-wrap: anywhere;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-}
-.flog-button-14 {
-    margin: initial;
-    color: #202022;
-    font-size: 14px;
-    min-height: 2.25rem;
-    padding-block: 0.375rem;
-    padding-inline: 1rem;
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-    border-radius: 8px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    text-decoration: none;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    line-height: 1.5;
-    font-weight: 500;
-    border: 1px solid #dadadc;
-    border-right: none;
-    flex-shrink: 0;
-}
-.flog-button-14.FeelogButton-sizeMd {
-    min-height: 40px;
-    font-size: 16px;
-}
-
-.flog-div-117 > .FeelogStack-root:last-child {
     width: 100%;
-}
-.flog-div-81 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    color: #a4a4a8;
-}
-.flog-p-11 {
-    font-size: calc(1em * 1.5);
-    margin: 0px;
-    display: block;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #a4a4a8;
-    font-weight: 400;
-}
-.flog-div-49 {
-    width: 100%;
-    margin: 0.5rem 0;
-    align-self: flex-start;
-    color: #d32f2f;
-    font-size: 14px;
-    line-height: 125%;
-    display: flex;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
     position: relative;
-    flex-direction: column;
-    color: #1976d2;
-    font-size: 14px;
-    line-height: 125%;
 }
-.flog-label-4 {
-    color: #3478ff;
-}
-.flog-div-83 {
-    border-radius: 8px;
-    box-sizing: border-box;
-    box-shadow: none;
-    min-width: 0;
-    min-height: 2.25rem;
-    cursor: text;
-    position: relative;
-    display: flex;
-    padding-inline: 0.75rem;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #202022;
-    font-weight: 400;
-    border: 1px solid #dadadc;
-    background-color: #ffffff;
-}
-.flog-div-83:not([data-skip-inverted-colors]) {
-    border-color: #dadadc;
-}
-.flog-div-83.FeelogInput-sizeMd {
-    min-height: 40px;
-}
-.flog-input-1 {
-    border: none;
-    min-width: 0;
-    outline: 0;
-    padding: 0;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    color: inherit;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-style: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    text-overflow: ellipsis;
-}
-.flog-div-52 {
-    font-size: calc(1.5 * 1em);
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #a4a4a8;
-    margin: 0px;
-}
-.flog-div-118 {
-    border-radius: 8px;
-    box-sizing: border-box;
-    box-shadow: none;
-    min-width: 0;
-    min-height: 2.25rem;
-    cursor: text;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding-inline-start: 0.75rem;
-    padding-block: 0.375rem;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #202022;
-    font-weight: 400;
-    border: 1px solid #dadadc;
-    background-color: #f2f2f3;
-}
-.flog-div-118:not([data-inverted-colors="false"]) {
-    border-color: #dadadc;
-}
-.flog-div-118.FeelogTextarea-variantOutlined {
-    background-color: transparent;
-}
-.flog-textarea-1 {
-    resize: none;
-    border: none;
-    min-width: 0;
-    outline: 0;
-    padding: 0;
-    padding-inline-end: 0.75rem;
-    flex: auto;
-    align-self: stretch;
-    color: inherit;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-style: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-}
-.flog-div-52 {
-    font-size: calc(1.5 * 1em);
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #a4a4a8;
-    margin: 0px;
-}
-.flog-div-119 {
+.flog-div-28 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    -webkit-justify-content: flex-end;
-    justify-content: flex-end;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
 }
-.flog-button-10 {
-    margin: initial;
-    color: #ffffff;
-    font-size: 14px;
-    min-height: 2.25rem;
-    padding-block: 0.375rem;
-    padding-inline: 1rem;
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-    border-radius: 8px;
-    border: none;
-    background-color: #1976d2;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+@media (min-width: 0px) {
+    .flog-div-28 {
+        gap: 12px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-28 {
+        gap: 20px;
+    }
+}
+.flog-a-8 {
+    overflow: hidden;
     position: relative;
-    text-decoration: none;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    line-height: 1.5;
-    font-weight: 500;
 }
-.flog-button-10.FeelogButton-sizeMd {
-    min-height: 40px;
-    font-size: 16px;
+@media (min-width: 0px) {
+    .flog-a-8 {
+        min-width: 72px;
+        width: 72px;
+        height: 96px;
+        border-radius: 8px;
+    }
 }
-
-/* hover */
-.flog-button-14:hover {
-    background-color: #e0e0e2; /* 기존 색상보다 살짝 더 진한 색 */
-    color: #1a1a1d; /* 글자 색상도 조금 더 진하게 설정 */
+@media (min-width: 744px) {
+    .flog-a-8 {
+        min-width: 128px;
+        width: 128px;
+        height: 172px;
+        border-radius: 12px;
+    }
 }
-
-/* 포커스 일 때 파란색 */
-.flog-div-50.Feelog-focused,
-.flog-div-83.Feelog-focused,
-.flog-div-118.Feelog-focused {
-    border-color: #3478ff;
+.flog-div-29 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
-
-/* 모달창 시작 */
-
-.flog-div-40 {
-    background-color: rgba(200, 200, 200, 0.4);
-    --unstable_popup-zIndex: calc(1000 + 1);
-    position: fixed;
-    z-index: 1000;
-    inset: 0px;
-}
-.flog-div-42 {
-    --Icon-color: #666666;
-    --Card-childRadius: max((8px - 1px) - 20px, min(20px / 2, (8px - 1px) / 2));
-    --AspectRatio-radius: var(--Card-childRadius);
-    --unstable_actionMargin: calc(-1 * 1px);
-    --unstable_actionRadius: 8px;
-    --CardCover-radius: calc(8px - 1px);
-    --CardOverflow-offset: calc(-1 * 20px);
-    --CardOverflow-radius: calc(8px - 1px);
-    --Divider-inset: calc(-1 * 20px);
-    --Card-radius: 8px;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333333;
-    font-weight: 400;
-    --variant-borderWidth: 1px;
-    box-sizing: border-box;
-    box-shadow: 0 0 #000, 0px 2px 8px -2px rgba(21, 21, 21, 0.08), 0px 6px 12px -2px rgba(21, 21, 21, 0.08);
-    min-width: min(calc(100vw - 2 * 20px), 300px);
+.flog-a-8:after {
+    display: block;
+    content: "";
     position: absolute;
-    --ModalDialog-vertical-padding: 44px;
-    --Card-padding: 20px;
-    top: var(--ModalDialog-vertical-padding);
-    left: 50%;
-    width: 320px;
-    height: 175px;
-    transform: translateX(-50%);
-    max-height: calc(100% - 4 * 20px);
-    padding: 20px;
-    border-radius: 8px;
-    border-color: #cccccc;
-    outline: 0px;
-    border-width: 0px;
-    gap: 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(0, 0, 0, 7.5%);
 }
-.flog-h2-4 {
-    --Icon-fontSize: calc(1em * 1.25);
+.flog-div-30 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    gap: clamp(4px, 0.375em, 0.75rem);
-    margin: 0px;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1.25;
-    color: inherit;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
 }
-.flog-button-9 {
+@media (min-width: 0px) {
+    .flog-div-30 {
+        gap: 12px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-30 {
+        gap: 13px;
+    }
+}
+@media (min-width: 0px) {
+    .flog-div-30 {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-30 {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+}
+.flog-a-9 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    padding-right: 8px;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+.flog-h3-1 {
+    --Icon-fontSize: 1.5em;
+    margin: 0px;
+    display: -webkit-box;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: -0.025em;
+    color: #202022;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+@media (min-width: 0px) {
+    .flog-h3-1 {
+        font-size: 16px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-h3-1 {
+        font-size: 20px;
+    }
+}
+.flog-p-6 {
+    --Icon-fontSize: 1.5em;
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #757575;
+}
+@media (min-width: 0px) {
+    .flog-p-6 {
+        margin-bottom: 6px;
+        font-size: 14px;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+}
+
+@media (min-width: 744px) {
+    .flog-p-6 {
+        margin-bottom: 8px;
+        font-size: 16px;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+}
+.flog-p-7 {
+    --Icon-fontSize: calc(1em * 1.5);
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: #202022;
+    color: #76767f;
+}
+
+.flog-div-31 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 6px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.flog-button-6 {
     --Icon-margin: initial;
-    --Icon-color: #666666;
-    --Icon-fontSize: calc(32px / 1.5);
+    --Icon-color: #76767f;
+    --IconButton-size: 32px;
+    --Icon-fontSize: 20px;
     --CircularProgress-size: 20px;
     --CircularProgress-thickness: 2px;
     min-width: 32px;
     min-height: 32px;
-    font-size: 16px;
-    padding-inline: 0.25rem;
+    font-size: 14px;
+    padding-inline: 2px;
     -webkit-tap-highlight-color: transparent;
-    padding-block: 0px;
+    padding-block: 0;
     font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     font-weight: 500;
     margin: 0px;
+    border-radius: 8px;
     border: none;
     box-sizing: border-box;
     background-color: transparent;
     cursor: pointer;
     display: inline-flex;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    --variant-borderWidth: 0px;
-    position: absolute;
-    z-index: 1;
-    top: 16px;
-    right: 16px;
-    border-radius: 6px;
-    color: #999999;
-}
-.flog-svg-6 {
-    user-select: none;
-    margin: 0px;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    fill: currentcolor;
-    flex-shrink: 0;
-    font-size: 24px;
-    color: #666666;
-}
-.flog-svg-6 {
-    user-select: none;
-    margin: 0px;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    fill: currentcolor;
-    flex-shrink: 0;
-    font-size: 24px;
-    color: #666666;
-}
-.flog-div-44 {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-direction: row-reverse;
-    z-index: 1;
-    padding: 12px 20px;
-    gap: 8px;
-    margin-left: calc(-1 * 20px);
-    margin-right: calc(-1 * 20px);
-    margin-bottom: calc(-1 * 20px);
-    --Button-radius: unset;
-    --IconButton-radius: unset;
-}
-.flog-div-42 .FeelogDialogActions-root {
-    padding-top: 8px;
-    padding-bottom: 20px;
-}
-.flog-button-10 {
-    --Icon-margin: initial;
-    --Icon-color: currentColor;
-    --Icon-fontSize: 24px;
-    --CircularProgress-size: 20px;
-    --CircularProgress-thickness: 2px;
-    --Button-gap: 0.5rem;
-    min-height: 36px;
-    font-size: 14px;
-    padding-block: 6px;
-    padding-inline: 16px;
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-    border-radius: 6px;
-    margin: 0px;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
     justify-content: center;
     position: relative;
-    text-decoration: none;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    line-height: 1.5;
     --variant-borderWidth: 0px;
-    color: #ffffff;
-    background-color: #3478ff;
-    font-weight: 500;
-}
-.flog-div-44 > :not(.FeelogIconButton-root) {
-    flex: 0 0 auto;
-}
-.flog-div-43 {
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-    column-gap: 20px;
-    row-gap: max(2px, calc(0.1875 * 20px));
-    margin-left: calc(-1 * 20px);
-    margin-right: calc(-1 * 20px);
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.25;
-    color: #666666;
-    flex: 9999 1 0%;
-    overflow: auto;
-    padding: 20px;
-}
-/* 모달창 끝 */
-/*비밀번호 변경 시작*/
-.flog-div-49 {
-    --unstable_RadioGroup-margin: 0.5rem 0;
-    --FormLabel-alignSelf: flex-start;
-    --FormLabel-margin: 0 0 0.375rem 0;
-    --FormHelperText-margin: 0.375rem 0 0 0;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    --FormLabel-asteriskColor: #3478ff;
-    --FormLabel-fontSize: 14px;
-    --FormLabel-lineHeight: 125%;
-    --FormHelperText-fontSize: 14px;
-    --FormHelperText-lineHeight: 150%;
-}
-.flog-label-1 {
-    --Icon-fontSize: calc(125% * 1em);
-    -webkit-tap-highlight-color: transparent;
-    align-self: flex-start;
-    display: flex;
-    gap: 2px;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-wrap: wrap;
-    user-select: none;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 125%;
     color: #202022;
-    margin: 0 0 0.375rem;
+    --IconButton-size: 32px;
 }
-.flog-div-50.FeelogInput-sizeMd {
-    --Input-minHeight: 40px;
-}
-.flog-div-50:not([data-skip-inverted-colors]) {
-    --_Input-focusedHighlight: #3478ff;
-    --Input-focusedHighlight: #3478ff;
-}
-.flog-div-50 {
-    box-sizing: border-box;
-    min-width: 0px;
-    min-height: 2.25rem;
-    cursor: text;
-    position: relative;
-    display: flex;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #202022;
-    font-weight: 400;
-    background-color: #ffffff;
-    box-shadow: none;
-    padding-inline: 0.75rem;
-    border-radius: 8px;
-    border-color: #dadadc;
-    border: 1px solid #e0e0e0;
-}
-.flog-div-50::before {
-    box-sizing: border-box;
-    content: "";
-    display: block;
-    position: absolute;
+.flog-button-6:disabled {
     pointer-events: none;
-    inset: 0px;
-    z-index: 1;
-    border-radius: inherit;
-    margin: calc(1px * -1);
-    box-shadow: #3478ff;
+    cursor: default;
+    --Icon-color: currentColor;
+    color: #a4a4a8;
 }
-.flog-input-2 {
-    border: none;
-    min-width: 0px;
-    outline: 0px;
-    padding: 0px;
-    flex: 1 1 0%;
-    color: inherit;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-style: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    text-overflow: ellipsis;
+.flog-button-6.FeelogIconButton-sizeSm {
+    --Icon-fontSize: 20px;
+    min-width: 32px;
+    min-height: 32px;
 }
-.flog-div-51 {
-    --Button-margin: 0 calc(min(calc(0.75rem - (40px - 2 * 1px - min(1.75rem, 40px)) / 2), 0.75rem) * -1) 0 0;
-    --IconButton-margin: 0 calc(min(calc(0.75rem - (40px - 2 * 1px - min(1.75rem, 40px)) / 2), 0.75rem) * -1) 0 0;
-    --Icon-margin: 0 calc(0.75rem / -4) 0 0;
-    display: inherit;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-inline-start: 0.5rem;
-    color: #76767f;
-    cursor: initial;
-}
-.flog-button-2.FeelogIconButton-sizeMd {
-    --Icon-fontSize: calc(min(1.75rem, 40px) / 1.667);
-    min-width: min(1.75rem, 40px);
-    min-height: min(1.75rem, 40px);
-}
-.flog-button-2 {
+.flog-button-6 {
     --Icon-margin: initial;
-    --Icon-color: #202022;
-    --Icon-fontSize: calc(2.25rem / 1.5);
+    --Icon-color: #76767f;
+    --IconButton-size: 32px;
+    --Icon-fontSize: 20px;
     --CircularProgress-size: 20px;
     --CircularProgress-thickness: 2px;
-    min-width: 2.25rem;
-    min-height: 2.25rem;
-    font-size: 16px;
-    padding-inline: 0.25rem;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 14px;
+    padding-inline: 2px;
     -webkit-tap-highlight-color: transparent;
-    padding-block: 0px;
+    padding-block: 0;
     font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     font-weight: 500;
-    margin: auto;
+    margin: 0px;
     border-radius: 8px;
     border: none;
     box-sizing: border-box;
     background-color: transparent;
     cursor: pointer;
     display: inline-flex;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    --variant-borderWidth: 0px;
+    color: #202022;
+    --IconButton-size: 32px;
+}
+.flog-button-6:disabled {
+    pointer-events: none;
+    cursor: default;
+    --Icon-color: currentColor;
+    color: #a4a4a8;
+}
+.flog-button-7 {
+    --Icon-margin: initial;
+    --Icon-color: #76767f;
+    --IconButton-size: 32px;
+    --Icon-fontSize: 20px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 14px;
+    padding-inline: 2px;
+    -webkit-tap-highlight-color: transparent;
+    padding-block: 0;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    margin: 0;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+    background-color: #f2f2f3;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
     position: relative;
     --variant-borderWidth: 0px;
     color: #202022;
 }
-.flog-svg-3 {
-    user-select: none;
-    margin: initial;
-    display: inline-block;
-    fill: currentcolor;
-    flex-shrink: 0;
-    font-size: 16px;
-    width: 1em;
-    height: 1em;
-    color: currentcolor;
+.flog-button-7.FeelogIconButton-sizeSm {
+    --Icon-fontSize: 20px;
+    min-width: 32px;
+    min-height: 32px;
 }
-.flog-div-52 {
-    --Icon-fontSize: 14px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    gap: 2px;
-    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    font-size: 14px;
-    line-height: 1.42858;
-    color: #a4a4a8;
-    margin: 0px;
+/*도전하기 버튼*/
+.challenge-common-task,
+.challenge-member-task {
+    font-size: 16px;
+    width: 20%;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+    outline: none;
 }
 
-.Feelog-error.flog-div-52 {
-    color: red;
+.challenge-common-task:hover,
+.challenge-member-task:hover {
+    background-color: #f2f2f2;
 }
-/*비밀번호 변경 끝*/
+
+.challenge-common-task.selected,
+.challenge-member-task.selected {
+    color : red;
+    font-weight: bold;
+}
+/*도전하기 버튼*/

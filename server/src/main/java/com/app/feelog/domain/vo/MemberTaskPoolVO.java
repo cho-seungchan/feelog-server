@@ -12,20 +12,18 @@ import org.springframework.stereotype.Component;
 public class MemberTaskPoolVO extends Period {
     @EqualsAndHashCode.Include
     private Long id;
-    private String mamberTaskPoolContent;
-    private String mamberTaskPoolFilePath;
-    private String mamberTaskPoolFileName;
-    private String mamberTaskPoolFileSize;
+    private String memberTaskPoolContent;
+    private String memberTaskPoolFilePath;
+    private String memberTaskPoolFileName;
     private MemberTaskPoolStatus memberTaskPoolStatus;
 
     @Builder
-    public MemberTaskPoolVO(String createdDate, String updatedDate, Long id, String mamberTaskPoolContent, String mamberTaskPoolFilePath, String mamberTaskPoolFileName, String mamberTaskPoolFileSize, MemberTaskPoolStatus memberTaskPoolStatus) {
+    public MemberTaskPoolVO(String createdDate, String updatedDate, Long id, String memberTaskPoolContent, String memberTaskPoolFilePath, String memberTaskPoolFileName, MemberTaskPoolStatus memberTaskPoolStatus) {
         super(createdDate, updatedDate);
         this.id = id;
-        this.mamberTaskPoolContent = mamberTaskPoolContent;
-        this.mamberTaskPoolFilePath = mamberTaskPoolFilePath;
-        this.mamberTaskPoolFileName = mamberTaskPoolFileName;
-        this.mamberTaskPoolFileSize = mamberTaskPoolFileSize;
+        this.memberTaskPoolContent = memberTaskPoolContent;
+        this.memberTaskPoolFilePath = memberTaskPoolFilePath;
+        this.memberTaskPoolFileName = memberTaskPoolFileName;
         this.memberTaskPoolStatus = memberTaskPoolStatus;
     }
 }

@@ -34,6 +34,6 @@ mybatis:
     config-location: classpath:/config/config.xml
     mapper-locations:
         - classpath*:/mapper/*.xml
-    type-aliases-package: com.app.feelog.domain.**
+    type-aliases-package: com.app.feelog.domain.**, com.app.feelog.mypage.dto.**
     type-handlers-package: com.app.feelog.mybatis
 

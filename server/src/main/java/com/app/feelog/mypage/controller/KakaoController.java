@@ -1,10 +1,10 @@
 // 2025.04.17   조승찬 카카오 로그인으로 회원정보 가져오기
 
-package com.app.feelog.controller;
+package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.MemberDTO;
-import com.app.feelog.service.JoinService;
-import com.app.feelog.service.KakaoService;
+import com.app.feelog.mypage.service.JoinService;
+import com.app.feelog.mypage.service.KakaoService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,10 +35,12 @@ public class KakaoController {
 
         MemberDTO memberDTO = kakaoInfo.orElseThrow(() -> new RuntimeException("카카오 사용자 정보 조회 실패"));
 
+        log.info("to getMemberByEmail");
         Optional<MemberDTO> foundMember = joinService.getMemberByEmail(memberDTO.getMemberEmail());
+        log.info("from getMemberByEmail");
 
         if (!foundMember.isPresent()) {
-            log.info("kakao join !!! ");
+            log.info("member not found");
             joinService.kakaoJoin(memberDTO);
             foundMember = joinService.getMemberByEmail(memberDTO.getMemberEmail());
         }

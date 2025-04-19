@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.feelog.mypage.mapper.ChallengeTaskMapper">
+    <insert id="insertCommonTask">
+        INSERT INTO tbl_common_task (
+            common_task_name,
+            common_task_img,
+            common_task_tell,
+            common_task_url,
+            common_task_addr,
+            common_task_lot,
+            common_task_lat,
+            common_task_service_name,
+            common_task_req_page
+        ) VALUES (
+            #{commonTaskName},
+            #{commonTaskImg},
+            #{commonTaskTell},
+            #{commonTaskUrl},
+            #{commonTaskAddr},
+            #{commonTaskLot},
+            #{commonTaskLat},
+            #{commonTaskServiceName},
+            #{commonTaskReqPage}
+        )
+    </insert>
+
+    <select id="getmaxIdOfTask" resultType="long">
+        select coalesce(max(id), 0) FROM tbl_member_task_pool
+    </select>
+
+    <select id="checkIfExists" resultType="_int">
+        select exists (
+            select 1 from  tbl_member_task_pool
+            where id = #{id}
+            and   member_task_pool_status = '정상'
+        )
+    </select>
+
+    <insert  id="insertMemberTask">
+        insert into tbl_member_task
+            (member_id, task_pool_id)
+        select
+            id,
+            #{id}
+        from tbl_member
+        where member_type = '일반 회원'
+          and member_status = '정상'
+    </insert>
+
+    <select id="getMemberTask" resultType="memberTaskPoolVO">
+        select
+            tp.id,
+            tp.member_task_pool_content,
+            tp.member_task_pool_file_path,
+            tp.member_task_pool_file_name,
+            tp.created_date,
+            tp.updated_date
+        from tbl_member_task_pool tp
+        join tbl_member_task tm
+          on tp.id = tm.task_pool_id
+        where tm.member_id = #{memberId}
+          and date(tm.created_date) = current_date()
+          and member_task_pool_status = '정상'
+    </select>
+
+    <select id="getCommonTasks" resultType="commonTaskVO">
+        select
+            id,
+            common_task_name,
+            common_task_img,
+            common_task_tell,
+            common_task_url,
+            common_task_addr,
+            common_task_lot,
+            common_task_lat,
+            common_task_service_name,
+            common_task_req_page,
+            created_date,
+            updated_date
+        from  tbl_common_task
+        where date(created_date) = current_date()
+    </select>
+
+    <insert id="insertChallenge" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_challenge () values ()
+    </insert>
+
+    <insert id="insertMemberChallege">
+        insert into tbl_member_challenge
+               (id, member_id, task_id)
+        values (#{id}, #{memberId}, #{taskId})
+    </insert>
+
+    <insert id="insertCommonChallege">
+        insert into tbl_common_challenge
+            (id, member_id, task_id)
+        values (#{id}, #{memberId}, #{taskId})
+    </insert>
+
+    <update id="cnacelChallege">
+        update tbl_challenge
+            set challenge_complete = '중단'
+        where id = #{id}
+    </update>
+
+    <update id="completeChallege">
+        update tbl_challenge
+        set challenge_complete = '완료'
+        where id = #{id}
+    </update>
+
+
+</mapper>

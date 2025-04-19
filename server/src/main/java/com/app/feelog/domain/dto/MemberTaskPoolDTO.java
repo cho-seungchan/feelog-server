@@ -14,10 +14,9 @@ import org.springframework.stereotype.Component;
 public class MemberTaskPoolDTO {
     @EqualsAndHashCode.Include
     private Long id;
-    private String mamberTaskPoolContent;
-    private String mamberTaskPoolFilePath;
-    private String mamberTaskPoolFileName;
-    private String mamberTaskPoolFileSize;
+    private String memberTaskPoolContent;
+    private String memberTaskPoolFilePath;
+    private String memberTaskPoolFileName;
     private MemberTaskPoolStatus memberTaskPoolStatus;
     private String createdDate;
     private String updatedDate;
@@ -25,10 +24,9 @@ public class MemberTaskPoolDTO {
     public MemberTaskPoolVO toVO() {
         return MemberTaskPoolVO.builder()
                 .id(id)
-                .mamberTaskPoolContent(mamberTaskPoolContent)
-                .mamberTaskPoolFilePath(mamberTaskPoolFilePath)
-                .mamberTaskPoolFileName(mamberTaskPoolFileName)
-                .mamberTaskPoolFileSize(mamberTaskPoolFileSize)
+                .memberTaskPoolContent(memberTaskPoolContent)
+                .memberTaskPoolFilePath(memberTaskPoolFilePath)
+                .memberTaskPoolFileName(memberTaskPoolFileName)
                 .memberTaskPoolStatus(memberTaskPoolStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
