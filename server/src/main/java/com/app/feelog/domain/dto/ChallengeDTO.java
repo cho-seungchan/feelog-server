@@ -14,19 +14,10 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class ChallengeDTO {
     @EqualsAndHashCode.Include
-    private Long id;
-    private ChallengeComplete challengeComplete;
-    private ChallengeStatus challengeStatus;
-    private String createdDate;
-    private String updatedDate;
+    protected Long id;
+    protected ChallengeComplete challengeComplete;
+    protected ChallengeStatus challengeStatus;
+    protected String createdDate;
+    protected String updatedDate;
 
-    public ChallengeVO toVO() {
-        return ChallengeVO.builder()
-                .id(id)
-                .challengeComplete(challengeComplete)
-                .challengeStatus(challengeStatus)
-                .createdDate(createdDate)
-                .updatedDate(updatedDate)
-                .build();
-    }
 }

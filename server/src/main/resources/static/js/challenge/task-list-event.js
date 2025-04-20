@@ -28,13 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".challenge-member-task").addEventListener("click", e => {
 
         e.preventDefault();
-        const id = e.target.getAttribute('data-id');
-        const requestBody = { id: id };
+        const taskId = e.target.getAttribute('data-taskid');
+        let id = '0';
+        if (e.target.getAttribute("data-challengeid")) {
+            id = e.target.getAttribute("data-challengeid");
+        }
+        const requestBody = { id: id, taskId: taskId };
         if (e.target.classList.contains("selected")) {
             e.target.classList.remove("selected");
+            e.target.textContent = '도전';
             cancelMemberTask(requestBody);
         } else {
             e.target.classList.add("selected");
+            e.target.textContent = '중단';
             selectMemberTask(requestBody);
         }
     });
@@ -43,13 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
         task.addEventListener("click", e => {
 
             e.preventDefault();
-            const id = e.target.getAttribute('data-id');
-            const requestBody = { id: id };
+            const taskId = e.target.getAttribute('data-taskid');
+            let id = '0';
+            if (e.target.getAttribute("data-challengeid")) {
+                id = e.target.getAttribute("data-challengeid");
+            }
+            const requestBody = { id: id, taskId: taskId };
             if (e.target.classList.contains("selected")) {
                 e.target.classList.remove("selected");
+                e.target.textContent = '도전';
                 cancelCommonTask(requestBody);
             } else {
                 e.target.classList.add("selected");
+                e.target.textContent = '중단';
                 selectCommonTask(requestBody);
             }
         });

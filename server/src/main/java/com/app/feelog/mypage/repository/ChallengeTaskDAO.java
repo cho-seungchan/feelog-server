@@ -1,10 +1,9 @@
 // 2025.04.16  조승찬
 package com.app.feelog.mypage.repository;
 
-import com.app.feelog.domain.vo.ChallengeVO;
-import com.app.feelog.domain.vo.MemberTaskPoolVO;
+import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.mapper.ChallengeTaskMapper;
-import com.app.feelog.domain.vo.CommonTaskVO;
+import com.app.feelog.util.EightRowPagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -45,26 +44,88 @@ public class ChallengeTaskDAO {
                         .orElse(null));
     }
 
+    // 2025.04.20 조승찬 :: 개별 챌린지 가져오기
+    public Optional<MemberChallengeVO> getMemberChallenge(Long memberId, long taskId) {
+        return Optional.ofNullable(
+                challengeTaskMapper.getMemberChallenge(memberId, taskId)
+                        .orElse(null));
+    }
+
     // 2025.04.19 조승찬 :: 공통 과제 가져오기
     public List<CommonTaskVO> getCommonTasks() {
         return challengeTaskMapper.getCommonTasks();
     }
 
-    public void postMemberChallenge(Long memberId, Long taskId) {
+    // 2025.04.20 조승찬 :: 공통 챌린지 가져오기
+    public Optional<CommonChallengeVO> getCommonChallenge(Long memberId, Long taskId) {
+        return Optional.ofNullable(
+                challengeTaskMapper.getCommonChallenge(memberId, taskId)
+                        .orElse(null));
+    }
+
+    // 2025.04.19 조승찬 :: 개별 챌린지 생성 (최초 도전)
+    public Long postMemberChallenge(Long memberId, Long taskId) {
 
         ChallengeVO challenge = new ChallengeVO();
         // 챌린지 슈퍼키 생성
         challengeTaskMapper.insertChallenge(challenge);
         // 개별 챌린지 생성
         challengeTaskMapper.insertMemberChallege(challenge.getId(),memberId,taskId);
+        // 챌린지 중단을 위해 사용할 id 리턴
+        return challenge.getId();
     }
 
-    public void postCommonChallenge(Long memberId, Long taskId) {
+    // 2025.04.20 조승찬 :: 개별 챌린지 생성 (중단 후 재도전일 경우)
+    public void rePostMemberChallenge(Long id) {
+        challengeTaskMapper.rePostMemberChallenge(id);
+    }
+
+    // 2025.04.19 조승찬 :: 공통 챌린지 생성 (최초 도전)
+    public Long postCommonChallenge(Long memberId, Long taskId) {
 
         ChallengeVO challenge = new ChallengeVO();
         // 챌린지 슈퍼키 생성
         challengeTaskMapper.insertChallenge(challenge);
         // 개별 챌린지 생성
         challengeTaskMapper.insertCommonChallege(challenge.getId(),memberId,taskId);
+        // 챌린지 중단을 위해 사용할 id 리턴
+        return challenge.getId();
+    }
+
+    // 2025.04.20 조승찬 :: 공통 챌린지 생성 (중단 후 재도전일 경우)
+    public void rePostCommonChallenge(Long id) {
+        challengeTaskMapper.rePostCommonChallenge(id);
+    }
+
+    // 2025.04.20 조승찬 :: 개별 과제 중단
+    public void cancelMemberChallenge(Long id) {
+        challengeTaskMapper.cancelChallenge(id);
+    }
+
+    // 2025.04.20 조승찬 :: 공통 과제 중단
+    public void cancelCommonChallenge(Long id) {
+        challengeTaskMapper.cancelChallenge(id);
+    }
+
+    // 2025.04.20 조승찬 :: 페이지네이션을 위한 전체 건수 가져오기
+    public int getCountAll(Long memberId) {
+        return challengeTaskMapper.getCountAll(memberId);
+    }
+
+    // 2025.04.20 조승찬 :: 현재 진행중인 챌린지 리스트 가져오기
+    public List<CommonChallengeVO> getChallengingList(Long memberId, EightRowPagination pagination) {
+        return challengeTaskMapper.getChallengingList(memberId, pagination);
+    }
+
+    public Optional<MemberTaskPoolVO> getMemberTaskInfo(Long id) {
+        return Optional.ofNullable(
+                challengeTaskMapper.getMemberTaskInfo(id)
+                        .orElse(null));
+    }
+
+    public Optional<CommonTaskVO> getCommonTaskInfo(Long id) {
+        return Optional.ofNullable(
+                challengeTaskMapper.getCommonTaskInfo(id)
+                        .orElse(null));
     }
 }

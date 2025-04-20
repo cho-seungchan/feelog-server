@@ -50,6 +50,7 @@ public class LoginController {
 
         // 로그인 성공 처리
         MemberDTO member = loginService.getMemberByEmailAndPassword(memberDTO).get();
+
         session.setAttribute("memberStatus", "email");
         session.setAttribute("member", member);
 

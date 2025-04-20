@@ -107,7 +107,13 @@
                                                 <div class="FeelogStack-root flog-a-9"
                                                     ><h3 class="FeelogTypography-root FeelogTypography-h4 flog-h3-1" th:text="${individual.memberTaskPoolContent}">
                                                     </h3>
-                                                    <button class="challenge-member-task" th:attr="data-id=${individual.id}">도전</button>
+                                                    <button
+                                                            class="challenge-member-task"
+                                                            th:classappend="${individual.challengeComplete != null && (individual.challengeComplete.name() == 'COMPLETED' || individual.challengeComplete.name() == 'ONGOING') ? 'selected' : ''}"
+                                                            th:attr="data-challengeid=${individual.id}, data-taskid=${individual.taskId}"
+                                                            th:attrappend="disabled=${individual.challengeComplete != null && individual.challengeComplete.name() == 'COMPLETED' ? 'disabled' : null}"
+                                                            th:text="${individual.challengeComplete != null ? (individual.challengeComplete.name() == 'COMPLETED' ? '완료' : (individual.challengeComplete.name() == 'ONGOING' ? '중단' : '도전')) : '도전'}">
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -152,7 +158,13 @@
                                                            th:href="${common.commonTaskUrl}"
                                                            th:text="${common.commonTaskUrl}">
                                                         </a>
-                                                        <button class="challenge-common-task" th:attr="data-id=${common.id}">도전</button>
+                                                        <button
+                                                                class="challenge-common-task"
+                                                                th:classappend="${common.challengeComplete != null && (common.challengeComplete.name() == 'COMPLETED' || common.challengeComplete.name() == 'ONGOING') ? 'selected' : ''}"
+                                                                th:attr="data-challengeid=${common.id}, data-taskid=${common.taskId}"
+                                                                th:attrappend="disabled=${common.challengeComplete != null && common.challengeComplete.name() == 'COMPLETED' ? 'disabled' : null}"
+                                                                th:text="${common.challengeComplete != null ? (common.challengeComplete.name() == 'COMPLETED' ? '완료' : (common.challengeComplete.name() == 'ONGOING' ? '중단' : '도전')) : '도전'}">
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -181,5 +193,6 @@
     </body>
     <script src="/js/challenge/task-list-event.js"></script>
     <script src="/js/challenge/task-list-service.js"></script>
+    <script src="/js/challenge/task-list-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

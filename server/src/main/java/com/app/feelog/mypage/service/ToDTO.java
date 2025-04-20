@@ -5,6 +5,9 @@ import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.domain.dto.MemberTaskDTO;
 import com.app.feelog.domain.dto.MemberTaskPoolDTO;
 import com.app.feelog.domain.vo.*;
+import com.app.feelog.mypage.dto.AllChallengeListDTO;
+import com.app.feelog.mypage.dto.CommonTaskChallengeDTO;
+import com.app.feelog.mypage.dto.MemberTaskPoolChallengeDTO;
 
 public interface ToDTO {
 
@@ -82,4 +85,86 @@ public interface ToDTO {
         return memberTaskPoolDTO;
     }
 
+    public default MemberTaskPoolChallengeDTO toMemberTaskPoolChallengeDTO(MemberChallengeVO memberChallengeVO, MemberTaskPoolVO memberTaskPoolVO) {
+        MemberTaskPoolChallengeDTO dto = new MemberTaskPoolChallengeDTO();
+
+        if (memberChallengeVO != null) {
+            dto.setId(memberChallengeVO.getId());
+            dto.setMemberId(memberChallengeVO.getMemberId());
+            dto.setChallengeComplete(memberChallengeVO.getChallengeComplete());
+            dto.setChallengeStatus(memberChallengeVO.getChallengeStatus());
+            dto.setCreatedDate(memberChallengeVO.getCreatedDate());
+            dto.setUpdatedDate(memberChallengeVO.getUpdatedDate());
+        }
+
+        if (memberTaskPoolVO != null) {
+            dto.setTaskId(memberTaskPoolVO.getId());
+            dto.setMemberTaskPoolContent(memberTaskPoolVO.getMemberTaskPoolContent());
+            dto.setMemberTaskPoolFilePath(memberTaskPoolVO.getMemberTaskPoolFilePath());
+            dto.setMemberTaskPoolFileName(memberTaskPoolVO.getMemberTaskPoolFileName());
+            dto.setMemberTaskPoolStatus(memberTaskPoolVO.getMemberTaskPoolStatus());
+        }
+        return dto;
+    }
+
+    public default CommonTaskChallengeDTO toCommonTaskChallengeDTO(CommonChallengeVO commonChallengeVO, CommonTaskVO commonTaskVO) {
+        CommonTaskChallengeDTO dto = new CommonTaskChallengeDTO();
+
+        if (commonChallengeVO != null) {
+            dto.setId(commonChallengeVO.getId());
+            dto.setMemberId(commonChallengeVO.getMemberId());
+            dto.setChallengeComplete(commonChallengeVO.getChallengeComplete());
+            dto.setChallengeStatus(commonChallengeVO.getChallengeStatus());
+            dto.setCreatedDate(commonChallengeVO.getCreatedDate());
+            dto.setUpdatedDate(commonChallengeVO.getUpdatedDate());
+        }
+        if (commonTaskVO != null) {
+            dto.setTaskId(commonTaskVO.getId());
+            dto.setCommonTaskName(commonTaskVO.getCommonTaskName());
+            dto.setCommonTaskImg(commonTaskVO.getCommonTaskImg());
+            dto.setCommonTaskTell(commonTaskVO.getCommonTaskTell());
+            dto.setCommonTaskUrl(commonTaskVO.getCommonTaskUrl());
+            dto.setCommonTaskAddr(commonTaskVO.getCommonTaskAddr());
+            dto.setCommonTaskLot(commonTaskVO.getCommonTaskLot());
+            dto.setCommonTaskLat(commonTaskVO.getCommonTaskLat());
+            dto.setCommonTaskServiceName(commonTaskVO.getCommonTaskServiceName());
+            dto.setCommonTaskReqPage(commonTaskVO.getCommonTaskReqPage());
+            dto.setCommonTaskStatus(commonTaskVO.getCommonTaskStatus());
+        }
+
+        return dto;
+    }
+
+    public default AllChallengeListDTO toAllChallengeListDTO(CommonChallengeVO commonChallengeVO, MemberTaskPoolVO memberTaskPoolVO, CommonTaskVO commonTaskVO) {
+        AllChallengeListDTO dto = new AllChallengeListDTO();
+
+        if (commonChallengeVO != null) {
+            dto.setId(commonChallengeVO.getId());
+            dto.setMemberId(commonChallengeVO.getMemberId());
+            dto.setTaskId(commonChallengeVO.getTaskId());
+            dto.setChallengeComplete(commonChallengeVO.getChallengeComplete());
+            dto.setCreatedDate(commonChallengeVO.getCreatedDate());
+            dto.setUpdatedDate(commonChallengeVO.getUpdatedDate());
+        }
+
+        if (memberTaskPoolVO != null) {
+            dto.setType("개별");
+            dto.setMemberTaskPoolContent(memberTaskPoolVO.getMemberTaskPoolContent());
+            dto.setMemberTaskPoolFilePath(memberTaskPoolVO.getMemberTaskPoolFilePath());
+            dto.setMemberTaskPoolFileName(memberTaskPoolVO.getMemberTaskPoolFileName());
+        }
+
+        if (commonTaskVO != null) {
+            dto.setType("공통");
+            dto.setCommonTaskName(commonTaskVO.getCommonTaskName());
+            dto.setCommonTaskImg(commonTaskVO.getCommonTaskImg());
+            dto.setCommonTaskTell(commonTaskVO.getCommonTaskTell());
+            dto.setCommonTaskUrl(commonTaskVO.getCommonTaskUrl());
+            dto.setCommonTaskAddr(commonTaskVO.getCommonTaskAddr());
+            dto.setCommonTaskLot(commonTaskVO.getCommonTaskLot());
+            dto.setCommonTaskLat(commonTaskVO.getCommonTaskLat());
+        }
+
+        return dto;
+    }
 }

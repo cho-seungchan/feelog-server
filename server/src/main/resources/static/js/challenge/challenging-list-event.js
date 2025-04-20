@@ -1,4 +1,4 @@
-//  2025.04.08 조승찬
+//  2025.04.20 조승찬
 
 document.addEventListener("DOMContentLoaded", () => {
     // 타이틀(오늘, 주간, 월간 첼린지) 클릭 이벤트
@@ -23,4 +23,59 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // 도전 클릭 이벤트
+    document.querySelectorAll(".challenge-member-task").forEach(task => {
+        task.addEventListener("click", e => {
+
+            e.preventDefault();
+            const taskId = e.target.getAttribute('data-taskid');
+            let id = '0';
+            if (e.target.getAttribute("data-challengeid")) {
+                id = e.target.getAttribute("data-challengeid");
+            }
+            const requestBody = {id: id, taskId: taskId};
+            if (e.target.classList.contains("selected")) {
+                e.target.classList.remove("selected");
+                e.target.textContent = '도전';
+                // 완료 버튼 숨기기
+                e.target.closest(".button-conatiner").querySelector(".complete-member-task").style.display = "none";
+                cancelMemberTask(requestBody);
+            } else {
+                e.target.classList.add("selected");
+                e.target.textContent = '중단';
+                // 완료 버튼 보이기
+                e.target.closest(".button-conatiner").querySelector(".complete-member-task").style.display = "block";
+                selectMemberTask(requestBody);
+            }
+        });
+    });
+
+    document.querySelectorAll(".challenge-common-task").forEach(task => {
+        task.addEventListener("click", e => {
+
+            e.preventDefault();
+            const taskId = e.target.getAttribute('data-taskid');
+            let id = '0';
+            if (e.target.getAttribute("data-challengeid")) {
+                id = e.target.getAttribute("data-challengeid");
+            }
+            const requestBody = { id: id, taskId: taskId };
+            if (e.target.classList.contains("selected")) {
+                e.target.classList.remove("selected");
+                e.target.textContent = '도전';
+                // 완료 버튼 숨기기
+                e.target.closest(".button-conatiner").querySelector(".complete-common-task").style.display = "none";
+                cancelCommonTask(requestBody);
+            } else {
+                e.target.classList.add("selected");
+                e.target.textContent = '중단';
+                // 완료 버튼 보이기
+                e.target.closest(".button-conatiner").querySelector(".complete-common-task").style.display = "block";
+                selectCommonTask(requestBody);
+            }
+        });
+    });
+    // 도전 클릭 이벤트
+
 });
