@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
 @Slf4j
-public class NoticeServiceImpl implements NoticeService {
+public class NoticeServiceImpl {
     private final NoticeDAO noticeDAO;
     //    공지 목록 추가
     public void addNotice(NoticeDTO noticeDTO) {
@@ -26,17 +26,17 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
 //    DTO로 전환
-    @Override
-    public List<NoticeDTO> getNoticeList(NoticePagination noticePagination) {
-        List<NoticeVO> noticeVOlist = noticeDAO.findNotice(noticePagination);
-
-        List<NoticeDTO> noticeDTOList =
-                noticeVOlist.stream()
-                        .map(this::toNoticeDTO)
-                        .collect(Collectors.toList());
-
-        return noticeDTOList;
-    }
+//    @Override
+//    public List<NoticeDTO> getNoticeList(NoticePagination noticePagination) {
+//        List<NoticeVO> noticeVOlist = noticeDAO.findNotice(noticePagination);
+//
+//        List<NoticeDTO> noticeDTOList =
+//                noticeVOlist.stream()
+//                        .map(this::toNoticeDTO)
+//                        .collect(Collectors.toList());
+//
+//        return noticeDTOList;
+//    }
 
 //    공지 전체 목록 조회(페이지네이션)
     public NoticeListDTO getNoticeLists(NoticePagination noticePagination){
@@ -45,7 +45,7 @@ public class NoticeServiceImpl implements NoticeService {
         noticePagination.create(noticeDAO.findNoticeCount());
 
         noticeListDTO.setNoticePagination(noticePagination);
-        noticeListDTO.setNoticeList(getNoticeList(noticePagination));
+        noticeListDTO.setNoticeList(noticeDAO.findNotice(noticePagination));
 
         return noticeListDTO;
     }

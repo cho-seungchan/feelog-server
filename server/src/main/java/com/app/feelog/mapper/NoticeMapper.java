@@ -1,5 +1,6 @@
 package com.app.feelog.mapper;
 
+import com.app.feelog.domain.dto.NoticeAdminDTO;
 import com.app.feelog.domain.vo.NoticeVO;
 import com.app.feelog.util.pagination.NoticePagination;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,5 +13,5 @@ public interface NoticeMapper {
 
     public int selectNoticeCount();
 
-    public List<NoticeVO> selectNoticeAll(NoticePagination noticePagination);
+    public List<NoticeAdminDTO> selectNoticeAll(NoticePagination noticePagination);
 }

@@ -14,6 +14,6 @@ import java.util.List;
 @Setter
 @ToString
 public class NoticeListDTO {
-    private List<NoticeDTO> NoticeList;
+    private List<NoticeAdminDTO> NoticeList;
     private NoticePagination noticePagination;
 }

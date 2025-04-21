@@ -6,7 +6,7 @@
         value (#{noticeTitle}, #{noticeContent}, #{memberId})
     </insert>
 
-    <select id="selectNoticeAll" resultType="noticeVO">
+    <select id="selectNoticeAll" resultType="noticeAdminDTO">
         select m.member_nickname,
                n.id, n.notice_title, n.notice_content, n.notice_status, n.member_id, n.created_date
         from tbl_member m
