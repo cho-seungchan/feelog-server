@@ -77,7 +77,7 @@ public class ChallengeTaskDAO {
 
     // 2025.04.20 조승찬 :: 개별 챌린지 생성 (중단 후 재도전일 경우)
     public void rePostMemberChallenge(Long id) {
-        challengeTaskMapper.rePostMemberChallenge(id);
+        challengeTaskMapper.rePostChallenge(id);
     }
 
     // 2025.04.19 조승찬 :: 공통 챌린지 생성 (최초 도전)
@@ -94,7 +94,7 @@ public class ChallengeTaskDAO {
 
     // 2025.04.20 조승찬 :: 공통 챌린지 생성 (중단 후 재도전일 경우)
     public void rePostCommonChallenge(Long id) {
-        challengeTaskMapper.rePostCommonChallenge(id);
+        challengeTaskMapper.rePostChallenge(id);
     }
 
     // 2025.04.20 조승찬 :: 개별 과제 중단
