@@ -41,14 +41,11 @@ public interface ChallengeTaskMapper {
     // 2025.04.19 조승찬 :: 개별 챌린지 생성
     void insertMemberChallege(@Param("id") Long id, @Param("memberId") Long memberId, @Param("taskId") Long taskId);
 
-    // 2025.04.20 조승찬 :: 개별 챌린지 생성 (중단 후 재도전일 경우)
-    void rePostMemberChallenge(Long id);
-
     // 2025.04.19 조승찬 :: 공통 챌린지 생성
     void insertCommonChallege(@Param("id") Long id, @Param("memberId") Long memberId, @Param("taskId") Long taskId);
 
-    // 2025.04.20 조승찬 :: 공통 챌린지 생성 (중단 후 재도전일 경우)
-    void rePostCommonChallenge(Long id);
+    // 2025.04.20 조승찬 :: 챌린지 생성 (중단 후 재도전일 경우)
+    void rePostChallenge(Long id);
 
     // 2025.04.20 조승찬 :: 개별 과제 중단
     void cancelChallenge(Long id);
