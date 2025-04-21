@@ -2,7 +2,7 @@
 
 package com.app.feelog.task;
 
-import com.app.feelog.service.ChallengeService;
+import com.app.feelog.mypage.service.ChallengeTaskService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -25,10 +25,10 @@ import java.util.Random;
 @Slf4j
 public class CommonChallengeTask {
 
-    private final ChallengeService challengeService;
+    private final ChallengeTaskService challengeService;
 
     @SneakyThrows
-    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(cron = "0 0 6 * * *")
     public void park() throws UnsupportedEncodingException {
 
         System.out.println("======================================");

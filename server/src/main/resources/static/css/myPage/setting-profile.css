@@ -1210,6 +1210,7 @@ body {
 }
 
 /* 포커스 일 때 파란색 */
+.flog-div-50.Feelog-focused,
 .flog-div-83.Feelog-focused,
 .flog-div-118.Feelog-focused {
     border-color: #3478ff;
@@ -1397,3 +1398,161 @@ body {
     padding: 20px;
 }
 /* 모달창 끝 */
+/*비밀번호 변경 시작*/
+.flog-div-49 {
+    --unstable_RadioGroup-margin: 0.5rem 0;
+    --FormLabel-alignSelf: flex-start;
+    --FormLabel-margin: 0 0 0.375rem 0;
+    --FormHelperText-margin: 0.375rem 0 0 0;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    --FormLabel-asteriskColor: #3478ff;
+    --FormLabel-fontSize: 14px;
+    --FormLabel-lineHeight: 125%;
+    --FormHelperText-fontSize: 14px;
+    --FormHelperText-lineHeight: 150%;
+}
+.flog-label-1 {
+    --Icon-fontSize: calc(125% * 1em);
+    -webkit-tap-highlight-color: transparent;
+    align-self: flex-start;
+    display: flex;
+    gap: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+    user-select: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 125%;
+    color: #202022;
+    margin: 0 0 0.375rem;
+}
+.flog-div-50.FeelogInput-sizeMd {
+    --Input-minHeight: 40px;
+}
+.flog-div-50:not([data-skip-inverted-colors]) {
+    --_Input-focusedHighlight: #3478ff;
+    --Input-focusedHighlight: #3478ff;
+}
+.flog-div-50 {
+    box-sizing: border-box;
+    min-width: 0px;
+    min-height: 2.25rem;
+    cursor: text;
+    position: relative;
+    display: flex;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    font-weight: 400;
+    background-color: #ffffff;
+    box-shadow: none;
+    padding-inline: 0.75rem;
+    border-radius: 8px;
+    border-color: #dadadc;
+    border: 1px solid #e0e0e0;
+}
+.flog-div-50::before {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    inset: 0px;
+    z-index: 1;
+    border-radius: inherit;
+    margin: calc(1px * -1);
+    box-shadow: #3478ff;
+}
+.flog-input-2 {
+    border: none;
+    min-width: 0px;
+    outline: 0px;
+    padding: 0px;
+    flex: 1 1 0%;
+    color: inherit;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    text-overflow: ellipsis;
+}
+.flog-div-51 {
+    --Button-margin: 0 calc(min(calc(0.75rem - (40px - 2 * 1px - min(1.75rem, 40px)) / 2), 0.75rem) * -1) 0 0;
+    --IconButton-margin: 0 calc(min(calc(0.75rem - (40px - 2 * 1px - min(1.75rem, 40px)) / 2), 0.75rem) * -1) 0 0;
+    --Icon-margin: 0 calc(0.75rem / -4) 0 0;
+    display: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-inline-start: 0.5rem;
+    color: #76767f;
+    cursor: initial;
+}
+.flog-button-2.FeelogIconButton-sizeMd {
+    --Icon-fontSize: calc(min(1.75rem, 40px) / 1.667);
+    min-width: min(1.75rem, 40px);
+    min-height: min(1.75rem, 40px);
+}
+.flog-button-2 {
+    --Icon-margin: initial;
+    --Icon-color: #202022;
+    --Icon-fontSize: calc(2.25rem / 1.5);
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    font-size: 16px;
+    padding-inline: 0.25rem;
+    -webkit-tap-highlight-color: transparent;
+    padding-block: 0px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    margin: auto;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    --variant-borderWidth: 0px;
+    color: #202022;
+}
+.flog-svg-3 {
+    user-select: none;
+    margin: initial;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 16px;
+    width: 1em;
+    height: 1em;
+    color: currentcolor;
+}
+.flog-div-52 {
+    --Icon-fontSize: 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 2px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    line-height: 1.42858;
+    color: #a4a4a8;
+    margin: 0px;
+}
+
+.Feelog-error.flog-div-52 {
+    color: red;
+}
+/*비밀번호 변경 끝*/

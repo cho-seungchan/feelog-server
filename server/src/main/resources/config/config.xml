@@ -12,4 +12,10 @@
         <typeAlias type="com.app.feelog.domain.vo.DiaryVO" alias="diaryVO"/>
         <typeAlias type="com.app.feelog.domain.dto.DiaryDTO" alias="diaryDTO"/>
     </typeAliases>
+
+
+    <typeHandlers>
+        <typeHandler handler="com.app.feelog.mybatis.MemberTypeHandler"/>
+    </typeHandlers>
+
 </configuration>

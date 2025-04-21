@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.feelog.mypage.mapper.ChallengeTaskMapper">
+    <insert id="insertCommonTask">
+        INSERT INTO tbl_common_task (
+            common_task_name,
+            common_task_img,
+            common_task_tell,
+            common_task_url,
+            common_task_addr,
+            common_task_lot,
+            common_task_lat,
+            common_task_service_name,
+            common_task_req_page,
+            created_date,
+            updated_date
+        ) VALUES (
+            #{commonTaskName},
+            #{commonTaskImg},
+            #{commonTaskTell},
+            #{commonTaskUrl},
+            #{commonTaskAddr},
+            #{commonTaskLot},
+            #{commonTaskLat},
+            #{commonTaskServiceName},
+            #{commonTaskReqPage},
+            DATE_ADD(NOW(), INTERVAL 1 DAY),
+            DATE_ADD(NOW(), INTERVAL 1 DAY)
+        )
+    </insert>
+
+    <select id="getmaxIdOfTask" resultType="long">
+        select coalesce(max(id), 0) FROM tbl_member_task_pool
+    </select>
+
+    <select id="checkIfExists" resultType="_int">
+        select exists (
+            select 1 from  tbl_member_task_pool
+            where id = #{id}
+            and   member_task_pool_status = '정상'
+        )
+    </select>
+
+    <insert  id="insertMemberTask">
+        insert into tbl_member_task
+            (member_id,
+             task_pool_id,
+             created_date,
+             updated_date )
+        select
+            id,
+            #{id},
+            DATE_ADD(NOW(), INTERVAL 1 DAY),
+            DATE_ADD(NOW(), INTERVAL 1 DAY)
+        from tbl_member
+        where member_type = '일반 회원'
+          and member_status = '정상'
+    </insert>
+
+    <select id="getMemberTask" resultType="memberTaskPoolVO">
+        select
+            tp.id,
+            tp.member_task_pool_content,
+            tp.member_task_pool_file_path,
+            tp.member_task_pool_file_name,
+            tp.created_date,
+            tp.updated_date
+        from tbl_member_task_pool tp
+        join tbl_member_task tm
+          on tp.id = tm.task_pool_id
+        where tm.member_id = #{memberId}
+          and date(tm.created_date) = current_date()
+          and member_task_pool_status = '정상'
+    </select>
+
+    <select id="getCommonTasks" resultType="commonTaskVO">
+        select
+            id,
+            common_task_name,
+            common_task_img,
+            common_task_tell,
+            common_task_url,
+            common_task_addr,
+            common_task_lot,
+            common_task_lat,
+            common_task_service_name,
+            common_task_req_page,
+            created_date,
+            updated_date
+        from  tbl_common_task
+        where date(created_date) = current_date()
+    </select>
+
+    <select id="getMemberChallenge" resultType="memberChallengeVO">
+        select
+            c.id AS id,
+            c.challenge_complete AS challengeComplete,
+            c.created_date AS createdDate,
+            c.updated_date AS updatedDate,
+            mc.member_id AS memberId,
+            mc.task_id AS taskId
+        from tbl_challenge c
+         join tbl_member_challenge mc
+            on c.id = mc.id
+        where mc.member_id = #{memberId}
+        and   mc.task_id   = #{taskId}
+        and   date(c.created_date) = curdate()
+    </select>
+
+
+    <select id="getCommonChallenge" resultType="CommonChallengeVO">
+        select
+            c.id AS id,
+            c.challenge_complete AS challengeComplete,
+            c.created_date AS createdDate,
+            c.updated_date AS updatedDate,
+            cc.member_id AS memberId,
+            cc.task_id AS taskId
+        from tbl_challenge c
+                 join tbl_common_challenge cc
+                      on c.id = cc.id
+        where cc.member_id = #{memberId}
+          and   cc.task_id   = #{taskId}
+          and   date(c.created_date) = curdate()
+    </select>
+
+    <insert id="insertChallenge" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_challenge () values ()
+    </insert>
+
+    <insert id="insertMemberChallege">
+        insert into tbl_member_challenge
+               (id, member_id, task_id)
+        values (#{id}, #{memberId}, #{taskId})
+    </insert>
+
+    <insert id="insertCommonChallege">
+        insert into tbl_common_challenge
+            (id, member_id, task_id)
+        values (#{id}, #{memberId}, #{taskId})
+    </insert>
+
+    <update id="rePostChallenge">
+        update tbl_challenge
+        set challenge_complete = '진행중'
+        where id = #{id}
+    </update>
+
+    <update id="cancelChallenge">
+        update tbl_challenge
+            set challenge_complete = '중단'
+        where id = #{id}
+    </update>
+
+    <update id="completeChallege">
+        update tbl_challenge
+        set challenge_complete = '완료'
+        where id = #{id}
+    </update>
+
+    <select id="getCountAll" resultType="_int">
+        select count(*) as total_count
+        from (
+                 select c.id
+                 from tbl_challenge c
+                          join tbl_common_challenge cc on c.id = cc.id
+                 where  cc.member_id = #{memberId}
+                 and    c.challenge_complete = '진행중'
+
+                 union
+
+                 select c.id
+                 from tbl_challenge c
+                          join tbl_member_challenge mc on c.id = mc.id
+                 where  mc.member_id = #{memberId}
+                 and    c.challenge_complete = '진행중'
+             ) as result;
+    </select>
+
+    <select id="getChallengingList" resultType="commonChallengeVO">
+        select *
+        from (
+                 select
+                     c.id,
+                     c.challenge_complete,
+                     c.created_date,
+                     c.updated_date,
+                     cc.member_id,
+                     cc.task_id
+                 from tbl_challenge c
+                          join tbl_common_challenge cc on c.id = cc.id
+                 where cc.member_id = #{memberId}
+                   and c.challenge_complete = '진행중'
+
+                 union
+
+                 select
+                     c.id,
+                     c.challenge_complete,
+                     c.created_date,
+                     c.updated_date,
+                     mc.member_id,
+                     mc.task_id
+                 from tbl_challenge c
+                          join tbl_member_challenge mc on c.id = mc.id
+                 where mc.member_id = #{memberId}
+                   and c.challenge_complete = '진행중'
+             ) as result
+        order by result.id
+            limit #{pagination.offset}, #{pagination.rowCount};
+    </select>
+
+    <select id="getMemberTaskInfo" resultType="memberTaskPoolVO">
+        select
+            mtp.id,
+            mtp.member_task_pool_content as memberTaskPoolContent,
+            mtp.member_task_pool_file_path as memberTaskPoolFilePath,
+            mtp.member_task_pool_file_name as memberTaskPoolFileName,
+            mtp.created_date as createdDate,
+            mtp.updated_date as updatedDate
+        from tbl_member_task_pool mtp
+                 join tbl_member_challenge mc on mtp.id = mc.task_id
+                 join tbl_challenge c on mc.id = c.id
+        where mc.id = #{id}
+          and c.challenge_complete = '진행중';
+    </select>
+
+    <select id="getCommonTaskInfo" resultType="commonTaskVO">
+        select
+            ct.id,
+            ct.common_task_name as commontaskname,
+            ct.common_task_img as commontaskimg,
+            ct.common_task_tell as commontasktell,
+            ct.common_task_url as commontaskurl,
+            ct.common_task_addr as commontaskaddr,
+            ct.common_task_lot as commontasklot,
+            ct.common_task_lat as commontasklat,
+            ct.common_task_service_name as commontaskservicename,
+            ct.common_task_req_page as commontaskreqpage,
+            c.challenge_status as commontaskstatus
+        from tbl_common_task ct
+                 join tbl_common_challenge cc on ct.id = cc.task_id
+                 join tbl_challenge c on cc.id = c.id
+        where c.id = #{challengeid};
+    </select>
+
+</mapper>
