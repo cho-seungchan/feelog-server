@@ -68,9 +68,9 @@
                                                                 object-fit: cover;
                                                                 color: transparent;
                                                             "
-                                                                th:if="${memberFileName != null && !memberFileNmae.isEmpty()}"
-                                                                th:data-file-name="${memberfileName}" th:data-file-path="${memberFilePath}"
-                                                                th:src="@{/files/display(path=|${memberFilePath}/${memberFileName}|)}"
+                                                                th:if="*{memberFileName != null && !memberFileName.isEmpty()}"
+                                                                th:data-file-name="*{memberFileName}" th:data-file-path="*{memberFilePath}"
+                                                                th:src="@{/files/display(path=|*{memberFilePath}/*{memberFileName}|)}"
                                                         />
                                                         <img
                                                             alt=""
@@ -88,7 +88,7 @@
                                                                 object-fit: cover;
                                                                 color: transparent;
                                                             "
-                                                            th:if="${memberFileName == null || memberFileNmae.isEmpty()}"
+                                                            th:if="*{memberFileName == null || memberFileName.isEmpty()}"
                                                             src="https://d33pksfia2a94m.cloudfront.net/studio/assets/img/common/avatar_default_icon.png?w=100&amp;h=100&amp;q=65"
                                                         />
                                                     </div>
@@ -143,7 +143,7 @@
                                             placeholder="닉네임을 입력해 주세요."
                                             maxlength="40"
                                             class="FeelogInput-input flog-input-1"
-                                            name="nickname"
+                                            name="memberNickname"
                                             aria-describedby=":R559uuukv9ul7rlqakq:-helper-text"
                                         />
                                     </div>
@@ -170,7 +170,7 @@
                                             rows="5"
                                             style="height: 120px"
                                             id=":R759uuukv9ul7rlqakq:"
-                                            name="bio"
+                                            name="memberIntroduce"
                                             placeholder="자기소개를 입력해 주세요."
                                             maxlength="255"
                                             class="FeelogTextarea-textarea flog-textarea-1"
@@ -188,7 +188,7 @@
                                 <div class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49">
                                     <label for=":r1:" id=":r1:-label" class="FeelogFormLabel-root flog-label-1">비밀번호</label>
                                     <div class="FeelogInput-root FeelogInput-variantOutlined FeelogInput-colorNeutral FeelogInput-sizeMd FeelogInput-formControl flog-div-50 Feelog-error">
-                                        <input th:value="*{memberPassword}" id=":r1:" placeholder="비밀번호" class="FeelogInput-input flog-input-2" type="password" name="password" aria-describedby=":r1:-helper-text">
+                                        <input th:value="*{memberPassword}" id=":r1:" placeholder="비밀번호" class="FeelogInput-input flog-input-2" type="password" name="memberPassword" aria-describedby=":r1:-helper-text">
                                         <div class="FeelogInput-endDecorator flog-div-51">
                                             <button aria-label="비밀번호 표시하기" class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeMd flog-button-2" type="button">
                                                 <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3">

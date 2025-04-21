@@ -31,7 +31,9 @@ public class MyPageController {
             return "redirect:/login/login";
         }
 
-        model.addAttribute("member", member);
+        MemberDTO memberDTO = myPageService.getMemberById(member.getId());
+        model.addAttribute("member", memberDTO);
+
         return "mypage/setting-profile";
 
     }
@@ -46,7 +48,6 @@ public class MyPageController {
             return "redirect:/login/login";
         }
 
-        log.info(memberDTO.toString());
         memberDTO.setId(member.getId());
         myPageService.postSettingProfile(memberDTO);
 

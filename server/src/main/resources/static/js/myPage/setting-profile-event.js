@@ -165,13 +165,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const inputFileName = document.createElement("input");
             inputFileName.type = "hidden";
             inputFileName.name = `memberFileName`;
-            inputFileName.value = document.querySelector(".flog-div-29").querySelector(".uploadFile").dataset.MemberFileName;
+            inputFileName.value = document.querySelector(".flog-div-29").querySelector(".uploadFile").dataset.fileName;
             document.querySelector(".flog-form-3").appendChild(inputFileName);
 
             const inputFilePath = document.createElement("input");
             inputFilePath.type = "hidden";
             inputFilePath.name = `memberFilePath`;
-            inputFilePath.value = document.querySelector(".flog-div-29").querySelector(".uploadFile").dataset.MemberFilePath;
+            inputFilePath.value = document.querySelector(".flog-div-29").querySelector(".uploadFile").dataset.filePath;
             document.querySelector(".flog-form-3").appendChild(inputFilePath);
 
         }
