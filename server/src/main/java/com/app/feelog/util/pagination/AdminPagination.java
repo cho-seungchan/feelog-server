@@ -1,4 +1,4 @@
-package com.app.feelog.util;
+package com.app.feelog.util.pagination;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,51 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.ChallengeMapper">
-    <insert id="insertCommonTask">
-        INSERT INTO tbl_common_task (
-            common_task_name,
-            common_task_img,
-            common_task_tell,
-            common_task_url,
-            common_task_addr,
-            common_task_lot,
-            common_task_lat,
-            common_task_service_name,
-            common_task_req_page
-        ) VALUES (
-            #{commonTaskName},
-            #{commonTaskImg},
-            #{commonTaskTell},
-            #{commonTaskUrl},
-            #{commonTaskAddr},
-            #{commonTaskLot},
-            #{commonTaskLat},
-            #{commonTaskServiceName},
-            #{commonTaskReqPage}
-        );
-    </insert>
-
-    <select id="getmaxIdOfTask" resultType="long">
-        select coalesce(max(id), 0) FROM tbl_member_task_pool;
-    </select>
-
-    <select id="checkIfExists" resultType="_int">
-        select exists (
-            select 1 from  tbl_member_task_pool
-            where id = #{id}
-            and   member_task_pool_status = '정상'
-        )
-    </select>
-
-    <insert  id="insertMemberTask">
-        insert into tbl_member_task
-            (member_id, task_pool_id)
-        select
-            id,
-            #{id}
-        from tbl_member
-        where member_type = '일반 회원'
-          and member_status = '정상';
-    </insert>
 
 </mapper>

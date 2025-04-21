@@ -154,7 +154,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
 .mainUserListDiv, .userListDiv {
     display: grid
 ;
-    grid-template-columns: 50px 100px 400px 450px;
+    grid-template-columns: 50px 300px 300px 100px;
     align-items: center;
     text-align: center;
     border-bottom: 1px solid #ccc;

@@ -1,6 +1,5 @@
 const adminListService = (() => {
     const getList = async (callback, page=1)=> {
-        console.log(`pageCount = ${page}`)
         const response = await fetch(`/admin/adminlists?page=${page}`)
         const adminListsData = await response.json();
         if(callback){
@@ -16,8 +15,20 @@ const adminListService = (() => {
             }
         });
     }
+
+    const deleteAdmin = async (idList) => {
+        await fetch("/admin/deleteAdmin", {
+            method: "put",
+            body: JSON.stringify(idList),
+            headers: {
+                "Content-Type": "application/json;charset=utf-8"
+            }
+        });
+    }
+
     return {
         getList:getList,
-        addAdmin:addAdmin
+        addAdmin:addAdmin,
+        deleteAdmin:deleteAdmin
     }
 })();

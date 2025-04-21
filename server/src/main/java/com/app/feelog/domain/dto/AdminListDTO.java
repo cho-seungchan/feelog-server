@@ -1,6 +1,6 @@
 package com.app.feelog.domain.dto;
 
-import com.app.feelog.util.AdminPagination;
+import com.app.feelog.util.pagination.AdminPagination;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +15,6 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AdminListDTO {
-    private List<AdminDTO> adminList;
+    private List<MemberDTO> adminList;
     private AdminPagination adminPagination;
 }
