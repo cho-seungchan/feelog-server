@@ -191,10 +191,12 @@ function initSelectDropdown(container) {
 
         // 여기에서 input[name='visibilityOption']에 값 설정
         const selectedEnumValue = diaryOpenMap[clicked.textContent.trim()];
-        const hiddenInput = container.querySelector("input[name='visibilityOption']");
+        const hiddenInput = container.querySelector("input[name='diaryOpen']");
         if (hiddenInput && selectedEnumValue) {
             hiddenInput.value = selectedEnumValue;
         }
+
+
     });
 
     document.addEventListener("click", (e) => {
@@ -260,6 +262,7 @@ function initSelectDropdown2nd(container) {
         optionList2nd.setAttribute("hidden", "");
         toggleBtn2nd.setAttribute("aria-expanded", "false");
 
+        // 여기에서 input[name='diaryNameOpen']에 값 설정
         const selectedNameEnumValue = diaryNameOpenMap[clicked2nd.textContent.trim()];
         const hiddenNameInput = container.querySelector("input[name='diaryNameOpen']");
         if (hiddenNameInput && selectedNameEnumValue) {

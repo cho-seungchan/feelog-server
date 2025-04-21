@@ -15,8 +15,8 @@ import java.util.Optional;
 public class LoginService {
     private final MemberDAO memberDAO;
 
-    // 2025.04.18 조승찬 :: 이메일 로그인 멤버 확인
-    public Optional<MemberDTO> getMemberByEmailAndPassword(MemberDTO memberDTO) {
-        return memberDAO.getMemberByEmailAndPassword(memberDTO.toVO());
-    }
+//    // 2025.04.18 조승찬 :: 이메일 로그인 멤버 확인
+//    public Optional<MemberDTO> getMemberByEmailAndPassword(MemberDTO memberDTO) {
+//        return memberDAO.getMemberByEmailAndPassword(memberDTO.toVO());
+//    }
 }
