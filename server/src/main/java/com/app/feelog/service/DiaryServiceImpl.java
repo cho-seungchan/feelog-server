@@ -1,0 +1,104 @@
+package com.app.feelog.service;
+
+import com.app.feelog.domain.dto.DiaryDTO;
+import com.app.feelog.domain.dto.DiaryFileDTO;
+import com.app.feelog.domain.dto.DiaryTagDTO;
+import com.app.feelog.domain.dto.TagDTO;
+import com.app.feelog.domain.vo.DiaryVO;
+import com.app.feelog.repository.DiaryDAO;
+import com.app.feelog.repository.DiaryTagDAO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+@Transactional(rollbackFor = Exception.class)
+@Slf4j
+public class DiaryServiceImpl implements DiaryService {
+
+    private final DiaryDAO diaryDAO;
+    private final DiaryFileServiceImpl diaryFileServiceImpl;
+    private final DiaryTagServiceImpl diaryTagServiceImpl;
+    private final TagServiceImpl tagServiceImpl;
+    private final DiaryTagDAO diaryTagDAO;
+
+    @Override
+    public Long writeDiary(DiaryDTO diaryDTO) {
+        DiaryVO diaryVO = diaryDTO.toVO();
+        diaryDAO.save(diaryVO);
+        Long diaryId = diaryVO.getId();
+
+        if (diaryDTO.getFileIds() != null) {
+            for (Long fileId : diaryDTO.getFileIds()) {
+                DiaryFileDTO dto = new DiaryFileDTO();
+                dto.setDiaryId(diaryId);
+                dto.setId(fileId);
+                diaryFileServiceImpl.addDiaryFile(dto);
+            }
+        }
+
+        if (diaryDTO.getTags() != null) {
+            for (String content : diaryDTO.getTags()) {
+                TagDTO tagDTO = new TagDTO();
+                tagDTO.setContents(content);
+                tagServiceImpl.saveTag(tagDTO);
+
+                DiaryTagDTO diaryTagDTO = new DiaryTagDTO();
+                diaryTagDTO.setTagId(tagDTO.getId());
+                diaryTagDTO.setDiaryId(diaryId);
+                diaryTagServiceImpl.save(diaryTagDTO);
+            }
+        }
+
+        return diaryId;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public DiaryDTO getDiary(Long id) {
+        DiaryVO diaryVO = diaryDAO.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 다이어리를 찾을 수 없습니다."));
+
+        DiaryDTO diaryDTO = toDTO(diaryVO);
+
+        List<String> tags = diaryTagDAO.findTagContentsByDiaryId(id);
+        diaryDTO.setTags(tags);
+
+        return diaryDTO;
+    }
+
+
+    @Override
+    public void updateDiary(DiaryDTO diaryDTO) {
+        DiaryVO diaryVO = diaryDTO.toVO();
+        diaryDAO.update(diaryVO);
+
+        diaryFileServiceImpl.removeAllFilesByDiaryId(diaryVO.getId());
+        if (diaryDTO.getFileIds() != null) {
+            for (Long fileId : diaryDTO.getFileIds()) {
+                DiaryFileDTO dto = new DiaryFileDTO();
+                dto.setDiaryId(diaryVO.getId());
+                dto.setId(fileId);
+                diaryFileServiceImpl.addDiaryFile(dto);
+            }
+        }
+
+        diaryTagServiceImpl.removeAllTagsByDiaryId(diaryVO.getId());
+        if (diaryDTO.getTags() != null) {
+            for (String content : diaryDTO.getTags()) {
+                TagDTO tagDTO = new TagDTO();
+                tagDTO.setContents(content);
+                tagServiceImpl.saveTag(tagDTO);
+
+                DiaryTagDTO diaryTagDTO = new DiaryTagDTO();
+                diaryTagDTO.setTagId(tagDTO.getId());
+                diaryTagDTO.setDiaryId(diaryVO.getId());
+                diaryTagServiceImpl.save(diaryTagDTO);
+            }
+        }
+    }
+}

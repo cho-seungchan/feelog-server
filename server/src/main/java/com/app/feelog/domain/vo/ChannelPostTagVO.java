@@ -11,14 +11,13 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
 @SuperBuilder
-public class DiaryTagVO extends TagVO {
-    private Long diaryId;
+public class ChannelPostTagVO extends TagVO {
+    private Long channelPostId;
 
 //    @Builder
-//    public DiaryTagVO(String createdDate, String updatedDate,
-//                      Long id, String contents, TagStatus tagStatus,
-//                      Long diaryId) {
-//        super(createdDate, updatedDate, id, contents, tagStatus);
-//        this.diaryId = diaryId;
+//    public ChannelPostTagVO(String createdDate, String updatedDate,
+//                            Long id, String content, Long channelPostId, TagStatus tagStatus) {
+//        super(createdDate, updatedDate, id, content, tagStatus);
+//        this.channelPostId = channelPostId;
 //    }
 }

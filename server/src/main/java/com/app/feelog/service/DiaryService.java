@@ -2,23 +2,31 @@ package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.DiaryDTO;
 import com.app.feelog.domain.vo.DiaryVO;
-import com.app.feelog.repository.DiaryDAO;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@RequiredArgsConstructor
-@Transactional(rollbackFor = Exception.class)
-@Slf4j
-public class DiaryService {
-    private final DiaryDAO diaryDAO;
+public interface DiaryService {
+    Long writeDiary(DiaryDTO diaryDTO);
 
-    public Long writeDiary(DiaryDTO diaryDTO) {
-        DiaryVO diaryVO = diaryDTO.toVO();
-        diaryDAO.save(diaryVO);
-        return diaryVO.getId();
+    DiaryDTO getDiary(Long id);
+
+    void updateDiary(DiaryDTO diaryDTO);
+
+
+    default DiaryDTO toDTO(DiaryVO vo) {
+        DiaryDTO dto = new DiaryDTO();
+        dto.setId(vo.getId());
+        dto.setDiaryTitle(vo.getDiaryTitle());
+        dto.setDiaryContent(vo.getDiaryContent());
+        dto.setDiaryOpen(vo.getDiaryOpen());
+        dto.setDiaryNameOpen(vo.getDiaryNameOpen());
+        dto.setDiaryFilePath(vo.getDiaryFilePath());
+        dto.setDiaryFileName(vo.getDiaryFileName());
+        dto.setDiaryFileSize(vo.getDiaryFileSize());
+        dto.setDiaryWeather(vo.getDiaryWeather());
+        dto.setMemberId(vo.getMemberId());
+        dto.setFeelId(vo.getFeelId());
+        dto.setDiaryStatus(vo.getDiaryStatus());
+        dto.setCreatedDate(vo.getCreatedDate());
+        dto.setUpdatedDate(vo.getUpdatedDate());
+        return dto;
     }
-
 }
