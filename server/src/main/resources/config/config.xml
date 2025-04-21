@@ -8,9 +8,9 @@
     <typeAliases>
         <typeAlias type="com.app.feelog.domain.vo.ChannelPostLikeVO" alias="channelPostLikeVO"/>
         <typeAlias type="com.app.feelog.domain.vo.MemberVO" alias="memberVO"/>
-        <typeAlias type="com.app.feelog.domain.vo.AdminVO" alias="adminVO"/>
         <typeAlias type="com.app.feelog.domain.vo.DiaryVO" alias="diaryVO"/>
         <typeAlias type="com.app.feelog.domain.dto.DiaryDTO" alias="diaryDTO"/>
+        <typeAlias type="com.app.feelog.domain.vo.NoticeVO" alias="noticeVO"/>
     </typeAliases>
 
 
