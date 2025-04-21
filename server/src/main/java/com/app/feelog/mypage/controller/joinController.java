@@ -1,11 +1,10 @@
 // 2025.04.17 조승찬   ::  회원가입
 
-package com.app.feelog.controller;
+package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.MemberDTO;
-import com.app.feelog.repository.MemberDAO;
-import com.app.feelog.service.EmailService;
-import com.app.feelog.service.JoinService;
+import com.app.feelog.mypage.service.EmailService;
+import com.app.feelog.mypage.service.JoinService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,15 +14,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/join")
 @Slf4j
-public class JoinController {
+public class joinController {
     private final JoinService joinService;
     private final EmailService emailService;
 

@@ -5,6 +5,7 @@ import com.app.feelog.domain.vo.TagVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -18,4 +19,7 @@ public interface DiaryTagMapper {
     public void deleteByDiaryId(Long diaryId);
 
     void save(@Param("diaryId") Long diaryId, @Param("tagId") Long tagId);
+
+    List<String> selectTagContentsByDiaryId(Long diaryId);
+
 }

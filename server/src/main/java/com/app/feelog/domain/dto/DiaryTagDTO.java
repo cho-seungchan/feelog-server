@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.TagStatus;
 import com.app.feelog.domain.vo.DiaryTagVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -11,19 +12,22 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 public class DiaryTagDTO {
-    @EqualsAndHashCode.Include
-    private Long diaryId;
     private Long tagId;
+    private String contents;
+    private TagStatus tagStatus;
     private String createdDate;
     private String updatedDate;
+    private Long diaryId;
+
 
     public DiaryTagVO toVO() {
         return DiaryTagVO.builder()
-                .diaryId(diaryId)
-                .tagId(tagId)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
+                .id(tagId)
+                .contents(contents)
+                .tagStatus(tagStatus)
+                .diaryId(diaryId)
                 .build();
     }
-
 }

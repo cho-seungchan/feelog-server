@@ -4,8 +4,8 @@ create table tbl_member_task(
        member_id                    bigint not null,
        task_pool_id                 bigint not null,
        member_task_status		    varchar(50) default '정상',
-       created_date 	            datetime default current_timestamp,
-       updated_date 	            datetime default current_timestamp,
+       created_date                 datetime, -- 기본값: 내일 날짜
+       updated_date                 datetime,
        constraint fk_member_task_member foreign key (member_id)
            references tbl_member (id),
        constraint fk_member_task_member_task_pool foreign key (task_pool_id)

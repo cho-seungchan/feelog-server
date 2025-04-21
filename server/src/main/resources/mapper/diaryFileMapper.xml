@@ -3,8 +3,8 @@
 <mapper namespace="com.app.feelog.mapper.DiaryFileMapper">
 
     <insert id="insert" parameterType="com.app.feelog.domain.vo.DiaryFileVO">
-        INSERT INTO tbl_diary_file (diary_id, file_id)
-        VALUES (#{diaryId}, #{fileId})
+        INSERT INTO tbl_diary_file (id, diary_id)
+        VALUES (#{id}, #{diaryId})
     </insert>
 
     <delete id="deleteByDiaryId" parameterType="long">

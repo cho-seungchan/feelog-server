@@ -7,4 +7,10 @@
         VALUES (#{filePath}, #{fileName}, #{fileSize})
     </insert>
 
+    <update id="deactivateFile">
+        UPDATE tbl_file
+        SET file_status = 'INACTIVE'
+        WHERE id = #{fileId}
+    </update>
+
 </mapper>

@@ -7,10 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
 public class TagDAO {
+
     private final TagMapper tagMapper;
 
     // 태그 저장
@@ -23,8 +25,12 @@ public class TagDAO {
         tagMapper.insertDiaryTag(diaryTagVO);
     }
 
-    // 태그 내용으로 태그 조회
+    // 내용으로 태그 찾기 (중복 체크 or 조회용)
     public List<TagVO> findTagsByContents(String contents) {
         return tagMapper.findTagsByContents(contents);
+    }
+
+    public void deactivateTag(Long tagId) {
+        tagMapper.deactivateTag(tagId);
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling  // quirtz의 멀티스케쥴 기능 허용
-@MapperScan(basePackages = "com.app.feelog.mapper")
 public class FeelogApplication {
 
 	public static void main(String[] args) {

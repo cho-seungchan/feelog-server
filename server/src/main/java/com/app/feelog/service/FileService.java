@@ -60,7 +60,7 @@ public class FileService {
                     .fileSize(String.valueOf(file.getSize()))
                     .build();
 
-            // 🔥 DB 저장
+            // DB 저장
             fileDAO.save(fileVO);
 
             // VO → DTO로 변환

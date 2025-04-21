@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ".FlgModal-root-need .jk-feelog-div018"
     );
 
+
     // note-editor 찾기
     let noteEditor = summernote;
     while (noteEditor && !noteEditor.classList.contains("note-editor")) {
@@ -44,8 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
             titleText.textContent = titleValue;
             titleText.id = "title-fixed"; // 나중에 다시 input으로 돌릴 때 필요
 
-            // <input> → <p>로 교체
+            // hidden input 생성
+            const hiddenTitleInput = document.createElement("input");
+            hiddenTitleInput.type = "hidden";
+            hiddenTitleInput.name = "diaryTitle"; // 이게 서버에서 필요했던 name
+            hiddenTitleInput.value = titleValue;
+
+            // 교체
             titleInput.parentNode.replaceChild(titleText, titleInput);
+            titleText.insertAdjacentElement("afterend", hiddenTitleInput); // p 뒤에 삽입
         }
 
         // 4. 버튼 전환
@@ -98,6 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // <p> → <input>로 교체
                 titleFixed.parentNode.replaceChild(titleInput, titleFixed);
+
+                // hidden input도 제거
+                const hiddenInput = document.querySelector("input[name='diaryTitle']");
+                if (hiddenInput) hiddenInput.remove();
             }
 
             // 발행 섹션 제거
@@ -127,6 +139,11 @@ function initSelectDropdown(container) {
     const toggleBtn = container.querySelector("#select-toggle");
     const optionList = container.querySelector("#select-options");
     const options = optionList.querySelectorAll("li");
+    const diaryOpenMap = {
+        "전체 공개": "ALL",
+        "구독자에게만 공개": "SUBSCRIBE",
+        "비공개": "CLOSE"
+    };
 
     if (!toggleBtn || !optionList) return;
 
@@ -171,6 +188,23 @@ function initSelectDropdown(container) {
 
         optionList.setAttribute("hidden", "");
         toggleBtn.setAttribute("aria-expanded", "false");
+
+        // 여기에서 input[name='visibilityOption']에 값 설정
+// 드롭다운 초기 텍스트 설정 (diaryOpen)
+        const hiddenInput = container.querySelector("input[name='diaryOpen']");
+        if (hiddenInput) {
+            hiddenInput.value = diaryOpenMap[clicked.textContent.trim()];
+        }
+        const diaryOpenDisplayMap = {
+            ALL: "전체 공개",
+            SUBSCRIBE: "구독자에게만 공개",
+            CLOSE: "비공개"
+        };
+        if (hiddenInput) {
+            toggleBtn.textContent = diaryOpenDisplayMap[hiddenInput.value] || "전체 공개";
+        }
+
+
     });
 
     document.addEventListener("click", (e) => {
@@ -187,6 +221,10 @@ function initSelectDropdown2nd(container) {
     const toggleBtn2nd = container.querySelector("#select-toggle2nd");
     const optionList2nd = container.querySelector("#select-options2nd");
     const options2nd = optionList2nd.querySelectorAll("li");
+    const diaryNameOpenMap = {
+        "비공개(익명)": "UNKNOWN",
+        "닉네임": "KNOWN"
+    };
 
     if (!toggleBtn2nd || !optionList2nd) return;
 
@@ -231,6 +269,19 @@ function initSelectDropdown2nd(container) {
 
         optionList2nd.setAttribute("hidden", "");
         toggleBtn2nd.setAttribute("aria-expanded", "false");
+
+        // 여기에서 input[name='diaryNameOpen']에 값 설정
+        const hiddenNameInput = container.querySelector("input[name='diaryNameOpen']");
+        if (hiddenNameInput) {
+            hiddenNameInput.value = diaryNameOpenMap[clicked2nd.textContent.trim()];
+        }
+        const diaryNameOpenDisplayMap = {
+            KNOWN: "닉네임",
+            UNKNOWN: "비공개(익명)"
+        };
+        if (hiddenNameInput) {
+            toggleBtn2nd.textContent = diaryNameOpenDisplayMap[hiddenNameInput.value] || "비공개(익명)";
+        }
     });
 
     document.addEventListener("click", (e) => {
@@ -247,24 +298,87 @@ function initFileUpload(container) {
     const fileButton = container.querySelector(".jk-feelog-btn007");
     const fileInput = container.querySelector("#hidden-file-input");
     const preview = container.querySelector(".file-preview");
+    const form = document.querySelector("form");
 
     if (!fileButton || !fileInput) return;
 
     fileButton.addEventListener("click", () => fileInput.click());
 
     fileInput.addEventListener("change", (e) => {
-        const files = Array.from(e.target.files);
-        if (preview) {
-            preview.innerHTML =
-                files.length === 0
-                    ? ""
-                    : files
-                          .map((f, i) => `📎 파일 ${i + 1}: ${f.name}`)
-                          .join("<br>");
-        }
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        fetch("/files/upload", {
+            method: "POST",
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(data => {
+                const fileDTO = data.thumbnail;
+                const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+
+                // 대표 이미지 미리보기
+                if (preview) {
+                    preview.innerHTML = `
+                    <div class="preview-wrapper" style="position: relative; display: inline-block;">
+                        <img src="${imageUrl}" style="max-width: 200px; border-radius: 8px;" />
+                        <button type="button" class="delete-thumbnail-btn" style="
+                            position: absolute;
+                            top: 4px;
+                            right: 4px;
+                            background: rgba(0,0,0,0.5);
+                            border: none;
+                            color: white;
+                            border-radius: 50%;
+                            width: 24px;
+                            height: 24px;
+                            font-weight: bold;
+                            cursor: pointer;
+                        ">×</button>
+                    </div>`;
+                }
+
+                // 기존 hidden input 제거
+                ["diaryFilePath", "diaryFileName", "diaryFileSize"].forEach((key) => {
+                    const oldInput = form.querySelector(`input[name='${key}']`);
+                    if (oldInput) oldInput.remove();
+                });
+
+                // 새로운 hidden input 추가
+                const pathInput = document.createElement("input");
+                pathInput.type = "hidden";
+                pathInput.name = "diaryFilePath";
+                pathInput.value = fileDTO.filePath;
+                form.appendChild(pathInput);
+
+                const nameInput = document.createElement("input");
+                nameInput.type = "hidden";
+                nameInput.name = "diaryFileName";
+                nameInput.value = fileDTO.fileName;
+                form.appendChild(nameInput);
+
+                const sizeInput = document.createElement("input");
+                sizeInput.type = "hidden";
+                sizeInput.name = "diaryFileSize";
+                sizeInput.value = fileDTO.fileSize;
+                form.appendChild(sizeInput);
+
+                // 삭제 버튼 이벤트
+                preview.querySelector(".delete-thumbnail-btn").addEventListener("click", () => {
+                    preview.innerHTML = "";
+                    fileInput.value = "";
+
+                    [pathInput, nameInput, sizeInput].forEach(input => input.remove());
+                });
+            })
+            .catch(() => {
+                alert("대표 이미지 업로드 실패");
+            });
     });
 }
-
 function initTagInput(container) {
     const input = container.querySelector(".FlgInput-input-need");
     const tagBox = container.querySelector(".jk-feelog-div025");
@@ -274,25 +388,40 @@ function initTagInput(container) {
     const MAX_TAG_LENGTH = 20;
     const TAG_PATTERN = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_]+$/;
 
-    function renderTags() {
-        tagBox
-            .querySelectorAll(".FlgChip-root-need")
-            .forEach((el) => el.remove());
+    // 기존 hidden input에서 태그 복원
+    const existingTagInputs = container.querySelectorAll("input[name='tags']");
+    existingTagInputs.forEach(input => {
+        if (input.value) {
+            tags.add(input.value);
+        }
+    });
 
-        tags.forEach((text) => {
+    renderTags(); // 초기 렌더링
+
+    function renderTags() {
+        tagBox.querySelectorAll(".FlgChip-root-need").forEach(el => el.remove());
+        const form = document.querySelector("form");
+        form.querySelectorAll("input[name='tags']").forEach(el => el.remove());
+
+        tags.forEach(text => {
             const tagEl = document.createElement("div");
-            tagEl.className =
-                "FlgChip-root-need FlgChip-colorPrimary FlgChip-sizeMd-need FlgChip-variantSoft-need joy-1g753be";
+            tagEl.className = "FlgChip-root-need FlgChip-colorPrimary FlgChip-sizeMd-need FlgChip-variantSoft-need joy-1g753be";
             tagEl.innerHTML = `
                 <span class="FlgChip-label-need FlgChip-label-needMd jk-feelog-span006">${text}</span>
                 <span class="FlgChip-endDecorator joy-1i201st">
                     <button class="FlgChipDelete-root FlgChipDelete-variantSoft FlgChipDelete-colorPrimary joy-1rgf1fl" type="button">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
                             <path d="M17.979 7.354a.937.937 0 0 0-1.324-1.324l-4.65 4.648-4.651-4.653A.937.937 0 0 0 6.03 7.35l4.648 4.649-4.653 4.652a.937.937 0 0 0 1.324 1.324l4.649-4.648 4.652 4.652a.937.937 0 0 0 1.324-1.324l-4.648-4.648 4.652-4.652Z" fill="currentcolor"></path>
                         </svg>
                     </button>
                 </span>`;
             tagBox.insertBefore(tagEl, input.closest(".FlgInput-root-need"));
+
+            const hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "tags";
+            hiddenInput.value = text;
+            form.appendChild(hiddenInput);
         });
     }
 
@@ -324,9 +453,7 @@ function initTagInput(container) {
 
     tagBox.addEventListener("click", (e) => {
         if (e.target.closest(".FlgChipDelete-root")) {
-            const text = e.target
-                .closest(".FlgChip-root-need")
-                .querySelector(".FlgChip-label-need").textContent;
+            const text = e.target.closest(".FlgChip-root-need").querySelector(".FlgChip-label-need").textContent;
             tags.delete(text);
             renderTags();
         }

@@ -1,0 +1,247 @@
+<!-- 2025.04.08 조승찬 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/challenge/challenging-list.css" />
+        <title>첼린지 목록</title>
+    </head>
+    <body>
+        <div class="FeelogStack-root flog-div-1">
+            <!-- 헤더 넣을 곳 -->
+
+            <div class="feelog-header-mainDiv" id="header-container"></div>
+            <script>
+                // Load header.html and insert it in#header-placeholder
+                fetch("../main/header.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("header-container").innerHTML = data;
+                    })
+                    .catch((error) => console.error("Error loading header:", error));
+            </script>
+            <!-- 헤더 넣을 곳 -->
+
+            <div class="FeelogStack-root flog-div-12">
+                <div class="FeelogStack-root flog-div-13">
+                    <nav class="subnavigation FeelogBox-root flog-nav-2">
+                        <ul
+                            class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-1"
+                        >
+                            <a
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                                href="/challenge/task-list"
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                                    오늘 첼린지
+                                </p></a
+                            ><a
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
+                                href="/challenge/challenging-list"
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
+                                    진행 챌린지
+                                </p></a
+                            ><a
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                                href="/chellenge/completed-list"
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                                    완료 챌린지
+                                </p></a
+                            >
+                        </ul>
+                    </nav>
+                    <main class="FeelogStack-root flog-main-1">
+                        <section class="FeelogStack-root flog-section-2">
+                            <div class="FeelogStack-root flog-div-25">
+                                <h2 class="FeelogTypography-root FeelogTypography-h3 flog-h2-3">
+                                </h2>
+                            </div>
+                            <div class="FeelogGrid-root FeelogGrid-container FeelogGrid-direction-xs-row flog-div-26">
+<!--                                2025.04.20 조승찬 :: 진행중인 챌린지-->
+                                <th:block th:each="challenge:${challenges}">
+                                    <section  th:if="${challenge.type == '개별'}"
+                                              class="FeelogGrid-root FeelogGrid-direction-xs-row FeelogGrid-grid-xs-1 flog-section-3"
+                                    >
+                                        <div class="FeelogStack-root flog-div-27">
+                                            <div class="FeelogStack-root flog-div-28">
+                                                <div class="FeelogBox-root flog-a-8"
+                                                >
+                                                    <div class="FeelogBox-root flog-div-29">
+                                                        <img
+                                                                alt="개별 과제"
+                                                                loading="lazy"
+                                                                decoding="async"
+                                                                data-nimg="fill"
+                                                                style="
+                                                            position: absolute;
+                                                            height: 100%;
+                                                            width: 100%;
+                                                            left: 0;
+                                                            top: 0;
+                                                            right: 0;
+                                                            bottom: 0;
+                                                            object-fit: cover;
+                                                            color: transparent;"
+                                                                th:if="${challenge.memberTaskPoolFileName != null && !challenge.memberTaskPoolFileName.isEmpty()}"
+                                                                th:src="@{/files/display(path=|${challenge.memberTaskPoolFilePath}/${challenge.memberTaskPoolFileName}|)}"
+                                                        /><img
+                                                            alt="개별 과제"
+                                                            loading="lazy"
+                                                            decoding="async"
+                                                            data-nimg="fill"
+                                                            style="
+                                                            position: absolute;
+                                                            height: 100%;
+                                                            width: 100%;
+                                                            left: 0;
+                                                            top: 0;
+                                                            right: 0;
+                                                            bottom: 0;
+                                                            object-fit: cover;
+                                                            color: transparent;"
+                                                            th:if="${challenge.memberTaskPoolFileName == null || challenge.memberTaskPoolFileName.isEmpty()}"
+                                                            th:src="@{/images/challenge.jfif}"
+                                                    /></div
+                                                    ></div>
+                                                <div class="FeelogStack-root flog-div-30">
+                                                    <div class="FeelogStack-root flog-a-9"
+                                                    ><h3 class="FeelogTypography-root FeelogTypography-h4 flog-h3-1" th:text="${challenge.memberTaskPoolContent}">
+                                                    </h3>
+                                                        <div style="display: flex; "  class="button-conatiner">
+                                                            <button
+                                                                    class="challenge-member-task"
+                                                                    th:classappend="${challenge.challengeComplete != null && (challenge.challengeComplete.name() == 'COMPLETED' || challenge.challengeComplete.name() == 'ONGOING') ? 'selected' : ''}"
+                                                                    th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}"
+                                                                    th:attrappend="disabled=${challenge.challengeComplete != null && challenge.challengeComplete.name() == 'COMPLETED' ? 'disabled' : null}"
+                                                                    th:text="${challenge.challengeComplete != null ? (challenge.challengeComplete.name() == 'COMPLETED' ? '완료' : (challenge.challengeComplete.name() == 'ONGOING' ? '중단' : '도전')) : '도전'}">
+                                                            </button>
+                                                            <button
+                                                                    class="complete-member-task"
+                                                                    th:classappend="${challenge.challengeComplete != null && challenge.challengeComplete.name() == 'COMPLETED' ? 'selected' : ''}"
+                                                                    th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}"
+                                                                    th:attrappend="disabled=${challenge.challengeComplete != null && (challenge.challengeComplete.name() == 'CANCEL') ? 'disabled' : null}"
+                                                                    th:text="${challenge.challengeComplete != null ? (challenge.challengeComplete.name() == 'COMPLETED' ? '완료취소' : (challenge.challengeComplete.name() == 'ONGOING' ? '완료' : '')) : ''}">
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section   th:if="${challenge.type == '공통'}"
+                                               class="FeelogGrid-root FeelogGrid-direction-xs-row FeelogGrid-grid-xs-1 flog-section-3"
+                                    >
+                                        <div class="FeelogStack-root flog-div-27">
+                                            <div class="FeelogStack-root flog-div-28">
+                                                <div class="FeelogBox-root flog-a-8"
+                                                >
+                                                    <div class="FeelogBox-root flog-div-29">
+                                                    <img
+                                                            alt="진행 과제"
+                                                            loading="lazy"
+                                                            decoding="async"
+                                                            data-nimg="fill"
+                                                            style="
+                                                            position: absolute;
+                                                            height: 100%;
+                                                            width: 100%;
+                                                            left: 0;
+                                                            top: 0;
+                                                            right: 0;
+                                                            bottom: 0;
+                                                            object-fit: cover;
+                                                            color: transparent;
+                                                        "
+                                                            th:src="${challenge.commonTaskImg != null && !challenge.commonTaskImg.isEmpty() ? challenge.commonTaskImg : '/images/challenge.jfif'}"
+                                                    /></div
+                                                ></div>
+                                                <div class="FeelogStack-root flog-div-30">
+                                                    <div class="FeelogStack-root flog-a-9" >
+                                                        <h3 class="FeelogTypography-root FeelogTypography-h4 flog-h3-1" th:text="${challenge.commonTaskName}">
+                                                        </h3>
+                                                        <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6" th:text="${challenge.commonTaskAddr}"></p>
+                                                        <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6" th:text="${challenge.commonTaskTell}"></p>
+                                                        <a class="FeelogTypography-root FeelogTypography-body-md flog-p-6"
+                                                           th:if="${challenge.commonTaskUrl != null && !challenge.commonTaskUrl.isEmpty()}"
+                                                           th:href="${challenge.commonTaskUrl}"
+                                                           th:text="${challenge.commonTaskUrl}">
+                                                        </a>
+                                                        <div style="display: flex; " class="button-conatiner">
+                                                            <button
+                                                                    class="challenge-common-task"
+                                                                    th:classappend="${challenge.challengeComplete != null && (challenge.challengeComplete.name() == 'COMPLETED' || challenge.challengeComplete.name() == 'ONGOING') ? 'selected' : ''}"
+                                                                    th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}"
+                                                                    th:attrappend="disabled=${challenge.challengeComplete != null && challenge.challengeComplete.name() == 'COMPLETED' ? 'disabled' : null}"
+                                                                    th:text="${challenge.challengeComplete != null ? (challenge.challengeComplete.name() == 'COMPLETED' ? '완료' : (challenge.challengeComplete.name() == 'ONGOING' ? '중단' : '도전')) : '도전'}">
+                                                            </button>
+                                                            <button
+                                                                    class="complete-common-task"
+                                                                    th:classappend="${challenge.challengeComplete != null && challenge.challengeComplete.name() == 'COMPLETED' ? 'selected' : ''}"
+                                                                    th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}"
+                                                                    th:attrappend="disabled=${challenge.challengeComplete != null && (challenge.challengeComplete.name() == 'CANCEL') ? 'disabled' : null}"
+                                                                    th:text="${challenge.challengeComplete != null ? (challenge.challengeComplete.name() == 'COMPLETED' ? '완료취소' : (challenge.challengeComplete.name() == 'ONGOING' ? '완료' : '')) : ''}">
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </th:block>
+                            </div>
+                        </section>
+
+                        <!--                                                    2025.04.21 조승찬 -->
+                        <!--페이징 처리-->
+                        <form th:action="@{/challenge/challenging-list}" name="pageForm">
+                            <input type="hidden" name="page" th:value="1"   class="challengeList"> <!-- 기본페이지는 1페이지 -->
+                            <div class="paging-wrap">
+                                <div class="pagination-container">
+                                    <a class="change-page" th:if="${pagination.prev}" th:href="${pagination.startPage - 1}">
+                                        <button class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 iItkLq">
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                    class="PaginationButtonGroup__Icon-x0iffd-2 jVxRns"
+                                            />
+                                        </button>
+                                    </a>
+                                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                                        <a class="change-page" th:if="${pagination.page != page}" th:href="${page}"><code th:text="${page}"></code></a>
+                                        <code th:unless="${pagination.page != page}" th:text="${page}"></code>
+                                    </th:block>
+                                    <a class="change-page" th:if="${pagination.next}" th:href="${pagination.endPage + 1}">
+                                        <button class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 iItkLq" >
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                    class="PaginationButtonGroup__Icon-x0iffd-2 dQqQMu"
+                                            />
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                        <!--                                                    2025.04.21 조승찬-->
+                    </main>
+                </div>
+            </div>
+
+            <!-- footer 넣을 곳 -->
+            <div class="joy-17imqrx" id="footer-container"></div>
+            <script>
+                // Load footer.html and insert it into #footer-placeholder
+                fetch("../main/footer.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("footer-container").innerHTML = data;
+                    })
+                    .catch((error) => console.error("Error loading footer:", error));
+            </script>
+            <!-- footer 넣을 곳 -->
+        </div>
+    </body>
+    <script src="/js/challenge/challenging-list-event.js"></script>
+    <script src="/js/challenge/challenging-list-service.js"></script>
+    <script src="/js/challenge/challenging-list-layout.js"></script>
+    <script src="/js/main/main-modal.js"></script>
+</html>

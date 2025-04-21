@@ -8,4 +8,6 @@ public interface FileMapper {
 
     public void insert(FileVO fileVO);
 
+    void deactivateFile(Long fileId);
+
 }
