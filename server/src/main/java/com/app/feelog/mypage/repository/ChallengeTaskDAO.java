@@ -117,15 +117,22 @@ public class ChallengeTaskDAO {
         return challengeTaskMapper.getChallengingList(memberId, pagination);
     }
 
+    // 2025.04.20 조승찬 :: 개별 과제 정보 가져오기
     public Optional<MemberTaskPoolVO> getMemberTaskInfo(Long id) {
         return Optional.ofNullable(
                 challengeTaskMapper.getMemberTaskInfo(id)
                         .orElse(null));
     }
 
+    // 2025.04.20 조승찬 :: 공통 과제 정보 가져오기
     public Optional<CommonTaskVO> getCommonTaskInfo(Long id) {
         return Optional.ofNullable(
                 challengeTaskMapper.getCommonTaskInfo(id)
                         .orElse(null));
+    }
+
+    // 2025.04.22 조승찬 :: 개별 챌린지 완료 처리
+    public void completeMemberChallenge(Long id) {
+        challengeTaskMapper.completeChallenge(id);
     }
 }

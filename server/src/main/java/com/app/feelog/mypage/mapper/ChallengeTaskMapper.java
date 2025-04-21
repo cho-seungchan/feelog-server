@@ -64,4 +64,7 @@ public interface ChallengeTaskMapper {
 
     // 2025.04.20 조승찬 :: 챌린지 내역에 헤당하는 공통 과제 정보 가져오기
     Optional<CommonTaskVO> getCommonTaskInfo(Long id);
+
+    // 2025.04.22 조승찬 :: 챌린지 완료 처리
+    void completeChallenge(Long id);
 }

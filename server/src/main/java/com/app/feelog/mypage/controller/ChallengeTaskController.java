@@ -140,4 +140,14 @@ public class ChallengeTaskController {
         return "challenge/challenging-list";
     }
 
+    // 2025.04.22 조승찬 :: 개별 챌린지 완료 처리
+    @ResponseBody
+    @PostMapping("/member-complete")
+    public void completeMemberChallenge(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                      @RequestBody MemberChallengeDTO memberChallengeDTO) {
+
+        challengeTaskService.completeMemberChallenge(memberChallengeDTO.getId());
+
+    };
+
 }

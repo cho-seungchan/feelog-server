@@ -31,19 +31,19 @@
                         >
                             <a
                                 class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="/messages"
+                                href="/challenge/task-list"
                                 ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
                                     오늘 첼린지
                                 </p></a
                             ><a
                                 class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
-                                href="/messages/blockList"
+                                href="/challenge/challenging-list"
                                 ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
                                     진행 챌린지
                                 </p></a
                             ><a
                                 class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="/messages/blockList"
+                                href="/chellenge/completed-list"
                                 ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
                                     완료 챌린지
                                 </p></a
@@ -191,6 +191,37 @@
                                 </th:block>
                             </div>
                         </section>
+
+                        <!--                                                    2025.04.21 조승찬 -->
+                        <!--페이징 처리-->
+                        <form th:action="@{/challenge/challenging-list}" name="pageForm">
+                            <input type="hidden" name="page" th:value="1"   class="challengeList"> <!-- 기본페이지는 1페이지 -->
+                            <div class="paging-wrap">
+                                <div class="pagination-container">
+                                    <a class="change-page" th:if="${pagination.prev}" th:href="${pagination.startPage - 1}">
+                                        <button class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 iItkLq">
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                    class="PaginationButtonGroup__Icon-x0iffd-2 jVxRns"
+                                            />
+                                        </button>
+                                    </a>
+                                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                                        <a class="change-page" th:if="${pagination.page != page}" th:href="${page}"><code th:text="${page}"></code></a>
+                                        <code th:unless="${pagination.page != page}" th:text="${page}"></code>
+                                    </th:block>
+                                    <a class="change-page" th:if="${pagination.next}" th:href="${pagination.endPage + 1}">
+                                        <button class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 iItkLq" >
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                    class="PaginationButtonGroup__Icon-x0iffd-2 dQqQMu"
+                                            />
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                        <!--                                                    2025.04.21 조승찬-->
                     </main>
                 </div>
             </div>

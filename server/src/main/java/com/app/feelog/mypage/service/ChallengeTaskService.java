@@ -169,4 +169,9 @@ public class ChallengeTaskService implements ToDTO{
 
         return allChallengeList;
     }
+
+    // 2025.04.22 조승찬 :: 개별 챌린지 완료 처리
+    public void completeMemberChallenge(Long id) {
+        challengeTaskDAO.completeMemberChallenge(id);
+    }
 }

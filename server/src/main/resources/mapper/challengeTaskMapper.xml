@@ -140,13 +140,7 @@
         values (#{id}, #{memberId}, #{taskId})
     </insert>
 
-    <update id="rePostCommonChallenge">
-        update tbl_challenge
-        set challenge_complete = '진행중'
-        where id = #{id}
-    </update>
-
-    <update id="rePostMemberChallenge">
+    <update id="rePostChallenge">
         update tbl_challenge
         set challenge_complete = '진행중'
         where id = #{id}
