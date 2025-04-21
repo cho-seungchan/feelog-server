@@ -14,4 +14,8 @@ public interface NoticeMapper {
     public int selectNoticeCount();
 
     public List<NoticeAdminDTO> selectNoticeAll(NoticePagination noticePagination);
+
+    public void updateNotice(NoticeVO noticeVO);
+
+    public void deleteNotice(Long id);
 }

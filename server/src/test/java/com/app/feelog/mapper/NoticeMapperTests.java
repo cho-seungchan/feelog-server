@@ -39,4 +39,15 @@ public class NoticeMapperTests {
         List<NoticeAdminDTO> noticeList = noticeMapper.selectNoticeAll(noticePagination);
         noticeList.forEach(noticeVO -> {log.info(noticeVO.toString());});
     }
+
+    @Test
+    public void updateNotice() {
+        NoticeDTO notice = new NoticeDTO();
+
+        notice.setNoticeTitle("제목변경");
+        notice.setNoticeContent("내용변경");
+        notice.setId(7L);
+
+        noticeMapper.updateNotice(notice.toVO());
+    }
 }

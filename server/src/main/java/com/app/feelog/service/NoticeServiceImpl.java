@@ -49,4 +49,12 @@ public class NoticeServiceImpl {
 
         return noticeListDTO;
     }
+
+    public void updateNotice(NoticeDTO noticeDTO) {
+        noticeDAO.setNotice(noticeDTO.toVO());
+    }
+
+    public void deleteNotice(Long id) {
+        noticeDAO.deleteNotice(id);
+    }
 }

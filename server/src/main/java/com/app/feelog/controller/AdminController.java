@@ -61,5 +61,14 @@ public class AdminController {
         return noticeServiceImpl.getNoticeLists(noticePagination);
     }
 
+    @PutMapping("/updateNotice")
+    public void updateNotice(@RequestBody NoticeDTO noticeDTO) {
+        log.info(noticeDTO.toString());
+        noticeServiceImpl.updateNotice(noticeDTO);
+    }
 
+    @PutMapping("/deleteNotice")
+    public void deleteNotice(@RequestBody Long id) {
+        noticeServiceImpl.deleteNotice(id);
+    }
 }

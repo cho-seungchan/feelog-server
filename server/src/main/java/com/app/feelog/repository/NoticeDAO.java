@@ -25,4 +25,12 @@ public class NoticeDAO {
     public int findNoticeCount() {
         return noticeMapper.selectNoticeCount();
     }
+
+    public void setNotice(NoticeVO noticeVO) {
+        noticeMapper.updateNotice(noticeVO);
+    }
+
+    public void deleteNotice(Long id) {
+        noticeMapper.deleteNotice(id);
+    }
 }

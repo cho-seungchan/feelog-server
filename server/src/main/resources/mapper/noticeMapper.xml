@@ -12,7 +12,7 @@
         from tbl_member m
         join tbl_notice n
         on m.id = n.member_id
-        where m.member_type = '관리자'
+        where m.member_type = '관리자' and notice_status = '정상'
         order by n.id desc
         limit #{offset}, #{rowCount}
     </select>
@@ -20,4 +20,16 @@
     <select id="selectNoticeCount" resultType="_int">
         select COUNT(*) from tbl_notice where notice_status = '정상'
     </select>
+
+    <update id="updateNotice">
+        update tbl_notice
+        set notice_title = #{noticeTitle}, notice_content = #{noticeContent}
+        where id = #{id}
+    </update>
+
+    <update id="deleteNotice">
+        update tbl_notice
+        set notice_status = '삭제'
+        where id = #{id}
+    </update>
 </mapper>

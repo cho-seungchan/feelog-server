@@ -1,5 +1,6 @@
 const adminListLayout = (() => {
     const showList = async (adminListsData) => {
+        console.log(adminListsData)
         const adminListButtons = document.querySelectorAll(".adminLists");
         adminListButtons.forEach((adminListButton)=>{
             adminListButton.addEventListener("click", (e) => {
