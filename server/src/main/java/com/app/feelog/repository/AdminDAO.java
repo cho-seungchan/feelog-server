@@ -1,10 +1,8 @@
 package com.app.feelog.repository;
 
-import com.app.feelog.domain.dto.AdminDTO;
 import com.app.feelog.domain.vo.MemberVO;
 import com.app.feelog.mapper.AdminMapper;
-import com.app.feelog.util.AdminPagination;
-import com.app.feelog.util.Pagination;
+import com.app.feelog.util.pagination.AdminPagination;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,11 +17,13 @@ public class AdminDAO {
         adminMapper.insertAdmin(adminVO);
     }
 
-    public List<AdminDTO> findAdminAll(AdminPagination pagination) {
+    public List<MemberVO> findAdminAll(AdminPagination pagination) {
         return adminMapper.selectAdminAll(pagination);
     }
 
     public int findAdminCount() {
         return adminMapper.selectAdminCount();
     }
+
+    public void deleteAdmin(Long id) {adminMapper.deleteAdmin(id);}
 }

@@ -1,9 +1,8 @@
 package com.app.feelog.mapper;
 
-import com.app.feelog.domain.dto.AdminDTO;
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.domain.vo.MemberVO;
-import com.app.feelog.util.AdminPagination;
+import com.app.feelog.util.pagination.AdminPagination;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +30,12 @@ public class AdminMapperTests {
     @Test
     public void selectTest() {
         AdminPagination pagination = new AdminPagination();
-        pagination.setPage(2);
+
+        pagination.setPage(1);
         pagination.create(adminMapper.selectAdminCount());
         log.info("{}", pagination.getRealEnd());
 
-        List<AdminDTO> admins = adminMapper.selectAdminAll(pagination);
+        List<MemberVO> admins = adminMapper.selectAdminAll(pagination);
         admins.forEach(admin -> {log.info(admin.toString());});
     }
 
