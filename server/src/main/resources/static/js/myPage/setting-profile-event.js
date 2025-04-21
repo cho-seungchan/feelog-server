@@ -24,18 +24,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 파일 첨부 처리
+    // 2025.04.21  조승찬 :: 파일 첨부 처리
     // 1. 버튼 클릭 → input 클릭 트리거(클릭된 것으로 처리)
     document.querySelector(".flog-button-14").addEventListener("click", () => {
         document.getElementById(":R359uuukv9ul7rlqakq:").click();
     });
 
-    // 2. 파일 선택 → 파일명 표시
-    document.getElementById(":R359uuukv9ul7rlqakq:").addEventListener("change", () => {
+    // 2. 파일 선택 → 파일명 표시 -> 서버 전송 후 썸네일 표시
+    document.getElementById(":R359uuukv9ul7rlqakq:").addEventListener("change", (e) => {
         if (document.getElementById(":R359uuukv9ul7rlqakq:").files.length > 0) {
             document.querySelector(".flog-p-17").textContent = `${
                 document.getElementById(":R359uuukv9ul7rlqakq:").files[0].name
             }`;
+
+            const file = e.target.files[0];
+
+            // multipart/form-data 형식으로 데이터를 자동 처리
+            const formData = new FormData();
+            formData.append("file", file);
+            // 서버로 전송하여 path와 썸네일 생성
+            inputFileUpload(formData);
+
         } else {
             document.querySelector(".flog-p-17").textContent = "파일을 선택해 주세요.";
         }
@@ -140,21 +149,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 helperTextDiv.textContent = "비밀번호를 입력해 주세요.";
                 e.target.closest(".flog-div-49").appendChild(helperTextDiv);
             }
-            if (!document.querySelector(".flog-button-11").classList.contains("Feelog-disabled")) {
-                document.querySelector(".flog-button-11").classList.add("Feelog-disabled");
-                document.querySelector(".flog-button-11").setAttribute("disabled", "");
-            }
         }
     });
 
     // 비밀번호 입력창 끝.
 
 
-    //  버튼 이벤트 :: 서버에서 결과 받아서 뿌리는 거로 변경 필요
-    document.querySelector(".flog-div-119 .flog-button-10").addEventListener("click", (e) => {
+    //  2025.04.21 조승찬 :: 버튼 이벤트 ::
+    document.querySelector(".flog-button-10").addEventListener("click", (e) => {
         e.preventDefault();
-        document.querySelector(".flog-div-40").style.display = "block";
+
+        // 이미지 파일 정보를 input(파라미터) 값으로 저장
+        if (document.querySelector(".flog-div-29 .uploadFile")){
+
+            const inputFileName = document.createElement("input");
+            inputFileName.type = "hidden";
+            inputFileName.name = `memberFileName`;
+            inputFileName.value = document.querySelector(".flog-div-29").querySelector(".uploadFile").dataset.MemberFileName;
+            document.querySelector(".flog-form-3").appendChild(inputFileName);
+
+            const inputFilePath = document.createElement("input");
+            inputFilePath.type = "hidden";
+            inputFilePath.name = `memberFilePath`;
+            inputFilePath.value = document.querySelector(".flog-div-29").querySelector(".uploadFile").dataset.MemberFilePath;
+            document.querySelector(".flog-form-3").appendChild(inputFilePath);
+
+        }
+
+        document.querySelector(".flog-form-3").submit();
     });
+
+    //  2025.04.21 조승찬 :: 버튼 이벤트 ::
 
     // 모달창 확인, x 버튼 클릭 이벤트
     document.querySelector(".flog-div-44 .flog-button-10").addEventListener("click", (e) => {

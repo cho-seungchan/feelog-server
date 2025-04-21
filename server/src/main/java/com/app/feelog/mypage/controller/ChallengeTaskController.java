@@ -130,9 +130,6 @@ public class ChallengeTaskController {
         }
 
         List<AllChallengeListDTO> challenges = challengeTaskService.getChallengingList(member.getId(), pagination);
-        log.info("memberId :: "+member.getId());
-        log.info("pagination :: "+pagination.toString());
-        log.info("challenge-list :: "+challenges.toString());
 
         model.addAttribute("challenges", challenges);
         model.addAttribute("pagination", pagination);
@@ -140,7 +137,7 @@ public class ChallengeTaskController {
         return "challenge/challenging-list";
     }
 
-    // 2025.04.22 조승찬 :: 개별 챌린지 완료 처리
+    // 2025.04.21 조승찬 :: 개별 챌린지 완료 처리
     @ResponseBody
     @PostMapping("/member-complete")
     public void completeMemberChallenge(@SessionAttribute(name = "member", required = false) MemberDTO member,
@@ -150,14 +147,57 @@ public class ChallengeTaskController {
 
     };
 
-    // 2025.04.22 조승찬 :: 개별 챌린지 완료 처리
+    // 2025.04.21 조승찬 :: 개별 챌린지 완료 취소 처리
+    @ResponseBody
+    @PostMapping("/member-cancel-complete")
+    public void cancelCompleteMemberChallenge(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                        @RequestBody MemberChallengeDTO memberChallengeDTO) {
+
+        challengeTaskService.cancelCompleteMemberChallenge(memberChallengeDTO.getId());
+
+    };
+
+    // 2025.04.21 조승찬 :: 공통 챌린지 완료 처리
     @ResponseBody
     @PostMapping("/common-complete")
     public void completeCommonChallenge(@SessionAttribute(name = "member", required = false) MemberDTO member,
                                         @RequestBody MemberChallengeDTO memberChallengeDTO) {
 
-        challengeTaskService.completeMemberChallenge(memberChallengeDTO.getId());
+        challengeTaskService.completeCommonChallenge(memberChallengeDTO.getId());
 
     };
+
+    // 2025.04.21 조승찬 :: 공통 챌린지 완료 취소 처리
+    @ResponseBody
+    @PostMapping("/common-cancel-complete")
+    public void cancelCompleteCommonChallenge(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                              @RequestBody MemberChallengeDTO memberChallengeDTO) {
+
+        challengeTaskService.cancelCompleteCommonChallenge(memberChallengeDTO.getId());
+
+    };
+
+
+    // 2025.04.21 조승찬 :: 완료된 챌린지 목록 화면
+    @GetMapping("/completed-list")
+    public String getCompletedList(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                     EightRowPagination pagination, Model model) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        List<AllChallengeListDTO> challenges = challengeTaskService.getCompletedList(member.getId(), pagination);
+        log.info("memberId :: "+member.getId());
+        log.info("pagination :: "+pagination.toString());
+        log.info("challenge-list :: "+challenges.toString());
+
+        model.addAttribute("challenges", challenges);
+        model.addAttribute("pagination", pagination);
+
+        return "challenge/completed-list";
+    }
+
 
 }

@@ -142,19 +142,22 @@
 
     <update id="rePostChallenge">
         update tbl_challenge
-        set challenge_complete = '진행중'
+        set challenge_complete = '진행중',
+            updated_date = current_timestamp
         where id = #{id}
     </update>
 
     <update id="cancelChallenge">
         update tbl_challenge
-            set challenge_complete = '중단'
+            set challenge_complete = '중단',
+                updated_date = current_timestamp
         where id = #{id}
     </update>
 
-    <update id="completeChallege">
+    <update id="completeChallenge">
         update tbl_challenge
-        set challenge_complete = '완료'
+        set challenge_complete = '완료',
+            updated_date = current_timestamp
         where id = #{id}
     </update>
 
@@ -210,6 +213,58 @@
             limit #{pagination.offset}, #{pagination.rowCount};
     </select>
 
+    <select id="getCompletedCountAll" resultType="_int">
+        select count(*) as total_count
+        from (
+                 select c.id
+                 from tbl_challenge c
+                          join tbl_common_challenge cc on c.id = cc.id
+                 where  cc.member_id = #{memberId}
+                   and    c.challenge_complete = '완료'
+
+                 union
+
+                 select c.id
+                 from tbl_challenge c
+                          join tbl_member_challenge mc on c.id = mc.id
+                 where  mc.member_id = #{memberId}
+                   and    c.challenge_complete = '완료'
+             ) as result;
+    </select>
+
+    <select id="getCompletedList" resultType="commonChallengeVO">
+        select *
+        from (
+                 select
+                     c.id,
+                     c.challenge_complete,
+                     c.created_date,
+                     c.updated_date,
+                     cc.member_id,
+                     cc.task_id
+                 from tbl_challenge c
+                          join tbl_common_challenge cc on c.id = cc.id
+                 where cc.member_id = #{memberId}
+                   and c.challenge_complete = '완료'
+
+                 union
+
+                 select
+                     c.id,
+                     c.challenge_complete,
+                     c.created_date,
+                     c.updated_date,
+                     mc.member_id,
+                     mc.task_id
+                 from tbl_challenge c
+                          join tbl_member_challenge mc on c.id = mc.id
+                 where mc.member_id = #{memberId}
+                   and c.challenge_complete = '완료'
+             ) as result
+        order by result.id
+        limit #{pagination.offset}, #{pagination.rowCount};
+    </select>
+
     <select id="getMemberTaskInfo" resultType="memberTaskPoolVO">
         select
             mtp.id,
@@ -222,7 +277,6 @@
                  join tbl_member_challenge mc on mtp.id = mc.task_id
                  join tbl_challenge c on mc.id = c.id
         where mc.id = #{id}
-          and c.challenge_complete = '진행중';
     </select>
 
     <select id="getCommonTaskInfo" resultType="commonTaskVO">
@@ -241,7 +295,7 @@
         from tbl_common_task ct
                  join tbl_common_challenge cc on ct.id = cc.task_id
                  join tbl_challenge c on cc.id = c.id
-        where c.id = #{challengeid};
+        where c.id = #{id};
     </select>
 
 </mapper>
