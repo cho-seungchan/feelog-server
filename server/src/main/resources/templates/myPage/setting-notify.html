@@ -55,8 +55,10 @@
                                         class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm"
                                         th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
                                     >
-                                        <span class="FeelogSwitch-track Feelog-checked flog-span-26"
-                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"></span
+                                        <span class="FeelogSwitch-track flog-span-26"
+                                              th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
+                                                   th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
                                         <div class="FeelogSwitch-action flog-div-112">
                                             <input
