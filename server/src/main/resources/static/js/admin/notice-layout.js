@@ -233,6 +233,7 @@ const noticeLayout = (() => {
             }
 
             noticeListData.noticeList.forEach((list) => {
+                console.log(noticeListData)
                 const newLi = document.createElement("li");
                 const createdDate = new Date(list.createdDate);
                 const formatCreatedDate =  createdDate.toISOString().split('T')[0];
@@ -254,6 +255,12 @@ const noticeLayout = (() => {
                             </div>
                             <div class="contentDiv" style="display: none">
                                 ${list.noticeContent}
+                            </div>
+                            <div class="filePathDiv" style="display: none">
+                                ${list.noticeFilePath}
+                            </div>
+                            <div class="fileNameDiv" style="display: none">
+                                ${list.noticeFileName}
                             </div>
                         </div>`;
                 listWrap.appendChild(newLi);
@@ -424,6 +431,12 @@ const noticeLayout = (() => {
                     </div>
                     <div class="contentDiv" style="display: none">
                         ${list.noticeContent}
+                    </div>
+                    <div class="filePathDiv" style="display: none">
+                        ${list.noticeFilePath}
+                    </div>
+                    <div class="fileNameDiv" style="display: none">
+                        ${list.noticeFileName}
                     </div>
                 </div>`;
             listWrap.appendChild(newLi);

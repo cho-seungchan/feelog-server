@@ -19,6 +19,8 @@ public class NoticeAdminDTO extends Period {
     private String noticeContent;
     private Long memberId;
     private NoticeStatus noticeStatus;
+    private String noticeFilePath;
+    private String noticeFileName;
     private String createdDate;
     private String updatedDate;
     private String memberNickname;

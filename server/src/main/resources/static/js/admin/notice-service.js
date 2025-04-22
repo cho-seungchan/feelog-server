@@ -18,6 +18,7 @@ const noticeService = (() => {
     }
 
     const update = async (notice) => {
+        console.log(notice)
         await fetch("/admin/updateNotice", {
             method: "put",
             body: JSON.stringify(notice),
@@ -28,7 +29,6 @@ const noticeService = (() => {
     }
 
     const deleteNotice = async (notice) => {
-        console.log(notice)
         await fetch("/admin/deleteNotice", {
             method: "put",
             body: JSON.stringify(notice),
@@ -42,6 +42,6 @@ const noticeService = (() => {
         addNotice:addNotice,
         getList:getList,
         update:update,
-        deleteNotice:deleteNotice
+        deleteNotice:deleteNotice,
     }
 })()

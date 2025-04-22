@@ -55,6 +55,7 @@ public class AdminController {
         noticeServiceImpl.addNotice(noticeDTO);
     }
 
+
     @GetMapping("/noticeLists")
     @ResponseBody
     public NoticeListDTO getNoticeList(NoticePagination noticePagination) {
