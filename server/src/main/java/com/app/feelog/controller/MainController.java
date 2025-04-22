@@ -101,7 +101,7 @@ public class MainController {
         diaryDTO.setFileIds(fileIds); // ✅ 무조건 이 줄 추가해야함!
 
         if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
-            FileVO fileVO = filesService.upload(thumbnailFile);
+            FileVO fileVO = fileService.upload(thumbnailFile);
             diaryDTO.setDiaryFilePath(fileVO.getFilePath());
             diaryDTO.setDiaryFileName(fileVO.getFileName());
             diaryDTO.setDiaryFileSize(fileVO.getFileSize());
