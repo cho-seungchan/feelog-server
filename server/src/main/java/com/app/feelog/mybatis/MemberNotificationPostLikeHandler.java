@@ -22,9 +22,9 @@ public class MemberNotificationPostLikeHandler implements TypeHandler<MemberNoti
     public MemberNotificationPostLike getResult(ResultSet rs, String columnName) throws SQLException {
         switch (rs.getString(columnName)){
             case "설정":
-                return MemberNotificationPostLike.SET;
+                return MemberNotificationPostLike.ON;
             case "해지":
-                return MemberNotificationPostLike.CLEAR;
+                return MemberNotificationPostLike.OFF;
         }
         return null;
     }
@@ -33,9 +33,9 @@ public class MemberNotificationPostLikeHandler implements TypeHandler<MemberNoti
     public MemberNotificationPostLike getResult(ResultSet rs, int columnIndex) throws SQLException {
         switch (rs.getString(columnIndex)){
             case "설정":
-                return MemberNotificationPostLike.SET;
+                return MemberNotificationPostLike.ON;
             case "해지":
-                return MemberNotificationPostLike.CLEAR;
+                return MemberNotificationPostLike.OFF;
         }
         return null;
     }
@@ -44,9 +44,9 @@ public class MemberNotificationPostLikeHandler implements TypeHandler<MemberNoti
     public MemberNotificationPostLike getResult(CallableStatement cs, int columnIndex) throws SQLException {
         switch (cs.getString(columnIndex)){
             case "설정":
-                return MemberNotificationPostLike.SET;
+                return MemberNotificationPostLike.ON;
             case "해지":
-                return MemberNotificationPostLike.CLEAR;
+                return MemberNotificationPostLike.OFF;
         }
         return null;
     }

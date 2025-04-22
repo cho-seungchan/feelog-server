@@ -22,7 +22,7 @@ public class EightRowPagination {
 
     public void create(int total) {
         this.page = this.page == 0 ? 1 : this.page;
-        this.rowCount = 1;
+        this.rowCount = 8;
         this.total = total;
         this.pageCount = 2;
         this.offset = (page - 1) * rowCount;

@@ -5,22 +5,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/css/myPage/setting-notify.css" />
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/footer.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/all/message.css" />
         <title>알림 설정</title>
     </head>
     <body>
         <div class="FeelogStack-root flog-div-1">
             <!-- 헤더 넣을 곳 -->
-
-            <div class="feelog-header-mainDiv" id="header-container"></div>
-            <script>
-                // Load header.html and insert it in#header-placeholder
-                fetch("../main/header.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("header-container").innerHTML = data;
-                    })
-                    .catch((error) => console.error("Error loading header:", error));
-            </script>
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
             <!-- 헤더 넣을 곳 -->
             <div class="FeelogStack-root flog-div-12">
                 <div class="FeelogStack-root flog-div-13">
@@ -44,7 +39,8 @@
                         </ul>
                     </nav>
                     <main class="FeelogStack-root flog-main-5">
-                        <form class="FeelogStack-root flog-form-2">
+<!--                        2025.04.22 조승찬 :: 조회 입력 환경으로 전환 -->
+                        <form class="FeelogStack-root flog-form-2" th:object="${member}" th:action="@{/mypage/setting-notify}" method="post" >
                             <div class="FeelogStack-root flog-div-54">
                                 <div
                                     class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
@@ -56,10 +52,13 @@
                                         >댓글</label
                                     >
                                     <div
-                                        class="FeelogSwitch-root Feelog-checked FeelogSwitch-variantSolid FeelogSwitch-colorPrimary FeelogSwitch-sizeSm flog-div-111"
+                                        class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm"
+                                        th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
                                     >
-                                        <span class="FeelogSwitch-track Feelog-checked flog-span-26"
-                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"></span
+                                        <span class="FeelogSwitch-track flog-span-26"
+                                              th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
+                                                   th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
                                         <div class="FeelogSwitch-action flog-div-112">
                                             <input
@@ -262,6 +261,11 @@
             </script>
             <!-- footer 넣을 곳 -->
         </div>
+
+        <!-- footer 넣을 곳 -->
+        <footer id="main-footer"
+                th:replace="~{main/footer.html :: #main-footer}"></footer>
+        <!-- footer 넣을 곳 -->
     </body>
     <div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
         <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>

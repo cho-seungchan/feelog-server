@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/challenge/challenging-list.css" />
+        <link rel="stylesheet" href="/css/challenge/completed-list.css" />
         <link rel="stylesheet" href="/css/main/header.css">
         <link rel="stylesheet" href="/css/main/footer.css">
         <link rel="stylesheet" href="/css/main/search-modal.css">
@@ -31,15 +31,15 @@
                                     오늘 첼린지
                                 </p></a
                             ><a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
                                 href="/challenge/challenging-list"
-                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
                                     진행 챌린지
                                 </p></a
                             ><a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
                                 href="/challenge/completed-list"
-                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
                                     완료 챌린지
                                 </p></a
                             >
@@ -78,7 +78,7 @@
                                                             object-fit: cover;
                                                             color: transparent;"
                                                                 th:if="${challenge.memberTaskPoolFileName != null && !challenge.memberTaskPoolFileName.isEmpty()}"
-                                                                th:src="@{/file/display(path=|${challenge.memberTaskPoolFilePath}/${challenge.memberTaskPoolFileName}|)}"
+                                                                th:src="@{/files/display(path=|${challenge.memberTaskPoolFilePath}/${challenge.memberTaskPoolFileName}|)}"
                                                         /><img
                                                             alt="개별 과제"
                                                             loading="lazy"
@@ -104,11 +104,8 @@
                                                     </h3>
                                                         <div style="display: flex; "  class="button-conatiner">
                                                             <button
-                                                                    class="challenge-member-task"
-                                                                    th:classappend="${challenge.challengeComplete != null && (challenge.challengeComplete.name() == 'COMPLETED' || challenge.challengeComplete.name() == 'ONGOING') ? 'selected' : ''}"
-                                                                    th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}"
-                                                                    th:attrappend="disabled=${challenge.challengeComplete != null && challenge.challengeComplete.name() == 'COMPLETED' ? 'disabled' : null}"
-                                                                    th:text="${challenge.challengeComplete != null ? (challenge.challengeComplete.name() == 'COMPLETED' ? '완료' : (challenge.challengeComplete.name() == 'ONGOING' ? '중단' : '도전')) : '도전'}">
+                                                                    class="challenge-member-task selected"  style="display: none; "
+                                                                    th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}">중단
                                                             </button>
                                                             <button
                                                                     class="complete-member-task"
@@ -164,11 +161,8 @@
                                                         </a>
                                                         <div style="display: flex; " class="button-conatiner">
                                                             <button
-                                                                    class="challenge-common-task"
-                                                                    th:classappend="${challenge.challengeComplete != null && (challenge.challengeComplete.name() == 'COMPLETED' || challenge.challengeComplete.name() == 'ONGOING') ? 'selected' : ''}"
-                                                                    th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}"
-                                                                    th:attrappend="disabled=${challenge.challengeComplete != null && challenge.challengeComplete.name() == 'COMPLETED' ? 'disabled' : null}"
-                                                                    th:text="${challenge.challengeComplete != null ? (challenge.challengeComplete.name() == 'COMPLETED' ? '완료' : (challenge.challengeComplete.name() == 'ONGOING' ? '중단' : '도전')) : '도전'}">
+                                                                    class="challenge-common-task selected"  style="display: none; "
+                                                                    th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}">중단
                                                             </button>
                                                             <button
                                                                     class="complete-common-task"
@@ -189,7 +183,7 @@
 
                         <!--                                                    2025.04.21 조승찬 -->
                         <!--페이징 처리-->
-                        <form th:action="@{/challenge/challenging-list}" name="pageForm">
+                        <form th:action="@{/challenge/completed-list}" name="pageForm">
                             <input type="hidden" name="page" th:value="1"   class="challengeList"> <!-- 기본페이지는 1페이지 -->
                             <div class="paging-wrap">
                                 <div class="pagination-container">
@@ -225,9 +219,10 @@
             <footer id="main-footer"
                     th:replace="~{main/footer.html :: #main-footer}"></footer>
             <!-- footer 넣을 곳 -->
+        </div>
     </body>
-    <script src="/js/challenge/challenging-list-event.js"></script>
-    <script src="/js/challenge/challenging-list-service.js"></script>
-    <script src="/js/challenge/challenging-list-layout.js"></script>
+    <script src="/js/challenge/completed-list-event.js"></script>
+    <script src="/js/challenge/completed-list-service.js"></script>
+    <script src="/js/challenge/completed-list-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

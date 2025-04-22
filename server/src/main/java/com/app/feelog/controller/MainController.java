@@ -31,7 +31,7 @@ public class MainController {
     private final ChallengeDiaryService challengeDiaryService;
     private final ChannelPostService channelPostService;
     private final DiaryFileService diaryFileService;
-    private final FilesService filesService;
+    private final FileService fileService;
     private final FileDAO fileDAO;
     private final ChannelPostFileService channelPostFileService;
 

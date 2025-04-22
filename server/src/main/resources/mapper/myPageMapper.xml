@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.feelog.mypage.mapper.MyPageMapper">
+    <select id="getMemberById" resultType="memberVO">
+        SELECT
+            id,
+            member_email,
+            member_password,
+            member_nickname,
+            member_introduce,
+            member_file_path,
+            member_file_name,
+            member_notification_post_reply,
+            member_notification_post_reply_like,
+            member_notification_post_like,
+            member_notification_subscribe,
+            member_notification_community_post,
+            member_notification_message,
+            created_date,
+            updated_date
+        from   tbl_member
+        where  id = #{id}
+    </select>
+
+    <update id="postSettingProfile">
+        update tbl_member
+        set
+            member_password = #{memberPassword},
+            member_nickname = #{memberNickname},
+            member_introduce = #{memberIntroduce},
+            member_file_path = #{memberFilePath},
+            member_file_name = #{memberFileName},
+            updated_date = current_timestamp
+        where id = #{id};
+    </update>
+
+    <update id="postSettingNotify">
+        update tbl_member
+        set
+            member_notification_post_reply = #{memberNotificationPostReply},
+            member_notification_post_reply_like = #{memberNotificationPostReplyLike},
+            member_notification_post_like = #{memberNotificationPostLike},
+            member_notification_subscribe = #{memberNotificationSubscribe},
+            member_notification_community_post = #{memberNotificationCommunityPost},
+            member_notification_message = #{memberNotificationMessage},
+            updated_date = current_timestamp
+        where id = #{id};
+    </update>
+
+</mapper>

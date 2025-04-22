@@ -5,22 +5,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/css/challenge/task-list.css" />
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/footer.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/all/message.css" />
         <title>첼린지 목록</title>
     </head>
     <body>
         <div class="FeelogStack-root flog-div-1">
             <!-- 헤더 넣을 곳 -->
-
-            <div class="feelog-header-mainDiv" id="header-container"></div>
-            <script>
-                // Load header.html and insert it in#header-placeholder
-                fetch("../main/header.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("header-container").innerHTML = data;
-                    })
-                    .catch((error) => console.error("Error loading header:", error));
-            </script>
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
             <!-- 헤더 넣을 곳 -->
 
             <div class="FeelogStack-root flog-div-12">
@@ -54,8 +49,6 @@
                         <section class="FeelogStack-root flog-section-2">
                             <div class="FeelogStack-root flog-div-25">
                                 <h2 class="FeelogTypography-root FeelogTypography-h3 flog-h2-3">
-                                    시리즈<!-- -->
-                                    <!-- -->8<!-- -->개
                                 </h2>
                             </div>
                             <div class="FeelogGrid-root FeelogGrid-container FeelogGrid-direction-xs-row flog-div-26">
@@ -178,18 +171,9 @@
             </div>
 
             <!-- footer 넣을 곳 -->
-            <div class="joy-17imqrx" id="footer-container"></div>
-            <script>
-                // Load footer.html and insert it into #footer-placeholder
-                fetch("../main/footer.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("footer-container").innerHTML = data;
-                    })
-                    .catch((error) => console.error("Error loading footer:", error));
-            </script>
+            <footer id="main-footer"
+                    th:replace="~{main/footer.html :: #main-footer}"></footer>
             <!-- footer 넣을 곳 -->
-        </div>
     </body>
     <script src="/js/challenge/task-list-event.js"></script>
     <script src="/js/challenge/task-list-service.js"></script>

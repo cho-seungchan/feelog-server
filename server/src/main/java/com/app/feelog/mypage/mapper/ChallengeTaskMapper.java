@@ -62,6 +62,12 @@ public interface ChallengeTaskMapper {
     // 2025.04.20 조승찬 :: 챌린지 내역에 헤당하는 공통 과제 정보 가져오기
     Optional<CommonTaskVO> getCommonTaskInfo(Long id);
 
-    // 2025.04.22 조승찬 :: 챌린지 완료 처리
+    // 2025.04.21 조승찬 :: 챌린지 완료 처리
     void completeChallenge(Long id);
+
+    // 2025.04.21 조승찬 :: 페이징을 위한 완료된 건수 가져오기
+    int getCompletedCountAll(Long memberId);
+
+    // 2025.04.21 조승찬 :: 완료된 챌린지 가져오기
+    List<CommonChallengeVO> getCompletedList(@Param("memberId")Long memberId, @Param("pagination") EightRowPagination pagination);
 }

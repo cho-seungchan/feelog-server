@@ -5,22 +5,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/css/myPage/setting-profile.css" />
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/footer.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/all/message.css" />
         <title>프로파일 설정</title>
     </head>
     <body>
         <div class="FeelogStack-root flog-div-1">
             <!-- 헤더 넣을 곳 -->
-
-            <div class="feelog-header-mainDiv" id="header-container"></div>
-            <script>
-                // Load header.html and insert it in#header-placeholder
-                fetch("../main/header.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("header-container").innerHTML = data;
-                    })
-                    .catch((error) => console.error("Error loading header:", error));
-            </script>
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
             <!-- 헤더 넣을 곳 -->
             <div class="FeelogStack-root flog-div-12">
                 <div class="FeelogStack-root flog-div-13">
@@ -44,7 +39,7 @@
                         </ul>
                     </nav>
                     <main class="FeelogStack-root flog-main-5">
-                        <form class="FeelogStack-root flog-form-3">
+                        <form class="FeelogStack-root flog-form-3" th:object="${member}" th:action="@{/mypage/setting-profile}" method="post" enctype="multipart/form-data">
                             <div class="FeelogStack-root flog-form-1">
                                 <div class="FeelogStack-root flog-div-56">
                                     <label for=":R359uuukv9ul7rlqakq:" class="FeelogFormLabel-root flog-label-3"
@@ -57,6 +52,26 @@
                                                     class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeXl flog-div-116"
                                                 >
                                                     <div class="FeelogBox-root flog-div-29">
+                                                        <img    class="uploadFile"
+                                                                alt=""
+                                                                loading="lazy"
+                                                                decoding="async"
+                                                                data-nimg="fill"
+                                                                style="
+                                                                position: absolute;
+                                                                height: 100%;
+                                                                width: 100%;
+                                                                left: 0;
+                                                                top: 0;
+                                                                right: 0;
+                                                                bottom: 0;
+                                                                object-fit: cover;
+                                                                color: transparent;
+                                                            "
+                                                                th:if="*{memberFileName != null && !memberFileName.isEmpty()}"
+                                                                th:data-file-name="*{memberFileName}" th:data-file-path="*{memberFilePath}"
+                                                                th:src="@{/files/display(path=|*{memberFilePath}/*{memberFileName}|)}"
+                                                        />
                                                         <img
                                                             alt=""
                                                             loading="lazy"
@@ -73,6 +88,7 @@
                                                                 object-fit: cover;
                                                                 color: transparent;
                                                             "
+                                                            th:if="*{memberFileName == null || memberFileName.isEmpty()}"
                                                             src="https://d33pksfia2a94m.cloudfront.net/studio/assets/img/common/avatar_default_icon.png?w=100&amp;h=100&amp;q=65"
                                                         />
                                                     </div>
@@ -116,19 +132,18 @@
                                         id=":R559uuukv9ul7rlqakq:-label"
                                         required=""
                                         class="FeelogFormLabel-root flog-label-3"
-                                        >닉네임<span aria-hidden="true" class="FeelogFormLabel-asterisk flog-label-4"
-                                            > <!-- -->*</span
+                                        >닉네임
                                         ></label
                                     >
                                     <div
                                         class="FeelogInput-root FeelogInput-variantOutlined FeelogInput-colorNeutral FeelogInput-sizeMd FeelogInput-formControl flog-div-83"
                                     >
-                                        <input
+                                        <input th:value="*{memberNickname}"
                                             id=":R559uuukv9ul7rlqakq:"
                                             placeholder="닉네임을 입력해 주세요."
                                             maxlength="40"
                                             class="FeelogInput-input flog-input-1"
-                                            name="nickname"
+                                            name="memberNickname"
                                             aria-describedby=":R559uuukv9ul7rlqakq:-helper-text"
                                         />
                                     </div>
@@ -151,34 +166,17 @@
                                     <div
                                         class="FeelogTextarea-root FeelogTextarea-variantOutlined FeelogTextarea-colorNeutral FeelogTextarea-sizeMd FeelogTextarea-formControl flog-div-118"
                                     >
-                                        <textarea
+                                        <textarea th:field="*{memberIntroduce}"
                                             rows="5"
                                             style="height: 120px"
                                             id=":R759uuukv9ul7rlqakq:"
-                                            name="bio"
+                                            name="memberIntroduce"
                                             placeholder="자기소개를 입력해 주세요."
                                             maxlength="255"
                                             class="FeelogTextarea-textarea flog-textarea-1"
                                             aria-describedby=":R759uuukv9ul7rlqakq:-helper-text"
                                         ></textarea
-                                        ><textarea
-                                            aria-hidden="true"
-                                            class="FeelogTextarea-textarea flog-textarea-1"
-                                            readonly=""
-                                            tabindex="-1"
-                                            style="
-                                                visibility: hidden;
-                                                position: absolute;
-                                                overflow: hidden;
-                                                height: 0px;
-                                                top: 0px;
-                                                left: 0px;
-                                                transform: translateZ(0px);
-                                                padding-top: 0px;
-                                                padding-bottom: 0px;
-                                                width: 626px;
-                                            "
-                                        ></textarea>
+                                        >
                                     </div>
                                     <div
                                         class="FeelogFormHelperText-root flog-div-52"
@@ -190,7 +188,7 @@
                                 <div class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49">
                                     <label for=":r1:" id=":r1:-label" class="FeelogFormLabel-root flog-label-1">비밀번호</label>
                                     <div class="FeelogInput-root FeelogInput-variantOutlined FeelogInput-colorNeutral FeelogInput-sizeMd FeelogInput-formControl flog-div-50 Feelog-error">
-                                        <input id=":r1:" placeholder="비밀번호" class="FeelogInput-input flog-input-2" type="password" name="password" aria-describedby=":r1:-helper-text">
+                                        <input th:value="*{memberPassword}" id=":r1:" placeholder="비밀번호" class="FeelogInput-input flog-input-2" type="password" name="memberPassword" aria-describedby=":r1:-helper-text">
                                         <div class="FeelogInput-endDecorator flog-div-51">
                                             <button aria-label="비밀번호 표시하기" class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeMd flog-button-2" type="button">
                                                 <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3">
@@ -204,31 +202,25 @@
                                         이상 입력해 주세요.
                                     </div>
                             </div>
-                            <div class="FeelogBox-root flog-div-119">
+                                <div class="FeelogBox-root flog-div-119">
                                 <button
                                     type="submit"
                                     class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
                                 >
                                     변경 내용 저장
                                 </button>
+                                </div>
                             </div>
                         </form>
                     </main>
                 </div>
             </div>
-            <!-- footer 넣을 곳 -->
-            <div class="joy-17imqrx" id="footer-container"></div>
-            <script>
-                // Load footer.html and insert it into #footer-placeholder
-                fetch("../main/footer.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("footer-container").innerHTML = data;
-                    })
-                    .catch((error) => console.error("Error loading footer:", error));
-            </script>
-            <!-- footer 넣을 곳 -->
         </div>
+
+        <!-- footer 넣을 곳 -->
+        <footer id="main-footer"
+                th:replace="~{main/footer.html :: #main-footer}"></footer>
+        <!-- footer 넣을 곳 -->
     </body>
     <div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
         <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
@@ -274,5 +266,7 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
     <script src="/js/myPage/setting-profile-event.js"></script>
+    <script src="/js/myPage/setting-profile-service.js"></script>
+    <script src="/js/myPage/setting-profile-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

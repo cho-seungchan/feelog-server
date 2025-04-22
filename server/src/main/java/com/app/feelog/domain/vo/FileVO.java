@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter
+@Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
