@@ -154,7 +154,6 @@ public class ChallengeTaskService implements ToDTO{
     // 2025.04.20 조승찬 :: 진행중 챌린지 리스트 가져오기
     public List<AllChallengeListDTO> getChallengingList(Long memberId, EightRowPagination pagination) {
 
-        log.info("total count :: "+challengeTaskDAO.getCountAll(memberId));
         pagination.create(challengeTaskDAO.getCountAll(memberId));
         List<CommonChallengeVO> challengings = challengeTaskDAO.getChallengingList(memberId, pagination);
 
@@ -170,8 +169,41 @@ public class ChallengeTaskService implements ToDTO{
         return allChallengeList;
     }
 
-    // 2025.04.22 조승찬 :: 개별 챌린지 완료 처리
+    // 2025.04.21 조승찬 :: 개별 챌린지 완료 처리
     public void completeMemberChallenge(Long id) {
         challengeTaskDAO.completeMemberChallenge(id);
+    }
+
+    // 2025.04.21 조승찬 :: 공통 챌린지 완료 처리
+    public void completeCommonChallenge(Long id) {
+        challengeTaskDAO.completeCommonChallenge(id);
+    }
+
+    // 2025.04.21 조승찬 :: 개별 챌린지 완료 취소 처리
+    public void cancelCompleteMemberChallenge(Long id) {
+        challengeTaskDAO.cancelCompleteMemberChallenge(id);
+    }
+
+    // 2025.04.21 조승찬 :: 공통 챌린지 완료 취소 처리
+    public void cancelCompleteCommonChallenge(Long id) {
+        challengeTaskDAO.cancelCompleteCommonChallenge(id);
+    }
+
+    // 2025.04.21 조승찬 :: 완료된 챌린지 목록 화면
+    public List<AllChallengeListDTO> getCompletedList(Long memberId, EightRowPagination pagination) {
+
+        pagination.create(challengeTaskDAO.getCompletedCountAll(memberId));
+        List<CommonChallengeVO> challengings = challengeTaskDAO.getCompletedList(memberId, pagination);
+
+        List<AllChallengeListDTO> allChallengeList = new ArrayList<>();
+        challengings.forEach(challenging -> {
+            MemberTaskPoolVO memberTask = challengeTaskDAO.getMemberTaskInfo(challenging.getId())
+                    .orElse(null);
+            CommonTaskVO     commonTask = challengeTaskDAO.getCommonTaskInfo(challenging.getId())
+                    .orElse(null);
+            allChallengeList.add(toAllChallengeListDTO(challenging,memberTask, commonTask));
+        });
+
+        return allChallengeList;
     }
 }

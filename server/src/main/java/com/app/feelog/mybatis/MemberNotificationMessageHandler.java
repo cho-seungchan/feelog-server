@@ -22,9 +22,9 @@ public class MemberNotificationMessageHandler implements TypeHandler<MemberNotif
     public MemberNotificationMessage getResult(ResultSet rs, String columnName) throws SQLException {
         switch (rs.getString(columnName)){
             case "설정":
-                return MemberNotificationMessage.SET;
+                return MemberNotificationMessage.ON;
             case "해지":
-                return MemberNotificationMessage.CLEAR;
+                return MemberNotificationMessage.OFF;
         }
         return null;
     }
@@ -33,9 +33,9 @@ public class MemberNotificationMessageHandler implements TypeHandler<MemberNotif
     public MemberNotificationMessage getResult(ResultSet rs, int columnIndex) throws SQLException {
         switch (rs.getString(columnIndex)){
             case "설정":
-                return MemberNotificationMessage.SET;
+                return MemberNotificationMessage.ON;
             case "해지":
-                return MemberNotificationMessage.CLEAR;
+                return MemberNotificationMessage.OFF;
         }
         return null;
     }
@@ -44,9 +44,9 @@ public class MemberNotificationMessageHandler implements TypeHandler<MemberNotif
     public MemberNotificationMessage getResult(CallableStatement cs, int columnIndex) throws SQLException {
         switch (cs.getString(columnIndex)){
             case "설정":
-                return MemberNotificationMessage.SET;
+                return MemberNotificationMessage.ON;
             case "해지":
-                return MemberNotificationMessage.CLEAR;
+                return MemberNotificationMessage.OFF;
         }
         return null;
     }

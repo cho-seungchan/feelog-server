@@ -131,8 +131,33 @@ public class ChallengeTaskDAO {
                         .orElse(null));
     }
 
-    // 2025.04.22 조승찬 :: 개별 챌린지 완료 처리
+    // 2025.04.21 조승찬 :: 개별 챌린지 완료 처리
     public void completeMemberChallenge(Long id) {
         challengeTaskMapper.completeChallenge(id);
+    }
+
+    // 2025.04.21 조승찬 :: 공통 챌린지 완료 처리
+    public void completeCommonChallenge(Long id) {
+        challengeTaskMapper.completeChallenge(id);
+    }
+
+    // 2025.04.21 조승찬 :: 개별 챌린지 완료 취소 처리
+    public void cancelCompleteMemberChallenge(Long id) {
+        challengeTaskMapper.rePostChallenge(id);
+    }
+
+    // 2025.04.21 조승찬 :: 공통 챌린지 완료 취소 처리
+    public void cancelCompleteCommonChallenge(Long id) {
+        challengeTaskMapper.rePostChallenge(id);
+    }
+
+    // 2025.04.21 조승찬 :: 페이징을 위한 완료된 건수 가져오기
+    public int getCompletedCountAll(Long memberId) {
+        return challengeTaskMapper.getCompletedCountAll(memberId);
+    }
+
+    // 2025.04.21 조승찬 :: 완료된 챌린지 가져오기
+    public List<CommonChallengeVO> getCompletedList(Long memberId, EightRowPagination pagination) {
+        return challengeTaskMapper.getCompletedList(memberId, pagination);
     }
 }

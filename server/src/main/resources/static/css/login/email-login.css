@@ -305,17 +305,16 @@ body {
     }
 }
 .flog-div-46 {
+    margin: 200px 0px;
     width: 100%;
 }
 @media (min-width: 0px) {
     .flog-div-46 {
-        margin-left: -50px;
         max-width: 320px;
     }
 }
 @media (min-width: 744px) {
     .flog-div-46 {
-        margin-left: 0px;
         max-width: 320px;
     }
 }

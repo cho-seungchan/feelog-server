@@ -22,9 +22,9 @@ public class MemberNotificationCommunityPostHandler implements TypeHandler<Membe
     public MemberNotificationCommunityPost getResult(ResultSet rs, String columnName) throws SQLException {
         switch (rs.getString(columnName)){
             case "설정":
-                return MemberNotificationCommunityPost.SET;
+                return MemberNotificationCommunityPost.ON;
             case "해지":
-                return MemberNotificationCommunityPost.CLEAR;
+                return MemberNotificationCommunityPost.OFF;
         }
         return null;
     }
@@ -33,9 +33,9 @@ public class MemberNotificationCommunityPostHandler implements TypeHandler<Membe
     public MemberNotificationCommunityPost getResult(ResultSet rs, int columnIndex) throws SQLException {
         switch (rs.getString(columnIndex)){
             case "설정":
-                return MemberNotificationCommunityPost.SET;
+                return MemberNotificationCommunityPost.ON;
             case "해지":
-                return MemberNotificationCommunityPost.CLEAR;
+                return MemberNotificationCommunityPost.OFF;
         }
         return null;
     }
@@ -44,9 +44,9 @@ public class MemberNotificationCommunityPostHandler implements TypeHandler<Membe
     public MemberNotificationCommunityPost getResult(CallableStatement cs, int columnIndex) throws SQLException {
         switch (cs.getString(columnIndex)){
             case "설정":
-                return MemberNotificationCommunityPost.SET;
+                return MemberNotificationCommunityPost.ON;
             case "해지":
-                return MemberNotificationCommunityPost.CLEAR;
+                return MemberNotificationCommunityPost.OFF;
         }
         return null;
     }
