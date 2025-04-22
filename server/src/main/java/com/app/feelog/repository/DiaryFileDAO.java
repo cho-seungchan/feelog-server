@@ -27,4 +27,8 @@ public class DiaryFileDAO {
     public List<FileVO> findFilesByDiaryId(Long diaryId) {
         return diaryFileMapper.selectFilesByDiaryId(diaryId);
     }
+
+    public boolean existsById(Long id) {
+        return diaryFileMapper.existsById(id);
+    }
 }

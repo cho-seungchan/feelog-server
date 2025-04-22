@@ -1,4 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.ChannelPostMapper">
+
+    <!-- INSERT -->
+    <insert id="insertChannelPost" parameterType="ChannelPostVO">
+        INSERT INTO tbl_channel_post (
+        id,
+        post_type,
+        post_file_path,
+        post_file_name,
+        post_file_size,
+        member_id,
+        channel_id
+        )
+        VALUES (
+        #{id},
+        #{postType},
+        #{postFilePath},
+        #{postFileName},
+        #{postFileSize},
+        #{memberId},
+        #{channelId}
+        )
+    </insert>
+
+    <!-- SELECT (수정용 단건 조회) -->
+    <select id="selectChannelPostById" resultType="ChannelPostVO">
+        SELECT
+            id,
+            post_type,
+            post_file_path,
+            post_file_name,
+            post_file_size,
+            member_id,
+            channel_id
+        FROM tbl_channel_post
+        WHERE id = #{id}
+    </select>
+
+    <!-- UPDATE -->
+    <update id="updateChannelPost" parameterType="ChannelPostVO">
+        update tbl_channel_post
+        set
+            post_type = #{postType},
+            post_file_path = #{postFilePath},
+            post_file_name = #{postFileName},
+            post_file_size = #{postFileSize},
+            member_id = #{memberId},
+            channel_id = #{channelId}
+        where id = #{id}
+    </update>
+
+    <select id="findById" parameterType="long" resultType="ChannelPostVO">
+        SELECT cp.*
+        FROM tbl_channel_post cp
+                 JOIN tbl_post p ON cp.id = p.id
+        WHERE cp.id = #{id}
+    </select>
+
 </mapper>

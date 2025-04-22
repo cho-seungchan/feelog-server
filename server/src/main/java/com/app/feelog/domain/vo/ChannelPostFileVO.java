@@ -10,14 +10,8 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
 @SuperBuilder
-public class ChannelPostFileVO {
+public class ChannelPostFileVO extends FileVO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long postId;
-
-//    @Builder
-//    public ChannelPostFileVO(Long id, Long postId) {
-//        this.id = id;
-//        this.postId = postId;
-//    }
 }

@@ -13,12 +13,4 @@ import org.springframework.stereotype.Component;
 @SuperBuilder
 public class DiaryTagVO extends TagVO {
     private Long diaryId;
-
-//    @Builder
-//    public DiaryTagVO(String createdDate, String updatedDate,
-//                      Long id, String contents, TagStatus tagStatus,
-//                      Long diaryId) {
-//        super(createdDate, updatedDate, id, contents, tagStatus);
-//        this.diaryId = diaryId;
-//    }
 }

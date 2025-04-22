@@ -3,6 +3,7 @@ package com.app.feelog.service;
 import com.app.feelog.domain.dto.DiaryFileDTO;
 import com.app.feelog.domain.dto.FileDTO;
 import com.app.feelog.domain.vo.FileVO;
+import com.app.feelog.repository.FileDAO;
 
 import java.util.List;
 
@@ -26,4 +27,6 @@ public interface DiaryFileService {
         fileDTO.setUpdatedDate(fileVO.getUpdatedDate());
         return fileDTO;
     }
+
+
 }

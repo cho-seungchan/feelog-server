@@ -13,11 +13,4 @@ import org.springframework.stereotype.Component;
 @SuperBuilder
 public class ChannelPostTagVO extends TagVO {
     private Long channelPostId;
-
-//    @Builder
-//    public ChannelPostTagVO(String createdDate, String updatedDate,
-//                            Long id, String content, Long channelPostId, TagStatus tagStatus) {
-//        super(createdDate, updatedDate, id, content, tagStatus);
-//        this.channelPostId = channelPostId;
-//    }
 }

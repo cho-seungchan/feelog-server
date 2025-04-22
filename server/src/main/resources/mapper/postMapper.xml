@@ -1,4 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.PostMapper">
+
+    <!-- 1. 등록 -->
+    <insert id="insertPost" parameterType="PostJKVO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tbl_post (
+            post_title,
+            post_content
+        )
+        VALUES (
+                   #{postTitle},
+                   #{postContent}
+               )
+    </insert>
+
+    <!-- 2. 수정용 단건 조회 -->
+    <select id="selectPostById" parameterType="long" resultType="PostJKVO">
+        SELECT
+            id,
+            post_title,
+            post_content,
+            post_status,
+            created_date,
+            updated_date
+        FROM tbl_post
+        WHERE id = #{id}
+    </select>
+
+    <!-- 3. 수정 -->
+    <update id="updatePost" parameterType="PostJKVO">
+        UPDATE tbl_post
+        SET
+            post_title = #{postTitle},
+            post_content = #{postContent},
+            post_status = #{postStatus},
+            updated_date = NOW()
+        WHERE id = #{id}
+    </update>
+
+
 </mapper>

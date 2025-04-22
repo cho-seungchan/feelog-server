@@ -7,3 +7,7 @@ create table tbl_diary_file (
 );
 
 drop table tbl_diary_file;
+
+select * from tbl_diary_file;
+
+SELECT * FROM tbl_diary_file ORDER BY id DESC;

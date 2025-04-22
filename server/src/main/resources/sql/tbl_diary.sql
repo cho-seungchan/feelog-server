@@ -24,6 +24,7 @@ create table tbl_diary (
 alter table tbl_diary add diary_name_open      varchar(50) default '비공개(익명)';
 
 
+select * from view_diary_detail;
 
 CREATE OR REPLACE VIEW view_diary_detail AS
 SELECT
@@ -65,7 +66,8 @@ FROM tbl_diary d
          LEFT JOIN tbl_diary_tag dt  ON d.id = dt.diary_id
          LEFT JOIN tbl_tag t         ON dt.id = t.id;
 
-select * from view_diary_detail where view_diary_detail.diary_id = 22;
+select * from view_diary_detail where view_diary_detail.diary_id;
+# = 22;
 
 UPDATE tbl_diary
 SET diary_open = '비공개'

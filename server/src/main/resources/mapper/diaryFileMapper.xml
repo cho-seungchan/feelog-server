@@ -7,6 +7,12 @@
         VALUES (#{id}, #{diaryId})
     </insert>
 
+    <select id="existsById" resultType="boolean">
+        SELECT EXISTS(
+            SELECT 1 FROM tbl_diary_file WHERE id = #{id}
+        )
+    </select>
+
     <delete id="deleteByDiaryId" parameterType="long">
         DELETE FROM tbl_diary_file WHERE diary_id = #{diaryId}
     </delete>
@@ -20,7 +26,7 @@
                f.created_date,
                f.updated_date
         FROM tbl_file f
-                 JOIN tbl_diary_file df ON f.id = df.file_id
+                 JOIN tbl_diary_file df ON f.id = df.id
         WHERE df.diary_id = #{diaryId}
     </select>
 

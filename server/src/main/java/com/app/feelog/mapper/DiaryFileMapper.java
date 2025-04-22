@@ -17,4 +17,6 @@ public interface DiaryFileMapper {
 
     // 첨부 이미지 조회
     List<FileVO> selectFilesByDiaryId(Long diaryId);
+
+    boolean existsById(Long id);
 }

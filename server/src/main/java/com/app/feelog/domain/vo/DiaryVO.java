@@ -27,21 +27,4 @@ public class DiaryVO extends SuperPeriod {
     private Long memberId;
     private Long feelId;
     private DiaryStatus diaryStatus;
-
-//    @Builder
-//    public DiaryVO(String createdDate, String updatedDate, Long id,String diaryTitle, String diaryContent, DiaryOpen diaryOpen, DiaryNameOpen diaryNameOpen, String diaryFilePath, String diaryFileName, String diaryFileSize, String diaryWeather, Long memberId, Long feelId, DiaryStatus diaryStatus) {
-//        super(createdDate, updatedDate);
-//        this.id = id;
-//        this.diaryTitle = diaryTitle;
-//        this.diaryContent = diaryContent;
-//        this.diaryOpen = diaryOpen;
-//        this.diaryNameOpen = diaryNameOpen;
-//        this.diaryFilePath = diaryFilePath;
-//        this.diaryFileName = diaryFileName;
-//        this.diaryFileSize = diaryFileSize;
-//        this.diaryWeather = diaryWeather;
-//        this.memberId = memberId;
-//        this.feelId = feelId;
-//        this.diaryStatus = diaryStatus;
-//    }
 }

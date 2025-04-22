@@ -1,6 +1,6 @@
 package com.app.feelog.domain.vo;
 
-import com.app.feelog.domain.enumeration.FileStatus;
+import com.app.feelog.domain.enumeration.PostStatus;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,11 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
 @SuperBuilder
-public class DiaryFileVO extends FileVO {
+public class PostJKVO extends SuperPeriod {
+    @EqualsAndHashCode.Include
     private Long id;
-    private Long diaryId;
+    private String postTitle;
+    private String postSubTitle;
+    private String postContent;
+    private PostStatus postStatus;
 }
