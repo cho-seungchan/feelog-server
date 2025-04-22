@@ -1,5 +1,6 @@
 package com.app.feelog.repository;
 
+import com.app.feelog.domain.dto.NoticeAdminDTO;
 import com.app.feelog.domain.vo.NoticeVO;
 import com.app.feelog.mapper.NoticeMapper;
 import com.app.feelog.util.pagination.NoticePagination;
@@ -17,11 +18,19 @@ public class NoticeDAO {
         noticeMapper.insertNotice(noticeVO);
     }
 
-    public List<NoticeVO> findNotice(NoticePagination noticePagination) {
+    public List<NoticeAdminDTO> findNotice(NoticePagination noticePagination) {
         return noticeMapper.selectNoticeAll(noticePagination);
     }
 
     public int findNoticeCount() {
         return noticeMapper.selectNoticeCount();
+    }
+
+    public void setNotice(NoticeVO noticeVO) {
+        noticeMapper.updateNotice(noticeVO);
+    }
+
+    public void deleteNotice(Long id) {
+        noticeMapper.deleteNotice(id);
     }
 }

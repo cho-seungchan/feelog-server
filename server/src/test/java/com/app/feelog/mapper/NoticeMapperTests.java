@@ -1,5 +1,6 @@
 package com.app.feelog.mapper;
 
+import com.app.feelog.domain.dto.NoticeAdminDTO;
 import com.app.feelog.domain.dto.NoticeDTO;
 import com.app.feelog.domain.vo.NoticeVO;
 import com.app.feelog.util.pagination.NoticePagination;
@@ -35,7 +36,18 @@ public class NoticeMapperTests {
         noticePagination.create(noticeMapper.selectNoticeCount());
         log.info(noticePagination.toString());
 
-        List<NoticeVO> noticeList = noticeMapper.selectNoticeAll(noticePagination);
+        List<NoticeAdminDTO> noticeList = noticeMapper.selectNoticeAll(noticePagination);
         noticeList.forEach(noticeVO -> {log.info(noticeVO.toString());});
+    }
+
+    @Test
+    public void updateNotice() {
+        NoticeDTO notice = new NoticeDTO();
+
+        notice.setNoticeTitle("제목변경");
+        notice.setNoticeContent("내용변경");
+        notice.setId(7L);
+
+        noticeMapper.updateNotice(notice.toVO());
     }
 }
