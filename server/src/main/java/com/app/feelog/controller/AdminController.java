@@ -1,22 +1,17 @@
 package com.app.feelog.controller;
 
-import ch.qos.logback.core.model.Model;
-import com.app.feelog.domain.dto.AdminDTO;
 import com.app.feelog.domain.dto.AdminListDTO;
 import com.app.feelog.domain.dto.MemberDTO;
-import com.app.feelog.domain.vo.MemberVO;
-import com.app.feelog.service.AdminService;
-import com.app.feelog.util.AdminPagination;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.Getter;
+import com.app.feelog.domain.dto.NoticeDTO;
+import com.app.feelog.domain.dto.NoticeListDTO;
+import com.app.feelog.service.AdminServiceImpl;
+import com.app.feelog.service.NoticeServiceImpl;
+import com.app.feelog.util.pagination.AdminPagination;
+import com.app.feelog.util.pagination.NoticePagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,22 +20,56 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class AdminController {
-    private final AdminService adminService;
+    private final AdminServiceImpl adminServiceImpl;
+    private final NoticeServiceImpl noticeServiceImpl;
+
 
     @GetMapping("/admin")
-    public String goToAdmin(AdminDTO adminDTO) {
+    public String goToAdmin(MemberDTO adminDTO) {
         return "/admin/admin";
     };
 
     @GetMapping("/adminlists")
     @ResponseBody
     public AdminListDTO adminLists(AdminPagination adminPagination){
-        return adminService.getAdminAll(adminPagination);
+        return adminServiceImpl.getAdminAll(adminPagination);
     }
 
     @PostMapping("/addAdmin")
-    public void addAdmin(MemberDTO adminDTO) {
-        log.info(adminDTO.toString());
-        adminService.saveAdmin(adminDTO);
+    public void addAdmin(@RequestBody MemberDTO adminDTO) {
+        adminServiceImpl.saveAdmin(adminDTO);
+    }
+
+    @PutMapping("/deleteAdmin")
+    public void deleteAdmin(@RequestBody List<String> idList){
+        idList.forEach(id -> {
+            adminServiceImpl.deleteAdmin(Long.parseLong(id));
+        });
+    }
+
+    @PostMapping("/addNotice")
+    public void addNotice(@RequestBody NoticeDTO noticeDTO) {
+        noticeDTO.setId(2L);
+        log.info(noticeDTO.toString());
+
+        noticeServiceImpl.addNotice(noticeDTO);
+    }
+
+
+    @GetMapping("/noticeLists")
+    @ResponseBody
+    public NoticeListDTO getNoticeList(NoticePagination noticePagination) {
+        return noticeServiceImpl.getNoticeLists(noticePagination);
+    }
+
+    @PutMapping("/updateNotice")
+    public void updateNotice(@RequestBody NoticeDTO noticeDTO) {
+        log.info(noticeDTO.toString());
+        noticeServiceImpl.updateNotice(noticeDTO);
+    }
+
+    @PutMapping("/deleteNotice")
+    public void deleteNotice(@RequestBody Long id) {
+        noticeServiceImpl.deleteNotice(id);
     }
 }

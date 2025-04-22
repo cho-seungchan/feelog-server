@@ -13,17 +13,20 @@
     </insert>
 
     <insert id="insertDiaryTag" parameterType="com.app.feelog.domain.vo.DiaryTagVO">
-        INSERT INTO tbl_diary_tag (diary_id, tag_id)
-        VALUES (#{diaryId}, #{tagId})
+        INSERT INTO tbl_diary_tag (id, diary_id)
+        VALUES (#{id}, #{diaryId})
     </insert>
 
     <delete id="deleteByDiaryId" parameterType="long">
         DELETE FROM tbl_diary_tag WHERE diary_id = #{diaryId}
     </delete>
 
-    <insert id="save">
-        INSERT INTO tbl_diary_tag (diary_id, tag_id)
-        VALUES (#{diaryId}, #{tagId})
-    </insert>
+    <select id="selectTagContentsByDiaryId" resultType="string">
+        select t.contents
+        from tbl_diary_tag dt
+                 join tbl_tag t on dt.id = t.id
+        where dt.diary_id = #{diaryId}
+    </select>
+
 
 </mapper>

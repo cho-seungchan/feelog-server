@@ -24,42 +24,54 @@ create table tbl_diary (
 alter table tbl_diary add diary_name_open      varchar(50) default '비공개(익명)';
 
 
-CREATE VIEW view_diary_detail AS
-SELECT
-    d.id AS diary_id,
-    d.diary_title,
-    d.diary_content,
-    d.member_id,
-    d.feel_id,
-    f.feel_code,
-    f.feel_file_path,
-    f.feel_file_name,
-    f.feel_file_size,
-    t.contents AS tag_content,
-    fi.file_path AS thumbnail_path,
-    fi.file_name AS thumbnail_name,
-    fi.file_size AS thumbnail_size,
-    d.created_date,
-    d.updated_date
-FROM tbl_diary d
-
-         LEFT JOIN tbl_feel f
-                   ON d.feel_id = f.id
-
-         LEFT JOIN tbl_diary_tag dt
-                   ON d.id = dt.id
-
-         LEFT JOIN tbl_tag t
-                   ON dt.tag_id = t.id
-
-         LEFT JOIN tbl_diary_file df
-                   ON d.id = df.diary_id
-
-         LEFT JOIN tbl_file fi
-                   ON df.file_id = fi.id;
-
 select * from view_diary_detail;
 
-select * from tbl_file;
+CREATE OR REPLACE VIEW view_diary_detail AS
+SELECT
+    d.id                     AS diary_id,
+    d.diary_title,
+    d.diary_content,
+    d.diary_open,
+    d.diary_name_open,
+    d.diary_file_path        AS rep_file_path,
+    d.diary_file_name        AS rep_file_name,
+    d.diary_file_size        AS rep_file_size,
+    d.feel_id,
+    d.member_id,
+    d.diary_status,
+    d.created_date           AS diary_created_date,
+    d.updated_date           AS diary_updated_date,
 
-select * from tbl_diary;
+    -- 첨부 이미지 (0개 또는 여러 개)
+    f.id                     AS attach_file_id,
+    f.file_path              AS attach_file_path,
+    f.file_name              AS attach_file_name,
+    f.file_size              AS attach_file_size,
+    f.file_status,
+    f.created_date           AS file_created_date,
+
+    -- 태그 (0개 또는 여러 개)
+    t.id                     AS tag_id,
+    t.contents               AS tag_contents,
+    t.tag_status,
+    t.created_date           AS tag_created_date
+
+FROM tbl_diary d
+
+-- 첨부 이미지 연결
+         LEFT JOIN tbl_diary_file df ON d.id = df.diary_id
+         LEFT JOIN tbl_file f         ON df.id = f.id -- 슈퍼키 방식
+
+-- 태그 연결
+         LEFT JOIN tbl_diary_tag dt  ON d.id = dt.diary_id
+         LEFT JOIN tbl_tag t         ON dt.id = t.id;
+
+select * from view_diary_detail where view_diary_detail.diary_id;
+# = 22;
+
+UPDATE tbl_diary
+SET diary_open = '비공개'
+WHERE id = 20;
+SELECT * FROM tbl_diary WHERE id = 22;
+
+select * from tbl_file;

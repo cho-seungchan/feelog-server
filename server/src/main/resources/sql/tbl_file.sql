@@ -10,3 +10,5 @@ create table tbl_file(
 );
 
 
+select *
+from tbl_file;

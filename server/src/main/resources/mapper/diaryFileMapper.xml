@@ -3,9 +3,15 @@
 <mapper namespace="com.app.feelog.mapper.DiaryFileMapper">
 
     <insert id="insert" parameterType="com.app.feelog.domain.vo.DiaryFileVO">
-        INSERT INTO tbl_diary_file (diary_id, file_id)
-        VALUES (#{diaryId}, #{fileId})
+        INSERT INTO tbl_diary_file (id, diary_id)
+        VALUES (#{id}, #{diaryId})
     </insert>
+
+    <select id="existsById" resultType="boolean">
+        SELECT EXISTS(
+            SELECT 1 FROM tbl_diary_file WHERE id = #{id}
+        )
+    </select>
 
     <delete id="deleteByDiaryId" parameterType="long">
         DELETE FROM tbl_diary_file WHERE diary_id = #{diaryId}
@@ -20,7 +26,7 @@
                f.created_date,
                f.updated_date
         FROM tbl_file f
-                 JOIN tbl_diary_file df ON f.id = df.file_id
+                 JOIN tbl_diary_file df ON f.id = df.id
         WHERE df.diary_id = #{diaryId}
     </select>
 

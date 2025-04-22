@@ -191,10 +191,12 @@ function initSelectDropdown(container) {
 
         // 여기에서 input[name='visibilityOption']에 값 설정
         const selectedEnumValue = diaryOpenMap[clicked.textContent.trim()];
-        const hiddenInput = container.querySelector("input[name='visibilityOption']");
+        const hiddenInput = container.querySelector("input[name='diaryOpen']");
         if (hiddenInput && selectedEnumValue) {
             hiddenInput.value = selectedEnumValue;
         }
+
+
     });
 
     document.addEventListener("click", (e) => {
@@ -260,6 +262,7 @@ function initSelectDropdown2nd(container) {
         optionList2nd.setAttribute("hidden", "");
         toggleBtn2nd.setAttribute("aria-expanded", "false");
 
+        // 여기에서 input[name='diaryNameOpen']에 값 설정
         const selectedNameEnumValue = diaryNameOpenMap[clicked2nd.textContent.trim()];
         const hiddenNameInput = container.querySelector("input[name='diaryNameOpen']");
         if (hiddenNameInput && selectedNameEnumValue) {
@@ -281,87 +284,82 @@ function initFileUpload(container) {
     const fileButton = container.querySelector(".jk-feelog-btn007");
     const fileInput = container.querySelector("#hidden-file-input");
     const preview = container.querySelector(".file-preview");
-    const form = document.querySelector("form");
+    const form = container.closest("form");
 
-    if (!fileButton || !fileInput) return;
+    if (!fileButton || !fileInput || !form || !preview) return;
 
     fileButton.addEventListener("click", () => fileInput.click());
 
-    fileInput.addEventListener("change", (e) => {
+    fileInput.addEventListener("change", async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         const formData = new FormData();
         formData.append("file", file);
 
-        fetch("/files/upload", {
-            method: "POST",
-            body: formData,
-        })
-            .then(res => res.json())
-            .then(data => {
-                const fileDTO = data.thumbnail;
-                const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
-
-                // 대표 이미지 미리보기
-                if (preview) {
-                    preview.innerHTML = `
-                    <div class="preview-wrapper" style="position: relative; display: inline-block;">
-                        <img src="${imageUrl}" style="max-width: 200px; border-radius: 8px;" />
-                        <button type="button" class="delete-thumbnail-btn" style="
-                            position: absolute;
-                            top: 4px;
-                            right: 4px;
-                            background: rgba(0,0,0,0.5);
-                            border: none;
-                            color: white;
-                            border-radius: 50%;
-                            width: 24px;
-                            height: 24px;
-                            font-weight: bold;
-                            cursor: pointer;
-                        ">×</button>
-                    </div>`;
-                }
-
-                // 기존 hidden input 제거
-                ["diaryFilePath", "diaryFileName", "diaryFileSize"].forEach((key) => {
-                    const oldInput = form.querySelector(`input[name='${key}']`);
-                    if (oldInput) oldInput.remove();
-                });
-
-                // 새로운 hidden input 추가
-                const pathInput = document.createElement("input");
-                pathInput.type = "hidden";
-                pathInput.name = "diaryFilePath";
-                pathInput.value = fileDTO.filePath;
-                form.appendChild(pathInput);
-
-                const nameInput = document.createElement("input");
-                nameInput.type = "hidden";
-                nameInput.name = "diaryFileName";
-                nameInput.value = fileDTO.fileName;
-                form.appendChild(nameInput);
-
-                const sizeInput = document.createElement("input");
-                sizeInput.type = "hidden";
-                sizeInput.name = "diaryFileSize";
-                sizeInput.value = fileDTO.fileSize;
-                form.appendChild(sizeInput);
-
-                // 삭제 버튼 이벤트
-                preview.querySelector(".delete-thumbnail-btn").addEventListener("click", () => {
-                    preview.innerHTML = "";
-                    fileInput.value = "";
-
-                    [pathInput, nameInput, sizeInput].forEach(input => input.remove());
-                });
-            })
-            .catch(() => {
-                alert("대표 이미지 업로드 실패");
+        try {
+            const res = await fetch("/file/upload", {
+                method: "POST",
+                body: formData,
             });
+            const data = await res.json();
+
+            const fileDTO = data.thumbnail;
+            const imageUrl = `/file/display?path=${fileDTO.filePath}/${fileDTO.fileName}`;
+
+            // 썸네일 렌더링
+            preview.innerHTML = `
+                <div class="preview-wrapper" style="position: relative; display: inline-block;">
+                    <img src="${imageUrl}" style="max-width: 100px; border-radius: 8px;" />
+                    <button type="button" class="delete-thumbnail-btn" style="
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        background: rgba(0,0,0,0.5);
+                        border: none;
+                        color: white;
+                        border-radius: 50%;
+                        width: 24px;
+                        height: 24px;
+                        font-weight: bold;
+                        cursor: pointer;
+                    ">×</button>
+                </div>`;
+
+            // 기존 hidden input 제거
+            ["diaryFilePath", "diaryFileName", "diaryFileSize"].forEach((name) => {
+                const old = form.querySelector(`input[name='${name}']`);
+                if (old) old.remove();
+            });
+
+            // hidden input 추가
+            const makeHidden = (name, value) => {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = name;
+                input.value = value;
+                form.appendChild(input);
+            };
+
+            makeHidden("diaryFilePath", fileDTO.filePath);
+            makeHidden("diaryFileName", fileDTO.fileName);
+            makeHidden("diaryFileSize", fileDTO.fileSize);
+
+            // 삭제 버튼 이벤트
+            preview.querySelector(".delete-thumbnail-btn").addEventListener("click", () => {
+                preview.innerHTML = "";
+                fileInput.value = "";
+                ["diaryFilePath", "diaryFileName", "diaryFileSize"].forEach((name) => {
+                    const el = form.querySelector(`input[name='${name}']`);
+                    if (el) el.remove();
+                });
+            });
+        } catch (err) {
+            alert("대표 이미지 업로드 실패");
+        }
     });
 }
+
 function initTagInput(container) {
     const input = container.querySelector(".FlgInput-input-need");
     const tagBox = container.querySelector(".jk-feelog-div025");

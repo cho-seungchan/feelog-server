@@ -18,6 +18,8 @@ public class NoticeDTO extends Period {
     private String noticeContent;
     private Long memberId;
     private NoticeStatus noticeStatus;
+    private String noticeFilePath;
+    private String noticeFileName;
     private String createdDate;
     private String updatedDate;
 
@@ -28,6 +30,8 @@ public class NoticeDTO extends Period {
                 .noticeContent(noticeContent)
                 .memberId(memberId)
                 .noticeStatus(noticeStatus)
+                .noticeFilePath(noticeFilePath)
+                .noticeFileName(noticeFileName)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
                 .build();

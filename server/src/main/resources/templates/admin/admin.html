@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="/css/admin/admin-main.css" />
         <link rel="stylesheet" href="/css/admin/admin-list.css">
         <link rel="stylesheet" href="/css/admin/button.css">
+        <link rel="stylesheet" href="/css/admin/notice-modal.css">
         <style>
             @font-face {
                 font-family: "pickers";
@@ -185,7 +186,7 @@
                                             class="MenuItems_submenuContainer MenuItems_show Menulist2"
                                         >
                                             <a
-                                                class="MenuItems_submenu_adminList noticeList"
+                                                class="MenuItems_submenu_adminList postReportList"
                                                 >포스트신고 목록</a
                                             >
                                         </div>
@@ -193,7 +194,7 @@
                                             class="MenuItems_submenuContainer MenuItems_show Menulist2"
                                         >
                                             <a
-                                                class="MenuItems_submenu_adminList noticeList"
+                                                class="MenuItems_submenu_adminList diaryReportList"
                                                 >감정일기신고 목록</a
                                             >
                                         </div>
@@ -201,7 +202,7 @@
                                             class="MenuItems_submenuContainer MenuItems_show Menulist2"
                                         >
                                             <a
-                                                class="MenuItems_submenu_adminList noticeList"
+                                                class="MenuItems_submenu_adminList replyList"
                                                 >댓글신고 목록</a
                                             >
                                         </div>
@@ -240,7 +241,7 @@
                                             class="MenuItems_submenuContainer MenuItems_show Menulist2"
                                         >
                                             <a
-                                                class="MenuItems_submenu_adminList noticeList"
+                                                class="MenuItems_submenu_adminList questionList"
                                                 >자주 묻는 질문 목록</a
                                             >
                                         </div>
@@ -273,22 +274,6 @@
                                             <a
                                                 class="MenuItems_submenu_adminList adminCourseList"
                                                 >챌린지 목록</a
-                                            >
-                                        </div>
-                                        <div
-                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
-                                        >
-                                            <a
-                                                class="MenuItems_submenu_adminList adminCourseList"
-                                                >개인 챌린지</a
-                                            >
-                                        </div>
-                                        <div
-                                            class="MenuItems_submenuContainer MenuItems_show Menulist2"
-                                        >
-                                            <a
-                                                class="MenuItems_submenu_adminList adminCourseList"
-                                                >공동 챌린지</a
                                             >
                                         </div>
                                         <a
@@ -418,6 +403,25 @@
                                                                 </div>
                                                             </li>
                                                             <li
+                                                                    class="FundingPageMenuList_card FundingPageMenuList_feelogColor"
+                                                            >
+                                                                <div
+                                                                        class="FundingPageMenuList_container"
+                                                                >
+                                                                    <div
+                                                                            class="FundingPageMenuList_name"
+                                                                    >
+                                                                        자주 묻는 질문
+                                                                    </div>
+                                                                    <a
+                                                                            class="FundingPageMenuList_buttonWrapper questionWrite"
+                                                                    ><span
+                                                                    >작성하기</span
+                                                                    ></a
+                                                                    >
+                                                                </div>
+                                                            </li>
+                                                            <li
                                                                 class="FundingPageMenuList_card FundingPageMenuList_feelogColor"
                                                             >
                                                                 <div
@@ -451,8 +455,7 @@
                                                                         목록
                                                                     </div>
                                                                     <a
-                                                                        class="FundingPageMenuList_buttonWrapper"
-                                                                        href="/admin/manage-admin-list"
+                                                                        class="FundingPageMenuList_buttonWrapper adminLists"
                                                                         ><span
                                                                             >관리자
                                                                             목록</span
@@ -500,7 +503,20 @@
         <div class="admin-modal-body"></div>
     </body>
     <script src="/js/admin/admin.js"></script>
+    <!--    파일 서버 전송-->
+    <script src="/js/admin/file-service.js"></script>
+    <!--    파일 서버 전송-->
+    <!--    관리자 목록, 등록, 삭제 -->
     <script src="/js/admin/admin-list-service.js"></script>
     <script src="/js/admin/admin-list-layout.js"></script>
     <script src="/js/admin/admin-list-event.js"></script>
+<!--    관리자 목록, 등록, 삭제 끝-->
+<!--    공지사항 등록-->
+    <script src="/js/admin/notice-modal.js"></script>
+    <script src="/js/admin/notice-service.js"></script>
+    <script src="/js/admin/notice-layout.js"></script>
+    <script src="/js/admin/notice-event.js"></script>
+<!--공지사항 끝-->
+<!--자주 묻는 질문-->
+
 </html>

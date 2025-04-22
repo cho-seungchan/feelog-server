@@ -7,4 +7,40 @@
         values (#{diaryTitle}, #{diaryContent}, #{diaryFilePath}, #{diaryFileName}, #{diaryFileSize}, #{memberId}, #{feelId})
     </insert>
 
+    <!-- 단일 조회 -->
+    <select id="selectById" resultType="com.app.feelog.domain.vo.DiaryVO">
+        select
+            id,
+            diary_title,
+            diary_content,
+            diary_open,
+            diary_name_open,
+            diary_file_path,
+            diary_file_name,
+            diary_file_size,
+            diary_weather,
+            member_id,
+            feel_id,
+            diary_status,
+            created_date,
+            updated_date
+        from tbl_diary
+        where id = #{id}
+    </select>
+
+    <!-- 수정 -->
+    <update id="update" parameterType="DiaryVO">
+        update tbl_diary
+        set diary_title = #{diaryTitle},
+            diary_content = #{diaryContent},
+            diary_open = #{diaryOpen},
+            diary_name_open = #{diaryNameOpen},
+            diary_file_path = #{diaryFilePath},
+            diary_file_name = #{diaryFileName},
+            diary_file_size = #{diaryFileSize},
+            updated_date = NOW()
+        where id = #{id}
+    </update>
+
+
 </mapper>

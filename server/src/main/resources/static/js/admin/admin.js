@@ -8,6 +8,5 @@ menuBtn.addEventListener("click", function () {
     div.classList.toggle("active");
 });
 
-
 // 관리자 목록 화면
 

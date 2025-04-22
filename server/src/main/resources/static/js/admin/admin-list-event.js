@@ -1,8 +1,5 @@
 adminListService.getList(adminListLayout.showList);
 
-const password = document.querySelector(".inputPassword");
-const name = document.querySelector(".inputName");
-const email = document.querySelector(".inputEmail");
 const htmlWrap = document.querySelector(".AppLayout_contents")
 
 htmlWrap.addEventListener("click",async (e)=>{
@@ -17,9 +14,6 @@ htmlWrap.addEventListener("click",async (e)=>{
         const account = document.querySelector(".inputAccount");
         const password = document.querySelector(".inputPassword");
         const name = document.querySelector(".inputName");
-        console.log(account.value)
-        console.log(password.value)
-        console.log(name.value)
 
         await adminListService.addAdmin({
             memberEmail : account.value,
@@ -29,19 +23,42 @@ htmlWrap.addEventListener("click",async (e)=>{
         account.value = "";
         password.value = "";
         name.value = "";
+
+        adminListService.getList(adminListLayout.buttonEvent, e.target.getAttribute("data-index"));
     }
 
     if(e.target.classList.contains("deleteBtn")){
         const checkboxs = document.querySelectorAll(".usersCheckbox");
-            checkboxs.forEach((box) => {
+        const idList = new Array();
+
+        checkboxs.forEach((box) => {
             if (box.checked) {
-                box.closest("li").remove();
+                const target = box.id;
+                idList.push(target);
             }
         });
+        await adminListService.deleteAdmin(idList);
+
+        await adminListService.getList(adminListLayout.buttonEvent, e.target.getAttribute("data-index"));
     }
 
     if(e.target.classList.contains("buttons")){
         console.log(document.querySelector(".NoticePage__NoticeListWrapper"));
         adminListService.getList(adminListLayout.buttonEvent, e.target.getAttribute("data-index"));
+    }
+    
+    if(e.target.classList.contains("search")){
+    }
+})
+
+htmlWrap.addEventListener("keydown", (e) => {
+    if(e.key === "Enter"){
+        const input = document.querySelector(".search_input");
+        const statuses = document.querySelectorAll(".statusDiv")
+        statuses.forEach((status) => {
+            if(input.value !== status.textContent){
+
+            }
+        })
     }
 })

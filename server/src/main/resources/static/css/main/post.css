@@ -2464,7 +2464,7 @@ div.fr-toolbar.fr-basic {
 
   #preview-section {
     overflow-y: auto; 
-    padding: 16px;     
+    padding: 16px 1px 16px 16px;
     box-sizing: border-box; 
 }
 
@@ -2486,7 +2486,9 @@ div.fr-toolbar.fr-basic {
 }
 
 
-
+.inline-publish-section{
+    max-width: 740px;
+}
 
 
 

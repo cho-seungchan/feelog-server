@@ -3,22 +3,31 @@
 <mapper namespace="com.app.feelog.mapper.TagMapper">
 
     <!-- 태그 저장 -->
-    <insert id="insertTag">
-        INSERT INTO tbl_tag (contents)
-        VALUES (#{contents})
+    <insert id="insertTag"
+            parameterType="com.app.feelog.domain.vo.TagVO"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO tbl_tag (contents, tag_status)
+        VALUES (#{contents}, #{tagStatus})
     </insert>
 
     <!-- 다이어리-태그 연결 저장 -->
     <insert id="insertDiaryTag">
-        INSERT INTO tbl_diary_tag (diary_id, tag_id)
-        VALUES (#{diaryId}, #{tagId})
+        INSERT INTO tbl_diary_tag (id, diary_id)
+        VALUES (#{id}, #{diaryId})
     </insert>
 
     <!-- contents로 태그 검색 -->
     <select id="findTagsByContents" resultType="com.app.feelog.domain.vo.TagVO">
         SELECT id, contents, tag_status, created_date, updated_date
         FROM tbl_tag
-        WHERE contents = #{contents}
+        WHERE contents = #{contents} AND tag_status = '정상'
     </select>
+
+    <update id="deactivateTag">
+        UPDATE tbl_tag
+        SET tag_status = 'INACTIVE'
+        WHERE id = #{tagId}
+    </update>
 
 </mapper>

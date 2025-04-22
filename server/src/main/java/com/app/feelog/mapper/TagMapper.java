@@ -14,7 +14,9 @@ public interface TagMapper {
     // 다이어리-태그 연결 저장
     void insertDiaryTag(DiaryTagVO diaryTagVO);
 
-    // contents로 태그 목록 조회 (동일한 내용으로 여러 명 가능하므로 리스트)
+    // contents로 태그 목록 조회
     List<TagVO> findTagsByContents(String contents);
+
+    void deactivateTag(Long tagId);
 
 }

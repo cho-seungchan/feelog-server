@@ -4,8 +4,11 @@ import com.app.feelog.domain.enumeration.DiaryNameOpen;
 import com.app.feelog.domain.enumeration.DiaryOpen;
 import com.app.feelog.domain.enumeration.DiaryStatus;
 import com.app.feelog.domain.vo.DiaryVO;
+import com.app.feelog.domain.vo.FileVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Getter
@@ -29,6 +32,12 @@ public class DiaryDTO {
     private DiaryStatus diaryStatus;
     private String createdDate;
     private String updatedDate;
+
+    // 첨부파일 및 태그
+    private List<Long> fileIds;      // summernote용
+    private List<String> tags;       // 새 태그 문자열 리스트
+    private List<FileVO> fileList;
+    private Long challengeId;
 
     public DiaryVO toVO() {
         return DiaryVO.builder()

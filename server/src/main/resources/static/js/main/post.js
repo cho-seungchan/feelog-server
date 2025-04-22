@@ -4,125 +4,92 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelBtn = document.querySelector(".cancel-bnt");
     const editorZone = document.querySelector(".keep-editor-selection-zone");
     const summernote = document.querySelector(".summernote");
-    const modalContent = document.querySelector(
-        ".FlgModal-root-need .jk-feelog-div018"
-    );
+    const modalContent = document.querySelector(".FlgModal-root-need .jk-feelog-div018");
 
-
-    // note-editor 찾기
     let noteEditor = summernote;
     while (noteEditor && !noteEditor.classList.contains("note-editor")) {
         noteEditor = noteEditor.parentElement;
     }
 
     nextBtn.addEventListener("click", () => {
-        // 1. 에디터 숨기기
         summernote.style.display = "none";
         const noteEditor = document.querySelector(".note-editor");
         if (noteEditor)
             noteEditor.style.setProperty("display", "none", "important");
 
-        // 2. 기존 inline 영역 제거
-        const existingInline = editorZone.querySelector(
-            ".inline-publish-section"
-        );
+        const existingInline = editorZone.querySelector(".inline-publish-section");
         if (existingInline) existingInline.remove();
 
-        // 3. 모달 내용 복사하여 삽입
         const clone = document.createElement("div");
         clone.classList.add("inline-publish-section");
         clone.innerHTML = modalContent.innerHTML;
         editorZone.appendChild(clone);
 
-        // Summernote 내용을 미리보기 박스에 삽입
         const noteContent = $(".summernote").summernote("code");
         clone.querySelector("#preview-section").innerHTML = noteContent;
 
-        editorZone.appendChild(clone);
-
-        // 다음버튼 누르면 제목이 p 태그로 바뀌고, input은 사라짐
         const titleInput = document.querySelector("#title-input");
         if (titleInput) {
             const titleValue = titleInput.value.trim() || "제목 없음";
             const titleText = document.createElement("p");
-
-            // 클래스 복사
             titleText.className = titleInput.className;
             titleText.textContent = titleValue;
-            titleText.id = "title-fixed"; // 나중에 다시 input으로 돌릴 때 필요
+            titleText.id = "title-fixed";
 
-            // <input> → <p>로 교체
+            const hiddenTitleInput = document.createElement("input");
+            hiddenTitleInput.type = "hidden";
+            hiddenTitleInput.name = "postTitle";
+            hiddenTitleInput.value = titleValue;
+
             titleInput.parentNode.replaceChild(titleText, titleInput);
+            titleText.insertAdjacentElement("afterend", hiddenTitleInput);
         }
 
-        // 4. 버튼 전환
         nextBtn.style.display = "none";
         postBtn.style.display = "block";
 
-        // 5. cancel 버튼 → back 버튼으로 역할 변경
         cancelBtn.classList.remove("cancel-bnt");
         cancelBtn.classList.add("back-btn");
         cancelBtn.setAttribute("aria-label", "뒤로가기");
 
-        // 6. 뒤로가기 동작 정의
         cancelBtn.onclick = () => {
-            // 에디터 다시 보이기
             summernote.style.display = "";
             if (noteEditor) {
                 noteEditor.style.setProperty("display", "block", "important");
-                noteEditor.style.setProperty(
-                    "margin-left",
-                    "auto",
-                    "important"
-                );
-                noteEditor.style.setProperty(
-                    "margin-right",
-                    "auto",
-                    "important"
-                );
+                noteEditor.style.setProperty("margin-left", "auto", "important");
+                noteEditor.style.setProperty("margin-right", "auto", "important");
                 noteEditor.style.setProperty("max-width", "742px", "important");
             }
 
             const zone = document.querySelector(".keep-editor-selection-zone");
-            if (zone) {
-                zone.style.setProperty(
-                    "justify-content",
-                    "center",
-                    "important"
-                );
-            }
+            if (zone) zone.style.setProperty("justify-content", "center", "important");
 
-            // 발행 섹션 제거
-            const inline = editorZone.querySelector(".inline-publish-section");
-            if (inline) inline.remove();
-
-            // 제목 p 태그를 다시 input으로 교체
             const titleFixed = document.querySelector("#title-fixed");
             if (titleFixed) {
                 const titleInput = document.createElement("input");
-
                 titleInput.type = "text";
                 titleInput.className = titleFixed.className;
                 titleInput.value = titleFixed.textContent;
                 titleInput.id = "title-input";
                 titleInput.placeholder = "제목을 입력하세요";
 
-                // <p> → <input>로 교체
                 titleFixed.parentNode.replaceChild(titleInput, titleFixed);
+                const hiddenInput = document.querySelector("input[name='postTitle']");
+                if (hiddenInput) hiddenInput.remove();
             }
 
-            // 버튼 원복
+            const inline = editorZone.querySelector(".inline-publish-section");
+            if (inline) inline.remove();
+
             postBtn.style.display = "none";
             nextBtn.style.display = "block";
 
-            // back → cancel 복원
             cancelBtn.classList.remove("back-btn");
             cancelBtn.classList.add("cancel-bnt");
             cancelBtn.setAttribute("aria-label", "종료");
             cancelBtn.onclick = null;
         };
 
-        // 7. 이벤트 연결
         initSelectDropdown(clone);
         initFileUpload(clone);
         initTagInput(clone);
@@ -134,14 +101,17 @@ function initSelectDropdown(container) {
     const optionList = container.querySelector("#select-options");
     const options = optionList?.querySelectorAll("li");
 
+    const postTypeMap = {
+        "포스트": "POST",
+        "응원글": "CHEERING"
+    };
 
     if (!toggleBtn || !optionList) return;
 
     toggleBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        const isHidden = optionList.hasAttribute("hidden");
-        optionList.toggleAttribute("hidden", !isHidden);
-        toggleBtn.setAttribute("aria-expanded", !isHidden);
+        optionList.toggleAttribute("hidden");
+        toggleBtn.setAttribute("aria-expanded", !optionList.hasAttribute("hidden"));
     });
 
     optionList.addEventListener("click", (e) => {
@@ -159,12 +129,14 @@ function initSelectDropdown(container) {
 
         optionList.setAttribute("hidden", "");
         toggleBtn.setAttribute("aria-expanded", "false");
+
+        const value = postTypeMap[clicked.textContent.trim()];
+        const hiddenInput = container.querySelector("input[name='postType']");
+        if (hiddenInput && value) hiddenInput.value = value;
     });
 
     document.addEventListener("click", (e) => {
-        const isInside =
-            toggleBtn.contains(e.target) || optionList.contains(e.target);
-        if (!isInside) {
+        if (!toggleBtn.contains(e.target) && !optionList.contains(e.target)) {
             optionList.setAttribute("hidden", "");
             toggleBtn.setAttribute("aria-expanded", "false");
         }
@@ -175,21 +147,76 @@ function initFileUpload(container) {
     const fileButton = container.querySelector(".jk-feelog-btn007");
     const fileInput = container.querySelector("#hidden-file-input");
     const preview = container.querySelector(".file-preview");
+    const form = document.querySelector("form");
 
     if (!fileButton || !fileInput) return;
 
     fileButton.addEventListener("click", () => fileInput.click());
 
     fileInput.addEventListener("change", (e) => {
-        const files = Array.from(e.target.files);
-        if (preview) {
-            preview.innerHTML =
-                files.length === 0
-                    ? ""
-                    : files
-                          .map((f, i) => `📎 파일 ${i + 1}: ${f.name}`)
-                          .join("<br>");
-        }
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        fetch("/file/upload", {
+            method: "POST",
+            body: formData,
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                const fileDTO = data.thumbnail;
+                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+
+                preview.innerHTML = `
+                    <div class="preview-wrapper" style="position: relative; display: inline-block;">
+                        <img src="${imageUrl}" style="max-width: 100px; border-radius: 8px;" />
+                        <button type="button" class="delete-thumbnail-btn" style="
+                            position: absolute;
+                            top: 4px;
+                            right: 4px;
+                            background: rgba(0,0,0,0.5);
+                            border: none;
+                            color: white;
+                            border-radius: 50%;
+                            width: 24px;
+                            height: 24px;
+                            font-weight: bold;
+                            cursor: pointer;
+                        ">×</button>
+                    </div>`;
+
+                ["postFilePath", "postFileName", "postFileSize"].forEach((key) => {
+                    const oldInput = form.querySelector(`input[name='${key}']`);
+                    if (oldInput) oldInput.remove();
+                });
+
+                const pathInput = document.createElement("input");
+                pathInput.type = "hidden";
+                pathInput.name = "postFilePath";
+                pathInput.value = fileDTO.filePath;
+                form.appendChild(pathInput);
+
+                const nameInput = document.createElement("input");
+                nameInput.type = "hidden";
+                nameInput.name = "postFileName";
+                nameInput.value = fileDTO.fileName;
+                form.appendChild(nameInput);
+
+                const sizeInput = document.createElement("input");
+                sizeInput.type = "hidden";
+                sizeInput.name = "postFileSize";
+                sizeInput.value = fileDTO.fileSize;
+                form.appendChild(sizeInput);
+
+                preview.querySelector(".delete-thumbnail-btn").addEventListener("click", () => {
+                    preview.innerHTML = "";
+                    fileInput.value = "";
+                    [pathInput, nameInput, sizeInput].forEach(input => input.remove());
+                });
+            })
+            .catch(() => alert("대표 이미지 업로드 실패"));
     });
 }
 
@@ -203,24 +230,30 @@ function initTagInput(container) {
     const TAG_PATTERN = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_]+$/;
 
     function renderTags() {
-        tagBox
-            .querySelectorAll(".FlgChip-root-need")
-            .forEach((el) => el.remove());
+        tagBox.querySelectorAll(".FlgChip-root-need").forEach(el => el.remove());
+        const form = document.querySelector("form");
+        form.querySelectorAll("input[name='tags']").forEach(el => el.remove());
 
-        tags.forEach((text) => {
+        tags.forEach(text => {
             const tagEl = document.createElement("div");
             tagEl.className =
                 "FlgChip-root-need FlgChip-colorPrimary FlgChip-sizeMd-need FlgChip-variantSoft-need joy-1g753be";
             tagEl.innerHTML = `
-                <span class="FlgChip-label-need FlgChip-label-needMd jk-feelog-span006">${text}</span>
-                <span class="FlgChip-endDecorator joy-1i201st">
-                    <button class="FlgChipDelete-root FlgChipDelete-variantSoft FlgChipDelete-colorPrimary joy-1rgf1fl" type="button">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.979 7.354a.937.937 0 0 0-1.324-1.324l-4.65 4.648-4.651-4.653A.937.937 0 0 0 6.03 7.35l4.648 4.649-4.653 4.652a.937.937 0 0 0 1.324 1.324l4.649-4.648 4.652 4.652a.937.937 0 0 0 1.324-1.324l-4.648-4.648 4.652-4.652Z" fill="currentcolor"></path>
-                        </svg>
-                    </button>
-                </span>`;
+            <span class="FlgChip-label-need FlgChip-label-needMd jk-feelog-span006">${text}</span>
+            <span class="FlgChip-endDecorator joy-1i201st">
+                <button class="FlgChipDelete-root FlgChipDelete-variantSoft FlgChipDelete-colorPrimary joy-1rgf1fl" type="button">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
+                        <path d="M17.979 7.354a.937.937 0 0 0-1.324-1.324l-4.65 4.648-4.651-4.653A.937.937 0 0 0 6.03 7.35l4.648 4.649-4.653 4.652a.937.937 0 0 0 1.324 1.324l4.649-4.648 4.652 4.652a.937.937 0 0 0 1.324-1.324l-4.648-4.648 4.652-4.652Z" fill="currentcolor"></path>
+                    </svg>
+                </button>
+            </span>`;
             tagBox.insertBefore(tagEl, input.closest(".FlgInput-root-need"));
+
+            const hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "tags";
+            hiddenInput.value = text;
+            form.appendChild(hiddenInput);
         });
     }
 

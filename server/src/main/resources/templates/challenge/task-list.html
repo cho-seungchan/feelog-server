@@ -76,7 +76,7 @@
                                                             object-fit: cover;
                                                             color: transparent;"
                                                         th:if="${individual.memberTaskPoolFileName != null && !individual.memberTaskPoolFileName.isEmpty()}"
-                                                        th:src="@{/files/display(path=|${individual.memberTaskPoolFilePath}/${individual.memberTaskPoolFileName}|)}"
+                                                        th:src="@{/file/display(path=|${individual.memberTaskPoolFilePath}/${individual.memberTaskPoolFileName}|)}"
                                                 /><img
                                                     alt="개별 과제"
                                                     loading="lazy"

@@ -13,4 +13,10 @@ public class FileDAO {
     public void save(FileVO fileVO) {
         fileMapper.insert(fileVO);
     }
+
+
+    public void deactivateFile(Long fileId) {
+        fileMapper.deactivateFile(fileId);
+    }
+
 }
