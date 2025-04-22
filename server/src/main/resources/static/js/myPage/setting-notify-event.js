@@ -54,10 +54,63 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 변경 내용 저장 버튼 이벤트 :: 서버에서 결과 받아서 뿌리는 거로 변경 필요
-    document.querySelector(".flog-div-113 .flog-button-10").addEventListener("click", (e) => {
+    // 2025.04.22  조승찬 :: 변경사항 저장 버튼 클릭시
+    document.querySelector(".flog-div-113 .flog-button-10").addEventListener("click", e=>{
+
         e.preventDefault();
+
+        // 포스트 댓글 알림
+        if (document.querySelector(".memberNotificationPostReply").classList.contains("Feelog-checked")) {
+            document.querySelector("input[name='memberNotificationPostReply']").value = "설정";
+        } else {
+            document.querySelector("input[name='memberNotificationPostReply']").value = "해제";
+        }
+        console.log(document.querySelector("input[name='memberNotificationPostReply']").value);
+
+        // 포스트 댓글 좋아요 알림
+        if (document.querySelector(".memberNotificationPostReplyLike").classList.contains("Feelog-checked")) {
+            document.querySelector("input[name='memberNotificationPostReplyLike']").value = "설정";
+        } else {
+            document.querySelector("input[name='memberNotificationPostReplyLike']").value = "해제";
+        }
+        console.log(document.querySelector("input[name='memberNotificationPostReplyLike']").value);
+
+        // 포스트 좋아요 알림
+        if (document.querySelector(".memberNotificationPostLike").classList.contains("Feelog-checked")) {
+            document.querySelector("input[name='memberNotificationPostLike']").value = "설정";
+        } else {
+            document.querySelector("input[name='memberNotificationPostLike']").value = "해제";
+        }
+        console.log(document.querySelector("input[name='memberNotificationPostLike']").value);
+
+        // 구독 알림
+        if (document.querySelector(".memberNotificationSubscribe").classList.contains("Feelog-checked")) {
+            document.querySelector("input[name='memberNotificationSubscribe']").value = "설정";
+        } else {
+            document.querySelector("input[name='memberNotificationSubscribe']").value = "해제";
+        }
+        console.log(document.querySelector("input[name='memberNotificationSubscribe']").value);
+
+        // 커뮤니티 새글 알림
+        if (document.querySelector(".memberNotificationCommunityPost").classList.contains("Feelog-checked")) {
+            document.querySelector("input[name='memberNotificationCommunityPost']").value = "설정";
+        } else {
+            document.querySelector("input[name='memberNotificationCommunityPost']").value = "해제";
+        }
+        console.log(document.querySelector("input[name='memberNotificationCommunityPost']").value);
+
+        // 커뮤니티 새글 알림
+        if (document.querySelector(".memberNotificationMessage").classList.contains("Feelog-checked")) {
+            document.querySelector("input[name='memberNotificationMessage']").value = "설정";
+        } else {
+            document.querySelector("input[name='memberNotificationMessage']").value = "해제";
+        }
+        console.log(document.querySelector("input[name='memberNotificationMessage']").value);
+
+        document.querySelector(".flog-form-2").submit();
         document.querySelector(".flog-div-40").style.display = "block";
     });
+
 
     // 모달창 확인, x 버튼 클릭 이벤트
     document.querySelector(".flog-div-44 .flog-button-10").addEventListener("click", (e) => {

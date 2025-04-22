@@ -1,315 +1,318 @@
 <!-- 2025.04.05 조승찬 -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/myPage/setting-notify.css" />
-        <link rel="stylesheet" href="/css/main/header.css">
-        <link rel="stylesheet" href="/css/main/footer.css">
-        <link rel="stylesheet" href="/css/main/search-modal.css">
-        <link rel="stylesheet" href="/css/all/message.css" />
-        <title>알림 설정</title>
-    </head>
-    <body>
-        <div class="FeelogStack-root flog-div-1">
-            <!-- 헤더 넣을 곳 -->
-            <header id="main-header"
-                    th:replace="~{main/header.html :: #main-header}"></header>
-            <!-- 헤더 넣을 곳 -->
-            <div class="FeelogStack-root flog-div-12">
-                <div class="FeelogStack-root flog-div-13">
-                    <nav class="subnavigation FeelogBox-root flog-nav-2">
-                        <ul
-                            class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-1"
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/myPage/setting-notify.css" />
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/main/search-modal.css">
+    <link rel="stylesheet" href="/css/all/message.css" />
+    <title>알림 설정</title>
+</head>
+<body>
+<div class="FeelogStack-root flog-div-1">
+    <!-- 헤더 넣을 곳 -->
+    <header id="main-header"
+            th:replace="~{main/header.html :: #main-header}"></header>
+    <!-- 헤더 넣을 곳 -->
+    <div class="FeelogStack-root flog-div-12">
+        <div class="FeelogStack-root flog-div-13">
+            <nav class="subnavigation FeelogBox-root flog-nav-2">
+                <ul
+                        class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-1"
+                >
+                    <a
+                            class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                            href="/myPage/setting-profile"
+                    ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                        프로필
+                    </p></a
+                    ><a
+                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
+                        href="/myPage/setting-notify"
+                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
+                    알림
+                </p></a
+                >
+                </ul>
+            </nav>
+            <main class="FeelogStack-root flog-main-5">
+                <!--                        2025.04.22 조승찬 :: 조회 입력 환경으로 전환 -->
+                <form class="FeelogStack-root flog-form-2" th:object="${member}" th:action="@{/myPage/setting-notify}" method="post" >
+                    <div class="FeelogStack-root flog-div-54">
+                        <div
+                                class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
                         >
-                            <a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="/account/settings/profile"
-                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
-                                    프로필
-                                </p></a
-                            ><a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
-                                href="/account/settings/notification"
-                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
-                                    알림
-                                </p></a
+                            <label
+                                    for=":Rd1cpuuukv9ul7rlqakq:"
+                                    id=":Rd1cpuuukv9ul7rlqakq:-label"
+                                    class="FeelogFormLabel-root flog-label-5"
+                            >댓글</label
                             >
-                        </ul>
-                    </nav>
-                    <main class="FeelogStack-root flog-main-5">
-<!--                        2025.04.22 조승찬 :: 조회 입력 환경으로 전환 -->
-                        <form class="FeelogStack-root flog-form-2" th:object="${member}" th:action="@{/mypage/setting-notify}" method="post" >
-                            <div class="FeelogStack-root flog-div-54">
-                                <div
-                                    class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
-                                >
-                                    <label
-                                        for=":Rd1cpuuukv9ul7rlqakq:"
-                                        id=":Rd1cpuuukv9ul7rlqakq:-label"
-                                        class="FeelogFormLabel-root flog-label-5"
-                                        >댓글</label
-                                    >
-                                    <div
-                                        class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm"
-                                        th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
-                                    >
+                            <div
+                                    class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationPostReply"
+                                    th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                            >
                                         <span class="FeelogSwitch-track flog-span-26"
                                               th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"
-                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
-                                                   th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"></span
+                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
+                                               th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
-                                        <div class="FeelogSwitch-action flog-div-112">
-                                            <input
-                                                type="checkbox"
-                                                id=":Rd1cpuuukv9ul7rlqakq:"
-                                                role="switch"
-                                                class="FeelogSwitch-input flog-input-5"
-                                                name="allowNotificationComment"
-                                                checked=""
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="FeelogFormHelperText-root flog-div-52">
-                                    내 포스트에 새 댓글이 등록됐을 때 알림을 받아요.
+                                <div class="FeelogSwitch-action flog-div-112">
+                                    <input
+                                            type="checkbox"
+                                            id=":Rd1cpuuukv9ul7rlqakq:"
+                                            role="switch"
+                                            class="FeelogSwitch-input flog-input-5"
+                                            name="memberNotificationPostReply"
+                                            checked=""
+                                    />
                                 </div>
                             </div>
-                            <div class="FeelogStack-root flog-div-54">
-                                <div
-                                    class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
-                                >
-                                    <label
-                                        for=":Rd2cpuuukv9ul7rlqakq:"
-                                        id=":Rd2cpuuukv9ul7rlqakq:-label"
-                                        class="FeelogFormLabel-root flog-label-5"
-                                        >댓글 좋아요</label
-                                    >
-                                    <div
-                                        class="FeelogSwitch-root Feelog-checked FeelogSwitch-variantSolid FeelogSwitch-colorPrimary FeelogSwitch-sizeSm flog-div-111"
-                                    >
-                                        <span class="FeelogSwitch-track Feelog-checked flog-span-26"
-                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"></span
+                        </div>
+                        <div class="FeelogFormHelperText-root flog-div-52">
+                            내 포스트에 새 댓글이 등록됐을 때 알림을 받아요.
+                        </div>
+                    </div>
+                    <div class="FeelogStack-root flog-div-54">
+                        <div
+                                class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
+                        >
+                            <label
+                                    for=":Rd2cpuuukv9ul7rlqakq:"
+                                    id=":Rd2cpuuukv9ul7rlqakq:-label"
+                                    class="FeelogFormLabel-root flog-label-5"
+                            >댓글 좋아요</label
+                            >
+                            <div
+                                    class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationPostReplyLike"
+                                    th:classappend="*{memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                            >
+                                        <span class="FeelogSwitch-track flog-span-26"
+                                              th:classappend="*{memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
+                                               th:classappend="*{memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
-                                        <div class="FeelogSwitch-action flog-div-112">
-                                            <input
-                                                type="checkbox"
-                                                id=":Rd2cpuuukv9ul7rlqakq:"
-                                                role="switch"
-                                                class="FeelogSwitch-input flog-input-5"
-                                                name="allowNotificationCommentLike"
-                                                checked=""
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="FeelogFormHelperText-root flog-div-52">
-                                    내 댓글을 누군가 좋아했을 때 알림을 받아요.
+                                <div class="FeelogSwitch-action flog-div-112">
+                                    <input
+                                            type="checkbox"
+                                            id=":Rd2cpuuukv9ul7rlqakq:"
+                                            role="switch"
+                                            class="FeelogSwitch-input flog-input-5"
+                                            name="memberNotificationPostReplyLike"
+                                            checked=""
+                                    />
                                 </div>
                             </div>
-                            <div class="FeelogStack-root flog-div-54">
-                                <div
-                                    class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
-                                >
-                                    <label
-                                        for=":Rd3cpuuukv9ul7rlqakq:"
-                                        id=":Rd3cpuuukv9ul7rlqakq:-label"
-                                        class="FeelogFormLabel-root flog-label-5"
-                                        >좋아요</label
-                                    >
-                                    <div
-                                        class="FeelogSwitch-root Feelog-checked FeelogSwitch-variantSolid FeelogSwitch-colorPrimary FeelogSwitch-sizeSm flog-div-111"
-                                    >
-                                        <span class="FeelogSwitch-track Feelog-checked flog-span-26"
-                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"></span
+                        </div>
+                        <div class="FeelogFormHelperText-root flog-div-52">
+                            내 댓글을 누군가 좋아했을 때 알림을 받아요.
+                        </div>
+                    </div>
+                    <div class="FeelogStack-root flog-div-54">
+                        <div
+                                class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
+                        >
+                            <label
+                                    for=":Rd3cpuuukv9ul7rlqakq:"
+                                    id=":Rd3cpuuukv9ul7rlqakq:-label"
+                                    class="FeelogFormLabel-root flog-label-5"
+                            >좋아요</label
+                            >
+                            <div
+                                    class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationPostLike"
+                                    th:classappend="*{memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                            >
+                                        <span class="FeelogSwitch-track flog-span-26"
+                                              th:classappend="*{memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
+                                               th:classappend="*{memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
-                                        <div class="FeelogSwitch-action flog-div-112">
-                                            <input
-                                                type="checkbox"
-                                                id=":Rd3cpuuukv9ul7rlqakq:"
-                                                role="switch"
-                                                class="FeelogSwitch-input flog-input-5"
-                                                name="allowNotificationLike"
-                                                checked=""
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="FeelogFormHelperText-root flog-div-52">
-                                    내 포스트를 누군가 좋아했을 때 알림을 받아요.
+                                <div class="FeelogSwitch-action flog-div-112">
+                                    <input
+                                            type="checkbox"
+                                            id=":Rd3cpuuukv9ul7rlqakq:"
+                                            role="switch"
+                                            class="FeelogSwitch-input flog-input-5"
+                                            name="memberNotificationPostLike"
+                                            checked=""
+                                    />
                                 </div>
                             </div>
-                            <div class="FeelogStack-root flog-div-54">
-                                <div
-                                    class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
-                                >
-                                    <label
-                                        for=":Rd5cpuuukv9ul7rlqakq:"
-                                        id=":Rd5cpuuukv9ul7rlqakq:-label"
-                                        class="FeelogFormLabel-root flog-label-5"
-                                        >구독</label
-                                    >
-                                    <div
-                                        class="FeelogSwitch-root Feelog-checked FeelogSwitch-variantSolid FeelogSwitch-colorPrimary FeelogSwitch-sizeSm flog-div-111"
-                                    >
-                                        <span class="FeelogSwitch-track Feelog-checked flog-span-26"
-                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"></span
+                        </div>
+                        <div class="FeelogFormHelperText-root flog-div-52">
+                            내 포스트를 누군가 좋아했을 때 알림을 받아요.
+                        </div>
+                    </div>
+                    <div class="FeelogStack-root flog-div-54">
+                        <div
+                                class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
+                        >
+                            <label
+                                    for=":Rd5cpuuukv9ul7rlqakq:"
+                                    id=":Rd5cpuuukv9ul7rlqakq:-label"
+                                    class="FeelogFormLabel-root flog-label-5"
+                            >구독</label
+                            >
+                            <div
+                                    class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationSubscribe"
+                                    th:classappend="*{memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                            >
+                                        <span class="FeelogSwitch-track flog-span-26"
+                                              th:classappend="*{memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
+                                               th:classappend="*{memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
-                                        <div class="FeelogSwitch-action flog-div-112">
-                                            <input
-                                                type="checkbox"
-                                                id=":Rd5cpuuukv9ul7rlqakq:"
-                                                role="switch"
-                                                class="FeelogSwitch-input flog-input-5"
-                                                name="allowNotificationSubscription"
-                                                checked=""
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="FeelogFormHelperText-root flog-div-52">
-                                    내 채널이나 내가 참여한 팀 채널을 누군가 구독했을 때 알림을 받아요.
+                                <div class="FeelogSwitch-action flog-div-112">
+                                    <input
+                                            type="checkbox"
+                                            id=":Rd5cpuuukv9ul7rlqakq:"
+                                            role="switch"
+                                            class="FeelogSwitch-input flog-input-5"
+                                            name="memberNotificationSubscribe"
+                                            checked=""
+                                    />
                                 </div>
                             </div>
-                            <div class="FeelogStack-root flog-div-54">
-                                <div
-                                    class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
-                                >
-                                    <label
-                                        for=":Rd7cpuuukv9ul7rlqakq:"
-                                        id=":Rd7cpuuukv9ul7rlqakq:-label"
-                                        class="FeelogFormLabel-root flog-label-5"
-                                        >커뮤니티 새 글</label
-                                    >
-                                    <div
-                                        class="FeelogSwitch-root Feelog-checked FeelogSwitch-variantSolid FeelogSwitch-colorPrimary FeelogSwitch-sizeSm flog-div-111"
-                                    >
-                                        <span class="FeelogSwitch-track Feelog-checked flog-span-26"
-                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"></span
+                        </div>
+                        <div class="FeelogFormHelperText-root flog-div-52">
+                            내 채널이나 내가 참여한 팀 채널을 누군가 구독했을 때 알림을 받아요.
+                        </div>
+                    </div>
+                    <div class="FeelogStack-root flog-div-54">
+                        <div
+                                class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
+                        >
+                            <label
+                                    for=":Rd7cpuuukv9ul7rlqakq:"
+                                    id=":Rd7cpuuukv9ul7rlqakq:-label"
+                                    class="FeelogFormLabel-root flog-label-5"
+                            >커뮤니티 새 글</label
+                            >
+                            <div
+                                    class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationCommunityPost"
+                                    th:classappend="*{memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                            >
+                                        <span class="FeelogSwitch-track flog-span-26"
+                                              th:classappend="*{memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
+                                               th:classappend="*{memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
-                                        <div class="FeelogSwitch-action flog-div-112">
-                                            <input
-                                                type="checkbox"
-                                                id=":Rd7cpuuukv9ul7rlqakq:"
-                                                role="switch"
-                                                class="FeelogSwitch-input flog-input-5"
-                                                name="allowNotificationNewCommunity"
-                                                checked=""
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="FeelogFormHelperText-root flog-div-52">
-                                    내 채널 커뮤니티에 새 글이나 질문이 등록되었을 때 알림을 받아요.
+                                <div class="FeelogSwitch-action flog-div-112">
+                                    <input
+                                            type="checkbox"
+                                            id=":Rd7cpuuukv9ul7rlqakq:"
+                                            role="switch"
+                                            class="FeelogSwitch-input flog-input-5"
+                                            name="memberNotificationCommunityPost"
+                                            checked=""
+                                    />
                                 </div>
                             </div>
-                            <div class="FeelogStack-root flog-div-54">
-                                <div
-                                    class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
-                                >
-                                    <label
-                                        for=":Rdbcpuuukv9ul7rlqakq:"
-                                        id=":Rdbcpuuukv9ul7rlqakq:-label"
-                                        class="FeelogFormLabel-root flog-label-5"
-                                        >메시지</label
-                                    >
-                                    <div
-                                        class="FeelogSwitch-root Feelog-checked FeelogSwitch-variantSolid FeelogSwitch-colorPrimary FeelogSwitch-sizeSm flog-div-111"
-                                    >
-                                        <span class="FeelogSwitch-track Feelog-checked flog-span-26"
-                                            ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"></span
+                        </div>
+                        <div class="FeelogFormHelperText-root flog-div-52">
+                            내 채널 커뮤니티에 새 글이나 질문이 등록되었을 때 알림을 받아요.
+                        </div>
+                    </div>
+                    <div class="FeelogStack-root flog-div-54">
+                        <div
+                                class="FeelogFormControl-root FeelogFormControl-horizontal FeelogFormControl-sizeMd flog-div-110"
+                        >
+                            <label
+                                    for=":Rdbcpuuukv9ul7rlqakq:"
+                                    id=":Rdbcpuuukv9ul7rlqakq:-label"
+                                    class="FeelogFormLabel-root flog-label-5"
+                            >메시지</label
+                            >
+                            <div
+                                    class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationMessage"
+                                    th:classappend="*{memberNotificationMessage.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                            >
+                                        <span class="FeelogSwitch-track flog-span-26"
+                                              th:classappend="*{memberNotificationMessage.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
+                                               th:classappend="*{memberNotificationMessage.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
-                                        <div class="FeelogSwitch-action flog-div-112">
-                                            <input
-                                                type="checkbox"
-                                                id=":Rdbcpuuukv9ul7rlqakq:"
-                                                role="switch"
-                                                class="FeelogSwitch-input flog-input-5"
-                                                name="allowNotificationMessage"
-                                                checked=""
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="FeelogFormHelperText-root flog-div-52">
-                                    누군가 나에게 메시지를 보냈을 때 알림을 받아요.
+                                <div class="FeelogSwitch-action flog-div-112">
+                                    <input
+                                            type="checkbox"
+                                            id=":Rdbcpuuukv9ul7rlqakq:"
+                                            role="switch"
+                                            class="FeelogSwitch-input flog-input-5"
+                                            name="memberNotificationMessage"
+                                            checked=""
+                                    />
                                 </div>
                             </div>
-                            <div class="FeelogBox-root flog-div-113">
-                                <button
-                                    type="submit"
-                                    class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
-                                >
-                                    변경 내용 저장
-                                </button>
-                            </div>
-                        </form>
-                    </main>
-                </div>
-            </div>
-            <!-- footer 넣을 곳 -->
-            <div class="joy-17imqrx" id="footer-container"></div>
-            <script>
-                // Load footer.html and insert it into #footer-placeholder
-                fetch("../main/footer.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("footer-container").innerHTML = data;
-                    })
-                    .catch((error) => console.error("Error loading footer:", error));
-            </script>
-            <!-- footer 넣을 곳 -->
+                        </div>
+                        <div class="FeelogFormHelperText-root flog-div-52">
+                            누군가 나에게 메시지를 보냈을 때 알림을 받아요.
+                        </div>
+                    </div>
+                    <div class="FeelogBox-root flog-div-113">
+                        <button
+                                type="submit"
+                                class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
+                        >
+                            변경 내용 저장
+                        </button>
+                    </div>
+                </form>
+            </main>
         </div>
+    </div>
+</div>
 
-        <!-- footer 넣을 곳 -->
-        <footer id="main-footer"
-                th:replace="~{main/footer.html :: #main-footer}"></footer>
-        <!-- footer 넣을 곳 -->
-    </body>
-    <div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
-        <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
-        <div tabindex="0" data-testid="sentinelStart"></div>
-        <div
+<!-- footer 넣을 곳 -->
+<footer id="main-footer"
+        th:replace="~{main/footer.html :: #main-footer}"></footer>
+<!-- footer 넣을 곳 -->
+</body>
+<div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
+    <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
+    <div tabindex="0" data-testid="sentinelStart"></div>
+    <div
             role="dialog"
             aria-modal="true"
             aria-labelledby=":rp:"
             aria-describedby=":rq:"
             tabindex="-1"
             class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAlert flog-div-42"
-        >
-            <h2 id=":rp:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
-                알림
-            </h2>
-            <button
+    >
+        <h2 id=":rp:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
+            알림
+        </h2>
+        <button
                 aria-label="닫기"
                 class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-9"
                 type="button"
-            >
-                <svg
+        >
+            <svg
                     focusable="false"
                     aria-hidden="true"
                     viewBox="0 0 24 24"
                     data-testid="CloseIcon"
                     class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
-                >
-                    <path
+            >
+                <path
                         d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                    ></path>
-                </svg>
-            </button>
-            <div id=":rq:" class="FeelogDialogContent-root flog-div-43">알림 설정을 수정했어요.</div>
-            <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
-                <button
+                ></path>
+            </svg>
+        </button>
+        <div id=":rq:" class="FeelogDialogContent-root flog-div-43">알림 설정을 수정했어요.</div>
+        <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
+            <button
                     class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
                     type="button"
-                >
-                    확인
-                </button>
-            </div>
+            >
+                확인
+            </button>
         </div>
-        <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
-    <script src="/js/myPage/setting-notify-event.js"></script>
-    <script src="/js/main/main-modal.js"></script>
+    <div tabindex="0" data-testid="sentinelEnd"></div>
+</div>
+<script src="/js/myPage/setting-notify-event.js"></script>
+<script src="/js/main/main-modal.js"></script>
 </html>
