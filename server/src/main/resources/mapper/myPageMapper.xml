@@ -22,6 +22,38 @@
         where  id = #{id}
     </select>
 
+    <select id="getChannelByUrl" resultType="channelVO">
+        select id,
+               channel_title,
+               channel_introduce,
+               channel_url,
+               channel_file_path,
+               channel_file_name,
+               member_id,
+               created_date,
+               updated_date
+        from tbl_channel
+        where channel_url = #{channelUrl};
+    </select>
+
+    <insert id="postMakingChannel">
+        insert into tbl_channel (
+            channel_title,
+            channel_introduce,
+            channel_url,
+            channel_file_path,
+            channel_file_name,
+            member_id
+        ) values (
+            #{channelTitle},
+            #{channelIntroduce},
+            #{channelUrl},
+            #{channelFilePath},
+            #{channelFileName},
+            #{memberId}
+        );
+    </insert>
+
     <update id="postSettingProfile">
         update tbl_member
         set

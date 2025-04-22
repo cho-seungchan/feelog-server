@@ -1321,3 +1321,36 @@ legend {
     padding: 20px;
 }
 /* 모달창 끝 */
+
+/*저장 버튼 클릭, 호버 이벤트 */
+.FeelogButton-root {
+    background-color: #007bff; /* 기본 버튼 색상 */
+    color: white; /* 텍스트 색상 */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* 부드러운 애니메이션 */
+}
+
+.FeelogButton-root:hover {
+    background-color: #0056b3; /* 호버 시 색상 변경 */
+    transform: scale(1.05); /* 살짝 커지는 효과 */
+}
+
+.FeelogButton-root:active {
+    background-color: #004085; /* 클릭 시 색상 변경 */
+    transform: scale(0.95); /* 눌리는 효과 */
+}
+
+/*저장 버튼 클릭, 호버 이벤트 */
+
+/* 에러 메세지 */
+.bViOzS {
+    margin-bottom: 6px;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.36px;
+    color: rgb(222, 28, 34);
+}
+/* 에러 메세지 */

@@ -2,6 +2,7 @@
 package com.app.feelog.mypage.repository;
 
 import com.app.feelog.domain.vo.MemberVO;
+import com.app.feelog.domain.vo.ChannelVO;
 import com.app.feelog.mypage.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,18 @@ public class MyPageDAO {
     // 2025.04.22  조승찬 :: 알림정보 수정
     public void postSettingNotify(MemberVO memberVO) {
         myPageMapper.postSettingNotify(memberVO);
+    }
+
+    // 2025.04.22 조승찬 :: url로 채널 정보 가져오기
+    public Optional<ChannelVO> getChannelByUrl(String channelUrl) {
+        return Optional.ofNullable(
+                myPageMapper.getChannelByUrl(channelUrl)
+                        .orElse(null));
+    }
+
+    // 2025.04.22 조승찬 :: 채널 생성하기
+    public void postMakingChannel(ChannelVO channelVO) {
+        myPageMapper.postMakingChannel(channelVO);
     }
 }
 

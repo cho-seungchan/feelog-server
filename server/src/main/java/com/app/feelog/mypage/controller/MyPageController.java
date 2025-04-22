@@ -2,6 +2,7 @@
 
 package com.app.feelog.mypage.controller;
 
+import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.mypage.service.MyPageService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ public class MyPageController {
     private final HttpSession session;
     private final HttpServletRequest request;
     private final MyPageService myPageService;
+    private final ChannelDTO channelDTO;
 
     // 2025.04.21  조승찬 :: 프로필 조회
     @GetMapping("/setting-profile")
@@ -92,6 +94,64 @@ public class MyPageController {
 
     };
 
+    // 2025.04.22 조승찬 :: 채널 만들기 화면
+    @GetMapping("/making-channel")
+    public String getMakingChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                Model model){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        ChannelDTO channelDTO = new ChannelDTO();
+        model.addAttribute("channel", channelDTO);
+
+        return "myPage/making-channel";
+    }
+
+    // 2025.04.22 조승찬 :: 채널 만들기
+    @PostMapping("/making-channel")
+    public String PostMakingChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                ChannelDTO channelDTO, Model model) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 중복 여부 확인
+        if (myPageService.getChannelByUrl(channelDTO.getChannelUrl()).isPresent()){
+            model.addAttribute("errorMessage","중복된 url 입니다.");
+            return "myPage/making-channel";
+        }
+
+        // 신규 채널 생성
+        channelDTO.setMemberId(member.getId());
+        channelDTO.setChannelUrl("feelog.com/@".concat(channelDTO.getChannelUrl()));
+        myPageService.postMakingChannel(channelDTO);
+
+        return "redirect:myPage/view-channel"+channelDTO.getChannelUrl();
+    }
+
+    // 2025.04.22 조승찬 :: 채널 만들기
+    @GetMapping("/view-channel/{channelUrl}")
+    public String getViewChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                 @PathVariable String channelUrl,
+                                 Model model) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        ChannelDTO channel = myPageService.getChannelByUrl(channelUrl)
+                .orElse(null);
+
+        model.addAttribute("channel", channel);
+
+        return "myPage/view-channel";
+    }
 
     @GetMapping("/admin-notice-list")
     public String adminNoticeList(){
@@ -111,11 +171,6 @@ public class MyPageController {
     @GetMapping("/community-reply")
     public String communityReply(){
         return "myPage/community-reply";
-    }
-
-    @GetMapping("/making-channel")
-    public String makingChannel(){
-        return "myPage/making-channel";
     }
 
     @GetMapping("/message-list")

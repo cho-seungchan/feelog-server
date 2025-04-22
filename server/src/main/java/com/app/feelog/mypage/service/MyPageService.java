@@ -1,6 +1,7 @@
 // 2021.04.21 조승찬
 package com.app.feelog.mypage.service;
 
+import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.mypage.repository.MyPageDAO;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,18 @@ public class MyPageService implements ToDTO {
     // 2025.04.22  조승찬 :: 알림정보 수정
     public void postSettingNotify(MemberDTO memberDTO) {
         myPageDAO.postSettingNotify(memberDTO.toVO());
+    }
+
+    // 2025.04.22  조승찬 :: 채널 정보 가져오기
+    public Optional<ChannelDTO> getChannelByUrl(String channelUrl) {
+
+        return Optional.ofNullable(
+                toChannelDTO(myPageDAO.getChannelByUrl(channelUrl)
+                        .orElse(null)));
+    }
+
+    // 2025.04.22 조승찬 :: 채널 생성하기
+    public void postMakingChannel(ChannelDTO channelDTO) {
+        myPageDAO.postMakingChannel(channelDTO.toVO());
     }
 }
