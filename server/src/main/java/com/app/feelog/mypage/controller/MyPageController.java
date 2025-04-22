@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/mypage")
+@RequestMapping("/myPage")
 @Slf4j
 public class MyPageController {
     private final HttpSession session;
@@ -35,7 +35,7 @@ public class MyPageController {
         MemberDTO memberDTO = myPageService.getMemberById(member.getId());
         model.addAttribute("member", memberDTO);
 
-        return "mypage/setting-profile";
+        return "myPage/setting-profile";
 
     }
 
@@ -52,13 +52,13 @@ public class MyPageController {
         memberDTO.setId(member.getId());
         myPageService.postSettingProfile(memberDTO);
 
-        return "redirect:/mypage/setting-profile";
+        return "redirect:/myPage/setting-profile";
 
     }
 
     // 2025.04.22 조승찬 :: 알림 설정 조회
     @GetMapping("/setting-notify")
-    public String settingNotify(@SessionAttribute(name = "member", required = false) MemberDTO member,
+    public String getSettingNotify(@SessionAttribute(name = "member", required = false) MemberDTO member,
                                 Model model) {
 
         if (member == null) {
@@ -70,67 +70,82 @@ public class MyPageController {
         MemberDTO memberDTO = myPageService.getMemberById(member.getId());
         model.addAttribute("member", memberDTO);
 
-        return "mypage/setting-notify";
+        return "myPage/setting-notify";
     }
 
-    @GetMapping("/test-profile")
-    public String getView(){
-        return "mypage/setting-profile";
-    }
+
+    // 2025.04.22 조승찬 :: 알림 설정 수정
+    @PostMapping("/setting-notify")
+    public String PostSettingNotify(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                    MemberDTO memberDTO) {
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        log.info(memberDTO.toString());
+        // 화면에서 한글로 올라온 데이타를 컨퍼터가 이넘 객체로 변환 (** dto 생성자에서 default를 off로 set)
+        memberDTO.setId(member.getId());
+        myPageService.postSettingNotify(memberDTO);
+
+        return "redirect:/myPage/setting-notify";
+
+    };
+
 
     @GetMapping("/admin-notice-list")
     public String adminNoticeList(){
-        return "mypage/admin-notice-list";
+        return "myPage/admin-notice-list";
     }
 
     @GetMapping("/block-list")
     public String blockList(){
-        return "mypage/block-list";
+        return "myPage/block-list";
     }
 
     @GetMapping("/community")
     public String community(){
-        return "mypage/community";
+        return "myPage/community";
     }
 
     @GetMapping("/community-reply")
     public String communityReply(){
-        return "mypage/community-reply";
+        return "myPage/community-reply";
     }
 
     @GetMapping("/making-channel")
     public String makingChannel(){
-        return "mypage/making-channel";
+        return "myPage/making-channel";
     }
 
     @GetMapping("/message-list")
     public String messageList(){
-        return "mypage/message-list";
+        return "myPage/message-list";
     }
 
     @GetMapping("/notify-admin-list")
     public String notifyAdminList(){
-        return "mypage/notify-admin-list";
+        return "myPage/notify-admin-list";
     }
 
     @GetMapping("/notify-list")
     public String notifyList(){
-        return "mypage/notify-list";
+        return "myPage/notify-list";
     }
 
     @GetMapping("/storage-reply")
     public String storageReply(){
-        return "mypage/storage-reply";
+        return "myPage/storage-reply";
     }
 
     @GetMapping("/storage-scrab")
     public String storageScrab(){
-        return "mypage/storage-scrab";
+        return "myPage/storage-scrab";
     }
 
     @GetMapping("/subscribe-list")
     public String subscribeList(){
-        return "mypage/subscribe-list";
+        return "myPage/subscribe-list";
     }
 
 }

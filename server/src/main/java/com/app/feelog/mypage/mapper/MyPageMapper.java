@@ -14,4 +14,7 @@ public interface MyPageMapper {
 
     // 2025.04.21 조승찬 :: 아이디로 멤버 정보 가져오기
     Optional<MemberVO> getMemberById(Long id);
+
+    // 2025.04.22  조승찬 :: 알림정보 수정
+    void postSettingNotify(MemberVO memberVO);
 }

@@ -26,5 +26,10 @@ public class MyPageDAO {
                 myPageMapper.getMemberById(id)
                         .orElse(null));
     }
+
+    // 2025.04.22  조승찬 :: 알림정보 수정
+    public void postSettingNotify(MemberVO memberVO) {
+        myPageMapper.postSettingNotify(memberVO);
+    }
 }
 

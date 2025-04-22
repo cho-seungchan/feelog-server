@@ -53,21 +53,21 @@
                             >
                             <div
                                     class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationPostReply"
-                                    th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                                    th:classappend="*{memberNotificationPostReply != null && memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
                             >
                                         <span class="FeelogSwitch-track flog-span-26"
-                                              th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"
-                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
-                                               th:classappend="*{memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"></span
+                                              th:classappend="*{memberNotificationPostReply != null && memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb flog-span-27"
+                                               th:classappend="*{memberNotificationPostReply != null && memberNotificationPostReply.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
                                 <div class="FeelogSwitch-action flog-div-112">
-                                    <input
+                                    <input  th:value="*{memberNotificationPostReply != null && memberNotificationPostReply.name() == 'ON' ? '설정' : '해제'}"
+                                            th:checked="*{memberNotificationPostReply != null && memberNotificationPostReply.name() == 'ON'}"
                                             type="checkbox"
                                             id=":Rd1cpuuukv9ul7rlqakq:"
                                             role="switch"
                                             class="FeelogSwitch-input flog-input-5"
                                             name="memberNotificationPostReply"
-                                            checked=""
                                     />
                                 </div>
                             </div>
@@ -88,15 +88,16 @@
                             >
                             <div
                                     class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationPostReplyLike"
-                                    th:classappend="*{memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                                    th:classappend="*{memberNotificationPostReplyLike != null && memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
                             >
                                         <span class="FeelogSwitch-track flog-span-26"
-                                              th:classappend="*{memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked' : ''}"
-                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
-                                               th:classappend="*{memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked' : ''}"></span
+                                              th:classappend="*{memberNotificationPostReplyLike != null && memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb flog-span-27"
+                                               th:classappend="*{memberNotificationPostReplyLike != null && memberNotificationPostReplyLike.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
                                 <div class="FeelogSwitch-action flog-div-112">
-                                    <input
+                                    <input  th:value="*{memberNotificationPostReplyLike != null && memberNotificationPostReplyLike.name() == 'ON' ? '설정' : '해제'}"
+                                            th:checked="*{memberNotificationPostReplyLike != null && memberNotificationPostReplyLike.name() == 'ON'}"
                                             type="checkbox"
                                             id=":Rd2cpuuukv9ul7rlqakq:"
                                             role="switch"
@@ -123,15 +124,16 @@
                             >
                             <div
                                     class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationPostLike"
-                                    th:classappend="*{memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                                    th:classappend="*{memberNotificationPostLike != null && memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
                             >
                                         <span class="FeelogSwitch-track flog-span-26"
-                                              th:classappend="*{memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked' : ''}"
-                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
-                                               th:classappend="*{memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked' : ''}"></span
+                                              th:classappend="*{memberNotificationPostLike != null && memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb flog-span-27"
+                                               th:classappend="*{memberNotificationPostLike != null && memberNotificationPostLike.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
                                 <div class="FeelogSwitch-action flog-div-112">
-                                    <input
+                                    <input  th:value="*{memberNotificationPostLike != null && memberNotificationPostLike.name() == 'ON' ? '설정' : '해제'}"
+                                            th:checked="*{memberNotificationPostLike != null && memberNotificationPostLike.name() == 'ON'}"
                                             type="checkbox"
                                             id=":Rd3cpuuukv9ul7rlqakq:"
                                             role="switch"
@@ -158,15 +160,16 @@
                             >
                             <div
                                     class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationSubscribe"
-                                    th:classappend="*{memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                                    th:classappend="*{memberNotificationSubscribe != null && memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
                             >
                                         <span class="FeelogSwitch-track flog-span-26"
-                                              th:classappend="*{memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked' : ''}"
-                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
-                                               th:classappend="*{memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked' : ''}"></span
+                                              th:classappend="*{memberNotificationSubscribe != null && memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb flog-span-27"
+                                               th:classappend="*{memberNotificationSubscribe != null && memberNotificationSubscribe.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
                                 <div class="FeelogSwitch-action flog-div-112">
-                                    <input
+                                    <input  th:value="*{memberNotificationSubscribe != null && memberNotificationSubscribe.name() == 'ON' ? '설정' : '해제'}"
+                                            th:checked="*{memberNotificationSubscribe != null && memberNotificationSubscribe.name() == 'ON'}"
                                             type="checkbox"
                                             id=":Rd5cpuuukv9ul7rlqakq:"
                                             role="switch"
@@ -193,15 +196,16 @@
                             >
                             <div
                                     class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationCommunityPost"
-                                    th:classappend="*{memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                                    th:classappend="*{memberNotificationCommunityPost != null && memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
                             >
                                         <span class="FeelogSwitch-track flog-span-26"
-                                              th:classappend="*{memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked' : ''}"
-                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
-                                               th:classappend="*{memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked' : ''}"></span
+                                              th:classappend="*{memberNotificationCommunityPost != null && memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb flog-span-27"
+                                               th:classappend="*{memberNotificationCommunityPost != null && memberNotificationCommunityPost.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
                                 <div class="FeelogSwitch-action flog-div-112">
-                                    <input
+                                    <input  th:value="*{memberNotificationCommunityPost != null && memberNotificationCommunityPost.name() == 'ON' ? '설정' : '해제'}"
+                                            th:checked="*{memberNotificationCommunityPost != null && memberNotificationCommunityPost.name() == 'ON'}"
                                             type="checkbox"
                                             id=":Rd7cpuuukv9ul7rlqakq:"
                                             role="switch"
@@ -228,15 +232,16 @@
                             >
                             <div
                                     class="FeelogSwitch-root FeelogSwitch-variantSolid FeelogSwitch-sizeSm memberNotificationMessage"
-                                    th:classappend="*{memberNotificationMessage.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
+                                    th:classappend="*{memberNotificationMessage != null && memberNotificationMessage.name() == 'ON' ? 'Feelog-checked FeelogSwitch-colorPrimary flog-div-111' : 'FeelogSwitch-colorNeutral flog-div-000'}"
                             >
                                         <span class="FeelogSwitch-track flog-span-26"
-                                              th:classappend="*{memberNotificationMessage.name() == 'ON' ? 'Feelog-checked' : ''}"
-                                        ><span class="FeelogSwitch-thumb Feelog-checked flog-span-27"
-                                               th:classappend="*{memberNotificationMessage.name() == 'ON' ? 'Feelog-checked' : ''}"></span
+                                              th:classappend="*{memberNotificationMessage != null && memberNotificationMessage.name() == 'ON' ? 'Feelog-checked' : ''}"
+                                        ><span class="FeelogSwitch-thumb flog-span-27"
+                                               th:classappend="*{memberNotificationMessage != null && memberNotificationMessage.name() == 'ON' ? 'Feelog-checked' : ''}"></span
                                         ></span>
                                 <div class="FeelogSwitch-action flog-div-112">
-                                    <input
+                                    <input  th:value="*{memberNotificationMessage != null && memberNotificationMessage.name() == 'ON' ? '설정' : '해제'}"
+                                            th:checked="*{memberNotificationMessage != null && memberNotificationMessage.name() == 'ON'}"
                                             type="checkbox"
                                             id=":Rdbcpuuukv9ul7rlqakq:"
                                             role="switch"

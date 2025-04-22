@@ -27,4 +27,9 @@ public class MyPageService implements ToDTO {
         return toMemberDTO(myPageDAO.getMemberById(id)
                         .orElse(null));
     }
+
+    // 2025.04.22  조승찬 :: 알림정보 수정
+    public void postSettingNotify(MemberDTO memberDTO) {
+        myPageDAO.postSettingNotify(memberDTO.toVO());
+    }
 }
