@@ -65,7 +65,7 @@ htmlWrap.addEventListener("click", async (e) => {
                     <div class="Ratio " style="display: block;">
                         <div class="Ratio-ratio " style="height: 0px; position: relative; width: 100%; padding-top: 50%;">
                             <div class="Ratio-content " style="height: 100%; left: 0px; position: absolute; top: 0px; width: 100%;">
-                            <img src="/files/display?path=${encodedFilePath}" class="hVNKgp">
+                            <img src="/file/display?path=${encodedFilePath}" class="hVNKgp">
                             </div>
                         </div>
                     </div>
