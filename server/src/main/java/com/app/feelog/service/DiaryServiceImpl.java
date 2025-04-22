@@ -5,14 +5,19 @@ import com.app.feelog.domain.dto.DiaryFileDTO;
 import com.app.feelog.domain.dto.DiaryTagDTO;
 import com.app.feelog.domain.dto.TagDTO;
 import com.app.feelog.domain.vo.DiaryVO;
+import com.app.feelog.domain.vo.FileVO;
 import com.app.feelog.repository.DiaryDAO;
+import com.app.feelog.repository.DiaryFileDAO;
 import com.app.feelog.repository.DiaryTagDAO;
+import com.app.feelog.repository.FileDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -25,13 +30,17 @@ public class DiaryServiceImpl implements DiaryService {
     private final DiaryTagServiceImpl diaryTagServiceImpl;
     private final TagServiceImpl tagServiceImpl;
     private final DiaryTagDAO diaryTagDAO;
+    private final FileDAO fileDAO;
+    private final DiaryFileDAO diaryFileDAO;
 
     @Override
+    @Transactional
     public Long writeDiary(DiaryDTO diaryDTO) {
         DiaryVO diaryVO = diaryDTO.toVO();
         diaryDAO.save(diaryVO);
         Long diaryId = diaryVO.getId();
 
+        // ✅ 첨부파일 처리 (tbl_diary_file에 file_id로 연결)
         if (diaryDTO.getFileIds() != null) {
             for (Long fileId : diaryDTO.getFileIds()) {
                 DiaryFileDTO dto = new DiaryFileDTO();
@@ -41,6 +50,7 @@ public class DiaryServiceImpl implements DiaryService {
             }
         }
 
+        // ✅ 태그 처리
         if (diaryDTO.getTags() != null) {
             for (String content : diaryDTO.getTags()) {
                 TagDTO tagDTO = new TagDTO();
@@ -56,6 +66,7 @@ public class DiaryServiceImpl implements DiaryService {
 
         return diaryId;
     }
+
 
     @Override
     @Transactional(readOnly = true)

@@ -15,3 +15,4 @@ create table tbl_channel (
                              references tbl_member (id)
 );
 
+select * from tbl_channel;

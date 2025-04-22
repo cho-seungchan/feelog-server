@@ -1,17 +1,21 @@
 package com.app.feelog.controller;
 
-import com.app.feelog.domain.dto.DiaryDTO;
-import com.app.feelog.service.DiaryFileServiceImpl;
-import com.app.feelog.service.DiaryService;
-import com.app.feelog.service.TagServiceImpl;
+import com.app.feelog.domain.dto.*;
+import com.app.feelog.domain.vo.FileVO;
+import com.app.feelog.repository.FileDAO;
+import com.app.feelog.service.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,6 +27,13 @@ public class MainController {
     private final DiaryFileServiceImpl diaryFileServiceImpl;
     private final TagServiceImpl tagServiceImpl;
     private final HttpSession session;
+    private final DiaryDTO diaryDTO;
+    private final ChallengeDiaryService challengeDiaryService;
+    private final ChannelPostService channelPostService;
+    private final DiaryFileService diaryFileService;
+    private final FilesService filesService;
+    private final FileDAO fileDAO;
+    private final ChannelPostFileService channelPostFileService;
 
     @GetMapping("/cs")
     public String getMainCs() {
@@ -40,34 +51,98 @@ public class MainController {
     }
 
     @GetMapping("/mind-log")
-    public String getMainMindLog(Model model) {
-        model.addAttribute("diary", new DiaryDTO());
+    public String getMainMindLog(Model model, @RequestParam(required = false) Long challengeId) {
+        DiaryDTO diaryDTO = new DiaryDTO();
+        if (challengeId != null) {
+            diaryDTO.setChallengeId(challengeId); // 챌린지 아이디 주입
+        }
+
+        model.addAttribute("diary", diaryDTO);
         return "main/mind-log";
     }
+
+//    @PostMapping("/mind-log")
+//    public String writeDiary(
+//            DiaryDTO diaryDTO,
+//            @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
+//            @RequestParam(value = "tags", required = false) List<String> tags) {
+//
+//        // 테스트용 (나중에 세션에서 memberId, feelId 받아오기)
+//        diaryDTO.setMemberId(1L);
+//        diaryDTO.setFeelId(1L);
+//        diaryDTO.setFileIds(fileIds);
+//        diaryDTO.setTags(tags);
+//
+//        // 1. 다이어리 저장
+//        Long diaryId = diaryService.writeDiary(diaryDTO);
+//
+//        // 2. 챌린지 연결이 있을 경우 연결 저장
+//        if (diaryDTO.getChallengeId() != null) {
+//            ChallengeDiaryDTO challengeDiaryDTO = new ChallengeDiaryDTO();
+//            challengeDiaryDTO.setId(diaryId);
+//            challengeDiaryDTO.setChallengeId(diaryDTO.getChallengeId());
+//
+//            challengeDiaryService.addChallengeDiary(challengeDiaryDTO);
+//        }
+//
+//        return "redirect:/";
+//    }
 
     @PostMapping("/mind-log")
     public String writeDiary(
             DiaryDTO diaryDTO,
+            @RequestParam("thumbnail") MultipartFile thumbnailFile,
             @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
             @RequestParam(value = "tags", required = false) List<String> tags) {
 
-        // 테스트용 (나중에 세션에서 memberId, feelId 받아오기)
-        diaryDTO.setMemberId(1L);
+        diaryDTO.setMemberId(1L); // 테스트용
         diaryDTO.setFeelId(1L);
-        diaryDTO.setFileIds(fileIds);  // 리스트 주입
-        diaryDTO.setTags(tags);        // 리스트 주입
+        diaryDTO.setTags(tags);
+        diaryDTO.setFileIds(fileIds); // ✅ 무조건 이 줄 추가해야함!
 
-        diaryService.writeDiary(diaryDTO); // 통합 저장
+        if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
+            FileVO fileVO = filesService.upload(thumbnailFile);
+            diaryDTO.setDiaryFilePath(fileVO.getFilePath());
+            diaryDTO.setDiaryFileName(fileVO.getFileName());
+            diaryDTO.setDiaryFileSize(fileVO.getFileSize());
+        }
+
+        diaryService.writeDiary(diaryDTO);
+
+        if (diaryDTO.getChallengeId() != null) {
+            ChallengeDiaryDTO challengeDiaryDTO = new ChallengeDiaryDTO();
+            challengeDiaryDTO.setId(diaryDTO.getId()); // diaryDTO에서 id 얻어옴
+            challengeDiaryDTO.setChallengeId(diaryDTO.getChallengeId());
+            challengeDiaryService.addChallengeDiary(challengeDiaryDTO);
+        }
 
         return "redirect:/";
     }
-
     @GetMapping("/mind-log/edit/{id}")
     public String editDiaryForm(@PathVariable("id") Long id, Model model) {
         DiaryDTO diaryDTO = diaryService.getDiary(id); // 기존 글 불러오기
+
+        // 연결된 챌린지 ID가 있다면 조회해서 세팅
+        ChallengeDiaryDTO challengeDiaryDTO = challengeDiaryService.findById(id);
+        if (challengeDiaryDTO != null) {
+            diaryDTO.setChallengeId(challengeDiaryDTO.getChallengeId());
+        }
+
         model.addAttribute("diary", diaryDTO);
         model.addAttribute("tags", diaryDTO.getTags()); // 태그도 따로 넘기기
         return "main/mind-log-edit"; // edit.html Thymeleaf 템플릿
+    }
+
+    @PostMapping("/diary/image/save")
+    @ResponseBody
+    public Map<String, Object> saveDiaryImage(@RequestBody FileDTO fileDTO) {
+        FileVO fileVO = fileDTO.toVO();
+        fileDAO.save(fileVO); // 여기서만 file insert
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("fileId", fileVO.getId());
+        log.info("fileId = {}", fileVO.getId());
+        return result;
     }
 
     // 수정 폼 제출
@@ -76,11 +151,18 @@ public class MainController {
                               DiaryDTO diaryDTO,
                               @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
                               @RequestParam(value = "tags", required = false) List<String> tags) {
-//        Long memberId = (Long) session.getAttribute("memberId");
+
+        DiaryDTO original = diaryService.getDiary(id); // 기존 데이터 먼저 불러오기
+
+        // Long memberId = (Long) session.getAttribute("memberId");
         diaryDTO.setMemberId(1L);
         diaryDTO.setId(id);
         diaryDTO.setFileIds(fileIds);
         diaryDTO.setTags(tags);
+
+        // 기존 연결된 챌린지 ID 유지 (없으면 null)
+        diaryDTO.setChallengeId(original.getChallengeId());
+
         diaryService.updateDiary(diaryDTO);
         return "redirect:/";
     }
@@ -91,14 +173,64 @@ public class MainController {
         return "main/new-blog";
     }
 
+    // 등록 폼
     @GetMapping("/post")
-    public String getMainPost() {
+    public String getPostForm(Model model) {
+        ChannelPostDTO postDTO = new ChannelPostDTO();
+        model.addAttribute("post", postDTO);
+
         return "main/post";
     }
 
-    @GetMapping("/post-edit")
-    public String getMainPostEdit() {
-        return "main/post-edit";
+    // 등록 처리
+    @PostMapping("/post")
+    public String writePost(ChannelPostDTO dto,
+                            @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
+                            @RequestParam(value = "tags", required = false) List<String> tags) {
+        dto.setMemberId(1L);
+        dto.setChannelId(1L);
+        dto.setFileIds(fileIds);
+        dto.setTags(tags);
+        channelPostService.writeChannelPost(dto);
+        return "redirect:/";
+    }
+
+
+    @PostMapping("/post/image/save")
+    @ResponseBody
+    public Map<String, Object> savePostImage(@RequestBody FileDTO fileDTO) {
+        FileVO fileVO = fileDTO.toVO();
+        fileDAO.save(fileVO); // DB insert만
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("fileId", fileVO.getId());
+        log.info("[post-image-save] fileId = {}", fileVO.getId());
+        return result;
+    }
+
+    // 수정 폼
+    @GetMapping("/post/edit/{id}")
+    public String editPostForm(@PathVariable("id") Long id, Model model) {
+        ChannelPostDTO dto = channelPostService.getChannelPost(id);
+        model.addAttribute("post", dto);
+        model.addAttribute("tags", dto.getTags());
+        return "main/post-edit"; // → post-edit.html
+    }
+
+
+
+    // 수정 처리
+    @PostMapping("/post/edit/{id}")
+    public String updatePost(@PathVariable("id") Long id,
+                             ChannelPostDTO dto,
+                             @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
+                             @RequestParam(value = "tags", required = false) List<String> tags) {
+        dto.setId(id);
+        dto.setMemberId(1L);
+        dto.setFileIds(fileIds);
+        dto.setTags(tags);
+        channelPostService.updateChannelPost(dto);
+        return "redirect:/";
     }
 
     @GetMapping("/ticket")

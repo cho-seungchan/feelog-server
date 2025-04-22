@@ -40,7 +40,10 @@
         </style>
     </head>
     <body>
-    <form id="diary-form" action="/main/mind-log" method="post">
+    <form id="diary-form" action="/main/mind-log" method="post" enctype="multipart/form-data">
+        <th:block th:if="${diary.challengeId != null}">
+            <input type="hidden" name="challengeId" th:value="${diary.challengeId}" />
+        </th:block>
         <section class="FlgStack-root-need jk-feelog-section001">
             <div class="FlgBox-root-need">
                 <div class="FlgBox-root-need jk-feelog-div003">
@@ -345,6 +348,7 @@
                                         <input
                                             type="file"
                                             id="hidden-file-input"
+                                            name="thumbnail"
                                             hidden
                                         />
                                     </div>
@@ -647,6 +651,7 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
     <script th:inline="javascript">
         const diaryContent = /*[[${diary.diaryContent}]]*/ '';
+        const insertedFileIds = new Set();
 
         $(document).ready(function () {
             $(".summernote").summernote({
@@ -667,28 +672,54 @@
                             formData.append("file", files[i]);
 
                             $.ajax({
-                                url: "/files/upload",
+                                url: "/file/upload",
                                 method: "POST",
                                 data: formData,
                                 processData: false,
                                 contentType: false,
                                 success: function (res) {
                                     const fileDTO = res.thumbnail;
-                                    const fileId = fileDTO.id;
 
-                                    // 이미지 삽입
-                                    const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                                    // Summernote 이미지 삽입
+                                    const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
                                     $(".summernote").summernote("insertImage", imageUrl);
 
-                                    // fileId를 hidden input으로 form에 추가
-                                    const input = document.createElement("input");
-                                    input.type = "hidden";
-                                    input.name = "fileIds";
-                                    input.value = fileId;
+                                    // fileDAO.save()
+                                    const fileInfo = {
+                                        filePath: fileDTO.filePath,
+                                        fileName: fileDTO.fileName,
+                                        fileSize: fileDTO.fileSize
+                                    };
 
-                                    const form = $(".summernote").closest("form")[0];
-                                    if (form) form.appendChild(input);
-                                    console.log("현재 추가 대상 form:", document.querySelector("form"));
+                                    $.ajax({
+                                        url: "/main/diary/image/save",
+                                        method: "POST",
+                                        contentType: "application/json",
+                                        data: JSON.stringify(fileInfo),
+                                        success: function (saveRes) {
+                                            const fileId = saveRes.fileId;
+
+                                            // 이미 Set에 있으면 return
+                                            if (insertedFileIds.has(fileId)) return;
+                                            insertedFileIds.add(fileId);
+
+                                            const form = document.querySelector("form#diary-form");
+                                            if (form) {
+                                                // 이미 같은 fileId가 있는지 확인
+                                                const alreadyExists = form.querySelector(`input[name='fileIds'][value='${fileId}']`);
+                                                if (alreadyExists) return;
+
+                                                const input = document.createElement("input");
+                                                input.type = "hidden";
+                                                input.name = "fileIds";
+                                                input.value = fileId;
+                                                form.appendChild(input);
+                                            }
+                                        },
+                                        error: function () {
+                                            alert("DB 저장 실패");
+                                        }
+                                    });
                                 },
                                 error: function () {
                                     alert("이미지 업로드 실패");
@@ -697,10 +728,12 @@
                         }
                     }
                 }
-        });
+            });
+
             // 기존 다이어리 내용 삽입
             $(".summernote").summernote("code", diaryContent);
         });
     </script>
+
 
 </html>

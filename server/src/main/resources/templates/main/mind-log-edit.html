@@ -42,6 +42,9 @@
 <body>
 <form id="diary-form" th:action="@{/main/mind-log/edit/{id}(id=${diary.id})}" method="post">
     <input type="hidden" name="id" th:value="${diary.id}" />
+    <th:block th:if="${diary.challengeId != null}">
+        <input type="hidden" name="challengeId" th:value="${diary.challengeId}" />
+    </th:block>
     <section class="FlgStack-root-need jk-feelog-section001">
         <div class="FlgBox-root-need">
             <div class="FlgBox-root-need jk-feelog-div003">
@@ -348,12 +351,25 @@
                                                 font-size: 14px;
                                                 color: #555;
                                             "
-                                    >
+                                    ><div class="preview-wrapper" style="position: relative; display: inline-block;">
                                         <img th:if="${diary.diaryFilePath != null}"
-                                             th:src="@{'/files/display?path=' + ${diary.diaryFilePath} + '/' + ${diary.diaryFileName}}"
+                                             th:src="@{'/file/display?path=' + ${diary.diaryFilePath} + '/' + ${diary.diaryFileName}}"
                                              alt="대표 이미지"
-                                             style="max-width: 200px; border-radius: 8px;" />
-
+                                             style="max-width: 100px; border-radius: 8px;" />
+                                        <button type="button" class="delete-thumbnail-btn" style="
+                            position: absolute;
+                            top: 4px;
+                            right: 4px;
+                            background: rgba(0,0,0,0.5);
+                            border: none;
+                            color: white;
+                            border-radius: 50%;
+                            width: 24px;
+                            height: 24px;
+                            font-weight: bold;
+                            cursor: pointer;
+                        ">×</button>
+                                    </div>
                                     </div>
 
                                     <input
@@ -687,7 +703,7 @@
                         formData.append("file", files[i]);
 
                         $.ajax({
-                            url: "/files/upload",
+                            url: "/file/upload",
                             method: "POST",
                             data: formData,
                             processData: false,
@@ -697,7 +713,7 @@
                                 const fileId = fileDTO.id;
 
                                 // 이미지 삽입
-                                const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
                                 $(".summernote").summernote("insertImage", imageUrl);
 
                                 // fileId를 hidden input으로 form에 추가

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 public class ChannelPostTagDTO {
-    private Long id;
+    private Long id; // tag ID
     private String contents;
     private TagStatus tagStatus;
     private Long channelPostId;

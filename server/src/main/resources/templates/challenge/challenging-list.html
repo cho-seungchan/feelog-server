@@ -83,7 +83,7 @@
                                                             object-fit: cover;
                                                             color: transparent;"
                                                                 th:if="${challenge.memberTaskPoolFileName != null && !challenge.memberTaskPoolFileName.isEmpty()}"
-                                                                th:src="@{/files/display(path=|${challenge.memberTaskPoolFilePath}/${challenge.memberTaskPoolFileName}|)}"
+                                                                th:src="@{/file/display(path=|${challenge.memberTaskPoolFilePath}/${challenge.memberTaskPoolFileName}|)}"
                                                         /><img
                                                             alt="개별 과제"
                                                             loading="lazy"
