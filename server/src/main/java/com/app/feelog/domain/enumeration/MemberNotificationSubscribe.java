@@ -1,8 +1,8 @@
 package com.app.feelog.domain.enumeration;
 
 public enum MemberNotificationSubscribe {
-    SET("설정"),
-    CLEAR("해제");
+    ON("설정"),
+    OFF("해제");
 
     private String code;
 

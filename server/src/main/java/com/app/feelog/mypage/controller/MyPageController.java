@@ -31,6 +31,7 @@ public class MyPageController {
             return "redirect:/login/login";
         }
 
+        // 멤버 정보 가져오기
         MemberDTO memberDTO = myPageService.getMemberById(member.getId());
         model.addAttribute("member", memberDTO);
 
@@ -53,6 +54,23 @@ public class MyPageController {
 
         return "redirect:/mypage/setting-profile";
 
+    }
+
+    // 2025.04.22 조승찬 :: 알림 설정 조회
+    @GetMapping("/setting-notify")
+    public String settingNotify(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                Model model) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 멤버 정보 가져오기
+        MemberDTO memberDTO = myPageService.getMemberById(member.getId());
+        model.addAttribute("member", memberDTO);
+
+        return "mypage/setting-notify";
     }
 
     @GetMapping("/test-profile")
@@ -98,11 +116,6 @@ public class MyPageController {
     @GetMapping("/notify-list")
     public String notifyList(){
         return "mypage/notify-list";
-    }
-
-    @GetMapping("/setting-notify")
-    public String settingNotify(){
-        return "mypage/setting-notify";
     }
 
     @GetMapping("/storage-reply")
