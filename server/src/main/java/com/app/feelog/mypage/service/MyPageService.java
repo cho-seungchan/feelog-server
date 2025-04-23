@@ -46,4 +46,9 @@ public class MyPageService implements ToDTO {
     public void postMakingChannel(ChannelDTO channelDTO) {
         myPageDAO.postMakingChannel(channelDTO.toVO());
     }
+
+    // 2025.04.23 조승찬 :: 채널 수정하기
+    public void postUpdateChannel(ChannelDTO channelDTO) {
+        myPageDAO.postUpdateChannel(channelDTO.toVO());
+    }
 }

@@ -24,4 +24,7 @@ public interface MyPageMapper {
 
     // 2025.04.22 조승찬 :: 채널 생성하기
     void postMakingChannel(ChannelVO channelVO);
+
+    // 2025.04.23 조승찬 :: 채널 수정하기
+    void postUpdateChannel(ChannelVO channelVO);
 }

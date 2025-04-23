@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/myPage")
@@ -120,7 +122,7 @@ public class MyPageController {
             return "redirect:/login/login";
         }
 
-        // 중복 여부 확인
+        // 중복 여부 확인. url만 존재하면 중복
         if (myPageService.getChannelByUrl(channelDTO.getChannelUrl()).isPresent()){
             model.addAttribute("errorMessage","중복된 url 입니다.");
             return "myPage/making-channel";
@@ -128,15 +130,14 @@ public class MyPageController {
 
         // 신규 채널 생성
         channelDTO.setMemberId(member.getId());
-        channelDTO.setChannelUrl("feelog.com/@".concat(channelDTO.getChannelUrl()));
         myPageService.postMakingChannel(channelDTO);
 
-        return "redirect:myPage/view-channel"+channelDTO.getChannelUrl();
+        return "redirect:/myPage/read-channel/"+channelDTO.getChannelUrl();
     }
 
-    // 2025.04.22 조승찬 :: 채널 만들기
-    @GetMapping("/view-channel/{channelUrl}")
-    public String getViewChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
+    // 2025.04.22 조승찬 :: 채널 보기(수정, 삭제용)
+    @GetMapping("/read-channel/{channelUrl}")
+    public String getReadChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
                                  @PathVariable String channelUrl,
                                  Model model) {
 
@@ -150,8 +151,34 @@ public class MyPageController {
 
         model.addAttribute("channel", channel);
 
-        return "myPage/view-channel";
+        return "myPage/read-channel";
     }
+
+
+    // 2025.04.23 조승찬 :: 채널 수정
+    @PostMapping("/update-channel")
+    public String postUpdateChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                 @PathVariable String channelUrl, ChannelDTO channelDTO,
+                                 Model model) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 중복 여부 확인. id가 다르고 url이 같으면 중복 오류
+        Optional<ChannelDTO> channelOptional = myPageService.getChannelByUrl(channelDTO.getChannelUrl());
+        if (channelOptional.isPresent() && !channelOptional.get().getId().equals(channelDTO.getId())) {
+            model.addAttribute("errorMessage", "중복된 url 입니다.");
+            return "myPage/making-channel";
+        }
+
+        // 채널 정보 수정
+        myPageService.postUpdateChannel(channelDTO);
+
+        return "redirect:/myPage/read-channel/"+channelDTO.getChannelUrl();
+    }
+
 
     @GetMapping("/admin-notice-list")
     public String adminNoticeList(){

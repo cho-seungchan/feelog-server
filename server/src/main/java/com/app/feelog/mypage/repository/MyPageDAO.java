@@ -44,5 +44,10 @@ public class MyPageDAO {
     public void postMakingChannel(ChannelVO channelVO) {
         myPageMapper.postMakingChannel(channelVO);
     }
+
+    // 2025.04.23 조승찬 :: 채널 수정하기
+    public void postUpdateChannel(ChannelVO channelVO) {
+        myPageMapper.postUpdateChannel(channelVO);
+    }
 }
 
