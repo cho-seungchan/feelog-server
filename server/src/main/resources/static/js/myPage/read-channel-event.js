@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
         e.target.closest(".flog-div-83").classList.toggle("Feelog-focused");
     });
 
-    // 새채널 만들기 버튼 이벤트
-    document.querySelector(".flog-button-15").addEventListener("click", (e) => {
+    //  채널 수정하기 버튼 이벤트
+    document.querySelector(".flog-button-15.update-button").addEventListener("click", (e) => {
 
         e.preventDefault();
 
@@ -89,7 +89,19 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".flog-form-1").submit();
     });
 
-    // 모달창 확인, x 버튼 클릭 이벤트
+    //  채널 삭제하기 버튼 이벤트
+    document.querySelector(".flog-button-15.delete-button").addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        // 폼 액션을 /myPage/delete-channel로 변경
+        document.querySelector(".flog-form-1").setAttribute("action", "/myPage/delete-channel");
+
+        document.querySelector(".flog-form-1").submit();
+    });
+
+
+        // 모달창 확인, x 버튼 클릭 이벤트
     document.querySelector(".flog-button-10").addEventListener("click", (e) => {
         document.querySelector(".flog-div-40").style.display = "none";
     });

@@ -18,7 +18,6 @@ public class MemberVO extends Period {
     private String memberIntroduce;
     private String memberFilePath;
     private String memberFileName;
-    private String memberFileSize;
     private MemberType memberType;
     private MemberNotificationPostReply     memberNotificationPostReply;
     private MemberNotificationPostReplyLike memberNotificationPostReplyLike;
@@ -29,7 +28,7 @@ public class MemberVO extends Period {
     private MemberStatus memberStatus;
 
     @Builder
-    public MemberVO(String createdDate, String updatedDate, Long id, String memberEmail, String memberPassword, String memberNickname, String memberIntroduce, String memberFilePath, String memberFileName, String memberFileSize, MemberType memberType,
+    public MemberVO(String createdDate, String updatedDate, Long id, String memberEmail, String memberPassword, String memberNickname, String memberIntroduce, String memberFilePath, String memberFileName, MemberType memberType,
                     MemberNotificationPostReply memberNotificationPostReply, MemberNotificationPostReplyLike memberNotificationPostReplyLike,
                     MemberNotificationPostLike memberNotificationPostLike, MemberNotificationSubscribe memberNotificationSubscribe,
                     MemberNotificationCommunityPost memberNotificationCommunityPost, MemberNotificationMessage memberNotificationMessage,
@@ -42,7 +41,6 @@ public class MemberVO extends Period {
         this.memberIntroduce = memberIntroduce;
         this.memberFilePath = memberFilePath;
         this.memberFileName = memberFileName;
-        this.memberFileSize = memberFileSize;
         this.memberType = memberType;
         this.memberNotificationPostReply = memberNotificationPostReply;
         this.memberNotificationPostReplyLike = memberNotificationPostReplyLike;

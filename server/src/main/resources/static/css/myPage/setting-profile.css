@@ -1576,3 +1576,14 @@ body {
     background-color: #004085; /* 클릭 시 색상 변경 */
     transform: scale(0.95); /* 눌리는 효과 */
 }
+
+/* 에러 메세지 */
+.bViOzS {
+    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 16px;
+    letter-spacing: -0.36px;
+    color: rgb(222, 28, 34);
+}
+/* 에러 메세지 */

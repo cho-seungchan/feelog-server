@@ -5,6 +5,7 @@ import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.dto.AllChallengeListDTO;
 import com.app.feelog.mypage.dto.CommonTaskChallengeDTO;
 import com.app.feelog.mypage.dto.MemberTaskPoolChallengeDTO;
+import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
 
 public interface ToDTO {
 
@@ -19,7 +20,6 @@ public interface ToDTO {
             memberDTO.setMemberIntroduce(memberVO.getMemberIntroduce());
             memberDTO.setMemberFilePath(memberVO.getMemberFilePath());
             memberDTO.setMemberFileName(memberVO.getMemberFileName());
-            memberDTO.setMemberFileSize(memberVO.getMemberFileSize());
             memberDTO.setMemberType(memberVO.getMemberType());
             memberDTO.setMemberNotificationPostReply(memberVO.getMemberNotificationPostReply());
             memberDTO.setMemberNotificationPostReplyLike(memberVO.getMemberNotificationPostReplyLike());
@@ -182,5 +182,30 @@ public interface ToDTO {
             channelDTO.setUpdatedDate(channelVO.getUpdatedDate());
         }
         return channelDTO;
+    }
+
+    public default NotifyCommunityListDTO toNotifyCommunityListDTO(CommunityPostVO communityPostVO, MemberVO memberVO, ChannelVO channelVO, String timeAgo) {
+        NotifyCommunityListDTO notifyCommunityListDTO = null;
+
+        if (communityPostVO != null && memberVO != null) {
+            notifyCommunityListDTO = new NotifyCommunityListDTO();
+            notifyCommunityListDTO.setId(communityPostVO.getId());
+            notifyCommunityListDTO.setPostTitle(communityPostVO.getPostTitle());
+            notifyCommunityListDTO.setPostContent(communityPostVO.getPostContent());
+            notifyCommunityListDTO.setMemberNickname(memberVO.getMemberNickname());
+            notifyCommunityListDTO.setMemberFilePath(memberVO.getMemberFilePath());
+            notifyCommunityListDTO.setMemberFileName(memberVO.getMemberFileName());
+            notifyCommunityListDTO.setMemberId(communityPostVO.getMemberId());
+            notifyCommunityListDTO.setChannelId(communityPostVO.getChannelId());
+            notifyCommunityListDTO.setTimeAgo(timeAgo);
+            notifyCommunityListDTO.setCreatedDate(communityPostVO.getCreatedDate());
+            notifyCommunityListDTO.setUpdatedDate(communityPostVO.getUpdatedDate());
+        }
+
+        if (channelVO != null) {
+            notifyCommunityListDTO.setMemberChannelId(channelVO.getId());
+        }
+
+        return notifyCommunityListDTO;
     }
 }

@@ -1342,13 +1342,21 @@ legend {
     background-color: #004085; /* 클릭 시 색상 변경 */
     transform: scale(0.95); /* 눌리는 효과 */
 }
-
 /*저장 버튼 클릭, 호버 이벤트 */
+/* 저장 삭제 버튼 간격 조정 */
+.button-container {
+    display: flex; /* 버튼을 한 줄에 정렬 */
+    justify-content: center; /* 버튼들을 중앙으로 배치 */
+    gap: 20px; /* 버튼 간격 설정 */
+    margin-top: 20px; /* 위쪽 여백 */
+}
+/* 저장 삭제 버튼 간격 조정 */
 
 /* 에러 메세지 */
 .bViOzS {
     margin-bottom: 6px;
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: bold;
     line-height: 16px;
     letter-spacing: -0.36px;
     color: rgb(222, 28, 34);

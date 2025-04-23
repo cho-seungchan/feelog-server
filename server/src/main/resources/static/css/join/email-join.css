@@ -632,7 +632,8 @@ body {
 
 .bViOzS {
     margin-bottom: 6px;
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: bold;
     line-height: 16px;
     letter-spacing: -0.36px;
     color: rgb(222, 28, 34);

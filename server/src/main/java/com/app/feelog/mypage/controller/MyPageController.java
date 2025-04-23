@@ -3,8 +3,11 @@
 package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
+import com.app.feelog.domain.dto.CommunityPostDTO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
 import com.app.feelog.mypage.service.MyPageService;
+import com.app.feelog.util.pagination.FiveRowOnePagePagination;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -46,11 +50,19 @@ public class MyPageController {
     // 2025.04.21  조승찬 :: 프로필 수정
     @PostMapping("/setting-profile")
     public String postSettingProfile(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                     MemberDTO memberDTO) {
+                                     MemberDTO memberDTO, Model model) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
             return "redirect:/login/login";
+        }
+
+        // 2025.04.23 조승찬 :: 닉네임 중복 체크
+        Optional<MemberDTO> memberOptional = myPageService.getMemberByNickname(memberDTO.getMemberNickname());
+        if (memberOptional.isPresent() && !memberOptional.get().getId().equals(member.getId())) {
+            model.addAttribute("errorMessage","중복된 Nickname 입니다.");
+            model.addAttribute("member", memberDTO);
+            return "myPage/setting-profile";
         }
 
         memberDTO.setId(member.getId());
@@ -97,7 +109,7 @@ public class MyPageController {
     };
 
     // 2025.04.22 조승찬 :: 채널 만들기 화면
-    @GetMapping("/making-channel")
+    @GetMapping("/make-channel")
     public String getMakingChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
                                 Model model){
 
@@ -109,11 +121,11 @@ public class MyPageController {
         ChannelDTO channelDTO = new ChannelDTO();
         model.addAttribute("channel", channelDTO);
 
-        return "myPage/making-channel";
+        return "myPage/make-channel";
     }
 
     // 2025.04.22 조승찬 :: 채널 만들기
-    @PostMapping("/making-channel")
+    @PostMapping("/make-channel")
     public String PostMakingChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
                                 ChannelDTO channelDTO, Model model) {
 
@@ -125,7 +137,8 @@ public class MyPageController {
         // 중복 여부 확인. url만 존재하면 중복
         if (myPageService.getChannelByUrl(channelDTO.getChannelUrl()).isPresent()){
             model.addAttribute("errorMessage","중복된 url 입니다.");
-            return "myPage/making-channel";
+            model.addAttribute("channel", channelDTO);
+            return "myPage/make-channel";
         }
 
         // 신규 채널 생성
@@ -154,12 +167,10 @@ public class MyPageController {
         return "myPage/read-channel";
     }
 
-
     // 2025.04.23 조승찬 :: 채널 수정
     @PostMapping("/update-channel")
     public String postUpdateChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                 @PathVariable String channelUrl, ChannelDTO channelDTO,
-                                 Model model) {
+                                    ChannelDTO channelDTO, Model model) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -170,7 +181,8 @@ public class MyPageController {
         Optional<ChannelDTO> channelOptional = myPageService.getChannelByUrl(channelDTO.getChannelUrl());
         if (channelOptional.isPresent() && !channelOptional.get().getId().equals(channelDTO.getId())) {
             model.addAttribute("errorMessage", "중복된 url 입니다.");
-            return "myPage/making-channel";
+            model.addAttribute("channel", channelDTO);
+            return "myPage/read-channel";
         }
 
         // 채널 정보 수정
@@ -179,6 +191,43 @@ public class MyPageController {
         return "redirect:/myPage/read-channel/"+channelDTO.getChannelUrl();
     }
 
+    // 2025.04.23 조승찬 :: 채널 삭제
+    @PostMapping("/delete-channel")
+    public String postDeleteChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                    ChannelDTO channelDTO, Model model) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 채널 정보 삭제
+        myPageService.postDeleteChannel(channelDTO.getId());
+
+        // 채널 만들기 화면으로 보내기
+        ChannelDTO channel = new ChannelDTO();
+        model.addAttribute("channel", channel);
+
+        return "myPage/make-channel";
+    }
+
+    // 2025.04.23 조승찬 :: 알림 메뉴 중 커뮤니티 목록
+    @GetMapping("/notify-community-list")
+    public String getNotifyCommunityList(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                             Model model, FiveRowOnePagePagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 목록 가져와서 보여주기
+        List<NotifyCommunityListDTO> communities = myPageService.getNotifyCommunityList(member.getId(), pagination);
+        model.addAttribute("communities", communities);
+        model.addAttribute("pagination", pagination);
+
+        return "myPage/notify-community-list";
+    }
 
     @GetMapping("/admin-notice-list")
     public String adminNoticeList(){
@@ -208,11 +257,6 @@ public class MyPageController {
     @GetMapping("/notify-admin-list")
     public String notifyAdminList(){
         return "myPage/notify-admin-list";
-    }
-
-    @GetMapping("/notify-list")
-    public String notifyList(){
-        return "myPage/notify-list";
     }
 
     @GetMapping("/storage-reply")
