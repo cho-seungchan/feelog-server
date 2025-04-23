@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Setter
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor
 public class MemberDTO {
     @EqualsAndHashCode.Include
     private Long id;
@@ -31,6 +30,15 @@ public class MemberDTO {
     private MemberStatus memberStatus;
     private String createdDate;
     private String updatedDate;
+
+    public MemberDTO() {
+        this.memberNotificationPostReply = MemberNotificationPostReply.OFF;
+        this.memberNotificationPostReplyLike = memberNotificationPostReplyLike.OFF;
+        this.memberNotificationPostLike = memberNotificationPostLike.OFF;
+        this.memberNotificationSubscribe = memberNotificationSubscribe.OFF;
+        this.memberNotificationCommunityPost = memberNotificationCommunityPost.OFF;
+        this.memberNotificationMessage = memberNotificationMessage.OFF;
+    }
 
     public MemberVO toVO() {
         return MemberVO.builder()

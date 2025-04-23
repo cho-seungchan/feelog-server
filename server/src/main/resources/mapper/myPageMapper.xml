@@ -22,6 +22,38 @@
         where  id = #{id}
     </select>
 
+    <select id="getChannelByUrl" resultType="channelVO">
+        select id,
+               channel_title,
+               channel_introduce,
+               channel_url,
+               channel_file_path,
+               channel_file_name,
+               member_id,
+               created_date,
+               updated_date
+        from tbl_channel
+        where channel_url = #{channelUrl};
+    </select>
+
+    <insert id="postMakingChannel">
+        insert into tbl_channel (
+            channel_title,
+            channel_introduce,
+            channel_url,
+            channel_file_path,
+            channel_file_name,
+            member_id
+        ) values (
+            #{channelTitle},
+            #{channelIntroduce},
+            #{channelUrl},
+            #{channelFilePath},
+            #{channelFileName},
+            #{memberId}
+        );
+    </insert>
+
     <update id="postSettingProfile">
         update tbl_member
         set
@@ -37,13 +69,24 @@
     <update id="postSettingNotify">
         update tbl_member
         set
-            member_notification_post_reply = #{memberNotificationPostReply},
+            member_notification_post_reply     = #{memberNotificationPostReply},
             member_notification_post_reply_like = #{memberNotificationPostReplyLike},
-            member_notification_post_like = #{memberNotificationPostLike},
-            member_notification_subscribe = #{memberNotificationSubscribe},
+            member_notification_post_like      = #{memberNotificationPostLike},
+            member_notification_subscribe      = #{memberNotificationSubscribe},
             member_notification_community_post = #{memberNotificationCommunityPost},
-            member_notification_message = #{memberNotificationMessage},
+            member_notification_message        = #{memberNotificationMessage},
             updated_date = current_timestamp
+        where id = #{id};
+    </update>
+
+    <update id="postUpdateChannel">
+        update tbl_channel
+        set channel_title     = #{channel_title},
+            channel_introduce = #{channel_introduce},
+            channel_url       = #{channel_url},
+            channel_file_path = #{channel_file_path},
+            channel_file_name = #{channel_file_name},
+            updated_date      =  current_timestamp
         where id = #{id};
     </update>
 

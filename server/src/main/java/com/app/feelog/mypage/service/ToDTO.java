@@ -1,9 +1,6 @@
 package com.app.feelog.mypage.service;
 
-import com.app.feelog.domain.dto.CommonTaskDTO;
-import com.app.feelog.domain.dto.MemberDTO;
-import com.app.feelog.domain.dto.MemberTaskDTO;
-import com.app.feelog.domain.dto.MemberTaskPoolDTO;
+import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.dto.AllChallengeListDTO;
 import com.app.feelog.mypage.dto.CommonTaskChallengeDTO;
@@ -166,5 +163,24 @@ public interface ToDTO {
         }
 
         return dto;
+    }
+
+    public default ChannelDTO toChannelDTO(ChannelVO channelVO) {
+        ChannelDTO channelDTO = null;
+        if (channelVO != null) {
+            channelDTO = new ChannelDTO();
+            channelDTO.setId(channelVO.getId());
+            channelDTO.setChannelTitle(channelVO.getChannelTitle());
+            channelDTO.setChannelIntroduce(channelVO.getChannelIntroduce());
+            channelDTO.setChannelUrl(channelVO.getChannelUrl());
+            channelDTO.setChannelFilePath(channelVO.getChannelFilePath());
+            channelDTO.setChannelFileName(channelVO.getChannelFileName());
+            channelDTO.setChannelFileSize(channelVO.getChannelFileSize());
+            channelDTO.setMemberId(channelVO.getMemberId());
+            channelDTO.setChannelStatus(channelVO.getChannelStatus());
+            channelDTO.setCreatedDate(channelVO.getCreatedDate());
+            channelDTO.setUpdatedDate(channelVO.getUpdatedDate());
+        }
+        return channelDTO;
     }
 }

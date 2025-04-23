@@ -1,6 +1,7 @@
 // 2025.04.21 조승찬
 package com.app.feelog.mypage.mapper;
 
+import com.app.feelog.domain.vo.ChannelVO;
 import com.app.feelog.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,4 +15,16 @@ public interface MyPageMapper {
 
     // 2025.04.21 조승찬 :: 아이디로 멤버 정보 가져오기
     Optional<MemberVO> getMemberById(Long id);
+
+    // 2025.04.22  조승찬 :: 알림정보 수정
+    void postSettingNotify(MemberVO memberVO);
+
+    // 2025.04.22 조승찬 :: url로 채널 정보 가져오기
+    Optional<ChannelVO> getChannelByUrl(String channelUrl);
+
+    // 2025.04.22 조승찬 :: 채널 생성하기
+    void postMakingChannel(ChannelVO channelVO);
+
+    // 2025.04.23 조승찬 :: 채널 수정하기
+    void postUpdateChannel(ChannelVO channelVO);
 }

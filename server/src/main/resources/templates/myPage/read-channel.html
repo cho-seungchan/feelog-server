@@ -1,10 +1,10 @@
-<!-- 2025.04.05 조승찬 -->
+<!-- 2025.04.23 조승찬 -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/myPage/making-channel.css" />
+        <link rel="stylesheet" href="/css/myPage/read-channel.css" />
         <link rel="stylesheet" href="/css/main/header.css">
         <link rel="stylesheet" href="/css/main/footer.css">
         <link rel="stylesheet" href="/css/main/search-modal.css">
@@ -26,7 +26,9 @@
                     </nav>
                     <main class="FeelogStack-root flog-main-4">
                         <div class="FeelogStack-root flog-div-76">
-                            <form class="FeelogStack-root flog-form-1" th:action="@{/myPage/making-channel}" th:object="${channel}" method="post" enctype="multipart/form-data">
+                            <form class="FeelogStack-root flog-form-1" th:action="@{/myPage/read-channel}" th:object="${channel}" method="post" enctype="multipart/form-data">
+<!--                                수정시 중복 체크를 위해서, 삭제를 위해서 id 저장-->
+                                <input type="hidden" name="id" th:value="*{id}"></input>
                                 <div
                                     class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49"
                                 >
@@ -38,7 +40,13 @@
                                     >
                                     <div class="FeelogStack-root flog-div-77">
                                         <div class="FeelogBox-root flog-div-78">
-                                            <img
+                                            <img  class="uploadFile"
+                                                  th:if="*{channelFileName != null && !channelFileName.isEmpty()}"
+                                                  th:src="@{/files/display(path=|*{channelFilePath}/*{channelFileName}|)}"}
+                                                  th:data-file-name="*{channelFileName}" th:data-file-path="*{channelFilePath}"
+                                                  alt="channel-profile"
+                                            />
+                                            <img th:if="*{channelFileName == null || channelFileName.isEmpty()}"
                                                 src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png"
                                                 alt="channel-profile"
                                             />
@@ -180,12 +188,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button
-                                    type="button"
-                                    class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-15"
-                                >
-                                    새 채널 만들기
-                                </button>
+                                <div class="button-container">
+                                    <button
+                                            type="button"
+                                            class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-15 update-button"
+                                    >
+                                        채널 수정하기
+                                    </button>
+                                    <button
+                                            type="button"
+                                            class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-15 delete-button"
+                                    >
+                                        채널 삭제하기
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </main>
@@ -241,8 +257,8 @@
         </div>
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
-    <script src="/js/myPage/making-channel-event.js"></script>
-    <script src="/js/myPage/making-channel-service.js"></script>
-    <script src="/js/myPage/making-channel-layout.js"></script>
+    <script src="/js/myPage/read-channel-event.js"></script>
+    <script src="/js/myPage/read-channel-service.js"></script>
+    <script src="/js/myPage/read-channel-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

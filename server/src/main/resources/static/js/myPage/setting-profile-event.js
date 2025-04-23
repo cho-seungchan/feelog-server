@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 타이틀(프로필, 알림) 클릭 이벤트
     document.querySelectorAll(".FeelogListItem-variantPlain").forEach((title) => {
         title.addEventListener("click", (e) => {
-            e.preventDefault();
             // 타이틀이 새로 선택되면 타이틀 진하게, 밑줄 표현 되도록 수정
             if (!e.target.classList.contains("selected")) {
                 // 기존에 선택되었던 타이틀 원상 복귀
