@@ -2,11 +2,10 @@
 package com.app.feelog.mypage.repository;
 
 import com.app.feelog.domain.vo.CommunityPostVO;
-import com.app.feelog.domain.vo.FileVO;
 import com.app.feelog.domain.vo.MemberVO;
 import com.app.feelog.domain.vo.ChannelVO;
 import com.app.feelog.mypage.mapper.MyPageMapper;
-import com.app.feelog.util.pagination.FiveRowOnePagePagination;
+import com.app.feelog.util.SixRowPagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -72,7 +71,7 @@ public class MyPageDAO {
     }
 
     // 2025.04.23 조승찬 :: 채널의 커뮤니티 게시글 가져오기
-    public List<CommunityPostVO> getNotifyCommunityList(Long memberId, FiveRowOnePagePagination pagination) {
+    public List<CommunityPostVO> getNotifyCommunityList(Long memberId, SixRowPagination pagination) {
         return myPageMapper.getNotifyCommunityList(memberId, pagination);
     }
 
@@ -80,5 +79,17 @@ public class MyPageDAO {
     public List<CommunityPostVO> getCommunityPostFileList(Long communityPostId) {
         return myPageMapper.getCommunityPostFileList(communityPostId);
     };
+
+    // 2025.04.23 조승찬 :: 멤버 아이디로 채널 정보 가져오기
+    public Optional<ChannelVO> getChannelByMemberId(Long memberId) {
+        return Optional.ofNullable(
+                myPageMapper.getChannelByMemberId(memberId)
+                        .orElse(null));
+    };
+
+    // 2025.04.23 조승찬 :: 페이지 네이션을 위해 포스트 댓글 총 건수 가져오기
+    public int getNotifyReplyListTotalCount(Long memberId) {
+        return myPageMapper.getNotifyReplyListTotalCount(memberId);
+    }
 }
 

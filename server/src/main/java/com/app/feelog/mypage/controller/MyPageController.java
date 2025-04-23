@@ -3,11 +3,11 @@
 package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
-import com.app.feelog.domain.dto.CommunityPostDTO;
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
+import com.app.feelog.mypage.dto.NotifyReplyListDTO;
 import com.app.feelog.mypage.service.MyPageService;
-import com.app.feelog.util.pagination.FiveRowOnePagePagination;
+import com.app.feelog.util.SixRowPagination;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -214,7 +214,7 @@ public class MyPageController {
     // 2025.04.23 조승찬 :: 알림 메뉴 중 커뮤니티 목록
     @GetMapping("/notify-community-list")
     public String getNotifyCommunityList(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                             Model model, FiveRowOnePagePagination pagination){
+                             Model model, SixRowPagination pagination){
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -224,6 +224,26 @@ public class MyPageController {
         // 목록 가져와서 보여주기
         List<NotifyCommunityListDTO> communities = myPageService.getNotifyCommunityList(member.getId(), pagination);
         model.addAttribute("communities", communities);
+        model.addAttribute("pagination", pagination);
+
+        log.info(pagination.toString());
+
+        return "myPage/notify-community-list";
+    }
+
+    // 2025.04.23 조승찬 :: 알림 메뉴 중 포스트 댓글 목록
+    @GetMapping("/notify-reply-list")
+    public String getNotifyReplyList(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                         Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 목록 가져와서 보여주기
+        List<NotifyReplyListDTO> replies = myPageService.getNotifyReplyList(member.getId(), pagination);
+        model.addAttribute("replies", replies);
         model.addAttribute("pagination", pagination);
 
         return "myPage/notify-community-list";

@@ -43,16 +43,6 @@
         where  member_nickname = #{memberNickname}
     </select>
 
-    <select id="getNotifyCommunityListTotalCount" resultType="_int">
-        select count(*)
-        from tbl_post p
-                 join tbl_community_post cp on p.id = cp.id
-                 join tbl_channel c on cp.channel_id = c.id
-        where c.member_id = #{memberId}
-          and p.post_status = '정상'
-          and c.channel_status = '정상'
-    </select>
-
     <select id="getCommunityPostFileList" resultType="communityPostFileVO">
         select
             f.id,
@@ -65,24 +55,35 @@
         where cpf.community_post_id = #{communityPostId}
     </select>
 
+    <select id="getNotifyCommunityListTotalCount" resultType="_int">
+        select count(*)
+        from tbl_channel ch
+                 join tbl_community_post cp on ch.id = cp.channel_id
+                 join tbl_post p on cp.id = p.id
+        where ch.member_id = #{memberId}
+          and p.post_status = '정상'
+          and ch.channel_status = '정상'
+    </select>
+
     <select id="getNotifyCommunityList" resultType="communityPostVO">
         select
             p.id as id,
-            p.post_title as postTitle,
-            null as postSubTitle,
-            p.post_content as postContent,
-            p.post_status as postStatus,
-            p.created_date as createdDate,
-            p.updated_date as updatedDate,
-            c.member_id as memberId,
-            cp.channel_id as channelId
-        from tbl_post p
-                 join tbl_community_post cp on p.id = cp.id
-                 join tbl_channel c on cp.channel_id = c.id
-        where c.member_id = #{memberId}
+            p.post_title,
+            p.post_content,
+            p.created_date as created_date,
+            p.updated_date as updated_date,
+            cp.channel_id  as channel_id,
+            cp.member_id   as member_id,
+            ch.created_date as channel_created_date,
+            ch.updated_date as channel_updated_date,
+            cp.id as community_post_id
+        from tbl_channel ch
+                 join tbl_community_post cp on ch.id = cp.channel_id
+                 join tbl_post p on cp.id = p.id
+        where ch.member_id = #{memberId}
           and p.post_status = '정상'
-          and c.channel_status = '정상'
-        order by p.id
+          and ch.channel_status = '정상'
+        order by p.id desc
         limit #{pagination.offset}, #{pagination.rowCount};
     </select>
 
@@ -97,7 +98,26 @@
                created_date,
                updated_date
         from tbl_channel
-        where channel_url = #{channelUrl};
+        where channel_url = #{channelUrl}
+    </select>
+
+    <select id="getChannelByMemberId" resultType="channelVO">
+        select id,
+               channel_title,
+               channel_introduce,
+               channel_url,
+               channel_file_path,
+               channel_file_name,
+               member_id,
+               created_date,
+               updated_date
+        from   tbl_channel
+        where   member_id = #{memberId}
+          and   channel_status = '정상'
+    </select>
+
+    <select id="getNotifyReplyListTotalCount" resultType="_int">
+
     </select>
 
     <insert id="postMakingChannel">

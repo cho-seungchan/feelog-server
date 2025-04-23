@@ -17,7 +17,6 @@ public class ChannelPostVO extends PostJKVO{
     private PostType postType;
     private String postFilePath;
     private String postFileName;
-    private String postFileSize;
     private Long   memberId;
     private Long   channelId;
 }
