@@ -2,10 +2,9 @@ package com.app.feelog.controller;
 
 import ch.qos.logback.core.model.Model;
 import com.app.feelog.domain.dto.*;
-import com.app.feelog.service.AdminServiceImpl;
-import com.app.feelog.service.FaqServiceImpl;
-import com.app.feelog.service.MemberServiceImpl;
-import com.app.feelog.service.NoticeServiceImpl;
+import com.app.feelog.mapper.MemberTaskPoolMapper;
+import com.app.feelog.service.*;
+import com.app.feelog.util.Pagination;
 import com.app.feelog.util.pagination.AdminPagination;
 import com.app.feelog.util.pagination.MemberPagination;
 import com.app.feelog.util.pagination.NoticePagination;
@@ -28,6 +27,7 @@ public class AdminController {
     private final NoticeServiceImpl noticeServiceImpl;
     private final FaqServiceImpl faqServiceImpl;
     private final MemberServiceImpl memberServiceImpl;
+    private final MemberTaskPoolServiceImpl memberTaskPoolServiceImpl;
 
 
     @GetMapping("/admin")
@@ -138,4 +138,26 @@ public class AdminController {
     public MemberListDTO getMemberListSearchAll(@Param("pagination") MemberPagination memberPagination, @PathVariable("keyword") String keyword) {
         return memberServiceImpl.getSearchAll(memberPagination, keyword);
     }
+
+    @PostMapping("/insertMemberTaskPool")
+    public void insertMemberTaskPool(@RequestBody MemberTaskPoolDTO memberTaskPoolDTO) {
+        memberTaskPoolServiceImpl.insertMemberTaskPool(memberTaskPoolDTO);
+    }
+
+    @GetMapping("/memberTaskPoolList")
+    @ResponseBody
+    public MemberTaskPoolListDTO getMemberTaskPoolList(MemberPagination memberPagination) {
+        return memberTaskPoolServiceImpl.getMemberTaskPoolList(memberPagination);
+    }
+
+    @PutMapping("/deleteMemberTaskPool")
+    public void deleteMemberTaskPool(@RequestBody Long id) {
+        memberTaskPoolServiceImpl.deleteMemberTaskPoolById(id);
+    }
+
+    @PutMapping("/updateMemberTaskPool")
+    public void updateMemberTaskPool(@RequestBody MemberTaskPoolDTO memberTaskPoolDTO) {
+        memberTaskPoolServiceImpl.updateMemberTaskPool(memberTaskPoolDTO);
+    }
+
 }

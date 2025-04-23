@@ -804,7 +804,7 @@
     /* z-index: 10; */
     transform: translateY(-50%);
     top: 104px;
-    right: -10px;
+    right: -45px;
 }
 
 .joy-nf1a52.FlgIconButton-sizeMd-need {
@@ -835,6 +835,15 @@
     box-shadow: 0 0 #000, 0px 2px 8px -2px rgba(21, 21, 21, 0.08), 0px 6px 12px -2px rgba(21, 21, 21, 0.08);
 }
 
+.joy-8fyquv {
+    display: flex;
+    flex-direction: row;
+    margin-inline: -16px;
+    padding-inline: 10px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
 @media (min-width: 0px) {
     .joy-8fyquv {
         display: flex;
@@ -845,15 +854,6 @@
     .joy-8fyquv {
         display: none;
     }
-}
-
-.joy-8fyquv {
-    display: flex;
-    flex-direction: row;
-    margin-inline: -16px;
-    padding-inline: 10px;
-    overflow-x: scroll;
-    scrollbar-width: none;
 }
 
 .joy-8fyquv > div .post-thumbnail {
@@ -1352,12 +1352,46 @@
 }
 
 
+.slider-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+    scroll-behavior: smooth;
+}
+
+.slick-slide {
+    flex: 0 0 auto;
+    width: 220px;
+    scroll-snap-align: start;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
 
 
 
 
-
-
+@media (min-width: 0px) {
+    .joy-cmwhbq1 {
+        display: none;
+    }
+}
+@media (min-width: 744px) {
+    .joy-cmwhbq1 {
+        display: block;
+    }
+}
+.joy-cmwhbq1 {
+    position: absolute;
+    top: 104px;
+    z-index: 1;
+    left: -45px;
+}
+.joy-p4uzq6 .slick-slider > .FlgBox-root-need1 {
+    top: 36.25px;
+}
 
 
 

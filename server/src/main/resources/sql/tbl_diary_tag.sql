@@ -8,3 +8,9 @@ create table tbl_diary_tag (
     constraint fk_diary_tag_diary foreign key (diary_id) references tbl_diary(id),
     constraint fk_diary_tag_tag foreign key (id) references tbl_tag(id)
 );
+
+SELECT GROUP_CONCAT(t.contents)
+FROM tbl_diary_tag dt
+         JOIN tbl_tag t ON dt.id = t.id
+WHERE dt.diary_id = 59
+  AND t.tag_status = 'ACTIVE';

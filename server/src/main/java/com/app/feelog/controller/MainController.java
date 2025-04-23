@@ -222,4 +222,15 @@ public class MainController {
         return "main/ticket";
     }
 
+
+    @GetMapping("/init")
+    @ResponseBody
+    public Map<String, Object> searchInit() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("mindLogs", diaryService.getRecentDiaries());
+        result.put("channelPosts", channelPostService.getRecentChannelPosts());
+
+        return result;
+    }
+
 }

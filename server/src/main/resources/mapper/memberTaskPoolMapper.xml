@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.MemberTaskPoolMapper">
+    <insert id="insertMemberTaskPool">
+        insert into tbl_member_task_pool (member_task_pool_content, member_task_pool_file_path, member_task_pool_file_name)
+            value (#{memberTaskPoolContent}, #{memberTaskPoolFilePath}, #{memberTaskPoolFileName})
+    </insert>
+
+    <select id="selectMemberTaskPoolAll" resultType="memberTaskPoolVO">
+        select id, member_task_pool_content, member_task_pool_status, created_date,
+               member_task_pool_file_name, member_task_pool_file_path
+        from tbl_member_task_pool
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectCountAll" resultType="_int">
+        select count(*) from tbl_member_task_pool
+    </select>
+
+    <update id="deleteMemberTaskPoolById">
+        update tbl_member_task_pool set member_task_pool_status = '삭제'
+        where id = #{id}
+    </update>
+
+    <update id="updateMemberTaskPool">
+        update tbl_member_task_pool
+        set member_task_pool_content = #{memberTaskPoolContent},
+            member_task_pool_file_path = #{memberTaskPoolFilePath},
+            member_task_pool_file_name = #{memberTaskPoolFileName}
+        where id = #{id}
+    </update>
+
+    <select id="selectMemberTaskPoolById" resultType="memberTaskPoolVO">
+        select id, member_task_pool_content, member_task_pool_status, created_date,
+               member_task_pool_file_name, member_task_pool_file_path
+        from tbl_member_task_pool
+        where id = #{id}
+    </select>
 </mapper>

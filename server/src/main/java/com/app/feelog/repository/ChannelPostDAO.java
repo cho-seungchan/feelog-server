@@ -1,9 +1,12 @@
 package com.app.feelog.repository;
 
+import com.app.feelog.domain.dto.ChannelPostSearchDTO;
 import com.app.feelog.domain.vo.ChannelPostVO;
 import com.app.feelog.mapper.ChannelPostMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -24,6 +27,10 @@ public class ChannelPostDAO {
     // 수정
     public void updateChannelPost(ChannelPostVO vo) {
         channelPostMapper.updateChannelPost(vo);
+    }
+
+    public List<ChannelPostSearchDTO> findRecentPosts() {
+        return channelPostMapper.findRecentChannelPosts();
     }
 
 }

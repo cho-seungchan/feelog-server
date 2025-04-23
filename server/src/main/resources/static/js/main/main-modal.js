@@ -85,11 +85,36 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         const searchBackdrop = document.querySelector(".jk-feelog-div014");
 
+    function initSearchModal() {
+        fetch("/main/init")
+            .then(res => {
+                if (!res.ok) throw new Error("응답 실패: " + res.status);
+                return res.json();
+            })
+            .then(data => {
+                console.log("받은 데이터: ", data);
+
+                data.channelPosts.forEach(p => {
+                    console.log(`[CHECK] postType:`, p.postType, typeof p.postType);
+                });
+
+                renderSlider(".mind-log-wrap", data.mindLogs, "diary");
+                renderSlider(".channel-post-wrap", data.channelPosts.filter(p => p.postType === "POST"), "post");
+                renderSlider(".cheering-wrap", data.channelPosts.filter(p => p.postType === "CHEERING"), "cheering");
+            })
+            .catch(err => {
+                console.error("초기화 실패: ", err);
+            });
+    }
+
         // 검색 메인 모달 열기
         if (searchBtn && searchMain) {
             searchBtn.addEventListener("click", () => {
                 searchMain.classList.remove("hidden");
                 document.body.style.overflow = "hidden";
+
+                // 검색 모달 열릴 때 초기 목록 호출
+                initSearchModal();
             });
         }
 
@@ -101,38 +126,38 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // 검색 필터 모달 열기
-        if (searchFilterBtn && searchFilterModal && searchBackdrop) {
-            searchFilterBtn.addEventListener("click", () => {
-                searchFilterModal.classList.remove("hidden");
-                searchBackdrop.classList.remove("hidden");
-            });
-        }
-
-        // 검색 필터 모달 닫기 (닫기 버튼 클릭)
-        if (
-            searchFilterCloseBtn &&
-            searchFilterModal &&
-            searchFilterCloseBtn2 &&
-            searchBackdrop
-        ) {
-            searchFilterCloseBtn.addEventListener("click", () => {
-                searchFilterModal.classList.add("hidden");
-                searchBackdrop.classList.add("hidden");
-            });
-            searchFilterCloseBtn2.addEventListener("click", () => {
-                searchFilterModal.classList.add("hidden");
-                searchBackdrop.classList.add("hidden");
-            });
-        }
-
-        // 검색 필터 모달 닫기 (회색 배경 클릭)
-        if (searchBackdrop && searchFilterModal) {
-            searchBackdrop.addEventListener("click", () => {
-                searchFilterModal.classList.add("hidden");
-                searchBackdrop.classList.add("hidden");
-            });
-        }
+        // // 검색 필터 모달 열기
+        // if (searchFilterBtn && searchFilterModal && searchBackdrop) {
+        //     searchFilterBtn.addEventListener("click", () => {
+        //         searchFilterModal.classList.remove("hidden");
+        //         searchBackdrop.classList.remove("hidden");
+        //     });
+        // }
+        //
+        // // 검색 필터 모달 닫기 (닫기 버튼 클릭)
+        // if (
+        //     searchFilterCloseBtn &&
+        //     searchFilterModal &&
+        //     searchFilterCloseBtn2 &&
+        //     searchBackdrop
+        // ) {
+        //     searchFilterCloseBtn.addEventListener("click", () => {
+        //         searchFilterModal.classList.add("hidden");
+        //         searchBackdrop.classList.add("hidden");
+        //     });
+        //     searchFilterCloseBtn2.addEventListener("click", () => {
+        //         searchFilterModal.classList.add("hidden");
+        //         searchBackdrop.classList.add("hidden");
+        //     });
+        // }
+        //
+        // // 검색 필터 모달 닫기 (회색 배경 클릭)
+        // if (searchBackdrop && searchFilterModal) {
+        //     searchBackdrop.addEventListener("click", () => {
+        //         searchFilterModal.classList.add("hidden");
+        //         searchBackdrop.classList.add("hidden");
+        //     });
+        // }
 
         // ======= 추가된 검색 모달 기능 끝 =======
         const button = document.getElementById("notificationBtn");
@@ -153,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function toggleProfileMenu(e) {
             e.stopPropagation();
 
-            // 🔒 알림 메뉴가 열려 있으면 닫기
+            // 알림 메뉴가 열려 있으면 닫기
             if (isOpen) {
                 closeMenu(); // 메뉴 상태값까지 같이 닫기
             }

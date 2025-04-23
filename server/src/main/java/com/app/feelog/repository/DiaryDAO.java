@@ -1,10 +1,12 @@
 package com.app.feelog.repository;
 
+import com.app.feelog.domain.dto.DiarySearchDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.mapper.DiaryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -22,6 +24,14 @@ public class DiaryDAO {
 
     public void update(DiaryVO diaryVO) {
         diaryMapper.update(diaryVO);
+    }
+
+    public List<DiarySearchDTO> searchDiaries(String keyword) {
+        return diaryMapper.searchDiaries(keyword);
+    }
+
+    public List<DiarySearchDTO> getRecentDiaries() {
+        return diaryMapper.getRecentDiaries();
     }
 
 }

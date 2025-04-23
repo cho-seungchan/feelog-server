@@ -1,9 +1,6 @@
 package com.app.feelog.service;
 
-import com.app.feelog.domain.dto.DiaryDTO;
-import com.app.feelog.domain.dto.DiaryFileDTO;
-import com.app.feelog.domain.dto.DiaryTagDTO;
-import com.app.feelog.domain.dto.TagDTO;
+import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.domain.vo.FileVO;
 import com.app.feelog.repository.DiaryDAO;
@@ -15,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -112,4 +110,21 @@ public class DiaryServiceImpl implements DiaryService {
             }
         }
     }
+
+    @Override
+    public List<DiarySearchDTO> searchDiaries(String keyword) {
+        return diaryDAO.searchDiaries(keyword);
+    }
+
+    @Override
+    public List<DiarySearchDTO> getRecentDiaries() {
+        List<DiarySearchDTO> result = diaryDAO.getRecentDiaries();
+        for (DiarySearchDTO dto : result) {
+            if (dto.getTags() != null && !dto.getTags().isEmpty()) {
+                dto.setTagsList(Arrays.asList(dto.getTags().split(",")));
+            }
+        }
+        return result;
+    }
+
 }

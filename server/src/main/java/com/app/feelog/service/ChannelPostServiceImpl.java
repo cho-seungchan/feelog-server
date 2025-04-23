@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -145,45 +146,6 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         }
     }
 
-
-
-//    @Override
-//    public void updateChannelPost(ChannelPostDTO dto) {
-//        // 1. post 수정
-//        PostJkDTO postDto = toPostJkDTO(dto);
-//        postDto.setId(dto.getId());
-//        postJkService.updatePost(postDto);
-//
-//        // 2. channel_post 수정
-//        channelPostDAO.updateChannelPost(dto.toVO());
-//
-//        // 3. 기존 첨부파일 제거 후 새로 추가
-//        channelPostFileServiceImpl.removeAllFilesByPostId(dto.getId());
-//        if (dto.getFileIds() != null) {
-//            for (Long fileId : dto.getFileIds()) {
-//                ChannelPostFileDTO fileDTO = new ChannelPostFileDTO();
-//                fileDTO.setPostId(dto.getId());
-//                fileDTO.setId(fileId);
-//                channelPostFileServiceImpl.addChannelPostFile(fileDTO);
-//            }
-//        }
-//
-//        // 4. 기존 태그 제거 후 새로 추가
-//        channelPostTagServiceImpl.removeAllTagsByChannelPostId(dto.getId());
-//        if (dto.getTags() != null) {
-//            for (String content : dto.getTags()) {
-//                TagDTO tagDTO = new TagDTO();
-//                tagDTO.setContents(content);
-//                tagServiceImpl.saveTag(tagDTO); // 중복 방지 포함
-//
-//                ChannelPostTagDTO tagMapDTO = new ChannelPostTagDTO();
-//                tagMapDTO.setId(tagDTO.getId());
-//                tagMapDTO.setChannelPostId(dto.getId());
-//                channelPostTagServiceImpl.save(tagMapDTO);
-//            }
-//        }
-//    }
-
     @Override
     public void deleteTags(List<Long> tagIds) {
         if (tagIds != null) {
@@ -191,5 +153,17 @@ public class ChannelPostServiceImpl implements ChannelPostService {
                 tagDAO.deleteTagById(tagId);
             }
         }
+    }
+
+    @Override
+    public List<ChannelPostSearchDTO> getRecentChannelPosts() {
+        List<ChannelPostSearchDTO> result = channelPostDAO.findRecentPosts();
+        for (ChannelPostSearchDTO dto : result) {
+            if (dto.getTags() != null && !dto.getTags().isBlank()) {
+                String joined = dto.getTags();
+                dto.setTagsList(Arrays.asList(joined.split(",")));
+            }
+        }
+        return result;
     }
 }
