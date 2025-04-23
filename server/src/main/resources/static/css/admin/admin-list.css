@@ -157,7 +157,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     margin: 0;
 }
 
-.mainUserListDiv, .userListDiv, .reportListDiv, .noticeListDiv, .faqListDiv {
+.mainUserListDiv, .userListDiv, .reportListDiv, .noticeListDiv, .faqListDiv, .memberTaskPoolListDiv {
     display: flex
 ;
     align-items: center;
@@ -166,7 +166,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     border-bottom: 1px solid #ddd;
 }
 
-.mainUserListDiv, .userListDiv, .faqListDiv, .noticeListDiv {
+.mainUserListDiv, .userListDiv, .faqListDiv, .noticeListDiv, .memberTaskPoolListDiv{
     display: grid
 ;
     grid-template-columns: 50px 300px 300px 100px;
@@ -321,4 +321,10 @@ input[type=text] {
     gap: 10px;
     font-weight: bold;
     background-color: #f8f8f8;
+}
+
+.titleDiv{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

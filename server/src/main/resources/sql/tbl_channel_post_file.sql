@@ -5,7 +5,7 @@ create table tbl_channel_post_file (
                                        post_id 		        bigint not null,
                                        constraint fk_channel_post_file_channel_post foreign key (id)
                                            references tbl_file (id),
-                                       constraint fk_channel_post_file_channel_post foreign key (post_id)
+                                       constraint fk_channel_post_file_post foreign key (post_id)
                                            references tbl_channel_post (id)
 );
 

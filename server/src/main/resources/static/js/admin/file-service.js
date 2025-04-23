@@ -7,7 +7,7 @@ function createThumbnail(file) {
     text = `
         <div class="ImageList__ImageWrapper-sc-9v1mt2-1 kZTsQf">
             <div class="Image__Wrapper-v97gyx-0 gDuKGF uploadFile"
-            data-file-name="${file.fileName}" data-file-path="${file.filePath}" data-file-size="${file.fileSize}">
+            data-file-name="${file.fileName}" data-file-path="${file.filePath}">
                 <div class="Ratio " style="display: block;">
                     <div class="Ratio-ratio " style="height: 0px; position: relative; width: 100%; padding-top: 50%;">
                         <div class="Ratio-content " style="height: 100%; left: 0px; position: absolute; top: 0px; width: 100%;">

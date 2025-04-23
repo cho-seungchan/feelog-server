@@ -12,6 +12,7 @@
         <typeAlias type="com.app.feelog.domain.dto.DiaryDTO" alias="diaryDTO"/>
         <typeAlias type="com.app.feelog.domain.vo.NoticeVO" alias="noticeVO"/>
         <typeAlias type="com.app.feelog.domain.vo.FaqVO" alias="faqVO"/>
+        <typeAlias type="com.app.feelog.domain.vo.MemberTaskPoolVO" alias="memberTaskPoolVO"/>
         <typeAlias type="com.app.feelog.domain.dto.NoticeAdminDTO" alias="noticeAdminDTO"/>
         <typeAlias type="com.app.feelog.domain.dto.FaqAdminDTO" alias="faqAdminDTO"/>
     </typeAliases>

@@ -233,7 +233,6 @@ const noticeLayout = (() => {
             }
 
             noticeListData.noticeList.forEach((list) => {
-                console.log(noticeListData)
                 const newLi = document.createElement("li");
                 const createdDate = new Date(list.createdDate);
                 const formatCreatedDate =  createdDate.toISOString().split('T')[0];

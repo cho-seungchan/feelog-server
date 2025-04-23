@@ -96,7 +96,7 @@
 }
 
 .registBtn, .updateBtn, .deleteBtn, .confirmBtn {
-    width: 83px;
+    width: 90px;
     white-space: nowrap;
     overflow-x: auto;
     line-height: 40px;
