@@ -24,4 +24,10 @@ public interface TagService {
         dto.setUpdatedDate(vo.getUpdatedDate());
         return dto;
     }
+
+    void softDeleteTagByContentAndPostId(Long channelPostId, String content);
+
+    Long findTagIdByContentAndChannelPostId(String content, Long channelPostId);
+
+    Long findTagIdByContent(String content);
 }

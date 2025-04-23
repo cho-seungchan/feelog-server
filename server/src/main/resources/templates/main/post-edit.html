@@ -40,8 +40,9 @@
     </style>
 </head>
 <body>
-<form id="post-form" action="/main/post" method="post">
+<form id="post-form" th:action="@{/main/post/edit/{id}(id=${post.id})}" method="post">
     <input type="hidden" name="channelId" th:value="${post.channelId}" />
+    <input type="hidden" name="postStatus" value="ACTIVE">
     <section class="FlgStack-root-need jk-feelog-section001">
         <div class="FlgBox-root-need">
             <div class="FlgBox-root-need jk-feelog-div003">
@@ -340,9 +341,12 @@
                                             </svg>
                                         </button>
                                     </div>
+                                    <th:block th:if="${post != null and post.postFilePath != null and !post.postFilePath.isEmpty() and post.postFileName != null and !post.postFileName.isEmpty()}">
                                     <div class="file-preview" style="margin-top: 10px; font-size: 14px; color: #555;">
-                                        <div th:each="file : ${post.fileList}" class="preview-wrapper" style="position: relative; display: inline-block; margin-right: 10px;">
-                                            <img th:src="@{|/file/display?path=${post.postFilePath}/${post.postFileName}|}" style="max-width: 100px; border-radius: 8px;" />
+                                        <div class="preview-wrapper" style="position: relative; display: inline-block; margin-right: 10px;">
+                                            <img
+                                                 th:src="@{'/files/display?path=' + ${post.postFilePath} + '/' + ${post.postFileName}}"
+                                                    style="max-width: 100px; border-radius: 8px;" />
                                             <button type="button" class="delete-thumbnail-btn" style="
             position: absolute;
             top: 4px;
@@ -355,11 +359,11 @@
             height: 24px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 100;
         ">×</button>
-
-                                            <input type="hidden" name="fileIds" th:value="${file.id}" />
                                         </div>
                                     </div>
+                                    </th:block>
                                     <input
                                             type="file"
                                             id="hidden-file-input"
@@ -381,20 +385,8 @@
                             <div class="FlgStack-root-need jk-feelog-div025">
                                 <!-- 기존 태그가 있을 경우 서버에서 반복 렌더링 -->
                                 <th:block th:each="tag : ${post.tags}">
-
-                                <div th:each="tag : ${tags}"
-                                     class="FlgChip-root-need FlgChip-colorPrimary FlgChip-sizeMd-need FlgChip-variantSoft-need joy-1g753be">
-                                    <span class="FlgChip-label-need FlgChip-label-needMd jk-feelog-span006" th:text="${tag}">힐링</span>
-                                    <span class="FlgChip-endDecorator joy-1i201st">
-            <button class="FlgChipDelete-root FlgChipDelete-variantSoft FlgChipDelete-colorPrimary joy-1rgf1fl" type="button">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
-                    <path d="M17.979 7.354a.937.937 0 0 0-1.324-1.324l-4.65 4.648-4.651-4.653A.937.937 0 0 0 6.03 7.35l4.648 4.649-4.653 4.652a.937.937 0 0 0 1.324 1.324l4.649-4.648 4.652 4.652a.937.937 0 0 0 1.324-1.324l-4.648-4.648 4.652-4.652Z" fill="currentcolor"></path>
-                </svg>
-            </button>
-        </span>
-                                </div>
+                                    <input type="hidden" name="tags" th:value="${tag}" />
                                 </th:block>
-
                                 <!-- 태그 입력창 -->
                                 <div class="FlgInput-root-need jk-feelog-div026">
                                     <input
@@ -493,67 +485,16 @@
     </div>
 </form>
 </body>
-<script src="/js/main/post-edit.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+<script src="/js/main/post-edit-jq.js"></script>
+<script src="/js/main/post-edit.js"></script>
 <script th:inline="javascript">
+    const post = /*[[${post}]]*/ {};
     const postContent = /*[[${post.postContent}]]*/ '';
-
-    $(document).ready(function () {
-        $(".summernote").summernote({
-            height: 650,
-            fontNames: [
-                "Arial", "Noto Sans KR", "Jua", "Dongle", "Do Hyeon",
-                "Gowun Dodum", "Poor Story", "Hi Melody", "Gamja Flower", "Gaegu"
-            ],
-            fontNamesIgnoreCheck: [
-                "Noto Sans KR", "Jua", "Dongle", "Do Hyeon", "Gowun Dodum",
-                "Poor Story", "Hi Melody", "Gamja Flower", "Gaegu"
-            ],
-            disableResizeEditor: true,
-            callbacks: {
-                onImageUpload: function (files) {
-                    for (let i = 0; i < files.length; i++) {
-                        const formData = new FormData();
-                        formData.append("file", files[i]);
-
-                        $.ajax({
-                            url: "/file/upload",
-                            method: "POST",
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            success: function (res) {
-                                const fileDTO = res.thumbnail;
-                                const fileId = fileDTO.id;
-
-                                // 이미지 삽입
-                                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
-                                $(".summernote").summernote("insertImage", imageUrl);
-
-                                // fileId를 hidden input으로 form에 추가
-                                const input = document.createElement("input");
-                                input.type = "hidden";
-                                input.name = "fileIds";
-                                input.value = fileId;
-
-                                const form = $(".summernote").closest("form")[0];
-                                if (form) form.appendChild(input);
-                                console.log("현재 추가 대상 form:", document.querySelector("form"));
-                            },
-                            error: function () {
-                                alert("이미지 업로드 실패");
-                            }
-                        });
-                    }
-                }
-            }
-        });
-        // 기존 다이어리 내용 삽입
-        $(".summernote").summernote("code", postContent);
-    });
 </script>
 
 </html>

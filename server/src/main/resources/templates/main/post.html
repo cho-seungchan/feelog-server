@@ -175,9 +175,11 @@
                 </div>
                 <div
                         class="keep-editor-selection-zone FlgBox-root-need jk-feelog-div009"
+                        id="ctrlZ"
                 >
                         <textarea class="summernote FlgStack-root-need jk-feelog-div010"
                                   name="postContent"
+                                  id="ctrlZ1"
                                   th:text="${post.postContent}"
                                   style="display: none !important;"></textarea>
                     <hr class="jk-feelog-hr01" />
@@ -502,14 +504,14 @@
 
                         // Step 1. 서버에 파일 업로드
                         $.ajax({
-                            url: "/file/upload",
+                            url: "/files/upload",
                             method: "POST",
                             data: formData,
                             processData: false,
                             contentType: false,
                             success: function (res) {
                                 const fileDTO = res.thumbnail;
-                                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                                const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
 
                                 // Step 2. 에디터에 이미지 삽입
                                 $(".summernote").summernote("insertImage", imageUrl);
@@ -561,5 +563,6 @@
         $(".summernote").summernote("code", postContent);
     });
 </script>
+
 
 </html>

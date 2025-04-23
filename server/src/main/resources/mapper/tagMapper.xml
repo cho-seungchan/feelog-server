@@ -7,8 +7,8 @@
             parameterType="com.app.feelog.domain.vo.TagVO"
             useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO tbl_tag (contents, tag_status)
-        VALUES (#{contents}, #{tagStatus})
+        INSERT INTO tbl_tag (contents)
+        VALUES (#{contents})
     </insert>
 
     <!-- 다이어리-태그 연결 저장 -->
@@ -24,10 +24,49 @@
         WHERE contents = #{contents} AND tag_status = '정상'
     </select>
 
-    <update id="deactivateTag">
+    <update id="deleteTagById">
         UPDATE tbl_tag
-        SET tag_status = 'INACTIVE'
+        SET tag_status = 'DELETE'
         WHERE id = #{tagId}
+    </update>
+
+    <update id="softDeleteTagByContentAndPostId">
+        UPDATE tbl_tag
+        SET tag_status = 'DELETE'
+        WHERE id IN (
+            SELECT id FROM (
+                               SELECT t.id
+                               FROM tbl_tag t
+                                        JOIN tbl_channel_post_tag cp ON cp.id = t.id
+                               WHERE cp.channel_post_id = #{channelPostId}
+                                 AND t.contents = #{content}
+                                 AND t.tag_status = 'ACTIVE'
+                           ) AS temp
+        )
+    </update>
+
+
+    <select id="findTagIdByContentAndChannelPostId" resultType="long">
+        SELECT t.id
+        FROM tbl_tag t
+                 JOIN tbl_channel_post_tag cppt ON t.id = cppt.id
+        WHERE t.contents = #{content}
+          AND cppt.channel_post_id = #{channelPostId}
+          AND t.tag_status = 'ACTIVE'
+    </select>
+
+    <select id="findTagIdByContent" resultType="Long">
+        SELECT id FROM tbl_tag
+        WHERE contents = #{content}
+          AND tag_status = 'ACTIVE'
+        ORDER BY id ASC
+        LIMIT 1
+    </select>
+
+    <update id="softDeleteById">
+        UPDATE tbl_tag
+        SET tag_status = 'DELETED'
+        WHERE id = #{id}
     </update>
 
 </mapper>

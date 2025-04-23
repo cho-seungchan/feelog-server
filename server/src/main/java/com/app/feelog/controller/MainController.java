@@ -61,33 +61,6 @@ public class MainController {
         return "main/mind-log";
     }
 
-//    @PostMapping("/mind-log")
-//    public String writeDiary(
-//            DiaryDTO diaryDTO,
-//            @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
-//            @RequestParam(value = "tags", required = false) List<String> tags) {
-//
-//        // 테스트용 (나중에 세션에서 memberId, feelId 받아오기)
-//        diaryDTO.setMemberId(1L);
-//        diaryDTO.setFeelId(1L);
-//        diaryDTO.setFileIds(fileIds);
-//        diaryDTO.setTags(tags);
-//
-//        // 1. 다이어리 저장
-//        Long diaryId = diaryService.writeDiary(diaryDTO);
-//
-//        // 2. 챌린지 연결이 있을 경우 연결 저장
-//        if (diaryDTO.getChallengeId() != null) {
-//            ChallengeDiaryDTO challengeDiaryDTO = new ChallengeDiaryDTO();
-//            challengeDiaryDTO.setId(diaryId);
-//            challengeDiaryDTO.setChallengeId(diaryDTO.getChallengeId());
-//
-//            challengeDiaryService.addChallengeDiary(challengeDiaryDTO);
-//        }
-//
-//        return "redirect:/";
-//    }
-
     @PostMapping("/mind-log")
     public String writeDiary(
             DiaryDTO diaryDTO,
@@ -95,13 +68,13 @@ public class MainController {
             @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
             @RequestParam(value = "tags", required = false) List<String> tags) {
 
-        diaryDTO.setMemberId(1L); // 테스트용
+        diaryDTO.setMemberId(1L);
         diaryDTO.setFeelId(1L);
         diaryDTO.setTags(tags);
-        diaryDTO.setFileIds(fileIds); // ✅ 무조건 이 줄 추가해야함!
+        diaryDTO.setFileIds(fileIds);
 
         if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
-            FileVO fileVO = filesService.upload(thumbnailFile);
+            FileVO fileVO = fileService.upload(thumbnailFile);
             diaryDTO.setDiaryFilePath(fileVO.getFilePath());
             diaryDTO.setDiaryFileName(fileVO.getFileName());
             diaryDTO.setDiaryFileSize(fileVO.getFileSize());
@@ -138,6 +111,7 @@ public class MainController {
     public Map<String, Object> saveDiaryImage(@RequestBody FileDTO fileDTO) {
         FileVO fileVO = fileDTO.toVO();
         fileDAO.save(fileVO); // 여기서만 file insert
+
 
         Map<String, Object> result = new HashMap<>();
         result.put("fileId", fileVO.getId());
@@ -224,11 +198,21 @@ public class MainController {
     public String updatePost(@PathVariable("id") Long id,
                              ChannelPostDTO dto,
                              @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
-                             @RequestParam(value = "tags", required = false) List<String> tags) {
+                             @RequestParam(value = "tags", required = false) List<String> tags,
+                             @RequestParam(value = "removedFileNames", required = false) List<String> removedFileNames,
+                             @RequestParam(value = "removedTagContents", required = false) List<String> removedTagContents)
+    {
         dto.setId(id);
         dto.setMemberId(1L);
         dto.setFileIds(fileIds);
         dto.setTags(tags);
+        dto.setRemovedFileNames(removedFileNames);
+        dto.setRemovedTagContents(removedTagContents);
+
+        System.out.println("수정 시 받은 postStatus: " + dto.getPostStatus());
+        System.out.println("삭제된 이미지 파일명 목록: " + removedFileNames);
+        System.out.println("삭제된 태그들: " + removedTagContents);
+
         channelPostService.updateChannelPost(dto);
         return "redirect:/";
     }

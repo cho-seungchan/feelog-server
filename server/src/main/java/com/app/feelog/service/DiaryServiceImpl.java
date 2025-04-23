@@ -40,7 +40,7 @@ public class DiaryServiceImpl implements DiaryService {
         diaryDAO.save(diaryVO);
         Long diaryId = diaryVO.getId();
 
-        // ✅ 첨부파일 처리 (tbl_diary_file에 file_id로 연결)
+        // 첨부파일 처리 (tbl_diary_file에 file_id로 연결)
         if (diaryDTO.getFileIds() != null) {
             for (Long fileId : diaryDTO.getFileIds()) {
                 DiaryFileDTO dto = new DiaryFileDTO();
@@ -50,7 +50,7 @@ public class DiaryServiceImpl implements DiaryService {
             }
         }
 
-        // ✅ 태그 처리
+        // 태그 처리
         if (diaryDTO.getTags() != null) {
             for (String content : diaryDTO.getTags()) {
                 TagDTO tagDTO = new TagDTO();

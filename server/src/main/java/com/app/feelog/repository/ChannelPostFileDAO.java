@@ -25,4 +25,8 @@ public class ChannelPostFileDAO {
         channelPostFileMapper.deleteByPostId(postId);
     }
 
+    public List<Long> findFileIdsByPostId(Long postId) {
+        return channelPostFileMapper.findFileIdsByPostId(postId);
+    }
+
 }

@@ -26,7 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
         editorZone.appendChild(clone);
 
         const noteContent = $(".summernote").summernote("code");
+
         clone.querySelector("#preview-section").innerHTML = noteContent;
+        const imgtag1 = document.querySelector("#preview-section>p>img");
+        console.log(imgtag1)
 
         const titleInput = document.querySelector("#title-input");
         if (titleInput) {
@@ -160,14 +163,14 @@ function initFileUpload(container) {
         const formData = new FormData();
         formData.append("file", file);
 
-        fetch("/file/upload", {
+        fetch("/files/upload", {
             method: "POST",
             body: formData,
         })
             .then((res) => res.json())
             .then((data) => {
                 const fileDTO = data.thumbnail;
-                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
 
                 preview.innerHTML = `
                     <div class="preview-wrapper" style="position: relative; display: inline-block;">
@@ -290,6 +293,29 @@ function initTagInput(container) {
                 .querySelector(".FlgChip-label-need").textContent;
             tags.delete(text);
             renderTags();
+        }
+    });
+
+    const textarea = document.getElementById("ctrlZ");
+    textarea.addEventListener("keydown", (e) => {
+        if (e.key === "z" && e.ctrlKey) {
+            // 또는 event.keyCode === 90 && event.ctrlKey
+            e.preventDefault();
+            console.log("되돌리기");
+        }
+    });
+    const textarea1 = document.getElementById("ctrlZ1");
+    textarea1.addEventListener("keydown", (e) => {
+        if (e.key === "z" && e.ctrlKey) {
+            // 또는 event.keyCode === 90 && event.ctrlKey
+            e.preventDefault();
+            console.log("되돌리기");
+        }
+    });
+    document.querySelector('.note-editable').addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'z') {
+            e.preventDefault();
+            console.log("되돌리기");
         }
     });
 }

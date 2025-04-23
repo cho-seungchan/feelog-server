@@ -17,15 +17,26 @@
         VALUES (#{id}, #{diaryId})
     </insert>
 
-    <delete id="deleteByDiaryId" parameterType="long">
-        DELETE FROM tbl_diary_tag WHERE diary_id = #{diaryId}
-    </delete>
+    <update id="deleteByDiaryId" parameterType="long">
+        update tbl_tag t
+        join tbl_diary_tag dt on t.id = dt.id
+        set t.tag_status = 'DELETED' WHERE diary_id = #{diaryId}
+    </update>
+
+    <update id="reactivateTagStatusByPostTag">
+        UPDATE tbl_tag t
+            JOIN tbl_channel_post_tag cpt ON t.id = cpt.id
+        SET t.tag_status = 'ACTIVE'
+        WHERE t.id = #{tagId}
+          AND cpt.channel_post_id = #{channelPostId}
+    </update>
 
     <select id="selectTagContentsByDiaryId" resultType="string">
         select t.contents
         from tbl_diary_tag dt
                  join tbl_tag t on dt.id = t.id
         where dt.diary_id = #{diaryId}
+        and t.tag_status = 'ACTIVE'
     </select>
 
 

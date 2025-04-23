@@ -1,17 +1,17 @@
 package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.*;
+import com.app.feelog.domain.enumeration.TagStatus;
 import com.app.feelog.domain.vo.ChannelPostFileVO;
 import com.app.feelog.domain.vo.ChannelPostVO;
-import com.app.feelog.repository.ChannelPostDAO;
-import com.app.feelog.repository.ChannelPostFileDAO;
-import com.app.feelog.repository.ChannelPostTagDAO;
+import com.app.feelog.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +27,10 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     private final TagServiceImpl tagServiceImpl;
     private final ChannelPostTagDAO channelPostTagDAO;
     private final ChannelPostFileDAO channelPostFileDAO;
+    private final TagDAO tagDAO;
+    private final TagService tagService;
+    private final ChannelPostTagService channelPostTagService;
+    private final FileDAO fileDAO;
 
     @Override
     public void writeChannelPost(ChannelPostDTO dto) {
@@ -89,13 +93,10 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         return dto;
     }
 
-
-
     @Override
     public void updateChannelPost(ChannelPostDTO dto) {
         // 1. post 수정
         PostJkDTO postDto = toPostJkDTO(dto);
-        postDto.setId(dto.getId());
         postJkService.updatePost(postDto);
 
         // 2. channel_post 수정
@@ -112,8 +113,24 @@ public class ChannelPostServiceImpl implements ChannelPostService {
             }
         }
 
-        // 4. 기존 태그 제거 후 새로 추가
-        channelPostTagServiceImpl.removeAllTagsByChannelPostId(dto.getId());
+        // 3-1. 삭제된 이미지 soft delete
+        if (dto.getRemovedFileNames() != null) {
+            for (String fileName : dto.getRemovedFileNames()) {
+                fileDAO.softDeleteByFileName(fileName);
+            }
+        }
+
+        // 4. 기존 태그 제거 (soft delete → content 기준으로 tag_id 추출 후 tbl_tag 업데이트)
+        if (dto.getRemovedTagContents() != null) {
+            for (String content : dto.getRemovedTagContents()) {
+                Long tagId = channelPostTagDAO.findTagIdByContentAndPostId(content, dto.getId());
+                if (tagId != null) {
+                    tagDAO.softDeleteById(tagId);
+                }
+            }
+        }
+
+        // 5. 새 태그 추가
         if (dto.getTags() != null) {
             for (String content : dto.getTags()) {
                 TagDTO tagDTO = new TagDTO();
@@ -124,6 +141,54 @@ public class ChannelPostServiceImpl implements ChannelPostService {
                 tagMapDTO.setId(tagDTO.getId());
                 tagMapDTO.setChannelPostId(dto.getId());
                 channelPostTagServiceImpl.save(tagMapDTO);
+            }
+        }
+    }
+
+
+
+//    @Override
+//    public void updateChannelPost(ChannelPostDTO dto) {
+//        // 1. post 수정
+//        PostJkDTO postDto = toPostJkDTO(dto);
+//        postDto.setId(dto.getId());
+//        postJkService.updatePost(postDto);
+//
+//        // 2. channel_post 수정
+//        channelPostDAO.updateChannelPost(dto.toVO());
+//
+//        // 3. 기존 첨부파일 제거 후 새로 추가
+//        channelPostFileServiceImpl.removeAllFilesByPostId(dto.getId());
+//        if (dto.getFileIds() != null) {
+//            for (Long fileId : dto.getFileIds()) {
+//                ChannelPostFileDTO fileDTO = new ChannelPostFileDTO();
+//                fileDTO.setPostId(dto.getId());
+//                fileDTO.setId(fileId);
+//                channelPostFileServiceImpl.addChannelPostFile(fileDTO);
+//            }
+//        }
+//
+//        // 4. 기존 태그 제거 후 새로 추가
+//        channelPostTagServiceImpl.removeAllTagsByChannelPostId(dto.getId());
+//        if (dto.getTags() != null) {
+//            for (String content : dto.getTags()) {
+//                TagDTO tagDTO = new TagDTO();
+//                tagDTO.setContents(content);
+//                tagServiceImpl.saveTag(tagDTO); // 중복 방지 포함
+//
+//                ChannelPostTagDTO tagMapDTO = new ChannelPostTagDTO();
+//                tagMapDTO.setId(tagDTO.getId());
+//                tagMapDTO.setChannelPostId(dto.getId());
+//                channelPostTagServiceImpl.save(tagMapDTO);
+//            }
+//        }
+//    }
+
+    @Override
+    public void deleteTags(List<Long> tagIds) {
+        if (tagIds != null) {
+            for (Long tagId : tagIds) {
+                tagDAO.deleteTagById(tagId);
             }
         }
     }

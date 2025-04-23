@@ -4,7 +4,7 @@
 
     <insert id="insert" parameterType="ChannelPostTagVO">
         INSERT INTO tbl_channel_post_tag (
-            id,               -- tag_id
+            id,
             channel_post_id
         )
         VALUES (
@@ -18,11 +18,42 @@
         WHERE channel_post_id = #{channelPostId}
     </delete>
 
-    <select id="findTagContentsByChannelPostId" parameterType="long" resultType="string">
+    <select id="findTagContentsByChannelPostId" resultType="string">
         SELECT t.contents
-        FROM tbl_channel_post_tag cpt
-                 JOIN tbl_tag t ON cpt.id = t.id
-        WHERE cpt.channel_post_id = #{channelPostId}
+        FROM tbl_channel_post_tag cppt
+                 JOIN tbl_tag t ON cppt.id = t.id
+        WHERE cppt.channel_post_id = #{channelPostId}
+          AND t.tag_status = 'ACTIVE'
     </select>
+
+    <select id="findTagIdByContentAndPostId" resultType="long">
+        select t.id
+        from tbl_tag t
+        join tbl_channel_post_tag cpt on t.id = cpt.id
+        where t.contents = #{content}
+        and cpt.channel_post_id = #{channelPostId}
+        and t.tag_status = 'ACTIVE'
+        limit 1
+    </select>
+
+
+
+    <!-- 상태 복구용 업데이트 -->
+    <update id="reactivateTagStatusByPostTag">
+        UPDATE tbl_tag t
+            JOIN tbl_channel_post_tag cpt ON t.id = cpt.id
+        SET t.tag_status = 'ACTIVE'
+        WHERE t.id = #{tagId}
+          AND cpt.channel_post_id = #{channelPostId}
+    </update>
+
+    <select id="findByTagIdAndPostId" resultType="ChannelPostTagVO">
+        SELECT *
+        FROM tbl_channel_post_tag
+        WHERE id = #{tagId}
+          AND channel_post_id = #{channelPostId}
+    </select>
+
+
 
 </mapper>
