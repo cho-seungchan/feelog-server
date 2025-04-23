@@ -26,6 +26,7 @@ alter table tbl_diary add diary_name_open      varchar(50) default '비공개(�
 
 select * from view_diary_detail;
 
+
 CREATE OR REPLACE VIEW view_diary_detail AS
 SELECT
     d.id                     AS diary_id,

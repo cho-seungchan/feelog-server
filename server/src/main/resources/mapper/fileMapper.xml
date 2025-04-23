@@ -9,8 +9,20 @@
 
     <update id="deactivateFile">
         UPDATE tbl_file
-        SET file_status = 'INACTIVE'
+        SET file_status = 'DELETED'
         WHERE id = #{fileId}
+    </update>
+
+    <update id="softDeleteFile">
+        UPDATE tbl_file
+        SET file_status = 'DELETED'
+        WHERE id = #{fileId}
+    </update>
+
+    <update id="softDeleteByFileName">
+        UPDATE tbl_file
+        SET file_status = 'DELETED'
+        WHERE file_name = #{fileName}
     </update>
 
 </mapper>

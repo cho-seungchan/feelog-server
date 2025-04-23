@@ -8,3 +8,4 @@ create table tbl_post (
        updated_date 	    datetime default current_timestamp
 );
 
+select * from tbl_post;

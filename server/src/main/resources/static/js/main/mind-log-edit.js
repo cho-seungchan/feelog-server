@@ -302,6 +302,21 @@ function initFileUpload(container) {
 
     if (!fileButton || !fileInput) return;
 
+    // 기존 렌더된 버튼도 삭제 이벤트 연결
+    const existingDeleteBtn = preview.querySelector(".delete-thumbnail-btn");
+    if (existingDeleteBtn) {
+        existingDeleteBtn.addEventListener("click", () => {
+            preview.innerHTML = "";
+            fileInput.value = "";
+
+            // 기존 hidden input도 제거
+            ["postFilePath", "postFileName", "postFileSize"].forEach(key => {
+                const input = form.querySelector(`input[name='${key}']`);
+                if (input) input.remove();
+            });
+        });
+    }
+
     fileButton.addEventListener("click", () => fileInput.click());
 
     fileInput.addEventListener("change", (e) => {
@@ -311,14 +326,14 @@ function initFileUpload(container) {
         const formData = new FormData();
         formData.append("file", file);
 
-        fetch("/file/upload", {
+        fetch("/files/upload", {
             method: "POST",
             body: formData,
         })
             .then(res => res.json())
             .then(data => {
                 const fileDTO = data.thumbnail;
-                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
 
                 // 대표 이미지 미리보기
                 if (preview) {

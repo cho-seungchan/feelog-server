@@ -156,79 +156,115 @@ function initSelectDropdown(container) {
 function initFileUpload(container) {
     const fileButton = container.querySelector(".jk-feelog-btn007");
     const fileInput = container.querySelector("#hidden-file-input");
-    const preview = container.querySelector(".file-preview");
     const form = document.querySelector("form");
 
-    if (!fileButton || !fileInput) return;
+    // preview 위치를 .jk-feelog-div023 아래로 변경
+    const preview = container.querySelector(".file-preview") || (() => {
+        const div = document.createElement("div");
+        div.className = "file-preview";
+        const target = container.querySelector(".jk-feelog-div023")?.querySelector(".jk-feelog-btn007")?.parentElement;
+        target?.insertAdjacentElement("afterend", div);
+        return div;
+    })();
 
-    fileButton.addEventListener("click", () => fileInput.click());
+    if (!fileButton || !fileInput) {
+        console.warn("파일 업로드 버튼 또는 파일 입력이 존재하지 않음");
+        return;
+    }
 
-    fileInput.addEventListener("change", (e) => {
+    // 기존 이벤트 제거 후 새로 바인딩 (중복 방지)
+    const clonedInput = fileInput.cloneNode(true);
+    fileInput.replaceWith(clonedInput);
+
+    fileButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        clonedInput.value = ""; // 초기화
+        clonedInput.click();
+    });
+
+    clonedInput.addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         const formData = new FormData();
         formData.append("file", file);
 
-        fetch("/file/upload", {
+        fetch("/files/upload", {
             method: "POST",
             body: formData,
         })
             .then((res) => res.json())
             .then((data) => {
-                const fileDTO = data.thumbnail;
-                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                const filePath = data.thumbnail?.filePath || data.filePath;
+                const fileName = data.thumbnail?.fileName || data.fileName;
+                const fileSize = data.thumbnail?.fileSize || data.fileSize;
+
+                if (!filePath || !fileName) {
+                    alert("대표 이미지 정보가 누락되어 있습니다.");
+                    return;
+                }
+
+                const imageUrl = "/files/display?path=" + filePath + "/" + fileName;
 
                 preview.innerHTML = `
-                    <div class="preview-wrapper" style="position: relative; display: inline-block;">
-                        <img src="${imageUrl}" style="max-width: 100px; border-radius: 8px;" />
-                        <button type="button" class="delete-thumbnail-btn" style="
-                            position: absolute;
-                            top: 4px;
-                            right: 4px;
-                            background: rgba(0,0,0,0.5);
-                            border: none;
-                            color: white;
-                            border-radius: 50%;
-                            width: 24px;
-                            height: 24px;
-                            font-weight: bold;
-                            cursor: pointer;
-                        ">×</button>
-                    </div>`;
+                <div class="preview-wrapper" style="position: relative; display: inline-block;">
+                    <img src="${imageUrl}" style="max-width: 100px; border-radius: 8px;" />
+                    <button type="button" class="delete-thumbnail-btn" style="
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        background: rgba(0,0,0,0.5);
+                        border: none;
+                        color: white;
+                        border-radius: 50%;
+                        width: 24px;
+                        height: 24px;
+                        font-weight: bold;
+                        cursor: pointer;
+                    ">×</button>
+                </div>`;
 
                 ["postFilePath", "postFileName", "postFileSize"].forEach((key) => {
-                    const oldInput = form.querySelector(`input[name='${key}']`);
-                    if (oldInput) oldInput.remove();
+                    form.querySelector(`input[name='${key}']`)?.remove();
                 });
 
-                const pathInput = document.createElement("input");
-                pathInput.type = "hidden";
-                pathInput.name = "postFilePath";
-                pathInput.value = fileDTO.filePath;
-                form.appendChild(pathInput);
+                const inputs = [
+                    { name: "postFilePath", value: filePath },
+                    { name: "postFileName", value: fileName },
+                    { name: "postFileSize", value: fileSize },
+                ];
 
-                const nameInput = document.createElement("input");
-                nameInput.type = "hidden";
-                nameInput.name = "postFileName";
-                nameInput.value = fileDTO.fileName;
-                form.appendChild(nameInput);
-
-                const sizeInput = document.createElement("input");
-                sizeInput.type = "hidden";
-                sizeInput.name = "postFileSize";
-                sizeInput.value = fileDTO.fileSize;
-                form.appendChild(sizeInput);
+                inputs.forEach(({ name, value }) => {
+                    const input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = name;
+                    input.value = value;
+                    form.appendChild(input);
+                });
 
                 preview.querySelector(".delete-thumbnail-btn").addEventListener("click", () => {
                     preview.innerHTML = "";
-                    fileInput.value = "";
-                    [pathInput, nameInput, sizeInput].forEach(input => input.remove());
+                    clonedInput.value = "";
+                    ["postFilePath", "postFileName", "postFileSize"].forEach((key) => {
+                        form.querySelector(`input[name='${key}']`)?.remove();
+                    });
                 });
             })
             .catch(() => alert("대표 이미지 업로드 실패"));
     });
+    // 초기 렌더된 X 버튼에도 이벤트 연결
+    const existingDelete = container.querySelector(".file-preview .delete-thumbnail-btn");
+    if (existingDelete) {
+        existingDelete.addEventListener("click", () => {
+            preview.innerHTML = "";
+            clonedInput.value = "";
+            ["postFilePath", "postFileName", "postFileSize"].forEach((key) => {
+                form.querySelector(`input[name='${key}']`)?.remove();
+            });
+        });
+    }
 }
+
 
 function initTagInput(container) {
     const input = container.querySelector(".FlgInput-input-need");

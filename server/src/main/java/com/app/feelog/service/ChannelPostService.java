@@ -18,6 +18,8 @@ public interface ChannelPostService {
 
     void updateChannelPost(ChannelPostDTO dto);
 
+    void deleteTags(List<Long> tagIds);
+
     default ChannelPostDTO toDTO(ChannelPostVO vo) {
         ChannelPostDTO dto = new ChannelPostDTO();
         dto.setId(vo.getId());
@@ -56,4 +58,5 @@ public interface ChannelPostService {
         }
         return dtoList;
     }
+
 }

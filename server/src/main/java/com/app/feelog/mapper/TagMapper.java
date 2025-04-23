@@ -3,6 +3,7 @@ package com.app.feelog.mapper;
 import com.app.feelog.domain.vo.DiaryTagVO;
 import com.app.feelog.domain.vo.TagVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,5 +19,17 @@ public interface TagMapper {
     List<TagVO> findTagsByContents(String contents);
 
     void deactivateTag(Long tagId);
+
+    void deleteTagById(Long tagId);
+
+    void softDeleteTagByContentAndPostId(@Param("channelPostId") Long channelPostId,
+                                         @Param("content") String content);
+
+    Long findTagIdByContentAndChannelPostId(@Param("content") String content,
+                                            @Param("channelPostId") Long channelPostId);
+
+    Long findTagIdByContent(@Param("content") String content);
+
+    void softDeleteById(@Param("id") Long id);
 
 }

@@ -672,7 +672,7 @@
                             formData.append("file", files[i]);
 
                             $.ajax({
-                                url: "/file/upload",
+                                url: "/files/upload",
                                 method: "POST",
                                 data: formData,
                                 processData: false,
@@ -681,7 +681,7 @@
                                     const fileDTO = res.thumbnail;
 
                                     // Summernote 이미지 삽입
-                                    const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                                    const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
                                     $(".summernote").summernote("insertImage", imageUrl);
 
                                     // fileDAO.save()
