@@ -31,7 +31,7 @@ writeChallengeButton.addEventListener("click", (e) =>{
                                         <div class="TextField_field_01">
                                             <input type="text" name="courseName" placeholder="제목을 입력해 주세요" maxlength="40" class="Input_input__M2Q3Y Input_lg__MDE4M challenge-title" aria-invalid="false">
                                         </div>
-                                        <em class="HelperMessage_helperMessage_helper01">0/40</em>
+                                        <em class="HelperMessage_helperMessage_helper01 title-count">0/40</em>
                                     </div>
                                 </div>
                             </div>
@@ -102,6 +102,8 @@ writeChallengeButton.addEventListener("click", (e) =>{
 
 htmlWrap.addEventListener("keyup", (e)=>{
     if(e.target.classList.contains("challenge-title")){
-        
+        const titleCount = document.querySelector(".title-count");
+
+        titleCount.innerText = `${e.target.value.length}/40`;
     }
 })
