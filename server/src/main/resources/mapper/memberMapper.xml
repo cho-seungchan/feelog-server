@@ -62,4 +62,44 @@
                    #{memberNickname}
                )
     </insert>
+
+    <select id="selectMemberAll" resultType="memberVO">
+        select id, member_email, member_nickname, member_status, created_date, updated_date
+        from tbl_member
+        where member_type = '일반 회원'
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectMemberCount" resultType="_int">
+        select count(*) from tbl_member where member_type = '일반 회원'
+    </select>
+
+    <update id="deleteMember">
+        update tbl_member set member_status = '탈퇴' where id = #{id}
+    </update>
+    <update id="bannedMember">
+        update tbl_member set member_status = '중지' where id = #{id}
+    </update>
+    <update id="activeMember">
+        update tbl_member set member_status = '정상' where id = #{id}
+    </update>
+
+    <select id="selectSearchAll" resultType="memberVO">
+        select id, member_email, member_nickname, member_status, created_date, updated_date
+        from tbl_member
+        where member_type = '일반 회원'
+        and(member_email like concat('%', #{keyword},'%')
+            or member_nickname like concat('%',#{keyword},'%'))
+        order by id desc
+        limit #{pagination.offset}, #{pagination.rowCount}
+    </select>
+
+    <select id="selectSearchAllCount" resultType="_int">
+        select count(*)
+        from tbl_member
+        where member_type = '일반 회원'
+          and(member_email like concat('%', #{keyword},'%')
+            or member_nickname like concat('%',#{keyword},'%'))
+    </select>
 </mapper>

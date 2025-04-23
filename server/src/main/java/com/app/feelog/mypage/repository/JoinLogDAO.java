@@ -46,4 +46,5 @@ public class JoinLogDAO {
                 joinLogMapper.getMemberByEmailAndPassword(memberVO)
                         .orElse(null));
     }
+
 }

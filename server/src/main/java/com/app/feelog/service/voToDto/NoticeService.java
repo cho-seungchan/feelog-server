@@ -2,6 +2,7 @@ package com.app.feelog.service.voToDto;
 
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.domain.dto.NoticeDTO;
+import com.app.feelog.domain.dto.NoticeListDTO;
 import com.app.feelog.domain.vo.MemberVO;
 import com.app.feelog.domain.vo.NoticeVO;
 import com.app.feelog.util.pagination.AdminPagination;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public interface NoticeService {
 //    공지 목록 조회
-    public List<NoticeDTO> getNoticeList(NoticePagination noticePagination);
+    public List<NoticeListDTO> getNoticeList(NoticePagination noticePagination);
 
     public default NoticeDTO toNoticeDTO(NoticeVO noticeVO) {
         NoticeDTO noticeDTO = new NoticeDTO();
@@ -23,5 +24,13 @@ public interface NoticeService {
             noticeDTO.setCreatedDate(noticeVO.getCreatedDate());
         }
         return noticeDTO;
+    }
+
+    public default MemberDTO toMemberDTO(MemberVO memberVO) {
+        MemberDTO memberDTO = new MemberDTO();
+        if(memberVO != null) {
+            memberDTO.setMemberNickname(memberVO.getMemberNickname());
+        }
+        return memberDTO;
     }
 }

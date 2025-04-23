@@ -95,7 +95,7 @@
     bottom: 0;
 }
 
-.noticeRegistBtn, .noticeUpdateBtn, .noticeDeleteBtn, .noticeConfirmBtn {
+.registBtn, .updateBtn, .deleteBtn, .confirmBtn {
     width: 83px;
     white-space: nowrap;
     overflow-x: auto;
@@ -110,7 +110,7 @@
     left: 93.5%;
 }
 
-.noticeUpdateBtn, .noticeDeleteBtn, .noticeConfirmBtn {
+.updateBtn, .deleteBtn, .confirmBtn {
     margin: 0 10px;
     position: static;
 }

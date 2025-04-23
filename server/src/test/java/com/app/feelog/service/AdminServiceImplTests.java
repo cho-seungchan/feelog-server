@@ -2,10 +2,13 @@ package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.AdminListDTO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.domain.dto.MemberListDTO;
 import com.app.feelog.domain.dto.NoticeListDTO;
 import com.app.feelog.mapper.AdminMapper;
 import com.app.feelog.repository.AdminDAO;
+import com.app.feelog.repository.MemberDAO;
 import com.app.feelog.util.pagination.AdminPagination;
+import com.app.feelog.util.pagination.MemberPagination;
 import com.app.feelog.util.pagination.NoticePagination;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -19,6 +22,10 @@ public class AdminServiceImplTests {
     private AdminServiceImpl adminServiceImpl;
     @Autowired
     private NoticeServiceImpl noticeServiceImpl;
+    @Autowired
+    private MemberServiceImpl memberServiceImpl;
+    @Autowired
+    private MemberDAO memberDAO;
 
     @Test
     public void saveTests(){
@@ -55,5 +62,16 @@ public class AdminServiceImplTests {
         noticeListDTO = noticeServiceImpl.getNoticeLists(noticePagination);
 
         noticeListDTO.getNoticeList().forEach(System.out::println);
+    }
+
+    @Test
+    public void getMemberTest() {
+        MemberListDTO memberList = new MemberListDTO();
+        MemberPagination memberPagination = new MemberPagination();
+
+        memberList = memberServiceImpl.getMemberLists(memberPagination);
+
+        memberList.getMemberList().forEach(System.out::println);
+        log.info(memberList.getMemberPagination().toString());
     }
 }

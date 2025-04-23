@@ -16,8 +16,8 @@ let detail = `
                     <textarea class="noticeModal-ContentInput">예시내용</textarea>
                 </div>
                 <div class="notice-button-container">
-                    <button class="noticeUpdateBtn">공지 수정</button>
-                    <button class="noticeDeleteBtn">공지 삭제</button>
+                    <button class="updateBtn faqUpdateBtn">공지 수정</button>
+                    <button class="deleteBtn faqDeleteBtn">공지 삭제</button>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@ let write = `
                     <textarea class="noticeModal-ContentInput"></textarea>
                 </div>
                 <div class="notice-button-container">
-                    <button class="noticeConfirmBtn">확  인</button>
+                    <button class="confirmBtn faqConfirmBtn">확  인</button>
                 </div>             
             </div>
         </div>

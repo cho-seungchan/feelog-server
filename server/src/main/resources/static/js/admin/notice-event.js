@@ -15,11 +15,37 @@ htmlWrap.addEventListener("click", async (e) => {
 
     if (e.target.classList.contains("noticeRegistBtn")) {
         modal.style.display = "flex";
-        modal.innerHTML = write;
+        modal.innerHTML = `
+        <div class="notice-modal">
+            <div class="modal-header">
+                <span> 공지 등록 </span>
+                <span class="closeNoticeModal">×</span>
+            </div>
+            <div class="notice-container">
+                <div class="notice-title-container border-box">
+                    <div class="noticeModal-TitleDiv">제목</div>
+                    <textarea class="noticeModal-TitleInput noticeTitle"></textarea>
+                </div>
+                <div class="notice-content-container border-box">
+                    <div class="noticeModal-ContentDiv">내용</div>
+                    <textarea class="noticeModal-ContentInput noticeContent"></textarea>
+                    <div class="ImageList-sc-9v1mt2-0 hGJMVS">
+                    </div>
+                </div>
+                <div class="notice-button-container">
+                    <label class="InputImageReview__Wrapper-sc-1oapt4s-0 ipbuZD">
+                        <input type="file" accept=".jpg, .jpeg, .png" class="add-img">
+                        <span> 사진 첨부하기</span>
+                    </label>
+                    <button class="confirmBtn noticeConfirmBtn noticeWrite">공지등록</button>
+                </div>             
+            </div>
+        </div>
+        `;
     }
 
-    if (e.target.closest(".userListDiv")) {
-        const parent = e.target.closest(".userListDiv")
+    if (e.target.closest(".noticeListDiv")) {
+        const parent = e.target.closest(".noticeListDiv")
         const id = parent.querySelector(".idDiv")
         const title = parent.querySelector(".titleDiv")
         const content = parent.querySelector(".contentDiv")
@@ -48,8 +74,8 @@ htmlWrap.addEventListener("click", async (e) => {
                         <input type="file" accept=".jpg, .jpeg, .png" class="add-img">
                         <span> 사진 첨부하기</span>
                     </label>
-                    <button class="noticeUpdateBtn">공지 수정</button>
-                    <button class="noticeDeleteBtn" data-index=${id.innerText}>공지 삭제</button>
+                    <button class="updateBtn noticeUpdateBtn">공지 수정</button>
+                    <button class="deleteBtn noticeDeleteBtn" data-index=${id.innerText}>공지 삭제</button>
                 </div>
             </div>
         </div>
@@ -117,13 +143,16 @@ modal.addEventListener("click", async (e) => {
             noticeContent: content.value,
             noticeFilePath:filePath,
             noticeFileName:fileName,
-            memberId: 2 //로그인 적용 후 로그인한 관리자 id로 변환
+            memberId: loginMember.id //로그인 적용 후 로그인한 관리자 id로 변환
         })
 
         alert("등록완료")
 
         document.querySelector(".admin-modal-body").innerHTML = ``;
         document.querySelector(".admin-modal-body").style.display = "none";
+
+        await noticeService.getList(noticeLayout.noticeButtonEvent, 1);
+
     }
 
     if (e.target.classList.contains("noticeUpdateBtn")) {
@@ -150,10 +179,12 @@ modal.addEventListener("click", async (e) => {
             })
         }
 
-
         alert("수정완료")
         document.querySelector(".admin-modal-body").innerHTML = ``;
         document.querySelector(".admin-modal-body").style.display = "none";
+
+        await noticeService.getList(noticeLayout.noticeButtonEvent, 1);
+
     }
     
     if(e.target.classList.contains("noticeDeleteBtn")){
@@ -164,7 +195,9 @@ modal.addEventListener("click", async (e) => {
         alert("삭제완료")
         document.querySelector(".admin-modal-body").innerHTML = ``;
         document.querySelector(".admin-modal-body").style.display = "none";
+
         await noticeService.getList(noticeLayout.noticeButtonEvent, 1);
     }
+
 });
 
