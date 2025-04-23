@@ -2,6 +2,7 @@ package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.ChannelPostDTO;
 import com.app.feelog.domain.dto.ChannelPostFileDTO;
+import com.app.feelog.domain.dto.ChannelPostSearchDTO;
 import com.app.feelog.domain.dto.PostJkDTO;
 import com.app.feelog.domain.vo.ChannelPostFileVO;
 import com.app.feelog.domain.vo.ChannelPostVO;
@@ -58,5 +59,7 @@ public interface ChannelPostService {
         }
         return dtoList;
     }
+
+    List<ChannelPostSearchDTO> getRecentChannelPosts();
 
 }
