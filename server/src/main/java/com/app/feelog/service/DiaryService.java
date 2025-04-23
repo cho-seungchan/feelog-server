@@ -1,7 +1,10 @@
 package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.DiaryDTO;
+import com.app.feelog.domain.dto.DiarySearchDTO;
 import com.app.feelog.domain.vo.DiaryVO;
+
+import java.util.List;
 
 public interface DiaryService {
     Long writeDiary(DiaryDTO diaryDTO);
@@ -9,6 +12,10 @@ public interface DiaryService {
     DiaryDTO getDiary(Long id);
 
     void updateDiary(DiaryDTO diaryDTO);
+
+    List<DiarySearchDTO> searchDiaries(String keyword);
+
+    List<DiarySearchDTO> getRecentDiaries();
 
 
     default DiaryDTO toDTO(DiaryVO vo) {

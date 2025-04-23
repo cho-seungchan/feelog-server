@@ -1,7 +1,10 @@
 package com.app.feelog.mapper;
 
+import com.app.feelog.domain.dto.ChannelPostSearchDTO;
 import com.app.feelog.domain.vo.ChannelPostVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface ChannelPostMapper {
@@ -15,6 +18,6 @@ public interface ChannelPostMapper {
     // 수정
     void updateChannelPost(ChannelPostVO channelPostVO);
 
-
+    List<ChannelPostSearchDTO> findRecentChannelPosts();
 
 }

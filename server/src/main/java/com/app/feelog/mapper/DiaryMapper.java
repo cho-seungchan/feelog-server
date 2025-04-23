@@ -1,8 +1,10 @@
 package com.app.feelog.mapper;
 
+import com.app.feelog.domain.dto.DiarySearchDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -17,5 +19,9 @@ public interface DiaryMapper {
 
     // 수정
     void update(DiaryVO diaryVO);
+
+    List<DiarySearchDTO> searchDiaries(String keyword);
+
+    List<DiarySearchDTO> getRecentDiaries();
 
 }
