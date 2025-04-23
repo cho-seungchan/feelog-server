@@ -33,6 +33,8 @@ public class ChannelPostDTO {
     private String postTitle;
     private String postContent;
     private List<ChannelPostFileDTO> fileList;
+    private List<String> removedFileNames;
+    private List<String> removedTagContents;
 
     public ChannelPostVO toVO() {
         return ChannelPostVO.builder()

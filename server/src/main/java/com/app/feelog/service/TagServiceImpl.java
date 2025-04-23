@@ -39,4 +39,19 @@ public class TagServiceImpl implements TagService {
     public void deactivateTag(Long tagId) {
         tagDAO.deactivateTag(tagId);
     }
+
+    @Override
+    public void softDeleteTagByContentAndPostId( Long channelPostId, String content) {
+        tagDAO.softDeleteTagByContentAndPostId(channelPostId, content);
+    }
+
+    @Override
+    public Long findTagIdByContentAndChannelPostId(String content, Long channelPostId) {
+        return tagDAO.findTagIdByContentAndChannelPostId(content, channelPostId);
+    }
+
+    @Override
+    public Long findTagIdByContent(String content) {
+        return tagDAO.findTagIdByContent(content);
+    }
 }

@@ -353,7 +353,7 @@
                                             "
                                     ><div class="preview-wrapper" style="position: relative; display: inline-block;">
                                         <img th:if="${diary.diaryFilePath != null}"
-                                             th:src="@{'/file/display?path=' + ${diary.diaryFilePath} + '/' + ${diary.diaryFileName}}"
+                                             th:src="@{'/files/display?path=' + ${diary.diaryFilePath} + '/' + ${diary.diaryFileName}}"
                                              alt="대표 이미지"
                                              style="max-width: 100px; border-radius: 8px;" />
                                         <button type="button" class="delete-thumbnail-btn" style="
@@ -703,7 +703,7 @@
                         formData.append("file", files[i]);
 
                         $.ajax({
-                            url: "/file/upload",
+                            url: "/files/upload",
                             method: "POST",
                             data: formData,
                             processData: false,
@@ -713,7 +713,7 @@
                                 const fileId = fileDTO.id;
 
                                 // 이미지 삽입
-                                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                                const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
                                 $(".summernote").summernote("insertImage", imageUrl);
 
                                 // fileId를 hidden input으로 form에 추가

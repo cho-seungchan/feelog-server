@@ -8,8 +8,9 @@ create table tbl_channel_post_tag (
     references tbl_tag(id)
 );
 
-select * from view_channel_post_detail;
-
+select * from view_channel_post_detail ;
+select * from tbl_file;
+select * from tbl_tag;
 CREATE VIEW view_channel_post_detail AS
 SELECT
     cp.id                          AS channel_post_id,

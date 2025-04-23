@@ -33,4 +33,24 @@ public class TagDAO {
     public void deactivateTag(Long tagId) {
         tagMapper.deactivateTag(tagId);
     }
+
+    public void deleteTagById(Long tagId) {
+        tagMapper.deleteTagById(tagId);
+    }
+
+    public void softDeleteTagByContentAndPostId( Long channelPostId, String content) {
+        tagMapper.softDeleteTagByContentAndPostId( channelPostId, content);
+    }
+
+    public Long findTagIdByContentAndChannelPostId(String content, Long channelPostId) {
+        return tagMapper.findTagIdByContentAndChannelPostId(content, channelPostId);
+    }
+
+    public Long findTagIdByContent(String content) {
+        return tagMapper.findTagIdByContent(content);
+    }
+
+    public void softDeleteById(Long id) {
+        tagMapper.softDeleteById(id);
+    }
 }

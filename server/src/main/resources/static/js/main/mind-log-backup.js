@@ -297,14 +297,14 @@ function initFileUpload(container) {
         const formData = new FormData();
         formData.append("file", file);
 
-        fetch("/file/upload", {
+        fetch("/files/upload", {
             method: "POST",
             body: formData,
         })
             .then(res => res.json())
             .then(data => {
                 const fileDTO = data.thumbnail;
-                const imageUrl = "/file/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
+                const imageUrl = "/files/display?path=" + fileDTO.filePath + "/" + fileDTO.fileName;
 
                 // 대표 이미지 미리보기
                 if (preview) {

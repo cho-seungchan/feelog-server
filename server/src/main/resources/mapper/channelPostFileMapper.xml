@@ -18,10 +18,17 @@
     </delete>
 
     <select id="selectByPostId" parameterType="long" resultType="ChannelPostFileVO">
-        SELECT *
+        SELECT f.id
+        FROM tbl_file f
+                 JOIN tbl_channel_post_file cpf ON f.id = cpf.id
+        WHERE cpf.post_id = #{postId}
+          AND f.file_status = '정상'
+    </select>
+
+    <select id="findFileIdsByPostId" resultType="long">
+        SELECT id as file_id
         FROM tbl_channel_post_file
         WHERE post_id = #{postId}
     </select>
-
 
 </mapper>

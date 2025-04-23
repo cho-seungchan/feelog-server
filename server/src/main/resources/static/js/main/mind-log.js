@@ -298,14 +298,14 @@ function initFileUpload(container) {
         formData.append("file", file);
 
         try {
-            const res = await fetch("/file/upload", {
+            const res = await fetch("/files/upload", {
                 method: "POST",
                 body: formData,
             });
             const data = await res.json();
 
             const fileDTO = data.thumbnail;
-            const imageUrl = `/file/display?path=${fileDTO.filePath}/${fileDTO.fileName}`;
+            const imageUrl = `/files/display?path=${fileDTO.filePath}/${fileDTO.fileName}`;
 
             // 썸네일 렌더링
             preview.innerHTML = `
