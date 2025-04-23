@@ -7,4 +7,3 @@ create table tbl_challenge_diary (
                                      constraint fk_challenge_diary_challenge foreign key (challenge_id)
                                          references tbl_challenge (id)
 );
-

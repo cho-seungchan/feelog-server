@@ -9,7 +9,7 @@ memberListButtons.forEach((memberListButton)=>{
 
 htmlWrap.addEventListener("click", async (e) => {
     if(e.target.classList.contains("member-buttons")){
-        memberService.getList(memberLayout.showList,e.target.getAttribute("data-index"))
+        await memberService.getList(memberLayout.showList,e.target.getAttribute("data-index"))
     }
 
     if(e.target.classList.contains("banned-member")){
