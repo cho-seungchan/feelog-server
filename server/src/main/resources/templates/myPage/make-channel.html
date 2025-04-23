@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/myPage/making-channel.css" />
+        <link rel="stylesheet" href="/css/myPage/make-channel.css" />
         <link rel="stylesheet" href="/css/main/header.css">
         <link rel="stylesheet" href="/css/main/footer.css">
         <link rel="stylesheet" href="/css/main/search-modal.css">
@@ -26,7 +26,7 @@
                     </nav>
                     <main class="FeelogStack-root flog-main-4">
                         <div class="FeelogStack-root flog-div-76">
-                            <form class="FeelogStack-root flog-form-1" th:action="@{/myPage/making-channel}" th:object="${channel}" method="post" enctype="multipart/form-data">
+                            <form class="FeelogStack-root flog-form-1" th:action="@{/myPage/make-channel}" th:object="${channel}" method="post" enctype="multipart/form-data">
                                 <div
                                     class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49"
                                 >
@@ -38,9 +38,15 @@
                                     >
                                     <div class="FeelogStack-root flog-div-77">
                                         <div class="FeelogBox-root flog-div-78">
-                                            <img
-                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png"
-                                                alt="channel-profile"
+                                            <img  class="uploadFile"
+                                                  th:if="*{channelFileName != null && !channelFileName.isEmpty()}"
+                                                  th:src="@{/files/display(path=|*{channelFilePath}/*{channelFileName}|)}"}
+                                                  th:data-file-name="*{channelFileName}" th:data-file-path="*{channelFilePath}"
+                                                  alt="channel-profile"
+                                            />
+                                            <img th:if="*{channelFileName == null || channelFileName.isEmpty()}"
+                                                 src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png"
+                                                 alt="channel-profile"
                                             />
                                         </div>
                                         <div class="FeelogStack-root flog-div-79" data-testid="ImageUpload-data">
@@ -241,8 +247,8 @@
         </div>
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
-    <script src="/js/myPage/making-channel-event.js"></script>
-    <script src="/js/myPage/making-channel-service.js"></script>
-    <script src="/js/myPage/making-channel-layout.js"></script>
+    <script src="/js/myPage/make-channel-event.js"></script>
+    <script src="/js/myPage/make-channel-service.js"></script>
+    <script src="/js/myPage/make-channel-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

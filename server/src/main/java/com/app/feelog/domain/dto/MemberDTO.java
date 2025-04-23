@@ -19,7 +19,6 @@ public class MemberDTO {
     private String memberIntroduce;
     private String memberFilePath;
     private String memberFileName;
-    private String memberFileSize;
     private MemberType memberType;
     private MemberNotificationPostReply memberNotificationPostReply;
     private MemberNotificationPostReplyLike memberNotificationPostReplyLike;
@@ -49,7 +48,6 @@ public class MemberDTO {
                 .memberIntroduce(memberIntroduce)
                 .memberFilePath(memberFilePath)
                 .memberFileName(memberFileName)
-                .memberFileSize(memberFileSize)
                 .memberType(memberType)
                 .memberNotificationPostReply(memberNotificationPostReply)
                 .memberNotificationPostReplyLike(memberNotificationPostReplyLike)

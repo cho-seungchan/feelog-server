@@ -4,23 +4,18 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/myPage/notify-list.css" />
+        <link rel="stylesheet" href="/css/myPage/notify-community-list.css" />
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/footer.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/all/message.css" />
         <title>알림 목록</title>
     </head>
     <body>
         <div class="FeelogStack-root flog-div-1">
             <!-- 헤더 넣을 곳 -->
-
-            <div class="feelog-header-mainDiv" id="header-container"></div>
-            <script>
-                // Load header.html and insert it in#header-placeholder
-                fetch("../main/header.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("header-container").innerHTML = data;
-                    })
-                    .catch((error) => console.error("Error loading header:", error));
-            </script>
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
             <!-- 헤더 넣을 곳 -->
             <div class="FeelogStack-root flog-div-12">
                 <div class="FeelogStack-root flog-div-13">
@@ -30,19 +25,19 @@
                         >
                             <a
                                 class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
-                                href="?type=comment_and_community"
+                                href="/myPage/notify-reply-list"
                                 ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
                                     댓글
                                 </p></a
                             ><a
                                 class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="?type=order_and_payments"
+                                href="/myPage/notify-community-list"
                                 ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
                                     커뮤니티
                                 </p></a
                             ><a
                                 class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="?type=admin_notification"
+                                href="/myPage/notify-admin-list
                                 ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
                                     관리자 알림
                                 </p></a
@@ -52,64 +47,83 @@
                     <main class="FeelogStack-root flog-main-4">
                         <div class="FeelogStack-root flog-div-60">
                             <div class="FeelogStack-root flog-div-61">
-                                <div class="FeelogBox-root flog-div-62">
+
+<!--                                2025.04.23 조승찬 리스트 보여주기-->
+                                <th:block th:each="community:${communities}">
+                                    <div class="FeelogBox-root flog-div-62">
                                     <span class="FeelogBadge-root flog-span-4"
-                                        ><a
-                                            href="/profile/@lr3uee"
-                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-18"
-                                            ><div
-                                                class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
-                                            >
-                                                <img
-                                                    alt=""
-                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
-                                                    loading="lazy"
-                                                    class="FeelogAvatar-img flog-img-1"
-                                                /></div></a
-                                        ><span
-                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopLeft FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-11"
-                                        ></span
-                                    ></span>
-                                    <div class="FeelogStack-root flog-article-1">
-                                        <div class="FeelogBox-root flog-div-64">
-                                            <h6 class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
-                                                <span
-                                                    class="FeelogTypography-root FeelogTypography-body-md flog-span-23"
-                                                    ><a
-                                                        href="/profile/@lr3uee"
-                                                        class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-title-md FeelogLink-underlineNone flog-a-26"
-                                                        >박정근</a
-                                                    >
-                                                    님이 회원님의 포스트에 댓글을 남겼어요.</span
-                                                ><span
-                                                    class="FeelogTypography-root FeelogTypography-body-sm flog-span-13"
-                                                >
-                                                    3일 전</span
-                                                >
-                                            </h6>
-                                        </div>
+                                    >
+<!--                                        개인 채널로 이동시켜 주기-->
                                         <a
-                                            href="/@jffkkk/post/19151062"
-                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-27"
-                                            ><span class="FeelogTypography-root FeelogTypography-body-md flog-span-24"
-                                                >: 안녕하세요
-                                            </span></a
-                                        >
-                                        <div class="FeelogBox-root flog-div-65">
+                                            href=""
+                                            class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-18"
+                                    ><div
+                                            class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63"
+                                    >
+                                                <img
+                                                        alt=""
+                                                        th:if="*{memberFileName != null && !memberFileName.isEmpty()}"
+                                                        th:src="@{/files/display(path=|*{memberFilePath}/*{memberFileName}|)}"
+                                                        loading="lazy"
+                                                        class="FeelogAvatar-img flog-img-1"
+                                                />
+                                                <img
+                                                        alt=""
+                                                        th:if="*{memberFileName == null || memberFileName.isEmpty()}"
+                                                        src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                        loading="lazy"
+                                                        class="FeelogAvatar-img flog-img-1"
+                                                /></div></a
+                                    ><span
+                                            class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopLeft FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-11"
+                                    ></span
+                                    ></span>
+                                        <div class="FeelogStack-root flog-article-1">
+                                            <div class="FeelogBox-root flog-div-64">
+                                                <h6 class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
+                                                <span
+                                                        class="FeelogTypography-root FeelogTypography-body-md flog-span-23"
+                                                >
+<!--                                                    개인 채널로 이동시켜 주기-->
+                                                    <a
+                                                        href="/*{memberChannel}"
+                                                        class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-title-md FeelogLink-underlineNone flog-a-26"
+                                                        th:text="*{memberNickname}"
+                                                ></a
+                                                >
+                                                    님이 회원님의 커뮤니티에 글을 남겼어요.</span
+                                                ><span
+                                                        class="FeelogTypography-root FeelogTypography-body-sm flog-span-13" th:text="*{timeAgo}"
+                                                ></span
+                                                >
+                                                </h6>
+                                            </div>
+<!--                                            커뮤니티로 이동시켜주기 -->
                                             <a
-                                                href="/@jffkkk/post/19151062"
-                                                class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-28"
-                                                ><div class="FeelogStack-root flog-div-109">
-                                                    <span
-                                                        class="FeelogTypography-root FeelogTypography-title-md flog-span-25"
-                                                        >abcabcd</span
-                                                    >
-                                                </div></a
+                                                    href="community/*{channelId}"
+                                                    class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-27"
+                                            ><span class="FeelogTypography-root FeelogTypography-body-md flog-span-24"  th:text="' : ' + ${postContent}"
                                             >
+                                            </span></a
+                                            >
+<!--                                            댓글 일 때 해당 포스트 상세보기로 이동 시켜주기-->
+<!--                                            <div class="FeelogBox-root flog-div-65">-->
+<!--                                                <a-->
+<!--                                                        href=""-->
+<!--                                                        class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-28"-->
+<!--                                                ><div class="FeelogStack-root flog-div-109">-->
+<!--                                                    <span-->
+<!--                                                            class="FeelogTypography-root FeelogTypography-title-md flog-span-25"-->
+<!--                                                    >abcabcd</span-->
+<!--                                                    >-->
+<!--                                                </div></a-->
+<!--                                                >-->
+<!--                                            </div>-->
                                         </div>
                                     </div>
-                                </div>
-                                <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
+                                    <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
+                                </th:block>
+
                                 <div class="FeelogBox-root flog-div-62">
                                     <span class="FeelogBadge-root flog-span-4"
                                         ><a
@@ -347,7 +361,7 @@
                                         <a
                                             type="button"
                                             class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-a-20"
-                                            href="?type=comment_and_community&amp;page=1"
+                                            th:if="${pagination.next}" th:value="${pagination.page + 1}"
                                             >더보기</a
                                         >
                                     </div>
@@ -370,7 +384,12 @@
             </script>
             <!-- footer 넣을 곳 -->
         </div>
+
+        <!-- footer 넣을 곳 -->
+        <footer id="main-footer"
+                th:replace="~{main/footer.html :: #main-footer}"></footer>
+        <!-- footer 넣을 곳 -->
     </body>
-    <script src="/js/myPage/notify-list-event.js"></script>
+    <script src="/js/myPage/notify-community-list-event.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

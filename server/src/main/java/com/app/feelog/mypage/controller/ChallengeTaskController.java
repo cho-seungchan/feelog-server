@@ -9,7 +9,6 @@ import com.app.feelog.mypage.dto.MemberTaskPoolChallengeDTO;
 import com.app.feelog.mypage.service.ChallengeTaskService;
 import com.app.feelog.util.EightRowPagination;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor

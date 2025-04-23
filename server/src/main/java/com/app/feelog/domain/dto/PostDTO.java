@@ -15,7 +15,6 @@ public class PostDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private String postTitle;
-    private String postSubTitle;
     private String postContent;
     private PostStatus postStatus;
     private String createdDate;
@@ -25,7 +24,6 @@ public class PostDTO {
         return PostVO.builder()
                 .id(id)
                 .postTitle(postTitle)
-                .postSubTitle(postSubTitle)
                 .postContent(postContent)
                 .postStatus(postStatus)
                 .createdDate(createdDate)

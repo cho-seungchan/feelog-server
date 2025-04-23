@@ -26,8 +26,8 @@
                     </nav>
                     <main class="FeelogStack-root flog-main-4">
                         <div class="FeelogStack-root flog-div-76">
-                            <form class="FeelogStack-root flog-form-1" th:action="@{/myPage/read-channel}" th:object="${channel}" method="post" enctype="multipart/form-data">
-<!--                                수정시 중복 체크를 위해서, 삭제를 위해서 id 저장-->
+                             <form class="FeelogStack-root flog-form-1" th:action="@{/myPage/update-channel}" th:object="${channel}" method="post" enctype="multipart/form-data">
+<!--                               수정시 중복 체크를 위해서, 삭제를 위해서 id 저장-->
                                 <input type="hidden" name="id" th:value="*{id}"></input>
                                 <div
                                     class="FeelogFormControl-root FeelogFormControl-vertical FeelogFormControl-sizeMd flog-div-49"

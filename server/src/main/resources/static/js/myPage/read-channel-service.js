@@ -1,6 +1,6 @@
-//  2025.04.22 조승찬
+//  2025.04.23 조승찬
 
-// 2025.04.22 조승찬 :: 입력 파일 전송 후 썸네일을 받아서 화면 생성
+// 2025.04.23 조승찬 :: 입력 파일 전송 후 썸네일을 받아서 화면 생성
 function inputFileUpload(formData){
     return fetch("/files/upload", {
         method: "post",
