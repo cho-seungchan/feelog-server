@@ -43,22 +43,32 @@ public class LoginController {
     @PostMapping("/email-login")
     public ResponseEntity<String> postEmailLogin(@RequestBody MemberDTO memberDTO, HttpSession session) {
 
+        log.info("login "+memberDTO.toVO());
         if (!loginService.getMemberByEmailAndPassword(memberDTO).isPresent()){
+            log.info("memberDTO is null");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("로그인 실패");
         }
 
         // 로그인 성공 처리
         MemberDTO member = loginService.getMemberByEmailAndPassword(memberDTO).get();
+        log.info("member type "+member.getMemberType());
 
         session.setAttribute("memberStatus", "email");
         session.setAttribute("member", member);
 
         String redirectUrl = (String) session.getAttribute("redirectAfterLogin");
+
         if (redirectUrl != null) {
             session.removeAttribute("redirectAfterLogin");
             return ResponseEntity.status(HttpStatus.OK) // 성공 상태 200 반환
                     .body(redirectUrl); // 리다이렉션 URL 반환
+        }
+
+        if("ADMIN".equals(member.getMemberType().toString())){
+            session.removeAttribute("redirectAfterLogin");
+            return ResponseEntity.status(HttpStatus.OK) // 성공 상태 200 반환
+                    .body("/admin/admin"); // 리다이렉션 URL 반환
         }
 
         // 기본 리다이렉션 설정

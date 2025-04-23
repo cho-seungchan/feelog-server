@@ -30,4 +30,5 @@ public class LoginService implements ToDTO{
                 toMemberDTO(joinLogDAO.getMemberByEmail(email)
                         .orElse(null)));
     }
+
 }

@@ -50,6 +50,7 @@
             member_password,
             member_nickname,
             member_introduce,
+            member_type,
             member_file_path,
             member_file_name,
             member_notification_post_reply,

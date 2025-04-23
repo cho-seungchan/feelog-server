@@ -23,4 +23,5 @@ public interface JoinLogMapper {
 
     // 2025.04.19 조승찬 :: 이메일과 비밀번호로 멤버 정보 가져오기
     Optional<MemberVO> getMemberByEmailAndPassword(MemberVO memberVO);
+
 }

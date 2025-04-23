@@ -19,3 +19,5 @@ create table tbl_member (
                             updated_date 	                            datetime default current_timestamp
 );
 
+ALTER TABLE tbl_member
+    MODIFY COLUMN member_notification_message VARCHAR(50) DEFAULT '설정';

@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/css/admin/admin-list.css">
         <link rel="stylesheet" href="/css/admin/button.css">
         <link rel="stylesheet" href="/css/admin/notice-modal.css">
+        <link rel="stylesheet" href="/css/admin/challenge-write.css">
         <style>
             @font-face {
                 font-family: "pickers";
@@ -68,41 +69,12 @@
                                     aria-expanded="false"
                                     href="/admin/admin"
                                 >
-                                    <div class="">
-                                        <span
-                                            class="ProjectInfo_emphasis"
-                                        ></span>
+                                    <div class="adminNickname">
+
                                         님
                                     </div>
 
                                     <span class="">환영 합니다.</span
-                                    ><svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        focusable="false"
-                                        role="presentation"
-                                        class="withIcon_icon"
-                                        aria-hidden="true"
-                                        style="width: 12px; height: 12px"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
-                                            d="M2.576 7.924l.848-.848L12 15.652l8.576-8.576.848.848L12 17.35 2.576 7.924z"
-                                        ></path>
-                                    </svg>
-                                </a>
-
-                                <a
-                                    type="button"
-                                    id="project-info-box1"
-                                    class="ProjectInfo_infoButton"
-                                    aria-controls="project-info-box"
-                                    aria-expanded="false"
-                                    th:if="${session.admin == null}"
-                                    href="/admin/adminLogin"
-                                >
-                                    <span class="">로그인이 필요합니다.</span
                                     ><svg
                                         viewBox="0 0 24 24"
                                         fill="none"
@@ -154,8 +126,7 @@
                                             class="MenuItems_submenuContainer MenuItems_show Menulist1"
                                         >
                                             <a
-                                                class="MenuItems_submenu_adminList"
-                                                href="/admin/member-list"
+                                                class="MenuItems_submenu_adminList member-list"
                                                 >회원 목록</a
                                             >
                                         </div>
@@ -351,7 +322,7 @@
                                                                         관리
                                                                     </div>
                                                                     <a
-                                                                        class="FundingPageMenuList_buttonWrapper"
+                                                                        class="FundingPageMenuList_buttonWrapper member-list"
                                                                         href=""
                                                                         ><span
                                                                             >회원
@@ -433,8 +404,7 @@
                                                                         챌린지
                                                                     </div>
                                                                     <a
-                                                                        class="FundingPageMenuList_buttonWrapper"
-                                                                        href="/admin/add-course"
+                                                                        class="FundingPageMenuList_buttonWrapper add-challenge"
                                                                         ><span
                                                                             >추가
                                                                             하기</span
@@ -502,6 +472,9 @@
         </div>
         <div class="admin-modal-body"></div>
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+    </script>
     <script src="/js/admin/admin.js"></script>
     <!--    파일 서버 전송-->
     <script src="/js/admin/file-service.js"></script>
@@ -518,5 +491,18 @@
     <script src="/js/admin/notice-event.js"></script>
 <!--공지사항 끝-->
 <!--자주 묻는 질문-->
-
+    <script src="/js/admin/faq-service.js"></script>
+    <script src="/js/admin/faq-layout.js"></script>
+    <script src="/js/admin/faq-event.js"></script>
+<!--자주 묻는 질문 끝-->
+<!-- 회원 목록-->
+    <script src="/js/admin/member-service.js"></script>
+    <script src="/js/admin/member-layout.js"></script>
+    <script src="/js/admin/member-event.js"></script>
+<!--회원 목록 끝-->
+<!--챌린지-->
+    <script src="/js/admin/challenge-service.js"></script>
+    <script src="/js/admin/challenge-layout.js"></script>
+    <script src="/js/admin/challenge-event.js"></script>
+<!--챌린지-->
 </html>

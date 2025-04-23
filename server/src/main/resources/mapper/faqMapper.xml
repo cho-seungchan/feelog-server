@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.FaqMapper">
+    <insert id="insertFaq">
+        insert into tbl_faq (faq_title, faq_content, member_id)
+        value (#{faqTitle}, #{faqContent}, #{memberId})
+    </insert>
 
+    <select id="selectFaqAll" resultType="faqAdminDTO">
+        select m.member_nickname,
+               f.id, f.faq_title, f.faq_content, f.faq_status, f.member_id, f.created_date
+        from tbl_member m
+                 join tbl_faq f
+                      on m.id = f.member_id
+        where m.member_type = '관리자' and faq_status = '정상'
+        order by f.id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="faqCount" resultType="_int">
+        select count(*) from tbl_faq where faq_status = '정상'
+    </select>
+
+    <update id="updateFaq">
+        update tbl_faq set faq_title = #{faqTitle}, faq_content = #{faqContent}
+        where id = #{id}
+    </update>
+
+    <update id="deleteFaq">
+        update tbl_faq set faq_status = '삭제'
+        where id = #{id}
+    </update>
 </mapper>

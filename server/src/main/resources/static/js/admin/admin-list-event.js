@@ -3,7 +3,7 @@ adminListService.getList(adminListLayout.showList);
 const htmlWrap = document.querySelector(".AppLayout_contents")
 
 htmlWrap.addEventListener("click",async (e)=>{
-    if(e.target.classList.contains("manageBtn")){
+    if(e.target.classList.contains("add-admin")){
         document.querySelector(".inputRow").classList.remove("hidden");
     }
     if(e.target.classList.contains("cancelBtn")){
@@ -27,7 +27,7 @@ htmlWrap.addEventListener("click",async (e)=>{
         adminListService.getList(adminListLayout.buttonEvent, e.target.getAttribute("data-index"));
     }
 
-    if(e.target.classList.contains("deleteBtn")){
+    if(e.target.classList.contains("deleteAdmin")){
         const checkboxs = document.querySelectorAll(".usersCheckbox");
         const idList = new Array();
 

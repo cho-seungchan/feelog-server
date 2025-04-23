@@ -116,11 +116,26 @@
     left: 76.5%;
 }
 
+.delete-button{
+    width: 100px;
+    white-space: nowrap;
+    overflow-x: auto;
+    line-height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+    left: 39.5%;
+}
+
 button, html [type="button"], [type="reset"], [type="submit"] {
     -webkit-appearance: button;
 }
 
-.deleteBtn {
+.admin-deleteBtn {
     width: 100px;
     white-space: nowrap;
     overflow-x: auto;
@@ -142,7 +157,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     margin: 0;
 }
 
-.mainUserListDiv, .userListDiv, .reportListDiv, .noticeListDiv {
+.mainUserListDiv, .userListDiv, .reportListDiv, .noticeListDiv, .faqListDiv {
     display: flex
 ;
     align-items: center;
@@ -151,7 +166,7 @@ button, html [type="button"], [type="reset"], [type="submit"] {
     border-bottom: 1px solid #ddd;
 }
 
-.mainUserListDiv, .userListDiv {
+.mainUserListDiv, .userListDiv, .faqListDiv, .noticeListDiv {
     display: grid
 ;
     grid-template-columns: 50px 300px 300px 100px;
@@ -282,4 +297,28 @@ input[type=text] {
 
 .list-wrap{
     max-width: 100%;
+}
+
+.memberListDiv{
+    display: grid
+;
+    grid-template-columns: 50px 250px 220px 150px 150px;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    gap: 10px;
+}
+
+.mainMemberListDiv{
+    display: grid
+;
+    grid-template-columns: 50px 250px 220px 150px 150px;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    gap: 10px;
+    font-weight: bold;
+    background-color: #f8f8f8;
 }

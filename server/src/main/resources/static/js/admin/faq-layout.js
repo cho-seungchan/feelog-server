@@ -1,8 +1,8 @@
-const noticeLayout = (() => {
-    const showNotice = async (noticeListData) => {
-        const noticeListButton = document.querySelector(".noticeList");
+const faqLayout = (() => {
+    const showFaq = async (faqListData) => {
+        const questionListButton = document.querySelector(".questionList");
 
-        noticeListButton.addEventListener("click", (e)=>{
+        questionListButton.addEventListener("click", (e)=>{
             const htmlWrap = document.querySelector(".AppLayout_contents")
 
             htmlWrap.innerHTML = `
@@ -29,10 +29,10 @@ const noticeLayout = (() => {
                                                     "
                                         >
                                             <div class="h3_wrapper">
-                                                <h3>공지 목록</h3>
+                                                <h3>자주 묻는 질문 목록</h3>
                                             </div>
-                                            <button class="registBtn noticeRegistBtn" type="button">
-                                                    공지 등록
+                                            <button class="registBtn faqRegistBtn" type="button">
+                                                    질문 등록
                                                 </button>
                                             <div class="list-wrap">
                                                 <ul
@@ -61,7 +61,6 @@ const noticeLayout = (() => {
                                                         >
                                                             관리자
                                                         </div>
-                                                        
                                                     </div>
                                                 </ul>
                                             <footer
@@ -133,7 +132,7 @@ const noticeLayout = (() => {
             const buttonWrap = document.querySelector("#button-wrap");
             const leftButtons = document.querySelector(".left-button-wrap");
             const rightButtons = document.querySelector(".right-button-wrap");
-            const pagination = noticeListData.noticePagination;
+            const pagination = faqListData.noticePagination;
 
             leftButtons.innerHTML = `
             <button
@@ -142,7 +141,7 @@ const noticeLayout = (() => {
                 height="40px"
                 font-size="18px"
                 disabled=""
-                class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-none start-page noticeButtons"
+                class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-none start-page faqButtons"
                 >
                     <img
                             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
@@ -154,7 +153,7 @@ const noticeLayout = (() => {
                     height="40px"
                     font-size="18px"
                     disabled=""
-                    class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-none left-button noticeButtons"
+                    class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-none left-button faqButtons"
             >
                 <img
                         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
@@ -190,7 +189,7 @@ const noticeLayout = (() => {
                         width="40px"
                         height="40px"
                         font-size="18px"
-                        class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-on right-button noticeButtons"
+                        class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-on right-button faqButtons"
                 >
                     <img
                             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
@@ -201,7 +200,7 @@ const noticeLayout = (() => {
                     width="40px"
                     height="40px"
                     font-size="18px"
-                    class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-on  last-page noticeButtons"
+                    class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-on  last-page faqButtons"
             >
                 <img
                         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E"
@@ -232,20 +231,19 @@ const noticeLayout = (() => {
                 document.querySelector(".right-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
             }
 
-            noticeListData.noticeList.forEach((list) => {
-                console.log(noticeListData)
+            faqListData.faqLists.forEach((list) => {
                 const newLi = document.createElement("li");
                 const createdDate = new Date(list.createdDate);
                 const formatCreatedDate =  createdDate.toISOString().split('T')[0];
                 newLi.classList.add("lists")
 
                 newLi.innerHTML = `
-                        <div class="noticeListDiv" style="cursor:pointer">
+                        <div class="faqListDiv" style="cursor:pointer">
                             <div class="idDiv">
                                 ${list.id}
                             </div>
                             <div class="titleDiv">
-                                ${list.noticeTitle}
+                                ${list.faqTitle}
                             </div>
                             <div class="createdDateDiv">
                                 ${formatCreatedDate}
@@ -254,13 +252,7 @@ const noticeLayout = (() => {
                                 ${list.memberNickname}
                             </div>
                             <div class="contentDiv" style="display: none">
-                                ${list.noticeContent}
-                            </div>
-                            <div class="filePathDiv" style="display: none">
-                                ${list.noticeFilePath}
-                            </div>
-                            <div class="fileNameDiv" style="display: none">
-                                ${list.noticeFileName}
+                                ${list.faqContent}
                             </div>
                         </div>`;
                 listWrap.appendChild(newLi);
@@ -278,7 +270,7 @@ const noticeLayout = (() => {
                         color="#3397ff"
                         font-size="18px"
                         font-weight="bold"
-                        class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 emphasis buttonAll thisButton noticeButtons">${i}
+                        class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 emphasis buttonAll thisButton faqButtons">${i}
                     </button>
                     `;
                     continue;
@@ -291,22 +283,21 @@ const noticeLayout = (() => {
                         color="black"
                         font-size="18px"
                         font-weight="normal"
-                        class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 emphasis buttonAll anotherButton noticeButtons">${i}
+                        class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 emphasis buttonAll anotherButton faqButtons">${i}
                 </button>
                 `;
             }
             buttonWrap.innerHTML = text;
         })
-
     }
 
-    const noticeButtonEvent = async (noticeListData) => {
+    const faqButtonEvent = async (faqListData) => {
         const listWrap = document.querySelector(".NoticePage__NoticeListWrapper");
         const lists = listWrap.querySelectorAll("li");
         const buttonWrap = document.querySelector("#button-wrap");
         const leftButtons = document.querySelector(".left-button-wrap");
         const rightButtons = document.querySelector(".right-button-wrap");
-        const pagination = noticeListData.noticePagination;
+        const pagination = faqListData.noticePagination;
 
         lists.forEach((list)=>{
             list.remove()
@@ -319,7 +310,7 @@ const noticeLayout = (() => {
         height="40px"
         font-size="18px"
         disabled=""
-        class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-none start-page noticeButtons"
+        class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-none start-page faqButtons"
         >
             <img
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
@@ -331,7 +322,7 @@ const noticeLayout = (() => {
             height="40px"
             font-size="18px"
             disabled=""
-            class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-none left-button noticeButtons"
+            class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-none left-button faqButtons"
     >
         <img
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
@@ -367,7 +358,7 @@ const noticeLayout = (() => {
                 width="40px"
                 height="40px"
                 font-size="18px"
-                class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-on right-button noticeButtons"
+                class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-on right-button faqButtons"
         >
             <img
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
@@ -378,7 +369,7 @@ const noticeLayout = (() => {
             width="40px"
             height="40px"
             font-size="18px"
-            class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-on  last-page noticeButtons"
+            class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 status-on  last-page faqButtons"
     >
         <img
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E"
@@ -409,19 +400,19 @@ const noticeLayout = (() => {
             document.querySelector(".right-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
         }
 
-        noticeListData.noticeList.forEach((list) => {
+        faqListData.faqLists.forEach((list) => {
             const newLi = document.createElement("li");
             const createdDate = new Date(list.createdDate);
             const formatCreatedDate =  createdDate.toISOString().split('T')[0];
             newLi.classList.add("lists")
 
             newLi.innerHTML = `
-                <div class="noticeListDiv" style="cursor:pointer">
+                <div class="faqListDiv" style="cursor:pointer">
                     <div class="idDiv">
                         ${list.id}
                     </div>
                     <div class="titleDiv">
-                        ${list.noticeTitle}
+                        ${list.faqTitle}
                     </div>
                     <div class="createdDateDiv">
                         ${formatCreatedDate}
@@ -430,13 +421,7 @@ const noticeLayout = (() => {
                         ${list.memberNickname}
                     </div>
                     <div class="contentDiv" style="display: none">
-                        ${list.noticeContent}
-                    </div>
-                    <div class="filePathDiv" style="display: none">
-                        ${list.noticeFilePath}
-                    </div>
-                    <div class="fileNameDiv" style="display: none">
-                        ${list.noticeFileName}
+                        ${list.faqContent}
                     </div>
                 </div>`;
             listWrap.appendChild(newLi);
@@ -454,7 +439,7 @@ const noticeLayout = (() => {
                 color="#3397ff"
                 font-size="18px"
                 font-weight="bold"
-                class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 emphasis buttonAll thisButton noticeButtons">${i}
+                class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 emphasis buttonAll thisButton faqButtons">${i}
             </button>
             `;
                 continue;
@@ -467,7 +452,7 @@ const noticeLayout = (() => {
                 color="black"
                 font-size="18px"
                 font-weight="normal"
-                class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 emphasis buttonAll anotherButton noticeButtons">${i}
+                class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 emphasis buttonAll anotherButton faqButtons">${i}
         </button>
         `;
         }
@@ -475,8 +460,7 @@ const noticeLayout = (() => {
     }
 
     return{
-        showNotice:showNotice,
-        noticeButtonEvent:noticeButtonEvent
+        showFaq:showFaq,
+        faqButtonEvent:faqButtonEvent
     }
-
 })()

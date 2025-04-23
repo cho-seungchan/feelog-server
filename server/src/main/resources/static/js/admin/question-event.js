@@ -3,7 +3,7 @@ const button = document.querySelector(".search-button");
 const noticeLists = document.querySelectorAll(".noticeList-container>li");
 const notices = document.querySelectorAll(".noticeListDiv");
 const modal = document.querySelector(".admin-modal-body");
-const writeNotice = document.querySelector(".noticeRegistBtn");
+const writeNotice = document.querySelector(".faqRegistBtn");
 
 search.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {

@@ -1,6 +1,5 @@
 const adminListLayout = (() => {
     const showList = async (adminListsData) => {
-        console.log(adminListsData)
         const adminListButtons = document.querySelectorAll(".adminLists");
         adminListButtons.forEach((adminListButton)=>{
             adminListButton.addEventListener("click", (e) => {
@@ -34,14 +33,14 @@ const adminListLayout = (() => {
                                             </div>
     
                                             <button
-                                                    class="manageBtn"
+                                                    class="manageBtn add-admin"
                                                     type="button"
                                             >
                                                 관리자 등록
                                             </button>
                                             <button
                                                     data-index=1
-                                                    class="deleteBtn"
+                                                    class="admin-deleteBtn deleteAdmin"
                                                     type="button"
                                             >
                                                 관리자 추방
@@ -296,6 +295,16 @@ const adminListLayout = (() => {
                 }
 
                 adminListsData.adminList.forEach((list) => {
+
+                    let memberStatus = list.memberStatus;
+
+                    if(memberStatus === "ACTIVE"){
+                        memberStatus = "정상";
+                    }else if(memberStatus === "BANNED"){
+                        memberStatus = "중지"
+                    }else if (memberStatus === "WITHDRAWN"){
+                        memberStatus = "탈퇴"
+                    }
                     const newLi = document.createElement("li");
                     newLi.innerHTML = `
                         <div class="userListDiv">
@@ -309,7 +318,7 @@ const adminListLayout = (() => {
                                 ${list.memberNickname}
                             </div>
                              <div class="statusDiv">
-                                ${list.memberStatus}
+                                ${memberStatus}
                             </div>
                         </div>`;
                     listWrap.appendChild(newLi);
@@ -348,6 +357,7 @@ const adminListLayout = (() => {
             })
         })
     }
+
     const buttonEvent = async (adminListsData) => {
         const listWrap = document.querySelector(".NoticePage__NoticeListWrapper");
         const lists = listWrap.querySelectorAll("li");
@@ -459,6 +469,15 @@ const adminListLayout = (() => {
 
         adminListsData.adminList.forEach((list) => {
             const newLi = document.createElement("li");
+            let memberStatus = list.memberStatus;
+
+            if(memberStatus === "ACTIVE"){
+                memberStatus = "정상";
+            }else if(memberStatus === "BANNED"){
+                memberStatus = "중지"
+            }else if (memberStatus === "WITHDRAWN"){
+                memberStatus = "탈퇴"
+            }
             newLi.innerHTML = `
                     <div class="userListDiv">
                         <label class="">
@@ -471,7 +490,7 @@ const adminListLayout = (() => {
                             ${list.memberNickname}
                         </div>
                         <div class="statusDiv">
-                            ${list.memberStatus}
+                            ${memberStatus}
                         </div>
                     </div>`;
             listWrap.appendChild(newLi);

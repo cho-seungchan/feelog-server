@@ -113,7 +113,7 @@
     margin: 0px;
 }
 
-.noticeRegistBtn, .noticeUpdateBtn, .noticeDeleteBtn, .noticeConfirmBtn {
+.registBtn, .updateBtn, .deleteBtn, .confirmBtn {
     width: 83px;
     white-space: nowrap;
     overflow-x: auto;
