@@ -246,6 +246,8 @@ public class MyPageController {
         model.addAttribute("replies", replies);
         model.addAttribute("pagination", pagination);
 
+        log.info(replies.toString());
+        log.info(pagination.toString());
         return "myPage/notify-community-list";
     }
 

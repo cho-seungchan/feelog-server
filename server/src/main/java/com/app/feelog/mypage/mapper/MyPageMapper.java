@@ -1,9 +1,7 @@
 // 2025.04.21 조승찬
 package com.app.feelog.mypage.mapper;
 
-import com.app.feelog.domain.vo.ChannelVO;
-import com.app.feelog.domain.vo.CommunityPostVO;
-import com.app.feelog.domain.vo.MemberVO;
+import com.app.feelog.domain.vo.*;
 import com.app.feelog.util.SixRowPagination;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -52,4 +50,10 @@ public interface MyPageMapper {
 
     // 2025.04.23 조승찬 :: 페이지 네이션을 위해 포스트 댓글 총 건수 가져오기
     int getNotifyReplyListTotalCount(Long memberId);
+
+    // 2025.04.23 조승찬 :: 포스트의 댓글 가져오기
+    List<ChannelPostReplyVO> getNotifyReplyList(Long memberId, SixRowPagination pagination);
+
+    // 2025.04.23 조승찬 :: 포스트 정보 가져오기
+    Optional<PostVO> getPostById(Long id);
 }

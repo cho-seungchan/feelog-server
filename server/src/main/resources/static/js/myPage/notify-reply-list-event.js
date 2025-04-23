@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const pageValue = pageLink.getAttribute("href"); // href 값 가져오기
         if (pageValue) {
             e.preventDefault(); // 기본 동작 방지
-            document.querySelector(".notifyCommunityList").value = pageValue;
+            document.querySelector(".notifyReplyList").value = pageValue;
             document.forms["pageForm"].submit(); // 폼 제출
         }
     });

@@ -1,9 +1,7 @@
 // 2025.04.21 조승찬
 package com.app.feelog.mypage.repository;
 
-import com.app.feelog.domain.vo.CommunityPostVO;
-import com.app.feelog.domain.vo.MemberVO;
-import com.app.feelog.domain.vo.ChannelVO;
+import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.mapper.MyPageMapper;
 import com.app.feelog.util.SixRowPagination;
 import lombok.RequiredArgsConstructor;
@@ -90,6 +88,18 @@ public class MyPageDAO {
     // 2025.04.23 조승찬 :: 페이지 네이션을 위해 포스트 댓글 총 건수 가져오기
     public int getNotifyReplyListTotalCount(Long memberId) {
         return myPageMapper.getNotifyReplyListTotalCount(memberId);
+    }
+
+    // 2025.04.23 조승찬 :: 포스트의 댓글 가져오기
+    public List<ChannelPostReplyVO> getNotifyReplyList(Long memberId, SixRowPagination pagination) {
+        return myPageMapper.getNotifyReplyList(memberId, pagination);
+    }
+
+    // 2025.04.23 조승찬 :: 포스트 정보 가져오기
+    public Optional<PostVO> getPostById(Long id) {
+        return Optional.ofNullable(
+                myPageMapper.getPostById(id)
+                        .orElse(null));
     }
 }
 

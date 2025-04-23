@@ -3,9 +3,7 @@ package com.app.feelog.mypage.service;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
-import com.app.feelog.domain.vo.ChannelVO;
-import com.app.feelog.domain.vo.CommunityPostVO;
-import com.app.feelog.domain.vo.MemberVO;
+import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
 import com.app.feelog.mypage.dto.NotifyReplyListDTO;
 import com.app.feelog.mypage.repository.MyPageDAO;
@@ -102,20 +100,22 @@ public class MyPageService implements ToDTO {
 
         pagination.create(myPageDAO.getNotifyReplyListTotalCount(memberId));
 
-//        // 커뮤니티 게시글 가져오기
-//        List<CommunityPostVO> communityPostList = myPageDAO.getNotifyCommunityList(memberId, pagination);
-//
-//        List<NotifyReplyListDTO> resultList = new ArrayList<>();
-//        communityPostList.forEach(communityPost -> {
-//            // 작성자 정보 가져오기
-//            MemberVO member = myPageDAO.getMemberById(communityPost.getMemberId()).orElse(null);
-//            // 작성자 채널 정보 가져오기
-//            ChannelVO memberChannel = myPageDAO.getChannelByMemberId(communityPost.getMemberId()).orElse(null);
-//            // 작성 시간 계산하기
-//            String timAgo = calculateTimeAgo(communityPost.getCreatedDate());
-//
-//            resultList.add(toNotifyReplyListDTO(communityPost, member, memberChannel, timAgo));
-//        });
+        // 포스트 댓글 가져오기
+        List<ChannelPostReplyVO> channelPostReplyList = myPageDAO.getNotifyReplyList(memberId, pagination);
+
+        List<NotifyReplyListDTO> resultList = new ArrayList<>();
+        channelPostReplyList.forEach(channelPostReply -> {
+            // 작성자 정보 가져오기
+            MemberVO member = myPageDAO.getMemberById(channelPostReply.getMemberId()).orElse(null);
+            // 작성자 채널 정보 가져오기
+            ChannelVO memberChannel = myPageDAO.getChannelByMemberId(channelPostReply.getMemberId()).orElse(null);
+            // 작성 시간 계산하기
+            String timAgo = calculateTimeAgo(channelPostReply.getCreatedDate());
+            // 포스트 정보 가져오기
+            PostVO post = myPageDAO.getPostById(channelPostReply.getPostId()).orElse(null);
+
+            resultList.add(toNotifyReplyListDTO(channelPostReply, member, memberChannel, timAgo, post.getPostTitle()));
+        });
 
         return resultList;
     }

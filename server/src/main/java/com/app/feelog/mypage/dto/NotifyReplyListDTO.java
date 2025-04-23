@@ -18,6 +18,7 @@ public class NotifyReplyListDTO {
     private String      memberFileName;
     private Long        memberId;        // 작성자 아이디
     private Long        postId;
+    private String      postTitle;
     private Long        memberChannelId; // 작성자 채널 아이디
     private String      timeAgo;         // 현재 시점과 생성일간 시간차 계산한 결과
     private String      createdDate;

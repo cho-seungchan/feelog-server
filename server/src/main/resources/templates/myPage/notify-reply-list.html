@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/myPage/notify-community-list.css" />
+        <link rel="stylesheet" href="/css/myPage/notify-reply-list.css" />
         <link rel="stylesheet" href="/css/main/header.css">
         <link rel="stylesheet" href="/css/main/footer.css">
         <link rel="stylesheet" href="/css/main/search-modal.css">
@@ -49,7 +49,7 @@
                             <div class="FeelogStack-root flog-div-61">
 
 <!--                                2025.04.23 조승찬 리스트 보여주기-->
-                                <th:block th:each="community:${communities}">
+                                <th:block th:each="reply : ${replies}">
                                     <div class="FeelogBox-root flog-div-62">
                                     <span class="FeelogBadge-root flog-span-4"
                                     >
@@ -62,14 +62,14 @@
                                     >
                                                 <img
                                                         alt=""
-                                                        th:if="*{community.memberFileName != null && !community.memberFileName.isEmpty()}"
-                                                        th:src="@{/files/display(path=|*{community.memberFilePath}/*{community.memberFileName}|)}"
+                                                        th:if="*{reply.memberFileName != null && !reply.memberFileName.isEmpty()}"
+                                                        th:src="@{/files/display(path=|*{reply.memberFilePath}/*{reply.memberFileName}|)}"
                                                         loading="lazy"
                                                         class="FeelogAvatar-img flog-img-1"
                                                 />
                                                 <img
                                                         alt=""
-                                                        th:if="*{community.memberFileName == null || community.memberFileName.isEmpty()}"
+                                                        th:if="*{reply.memberFileName == null || reply.memberFileName.isEmpty()}"
                                                         src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
                                                         loading="lazy"
                                                         class="FeelogAvatar-img flog-img-1"
@@ -88,12 +88,12 @@
                                                     <a
                                                         href="/*{memberChannel}"
                                                         class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-title-md FeelogLink-underlineNone flog-a-26"
-                                                        th:text="*{community.memberNickname}"
+                                                        th:text="*{reply.memberNickname}"
                                                 ></a
                                                 >
                                                     님이 회원님의 커뮤니티에 글을 남겼어요.</span
                                                 ><span
-                                                        class="FeelogTypography-root FeelogTypography-body-sm flog-span-13" th:text="*{community.timeAgo}"
+                                                        class="FeelogTypography-root FeelogTypography-body-sm flog-span-13" th:text="*{reply.timeAgo}"
                                                 ></span
                                                 >
                                                 </h6>
@@ -102,7 +102,7 @@
                                             <a
                                                     href="community/*{channelId}"
                                                     class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-27"
-                                            ><span class="FeelogTypography-root FeelogTypography-body-md flog-span-24"  th:text="' : ' + *{community.postContent}"
+                                            ><span class="FeelogTypography-root FeelogTypography-body-md flog-span-24"  th:text="' : ' + *{reply.replyContent}"
                                             >
                                             </span></a
                                             >
@@ -175,6 +175,6 @@
                 th:replace="~{main/footer.html :: #main-footer}"></footer>
         <!-- footer 넣을 곳 -->
     </body>
-    <script src="/js/myPage/notify-community-list-event.js"></script>
+    <script src="/js/myPage/notify-reply-list-event.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

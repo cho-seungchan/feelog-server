@@ -61,6 +61,7 @@
                  join tbl_community_post cp on ch.id = cp.channel_id
                  join tbl_post p on cp.id = p.id
         where ch.member_id = #{memberId}
+          and cp.member_id != #{memberId}
           and p.post_status = '정상'
           and ch.channel_status = '정상'
     </select>
@@ -81,6 +82,7 @@
                  join tbl_community_post cp on ch.id = cp.channel_id
                  join tbl_post p on cp.id = p.id
         where ch.member_id = #{memberId}
+          and cp.member_id != #{memberId}
           and p.post_status = '정상'
           and ch.channel_status = '정상'
         order by p.id desc
@@ -117,7 +119,42 @@
     </select>
 
     <select id="getNotifyReplyListTotalCount" resultType="_int">
+        select count(*)
+        from tbl_channel_post cp
+                 join tbl_channel_post_reply cpr on cp.id = cpr.post_id
+                 join tbl_reply r on cpr.id = r.id
+        where cp.member_id = #{memberId}
+          and cpr.member_id != #{memberId}
+        order by r.id desc;
+    </select>
 
+    <select id="getNotifyReplyList" resultType="channelPostReplyVO">
+        select
+            r.id,
+            r.reply_content,
+            cp.post_type,
+            cpr.member_id,
+            cp.channel_id,
+            cpr.post_id,
+            r.created_date,
+            r.updated_date
+        from tbl_channel_post cp
+                 join tbl_channel_post_reply cpr on cp.id = cpr.post_id
+                 join tbl_reply r on cpr.id = r.id
+        where cp.member_id = #{memberId}
+          and cpr.member_id != #{memberId}
+        order by r.id desc;
+    </select>
+
+    <select id="getPostById" resultType="postVO">
+        select
+            id,
+            post_title,
+            post_content,
+            created_date,
+            updated_date
+        from tbl_post
+        where id = #{id}
     </select>
 
     <insert id="postMakingChannel">

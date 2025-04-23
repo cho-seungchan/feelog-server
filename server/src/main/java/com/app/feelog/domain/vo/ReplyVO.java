@@ -2,6 +2,7 @@ package com.app.feelog.domain.vo;
 
 import com.app.feelog.domain.enumeration.ReplyStatus;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class ReplyVO extends Period {
+@SuperBuilder
+public class ReplyVO extends SuperPeriod {
     @EqualsAndHashCode.Include
     private Long id;
     private String replyContent;
@@ -17,13 +19,4 @@ public class ReplyVO extends Period {
     private String replyFileName;
     private ReplyStatus replyStatus;
 
-    @Builder
-    public ReplyVO(String createdDate, String updatedDate, Long id, String replyContent, String replyFilePath, String replyFileName, ReplyStatus replyStatus) {
-        super(createdDate, updatedDate);
-        this.id = id;
-        this.replyContent = replyContent;
-        this.replyFilePath = replyFilePath;
-        this.replyFileName = replyFileName;
-        this.replyStatus = replyStatus;
-    }
 }
