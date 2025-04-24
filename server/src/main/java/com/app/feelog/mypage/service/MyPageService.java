@@ -77,26 +77,26 @@ public class MyPageService implements ToDTO {
     }
 
     // 2025.04.23 조승찬 :: 알림 메뉴 중 커뮤니티 목록
-    public List<NotifyCommunityListDTO> getNotifyCommunityList(Long memberId, FiveRowOnePagePagination pagination) {
-
-        pagination.create(myPageDAO.getNotifyCommunityListTotalCount(memberId));
-        // 커뮤니티 게시글 가져오기
-        List<CommunityPostVO> communityPostList = myPageDAO.getNotifyCommunityList(memberId, pagination);
-
-        List<NotifyCommunityListDTO> resultList = new ArrayList<>();
-        communityPostList.forEach(communityPost -> {
-            // 작성자 정보 가져오기
-            MemberVO member = myPageDAO.getMemberById(communityPost.getMemberId()).orElse(null);
-            // 작성자 채널 정보 가져오기
-            String memberChannel = myPageDAO.getChannelByMemberId(communityPost.getMemberId()).orElse(null);
-            // 작성 시간 계산하기
-            String timAgo = calculateTimeAgo(communityPost.getCreatedDate());
-
-            resultList.add(toNotifyCommunityListDTO(communityPost, member, memberChannel, timAgo));
-        });
-
-        return resultList;
-    }
+//    public List<NotifyCommunityListDTO> getNotifyCommunityList(Long memberId, FiveRowOnePagePagination pagination) {
+//
+//        pagination.create(myPageDAO.getNotifyCommunityListTotalCount(memberId));
+//        // 커뮤니티 게시글 가져오기
+//        List<CommunityPostVO> communityPostList = myPageDAO.getNotifyCommunityList(memberId, pagination);
+//
+//        List<NotifyCommunityListDTO> resultList = new ArrayList<>();
+//        communityPostList.forEach(communityPost -> {
+//            // 작성자 정보 가져오기
+//            MemberVO member = myPageDAO.getMemberById(communityPost.getMemberId()).orElse(null);
+//            // 작성자 채널 정보 가져오기
+//            String memberChannel = myPageDAO.getChannelByMemberId(communityPost.getMemberId()).orElse(null);
+//            // 작성 시간 계산하기
+//            String timAgo = calculateTimeAgo(communityPost.getCreatedDate());
+//
+//            resultList.add(toNotifyCommunityListDTO(communityPost, member, memberChannel, timAgo));
+//        });
+//
+//        return resultList;
+//    }
 
     // 2025.04.23 조승찬 :: create data의 작성시점 변환하기
     public String calculateTimeAgo(String createdDate) {
