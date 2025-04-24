@@ -143,7 +143,8 @@
                  join tbl_reply r on cpr.id = r.id
         where cp.member_id = #{memberId}
           and cpr.member_id != #{memberId}
-        order by r.id desc;
+        order by r.id desc
+        limit #{pagination.offset}, #{pagination.rowCount};
     </select>
 
     <select id="getPostById" resultType="postVO">
@@ -155,6 +156,35 @@
             updated_date
         from tbl_post
         where id = #{id}
+    </select>
+
+    <select id="getNotifyAdminListTotalCount" resultType="_int">
+        SELECT
+              count(*)
+        FROM tbl_notice
+        WHERE notice_status = '정상'
+    </select>
+
+    <select id="getDiaryByMemberId" resultType="diaryVO">
+        select
+            id,
+            diary_title,
+            diary_content,
+            diary_open,
+            diary_name_open,
+            diary_file_path,
+            diary_file_name,
+            diary_file_size,
+            diary_weather,
+            diary_score,
+            member_id,
+            feel_id,
+            created_date,
+            updated_date
+        from   tbl_diary
+        where  diary_status = '정상'
+          and  member_id  = #{memberId}
+          and  date(created_date) = current_date()
     </select>
 
     <insert id="postMakingChannel">

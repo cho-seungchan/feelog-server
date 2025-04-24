@@ -101,5 +101,17 @@ public class MyPageDAO {
                 myPageMapper.getPostById(id)
                         .orElse(null));
     }
+
+    // 2025.04.24 조승찬 :: 페이지 네이션을 위해 관리자 공지 전체 건수 가져오기
+    public int getNotifyAdminListTotalCount() {
+        return myPageMapper.getNotifyAdminListTotalCount();
+    }
+
+    // 2025.04.24 조승찬 :: 알림 메뉴 중 관리자 공지 목록을 위해 일기 정보 가져오기
+    public Optional<DiaryVO> getDiaryByMemberId(Long memberId) {
+        return Optional.ofNullable(
+                myPageMapper.getDiaryByMemberId(memberId)
+                        .orElse(null));
+    }
 }
 

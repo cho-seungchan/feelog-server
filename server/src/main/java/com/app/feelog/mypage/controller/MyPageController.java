@@ -4,6 +4,8 @@ package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.domain.vo.DiaryVO;
+import com.app.feelog.mypage.dto.NotifyAdminListDTO;
 import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
 import com.app.feelog.mypage.dto.NotifyReplyListDTO;
 import com.app.feelog.mypage.service.MyPageService;
@@ -16,6 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -246,9 +251,32 @@ public class MyPageController {
         model.addAttribute("replies", replies);
         model.addAttribute("pagination", pagination);
 
-        log.info(replies.toString());
-        log.info(pagination.toString());
-        return "myPage/notify-community-list";
+        return "myPage/notify-reply-list";
+    }
+
+    // 2025.04.24 조승찬 :: 알림 메뉴 중 관리자 알림 목록 :: 당일 일기에 정신점수가 낮으면 서울시 정신건강 복지센터 데이터
+    @GetMapping("/notify-admin-list")
+    public String getNotifyAdminList(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                     Model model, SixRowPagination pagination) throws IOException {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 오늘 작성한 일기의 점수 확인 => 점수가 50점 미만이면 시설 소개하기
+        DiaryVO diary = myPageService.getDiaryByMemberId(member.getId()).orElse(null);
+
+        // 50점 미만이면 시설 정보 가져오기
+        List<NotifyAdminListDTO> admins = new ArrayList<>();
+        if (diary != null && diary.getDiaryScore() < 50) {
+            admins = myPageService.getFacilityInfo();
+        }
+
+        model.addAttribute("admins", admins);
+        model.addAttribute("pagination", pagination);
+
+        return "myPage/notify-admin-list";
     }
 
     @GetMapping("/admin-notice-list")

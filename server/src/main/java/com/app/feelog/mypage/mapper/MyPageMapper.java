@@ -56,4 +56,10 @@ public interface MyPageMapper {
 
     // 2025.04.23 조승찬 :: 포스트 정보 가져오기
     Optional<PostVO> getPostById(Long id);
+
+    // 2025.04.24 조승찬 :: 페이지 네이션을 위해 관리자 공지 전체 건수 가져오기
+    int getNotifyAdminListTotalCount();
+
+    // 2025.04.24 조승찬 :: 알림 메뉴 중 관리자 공지 목록을 위해 일기 정보 가져오기
+    Optional<DiaryVO> getDiaryByMemberId(Long memberId);
 }
