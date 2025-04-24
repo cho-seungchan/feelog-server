@@ -105,6 +105,7 @@ public class MyPageService implements ToDTO {
         return resultList;
     }
 
+
     // 2025.04.23 조승찬 :: 알림 메뉴 중 포스트 댓글 목록
     public List<NotifyReplyListDTO> getNotifyReplyList(Long memberId, SixRowPagination pagination) {
 

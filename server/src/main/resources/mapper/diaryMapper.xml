@@ -46,8 +46,11 @@
         SELECT
             d.id,
             d.diary_title AS title,
+            d.diary_content AS content,
             m.member_nickname AS nickname,
             CONCAT(d.diary_file_path, '/', d.diary_file_name) AS thumbnailUrl,
+            CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImg,
+            m.id AS memberId,
             d.created_date AS createdDate,
             (
                 SELECT GROUP_CONCAT(t.contents)
@@ -58,13 +61,20 @@
             ) AS tags
         FROM tbl_diary d
                  JOIN tbl_member m ON d.member_id = m.id
+                 LEFT JOIN tbl_diary_tag dt ON d.id = dt.diary_id
+                 LEFT JOIN tbl_tag t ON dt.id = t.id AND t.tag_status = 'ACTIVE'
         WHERE d.diary_status = '정상'
           AND (
             d.diary_title LIKE CONCAT('%', #{keyword}, '%')
                 OR d.diary_content LIKE CONCAT('%', #{keyword}, '%')
+                OR t.contents LIKE CONCAT('%', #{keyword}, '%')
             )
+        GROUP BY d.id, d.diary_title, m.member_nickname, d.diary_file_path, d.diary_file_name,
+                 m.member_file_path, m.member_file_name, m.id, d.created_date
         ORDER BY d.created_date DESC
+        LIMIT 5
     </select>
+
 
     <select id="getRecentDiaries" resultType="com.app.feelog.domain.dto.DiarySearchDTO">
         SELECT

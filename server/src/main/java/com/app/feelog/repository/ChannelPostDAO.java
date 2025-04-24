@@ -33,4 +33,9 @@ public class ChannelPostDAO {
         return channelPostMapper.findRecentChannelPosts();
     }
 
+
+    public List<ChannelPostSearchDTO> searchChannelPosts(String keyword) {
+        return channelPostMapper.searchChannelPosts(keyword);
+    }
+
 }

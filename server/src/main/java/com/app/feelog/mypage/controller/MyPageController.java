@@ -236,6 +236,7 @@ public class MyPageController {
         return "myPage/notify-community-list";
     }
 
+
     // 2025.04.23 조승찬 :: 알림 메뉴 중 포스트 댓글 목록
     @GetMapping("/notify-reply-list")
     public String getNotifyReplyList(@SessionAttribute(name = "member", required = false) MemberDTO member,

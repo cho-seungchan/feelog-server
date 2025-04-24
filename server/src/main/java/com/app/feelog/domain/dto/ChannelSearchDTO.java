@@ -1,10 +1,7 @@
 package com.app.feelog.domain.dto;
 
-import com.app.feelog.domain.enumeration.PostType;
 import lombok.*;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 @Getter
@@ -12,17 +9,14 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class ChannelPostSearchDTO {
+public class ChannelSearchDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private String title;
-    private String content;
+    private String description;
     private String thumbnailUrl;
     private String nickname;
-    private String memberProfileImg;
-    private Long memberId;
-    private String createdDate;
-    private PostType postType;
-    private String tags;
-    private List<String> tagsList;
+    private int subscriberCount;
+    private String channelUrl;
+
 }

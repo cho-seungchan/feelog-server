@@ -15,8 +15,11 @@ public class DiarySearchDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private String title;
+    private String content;
     private String nickname;
     private String thumbnailUrl;
+    private String memberProfileImg;
+    private Long memberId;
     private String createdDate;
     private String tags;
     private List<String> tagsList;
