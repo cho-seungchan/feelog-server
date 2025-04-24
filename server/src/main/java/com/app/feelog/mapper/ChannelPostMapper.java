@@ -1,7 +1,10 @@
 package com.app.feelog.mapper;
 
 import com.app.feelog.domain.dto.ChannelPostSearchDTO;
+import com.app.feelog.domain.dto.ChannelPostTagListDTO;
+import com.app.feelog.domain.dto.MainPostListDTO;
 import com.app.feelog.domain.vo.ChannelPostVO;
+import com.app.feelog.util.pagination.PostPagination;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,6 +24,17 @@ public interface ChannelPostMapper {
 
     List<ChannelPostSearchDTO> findRecentChannelPosts();
 
-    List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 
+//  박정근 :: 전체조회, 카운트
+    public List<MainPostListDTO> selectPostAll(PostPagination postPagination);
+
+    public int selectPostCount();
+
+    public List<ChannelPostTagListDTO> selectPostTagByPostId(Long id);
+
+    public int selectPostLikeCountByPostId(Long id);
+
+    public int selectPostReplyCountByPostId(Long id);
+
+    List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 }

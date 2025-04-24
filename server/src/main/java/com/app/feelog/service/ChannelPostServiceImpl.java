@@ -5,6 +5,7 @@ import com.app.feelog.domain.enumeration.TagStatus;
 import com.app.feelog.domain.vo.ChannelPostFileVO;
 import com.app.feelog.domain.vo.ChannelPostVO;
 import com.app.feelog.repository.*;
+import com.app.feelog.util.pagination.PostPagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -173,6 +174,27 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         return result;
     }
 
+
+    //  박정근 :: 전체조회, 카운트
+    @Override
+    public ChannelPostListDTO getPostAll(PostPagination pagination) {
+        ChannelPostListDTO postList = new ChannelPostListDTO();
+
+        pagination.create(channelPostDAO.findPostCount());
+
+        postList.setPostPagination(pagination);
+        postList.setPostList(channelPostDAO.findPostAll(pagination));
+
+        postList.getPostList().forEach((post)->{
+            post.setTagList(channelPostDAO.findPostTagByPostId(post.getId()));
+            post.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(post.getId()));
+            post.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(post.getId()));
+        });
+
+        return postList;
+    }
+
+
     @Override
     public List<ChannelPostSearchDTO> searchChannelPosts(String keyword) {
         List<ChannelPostSearchDTO> result = channelPostDAO.searchChannelPosts(keyword);
@@ -205,4 +227,5 @@ public class ChannelPostServiceImpl implements ChannelPostService {
 
         return doc.body().text();
     }
+
 }

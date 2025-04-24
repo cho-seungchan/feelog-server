@@ -1,11 +1,9 @@
 package com.app.feelog.service;
 
-import com.app.feelog.domain.dto.ChannelPostDTO;
-import com.app.feelog.domain.dto.ChannelPostFileDTO;
-import com.app.feelog.domain.dto.ChannelPostSearchDTO;
-import com.app.feelog.domain.dto.PostJkDTO;
+import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.vo.ChannelPostFileVO;
 import com.app.feelog.domain.vo.ChannelPostVO;
+import com.app.feelog.util.pagination.PostPagination;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +58,9 @@ public interface ChannelPostService {
     }
 
     List<ChannelPostSearchDTO> getRecentChannelPosts();
+
+//    박정근 :: 전체조회
+    ChannelPostListDTO getPostAll(PostPagination pagination);
 
     List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 

@@ -3,6 +3,7 @@
 create table tbl_channel_post (
                                   id 			        bigint primary key,
                                   post_type 		    varchar(50) default '포스트',
+                                  post_read_count       int default 0,
                                   post_file_path 		varchar(500) default '',
                                   post_file_name 		varchar(500) default '',
                                   member_id             bigint not null,
@@ -14,4 +15,5 @@ create table tbl_channel_post (
                                   constraint fk_channel_post_channel foreign key (channel_id)
                                       references tbl_channel (id)
 );
+
 
