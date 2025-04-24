@@ -1293,3 +1293,29 @@ body {
     color: #333333;
     background-color: #cccccc;
 }
+.flog-h3-1 {
+    --Icon-fontSize: 1.5em;
+    margin: 0px;
+    display: -webkit-box;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: -0.025em;
+    color: #202022;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+@media (min-width: 0px) {
+    .flog-h3-1 {
+        font-size: 16px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-h3-1 {
+        font-size: 20px;
+    }
+}
