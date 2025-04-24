@@ -27,7 +27,6 @@ public interface ChannelPostService {
         dto.setPostType(vo.getPostType());
         dto.setPostFilePath(vo.getPostFilePath());
         dto.setPostFileName(vo.getPostFileName());
-        dto.setPostFileSize(vo.getPostFileSize());
         dto.setMemberId(vo.getMemberId());
         dto.setChannelId(vo.getChannelId());
         dto.setPostStatus(vo.getPostStatus());

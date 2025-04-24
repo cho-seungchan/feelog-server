@@ -1,4 +1,4 @@
-package com.app.feelog.util.pagination;
+package com.app.feelog.util;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @ToString
 @Getter
 @Setter
-public class FiveRowOnePagePagination {
+public class SixRowPagination {
     private int page;
     private int rowCount;
     private int pageCount;
@@ -22,9 +22,9 @@ public class FiveRowOnePagePagination {
 
     public void create(int total) {
         this.page = this.page == 0 ? 1 : this.page;
-        this.rowCount = 5;
+        this.rowCount = 6;
         this.total = total;
-        this.pageCount = 1;
+        this.pageCount = 2;
         this.offset = (page - 1) * rowCount;
         this.endPage = (int)(Math.ceil(page / (double)pageCount)) * pageCount;
         this.startPage = endPage - pageCount + 1;

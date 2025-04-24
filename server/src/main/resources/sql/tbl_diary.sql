@@ -10,6 +10,7 @@ create table tbl_diary (
                            diary_file_name 		varchar(500) default '',
                            diary_file_size 		varchar(500) default '',
                            diary_weather        varchar(500) default '',
+                           diary_score          int default 0,
                            member_id 		    bigint not null,
                            feel_id              bigint not null,
                            diary_status 		varchar(50) default '정상',

@@ -7,6 +7,7 @@
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_channel_post.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_channel_post_file.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_channel_post_like.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_channel_post_reply.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_channel_post_reply_like.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_channel_post_scrap.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_channel_post_tag.sql" dialect="MySQL" />
