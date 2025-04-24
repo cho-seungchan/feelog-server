@@ -1,77 +1,77 @@
 <!-- 2025.04.07 조승찬 -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/myPage/storage-subscribe.css" />
-        <link rel="stylesheet" href="/css/main/header.css">
-        <link rel="stylesheet" href="/css/main/footer.css">
-        <link rel="stylesheet" href="/css/main/search-modal.css">
-        <link rel="stylesheet" href="/css/all/message.css" />
-        <title>친구 목록</title>
-    </head>
-    <body>
-        <div class="FeelogStack-root flog-div-1">
-            <!-- 헤더 넣을 곳 -->
-            <header id="main-header"
-                    th:replace="~{main/header.html :: #main-header}"></header>
-            <!-- 헤더 넣을 곳 -->
-            <div class="FeelogStack-root flog-div-12">
-                <div class="FeelogStack-root flog-div-13">
-                    <nav class="subnavigation FeelogBox-root flog-nav-2">
-                        <ul
-                                class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-1"
-                        >
-                            <a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
-                                href="/myPage/storage-subscribe"
-                            ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
-                                구독
-                            </p></a
-                            ><a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="/myPage/storage-scarb"
-                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
-                                 스크랩
-                                </p></a
-                            ><a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="/myPage/storage-like"
-                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
-                                  좋아요
-                                </p></a
-                            ><a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="/myPage/storage-reply"
-                                ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
-                                    댓글
-                                </p></a
-                            >
-                        </ul>
-                    </nav>
-                    <main class="FeelogStack-root flog-main-4">
-                        <h1 class="sr-only">구독</h1>
-                        <div class="FeelogStack-root flog-div-60">
-                            <div class="FeelogStack-root flog-div-20">
-<!--                                2025.04.24 조승찬 리스트 보여주기-->
-                                <th:block th:each="subscribe : ${subscribes}">
-                                    <div class="FeelogStack-root flog-div-72" th:attr="data-channelId=${subscribe.id}">
-                                        <a class="FeelogBox-root flog-a-21" href=""
-                                        >
-                                            <img
-                                                    alt="채널"
-                                                    th:if="*{subscribe.channelFileName != null && !subscribe.channelFileName.isEmpty()}"
-                                                    th:src="@{/files/display(path=|*{subscribe.channelFilePath}/*{subscribe.channelFileName}|)}"
-                                                    loading="lazy"
-                                                    class="FeelogAvatar-img flog-img-1"
-                                            />
-                                            <img
-                                                alt="채널"
-                                                loading="lazy"
-                                                decoding="async"
-                                                data-nimg="fill"
-                                                style="
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/myPage/storage-subscribe.css" />
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/main/search-modal.css">
+    <link rel="stylesheet" href="/css/all/message.css" />
+    <title>친구 목록</title>
+</head>
+<body>
+<div class="FeelogStack-root flog-div-1">
+    <!-- 헤더 넣을 곳 -->
+    <header id="main-header"
+            th:replace="~{main/header.html :: #main-header}"></header>
+    <!-- 헤더 넣을 곳 -->
+    <div class="FeelogStack-root flog-div-12">
+        <div class="FeelogStack-root flog-div-13">
+            <nav class="subnavigation FeelogBox-root flog-nav-2">
+                <ul
+                        class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-1"
+                >
+                    <a
+                            class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain selected flog-a-7"
+                            href="/myPage/storage-subscribe"
+                    ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-5">
+                        구독
+                    </p></a
+                    ><a
+                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                        href="/myPage/storage-scarb"
+                    ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                        스크랩
+                    </p></a
+                    ><a
+                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                        href="/myPage/storage-like"
+                    ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                        좋아요
+                    </p></a
+                    ><a
+                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
+                        href="/myPage/storage-reply"
+                    ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
+                        댓글
+                    </p></a
+                    >
+                </ul>
+            </nav>
+            <main class="FeelogStack-root flog-main-4">
+                <h1 class="sr-only">구독</h1>
+                <div class="FeelogStack-root flog-div-60">
+                    <div class="FeelogStack-root flog-div-20">
+                        <!--                                2025.04.24 조승찬 리스트 보여주기-->
+                        <th:block th:each="subscribe : ${subscribes}">
+                            <div class="FeelogStack-root flog-div-72" th:attr="data-channelId=${subscribe.id}">
+                                <a class="FeelogBox-root flog-a-21" href=""
+                                >
+                                    <img
+                                            alt="채널"
+                                            th:if="*{subscribe.channelFileName != null && !subscribe.channelFileName.isEmpty()}"
+                                            th:src="@{/files/display(path=|*{subscribe.channelFilePath}/*{subscribe.channelFileName}|)}"
+                                            loading="lazy"
+                                            class="FeelogAvatar-img flog-img-1"
+                                    />
+                                    <img
+                                            alt="채널"
+                                            loading="lazy"
+                                            decoding="async"
+                                            data-nimg="fill"
+                                            style="
                                                 position: absolute;
                                                 height: 100%;
                                                 width: 100%;
@@ -82,189 +82,189 @@
                                                 object-fit: cover;
                                                 color: transparent;
                                             "
-                                                th:if="*{subscribe.channelFileName == null || subscribe.channelFileName.isEmpty()}"
-                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png?w=100&amp;h=100&amp;q=65"
-                                        />
-                                        </a>
-                                        <div class="FeelogStack-root flog-div-73">
-                                            <div class="FeelogStack-root flog-div-74">
-                                                <a
-                                                        href="/@tests123"
-                                                        class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-22"
-                                                ><span
-                                                        class="FeelogTypography-root FeelogTypography-title-md flog-span-14" th:text="${subscribe.channelTitle}"
-                                                ></span
-                                                ></a
-                                                >
-                                                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-15" th:text="${subscribe.channelIntroduce}">
-                                                </p>
-                                                <a class="FeelogStack-root flog-a-23" href="/profile/@lr3uee"
-                                                ><div
-                                                        class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeXs2 flog-div-75"
-                                                >
+                                            th:if="*{subscribe.channelFileName == null || subscribe.channelFileName.isEmpty()}"
+                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png?w=100&amp;h=100&amp;q=65"
+                                    />
+                                </a>
+                                <div class="FeelogStack-root flog-div-73">
+                                    <div class="FeelogStack-root flog-div-74">
+                                        <a
+                                                href="/@tests123"
+                                                class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-22"
+                                        ><span
+                                                class="FeelogTypography-root FeelogTypography-title-md flog-span-14" th:text="${subscribe.channelTitle}"
+                                        ></span
+                                        ></a
+                                        >
+                                        <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-15" th:text="${subscribe.channelIntroduce}">
+                                        </p>
+                                        <a class="FeelogStack-root flog-a-23" href="/profile/@lr3uee"
+                                        ><div
+                                                class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeXs2 flog-div-75"
+                                        >
 
-                                                    <img
-                                                            alt="채널 소유자"
-                                                            th:if="*{subscribe.memberFileName != null && !subscribe.memberFileName.isEmpty()}"
-                                                            th:src="@{/files/display(path=|*{subscribe.memberFilePath}/*{subscribe.memberFileName}|)}"
-                                                            loading="lazy"
-                                                            class="FeelogAvatar-img flog-img-1"
-                                                    />
-                                                    <img
-                                                            alt="채널 소유자"
-                                                            th:if="*{subscribe.memberFileName == null || subscribe.memberFileName.isEmpty()}"
-                                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=50&amp;h=50&amp;q=65"
-                                                            loading="lazy"
-                                                            class="FeelogAvatar-img flog-img-1"
-                                                    />
-                                                </div>
-                                                    <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-16" th:text="*{subscribe.memberNickname}">
-                                                    </p></a
-                                                >
-                                            </div>
-                                            <button
-                                                    class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-13"
-                                                    type="button"  th:attr="data-memberId=${subscribe.memberId}, data-page=${pagination.page}"
-                                            >
-                                                구독 중
-                                            </button>
+                                            <img
+                                                    alt="채널 소유자"
+                                                    th:if="*{subscribe.memberFileName != null && !subscribe.memberFileName.isEmpty()}"
+                                                    th:src="@{/files/display(path=|*{subscribe.memberFilePath}/*{subscribe.memberFileName}|)}"
+                                                    loading="lazy"
+                                                    class="FeelogAvatar-img flog-img-1"
+                                            />
+                                            <img
+                                                    alt="채널 소유자"
+                                                    th:if="*{subscribe.memberFileName == null || subscribe.memberFileName.isEmpty()}"
+                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=50&amp;h=50&amp;q=65"
+                                                    loading="lazy"
+                                                    class="FeelogAvatar-img flog-img-1"
+                                            />
                                         </div>
+                                            <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-16" th:text="*{subscribe.memberNickname}">
+                                            </p></a
+                                        >
                                     </div>
-                                </th:block>
-                                <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
-
-                                <!--페이징 처리-->
-                                <form th:action="@{/myPage/storage-subscribe}" name="pageForm">
-                                    <input type="hidden" name="page" th:value="1"   class="StorageList"> <!-- 기본페이지는 1페이지 -->
-                                    <div class="paging-wrap">
-                                        <div class="pagination-container">
-                                            <a class="change-page" th:if="${pagination.prev}" th:href="${pagination.startPage - 1}">
-                                                <button class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 iItkLq">
-                                                    <img
-                                                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
-                                                            class="PaginationButtonGroup__Icon-x0iffd-2 jVxRns"
-                                                    />
-                                                </button>
-                                            </a>
-                                            <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
-                                                <a class="change-page" th:if="${pagination.page != page}" th:href="${page}"><code th:text="${page}"></code></a>
-                                                <code th:unless="${pagination.page != page}" th:text="${page}"></code>
-                                            </th:block>
-                                            <a class="change-page" th:if="${pagination.next}" th:href="${pagination.endPage + 1}">
-                                                <button class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 iItkLq" >
-                                                    <img
-                                                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
-                                                            class="PaginationButtonGroup__Icon-x0iffd-2 dQqQMu"
-                                                    />
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </form>
+                                    <button
+                                            class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-13"
+                                            type="button"  th:attr="data-channelId=${subscribe.id}, data-page=${pagination.page}"
+                                    >
+                                        구독 중
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </main>
-                </div>
-            </div>
-        </div>
+                        </th:block>
+                        <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
 
-        <!-- footer 넣을 곳 -->
-        <footer id="main-footer"
-                th:replace="~{main/footer.html :: #main-footer}"></footer>
-        <!-- footer 넣을 곳 -->
+                        <!--페이징 처리-->
+                        <form th:action="@{/myPage/storage-subscribe}" name="pageForm">
+                            <input type="hidden" name="page" th:value="1"   class="StorageList"> <!-- 기본페이지는 1페이지 -->
+                            <div class="paging-wrap">
+                                <div class="pagination-container">
+                                    <a class="change-page" th:if="${pagination.prev}" th:href="${pagination.startPage - 1}">
+                                        <button class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 iItkLq">
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                    class="PaginationButtonGroup__Icon-x0iffd-2 jVxRns"
+                                            />
+                                        </button>
+                                    </a>
+                                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                                        <a class="change-page" th:if="${pagination.page != page}" th:href="${page}"><code th:text="${page}"></code></a>
+                                        <code th:unless="${pagination.page != page}" th:text="${page}"></code>
+                                    </th:block>
+                                    <a class="change-page" th:if="${pagination.next}" th:href="${pagination.endPage + 1}">
+                                        <button class="Button-bqxlp0-0 ButtonPage__StyledButton-k07u44-0 iItkLq" >
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                                                    class="PaginationButtonGroup__Icon-x0iffd-2 dQqQMu"
+                                            />
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
         </div>
-        <div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
-            <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
-            <div tabindex="0" data-testid="sentinelStart"></div>
-            <div
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby=":r0:"
-                aria-describedby=":r1:"
-                tabindex="-1"
-                class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAlert flog-div-42"
+    </div>
+</div>
+
+<!-- footer 넣을 곳 -->
+<footer id="main-footer"
+        th:replace="~{main/footer.html :: #main-footer}"></footer>
+<!-- footer 넣을 곳 -->
+</div>
+<div role="presentation" class="FeelogModal-root flog-div-40" style="display: none">
+    <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
+    <div tabindex="0" data-testid="sentinelStart"></div>
+    <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby=":r0:"
+            aria-describedby=":r1:"
+            tabindex="-1"
+            class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAlert flog-div-42"
+    >
+        <h2 id=":r0:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
+            확인
+        </h2>
+        <button
+                aria-label="닫기"
+                class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-9"
+                type="button"
+        >
+            <svg
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    data-testid="CloseIcon"
+                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
             >
-                <h2 id=":r0:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
-                    확인
-                </h2>
-                <button
-                    aria-label="닫기"
-                    class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-9"
-                    type="button"
-                >
-                    <svg
-                        focusable="false"
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        data-testid="CloseIcon"
-                        class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
-                    >
-                        <path
-                            d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                        ></path>
-                    </svg>
-                </button>
-                <div id=":r1:" class="FeelogDialogContent-root flog-div-43">
-                    구독은 크리에이터에게 큰 힘이 돼요. 정말로 구독을 취소할까요?
-                </div>
-                <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
-                    <button
-                        class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
-                        type="button"
-                    >
-                        네</button
-                    ><button
-                        class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeMd flog-a-13"
-                        type="button"
-                    >
-                        아니요
-                    </button>
-                </div>
-            </div>
-            <!-- 서버에 갔다온 뒤에 뿌려질 알람창  -->
-            <div
-                style="display: none"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby=":r4:"
-                aria-describedby=":r5:"
-                tabindex="-1"
-                class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAlert flog-div-42"
-            >
-                <h2 id=":r4:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
-                    알림
-                </h2>
-                <button
-                    aria-label="닫기"
-                    class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-9"
-                    type="button"
-                >
-                    <svg
-                        focusable="false"
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        data-testid="CloseIcon"
-                        class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
-                    >
-                        <path
-                            d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                        ></path>
-                    </svg>
-                </button>
-                <div id=":r5:" class="FeelogDialogContent-root flog-div-43">차단을 해제했어요.</div>
-                <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
-                    <button
-                        class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
-                        type="button"
-                    >
-                        확인
-                    </button>
-                </div>
-            </div>
-            <!-- 서버에 갔다온 뒤에 뿌려질 알람창  -->
-            <div tabindex="0" data-testid="sentinelEnd"></div>
+                <path
+                        d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                ></path>
+            </svg>
+        </button>
+        <div id=":r1:" class="FeelogDialogContent-root flog-div-43">
+            구독은 크리에이터에게 큰 힘이 돼요. 정말로 구독을 취소할까요?
         </div>
-    </body>
-    <script src="/js/myPage/storage-subscribe-event.js"></script>
-    <script src="/js/main/main-modal.js"></script>
+        <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
+            <button
+                    class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
+                    type="button"
+            >
+                네</button
+            ><button
+                class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeMd flog-a-13"
+                type="button"
+        >
+            아니요
+        </button>
+        </div>
+    </div>
+    <!-- 서버에 갔다온 뒤에 뿌려질 알람창  -->
+    <div
+            style="display: none"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby=":r4:"
+            aria-describedby=":r5:"
+            tabindex="-1"
+            class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAlert flog-div-42"
+    >
+        <h2 id=":r4:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
+            알림
+        </h2>
+        <button
+                aria-label="닫기"
+                class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-9"
+                type="button"
+        >
+            <svg
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    data-testid="CloseIcon"
+                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
+            >
+                <path
+                        d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                ></path>
+            </svg>
+        </button>
+        <div id=":r5:" class="FeelogDialogContent-root flog-div-43">차단을 해제했어요.</div>
+        <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
+            <button
+                    class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
+                    type="button"
+            >
+                확인
+            </button>
+        </div>
+    </div>
+    <!-- 서버에 갔다온 뒤에 뿌려질 알람창  -->
+    <div tabindex="0" data-testid="sentinelEnd"></div>
+</div>
+</body>
+<script src="/js/myPage/storage-subscribe-event.js"></script>
+<script src="/js/main/main-modal.js"></script>
 </html>

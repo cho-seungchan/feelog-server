@@ -232,6 +232,26 @@ public interface ToDTO {
         return notifyReplyListDTO;
     }
 
+    public default NotifySubscribeListDTO toNotifySubscribeListDTO(ChannelVO channelVO, MemberVO memberVO) {
+        NotifySubscribeListDTO dto = null;
+        if (channelVO != null && memberVO != null) {
+            dto = new NotifySubscribeListDTO();
+            dto.setId(channelVO.getId());
+            dto.setChannelTitle(channelVO.getChannelTitle());
+            dto.setChannelIntroduce(channelVO.getChannelIntroduce());
+            dto.setChannelUrl(channelVO.getChannelUrl());
+            dto.setChannelFilePath(channelVO.getChannelFilePath());
+            dto.setChannelFileName(channelVO.getChannelFileName());
+            dto.setMemberId(channelVO.getMemberId());
+            dto.setMemberNickname(memberVO.getMemberNickname());
+            dto.setMemberFilePath(memberVO.getMemberFilePath());
+            dto.setMemberFileName(memberVO.getMemberFileName());
+            dto.setCreatedDate(channelVO.getCreatedDate());
+            dto.setUpdatedDate(channelVO.getUpdatedDate());
+        }
+        return dto;
+    }
+
     public default StorageSubscribeListDTO toStorageSubscribeListDTO(ChannelVO channelVO, MemberVO memberVO) {
         StorageSubscribeListDTO dto = null;
         if (channelVO != null && memberVO != null) {

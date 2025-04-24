@@ -187,7 +187,7 @@
           and  date(created_date) = current_date()
     </select>
 
-    <select id="getStorageSubscribeTotalCount" resultType="_int">
+    <select id="getNotifySubscribeTotalCount" resultType="_int">
         SELECT count(*)
         FROM tbl_subscribe s
                  JOIN tbl_channel c1 ON s.channel_id = c1.id
@@ -197,7 +197,7 @@
           AND c2.channel_status = '정상';
     </select>
 
-    <select id="getStorageSubscribe" resultType="channelVO">
+    <select id="getNotifySubscribe" resultType="channelVO">
         SELECT
             c2.id,
             c2.channel_title,
@@ -216,6 +216,36 @@
           AND c2.channel_status = '정상'
         order by s.id desc
         limit #{pagination.offset}, #{pagination.rowCount};
+    </select>
+
+
+    <select id="getStorageSubscribeTotalCount" resultType="_int">
+        SELECT count(*)
+        FROM tbl_subscribe s
+                 JOIN tbl_channel c ON s.channel_id = c.id
+        WHERE s.member_id = #{memberId}
+          AND s.subscribe_status = '정상'
+          AND c.channel_status = '정상'
+    </select>
+
+    <select id="getStorageSubscribe" resultType="channelVO">
+        SELECT
+            c.id,
+            c.channel_title,
+            c.channel_introduce,
+            c.channel_url,
+            c.channel_file_path,
+            c.channel_file_name,
+            c.member_id,
+            c.created_date,
+            c.updated_date
+        FROM tbl_subscribe s
+                 JOIN tbl_channel c ON s.channel_id = c.id
+        WHERE s.member_id = #{memberId}
+          AND s.subscribe_status = '정상'
+          AND c.channel_status = '정상'
+        order by s.id desc
+            limit #{pagination.offset}, #{pagination.rowCount};
     </select>
 
     <insert id="postMakingChannel">
@@ -274,13 +304,16 @@
 
     <update id="postDeleteChannel">
         update  tbl_channel
-        set     channel_status  = '삭제'
-        where   id = #{id}
+        set     channel_status  = '삭제',
+                updated_date = current_timestamp
+        where   id         = #{id}
+        and     channel_id = #{channel_id}
     </update>
 
     <update id="cancelSubscribe">
         update   tbl_subscribe
-        set      subscribe_status = '삭제'
+        set      subscribe_status = '삭제',
+                 updated_date = current_timestamp
         where    member_id  = #{memberId}
         and      channel_id = #{channelId}
     </update>

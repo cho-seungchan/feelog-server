@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 // 동적으로 form 생성
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = '/myPage/storage-cancel-subscribe';
+                form.action = '/myPage/notify-cancel-subscribe';
 
                 // hidden input 생성 및 값 설정
                 const memberIdInput = document.createElement('input');
                 memberIdInput.type = 'hidden';
-                memberIdInput.name = 'channelId';
-                memberIdInput.value = channelId;
+                memberIdInput.name = 'memberId';
+                memberIdInput.value = memberId;
                 form.appendChild(memberIdInput);
 
                 const pageInput = document.createElement('input');
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const pageValue = pageLink.getAttribute("href"); // href 값 가져오기
         if (pageValue) {
             e.preventDefault(); // 기본 동작 방지
-            document.querySelector(".StorageList").value = pageValue;
+            document.querySelector(".SubscriptList").value = pageValue;
             document.forms["pageForm"].submit(); // 폼 제출
         }
     });

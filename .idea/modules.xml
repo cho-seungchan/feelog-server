@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/feelog-server.iml" filepath="$PROJECT_DIR$/.idea/feelog-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/feelog.main.iml" filepath="$PROJECT_DIR$/.idea/modules/feelog.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feelog.test.iml" filepath="$PROJECT_DIR$/.idea/modules/feelog.test.iml" />
     </modules>
   </component>
 </project>
