@@ -1571,3 +1571,42 @@ body {
     color: #333333;
 }
 /* 모달창 끝 */
+/*페이지 처리부분 시작*/
+.pagination-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.change-page code,
+.change-page + code{
+    margin: 0 10px;
+    font-size: 16px;
+}
+.iItkLq {
+    border: none;
+    width: 40px;
+    height: 40px;
+    line-height: normal;
+    padding: 0px;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    outline: none;
+}
+.jVxRns {
+    transform-origin: center center;
+    transform: rotate(180deg);
+}
+.PaginationButtonGroup__Icon-x0iffd-2 {
+    filter: grayscale(100%) brightness(50%);
+}
+/*페이지 처리부분 끝*/

@@ -113,5 +113,20 @@ public class MyPageDAO {
                 myPageMapper.getDiaryByMemberId(memberId)
                         .orElse(null));
     }
+
+    // 2025.04.24 조승찬 :: 페이지 네이션을 위해 구독 채널 총 건수 가져오기
+    public int getStorageSubscribeTotalCount(Long memberId) {
+        return myPageMapper.getStorageSubscribeTotalCount(memberId);
+    }
+
+    // 2025.04.24 조승찬 :: 구독 채널 리스트 조회
+    public List<ChannelVO> getStorageSubscribe(Long memberId, SixRowPagination pagination) {
+        return myPageMapper.getStorageSubscribe(memberId, pagination);
+    }
+
+    // 2025.04.24 조승찬 :: 구독 취소
+    public void cancelSubscribe(SubscribeVO subscribeVO) {
+        myPageMapper.cancelSubscribe(subscribeVO);
+    }
 }
 

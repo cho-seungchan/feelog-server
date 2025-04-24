@@ -3,10 +3,12 @@ package com.app.feelog.mypage.service;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.dto.NotifyAdminListDTO;
 import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
 import com.app.feelog.mypage.dto.NotifyReplyListDTO;
+import com.app.feelog.mypage.dto.StorageSubscribeListDTO;
 import com.app.feelog.mypage.repository.MyPageDAO;
 import com.app.feelog.util.SixRowPagination;
 import lombok.RequiredArgsConstructor;
@@ -198,6 +200,7 @@ public class MyPageService implements ToDTO {
                     NotifyAdminListDTO  admin = new NotifyAdminListDTO();
                     admin.setFacilityName(row.getString("FCLT_NM"));
                     admin.setDistrictName(row.getString("JRSD_SGG_NM"));
+                    admin.setFacilityKindName(row.getString("FCLT_KIND_NM"));
                     admin.setFacilityAddress(row.getString("FCLT_ADDR"));
                     admin.setFacilityTellNo(row.getString("FCLT_TEL_NO"));
 
@@ -220,6 +223,38 @@ public class MyPageService implements ToDTO {
 
         return admins;
     }
+
+    // 2025.04.24 조승찬 :: 구독 리스트 조회
+    public List<StorageSubscribeListDTO> getStorageSubscribe(Long memberId, SixRowPagination pagination) {
+
+        // 페이지 네이션을 위한 총 건수 가져오기
+        pagination.create(myPageDAO.getStorageSubscribeTotalCount(memberId));
+        // 구독 채널 정보 가져오기
+        List<ChannelVO> channels = myPageDAO.getStorageSubscribe(memberId, pagination);
+
+        // DTO에 멤버 정보 채우기
+        List<StorageSubscribeListDTO> subscribes = new ArrayList<>();
+        channels.forEach(channel -> {
+            // 멤버 정보 가져오기
+            MemberVO member = myPageDAO.getMemberById(channel.getMemberId()).orElse(null);
+            System.out.println(member.toString());
+            subscribes.add(toStorageSubscribeListDTO(channel, member));
+            System.out.println(toStorageSubscribeListDTO(channel, member).toString());
+        });
+
+        return subscribes;
+    }
+
+    // 2025.04.24 조승찬 :: 구독 취소
+    public void cancelSubscribe(SubscribeDTO subscribeDTO) {
+        myPageDAO.cancelSubscribe(subscribeDTO.toVO());
+    }
+
+    // 2025.04.24 조승찬 ::
+    public Optional<ChannelDTO> getChannelByMemberId(Long memberId) {
+        return Optional.ofNullable(toChannelDTO(myPageDAO.getChannelByMemberId(memberId)
+                .orElse(null)));
+    };
 
     // 2025.04.23 조승찬 :: create data의 작성시점 변환하기
     public String calculateTimeAgo(String createdDate) {

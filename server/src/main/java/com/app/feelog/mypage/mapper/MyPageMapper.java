@@ -2,6 +2,7 @@
 package com.app.feelog.mypage.mapper;
 
 import com.app.feelog.domain.vo.*;
+import com.app.feelog.util.Pagination;
 import com.app.feelog.util.SixRowPagination;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -62,4 +63,13 @@ public interface MyPageMapper {
 
     // 2025.04.24 조승찬 :: 알림 메뉴 중 관리자 공지 목록을 위해 일기 정보 가져오기
     Optional<DiaryVO> getDiaryByMemberId(Long memberId);
+
+    // 2025.04.24 조승찬 :: 페이지 네이션을 위해 구독 채널 총 건수 가져오기
+    int getStorageSubscribeTotalCount(Long memberId);
+
+    // 2025.04.24 조승찬 :: 구독 채널 리스트 조회
+    List<ChannelVO> getStorageSubscribe(Long memberId, SixRowPagination pagination);
+
+    // 2025.04.24 조승찬 :: 구독 취소
+    void cancelSubscribe(SubscribeVO subscribeVO);
 }

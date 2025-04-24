@@ -187,6 +187,37 @@
           and  date(created_date) = current_date()
     </select>
 
+    <select id="getStorageSubscribeTotalCount" resultType="_int">
+        SELECT count(*)
+        FROM tbl_subscribe s
+                 JOIN tbl_channel c1 ON s.channel_id = c1.id
+                 JOIN tbl_channel c2 ON s.member_id = c2.member_id
+        WHERE c1.member_id = #{memberId}
+          AND s.subscribe_status = '정상'
+          AND c2.channel_status = '정상';
+    </select>
+
+    <select id="getStorageSubscribe" resultType="channelVO">
+        SELECT
+            c2.id,
+            c2.channel_title,
+            c2.channel_introduce,
+            c2.channel_url,
+            c2.channel_file_path,
+            c2.channel_file_name,
+            c2.member_id,
+            c2.created_date,
+            c2.updated_date
+        FROM tbl_subscribe s
+                 JOIN tbl_channel c1 ON s.channel_id = c1.id
+                 JOIN tbl_channel c2 ON s.member_id = c2.member_id
+        WHERE c1.member_id = #{memberId}
+          AND s.subscribe_status = '정상'
+          AND c2.channel_status = '정상'
+        order by s.id desc
+        limit #{pagination.offset}, #{pagination.rowCount};
+    </select>
+
     <insert id="postMakingChannel">
         insert into tbl_channel (
             channel_title,
@@ -245,6 +276,13 @@
         update  tbl_channel
         set     channel_status  = '삭제'
         where   id = #{id}
+    </update>
+
+    <update id="cancelSubscribe">
+        update   tbl_subscribe
+        set      subscribe_status = '삭제'
+        where    member_id  = #{memberId}
+        and      channel_id = #{channelId}
     </update>
 
 </mapper>

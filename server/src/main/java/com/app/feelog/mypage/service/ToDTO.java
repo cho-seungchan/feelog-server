@@ -232,20 +232,24 @@ public interface ToDTO {
         return notifyReplyListDTO;
     }
 
-    public default NotifyAdminListDTO toNotifyAdminListDTO(NoticeVO noticeVO, String timeAgo) {
-        NotifyAdminListDTO notifyAdminListDTO = null;
-        if (noticeVO != null) {
-            notifyAdminListDTO = new NotifyAdminListDTO();
-            notifyAdminListDTO.setId(noticeVO.getId());
-            notifyAdminListDTO.setNoticeTitle(noticeVO.getNoticeTitle());
-            notifyAdminListDTO.setNoticeContent(noticeVO.getNoticeContent());
-            notifyAdminListDTO.setMemberId(noticeVO.getMemberId());
-            notifyAdminListDTO.setNoticeFilePath(noticeVO.getNoticeFilePath());
-            notifyAdminListDTO.setNoticeFileName(noticeVO.getNoticeFileName());
-            notifyAdminListDTO.setCreatedDate(noticeVO.getCreatedDate());
-            notifyAdminListDTO.setUpdatedDate(noticeVO.getUpdatedDate());
-            notifyAdminListDTO.setTimeAgo(timeAgo);
+    public default StorageSubscribeListDTO toStorageSubscribeListDTO(ChannelVO channelVO, MemberVO memberVO) {
+        StorageSubscribeListDTO dto = null;
+        if (channelVO != null && memberVO != null) {
+            dto = new StorageSubscribeListDTO();
+            dto.setId(channelVO.getId());
+            dto.setChannelTitle(channelVO.getChannelTitle());
+            dto.setChannelIntroduce(channelVO.getChannelIntroduce());
+            dto.setChannelUrl(channelVO.getChannelUrl());
+            dto.setChannelFilePath(channelVO.getChannelFilePath());
+            dto.setChannelFileName(channelVO.getChannelFileName());
+            dto.setMemberId(channelVO.getMemberId());
+            dto.setMemberNickname(memberVO.getMemberNickname());
+            dto.setMemberFilePath(memberVO.getMemberFilePath());
+            dto.setMemberFileName(memberVO.getMemberFileName());
+            dto.setCreatedDate(channelVO.getCreatedDate());
+            dto.setUpdatedDate(channelVO.getUpdatedDate());
         }
-        return notifyAdminListDTO;
+        return dto;
     }
+
 }

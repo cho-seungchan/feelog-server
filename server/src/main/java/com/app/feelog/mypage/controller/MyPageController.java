@@ -4,10 +4,14 @@ package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.DiaryVO;
+import com.app.feelog.domain.vo.SubscribeNotificationVO;
+import com.app.feelog.domain.vo.SubscribeVO;
 import com.app.feelog.mypage.dto.NotifyAdminListDTO;
 import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
 import com.app.feelog.mypage.dto.NotifyReplyListDTO;
+import com.app.feelog.mypage.dto.StorageSubscribeListDTO;
 import com.app.feelog.mypage.service.MyPageService;
 import com.app.feelog.util.SixRowPagination;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +36,7 @@ public class MyPageController {
     private final HttpServletRequest request;
     private final MyPageService myPageService;
     private final ChannelDTO channelDTO;
+    private final SubscribeNotificationVO subscribeNotificationVO;
 
     // 2025.04.21  조승찬 :: 프로필 조회
     @GetMapping("/setting-profile")
@@ -280,6 +284,40 @@ public class MyPageController {
         return "myPage/notify-admin-list";
     }
 
+    // 2025.04.24 조승찬 :: 구독 리스트 조회
+    @GetMapping("/storage-subscribe")
+    public String getStorageSubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                      Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+        log.info("memberId:{}", member.getId());
+        // 구독 리스트 가져오기
+        List<StorageSubscribeListDTO> subscribes = myPageService.getStorageSubscribe(member.getId(), pagination);
+
+        model.addAttribute("subscribes", subscribes);
+        model.addAttribute("pagination", pagination);
+
+        return "myPage/storage-subscribe";
+    }
+
+    // 2025.04.24 조승찬 :: 구독 취소
+    @PostMapping("/storage-cancel-subscribe")
+    public String cancelSubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                  SubscribeDTO subscribeDTO, Model model, SixRowPagination pagination){
+
+        // 채널 정보 가져오기
+        ChannelDTO channel = myPageService.getChannelByMemberId(member.getId()).orElse(null);
+
+        // 취소 처리
+        subscribeDTO.setChannelId(channel.getId());
+        myPageService.cancelSubscribe(subscribeDTO);
+
+        return "redirect:/myPage/storage-subscribe?page="+pagination.getPage();
+    }
+
     @GetMapping("/admin-notice-list")
     public String adminNoticeList(){
         return "myPage/admin-notice-list";
@@ -305,11 +343,6 @@ public class MyPageController {
         return "myPage/message-list";
     }
 
-    @GetMapping("/notify-admin-list")
-    public String notifyAdminList(){
-        return "myPage/notify-admin-list";
-    }
-
     @GetMapping("/storage-reply")
     public String storageReply(){
         return "myPage/storage-reply";
@@ -317,12 +350,7 @@ public class MyPageController {
 
     @GetMapping("/storage-scrab")
     public String storageScrab(){
-        return "myPage/storage-scrab";
-    }
-
-    @GetMapping("/subscribe-list")
-    public String subscribeList(){
-        return "myPage/subscribe-list";
+        return "storage-like";
     }
 
 }
