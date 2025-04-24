@@ -1165,9 +1165,9 @@ body {
 
 @media (min-width: 744px) {
     .joy-rtjsnx {
-        width: 144px;
+        width: 288px;
         min-width: 144px;
-        height: 81px;
+        height: 150px;
     }
 }
 
@@ -1301,7 +1301,8 @@ body {
 .joy-1w8agmd {
     margin: 0px;
     font-size: inherit;
-    color: #202022;
+    color: #a4a4a8;
+    font-weight: 900;
     overflow: hidden;
     overflow-wrap: anywhere;
     display: -webkit-box;
@@ -1643,6 +1644,9 @@ body {
 ;
     flex-direction: row;
     overflow: hidden;
+    border: 1px solid rgba(118, 118, 127, 0.15);
+    border-radius: 10px;
+    padding: 5px;
 }
 
 @media (min-width: 0px) {
@@ -1813,7 +1817,8 @@ body {
     margin: 0px;
     display: inline;
     font-size: inherit;
-    color: #202022;
+    color: #a4a4a8;
+    font-weight: 900;
 }
 
 .joy-4xpt5n {

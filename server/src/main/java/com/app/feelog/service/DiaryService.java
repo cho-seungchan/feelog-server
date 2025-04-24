@@ -18,6 +18,7 @@ public interface DiaryService {
     List<DiarySearchDTO> getRecentDiaries();
 
 
+
     default DiaryDTO toDTO(DiaryVO vo) {
         DiaryDTO dto = new DiaryDTO();
         dto.setId(vo.getId());

@@ -1,6 +1,10 @@
 package com.app.feelog.controller;
 
+import com.app.feelog.domain.dto.ChannelPostSearchDTO;
+import com.app.feelog.domain.dto.ChannelSearchDTO;
 import com.app.feelog.domain.dto.DiarySearchDTO;
+import com.app.feelog.service.ChannelPostService;
+import com.app.feelog.service.ChannelService;
 import com.app.feelog.service.DiaryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,12 +23,21 @@ import java.util.List;
 public class SearchController {
 
     private final DiaryService diaryService;
+    private final ChannelPostService channelPostService;
+    private final ChannelService channelService;
 
     @GetMapping("/search")
     public String search(@RequestParam("keyword") String keyword, Model model) {
         List<DiarySearchDTO> diaries = diaryService.searchDiaries(keyword);
+        List<ChannelPostSearchDTO> posts = channelPostService.searchChannelPosts(keyword);
+        List<ChannelSearchDTO> channels = channelService.searchChannels(keyword);
+
         model.addAttribute("diaries", diaries);
-        model.addAttribute("keyword", keyword); // 화면에서 검색어 표시용
-        return "search/search"; // search.html
+        model.addAttribute("channelPosts", posts);
+        model.addAttribute("channels", channels);
+        model.addAttribute("keyword", keyword);
+
+        return "search/search";
     }
+
 }

@@ -62,4 +62,7 @@ public interface ChannelPostService {
 
     List<ChannelPostSearchDTO> getRecentChannelPosts();
 
+    List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
+
+
 }

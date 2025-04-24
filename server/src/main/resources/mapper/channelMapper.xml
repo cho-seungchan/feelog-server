@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.ChannelMapper">
+
+    <select id="searchChannels" resultType="com.app.feelog.domain.dto.ChannelSearchDTO">
+        SELECT
+            c.id,
+            c.channel_title AS title,
+            c.channel_introduce AS description,
+            CONCAT(c.channel_file_path, '/', c.channel_file_name) AS thumbnailUrl,
+            m.member_nickname AS nickname,
+            c.channel_url AS channelUrl,
+            (
+                SELECT COUNT(*)
+                FROM tbl_subscribe s
+                WHERE s.channel_id = c.id
+                  AND s.subscribe_status = '정상'
+            ) AS subscriberCount
+        FROM tbl_channel c
+                 JOIN tbl_member m ON c.member_id = m.id
+        WHERE c.channel_status = '정상'
+          AND (
+            c.channel_title LIKE CONCAT('%', #{keyword}, '%')
+                OR c.channel_introduce LIKE CONCAT('%', #{keyword}, '%')
+            )
+        ORDER BY c.created_date DESC
+        LIMIT 5
+    </select>
+
+
 </mapper>

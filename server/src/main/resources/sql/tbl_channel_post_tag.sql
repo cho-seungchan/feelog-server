@@ -9,6 +9,7 @@ create table tbl_channel_post_tag (
 );
 
 select * from view_channel_post_detail ;
+
 select * from tbl_file;
 select * from tbl_tag;
 CREATE VIEW view_channel_post_detail AS

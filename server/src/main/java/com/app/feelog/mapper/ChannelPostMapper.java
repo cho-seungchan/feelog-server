@@ -13,11 +13,14 @@ public interface ChannelPostMapper {
 
     // 단건 조회 (수정폼용)
     ChannelPostVO selectChannelPostById(Long id);
+
     ChannelPostVO findById(Long id);
 
     // 수정
     void updateChannelPost(ChannelPostVO channelPostVO);
 
     List<ChannelPostSearchDTO> findRecentChannelPosts();
+
+    List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 
 }

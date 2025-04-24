@@ -10,3 +10,21 @@ create table tbl_subscribe(
     constraint fk_subscribe_channel foreign key (channel_id)
                           references tbl_channel(id)
 );
+
+
+select * from view_subscribe_status;
+
+CREATE OR REPLACE VIEW view_subscribe_status AS
+SELECT
+    s.id AS subscribe_id,
+    s.member_id AS subscriber_id,
+    m.member_nickname AS subscriber_nickname,
+    c.id AS channel_id,
+    c.channel_title,
+    c.channel_url,
+    s.subscribe_status,
+    s.created_date,
+    s.updated_date
+FROM tbl_subscribe s
+         JOIN tbl_member m ON s.member_id = m.id
+         JOIN tbl_channel c ON s.channel_id = c.id;

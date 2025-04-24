@@ -7,12 +7,18 @@ import com.app.feelog.domain.vo.ChannelPostVO;
 import com.app.feelog.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -165,5 +171,38 @@ public class ChannelPostServiceImpl implements ChannelPostService {
             }
         }
         return result;
+    }
+
+    @Override
+    public List<ChannelPostSearchDTO> searchChannelPosts(String keyword) {
+        List<ChannelPostSearchDTO> result = channelPostDAO.searchChannelPosts(keyword);
+
+        for (ChannelPostSearchDTO dto : result) {
+            // 1. 태그 리스트 변환 + 중복 제거 + 최대 5개 제한
+            if (dto.getTags() != null && !dto.getTags().isEmpty()) {
+                List<String> tagList = Arrays.asList(dto.getTags().split(","));
+                List<String> distinctLimitedTags = tagList.stream()
+                        .distinct()
+                        .limit(5)
+                        .collect(Collectors.toList());
+                dto.setTagsList(distinctLimitedTags);
+            } else {
+                dto.setTagsList(new ArrayList<>());
+            }
+
+            // 2. 본문에서 img 제거 + p, h1~h6 태그만 추출
+            if (dto.getContent() != null && !dto.getContent().isEmpty()) {
+                dto.setContent(extractTextOnly(dto.getContent()));
+            }
+        }
+
+        return result;
+    }
+
+    private String extractTextOnly(String html) {
+        Document doc = Jsoup.parse(html);
+        doc.select("img").remove();
+
+        return doc.body().text();
     }
 }

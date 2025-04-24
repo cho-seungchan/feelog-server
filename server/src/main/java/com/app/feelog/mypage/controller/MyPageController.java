@@ -212,22 +212,22 @@ public class MyPageController {
     }
 
     // 2025.04.23 조승찬 :: 알림 메뉴 중 커뮤니티 목록
-    @GetMapping("/notify-community-list")
-    public String getNotifyCommunityList(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                             Model model, FiveRowOnePagePagination pagination){
-
-        if (member == null) {
-            session.setAttribute("redirectAfterLogin", request.getRequestURI());
-            return "redirect:/login/login";
-        }
-
-        // 목록 가져와서 보여주기
-        List<NotifyCommunityListDTO> communities = myPageService.getNotifyCommunityList(member.getId(), pagination);
-        model.addAttribute("communities", communities);
-        model.addAttribute("pagination", pagination);
-
-        return "myPage/notify-community-list";
-    }
+//    @GetMapping("/notify-community-list")
+//    public String getNotifyCommunityList(@SessionAttribute(name = "member", required = false) MemberDTO member,
+//                             Model model, FiveRowOnePagePagination pagination){
+//
+//        if (member == null) {
+//            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+//            return "redirect:/login/login";
+//        }
+//
+//        // 목록 가져와서 보여주기
+//        List<NotifyCommunityListDTO> communities = myPageService.getNotifyCommunityList(member.getId(), pagination);
+//        model.addAttribute("communities", communities);
+//        model.addAttribute("pagination", pagination);
+//
+//        return "myPage/notify-community-list";
+//    }
 
     @GetMapping("/admin-notice-list")
     public String adminNoticeList(){
