@@ -9,13 +9,14 @@ import com.app.feelog.repository.DiaryTagDAO;
 import com.app.feelog.repository.FileDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -112,11 +113,6 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public List<DiarySearchDTO> searchDiaries(String keyword) {
-        return diaryDAO.searchDiaries(keyword);
-    }
-
-    @Override
     public List<DiarySearchDTO> getRecentDiaries() {
         List<DiarySearchDTO> result = diaryDAO.getRecentDiaries();
         for (DiarySearchDTO dto : result) {
@@ -125,6 +121,44 @@ public class DiaryServiceImpl implements DiaryService {
             }
         }
         return result;
+    }
+
+    @Override
+    public List<DiarySearchDTO> searchDiaries(String keyword) {
+        List<DiarySearchDTO> result = diaryDAO.searchDiaries(keyword);
+
+        for (DiarySearchDTO dto : result) {
+            // 1. 태그 가공
+            if (dto.getTags() != null && !dto.getTags().isEmpty()) {
+                dto.setTagsList(Arrays.asList(dto.getTags().split(",")));
+            } else {
+                dto.setTagsList(new ArrayList<>());
+            }
+
+            // 2. 본문 내용에서 img 제거 및 p, h1~h6만 추출
+            if (dto.getContent() != null && !dto.getContent().isEmpty()) {
+                String filteredContent = extractTextOnly(dto.getContent());
+                dto.setContent(filteredContent);
+            }
+        }
+
+        return result;
+    }
+
+
+
+
+    private String extractTextOnly(String html) {
+        Document doc = Jsoup.parse(html);
+        doc.select("img").remove();
+        Elements elements = doc.select("p, h1, h2, h3, h4, h5, h6");
+
+        StringBuilder sb = new StringBuilder();
+        for (Element el : elements) {
+            sb.append(el.outerHtml());
+        }
+
+        return sb.toString();
     }
 
 }

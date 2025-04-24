@@ -25,7 +25,6 @@ public interface ChannelPostService {
         dto.setPostType(vo.getPostType());
         dto.setPostFilePath(vo.getPostFilePath());
         dto.setPostFileName(vo.getPostFileName());
-        dto.setPostFileSize(vo.getPostFileSize());
         dto.setMemberId(vo.getMemberId());
         dto.setChannelId(vo.getChannelId());
         dto.setPostStatus(vo.getPostStatus());
@@ -62,5 +61,8 @@ public interface ChannelPostService {
 
 //    박정근 :: 전체조회
     ChannelPostListDTO getPostAll(PostPagination pagination);
+
+    List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
+
 
 }

@@ -17,7 +17,6 @@ public class ReplyDTO {
     private String replyContent;
     private String replyFilePath;
     private String replyFileName;
-    private String replyFileSize;
     private ReplyStatus replyStatus;
     private String createdDate;
     private String updatedDate;
@@ -28,7 +27,6 @@ public class ReplyDTO {
                 .replyContent(replyContent)
                 .replyFilePath(replyFilePath)
                 .replyFileName(replyFileName)
-                .replyFileSize(replyFileSize)
                 .replyStatus(replyStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)

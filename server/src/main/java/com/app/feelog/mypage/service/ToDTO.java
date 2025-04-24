@@ -2,10 +2,7 @@ package com.app.feelog.mypage.service;
 
 import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.vo.*;
-import com.app.feelog.mypage.dto.AllChallengeListDTO;
-import com.app.feelog.mypage.dto.CommonTaskChallengeDTO;
-import com.app.feelog.mypage.dto.MemberTaskPoolChallengeDTO;
-import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
+import com.app.feelog.mypage.dto.*;
 
 public interface ToDTO {
 
@@ -207,5 +204,48 @@ public interface ToDTO {
         }
 
         return notifyCommunityListDTO;
+    }
+
+
+    public default NotifyReplyListDTO toNotifyReplyListDTO(ChannelPostReplyVO channelPostReplyVO, MemberVO memberVO, ChannelVO channelVO, String timeAgo, String postTitle) {
+        NotifyReplyListDTO notifyReplyListDTO = null;
+
+        if (channelPostReplyVO != null && memberVO != null) {
+            notifyReplyListDTO = new NotifyReplyListDTO();
+            notifyReplyListDTO.setId(channelPostReplyVO.getId());
+            notifyReplyListDTO.setReplyContent(channelPostReplyVO.getReplyContent());
+            notifyReplyListDTO.setMemberNickname(memberVO.getMemberNickname());
+            notifyReplyListDTO.setMemberFilePath(memberVO.getMemberFilePath());
+            notifyReplyListDTO.setMemberFileName(memberVO.getMemberFileName());
+            notifyReplyListDTO.setMemberId(channelPostReplyVO.getMemberId());
+            notifyReplyListDTO.setPostId(channelPostReplyVO.getPostId());
+            notifyReplyListDTO.setTimeAgo(timeAgo);
+            notifyReplyListDTO.setPostTitle(postTitle);
+            notifyReplyListDTO.setCreatedDate(channelPostReplyVO.getCreatedDate());
+            notifyReplyListDTO.setUpdatedDate(channelPostReplyVO.getUpdatedDate());
+        }
+
+        if (channelVO != null) {
+            notifyReplyListDTO.setMemberChannelId(channelVO.getId());
+        }
+
+        return notifyReplyListDTO;
+    }
+
+    public default NotifyAdminListDTO toNotifyAdminListDTO(NoticeVO noticeVO, String timeAgo) {
+        NotifyAdminListDTO notifyAdminListDTO = null;
+        if (noticeVO != null) {
+            notifyAdminListDTO = new NotifyAdminListDTO();
+            notifyAdminListDTO.setId(noticeVO.getId());
+            notifyAdminListDTO.setNoticeTitle(noticeVO.getNoticeTitle());
+            notifyAdminListDTO.setNoticeContent(noticeVO.getNoticeContent());
+            notifyAdminListDTO.setMemberId(noticeVO.getMemberId());
+            notifyAdminListDTO.setNoticeFilePath(noticeVO.getNoticeFilePath());
+            notifyAdminListDTO.setNoticeFileName(noticeVO.getNoticeFileName());
+            notifyAdminListDTO.setCreatedDate(noticeVO.getCreatedDate());
+            notifyAdminListDTO.setUpdatedDate(noticeVO.getUpdatedDate());
+            notifyAdminListDTO.setTimeAgo(timeAgo);
+        }
+        return notifyAdminListDTO;
     }
 }

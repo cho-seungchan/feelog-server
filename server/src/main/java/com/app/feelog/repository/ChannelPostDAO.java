@@ -36,6 +36,7 @@ public class ChannelPostDAO {
         return channelPostMapper.findRecentChannelPosts();
     }
 
+
     //  박정근 :: 전체조회, 카운트
     public List<MainPostListDTO> findPostAll(PostPagination postPagination) {
         return channelPostMapper.selectPostAll(postPagination);
@@ -56,6 +57,11 @@ public class ChannelPostDAO {
     public int findPostReplyCountByPostId(Long id){
         return channelPostMapper.selectPostReplyCountByPostId(id);
     };
+
+
+    public List<ChannelPostSearchDTO> searchChannelPosts(String keyword) {
+        return channelPostMapper.searchChannelPosts(keyword);
+    }
 
 
 }

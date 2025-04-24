@@ -6,8 +6,7 @@ create table tbl_channel_post (
                                   post_read_count       int default 0,
                                   post_file_path 		varchar(500) default '',
                                   post_file_name 		varchar(500) default '',
-                                  post_file_size 		varchar(500) default '',
-                                  member_id            bigint not null,
+                                  member_id             bigint not null,
                                   channel_id 		    bigint not null,
                                   constraint fk_channel_post_post foreign key (id)
                                       references tbl_post (id),

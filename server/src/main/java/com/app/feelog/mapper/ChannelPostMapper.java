@@ -16,12 +16,14 @@ public interface ChannelPostMapper {
 
     // 단건 조회 (수정폼용)
     ChannelPostVO selectChannelPostById(Long id);
+
     ChannelPostVO findById(Long id);
 
     // 수정
     void updateChannelPost(ChannelPostVO channelPostVO);
 
     List<ChannelPostSearchDTO> findRecentChannelPosts();
+
 
 //  박정근 :: 전체조회, 카운트
     public List<MainPostListDTO> selectPostAll(PostPagination postPagination);
@@ -33,4 +35,6 @@ public interface ChannelPostMapper {
     public int selectPostLikeCountByPostId(Long id);
 
     public int selectPostReplyCountByPostId(Long id);
+
+    List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 }

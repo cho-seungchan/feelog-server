@@ -15,3 +15,46 @@ create table tbl_channel (
 );
 
 select * from tbl_channel;
+
+-- 1. 멤버 생성
+INSERT INTO tbl_member (
+    member_email,
+    member_password,
+    member_nickname,
+    member_introduce,
+    member_file_path,
+    member_file_name,
+    member_type,
+    member_status
+) VALUES (
+             'qwer@qwe.qwe',
+             'qwer', -- 비밀번호는 암호화 전 값
+             'qwer',
+             'qwerqwer.',
+             'profile/2025/04/24',
+             'profile_pic.png',
+             '일반 회원',
+             '정상'
+         );
+
+select * from tbl_member;
+select * from tbl_channel;
+
+-- 2. 채널 생성
+INSERT INTO tbl_channel (
+    channel_title,
+    channel_introduce,
+    channel_url,
+    channel_file_path,
+    channel_file_name,
+    channel_status,
+    member_id
+) VALUES (
+             'qwerqwerqwerqwer',
+             'qwe',
+             'qwer',
+             'channel/2025/04/24',
+             'channel_banner.png',
+             '정상',
+             2
+         );

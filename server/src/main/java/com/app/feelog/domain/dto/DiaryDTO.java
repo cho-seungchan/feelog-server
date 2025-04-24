@@ -27,6 +27,7 @@ public class DiaryDTO {
     private String diaryFileName;
     private String diaryFileSize;
     private String diaryWeather;
+    private int    diaryScore;
     private Long   memberId;
     private Long   feelId;
     private DiaryStatus diaryStatus;
@@ -49,7 +50,7 @@ public class DiaryDTO {
                 .diaryFilePath(diaryFilePath)
                 .diaryFileName(diaryFileName)
                 .diaryFileSize(diaryFileSize)
-                .diaryWeather(diaryWeather)
+                .diaryScore(diaryScore)
                 .memberId(memberId)
                 .feelId(feelId)
                 .diaryStatus(diaryStatus)
