@@ -20,7 +20,6 @@ public class ChannelPostDTO {
     private PostType postType;
     private String postFilePath;
     private String postFileName;
-    private String postFileSize;
     private Long memberId;
     private Long channelId;
     private PostStatus postStatus;
@@ -42,7 +41,6 @@ public class ChannelPostDTO {
                 .postType(postType)
                 .postFilePath(postFilePath)
                 .postFileName(postFileName)
-                .postFileSize(postFileSize)
                 .postContent(postContent)
                 .postTitle(postTitle)
                 .memberId(memberId)

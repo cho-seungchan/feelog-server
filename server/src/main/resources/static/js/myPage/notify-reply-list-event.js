@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 2025.04.24  조승찬 ::  페이징 처리
+    // 2025.04.23  조승찬 ::  페이징 처리
     document.querySelector(".pagination-container").addEventListener("click", function (e) {
         const pageLink = e.target.closest(".change-page"); // 가장 가까운 .change-page 요소 찾기
         if (!pageLink) return; // 클릭한 요소가 .change-page가 아니면 무시
@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const pageValue = pageLink.getAttribute("href"); // href 값 가져오기
         if (pageValue) {
             e.preventDefault(); // 기본 동작 방지
-            document.querySelector(".notifyAdminList").value = pageValue;
+            document.querySelector(".notifyReplyList").value = pageValue;
             document.forms["pageForm"].submit(); // 폼 제출
         }
     });
-    // 2025.04.24  조승찬 ::  페이징 처리
+    // 2025.04.23  조승찬 ::  페이징 처리
 });
