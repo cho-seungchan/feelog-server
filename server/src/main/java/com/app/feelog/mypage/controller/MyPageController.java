@@ -4,10 +4,10 @@ package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.domain.dto.ScrapDTO;
 import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.domain.vo.SubscribeNotificationVO;
-import com.app.feelog.domain.vo.SubscribeVO;
 import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.service.MyPageService;
 import com.app.feelog.util.SixRowPagination;
@@ -15,14 +15,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -346,15 +345,122 @@ public class MyPageController {
         return "redirect:/myPage/storage-subscribe?page="+pagination.getPage();
     }
 
-    @GetMapping("/admin-notice-list")
-    public String adminNoticeList(){
-        return "myPage/admin-notice-list";
+    // 2025.04.25 조승찬 :: 스크랩 목록 보기
+    @GetMapping("/storage-scrap")
+    public String getStorageScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                  Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 스크랩 목록 가져오기
+        List<StorageScrapListDTO> scraps = myPageService.getStorageScrap(member.getId(), pagination);
+
+        model.addAttribute("scraps", scraps);
+        model.addAttribute("pagination", pagination);
+
+        return "/myPage/storage-scrap";
     }
 
-    @GetMapping("/block-list")
-    public String blockList(){
-        return "myPage/block-list";
+    // 2025.04.25 조승찬 :: 스크랩 취소
+    @ResponseBody
+    @PostMapping("/storage-off-scrap")
+    public void storageOffScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                @RequestParam Long id){
+
+        myPageService.storageOffScrap(id);
+    };
+
+    // 2025.04.25 조승찬 :: 스크랩 재설정
+    @ResponseBody
+    @PostMapping("/storage-on-scrap")
+    public void storageOnScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                               @RequestParam Long id){
+
+        myPageService.storageOnScrap(id);
+    };
+
+    // 2025.04.25 조승찬 :: 좋아요 목록
+    @GetMapping("/storage-like")
+    public String storageLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                              Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 좋아요 목록 가져오기
+        List<StorageLikeListDTO> likes = myPageService.getStorageLike(member.getId(), pagination);
+
+        model.addAttribute("likes", likes);
+        model.addAttribute("pagination", pagination);
+
+        return "myPage/storage-like";
     }
+
+
+    // 2025.04.25 조승찬 :: 좋아요 취소
+    @ResponseBody
+    @PostMapping("/storage-off-like")
+    public ResponseEntity<Map<String, Object>> storageOffLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                                              @RequestParam Long id, @RequestParam Long postId){
+
+        myPageService.storageOffLike(id);
+
+        Map<String, Object> response = new HashMap<String, Object>();
+        int likeCount = myPageService.getLikeCount(postId);
+        response.put("likeCount", likeCount);
+        return ResponseEntity.ok(response);
+    };
+
+    // 2025.04.25 조승찬 :: 좋아요 재설정
+    @ResponseBody
+    @PostMapping("/storage-on-like")
+    public ResponseEntity<Map<String, Object>> storageOnLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                               @RequestParam Long id, @RequestParam Long postId){
+
+        myPageService.storageOnLike(id);
+
+        Map<String, Object> response = new HashMap<String, Object>();
+        int likeCount = myPageService.getLikeCount(postId);
+        response.put("likeCount", likeCount);
+        return ResponseEntity.ok(response);
+    };
+
+    // 2025.04.25  조승찬 :: 댓글 목록
+    @GetMapping("/storage-reply")
+    public String getStorageReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                               Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 댓글 목록 가져오기
+        List<StorageReplyListDTO> replies = myPageService.getStorageReply(member.getId(), pagination);
+
+        model.addAttribute("replies", replies);
+        model.addAttribute("pagination", pagination);
+
+        return "myPage/storage-reply";
+    }
+
+    // 2025.04.25 조승찬 :: 댓글 삭제
+    @PostMapping("/storage-delete-reply")
+    public String deleteStorageReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                     @RequestParam Long id, SixRowPagination pagination){
+
+        // 삭제 처리
+        myPageService.deleteStorageReply(id);
+
+        return "redirect:/myPage/storage-reply?page="+pagination.getPage();
+    }
+
+
 
     @GetMapping("/community")
     public String community(){
@@ -364,21 +470,6 @@ public class MyPageController {
     @GetMapping("/community-reply")
     public String communityReply(){
         return "myPage/community-reply";
-    }
-
-    @GetMapping("/message-list")
-    public String messageList(){
-        return "myPage/message-list";
-    }
-
-    @GetMapping("/storage-reply")
-    public String storageReply(){
-        return "myPage/storage-reply";
-    }
-
-    @GetMapping("/storage-scrab")
-    public String storageScrab(){
-        return "storage-like";
     }
 
 }

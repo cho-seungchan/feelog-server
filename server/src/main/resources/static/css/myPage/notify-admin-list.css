@@ -1353,3 +1353,84 @@ body {
         line-clamp: 3;
     }
 }
+/*검색창 관련 시작*/
+.flog-div-120 {
+    border-radius: 0.25rem;
+    gap: 0.5rem;
+    color: rgba(67, 60, 60, 0.64);
+    opacity: 0.64;
+    min-height: 2.25rem;
+    padding-inline: 0.75rem;
+    font-size: 1.5rem;
+    box-shadow: none;
+    border-radius: 20px;
+    padding-left: 14px;
+    background-color: #f2f2f2;
+}
+@media (min-width: 0px) {
+    .flog-div-120 {
+        margin-block: 16px 20px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-120 {
+        height: 40px;
+        margin-block: 40px 32px;
+    }
+}
+.flog-div-120 {
+    display: flex;
+    align-items: center;
+    padding-left: 0.75rem;
+    box-shadow: none;
+}
+.flog-div-120:not([data-skip-inverted-colors]) {
+    border-width: 1px;
+    box-shadow: 0px 0px 0px #000, 0px 1px 2px 0px rgba(21, 21, 21, 0.08);
+}
+.flog-div-120.FeelogInput-sizeMd {
+    min-height: 40px;
+}
+.flog-div-120::before {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    border-radius: inherit;
+    margin: 0px;
+    box-shadow: inset 0 0 0 0px #0000ff;
+}
+.flog-div-121 {
+    display: flex;
+    align-items: center;
+    margin-inline-end: 0.5rem;
+}
+.flog-svg-8 {
+    color: #111111;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+}
+.flog-input-4 {
+     margin-left: 2px;
+     border: none;
+     background-color: #f2f2f2;
+     color: #000000 !important;
+     flex: 1;
+     min-width: 90%;
+     outline: 0;
+     padding: 0;
+     font-family: inherit;
+     font-size: 14px !important;
+     font-style: inherit;
+     font-weight: 900 !important;
+     line-height: inherit;
+     text-overflow: ellipsis;
+ }
+/*검색창 관련 끝*/

@@ -1490,8 +1490,8 @@ body {
     font-size: 1.4rem; /* Calculated as 32px * 0.4375 */
     line-height: 1;
     color: #808080;
-    width: 32px;
-    height: 32px;
+    width: 50px;
+    height: 50px;
     margin-inline-start: 0;
     box-shadow: none; /* Placeholder if --Avatar-ring is not defined */
     position: relative;
@@ -1625,7 +1625,7 @@ body {
 }
 .flog-svg-9 {
     user-select: none;
-    margin: 0px;
+    margin: 3px;
     width: 1em;
     height: 1em;
     display: inline-block;
@@ -1762,3 +1762,141 @@ body {
     color: #333333;
     background-color: #cccccc;
 }
+/*페이지 처리부분 시작*/
+.pagination-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.change-page code,
+.change-page + code{
+    margin: 0 10px;
+    font-size: 16px;
+}
+.iItkLq {
+    border: none;
+    width: 40px;
+    height: 40px;
+    line-height: normal;
+    padding: 0px;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    outline: none;
+}
+.jVxRns {
+    transform-origin: center center;
+    transform: rotate(180deg);
+}
+.PaginationButtonGroup__Icon-x0iffd-2 {
+    filter: grayscale(100%) brightness(50%);
+}
+/*페이지 처리부분 끝*/
+/* 좋아요 버튼 시작*/
+.flog-button-39, .flog-button-33 {
+    min-height: 32px;
+    font-size: 0.875rem;
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Arial, sans-serif";
+    line-height: 1.5;
+    font-weight: 500;
+    color: #505050;
+    min-width: 0px;
+    padding: 6px 4px;
+}
+.flog-button-39.FeelogButton-sizeSm, .flog-button-33.FeelogButton-sizeSm {
+    min-height: 32px;
+    font-size: 14px;
+}
+.flog-span-42 {
+    --Icon-margin: 0 0 0 -3px;
+    --CircularProgress-margin: 0 0 0 -3px;
+    display: inherit;
+    margin-right: 6px;
+}
+.flog-svg-22 {
+    user-select: none;
+    margin: var(--Icon-margin);
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: red;
+}
+.flog-button-32 {
+    --Icon-margin: initial;
+    --Icon-color: rgba(21, 21, 21, 1);
+    --Icon-fontSize: 18px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    --Button-gap: 6px;
+    min-height: 32px;
+    font-size: 14px;
+    padding-block: 4px;
+    padding-inline: 12px;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: unset;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #202022;
+    min-width: 0;
+    padding: 6px;
+}
+.flog-button-32.FeelogButton-sizeSm {
+    min-height: 32px;
+    font-size: 14px;
+}
+.flog-span-41 {
+    --Icon-margin: 0 0 0 -4px;
+    --CircularProgress-margin: 0 0 0 -4px;
+    display: inherit;
+    margin-right: 8px;
+    --Icon-margin: 0;
+    margin-right: 0px;
+}
+.flog-svg-19 {
+    user-select: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: rgba(21, 21, 21, 1);
+}
+/* 좋아요 버튼 끝*/

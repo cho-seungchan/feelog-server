@@ -25,11 +25,6 @@
                         >
                             <a
                                 class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
-                                href="/myPage/notify-subscribe"
-                            ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
-                                구독자
-                            </p><a
-                                class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-a-6"
                                 href="/myPage/notify-reply-list"
                                 ><p data-first-child="" class="FeelogTypography-root FeelogTypography-body-md flog-p-4">
                                     댓글
@@ -52,6 +47,36 @@
                     <main class="FeelogStack-root flog-main-4">
                         <div class="FeelogStack-root flog-div-60">
                             <div class="FeelogStack-root flog-div-61">
+<!--                                <form method="GET">-->
+<!--                                    <div-->
+<!--                                            class="FeelogInput-root FeelogInput-variantSoft FeelogInput-colorNeutral FeelogInput-sizeMd flog-div-120"-->
+<!--                                    >-->
+<!--                                        <div class="FeelogInput-startDecorator flog-div-121">-->
+<!--                                            <svg-->
+<!--                                                    focusable="false"-->
+<!--                                                    aria-hidden="true"-->
+<!--                                                    viewBox="0 0 24 24"-->
+<!--                                                    width="24"-->
+<!--                                                    height="24"-->
+<!--                                                    fill="none"-->
+<!--                                                    xmlns="http://www.w3.org/2000/svg"-->
+<!--                                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-8"-->
+<!--                                            >-->
+<!--                                                <path-->
+<!--                                                        d="M16.375 10.125a6.25 6.25 0 1 0-12.5 0 6.25 6.25 0 0 0 12.5 0Zm-1.207 6.371a8.086 8.086 0 0 1-5.043 1.754A8.124 8.124 0 0 1 2 10.125 8.124 8.124 0 0 1 10.125 2a8.124 8.124 0 0 1 8.125 8.125c0 1.906-.656 3.66-1.754 5.043l5.23 5.23a.937.937 0 0 1-1.324 1.324l-5.234-5.226Z"-->
+<!--                                                        fill="currentcolor"-->
+<!--                                                ></path>-->
+<!--                                            </svg>-->
+<!--                                        </div>-->
+<!--                                        <input-->
+<!--                                                aria-label="포스트 제목, 닉네임 검색"-->
+<!--                                                placeholder="포스트 제목, 닉네임 검색"-->
+<!--                                                class="FeelogInput-input flog-input-4"-->
+<!--                                                name="library_keyword"-->
+<!--                                        />-->
+<!--                                    </div>-->
+<!--                                    <input hidden="" type="submit" value="전송" />-->
+<!--                                </form>-->
 
 <!--                                2025.04.24 조승찬 리스트 보여주기-->
                                 <th:block th:each="admin : ${admins}">
@@ -121,11 +146,11 @@
                     </main>
                 </div>
             </div>
-            <!-- footer 넣을 곳 -->
-            <footer id="main-footer"
-                    th:replace="~{main/footer.html :: #main-footer}"></footer>
-            <!-- footer 넣을 곳 -->
         </div>
+        <!-- footer 넣을 곳 -->
+        <footer id="main-footer"
+                th:replace="~{main/footer.html :: #main-footer}"></footer>
+        <!-- footer 넣을 곳 -->
     </body>
     <script src="/js/myPage/notify-admin-list-event.js"></script>
     <script src="/js/main/main-modal.js"></script>

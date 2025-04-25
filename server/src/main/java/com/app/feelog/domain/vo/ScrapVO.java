@@ -1,6 +1,9 @@
 package com.app.feelog.domain.vo;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +13,10 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
 @SuperBuilder
-public class ChannelPostLikeVO extends SuperPeriod {
+public class ScrapVO extends SuperPeriod {
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
     private Long postId;
-
+    private String scrapStatus;
 }

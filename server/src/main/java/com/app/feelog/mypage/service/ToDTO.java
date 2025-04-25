@@ -272,4 +272,75 @@ public interface ToDTO {
         return dto;
     }
 
+    public default StorageScrapListDTO toStorageScrapListDTO(ScrapVO scrapVO, MemberVO memberVO, ChannelPostVO channelPostVO,
+                                                             String timeAgo, int replyCount, int likeCount) {
+        StorageScrapListDTO dto = null;
+        if (scrapVO != null && memberVO != null && channelPostVO != null) {
+            dto = new StorageScrapListDTO();
+            dto.setId(scrapVO.getId());
+            dto.setMemberId(scrapVO.getMemberId());
+            dto.setMemberNickname(memberVO.getMemberNickname());
+            dto.setMemberFilePath(memberVO.getMemberFilePath());
+            dto.setMemberFileName(memberVO.getMemberFileName());
+            dto.setPostId(scrapVO.getPostId());
+            dto.setPostTitle(channelPostVO.getPostTitle());
+            dto.setPostContent(channelPostVO.getPostContent());
+            dto.setPostFilePath(channelPostVO.getPostFilePath());
+            dto.setPostFileName(channelPostVO.getPostFileName());
+            dto.setPostReadCount(channelPostVO.getPostReadCount());
+            dto.setPostReplyCount(replyCount);
+            dto.setPostLikeCount(likeCount);
+            dto.setChannelId(channelPostVO.getChannelId());
+            dto.setCreatedDate(channelPostVO.getCreatedDate());
+            dto.setUpdatedDate(channelPostVO.getUpdatedDate());
+            dto.setTimeAgo(timeAgo);
+        }
+        return dto;
+    }
+
+
+    public default StorageLikeListDTO toStorageLikeListDTO(ChannelPostLikeVO channelPostLikeVO, MemberVO memberVO, ChannelPostVO channelPostVO,
+                                                             String timeAgo, int replyCount, int likeCount) {
+        StorageLikeListDTO dto = null;
+        if (channelPostLikeVO != null && memberVO != null && channelPostVO != null) {
+            dto = new StorageLikeListDTO();
+            dto.setId(channelPostLikeVO.getId());
+            dto.setMemberId(channelPostLikeVO.getMemberId());
+            dto.setMemberNickname(memberVO.getMemberNickname());
+            dto.setMemberFilePath(memberVO.getMemberFilePath());
+            dto.setMemberFileName(memberVO.getMemberFileName());
+            dto.setPostId(channelPostLikeVO.getPostId());
+            dto.setPostTitle(channelPostVO.getPostTitle());
+            dto.setPostContent(channelPostVO.getPostContent());
+            dto.setPostFilePath(channelPostVO.getPostFilePath());
+            dto.setPostFileName(channelPostVO.getPostFileName());
+            dto.setPostReadCount(channelPostVO.getPostReadCount());
+            dto.setPostReplyCount(replyCount);
+            dto.setPostLikeCount(likeCount);
+            dto.setChannelId(channelPostVO.getChannelId());
+            dto.setCreatedDate(channelPostVO.getCreatedDate());
+            dto.setUpdatedDate(channelPostVO.getUpdatedDate());
+            dto.setTimeAgo(timeAgo);
+        }
+        return dto;
+    }
+
+    public default StorageReplyListDTO toStorageReplyListDTO(ChannelPostReplyVO channelPostReplyVO, ChannelPostVO channelPostVO,
+                                                             String timeAgo) {
+        StorageReplyListDTO dto = null;
+        if (channelPostReplyVO != null && channelPostVO != null) {
+            dto = new StorageReplyListDTO();
+            dto.setId(channelPostReplyVO.getId());
+            dto.setReplyContent(channelPostReplyVO.getReplyContent());
+            dto.setPostId(channelPostReplyVO.getPostId());
+            dto.setPostTitle(channelPostVO.getPostTitle());
+            dto.setPostContent(channelPostVO.getPostContent());
+            dto.setPostFilePath(channelPostVO.getPostFilePath());
+            dto.setPostFileName(channelPostVO.getPostFileName());
+            dto.setCreatedDate(channelPostReplyVO.getCreatedDate());
+            dto.setUpdatedDate(channelPostReplyVO.getUpdatedDate());
+            dto.setTimeAgo(timeAgo);
+        }
+        return dto;
+    }
 }
