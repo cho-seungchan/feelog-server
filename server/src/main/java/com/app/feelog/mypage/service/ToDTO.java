@@ -4,6 +4,8 @@ import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.dto.*;
 
+import java.util.List;
+
 public interface ToDTO {
 
     public default MemberDTO toMemberDTO(MemberVO memberVO) {
@@ -343,4 +345,30 @@ public interface ToDTO {
         }
         return dto;
     }
+
+    public default CommunityPostListDTO toCommunityPostListDTO(CommunityPostVO communityPostVO, MemberVO memberVO, List<CommunityPostFileVO> files,
+                                                               ChannelVO channelVO, String timeAgo, int replyCount, int likeCount, boolean iLike) {
+        CommunityPostListDTO dto = null;
+        if (communityPostVO != null && memberVO != null) {
+            dto = new CommunityPostListDTO();
+            dto.setId(communityPostVO.getId());
+            dto.setMemberId(communityPostVO.getMemberId());
+            dto.setPostContent(communityPostVO.getPostContent());
+            dto.setMemberNickname(memberVO.getMemberNickname());
+            dto.setMemberFilePath(memberVO.getMemberFilePath());
+            dto.setMemberFileName(memberVO.getMemberFileName());
+            dto.setFiles(files);
+            dto.setChannelId(channelVO.getId());
+            dto.setChannelUrl(channelVO.getChannelUrl());
+            dto.setLikeCount(likeCount);
+            dto.setReplyCount(replyCount);
+            dto.setILike(iLike);
+            dto.setCreatedDate(communityPostVO.getCreatedDate());
+            dto.setUpdatedDate(communityPostVO.getUpdatedDate());
+            dto.setTimeAgo(timeAgo);
+        }
+        return dto;
+    }
+
+
 }

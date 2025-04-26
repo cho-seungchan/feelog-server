@@ -7,6 +7,7 @@ import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.repository.MyPageDAO;
+import com.app.feelog.mypage.util.CalculateTimeAgo;
 import com.app.feelog.util.SixRowPagination;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -34,6 +35,7 @@ import java.util.Optional;
 public class MyPageService implements ToDTO {
 
     private final MyPageDAO myPageDAO;
+    private final CalculateTimeAgo calculateTimeAgo;
 
     // 2025.04.21  조승찬 :: 프로필 수정
     public void postSettingProfile(MemberDTO memberDTO) {
@@ -96,7 +98,7 @@ public class MyPageService implements ToDTO {
             // 작성자 채널 정보 가져오기
             ChannelVO memberChannel = myPageDAO.getChannelByMemberId(communityPost.getMemberId()).orElse(null);
             // 작성 시간 계산하기
-            String timeAgo = calculateTimeAgo(communityPost.getCreatedDate());
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(communityPost.getCreatedDate());
 
             resultList.add(toNotifyCommunityListDTO(communityPost, member, memberChannel, timeAgo));
         });
@@ -120,7 +122,7 @@ public class MyPageService implements ToDTO {
             // 작성자 채널 정보 가져오기
             ChannelVO memberChannel = myPageDAO.getChannelByMemberId(channelPostReply.getMemberId()).orElse(null);
             // 작성 시간 계산하기
-            String timeAgo = calculateTimeAgo(channelPostReply.getCreatedDate());
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(channelPostReply.getCreatedDate());
             // 포스트 정보 가져오기
             PostVO post = myPageDAO.getPostById(channelPostReply.getPostId()).orElse(null);
 
@@ -286,7 +288,7 @@ public class MyPageService implements ToDTO {
             // channel post 정보 가져오기
             ChannelPostVO post = myPageDAO.getChannelPostById(scrap.getPostId()).orElse(null);
             // 작성 시간 계산하기
-            String timeAgo = calculateTimeAgo(post.getCreatedDate());
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(post.getCreatedDate());
             // 좋아요 건수
             int likes = myPageDAO.getLikeCount(scrap.getPostId());
             // 댓글 건수
@@ -324,7 +326,7 @@ public class MyPageService implements ToDTO {
             // channel post 정보 가져오기
             ChannelPostVO post = myPageDAO.getChannelPostById(like.getPostId()).orElse(null);
             // 작성 시간 계산하기
-            String timeAgo = calculateTimeAgo(post.getCreatedDate());
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(post.getCreatedDate());
             // 좋아요 건수
             int likes = myPageDAO.getLikeCount(like.getPostId());
             // 댓글 건수
@@ -365,7 +367,7 @@ public class MyPageService implements ToDTO {
             // channel post 정보 가져오기
             ChannelPostVO post = myPageDAO.getChannelPostById(reply.getPostId()).orElse(null);
             // 작성 시간 계산하기
-            String timeAgo = calculateTimeAgo(post.getCreatedDate());
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(post.getCreatedDate());
             // dto로 변환하기
             replyList.add(toStorageReplyListDTO(reply, post, timeAgo));
         });
@@ -377,29 +379,4 @@ public class MyPageService implements ToDTO {
     public void deleteStorageReply(Long id) {
         myPageDAO.deleteStorageReply(id);
     }
-
-    // 2025.04.23 조승찬 :: create data의 작성시점 변환하기
-    public String calculateTimeAgo(String createdDate) {
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime createdDateTime = LocalDateTime.parse(createdDate, inputFormatter);
-        LocalDateTime now = LocalDateTime.now();
-
-        long days = ChronoUnit.DAYS.between(createdDateTime, now);
-        long hours = ChronoUnit.HOURS.between(createdDateTime, now) % 24;
-        long minutes = ChronoUnit.MINUTES.between(createdDateTime, now) % 60;
-
-        if (days > 7) {
-            return createdDateTime.format(outputFormatter); // 년월일만 출력
-        } else if (days > 0) {
-            return days + "일 전";
-        } else if (hours > 0) {
-            return hours + "시간 전";
-        } else if (minutes > 0) {
-            return minutes + "분 전";
-        } else {
-            return "방금 전";
-        }
-    }
-
 }

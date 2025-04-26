@@ -4,7 +4,6 @@ package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
-import com.app.feelog.domain.dto.ScrapDTO;
 import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.domain.vo.SubscribeNotificationVO;
@@ -31,8 +30,6 @@ public class MyPageController {
     private final HttpSession session;
     private final HttpServletRequest request;
     private final MyPageService myPageService;
-    private final ChannelDTO channelDTO;
-    private final SubscribeNotificationVO subscribeNotificationVO;
 
     // 2025.04.21  조승찬 :: 프로필 조회
     @GetMapping("/setting-profile")
@@ -460,16 +457,5 @@ public class MyPageController {
         return "redirect:/myPage/storage-reply?page="+pagination.getPage();
     }
 
-
-
-    @GetMapping("/community")
-    public String community(){
-        return "myPage/community";
-    }
-
-    @GetMapping("/community-reply")
-    public String communityReply(){
-        return "myPage/community-reply";
-    }
 
 }

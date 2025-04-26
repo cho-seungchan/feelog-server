@@ -2313,3 +2313,27 @@ prev-button {
     background-color: rgba(245, 245, 245, 1);
     color: rgba(33, 33, 33, 1);
 }
+/*첨부파일 관련 시작*/
+.uploadFile {
+    margin-right: 10px;
+    padding-block-start: 20px;
+    height: 64px;
+    position: relative; /* 상대적인 위치를 설정하여 자식 요소의 기준점 제공 */
+    display: inline-block; /* 자식 요소 정렬 */
+}
+
+.file-cancel {
+    position: absolute; /* 절대 위치를 설정하여 부모 요소 기준 */
+    top: 5px; /* 두 번째 이미지의 위쪽 끝부분에 위치 */
+    right: -5px; /* 두 번째 이미지의 오른쪽 끝부분에 위치 */
+    width: 16px; /* 버튼 크기를 조정 */
+    height: 16px;
+    cursor: pointer; /* 사용자 경험 향상을 위해 클릭 가능한 커서 추가 */
+}
+
+.image-files {
+    display: block; /* 기본 블록 형태로 설정 */
+    width: 64px;
+    height: 64px;
+}
+/*첨부파일 관련 끝*/

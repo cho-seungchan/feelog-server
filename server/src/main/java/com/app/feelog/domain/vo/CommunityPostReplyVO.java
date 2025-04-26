@@ -12,13 +12,13 @@ public class CommunityPostReplyVO extends Period {
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
-    private Long communityId;
+    private Long postId;
 
     @Builder
-    public CommunityPostReplyVO(String createdDate, String updatedDate, Long id, Long memberId, Long communityId) {
+    public CommunityPostReplyVO(String createdDate, String updatedDate, Long id, Long memberId, Long postId) {
         super(createdDate, updatedDate);
         this.id = id;
         this.memberId = memberId;
-        this.communityId = communityId;
+        this.postId = postId;
     }
 }

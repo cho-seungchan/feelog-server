@@ -14,7 +14,7 @@ public class CommunityPostLikeDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
-    private Long communityId;
+    private Long postId;
     private String createdDate;
     private String updatedDate;
 
@@ -22,7 +22,7 @@ public class CommunityPostLikeDTO {
         return CommunityPostLikeVO.builder()
                 .id(id)
                 .memberId(memberId)
-                .communityId(communityId)
+                .postId(postId)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
                 .build();

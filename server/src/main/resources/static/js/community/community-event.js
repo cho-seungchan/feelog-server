@@ -1,7 +1,8 @@
 // 2025.04.12 조승찬
 document.addEventListener("DOMContentLoaded", () => {
+
+    const allFiles = [];  // 파일 추가시 기존 파일 유지되게 하기 위한 배열
     document.body.addEventListener("click", (e) => {
-        console.log("body click  " + e.target.outerHTML);
 
         // 이미지 이전 버튼 클릭시
         if (e.target.closest(".prev-button")) {
@@ -93,10 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // 게시글 작성 버튼 클릭시
         if (e.target.closest(".flog-button-30")) {
             document.querySelector(".flog-div-176").style.display = "block";
-            document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
+            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
             document.querySelector(".flog-nav-6").style.zIndex = "100";
+            // 첨부 파일 보관 배열 클리어
+            allFiles.splice(0, allFiles.length);
         }
 
+        // 2025.04.26 조승찬 파일 첨부 처리
         // 모달창 이미지 추가 버튼 클릭시
         if (e.target.closest(".flog-button-37")) {
             const input = document.createElement("input");
@@ -105,15 +109,48 @@ document.addEventListener("DOMContentLoaded", () => {
             input.multiple = true;
 
             // 최대 5개 :: <ul class="FeelogStack-root flog-ul-7"> 에 data-count 추가해서 체크하는거로 수정
-            input.addEventListener("change", (event) => {
-                if (event.target.files.length > 5) {
-                    alert("최대 5개의 이미지만 업로드할 수 있습니다.");
-                    event.target.value = "";
-                }
+            input.addEventListener("change", (e) => {
+
+                // 파일 추가시 기존 파일에 추가되는 형식으로 모여서 서버로 전송
+                const files = e.target.files;
+
+                Array.from(files).forEach(newFile => {
+                    // 중복이 있는지 확인하고 없을 때 추가
+                    const isDup = allFiles.some(existingFile => {
+                        return existingFile.name == newFile.name && existingFile.size == newFile.size;
+                    });
+
+                    if (!isDup) { // 중복이 없을 때만 추가
+                        if (allFiles.length >= 5) {
+                            alert("최대 5개의 이미지만 업로드할 수 있습니다.");
+                            return;
+                        }  else {
+                            allFiles.push(newFile);
+                        }
+                    }
+                });
+
+                const formData = new FormData();
+                allFiles.forEach( file => {
+                    formData.append("files", file);
+                });
+
+                // 서버로 전송하여 path와 썸네일 생성
+                inputFileUpload(formData);
+
             });
 
             input.click();
         }
+
+        // 새로 생성된 썸네일 삭제버튼 클릭시
+        // 신규 추가된 파일이 추가될 수 있도록 기존 배열에서 삭제처리
+        if (e.target.className == "file-cancel"){
+            const index = e.target.closest("li").dataset.index; // 클릭된곳의 인덱스 찾아오기
+            allFiles.splice(index, 1); // 배열에서 파일 제거
+            e.target.closest(".uploadFile").remove()
+        }
+
 
         // 모달창 x, 취소, 게시 버튼 클릭시 모달 없애고, 헤드 z-index 500으로 원복
         if (
@@ -122,8 +159,26 @@ document.addEventListener("DOMContentLoaded", () => {
             e.target.classList.contains("cancel")
         ) {
             document.querySelector(".flog-div-176").style.display = "none";
-            document.querySelector(".feelog-header-mainDiv").style.zIndex = "10000";
+            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "10000";
             document.querySelector(".flog-nav-6").style.zIndex = "500";
+            // 첨부 파일 보관 배열 클리어
+        }
+
+        //2025.04.26 조승찬 :: 게시 클릭시 서버로 전송
+        if (e.target.classList.contains("post")) {
+
+            e.preventDefault(); // 폼 제출 방지
+
+            let text =``;
+            document.querySelectorAll(".uploadFile").forEach((li, index) => {
+              text += `
+	            <input type="hidden" name="files[${index}].fileName" value="${li.dataset.fileName}">
+	            <input type="hidden" name="files[${index}].filePath" value="${li.dataset.filePath}">
+			 `;
+            });
+
+            document.querySelector('[name="uploadFile-form"]').insertAdjacentHTML("beforeend", text)
+            document.querySelector('[name="uploadFile-form"]').submit();
         }
 
         // 케밥 버튼 클릭시
@@ -195,16 +250,21 @@ document.addEventListener("DOMContentLoaded", () => {
         // 글 수정 버튼 클릭시
         if (e.target.classList.contains("flog-li-13")) {
             document.querySelector(".flog-div-176").style.display = "block";
-            document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
+            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
             document.querySelector(".flog-nav-6").style.zIndex = "100";
 
             // 기존에 열린 메뉴가 있으면 삭제
             document.querySelector(".flog-ul-8")?.remove();
 
+            // 첨부 파일 보관 배열 클리어
+            allFiles.splice(0, allFiles.length);
+
             // 모든 케밥 버튼에서 expanded 클래스 제거
             document.querySelectorAll(".flog-button-31.expanded").forEach((btn) => {
                 btn.classList.remove("expanded");
             });
+
+
         }
 
         // 좋아요 버튼 클릭시
@@ -218,7 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             <path d="M7.313 3.268a5.319 5.319 0 0 0-3.761 1.585A5.492 5.492 0 0 0 2 8.667c0 1.415.566 2.81 1.552 3.814l7.86 8.004c.323.33.853.33 1.177 0l7.859-8.004A5.444 5.444 0 0 0 22 8.667c0-1.428-.557-2.8-1.552-3.814a5.27 5.27 0 0 0-3.76-1.585 5.27 5.27 0 0 0-3.761 1.585L12 5.797l-.927-.944a5.319 5.319 0 0 0-3.76-1.585Z" fill="currentcolor"></path>
                         </svg>
                     </span>
-                    1
                 </button>`;
 
             // 기존 버튼 교체
