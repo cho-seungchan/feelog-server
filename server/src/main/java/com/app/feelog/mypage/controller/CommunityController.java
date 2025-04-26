@@ -14,11 +14,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -59,6 +62,23 @@ public class CommunityController {
         communityService.postCommunityPost(channelUrl, communityPostWriteDTO);
 
         return "redirect:/feelog.com/@"+channelUrl+"/community";
+    }
+
+    // 커뮤니티 글 읽어오기
+    @ResponseBody
+    @GetMapping("/@{channelUrl}/community/{postId}")
+    public ResponseEntity<Map<String, Object>> getCommunityPostDetail(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                                                      @PathVariable String channelUrl, @PathVariable Long postId,
+                                                                      SixRowPagination pagination) {
+
+        CommunityPostWriteDTO postDTO = communityService.getCommunityPostDetail(postId).orElse(null);
+
+        Map<String, Object> reponse = new HashMap<>();
+        reponse.put("postDTO", postDTO);
+
+        log.info(postDTO.toString());
+
+        return ResponseEntity.ok(reponse);
     }
 
 

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface CommunityMapper {
@@ -43,4 +44,8 @@ public interface CommunityMapper {
 
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 파일 저장
     void postCommunityPostFile(CommunityPostFileVO file, @Param("postId") Long postId);
+
+    // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 가져오기
+    Optional<CommunityPostVO> getCommunityPost(Long postId);
+
 }

@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +64,7 @@ public class CommunityService implements ToDTO{
         // 채널 포스트 목록 가져오기
     }
 
+    // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 저장
     public void postCommunityPost(String channelUrl, CommunityPostWriteDTO communityPostWriteDTO) {
 
         // 커뮤니티 포스트 저장
@@ -76,5 +78,21 @@ public class CommunityService implements ToDTO{
                 communityDAO.postCommunityPostFile(file, communityPostVO.getId());
             });
         }
+    }
+
+    // 2025.04.26  조승찬 :: 포스크 글 읽어오기
+    public Optional<CommunityPostWriteDTO> getCommunityPostDetail(Long postId) {
+
+        // 포스트 내용 가져오기
+        CommunityPostVO postVO = communityDAO.getCommunityPost(postId).orElse(null);
+        // 포스트 파일 가져오기
+        List<CommunityPostFileVO> files = communityDAO.getCommunityPostFiles(postId);
+
+        CommunityPostWriteDTO communityPostWriteDTO = new CommunityPostWriteDTO();
+        communityPostWriteDTO.setId(postId);
+        communityPostWriteDTO.setPostContent(postVO.getPostContent());
+        communityPostWriteDTO.setFiles(files);
+
+        return Optional.ofNullable(communityPostWriteDTO);
     }
 }

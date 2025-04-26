@@ -2337,3 +2337,11 @@ prev-button {
     height: 64px;
 }
 /*첨부파일 관련 끝*/
+/*추가 모달 창*/
+
+.flog-div-220 {
+    position: fixed;
+    z-index: 101;
+    inset: 0px;
+}
+/*추가 모달 창 끝*/

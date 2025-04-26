@@ -73,6 +73,13 @@
           AND    l.like_status    = '정상'
     </select>
 
+    <select id="getCommunityPost" resultType="communityPostVO">
+        select   id,
+                 post_content
+        from     tbl_post
+        where    id   =  #{postId}
+    </select>
+
     <insert id="postPost" useGeneratedKeys="true" keyProperty="id">
         insert into tbl_post
                   (post_title, post_content)

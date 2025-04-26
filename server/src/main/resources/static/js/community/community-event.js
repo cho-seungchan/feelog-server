@@ -1,7 +1,9 @@
 // 2025.04.12 조승찬
 document.addEventListener("DOMContentLoaded", () => {
 
+    const currentChannelUrl = document.querySelector(".flog-div-155").getAttribute("data-currentChannelUrl");
     const allFiles = [];  // 파일 추가시 기존 파일 유지되게 하기 위한 배열
+    let   postId;            // 수정 삭제할 포스트 아이디
     document.body.addEventListener("click", (e) => {
 
         // 이미지 이전 버튼 클릭시
@@ -245,6 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.body.appendChild(menuElement);
             kebabButton.classList.add("expanded");
+
+            postId = e.target.closest(".flog-button-31").getAttribute("data-id");
         }
 
         // 글 수정 버튼 클릭시
@@ -264,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.classList.remove("expanded");
             });
 
+            communityPostRead(postId, currentChannelUrl);
 
         }
 

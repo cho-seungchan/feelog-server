@@ -15,3 +15,19 @@ function inputFileUpload(formData){
             throw error;
         });
 }
+
+// 데이타 상세 조회
+function communityPostRead(postId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community/${postId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(response => response.json())
+        .then(data => {
+            createUpdateModal(data.postDTO);
+    }).catch(error => {
+        console.error("Error fetching community post:", error);
+        throw error;
+    });
+}

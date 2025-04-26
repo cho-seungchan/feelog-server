@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -69,5 +70,12 @@ public class CommunityDAO {
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 파일 저장
     public void postCommunityPostFile(CommunityPostFileVO file, Long postId) {
         communityMapper.postCommunityPostFile(file, postId);
+    }
+
+    // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 읽어오기
+    public Optional<CommunityPostVO> getCommunityPost(Long postId) {
+        return Optional.ofNullable(
+                communityMapper.getCommunityPost(postId)
+                        .orElse(null));
     }
 }
