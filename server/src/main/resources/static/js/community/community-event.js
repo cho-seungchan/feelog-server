@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentChannelUrl = document.querySelector(".flog-div-155").getAttribute("data-currentChannelUrl");
     const allFiles = [];  // 파일 추가시 기존 파일 유지되게 하기 위한 배열
     let   postId;            // 수정 삭제할 포스트 아이디
+    let   actionType;         // 입력, 수정 구분
     document.body.addEventListener("click", (e) => {
 
         // 이미지 이전 버튼 클릭시
@@ -100,6 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".flog-nav-6").style.zIndex = "100";
             // 첨부 파일 보관 배열 클리어
             allFiles.splice(0, allFiles.length);
+            // 액션을 입력으로
+            actionType = 'insert';
         }
 
         // 2025.04.26 조승찬 파일 첨부 처리
@@ -179,8 +182,28 @@ document.addEventListener("DOMContentLoaded", () => {
 			 `;
             });
 
-            document.querySelector('[name="uploadFile-form"]').insertAdjacentHTML("beforeend", text)
-            document.querySelector('[name="uploadFile-form"]').submit();
+            // document.querySelector('[name="uploadFile-form"]').insertAdjacentHTML("beforeend", text)
+            // document.querySelector('[name="uploadFile-form"]').submit();
+
+            const form = document.querySelector('[name="uploadFile-form"]');
+            form.insertAdjacentHTML("beforeend", text)
+            // URL 동적 설정
+            if (actionType === 'insert') {
+                form.setAttribute('action', `/feelog.com/@${currentChannelUrl}/community`);
+            } else if (actionType === 'update') {
+                form.setAttribute('action', `/feelog.com/@${currentChannelUrl}/community-update`);
+                // id를 postVO id로 보내기 위해 input 생성
+                hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'id');
+                hiddenInput.setAttribute('value', postId); // 바로 설정
+                form.appendChild(hiddenInput);
+            } else {
+                alert('알 수 없는 action 값입니다.');
+                return;
+            }
+
+            form.submit();
         }
 
         // 케밥 버튼 클릭시
@@ -267,6 +290,9 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".flog-button-31.expanded").forEach((btn) => {
                 btn.classList.remove("expanded");
             });
+
+            // 액션타입을 수정으로
+            actionType = 'update';
 
             communityPostRead(postId, currentChannelUrl);
 

@@ -30,6 +30,7 @@ public class CommunityService implements ToDTO{
     private final CommunityDAO communityDAO;
     private final MyPageDAO myPageDAO;
     private final CalculateTimeAgo calculateTimeAgo;
+    private final CommunityPostWriteDTO communityPostWriteDTO;
 
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 목록
     public List<CommunityPostListDTO> getCommunityPostList(Long myId, String channelUrl, SixRowPagination pagination) {
@@ -94,5 +95,20 @@ public class CommunityService implements ToDTO{
         communityPostWriteDTO.setFiles(files);
 
         return Optional.ofNullable(communityPostWriteDTO);
+    }
+
+    // 2025.04.26 조승찬 ::  포스트 내용 수정
+    public void updateCommunityPost(CommunityPostWriteDTO communityPostWriteDTO) {
+        // 포스트 글 수정
+        communityDAO.updateCommunityPost(communityPostWriteDTO.toVO());
+        // 포스트 첨부 파일 삭제
+        communityDAO.deleteCommunityPostFile(communityPostWriteDTO.getId());
+        // 커뮤니티 포스트 파일 저장
+        if (communityPostWriteDTO.getFiles() != null) {
+            communityPostWriteDTO.getFiles().forEach(file -> {
+                communityDAO.postFile(file);
+                communityDAO.postCommunityPostFile(file, communityPostWriteDTO.getId());
+            });
+        }
     }
 }

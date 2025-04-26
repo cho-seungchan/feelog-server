@@ -76,11 +76,19 @@ public class CommunityController {
         Map<String, Object> reponse = new HashMap<>();
         reponse.put("postDTO", postDTO);
 
-        log.info(postDTO.toString());
-
         return ResponseEntity.ok(reponse);
     }
 
+    // 커뮤니티 글 수정하기
+    @PostMapping("/@{channelUrl}/community-update")
+    public String updateCommunityPost(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                      @PathVariable String channelUrl,
+                                      CommunityPostWriteDTO communityPostWriteDTO, SixRowPagination pagination) {
+
+        communityService.updateCommunityPost(communityPostWriteDTO);
+
+        return "redirect:/feelog.com/@"+channelUrl+"/community";
+    }
 
     @GetMapping("/community-reply")
     public String communityReply(){

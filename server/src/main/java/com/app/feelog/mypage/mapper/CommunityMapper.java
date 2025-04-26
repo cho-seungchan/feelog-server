@@ -48,4 +48,9 @@ public interface CommunityMapper {
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 가져오기
     Optional<CommunityPostVO> getCommunityPost(Long postId);
 
+    // 2025.04.26 조승찬 ::  포스트 내용 수정
+    void updateCommunityPost(CommunityPostVO postVO);
+
+    // 2025.04.26 조승찬 ::  포스트 첨부 파일 삭제
+    void deleteCommunityPostFile(Long postId);
 }

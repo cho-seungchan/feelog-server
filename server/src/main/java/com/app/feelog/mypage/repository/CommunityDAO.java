@@ -78,4 +78,14 @@ public class CommunityDAO {
                 communityMapper.getCommunityPost(postId)
                         .orElse(null));
     }
+
+    // 2025.04.26 조승찬 ::  포스트 내용 수정
+    public void updateCommunityPost(CommunityPostVO postVO) {
+        communityMapper.updateCommunityPost(postVO);
+    }
+
+    // 2025.04.26 조승찬 ::  포스트 첨부 파일 삭제
+    public void deleteCommunityPostFile(Long postId) {
+        communityMapper.deleteCommunityPostFile(postId);
+    }
 }

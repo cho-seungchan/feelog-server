@@ -107,4 +107,17 @@
         values      (#{file.id}, #{postId})
     </insert>
 
+    <update id="updateCommunityPost">
+        update    tbl_post
+        set       post_title   =  #{postContent},
+                  post_content =  #{postContent}
+        where     id           =  #{id}
+    </update>
+
+    <delete id="deleteCommunityPostFile">
+        DELETE cpf, f
+        FROM tbl_community_post_file cpf
+        JOIN tbl_file f ON cpf.id = f.id
+        WHERE cpf.post_id = #{postId};
+    </delete>
 </mapper>
