@@ -50,3 +50,94 @@ function communityPostDelete(postId, currentChannelUrl) {
         });
 }
 
+// 좋아요
+function postCommunityPostLike(postId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-like/${postId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setLikeCount(postId, data.likeCount);
+        })
+        .catch(error => {
+            console.error("좋아요 요청 중 오류 발생:", error);
+        });
+}
+
+
+// 좋아요 취소
+function cancelCommunityPostLike(postId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-like-cancel/${postId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setLikeCount(postId, data.likeCount);
+        })
+        .catch(error => {
+            console.error("좋아요 취소 요청 중 오류 발생:", error);
+        });
+}
+
+
+// 신고
+function postCommunityPostReport(postId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-report/${postId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setReportCount(postId, data.reportCount);
+        })
+        .catch(error => {
+            console.error("신고 요청 중 오류 발생:", error);
+        });
+}
+
+
+// 신고 취소
+function cancelCommunityPostReport(postId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-report-cancel/${postId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setReportCount(postId, data.reportCount);
+        })
+        .catch(error => {
+            console.error("신고 취소 요청 중 오류 발생:", error);
+        });
+}
+

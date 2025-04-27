@@ -440,7 +440,7 @@
                                                         </div>
                                                     </div>
                                                     <button
-                                                            th:if="*{community.memberId} == ${ownerId}"
+                                                            th:if="*{community.memberId} == ${loginId}"
                                                             aria-haspopup="menu"   th:attr="data-id=*{community.id}"
                                                             aria-expanded="false"
                                                             aria-controls=":R26hiucsvakv4vafl7lqakq:"
@@ -559,8 +559,7 @@
                                                                 type="button"
                                                                 aria-label="좋아요 버튼"
                                                                 class="FeelogButton-root FeelogButton-variantPlain FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-32"
-                                                                th:attr="data-postId=*{community.id}"
-                                                        >
+                                                                th:attr="data-postId=*{community.id}">
                                                             <span class="FeelogButton-startDecorator flog-span-41">
                                                                 <svg
                                                                 focusable="false"
@@ -577,7 +576,7 @@
                                                                     ></path>
                                                                 </svg>
                                                             </span>
-                                                            <span class="likeCount" th:attr="data-postId=*{community.id}" th:text="*{community.likeCount}"></span>
+                                                            <span class="likeCount" th:attr="data-postId=*{community.id}"  th:text="*{community.likeCount}"></span>
                                                         </button>
                                                         <button th:if="*{community.isILike()}"
                                                                 type="button"
@@ -618,7 +617,18 @@
                                                                         fill="currentcolor"></path>
                                                                 </svg>
                                                             </span>
-                                                            <span class="likeCount" th:text="*{community.replyCount}"></span>
+                                                            <span class="replyCount" th:text="*{community.replyCount}" th:attr="data-postId=*{community.id}" >></span>
+                                                        </button>
+                                                        <button
+                                                                th:classappend="*{community.isIReport()} ? 'red' : 'white'"
+                                                                th:attr="data-postId=*{community.id}"
+                                                                class="report-button"
+                                                                type="button"
+                                                                aria-label="신고하기">
+                                                            <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3">
+                                                                <path d="M5.875 2.938A.935.935 0 0 0 4.937 2 .935.935 0 0 0 4 2.938v18.125c0 .519.418.937.938.937.519 0 .937-.418.937-.938V15.75h14.688a.935.935 0 0 0 .75-1.5L17.75 9.5l3.563-4.75a.935.935 0 0 0-.75-1.5H5.874v-.313Zm0 2.187h12.813l-2.438 3.25c-.5.668-.5 1.582 0 2.25l2.438 3.25H5.874v-8.75Z" fill="currentcolor"></path>
+                                                            </svg>
+                                                            <span class="reportCount" th:attr="data-postId=*{community.id}" th:text="*{community.reportCount}"></span>
                                                         </button>
                                                     </div>
                                                 </div>

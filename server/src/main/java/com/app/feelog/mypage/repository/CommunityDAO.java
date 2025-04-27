@@ -2,9 +2,7 @@
 
 package com.app.feelog.mypage.repository;
 
-import com.app.feelog.domain.vo.CommunityPostFileVO;
-import com.app.feelog.domain.vo.CommunityPostVO;
-import com.app.feelog.domain.vo.PostVO;
+import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.mapper.CommunityMapper;
 import com.app.feelog.util.SixRowPagination;
 import lombok.RequiredArgsConstructor;
@@ -46,9 +44,19 @@ public class CommunityDAO {
         return communityMapper.getReplyCount(postId);
     }
 
+    // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 신고 수
+    public int getReportCount(Long postId) {
+        return communityMapper.getReportCount(postId);
+    }
+
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글에 내가 좋아요 했는지 여부
     public boolean getILike(Long memberId, Long postId) {
         return communityMapper.getILike(memberId, postId);
+    }
+
+    // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글에 내가 신고 했는지 여부
+    public boolean getIReport(Long memberId, Long postId) {
+        return communityMapper.getIReport(memberId, postId);
     }
 
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 슈퍼키 테이블에 저장
@@ -122,5 +130,36 @@ public class CommunityDAO {
     // 2025.04.27  조승찬 :: 커뮤니티 게시글 댓글 신고 삭제
     public void deleteCommunityPostReplyReport(Long postId) {
         communityMapper.deleteCommunityPostReplyReport(postId);
+    }
+
+    // 2025.04.27 조승찬 :: 좋아요 슈퍼키 입력
+    public Long postLike(LikeVO likeVO) {
+        return communityMapper.postLike(likeVO);
+    }
+
+    // 2025.04.27 조승찬 :: 좋아요 저장
+    public void postCommunityPostLike(Long id, Long memberId, Long postId) {
+        communityMapper.postCommunityPostLike(id, memberId, postId);
+    }
+
+    // 2025.04.27 조승찬 :: 좋아요 취소
+    public void cancelCommunityPostLike(Long memberId, Long postId) {
+        communityMapper.cancelCommunityPostLike(memberId, postId);
+    }
+
+    // 2025.04.27 조승찬 :: 신고 슈퍼키 입력
+    public void postReport(ReportVO reportVO) {
+        communityMapper.postReport(reportVO);
+    }
+
+    // 2025.04.27 조승찬 :: 신고 저장
+    public void postCommunityPostReport(Long id, Long memberId, Long postId) {
+        communityMapper.postCommunityPostReport(id, memberId, postId);
+
+    }
+
+    // 2025.04.27 조승찬 :: 신고 취소
+    public void cancelCommunityPostReport(Long memberId, Long postId) {
+        communityMapper.cancelCommunityPostReport(memberId, postId);
     }
 }

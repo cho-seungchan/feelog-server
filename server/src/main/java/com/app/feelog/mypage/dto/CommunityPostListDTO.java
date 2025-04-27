@@ -25,7 +25,9 @@ public class CommunityPostListDTO {
     private String      channelUrl;
     private int         likeCount;
     private int         replyCount;
+    private int         reportCount;
     private boolean     iLike;
+    private boolean     iReport;
     private String      createdDate;
     private String      updatedDate;
     private String      timeAgo;

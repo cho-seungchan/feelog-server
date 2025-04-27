@@ -60,6 +60,15 @@
           and r.reply_status = '정상'
     </select>
 
+    <select id="getReportCount" resultType="_int">
+        select coalesce(count(*), 0)
+        from tbl_report r
+                 inner join tbl_community_post_report cpr
+                            on r.id = cpr.id
+        where cpr.post_id = #{postId}
+          and r.report_status = '정상'
+    </select>
+
     <select id="getILike" resultType="boolean">
         SELECT CASE
                    WHEN COUNT(*) > 0 THEN TRUE
@@ -68,9 +77,22 @@
         FROM   tbl_community_post_like cpl
                    JOIN   tbl_like l
                           ON     l.id             =  cpl.id
-        WHERE  cpl.member_id    =  #{memberId}
+        WHERE  cpl.member_id      =  #{memberId}
           AND    cpl.post_id      =  #{postId}
           AND    l.like_status    = '정상'
+    </select>
+
+    <select id="getIReport" resultType="boolean">
+        SELECT CASE
+                   WHEN COUNT(*) > 0 THEN TRUE
+                   ELSE FALSE
+                   END
+        FROM   tbl_community_post_report cpr
+                   JOIN   tbl_report r
+                          ON     r.id             =  cpr.id
+        WHERE  cpr.member_id    =  #{memberId}
+          AND    cpr.post_id      =  #{postId}
+          AND    r.report_status    = '정상'
     </select>
 
     <select id="getCommunityPost" resultType="communityPostVO">
@@ -105,6 +127,28 @@
         insert into  tbl_community_post_file
                     (id,  post_id)
         values      (#{file.id}, #{postId})
+    </insert>
+
+    <insert id="postLike" useGeneratedKeys="true" keyProperty="id">
+        insert into  tbl_like
+        values ()
+    </insert>
+
+    <insert id="postCommunityPostLike">
+        insert into   tbl_community_post_like
+                    ( id,  member_id,  post_id )
+            values  (#{id}, #{memberId}, #{postId})
+    </insert>
+
+    <insert id="postReport" useGeneratedKeys="true" keyProperty="id">
+        insert into  tbl_Report
+        values ()
+    </insert>
+
+    <insert id="postCommunityPostReport">
+        insert into   tbl_community_post_report
+            ( id,  member_id,  post_id )
+        values  (#{id}, #{memberId}, #{postId})
     </insert>
 
     <update id="deleteCommunityPost">
@@ -172,6 +216,24 @@
                      join tbl_community_post_reply_report rr on r.id = rr.reply_id
             where r.post_id = #{postid}
         );
+    </update>
+
+    <update id="cancelCommunityPostLike">
+        update    tbl_like l
+        join      tbl_community_post_like pl
+        on        l.id           =  pl.id
+        set       l.like_status  =  '삭제'
+        where     pl.member_id   =  #{memberId}
+        and       pl.post_id     =  #{postId}
+    </update>
+
+    <update id="cancelCommunityPostReport">
+        update    tbl_report r
+            join      tbl_community_post_report pr
+        on        r.id           =  pr.id
+            set       r.report_status  =  '삭제'
+        where     pr.member_id   =  #{memberId}
+          and       pr.post_id     =  #{postId}
     </update>
 
     <delete id="deleteCommunityPostFile">

@@ -347,7 +347,7 @@ public interface ToDTO {
     }
 
     public default CommunityPostListDTO toCommunityPostListDTO(CommunityPostVO communityPostVO, MemberVO memberVO, List<CommunityPostFileVO> files,
-                                                               ChannelVO channelVO, String timeAgo, int replyCount, int likeCount, boolean iLike) {
+                                                               ChannelVO channelVO, String timeAgo, int replyCount, int likeCount, int reportCount, boolean iLike, boolean iReport) {
         CommunityPostListDTO dto = null;
         if (communityPostVO != null && memberVO != null) {
             dto = new CommunityPostListDTO();
@@ -362,7 +362,9 @@ public interface ToDTO {
             dto.setChannelUrl(channelVO.getChannelUrl());
             dto.setLikeCount(likeCount);
             dto.setReplyCount(replyCount);
+            dto.setReportCount(reportCount);
             dto.setILike(iLike);
+            dto.setIReport(iReport);
             dto.setCreatedDate(communityPostVO.getCreatedDate());
             dto.setUpdatedDate(communityPostVO.getUpdatedDate());
             dto.setTimeAgo(timeAgo);

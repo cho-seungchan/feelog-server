@@ -2,9 +2,7 @@
 
 package com.app.feelog.mypage.mapper;
 
-import com.app.feelog.domain.vo.CommunityPostFileVO;
-import com.app.feelog.domain.vo.CommunityPostVO;
-import com.app.feelog.domain.vo.PostVO;
+import com.app.feelog.domain.vo.*;
 import com.app.feelog.util.SixRowPagination;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -27,11 +25,17 @@ public interface CommunityMapper {
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 댓글 수
     int getReplyCount(Long postId);
 
+    // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 신고 수
+    int getReportCount(Long postId);
+
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 첨부 파일 목록
     List<CommunityPostFileVO> getCommunityPostFiles(Long postId);
 
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글에 내가 좋아요 했는지 여부
     boolean getILike(Long memberId, Long postId);
+
+    // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글에 내가 신고 했는지 여부
+    boolean getIReport(Long memberId, Long postId);
 
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 슈퍼키 테이블에 저장
     void postPost(CommunityPostVO postVO);
@@ -74,4 +78,22 @@ public interface CommunityMapper {
 
     // 2025.04.27  조승찬 :: 커뮤니티 게시글 댓글 신고 삭제
     void deleteCommunityPostReplyReport(Long postId);
+
+    // 2025.04.27 조승찬 :: 좋아요 슈퍼키 저장
+    Long postLike(LikeVO likeVO);
+
+    // 2025.04.27 조승찬 :: 좋아요 저장
+    void postCommunityPostLike(Long id, Long memberId, Long postId);
+
+    // 2025.04.27 조승찬 :: 좋아요 취소
+    void cancelCommunityPostLike(Long memberId, Long postId);
+
+    // 2025.04.27 조승찬 :: 신고 슈퍼키 저장
+    void postReport(ReportVO reportVO);
+
+    // 2025.04.27 조승찬 :: 신고 저장
+    void postCommunityPostReport(Long id, Long memberId, Long postId);
+
+    // 2025.04.27 조승찬 :: 신고 취소
+    void cancelCommunityPostReport(Long memberId, Long postId);
 }
