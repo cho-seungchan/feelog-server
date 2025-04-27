@@ -3203,3 +3203,14 @@ prev-button {
     font-weight: 500;
 }
 /* 신고창 모달 */
+
+/* 모달창 버튼 호버 */
+.flog-button-10:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+}
+.flog-a-13:hover {
+    background-color: #d6d6d6;
+    color: #333333;
+}
+/* 삭제시 네, 아니오, 모달창 끝 */

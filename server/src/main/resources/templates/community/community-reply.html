@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/css/community/community-reply.css" />
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/footer.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/all/message.css" />
         <title>개인 채널 댓글 목록/입력</title>
     </head>
     <body>
@@ -12,17 +16,8 @@
                 <div class="FeelogStack-root flog-div-141">
                     <div class="FeelogStack-root flog-div-142">
                         <!-- 헤더 넣을 곳 -->
-
-                        <div class="feelog-header-mainDiv" id="header-container"></div>
-                        <script>
-                            // Load header.html and insert it in#header-placeholder
-                            fetch("../main/header.html")
-                                .then((response) => response.text())
-                                .then((data) => {
-                                    document.getElementById("header-container").innerHTML = data;
-                                })
-                                .catch((error) => console.error("Error loading header:", error));
-                        </script>
+                        <header id="main-header"
+                                th:replace="~{main/header.html :: #main-header}"></header>
                         <!-- 헤더 넣을 곳 -->
                         <main class="FeelogStack-root flog-main-12">
                             <div class="FeelogBox-root flog-div-186">
@@ -227,10 +222,9 @@
                                                     <button
                                                         type="button"
                                                         aria-label="좋아요 버튼"
-                                                        class="FeelogButton-root FeelogButton-variantPlain FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-32"
-                                                    >
-                                                        <span class="FeelogButton-startDecorator flog-span-41"
-                                                            ><svg
+                                                        class="FeelogButton-root FeelogButton-variantPlain FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-32">
+                                                        <span class="FeelogButton-startDecorator flog-span-41">
+                                                            <svg
                                                                 focusable="false"
                                                                 aria-hidden="true"
                                                                 viewBox="0 0 24 24"
@@ -238,20 +232,21 @@
                                                                 height="24"
                                                                 fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg"
-                                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-19"
-                                                            >
+                                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-19">
                                                                 <path
                                                                     d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
-                                                                    fill="currentcolor"
-                                                                ></path></svg
-                                                        ></span></button
-                                                    ><button
+                                                                    fill="currentcolor">
+                                                                </path>
+                                                            </svg>
+                                                        </span>
+<!--                                                        <span class="likeCount" th:attr="data-postId=*{community.id}" th:text="*{community.likeCount}"></span>-->
+                                                    </button>
+                                                    <button
                                                         type="button"
                                                         aria-label="댓글"
-                                                        class="FeelogButton-root FeelogButton-variantPlain FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-33"
-                                                    >
-                                                        <span class="FeelogButton-startDecorator flog-span-42"
-                                                            ><svg
+                                                        class="FeelogButton-root FeelogButton-variantPlain FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-33">
+                                                        <span class="FeelogButton-startDecorator flog-span-42">
+                                                            <svg
                                                                 focusable="false"
                                                                 aria-hidden="true"
                                                                 viewBox="0 0 24 24"
@@ -259,13 +254,34 @@
                                                                 height="24"
                                                                 fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg"
-                                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-19"
-                                                            >
+                                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-19">
                                                                 <path
                                                                     d="M6.832 17.535a1.877 1.877 0 0 1 1.742-.25c1.035.375 2.194.59 3.428.59 4.87 0 8.123-3.145 8.123-6.25s-3.253-6.25-8.123-6.25c-4.87 0-8.122 3.145-8.122 6.25 0 1.25.484 2.453 1.394 3.484.336.38.5.88.46 1.387a6.92 6.92 0 0 1-.44 1.93 9.811 9.811 0 0 0 1.538-.887v-.004Zm-3.999 1.586c.07-.105.137-.21.2-.316.39-.649.76-1.5.835-2.457-1.172-1.332-1.863-2.961-1.863-4.723 0-4.488 4.475-8.125 9.997-8.125C17.526 3.5 22 7.137 22 11.625c0 4.488-4.475 8.125-9.998 8.125-1.448 0-2.823-.25-4.065-.7-.465.34-1.222.805-2.12 1.196a9.564 9.564 0 0 1-1.957.629c-.031.008-.062.012-.094.02-.171.03-.34.058-.515.074-.008 0-.02.004-.027.004-.2.02-.399.03-.598.03a.625.625 0 0 1-.445-1.066 5.606 5.606 0 0 0 .629-.797l.011-.019h.012Z"
-                                                                    fill="currentcolor"
-                                                                ></path></svg></span
-                                                        >3
+                                                                    fill="currentcolor">
+                                                                </path>
+                                                            </svg>
+                                                        </span>
+<!--                                                        <span class="replyCount" th:text="*{community.replyCount}" th:attr="data-postId=*{community.id}" >></span>-->
+                                                    </button>
+                                                    <button
+                                                            class="report-button white"
+                                                            type="button"
+                                                            aria-label="신고하기">
+                                                        <svg
+                                                                focusable="false"
+                                                                aria-hidden="true"
+                                                                viewBox="0 0 24 24"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3">
+                                                            <path
+                                                                    d="M5.875 2.938A.935.935 0 0 0 4.937 2 .935.935 0 0 0 4 2.938v18.125c0 .519.418.937.938.937.519 0 .937-.418.937-.938V15.75h14.688a.935.935 0 0 0 .75-1.5L17.75 9.5l3.563-4.75a.935.935 0 0 0-.75-1.5H5.874v-.313Zm0 2.187h12.813l-2.438 3.25c-.5.668-.5 1.582 0 2.25l2.438 3.25H5.874v-8.75Z"
+                                                                    fill="currentcolor">
+                                                            </path>
+                                                        </svg>
+<!--                                                        <span class="reportCount" th:attr="data-postId=*{community.id}" th:text="*{community.reportCount}"></span>-->
                                                     </button>
                                                 </div>
                                             </div>
@@ -273,32 +289,20 @@
                                         <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-15" />
                                         <div class="FeelogStack-root flog-div-190">
                                             <div class="FeelogStack-root flog-div-191">
-                                                <p
-                                                    id="community-comment-list"
-                                                    class="FeelogTypography-root FeelogTypography-title-md flog-p-36"
-                                                >
-                                                    3개의 댓글
-                                                </p>
                                                 <div class="FeelogBox-root flog-div-169">
-                                                    <label for="comment" class="sr-only">댓글 추가하기</label>
                                                     <div
-                                                        class="FeelogTextarea-root FeelogTextarea-variantOutlined FeelogTextarea-colorNeutral FeelogTextarea-sizeMd community-comment-textarea flog-div-201"
-                                                    >
+                                                        class="FeelogTextarea-root FeelogTextarea-variantOutlined FeelogTextarea-colorNeutral FeelogTextarea-sizeMd community-comment-textarea flog-div-201">
                                                         <div class="FeelogTextarea-startDecorator flog-div-192">
                                                             <div class="FeelogStack-root flog-div-193">
-                                                                <div
-                                                                    class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeSm flog-div-202"
-                                                                >
+                                                                <div class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeSm flog-div-202">
                                                                     <img
                                                                         alt=""
                                                                         src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
                                                                         loading="lazy"
-                                                                        class="FeelogAvatar-img flog-img-10"
-                                                                    />
+                                                                        class="FeelogAvatar-img flog-img-10"/>
                                                                 </div>
                                                                 <p
-                                                                    class="FeelogTypography-root FeelogTypography-title-md flog-p-37"
-                                                                >
+                                                                    class="FeelogTypography-root FeelogTypography-title-md flog-p-37">
                                                                     조승찬
                                                                 </p>
                                                             </div>
@@ -306,8 +310,8 @@
                                                         <textarea
                                                             rows="1"
                                                             placeholder="댓글 추가하기"
-                                                            class="FeelogTextarea-textarea flog-textarea-6"
-                                                        ></textarea>
+                                                            class="FeelogTextarea-textarea flog-textarea-6">
+                                                        </textarea>
                                                         <div class="FeelogTextarea-endDecorator flog-div-194">
                                                             <div class="FeelogStack-root flog-div-195">
                                                                 <div class="FeelogStack-root flog-div-196">
@@ -315,12 +319,11 @@
                                                                         <input
                                                                             accept="image/jpeg, image/png, image/heic, image/heif, image/webp"
                                                                             type="file"
-                                                                            style="display: none"
-                                                                        /><button
+                                                                            style="display: none"/>
+                                                                        <button
                                                                             aria-label="이미지 업로드"
                                                                             class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-41"
-                                                                            type="button"
-                                                                        >
+                                                                            type="button">
                                                                             <svg
                                                                                 focusable="false"
                                                                                 aria-hidden="true"
@@ -329,14 +332,14 @@
                                                                                 height="24"
                                                                                 fill="none"
                                                                                 xmlns="http://www.w3.org/2000/svg"
-                                                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-17"
-                                                                            >
+                                                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-17">
                                                                                 <path
                                                                                     fill-rule="evenodd"
                                                                                     clip-rule="evenodd"
                                                                                     d="M9.745 2.85c-.895 0-1.716.495-2.133 1.286L6.766 5.74H4.752A2.9 2.9 0 0 0 1.85 8.637v9.616a2.9 2.9 0 0 0 2.902 2.897h14.496a2.9 2.9 0 0 0 2.902-2.897V8.637a2.9 2.9 0 0 0-2.902-2.897h-2.005l-.849-1.606a2.411 2.411 0 0 0-2.132-1.284H9.745ZM9.27 5.006a.538.538 0 0 1 .476-.287h4.517c.2 0 .383.11.476.287l.89 1.686c.299.565.886.918 1.524.918h2.096c.569 0 1.03.46 1.03 1.027v9.616c0 .567-.461 1.027-1.03 1.027H4.752c-.569 0-1.03-.46-1.03-1.027V8.637c0-.567.461-1.027 1.03-1.027h2.105c.64 0 1.226-.354 1.524-.919l.888-1.685ZM12 8.704a4.372 4.372 0 0 0-4.376 4.368A4.372 4.372 0 0 0 12 17.44a4.372 4.372 0 0 0 4.376-4.368A4.372 4.372 0 0 0 12 8.704Zm-2.504 4.368c0-1.38 1.121-2.498 2.504-2.498a2.501 2.501 0 0 1 2.504 2.498c0 1.38-1.121 2.499-2.504 2.499a2.501 2.501 0 0 1-2.504-2.499Z"
-                                                                                    fill="currentcolor"
-                                                                                ></path>
+                                                                                    fill="currentcolor">
+
+                                                                                </path>
                                                                             </svg>
                                                                         </button>
                                                                     </div>
@@ -345,8 +348,7 @@
                                                                             <button
                                                                                 class="FeelogButton-root Feelog-disabled FeelogButton-variantSolid FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-42"
                                                                                 type="button"
-                                                                                disabled=""
-                                                                            >
+                                                                                disabled="">
                                                                                 등록
                                                                             </button>
                                                                         </div>
@@ -359,19 +361,16 @@
                                             </div>
                                             <div class="FeelogBox-root flog-div-154">
                                                 <div class="FeelogStack-root flog-div-199">
-                                                    <a
-                                                        class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-45"
-                                                        href="/profile/@nwjhyj"
-                                                        ><div
-                                                            class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeSm flog-div-200"
-                                                        >
+                                                    <a  class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-45"
+                                                        href="/profile/@nwjhyj">
+                                                        <div class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeSm flog-div-200">
                                                             <img
                                                                 alt=""
                                                                 src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
                                                                 loading="lazy"
-                                                                class="FeelogAvatar-img flog-img-10"
-                                                            /></div
-                                                    ></a>
+                                                                class="FeelogAvatar-img flog-img-10" />
+                                                        </div>
+                                                    </a>
                                                     <div class="FeelogBox-root flog-div-203">
                                                         <div class="FeelogStack-root flog-div-204">
                                                             <div class="FeelogStack-root flog-div-205">
@@ -409,11 +408,10 @@
                                                                 <button
                                                                     type="button"
                                                                     aria-label="좋아요 버튼"
-                                                                    class="FeelogButton-root FeelogButton-variantPlain FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-32"
-                                                                >
+                                                                    class="FeelogButton-root FeelogButton-variantPlain FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-32">
                                                                     <span
-                                                                        class="FeelogButton-startDecorator flog-span-41"
-                                                                        ><svg
+                                                                        class="FeelogButton-startDecorator flog-span-41">
+                                                                        <svg
                                                                             focusable="false"
                                                                             aria-hidden="true"
                                                                             viewBox="0 0 24 24"
@@ -421,56 +419,54 @@
                                                                             height="24"
                                                                             fill="none"
                                                                             xmlns="http://www.w3.org/2000/svg"
-                                                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-19"
-                                                                        >
+                                                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-19">
                                                                             <path
                                                                                 d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
-                                                                                fill="currentcolor"
-                                                                            ></path></svg
-                                                                    ></span>
+                                                                                fill="currentcolor">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </span>
+<!--                                                                    <span class="likeCount" th:attr="data-postId=*{community.id}" th:text="*{community.likeCount}"></span>-->
+                                                                </button>
+                                                                <button
+                                                                        class="report-button white"
+                                                                        type="button"
+                                                                        aria-label="신고하기">
+                                                                    <svg
+                                                                            focusable="false"
+                                                                            aria-hidden="true"
+                                                                            viewBox="0 0 24 24"
+                                                                            width="24"
+                                                                            height="24"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3">
+                                                                        <path
+                                                                                d="M5.875 2.938A.935.935 0 0 0 4.937 2 .935.935 0 0 0 4 2.938v18.125c0 .519.418.937.938.937.519 0 .937-.418.937-.938V15.75h14.688a.935.935 0 0 0 .75-1.5L17.75 9.5l3.563-4.75a.935.935 0 0 0-.75-1.5H5.874v-.313Zm0 2.187h12.813l-2.438 3.25c-.5.668-.5 1.582 0 2.25l2.438 3.25H5.874v-8.75Z"
+                                                                                fill="currentcolor">
+                                                                        </path>
+                                                                    </svg>
+<!--                                                                    <span class="reportCount" th:attr="data-postId=*{community.id}" th:text="*{community.reportCount}"></span>-->
+                                                                </button>
+                                                                <button
+                                                                        class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-20"
+                                                                        type="button">
+                                                                    <svg
+                                                                            focusable="false"
+                                                                            aria-hidden="true"
+                                                                            viewBox="0 0 24 24"
+                                                                            width="24"
+                                                                            height="24"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-7">
+                                                                        <path
+                                                                                d="M10.168 3.875h3.66a.31.31 0 0 1 .262.14l.742 1.11H9.168l.742-1.11a.319.319 0 0 1 .262-.14h-.004Zm6.918 1.25-1.434-2.152A2.196 2.196 0 0 0 13.832 2h-3.664c-.73 0-1.414.367-1.82.973L6.914 5.125H4.187a.935.935 0 0 0-.937.938c0 .519.418.937.938.937h.453l.937 12.684A2.502 2.502 0 0 0 8.07 22h7.86a2.502 2.502 0 0 0 2.492-2.316L19.359 7h.453c.52 0 .938-.418.938-.938a.935.935 0 0 0-.938-.937h-2.726ZM17.48 7l-.93 12.547a.624.624 0 0 1-.625.578H8.07a.63.63 0 0 1-.625-.578L6.52 7h10.96Z"
+                                                                                fill="currentcolor">
+                                                                        </path>
+                                                                    </svg>
                                                                 </button>
                                                             </div>
-                                                            <button
-                                                                class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-20"
-                                                                type="button"
-                                                            >
-                                                                <svg
-                                                                    focusable="false"
-                                                                    aria-hidden="true"
-                                                                    viewBox="0 0 24 24"
-                                                                    width="24"
-                                                                    height="24"
-                                                                    fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-7"
-                                                                >
-                                                                    <path
-                                                                        d="M10.168 3.875h3.66a.31.31 0 0 1 .262.14l.742 1.11H9.168l.742-1.11a.319.319 0 0 1 .262-.14h-.004Zm6.918 1.25-1.434-2.152A2.196 2.196 0 0 0 13.832 2h-3.664c-.73 0-1.414.367-1.82.973L6.914 5.125H4.187a.935.935 0 0 0-.937.938c0 .519.418.937.938.937h.453l.937 12.684A2.502 2.502 0 0 0 8.07 22h7.86a2.502 2.502 0 0 0 2.492-2.316L19.359 7h.453c.52 0 .938-.418.938-.938a.935.935 0 0 0-.938-.937h-2.726ZM17.48 7l-.93 12.547a.624.624 0 0 1-.625.578H8.07a.63.63 0 0 1-.625-.578L6.52 7h10.96Z"
-                                                                        fill="currentcolor"
-                                                                    ></path>
-                                                                </svg>
-                                                            </button>
-                                                            <button
-                                                                class="report-button white"
-                                                                type="button"
-                                                                aria-label="신고하기"
-                                                            >
-                                                                <svg
-                                                                    focusable="false"
-                                                                    aria-hidden="true"
-                                                                    viewBox="0 0 24 24"
-                                                                    width="24"
-                                                                    height="24"
-                                                                    fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-3"
-                                                                >
-                                                                    <path
-                                                                        d="M5.875 2.938A.935.935 0 0 0 4.937 2 .935.935 0 0 0 4 2.938v18.125c0 .519.418.937.938.937.519 0 .937-.418.937-.938V15.75h14.688a.935.935 0 0 0 .75-1.5L17.75 9.5l3.563-4.75a.935.935 0 0 0-.75-1.5H5.874v-.313Zm0 2.187h12.813l-2.438 3.25c-.5.668-.5 1.582 0 2.25l2.438 3.25H5.874v-8.75Z"
-                                                                        fill="currentcolor"
-                                                                    ></path>
-                                                                </svg>
-                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -735,6 +731,10 @@
             </div>
         </section>
 
+        <!-- footer 넣을 곳 -->
+        <footer id="main-footer"
+                th:replace="~{main/footer.html :: #main-footer}"></footer>
+        <!-- footer 넣을 곳 -->
         <div role="presentation" class="FeelogModal-root flog-div-176" style="display: none">
             <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-177"></div>
             <div tabindex="0" data-testid="sentinelStart"></div>
@@ -864,5 +864,7 @@
         </div>
     </body>
     <script src="/js/community/community-reply-event.js"></script>
+    <script src="/js/community/community-reply-service.js"></script>
+    <script src="/js/community/community-reply-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

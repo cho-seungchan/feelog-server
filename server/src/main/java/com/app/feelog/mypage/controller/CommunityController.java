@@ -174,7 +174,7 @@ public class CommunityController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/community-reply")
+    @GetMapping("/@{channelUrl}/community-reply")
     public String communityReply(){
         return "community/community-reply";
     }
