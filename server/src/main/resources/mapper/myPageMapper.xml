@@ -417,31 +417,36 @@
 
     <update id="storageOnScrap">
         update   tbl_scrap
-        set      scrap_status = '정상'
+        set      scrap_status = '정상',
+                 updated_date = current_timestamp
         where    id  = #{id}
     </update>
 
     <update id="storageOffScrap">
         update   tbl_scrap
-        set      scrap_status = '삭제'
+        set      scrap_status = '삭제',
+                 updated_date = current_timestamp
         where    id  = #{id}
     </update>
 
     <update id="storageOnLike">
         update   tbl_Like
-        set      like_status = '정상'
+        set      like_status = '정상',
+                 updated_date = current_timestamp
         where    id  = #{id}
     </update>
 
     <update id="storageOffLike">
         update   tbl_Like
-        set      like_status = '삭제'
+        set      like_status = '삭제',
+                 updated_date = current_timestamp
         where    id  = #{id}
     </update>
 
     <update id="deleteStorageReply">
         update    tbl_reply
-        set       reply_status = '삭제'
+        set       reply_status = '삭제',
+                  updated_date = current_timestamp
         where     id   =   #{id}
     </update>
 </mapper>

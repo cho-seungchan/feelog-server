@@ -31,3 +31,22 @@ function communityPostRead(postId, currentChannelUrl) {
         throw error;
     });
 }
+
+// 데이타 삭제
+function communityPostDelete(postId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-delete/${postId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+        })
+        .catch(error => {
+            console.error("삭제 요청 중 오류 발생:", error);
+        });
+}
+

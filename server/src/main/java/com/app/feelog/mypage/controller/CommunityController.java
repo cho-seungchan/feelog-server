@@ -32,6 +32,7 @@ public class CommunityController {
     private final HttpServletRequest request;
     private final CommunityService communityService;
 
+    // 2025.04.26 조승찬 :: 커뮤니티 글 목록
     @GetMapping("/@{channelUrl}/community")
     public String getCommunityPostList(@SessionAttribute(name = "member", required = false) MemberDTO member,
                                         @PathVariable String channelUrl, Model model, SixRowPagination pagination){
@@ -48,8 +49,11 @@ public class CommunityController {
         model.addAttribute("communities", communities);
         model.addAttribute("pagination", pagination);
         model.addAttribute("currentChannelUrl",channelUrl);
+        model.addAttribute("ownerId", member.getId());
         model.addAttribute("communityPost", communityPost);
 
+        System.out.println(" 확인 해 보자 ");
+        communities.forEach(System.out::println);
         return "community/community";
     }
 
@@ -86,6 +90,17 @@ public class CommunityController {
                                       CommunityPostWriteDTO communityPostWriteDTO, SixRowPagination pagination) {
 
         communityService.updateCommunityPost(communityPostWriteDTO);
+
+        return "redirect:/feelog.com/@"+channelUrl+"/community";
+    }
+
+    // 2025.04.27 :: 커뮤니티 글 삭제하기
+    @PostMapping("/@{channelUrl}/community-delete/{postId}")
+    public String deleteCommunityPost(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                      @PathVariable String channelUrl,
+                                      @PathVariable Long postId, SixRowPagination pagination) {
+
+        communityService.deleteCommunityPost(postId);
 
         return "redirect:/feelog.com/@"+channelUrl+"/community";
     }

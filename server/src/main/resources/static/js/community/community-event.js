@@ -276,6 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 글 수정 버튼 클릭시
         if (e.target.classList.contains("flog-li-13")) {
+            // 수정화면 보여주기
             document.querySelector(".flog-div-176").style.display = "block";
             //document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
             document.querySelector(".flog-nav-6").style.zIndex = "100";
@@ -294,9 +295,46 @@ document.addEventListener("DOMContentLoaded", () => {
             // 액션타입을 수정으로
             actionType = 'update';
 
+            // 2025.04.26 조승찬 :: rest controller 방식으로 조회 요청
             communityPostRead(postId, currentChannelUrl);
 
         }
+
+        // 2025.04.27 조승찬 :: 글 삭제 버튼 클릭시
+        if (e.target.classList.contains("flog-li-14")) {
+            // 확인창 보여주기
+            document.querySelector(".flog-div-40").style.display = "block";
+            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
+            document.querySelector(".flog-nav-6").style.zIndex = "100";
+
+            // 기존에 열린 메뉴가 있으면 삭제
+            document.querySelector(".flog-ul-8")?.remove();
+
+            // 첨부 파일 보관 배열 클리어
+            allFiles.splice(0, allFiles.length);
+
+            // 모든 케밥 버튼에서 expanded 클래스 제거
+            document.querySelectorAll(".flog-button-31.expanded").forEach((btn) => {
+                btn.classList.remove("expanded");
+            });
+
+        }
+
+        // x 버튼, 아니오 클릭시
+        if (e.target.closest(".flog-button-9") ||
+            e.target.classList.contains("flog-a-13") ||
+            e.target.classList.contains("flog-button-10")) {
+            // 확인창 닫기
+            document.querySelector(".flog-div-40").style.display = "none";
+            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "10000";
+            document.querySelector(".flog-nav-6").style.zIndex = "500";
+        }
+
+        // 네 버튼 클릭시 서버에 삭제 요청
+        if (e.target.classList.contains("flog-button-10")) {
+            communityPostDelete(postId, currentChannelUrl)
+        }
+        // 2025.04.27 조승찬 :: 글 삭제 버튼 클릭시
 
         // 좋아요 버튼 클릭시
         if (e.target.closest(".flog-button-32")) {

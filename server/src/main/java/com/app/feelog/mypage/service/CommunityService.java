@@ -111,4 +111,22 @@ public class CommunityService implements ToDTO{
             });
         }
     }
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 삭제
+    public void deleteCommunityPost(Long postId) {
+        // 게시글 삭제
+        communityDAO.deleteCommunityPost(postId);
+        // 게시글 첨부 파일 삭제
+        communityDAO.updateCommunityPostFile(postId);
+        // 게시글 좋아요 삭제
+        communityDAO.deleteCommunityPostLike(postId);
+        // 게시글 신고 삭제
+        communityDAO.deleteCommunityPostReport(postId);
+        // 게시글 댓글 좋아요 삭제
+        communityDAO.deleteCommunityPostReplyLike(postId);
+        // 게시글 댓글 신고 삭제
+        communityDAO.deleteCommunityPostReplyReport(postId);
+        // 게시글 댓글 삭제
+        communityDAO.deleteCommunityPostReply(postId);
+    }
 }

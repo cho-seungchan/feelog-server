@@ -51,6 +51,27 @@ public interface CommunityMapper {
     // 2025.04.26 조승찬 ::  포스트 내용 수정
     void updateCommunityPost(CommunityPostVO postVO);
 
-    // 2025.04.26 조승찬 ::  포스트 첨부 파일 삭제
+    // 2025.04.26 조승찬 ::  포스트 첨부 파일 삭제 (실제 삭제)
     void deleteCommunityPostFile(Long postId);
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 삭제
+    void deleteCommunityPost(Long id);
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 첨부파일 삭제
+    void updateCommunityPostFile(Long postId);
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 댓글 삭제
+    void deleteCommunityPostReply(Long postId);
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 좋아요 삭제
+    void deleteCommunityPostLike(Long postId);
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 신고 삭제
+    void deleteCommunityPostReport(Long postId);
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 댓글 좋아요 삭제
+    void deleteCommunityPostReplyLike(Long postId);
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 댓글 신고 삭제
+    void deleteCommunityPostReplyReport(Long postId);
 }

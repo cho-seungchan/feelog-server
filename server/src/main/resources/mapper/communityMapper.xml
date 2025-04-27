@@ -107,17 +107,78 @@
         values      (#{file.id}, #{postId})
     </insert>
 
+    <update id="deleteCommunityPost">
+        update     tbl_post
+        set        post_status  = '삭제',
+                   updated_date = current_timestamp
+        where      id    =   #{id}
+    </update>
+
     <update id="updateCommunityPost">
         update    tbl_post
         set       post_title   =  #{postContent},
-                  post_content =  #{postContent}
+                  post_content =  #{postContent},
+                  updated_date = current_timestamp
         where     id           =  #{id}
+    </update>
+
+    <update id="updateCommunityPostFile">
+        update  tbl_file f
+            join    tbl_community_post_file cpf on cpf.id = f.id
+        set     f.file_status = '삭제'
+        where   cpf.post_id = #{postId};
+    </update>
+
+    <update id="deleteCommunityPostLike">
+        update  tbl_Like l
+            join    tbl_community_post_like cpl on cpl.id = l.id
+            set     l.like_status = '삭제'
+        where   cpl.post_id = #{postId};
+    </update>
+
+    <update id="deleteCommunityPostReport">
+        update  tbl_report r
+            join    tbl_community_post_report cpr on cpr.id = r.id
+            set     r.report_status = '삭제'
+        where   cpr.post_id = #{postId};
+    </update>
+
+    <update id="deleteCommunityPostReply">
+        update  tbl_reply r
+            join    tbl_community_post_reply cpr on cpr.id = r.id
+            set     r.reply_status = '삭제'
+        where   cpr.post_id = #{postId};
+    </update>
+
+    <update id="deleteCommunityPostReplyLike">
+        update tbl_like l
+        set l.like_status = '삭제',
+            l.updated_date = current_timestamp
+        where l.id in (
+            select rl.id
+            from tbl_community_post_reply r
+                     join tbl_community_post_reply_like rl on r.id = rl.reply_id
+            where r.post_id = #{postid}
+        );
+    </update>
+
+    <update id="deleteCommunityPostReplyReport">
+        update tbl_report r
+        set r.report_status = '삭제',
+            r.updated_date = current_timestamp
+        where r.id in (
+            select rr.id
+            from tbl_community_post_reply r
+                     join tbl_community_post_reply_report rr on r.id = rr.reply_id
+            where r.post_id = #{postid}
+        );
     </update>
 
     <delete id="deleteCommunityPostFile">
         DELETE cpf, f
-        FROM tbl_community_post_file cpf
-        JOIN tbl_file f ON cpf.id = f.id
+        FROM  tbl_community_post_file cpf
+        JOIN  tbl_file f ON cpf.id = f.id
         WHERE cpf.post_id = #{postId};
     </delete>
+
 </mapper>

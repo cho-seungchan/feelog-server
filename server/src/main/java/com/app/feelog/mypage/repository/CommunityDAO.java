@@ -88,4 +88,39 @@ public class CommunityDAO {
     public void deleteCommunityPostFile(Long postId) {
         communityMapper.deleteCommunityPostFile(postId);
     }
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 삭제
+    public void deleteCommunityPost(Long id) {
+        communityMapper.deleteCommunityPost(id);
+    }
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 첨부파일 삭제
+    public void updateCommunityPostFile(Long postId) {
+        communityMapper.updateCommunityPostFile(postId);
+    }
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 댓글 삭제
+    public void deleteCommunityPostReply(Long postId) {
+        communityMapper.deleteCommunityPostReply(postId);
+    }
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 좋아요 삭제
+    public void deleteCommunityPostLike(Long postId) {
+        communityMapper.deleteCommunityPostLike(postId);
+    }
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 신고 삭제
+    public void deleteCommunityPostReport(Long postId) {
+        communityMapper.deleteCommunityPostReport(postId);
+    }
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 댓글 좋아요 삭제
+    public void deleteCommunityPostReplyLike(Long postId) {
+        communityMapper.deleteCommunityPostReplyLike(postId);
+    }
+
+    // 2025.04.27  조승찬 :: 커뮤니티 게시글 댓글 신고 삭제
+    public void deleteCommunityPostReplyReport(Long postId) {
+        communityMapper.deleteCommunityPostReplyReport(postId);
+    }
 }
