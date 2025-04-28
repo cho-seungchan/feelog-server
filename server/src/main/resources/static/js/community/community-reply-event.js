@@ -463,18 +463,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (document.querySelector(".uploadFile-container2").querySelector(".uploadFile"))  {
                 // 첨부 파일을 input 태그에 저장
-                const filePath = document.querySelector(".uploadFile-container2").querySelector(".uploadFile").getAttribute("date-file-path");
+                const filePath = document.querySelector(".uploadFile-container2").querySelector(".uploadFile").getAttribute("data-file-path");
                 pathInput = document.createElement('input');
                 pathInput.setAttribute('type', 'hidden');
-                pathInput.setAttribute('name', 'reply_file_path');
+                pathInput.setAttribute('name', 'replyFilePath');
                 pathInput.setAttribute('value', filePath); // 바로 설정
                 form.appendChild(pathInput);
-                const fileName = document.querySelector(".uploadFile-container2").querySelector(".uploadFile").getAttribute("date-file-name");
+                const fileName = document.querySelector(".uploadFile-container2").querySelector(".uploadFile").getAttribute("data-file-name");
                 nameInput = document.createElement('input');
                 nameInput.setAttribute('type', 'hidden');
-                nameInput.setAttribute('name', 'reply_file_name');
+                nameInput.setAttribute('name', 'replyFileName');
                 nameInput.setAttribute('value', fileName); // 바로 설정
                 form.appendChild(nameInput);
+
             }
 
             // 서버 전송

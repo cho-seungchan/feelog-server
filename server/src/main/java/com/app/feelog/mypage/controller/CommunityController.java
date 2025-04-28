@@ -205,6 +205,7 @@ public class CommunityController {
                                          @PathVariable String channelUrl, CommunityPostReplyDTO reply,
                                          SixRowPagination pagination) {
 
+        log.info(reply.toString());
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
             return "redirect:/login/login";

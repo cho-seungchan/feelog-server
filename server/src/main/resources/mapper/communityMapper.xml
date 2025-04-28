@@ -121,6 +121,7 @@
         on       r.id            =   pr.id
         where    pr.post_id      =  #{postId}
         and      r.reply_status  =  '정상'
+        order    by  r.id  desc
     </select>
 
     <insert id="postPost" useGeneratedKeys="true" keyProperty="id">
