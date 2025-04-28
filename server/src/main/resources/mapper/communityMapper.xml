@@ -96,10 +96,16 @@
     </select>
 
     <select id="getCommunityPost" resultType="communityPostVO">
-        select   id,
-                 post_content
-        from     tbl_post
-        where    id   =  #{postId}
+        select   p.id,
+                 p.post_content,
+                 p.created_date,
+                 p.updated_date,
+                 cp.member_id,
+                 cp.channel_id
+        from     tbl_post p
+        join     tbl_community_post cp
+        on       p.id   = cp.id
+        where    p.id   =  #{postId}
     </select>
 
     <select id="getCommunityPostReply" resultType="communityPostReplyVO">

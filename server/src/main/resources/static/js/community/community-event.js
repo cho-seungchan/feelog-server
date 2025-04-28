@@ -332,7 +332,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 네 버튼 클릭시 서버에 삭제 요청
         if (e.target.classList.contains("flog-button-10")) {
-            communityPostDelete(postId, currentChannelUrl)
+            // communityPostDelete(postId, currentChannelUrl)
+            window.location.href = `/feelog.com/@${currentChannelUrl}/community-delete/${postId}`;
         }
         // 2025.04.27 조승찬 :: 글 삭제 버튼 클릭시
 
@@ -405,6 +406,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 // 신고 취소 호출
                 cancelCommunityPostReport(postId, currentChannelUrl);
             }
+        }
+
+        // 2025.04.28 조승찬 :: 댓글 버튼 클릭시
+        if (e.target.closest(".flog-button-33")) {
+
+            postId = e.target.closest(".flog-button-33").getAttribute("data-postId");
+            // 댓글 목록 호출
+            // postCommunityPostReplyList(postId, currentChannelUrl);
+            window.location.href = `/feelog.com/@${currentChannelUrl}/community-reply/${postId}`;
         }
     });
 });

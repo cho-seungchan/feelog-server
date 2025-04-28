@@ -45,9 +45,13 @@ public class SubscribeDAO {
         return subscribeMapper.selectSubscribeCount(channelId);
     };
 
-    public void deleteSubscribe(@Param("memberId") Long memberId, @Param("channelId") Long channelId){
-        subscribeMapper.deleteSubscribe(memberId, channelId);
-    };
+    public SubscribeDTO findByMemberAndChannel(Long memberId, Long channelId) {
+        return subscribeMapper.findByMemberAndChannel(memberId, channelId);
+    }
+
+//    public void deleteSubscribe(@Param("memberId") Long memberId, @Param("channelId") Long channelId){
+//        subscribeMapper.deleteSubscribe(memberId, channelId);
+//    };
 
 
 }

@@ -54,8 +54,6 @@ public class CommunityController {
         model.addAttribute("loginId", member.getId());
         model.addAttribute("communityPost", communityPost);
 
-//        System.out.println(" 확인 해 보자 ");
-//        communities.forEach(System.out::println);
         return "community/community";
     }
 
@@ -97,7 +95,7 @@ public class CommunityController {
     }
 
     // 2025.04.27 조승찬  :: 커뮤니티 글 삭제하기
-    @PostMapping("/@{channelUrl}/community-delete/{postId}")
+    @GetMapping("/@{channelUrl}/community-delete/{postId}")
     public String deleteCommunityPost(@SessionAttribute(name = "member", required = false) MemberDTO member,
                                       @PathVariable String channelUrl,
                                       @PathVariable Long postId, SixRowPagination pagination) {

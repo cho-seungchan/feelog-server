@@ -27,7 +27,6 @@ public class ChannelPostDTO {
     private PostStatus postStatus;
     private String createdDate;
     private String updatedDate;
-    private int postReadCount;
     private String memberNickname;
     private String memberFilePath;
     private String memberFileName;
