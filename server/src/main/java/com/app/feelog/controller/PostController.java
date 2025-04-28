@@ -1,11 +1,9 @@
 package com.app.feelog.controller;
 
-import com.app.feelog.domain.dto.ChannelPostDTO;
-import com.app.feelog.domain.dto.MainPostListDTO;
-import com.app.feelog.domain.dto.MemberDTO;
-import com.app.feelog.domain.dto.SubscribeDTO;
+import com.app.feelog.domain.dto.*;
 import com.app.feelog.service.ChannelPostService;
 import com.app.feelog.service.SubscribeService;
+import com.app.feelog.service.voToDto.ChannelPostReplyService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +21,7 @@ public class PostController {
     private final ChannelPostService channelPostService;
     private final HttpSession session;
     private final SubscribeService subscribeService;
+    private final ChannelPostReplyService channelPostReplyService;
 
     @GetMapping("/read")
     public String goToRead(Model model, @RequestParam Long id) {
@@ -100,6 +99,21 @@ public class PostController {
             });
         }
         return randomPost;
+    }
 
+    @PostMapping("addReply")
+    public void addReply(@RequestBody ChannelPostReplyDTO channelPostReplyDTO) {
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
+        log.info("postMemberId {}", channelPostReplyDTO.getPostMemberId());
+//        channelPostReplyService.addPostReply(channelPostReplyDTO);
+
+        Long myId = loginMember.getId();
+        Long postOwnerId = channelPostReplyDTO.getPostMemberId();
+
+        Long postReplyId = loginMember.getId();
+
+        if (!myId.equals(postOwnerId)) {
+            notificationService.sendPostReplyNotification(myId, postOwnerId, postReplyId);
+        }
     }
 }

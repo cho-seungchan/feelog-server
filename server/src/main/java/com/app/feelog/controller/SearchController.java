@@ -39,7 +39,7 @@ public class SearchController {
         List<DiarySearchDTO> diaries = diaryService.searchDiaries(safeKeyword);
         List<ChannelPostSearchDTO> posts = channelPostService.searchChannelPosts(safeKeyword);
         List<ChannelSearchDTO> channels = channelService.searchChannels(safeKeyword);
-        List<ChannelPostSearchDTO> cheer = channelPostService.searchChannelPostsCheer(safeKeyword);
+//        List<ChannelPostSearchDTO> cheer = channelPostService.searchChannelPostsCheer(safeKeyword);
         List<String> recommendedTags = tagService.getPopularTags();
 
         List<String> relatedKeywords = relatedSearchService.getRelatedKeywords(safeKeyword);
@@ -57,7 +57,7 @@ public class SearchController {
 
         model.addAttribute("diaries", diaries);
         model.addAttribute("channelPosts", posts);
-        model.addAttribute("channelPostsCheer", cheer);
+//        model.addAttribute("channelPostsCheer", cheer);
         model.addAttribute("channels", channels);
         model.addAttribute("relatedKeywords", distinctKeywords);
         model.addAttribute("recommendedTags", recommendedTags);
@@ -78,29 +78,29 @@ public class SearchController {
         return diaryService.searchMoreDiaries(keyword, 5, offset);
     }
 
-    @GetMapping("/search/post/load")
-    @ResponseBody
-    public List<ChannelPostSearchDTO> loadMoreChannelPosts(@RequestParam String keyword,
-                                                           @RequestParam int offset) {
-
-        if (keyword == null || keyword.trim().isEmpty()) {
-            keyword = "";
-        }
-
-        return channelPostService.searchMoreChannelPosts(keyword, 5, offset);
-    }
-
-    @GetMapping("/search/cheer/load")
-    @ResponseBody
-    public List<ChannelPostSearchDTO> loadMoreChannelPostsCheer(@RequestParam String keyword,
-                                                                @RequestParam int offset) {
-
-        if (keyword == null || keyword.trim().isEmpty()) {
-            keyword = "";
-        }
-
-        return channelPostService.searchMoreChannelPostsCheer(keyword, 5, offset);
-    }
+//    @GetMapping("/search/post/load")
+//    @ResponseBody
+//    public List<ChannelPostSearchDTO> loadMoreChannelPosts(@RequestParam String keyword,
+//                                                           @RequestParam int offset) {
+//
+//        if (keyword == null || keyword.trim().isEmpty()) {
+//            keyword = "";
+//        }
+//
+////        return channelPostService.searchMoreChannelPosts(keyword, 5, offset); ㅂㅈㄱㅈ
+//    }
+//
+//    @GetMapping("/search/cheer/load")
+//    @ResponseBody
+//    public List<ChannelPostSearchDTO> loadMoreChannelPostsCheer(@RequestParam String keyword,
+//                                                                @RequestParam int offset) {
+//
+//        if (keyword == null || keyword.trim().isEmpty()) {
+//            keyword = "";
+//        }
+//
+//        return channelPostService.searchMoreChannelPostsCheer(keyword, 5, offset);
+//    }
 
 
     @GetMapping("/search/channel/load")

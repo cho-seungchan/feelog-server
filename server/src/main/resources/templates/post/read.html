@@ -222,7 +222,7 @@
                                 0개의 댓글
                             </p>
                             <!-- 로그인 후 댓글창 -->
-                            <div class="comment-list comment_container_01">
+                            <div class="comment-list comment_container_01" th:if="${session.member != null}">
                                 <label for="comment" class="tag_h6_01"
                                     >작가에게 힘이 되는 한마디 남기기</label
                                 >
@@ -233,16 +233,24 @@
                                         <div class="nickname_div_01">
                                             <div class="nickname_imgWrap_01">
                                                 <img
+                                                    th:if="${session.member !=null}"
                                                     alt=""
-                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                    th:src="'/files/display?path=' + ${session.member.memberFilePath} + '/' + ${session.member.memberFileName}"
+                                                    loading="lazy"
+                                                    class="aTag_divImg_01"
+                                                />
+                                                <img
+                                                    th:if="${session.member ==null}"
+                                                    alt=""
+                                                    th:src="@{/images/avatar_blank.png}"
                                                     loading="lazy"
                                                     class="aTag_divImg_01"
                                                 />
                                             </div>
                                             <p
                                                 class="diary_nicknameWrap_01title_h5_01"
+                                                th:text="${session.member.memberNickname}"
                                             >
-                                                박정근
                                             </p>
                                         </div>
                                     </div>
@@ -277,39 +285,14 @@
                                     >
                                         <div class="uploadButton_wrap_01">
                                             <div class="uploadButton_div_01">
-                                                <div class="">
-                                                    <label
-                                                        class="tag_h6_01"
-                                                        for="upload-image"
-                                                        >이미지</label
-                                                    ><input
-                                                        id="upload-image"
-                                                        accept="image/jpeg, image/png, image/heic, image/heif, image/webp"
-                                                        type="file"
-                                                        style="display: none"
-                                                    /><button
-                                                        aria-label="이미지 업로드"
-                                                        class="uploadButton_01 uploadButton_02"
-                                                        type="button"
-                                                    >
-                                                        <svg
-                                                            focusable="false"
-                                                            aria-hidden="true"
-                                                            viewBox="0 0 24 24"
-                                                            width="24"
-                                                            height="24"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            class="post_moreButton_svg_01"
-                                                        >
-                                                            <path
-                                                                fill-rule="evenodd"
-                                                                clip-rule="evenodd"
-                                                                d="M9.745 2.85c-.895 0-1.716.495-2.133 1.286L6.766 5.74H4.752A2.9 2.9 0 0 0 1.85 8.637v9.616a2.9 2.9 0 0 0 2.902 2.897h14.496a2.9 2.9 0 0 0 2.902-2.897V8.637a2.9 2.9 0 0 0-2.902-2.897h-2.005l-.849-1.606a2.411 2.411 0 0 0-2.132-1.284H9.745ZM9.27 5.006a.538.538 0 0 1 .476-.287h4.517c.2 0 .383.11.476.287l.89 1.686c.299.565.886.918 1.524.918h2.096c.569 0 1.03.46 1.03 1.027v9.616c0 .567-.461 1.027-1.03 1.027H4.752c-.569 0-1.03-.46-1.03-1.027V8.637c0-.567.461-1.027 1.03-1.027h2.105c.64 0 1.226-.354 1.524-.919l.888-1.685ZM12 8.704a4.372 4.372 0 0 0-4.376 4.368A4.372 4.372 0 0 0 12 17.44a4.372 4.372 0 0 0 4.376-4.368A4.372 4.372 0 0 0 12 8.704Zm-2.504 4.368c0-1.38 1.121-2.498 2.504-2.498a2.501 2.501 0 0 1 2.504 2.498c0 1.38-1.121 2.499-2.504 2.499a2.501 2.501 0 0 1-2.504-2.499Z"
-                                                                fill="currentcolor"
-                                                            ></path>
+                                                <div class="image-wrap-reply">
+                                                    <label for="upload-image" class="uploadButton_01 uploadButton_02">
+                                                        <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg" class="post_moreButton_svg_01">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.745 2.85c-.895 0-1.716.495-2.133 1.286L6.766 5.74H4.752A2.9 2.9 0 0 0 1.85 8.637v9.616a2.9 2.9 0 0 0 2.902 2.897h14.496a2.9 2.9 0 0 0 2.902-2.897V8.637a2.9 2.9 0 0 0-2.902-2.897h-2.005l-.849-1.606a2.411 2.411 0 0 0-2.132-1.284H9.745ZM9.27 5.006a.538.538 0 0 1 .476-.287h4.517c.2 0 .383.11.476.287l.89 1.686c.299.565.886.918 1.524.918h2.096c.569 0 1.03.46 1.03 1.027v9.616c0 .567-.461 1.027-1.03 1.027H4.752c-.569 0-1.03-.46-1.03-1.027V8.637c0-.567.461-1.027 1.03-1.027h2.105c.64 0 1.226-.354 1.524-.919l.888-1.685ZM12 8.704a4.372 4.372 0 0 0-4.376 4.368A4.372 4.372 0 0 0 12 17.44a4.372 4.372 0 0 0 4.376-4.368A4.372 4.372 0 0 0 12 8.704Zm-2.504 4.368c0-1.38 1.121-2.498 2.504-2.498a2.501 2.501 0 0 1 2.504 2.498c0 1.38-1.121 2.499-2.504 2.499a2.501 2.501 0 0 1-2.504-2.499Z" fill="currentcolor"></path>
                                                         </svg>
-                                                    </button>
+                                                    </label>
+                                                    <input id="upload-image" accept="image/jpeg, image/png, image/heic, image/heif, image/webp" type="file" style="display: none">
                                                 </div>
                                                 <div
                                                     class="button_container_01"
@@ -320,7 +303,7 @@
                                                         <button
                                                             class="button_disabled_01 upload-buttonSize_01 uploadButton_css_01"
                                                             type="button"
-                                                            disabled=""
+                                                            th:data-index="${post.id}"
                                                         >
                                                             등록
                                                         </button>
@@ -331,8 +314,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- 로그인 전 댓글 창 
-                            <div class="comment-list comment_container_01">
+                            <div class="comment-list comment_container_01" th:if="${session.member == null}">
                                 <div
                                     class="button_disabled_01 button_disabled_01 comment-folded button_disabled_02"
                                 >
@@ -388,7 +370,7 @@
                                         "
                                     ></textarea>
                                 </div>
-                            </div>-->
+                            </div>
                             <div class="diary_div_001">
                                 <div
                                     class="diary_container_01"
@@ -637,6 +619,7 @@
     </script>
     <script src="/js/main/main-modal.js"></script>
     <script src="/js/main/main-search-modal.js"></script>
+    <script src="/js/post/file-service.js"></script>
     <script src="/js/post/read-service.js"></script>
     <script src="/js/post/read-layout.js"></script>
     <script src="/js/post/read-event.js"></script>
