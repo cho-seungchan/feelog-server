@@ -30,4 +30,58 @@
         update tbl_faq set faq_status = '삭제'
         where id = #{id}
     </update>
+
+    <select id="findAll" resultType="com.app.feelog.domain.vo.FaqVO">
+        SELECT
+            id,
+            faq_title,
+            faq_content,
+            member_id,
+            faq_status,
+            created_date,
+            updated_date
+        FROM tbl_faq
+        WHERE faq_status = '정상'
+        ORDER BY id DESC
+    </select>
+
+    <select id="findById" parameterType="long" resultType="com.app.feelog.domain.vo.FaqVO">
+        SELECT
+            id,
+            faq_title,
+            faq_content,
+            member_id,
+            faq_status,
+            created_date,
+            updated_date
+        FROM tbl_faq
+        WHERE id = #{id}
+          AND faq_status = '정상'
+    </select>
+
+    <select id="findRecentFaqs" parameterType="int" resultType="com.app.feelog.domain.vo.FaqVO">
+        SELECT
+            id, faq_title, faq_content, member_id, faq_status, created_date, updated_date
+        FROM
+            tbl_faq
+        WHERE
+            faq_status = '정상'
+        ORDER BY
+            id DESC
+        LIMIT #{limit}
+    </select>
+
+    <select id="searchFaqs" parameterType="string" resultType="com.app.feelog.domain.vo.FaqVO">
+        SELECT
+            id, faq_title, faq_content, member_id, faq_status, created_date, updated_date
+        FROM
+            tbl_faq
+        WHERE
+            faq_status = '정상'
+          AND faq_title LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY
+            id DESC
+    </select>
+
+
 </mapper>

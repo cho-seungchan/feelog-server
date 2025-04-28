@@ -33,4 +33,16 @@ public class FaqDAO {
     public void deleteFaq(Long id) {
         faqMapper.deleteFaq(id);
     }
+
+    public List<FaqVO> findAll() { return faqMapper.findAll(); }
+
+    public FaqVO findById(Long id) { return faqMapper.findById(id); }
+
+    public List<FaqVO> findRecentFaqs(int limit) {
+        return faqMapper.findRecentFaqs(limit);
+    };
+
+    public List<FaqVO> searchFaqs(String keyword){
+        return faqMapper.searchFaqs(keyword);
+    };
 }

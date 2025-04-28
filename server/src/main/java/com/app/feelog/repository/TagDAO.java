@@ -53,4 +53,12 @@ public class TagDAO {
     public void softDeleteById(Long id) {
         tagMapper.softDeleteById(id);
     }
+
+    public List<String> findPopularTags() {
+        return tagMapper.findPopularTags();
+    }
+
+    public TagVO findByContent(String content) {
+        return tagMapper.findByContent(content);
+    }
 }

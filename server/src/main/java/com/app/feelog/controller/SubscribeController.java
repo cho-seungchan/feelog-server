@@ -1,14 +1,15 @@
 package com.app.feelog.controller;
 
+import com.app.feelog.domain.dto.ChannelSearchDTO;
+import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.service.ChannelService;
 import com.app.feelog.service.SubscribeService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -16,23 +17,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class SubscribeController {
 
     private final SubscribeService subscribeService;
+    private final ChannelService channelService;
 
     @PostMapping("/{channelId}")
     public ResponseEntity<String> toggleSubscribe(@PathVariable("channelId") Long channelId,
-                                                  HttpSession session) {
-        Long memberId = (Long) session.getAttribute("loginId");
-
-        if (memberId == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 필요");
+                                                  @SessionAttribute(value = "member", required = false) MemberDTO member) {
+        if (member == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
         }
 
-        Long channelOwnerId = subscribeService.findChannelOwnerId(channelId);
+        Long memberId = member.getId();
+        Long channelOwnerId = channelService.findChannelOwnerId(channelId);
+
         if (memberId.equals(channelOwnerId)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("자기 채널은 구독할 수 없습니다");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("자기 채널은 구독할 수 없습니다.");
         }
 
-        boolean subscribed = subscribeService.toggleSubscribe(memberId, channelId);
-        return ResponseEntity.ok(subscribed ? "subscribed" : "unsubscribed");
+        boolean isSubscribed = subscribeService.isSubscribed(memberId, channelId);
+
+        if (isSubscribed) {
+            subscribeService.unsubscribe(memberId, channelId);
+            return ResponseEntity.ok("구독 취소");
+        } else {
+            subscribeService.subscribe(memberId, channelId);
+            return ResponseEntity.ok("구독 완료");
+        }
     }
 
 }

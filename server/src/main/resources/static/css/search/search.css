@@ -857,7 +857,7 @@ body {
 
 @media (min-width: 744px) {
     .joy-1yenopd {
-        font-size: 20px;
+        font-size: 31px;
     }
 }
 
@@ -1928,10 +1928,12 @@ body {
 }
 
 .joy-c1ffoy {
-    display: flex
-;
+    display: flex;
     flex-direction: row;
     position: relative;
+    border: 1px solid rgba(118, 118, 127, 0.15);
+    border-radius: 10px;
+    padding: 5px;
 }
 
 @media (min-width: 0px) {
@@ -1959,8 +1961,8 @@ body {
     flex-shrink: 0;
     overflow: hidden;
     border-radius: 6px;
-    width: 64px;
-    height: 64px;
+    width: 107px;
+    height: 107px;
 }
 
 @media (min-width: 0px) {

@@ -27,18 +27,20 @@ INSERT INTO tbl_member (
     member_type,
     member_status
 ) VALUES (
-             'qwer@qwe.qwe',
-             'qwer', -- 비밀번호는 암호화 전 값
-             'qwer',
-             'qwerqwer.',
-             'profile/2025/04/24',
-             'profile_pic.png',
-             '일반 회원',
+             'admin@admin.com',
+             'qwer123123', -- 비밀번호는 암호화 전 값
+             'admin',
+             'admin.',
+             '',
+             '',
+             '관리자',
              '정상'
          );
 
 select * from tbl_member;
 select * from tbl_channel;
+select * from tbl_subscribe;
+select * from feelog.tbl_subscribe_notification;
 
 -- 2. 채널 생성
 INSERT INTO tbl_channel (
@@ -50,11 +52,11 @@ INSERT INTO tbl_channel (
     channel_status,
     member_id
 ) VALUES (
-             'qwerqwerqwerqwer',
-             'qwe',
-             'qwer',
+             '123123123',
+             '123123123123123123123123',
+             '123123123',
              'channel/2025/04/24',
              'channel_banner.png',
              '정상',
-             2
+             11
          );

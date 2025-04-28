@@ -135,7 +135,29 @@ public class DiaryServiceImpl implements DiaryService {
                 dto.setTagsList(new ArrayList<>());
             }
 
-            // 2. 본문 내용에서 img 제거 및 p, h1~h6만 추출
+            // 2. 본문 내용에서 img 제거
+            if (dto.getContent() != null && !dto.getContent().isEmpty()) {
+                String filteredContent = extractTextOnly(dto.getContent());
+                dto.setContent(filteredContent);
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<DiarySearchDTO> searchMoreDiaries(String keyword, int limit, int offset) {
+        List<DiarySearchDTO> result = diaryDAO.searchMoreDiaries(keyword, limit, offset);
+
+        for (DiarySearchDTO dto : result) {
+            // 1. 태그 가공
+            if (dto.getTags() != null && !dto.getTags().isEmpty()) {
+                dto.setTagsList(Arrays.asList(dto.getTags().split(",")));
+            } else {
+                dto.setTagsList(new ArrayList<>());
+            }
+
+            // 2. 본문 내용에서 img 제거
             if (dto.getContent() != null && !dto.getContent().isEmpty()) {
                 String filteredContent = extractTextOnly(dto.getContent());
                 dto.setContent(filteredContent);
@@ -147,18 +169,11 @@ public class DiaryServiceImpl implements DiaryService {
 
 
 
-
     private String extractTextOnly(String html) {
         Document doc = Jsoup.parse(html);
         doc.select("img").remove();
-        Elements elements = doc.select("p, h1, h2, h3, h4, h5, h6");
 
-        StringBuilder sb = new StringBuilder();
-        for (Element el : elements) {
-            sb.append(el.outerHtml());
-        }
-
-        return sb.toString();
+        return doc.body().text();
     }
 
 }

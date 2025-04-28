@@ -7,6 +7,7 @@ import com.app.feelog.service.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,15 +35,13 @@ public class MainController {
     private final FileService fileService;
     private final FileDAO fileDAO;
     private final ChannelPostFileService channelPostFileService;
+    private final NotificationService notificationService;
+    private final FaqService faqService;
+    private final EmailServiceJk emailServiceJk;
 
     @GetMapping("/cs")
     public String getMainCs() {
         return "main/cs";
-    }
-
-    @GetMapping("/faq")
-    public String getMainFaq() {
-        return "main/faq";
     }
 
     @GetMapping("/intro")
@@ -51,7 +50,13 @@ public class MainController {
     }
 
     @GetMapping("/mind-log")
-    public String getMainMindLog(Model model, @RequestParam(required = false) Long challengeId) {
+    public String getMainMindLog(Model model, @RequestParam(required = false) Long challengeId,
+                                 @SessionAttribute(value = "member", required = false) MemberDTO member) {
+
+        if (member == null) {
+            return "login/login";
+        }
+
         DiaryDTO diaryDTO = new DiaryDTO();
         if (challengeId != null) {
             diaryDTO.setChallengeId(challengeId); // 챌린지 아이디 주입
@@ -66,9 +71,12 @@ public class MainController {
             DiaryDTO diaryDTO,
             @RequestParam("thumbnail") MultipartFile thumbnailFile,
             @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
-            @RequestParam(value = "tags", required = false) List<String> tags) {
+            @RequestParam(value = "tags", required = false) List<String> tags,
+            @SessionAttribute(value = "member", required = false) MemberDTO member) {
 
-        diaryDTO.setMemberId(1L);
+        Long memberId = member.getId();
+
+        diaryDTO.setMemberId(memberId);
         diaryDTO.setFeelId(1L);
         diaryDTO.setTags(tags);
         diaryDTO.setFileIds(fileIds);
@@ -124,12 +132,13 @@ public class MainController {
     public String updateDiary(@PathVariable Long id,
                               DiaryDTO diaryDTO,
                               @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
-                              @RequestParam(value = "tags", required = false) List<String> tags) {
+                              @RequestParam(value = "tags", required = false) List<String> tags,
+                              @SessionAttribute(value = "member", required = false) MemberDTO member) {
 
         DiaryDTO original = diaryService.getDiary(id); // 기존 데이터 먼저 불러오기
 
-        // Long memberId = (Long) session.getAttribute("memberId");
-        diaryDTO.setMemberId(1L);
+         Long memberId = member.getId();
+        diaryDTO.setMemberId(memberId);
         diaryDTO.setId(id);
         diaryDTO.setFileIds(fileIds);
         diaryDTO.setTags(tags);
@@ -149,7 +158,12 @@ public class MainController {
 
     // 등록 폼
     @GetMapping("/post")
-    public String getPostForm(Model model) {
+    public String getPostForm(Model model, @SessionAttribute(value = "member", required = false) MemberDTO member) {
+
+        if (member == null) {
+            return "login/login";
+        }
+
         ChannelPostDTO postDTO = new ChannelPostDTO();
         model.addAttribute("post", postDTO);
 
@@ -160,8 +174,12 @@ public class MainController {
     @PostMapping("/post")
     public String writePost(ChannelPostDTO dto,
                             @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
-                            @RequestParam(value = "tags", required = false) List<String> tags) {
-        dto.setMemberId(1L);
+                            @RequestParam(value = "tags", required = false) List<String> tags,
+                            @SessionAttribute(value = "member", required = false) MemberDTO member) {
+
+        Long memberId = member.getId();
+
+        dto.setMemberId(memberId);
         dto.setChannelId(1L);
         dto.setFileIds(fileIds);
         dto.setTags(tags);
@@ -217,12 +235,6 @@ public class MainController {
         return "redirect:/";
     }
 
-    @GetMapping("/ticket")
-    public String getMainTicket() {
-        return "main/ticket";
-    }
-
-
     @GetMapping("/init")
     @ResponseBody
     public Map<String, Object> searchInit() {
@@ -231,6 +243,76 @@ public class MainController {
         result.put("channelPosts", channelPostService.getRecentChannelPosts());
 
         return result;
+    }
+
+    @GetMapping("/notifications")
+    @ResponseBody
+    public List<NotificationResponseDTO> getMyNotifications(@SessionAttribute(value = "member", required = false) MemberDTO member) {
+
+        Long myId = member.getId();
+        return notificationService.getNotificationsByReceiver(myId);
+    }
+
+    @GetMapping("/notifications/unread-count")
+    @ResponseBody
+    public int getUnreadNotificationCount(@SessionAttribute(value = "member", required = false) MemberDTO member) {
+        Long receiverId = member.getId();
+        return notificationService.getUnreadNotificationCount(receiverId);
+    }
+
+    @PostMapping("/notifications/mark-all-read")
+    @ResponseBody
+    public void markAllNotificationsAsRead(@SessionAttribute(value = "member", required = false) MemberDTO member) {
+        Long receiverId = member.getId();
+        notificationService.markAllAsRead(receiverId);
+    }
+
+    // FAQ 목록 페이지
+    @GetMapping("/faq")
+    public String faqListPage(@RequestParam(value = "query", required = false) String keyword, Model model) {
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            model.addAttribute("faqs", faqService.searchFaqs(keyword));
+        } else {
+            model.addAttribute("faqs", faqService.findAll());
+        }
+        return "main/cs"; // 목록페이지
+    }
+
+    // FAQ 상세 페이지
+    @GetMapping("/faq/{id}")
+    public String faqDetailPage(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("faq", faqService.findById(id));
+        model.addAttribute("recentFaqs", faqService.findRecentFaqs(3));
+        return "main/faq";
+    }
+    // FAQ 검색 목록
+    @GetMapping("/faq/list")
+    @ResponseBody
+    public List<FaqDTO> getFaqList(@RequestParam(value = "query", required = false) String keyword) {
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            return faqService.searchFaqs(keyword);
+        } else {
+            return faqService.findAll();
+        }
+    }
+
+    @GetMapping("/ticket")
+    public String ticketPage(HttpSession session, Model model) {
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+
+        if (member != null) {
+            model.addAttribute("memberEmail", member.getMemberEmail());
+        }
+
+        return "main/ticket";
+    }
+
+    @PostMapping("/ticket")
+    public String submitTicket(@RequestParam("request[custom_fields][900008472883]") String email,
+                               @RequestParam("request[subject]") String subject,
+                               @RequestParam("request[description]") String description) {
+        emailServiceJk.sendTicketEmail(email, subject, description);
+        return "redirect:/main/faq";
     }
 
 }

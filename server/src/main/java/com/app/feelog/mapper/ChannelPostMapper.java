@@ -42,6 +42,12 @@ public interface ChannelPostMapper {
 
     List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 
+    List<ChannelPostSearchDTO> searchChannelPostsCheer(String keyword);
+
+    List<ChannelPostSearchDTO> searchMoreChannelPosts(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+
+    List<ChannelPostSearchDTO> searchMoreChannelPostsCheer(String keyword, int limit, int offset);
+
     public Optional<MainPostListDTO> selectCheerOne();
 
     public List<MainPostListDTO> selectCheerPostAll(PostPagination postPagination);
@@ -56,4 +62,5 @@ public interface ChannelPostMapper {
     public int selectSubscribeCount(Long channelId);
 
     public List<MainPostListDTO> selectPostRandom();
+
 }

@@ -18,4 +18,14 @@ public class ChannelServiceImpl implements ChannelService {
         return channelDAO.searchChannels(keyword);
     }
 
+    @Override
+    public List<ChannelSearchDTO> searchMoreChannels(String keyword, int limit, int offset) {
+        return channelDAO.searchMoreChannels(keyword, limit, offset);
+    }
+
+    @Override
+    public Long findChannelOwnerId(Long channelId) {
+        return channelDAO.findChannelOwnerId(channelId);
+    }
+
 }

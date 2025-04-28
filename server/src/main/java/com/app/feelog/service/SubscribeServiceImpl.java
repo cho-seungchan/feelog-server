@@ -2,6 +2,7 @@ package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.ChannelPostDTO;
 import com.app.feelog.domain.dto.SubscribeDTO;
+import com.app.feelog.domain.enumeration.SubscribeStatus;
 import com.app.feelog.domain.vo.SubscribeVO;
 import com.app.feelog.repository.SubscribeDAO;
 import lombok.RequiredArgsConstructor;
@@ -18,28 +19,24 @@ import java.util.Optional;
 public class SubscribeServiceImpl implements SubscribeService {
 
     private final SubscribeDAO subscribeDAO;
+    private final NotificationService notificationService;
 
     @Override
-    public boolean toggleSubscribe(Long memberId, Long channelId) {
-        SubscribeDTO existing = subscribeDAO.findByMemberAndChannel(memberId, channelId);
-
-        if (existing != null) {
-            if ("정상".equals(existing.getSubscribeStatus())) {
-                subscribeDAO.updateSubscribeStatus(memberId, channelId, "해제");
-                return false; // 구독 취소
-            } else {
-                subscribeDAO.updateSubscribeStatus(memberId, channelId, "정상");
-                return true; // 다시 구독
-            }
-        } else {
-            subscribeDAO.insertSubscribe(memberId, channelId);
-            return true; // 신규 구독
-        }
+    public boolean isSubscribed(Long memberId, Long channelId) {
+        return subscribeDAO.selectIsSubscribed(memberId, channelId);
     }
 
     @Override
-    public Long findChannelOwnerId(Long channelId) {
-        return subscribeDAO.findChannelOwnerId(channelId);
+    public void subscribe(Long memberId, Long channelId) {
+
+        Long subscribeId = subscribeDAO.insertSubscribe(memberId, channelId);
+
+        notificationService.sendSubscribeNotification(memberId, channelId, subscribeId);
+    }
+
+    @Override
+    public void unsubscribe(Long memberId, Long channelId) {
+        subscribeDAO.deleteSubscribe(memberId, channelId);
     }
 
     @Override

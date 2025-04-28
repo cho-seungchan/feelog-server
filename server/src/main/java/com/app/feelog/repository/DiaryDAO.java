@@ -34,4 +34,8 @@ public class DiaryDAO {
         return diaryMapper.getRecentDiaries();
     }
 
+    public List<DiarySearchDTO> searchMoreDiaries(String keyword, int limit, int offset){
+        return diaryMapper.searchMoreDiaries(keyword,limit,offset);
+    }
+
 }

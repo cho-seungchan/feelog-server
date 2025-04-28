@@ -69,4 +69,24 @@
         WHERE id = #{id}
     </update>
 
+    <select id="findPopularTags" resultType="string">
+        SELECT t.contents
+        FROM tbl_diary_tag dt
+                 JOIN tbl_tag t ON dt.id = t.id
+        WHERE t.created_date >= DATE_SUB(NOW(), INTERVAL 14 DAY)
+          AND t.tag_status = 'ACTIVE'
+        GROUP BY t.contents
+        ORDER BY COUNT(*) DESC
+        LIMIT 10
+    </select>
+
+    <select id="findByContent" resultType="com.app.feelog.domain.vo.TagVO">
+        SELECT *
+        FROM tbl_tag
+        WHERE contents = #{content}
+          AND tag_status = 'ACTIVE'
+        ORDER BY id ASC
+        LIMIT 1
+    </select>
+
 </mapper>

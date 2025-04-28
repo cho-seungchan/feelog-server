@@ -234,7 +234,6 @@ public interface ToDTO {
         return notifyReplyListDTO;
     }
 
-
 //    public default NotifyAdminListDTO toNotifyAdminListDTO(NoticeVO noticeVO, String timeAgo) {
 //        NotifyAdminListDTO notifyAdminListDTO = null;
 //        if (noticeVO != null) {
@@ -251,6 +250,7 @@ public interface ToDTO {
 //        }
 //        return notifyAdminListDTO;
 //    }
+
 
     public default NotifySubscribeListDTO toNotifySubscribeListDTO(ChannelVO channelVO, MemberVO memberVO) {
         NotifySubscribeListDTO dto = null;

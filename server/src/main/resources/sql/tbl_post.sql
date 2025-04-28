@@ -9,3 +9,17 @@ create table tbl_post (
 );
 
 select * from tbl_post;
+
+
+-- tbl_post
+INSERT INTO tbl_post (post_title, post_content)
+VALUES ('테스트 커뮤니티 글 제목', '테스트 커뮤니티 글 내용');
+
+select * from tbl_community_post;
+select * from tbl_notification;
+select * from tbl_community_post_notification;
+
+-- tbl_community_post
+INSERT INTO tbl_community_post (id, member_id, channel_id)
+VALUES (48, 1, 1);
+

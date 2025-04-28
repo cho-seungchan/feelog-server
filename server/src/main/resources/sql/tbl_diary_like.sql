@@ -12,3 +12,4 @@ create table tbl_diary_like (
                                     references tbl_diary (id)
 );
 
+

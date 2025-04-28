@@ -1,6 +1,7 @@
 package com.app.feelog.domain.vo;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,14 +9,9 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class PostLikeNotificationVO {
+@SuperBuilder
+public class PostLikeNotificationVO extends NotificationVO {
     @EqualsAndHashCode.Include
-    Long id;
-    Long postLikeId;
-
-    @Builder
-    public PostLikeNotificationVO(Long id, Long postLikeId) {
-        this.id = id;
-        this.postLikeId = postLikeId;
-    }
+    private Long id;
+    private Long postLikeId;
 }

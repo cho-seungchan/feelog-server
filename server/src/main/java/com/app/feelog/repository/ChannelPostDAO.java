@@ -66,6 +66,19 @@ public class ChannelPostDAO {
         return channelPostMapper.searchChannelPosts(keyword);
     }
 
+
+    public List<ChannelPostSearchDTO> searchChannelPostsCheer(String keyword) {
+        return channelPostMapper.searchChannelPostsCheer(keyword);
+    }
+
+    public List<ChannelPostSearchDTO> searchMoreChannelPosts(String keyword, int limit, int offset) {
+        return channelPostMapper.searchMoreChannelPosts(keyword, limit, offset);
+    }
+
+    public List<ChannelPostSearchDTO> searchMoreChannelPostsCheer(String keyword, int limit, int offset) {
+        return channelPostMapper.searchMoreChannelPostsCheer(keyword, limit, offset);
+    }
+
     public Optional<MainPostListDTO> findCheerOne(){
         return channelPostMapper.selectCheerOne();
     };

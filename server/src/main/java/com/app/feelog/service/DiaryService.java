@@ -17,6 +17,8 @@ public interface DiaryService {
 
     List<DiarySearchDTO> getRecentDiaries();
 
+    List<DiarySearchDTO> searchMoreDiaries(String keyword, int limit, int offset);
+
 
 
     default DiaryDTO toDTO(DiaryVO vo) {
