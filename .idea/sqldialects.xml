@@ -49,8 +49,8 @@
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_related_search.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_reply.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_report.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_send_message.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_scrab.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_send_message.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_subscribe.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_subscribe_notification.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_tag.sql" dialect="MySQL" />
