@@ -14,8 +14,8 @@ public class CommunityPostReplyDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private String replyContent;
-    private String community_post_reply_file_path;
-    private String community_post_reply_file_name;
+    private String replyFilePath;
+    private String replyFileName;
     private Long memberId;
     private Long postId;
     private String createdDate;
@@ -25,8 +25,8 @@ public class CommunityPostReplyDTO {
         return CommunityPostReplyVO.builder()
                 .id(id)
                 .replyContent(replyContent)
-                .community_post_reply_file_path(community_post_reply_file_path)
-                .community_post_reply_file_name(community_post_reply_file_name)
+                .replyFilePath(replyFilePath)
+                .replyFileName(replyFileName)
                 .memberId(memberId)
                 .postId(postId)
                 .createdDate(createdDate)

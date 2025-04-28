@@ -100,4 +100,9 @@ public interface CommunityMapper {
     // 2025.04.28 조승찬 :: 커뮤니티 게시글 댓글 정보 가져오기
     List<CommunityPostReplyVO> getCommunityPostReply(Long postId);
 
+    // 2025.04.28  조승찬 :: 댓글 슈퍼키 저장
+    void postReply(CommunityPostReplyVO replyVO);
+
+    // 2025.04.28  조승찬 :: 댓글 저장
+    void postCommunityPostReply(CommunityPostReplyVO replyVO);
 }

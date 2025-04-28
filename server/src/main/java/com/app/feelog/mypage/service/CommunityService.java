@@ -2,6 +2,7 @@
 
 package com.app.feelog.mypage.service;
 
+import com.app.feelog.domain.dto.CommunityPostReplyDTO;
 import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.repository.CommunityDAO;
@@ -217,5 +218,14 @@ public class CommunityService implements ToDTO{
 
         return toCommunityPostReplyListDTO(postVO, member, files, memberChannel,
                 timeAgo,replys, likes, reports, iLike, iReport, replies);
+    }
+
+    // 2025.04.28  조승찬 :: 댓글 저장
+    public void postCommunityPostReply(CommunityPostReplyDTO reply) {
+        CommunityPostReplyVO replyVO = reply.toVO();
+        // 슈퍼키 저장
+        communityDAO.postReply(replyVO);
+        // 커뮤니티 포스트 댓글 저장
+        communityDAO.postCommunityPostReply(replyVO);
     }
 }

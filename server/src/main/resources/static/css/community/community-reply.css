@@ -2160,8 +2160,8 @@ slot {
     user-select: none;
     --variant-borderWidth: 0px;
     background-color: #f2f2f3;
-    width: 32px;
-    height: 32px;
+    width: 60px;
+    height: 60px;
     overflow: visible;
 }
 .flog-div-200 .FeelogAvatar-img {

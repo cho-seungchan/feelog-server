@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 @SuperBuilder
 public class CommunityPostReplyVO extends ReplyVO {
     @EqualsAndHashCode.Include
-    private String community_post_reply_file_path;
-    private String community_post_reply_file_name;
     private Long memberId;
     private Long postId;
 

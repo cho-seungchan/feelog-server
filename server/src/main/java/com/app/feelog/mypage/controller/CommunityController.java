@@ -199,4 +199,21 @@ public class CommunityController {
         return "community/community-reply";
     }
 
+    // 2025.04.28 조승찬 :: 댓글 처리
+    @PostMapping("/@{channelUrl}/community-reply")
+    public String postCommunityPostReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                         @PathVariable String channelUrl, CommunityPostReplyDTO reply,
+                                         SixRowPagination pagination) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 댓글 저장
+        reply.setMemberId(member.getId());
+        communityService.postCommunityPostReply(reply);
+
+        return "redirect:/feelog.com/@"+channelUrl+"/community-reply/"+reply.getPostId();
+    }
 }

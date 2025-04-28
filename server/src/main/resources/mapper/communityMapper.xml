@@ -172,6 +172,22 @@
         values  (#{id}, #{memberId}, #{postId})
     </insert>
 
+    <insert id="postReply" useGeneratedKeys="true" keyProperty="id">
+        insert into  tbl_reply
+              (reply_content,
+               reply_file_path,
+               reply_file_name)
+        values (#{replyContent},
+               #{replyFilePath},
+               #{replyFileName})
+    </insert>
+
+    <insert id="postCommunityPostReply">
+        insert into   tbl_community_post_reply
+               (id, member_id,   post_id)
+        values (#{id}, #{memberId}, #{postId})
+    </insert>
+
     <update id="deleteCommunityPost">
         update     tbl_post
         set        post_status  = '삭제',

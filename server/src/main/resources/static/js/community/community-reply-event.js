@@ -454,9 +454,36 @@ document.addEventListener("DOMContentLoaded", () => {
             input.click();
         }
 
+        // 2025.04.28 조승찬 :: 댓글 등록 버튼 처리
+        if (e.target.classList.contains("flog-button-42")){
+
+            e.preventDefault(); // 폼 제출 방지
+
+            const form = document.querySelector('[name="communityPostReply-form"]');
+
+            if (document.querySelector(".uploadFile-container2").querySelector(".uploadFile"))  {
+                // 첨부 파일을 input 태그에 저장
+                const filePath = document.querySelector(".uploadFile-container2").querySelector(".uploadFile").getAttribute("date-file-path");
+                pathInput = document.createElement('input');
+                pathInput.setAttribute('type', 'hidden');
+                pathInput.setAttribute('name', 'reply_file_path');
+                pathInput.setAttribute('value', filePath); // 바로 설정
+                form.appendChild(pathInput);
+                const fileName = document.querySelector(".uploadFile-container2").querySelector(".uploadFile").getAttribute("date-file-name");
+                nameInput = document.createElement('input');
+                nameInput.setAttribute('type', 'hidden');
+                nameInput.setAttribute('name', 'reply_file_name');
+                nameInput.setAttribute('value', fileName); // 바로 설정
+                form.appendChild(nameInput);
+            }
+
+            // 서버 전송
+            form.submit();
+        }
     });
 
     document.body.addEventListener("input", (e) => {
+
         // 입력창에 글자 입력시 5줄까지는 입력창 확장, 등록버튼 활성화
         if (e.target.classList.contains("flog-textarea-6")) {
             const textarea = document.querySelector(".flog-textarea-6");
@@ -469,11 +496,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 // 글자가 있고 Feelog-disabled 클래스가 있다면 제거
                 if (hasDisabledClass) {
                     button.classList.remove("Feelog-disabled");
+                    button.disabled = false;
                 }
             } else {
                 // 글자가 없고 Feelog-disabled 클래스가 없다면 추가
                 if (!hasDisabledClass) {
                     button.classList.add("Feelog-disabled");
+                    button.disabled = true;
                 }
             }
 

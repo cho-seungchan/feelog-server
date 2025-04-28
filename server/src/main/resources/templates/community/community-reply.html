@@ -303,11 +303,13 @@
                                                 <div class="FeelogBox-root flog-div-169">
 
                                                     <form class="FeelogStack-root flog-form-1"  name="communityPostReply-form"
+                                                          th:action="@{'/feelog.com/@'+${currentChannelUrl}+'/community-reply'}"
                                                           th:object="${communityPostReply}" method="post" enctype="multipart/form-data">
                                                         <input type="hidden" name="postId" th:value="${reply.id}">
                                                         <div
                                                                 class="FeelogTextarea-root FeelogTextarea-variantOutlined FeelogTextarea-colorNeutral FeelogTextarea-sizeMd community-comment-textarea flog-div-201">
                                                         <textarea th:field="*{replyContent}"
+                                                                  name="replyContent"
                                                                 rows="1"
                                                                 placeholder="댓글 추가하기"
                                                                 class="FeelogTextarea-textarea flog-textarea-6">
@@ -376,7 +378,7 @@
                                                                         class="FeelogAvatar-img flog-img-10"/>
                                                                 <img
                                                                         alt=""
-                                                                        th:if="*{reply.memberFileName == null || !reply.memberFileName.isEmpty()}"
+                                                                        th:if="*{reply.memberFileName == null || reply.memberFileName.isEmpty()}"
                                                                         src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
                                                                         loading="lazy"
                                                                         class="FeelogAvatar-img flog-img-10"/>
@@ -425,6 +427,11 @@
                                                                 <p      th:text="*{reply.replyContent}"
                                                                         class="FeelogTypography-root FeelogTypography-body-md flog-p-38">
                                                                 </p>
+                                                                <div class="FeelogBox-root flog-div-169"  >
+                                                                    <img class="FeelogBox-root flog-img-12"
+                                                                         th:if="${reply.replyFileName != null && !reply.replyFileName.isEmpty()}"
+                                                                         th:src="@{/files/display(path=|${reply.replyFilePath}/${reply.replyFileName}|)}" alt="">
+                                                                </div>
                                                             </div>
                                                             <div class="FeelogStack-root flog-div-208">
                                                                 <div class="FeelogStack-root flog-div-209">

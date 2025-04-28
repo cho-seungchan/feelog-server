@@ -167,4 +167,14 @@ public class CommunityDAO {
     public List<CommunityPostReplyVO> getCommunityPostReply(Long postId) {
         return communityMapper.getCommunityPostReply(postId);
     }
+
+    // 2025.04.28  조승찬 :: 댓글 슈퍼키 저장
+    public void postReply(CommunityPostReplyVO replyVO) {
+        communityMapper.postReply(replyVO);
+    }
+
+    // 2025.04.28  조승찬 :: 댓글 저장
+    public void postCommunityPostReply(CommunityPostReplyVO replyVO) {
+        communityMapper.postCommunityPostReply(replyVO);
+    }
 }

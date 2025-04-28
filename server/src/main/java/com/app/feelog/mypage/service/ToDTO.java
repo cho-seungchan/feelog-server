@@ -446,8 +446,8 @@ public interface ToDTO {
             dto = new CommunityPostReplyDetailDTO();
             dto.setId(communityPostReplyVO.getId());
             dto.setReplyContent(communityPostReplyVO.getReplyContent());
-            dto.setCommunity_post_reply_file_path(communityPostReplyVO.getCommunity_post_reply_file_path());
-            dto.setCommunity_post_reply_file_name(communityPostReplyVO.getCommunity_post_reply_file_name());
+            dto.setReplyFilePath(communityPostReplyVO.getReplyFilePath());
+            dto.setReplyFileName(communityPostReplyVO.getReplyFileName());
             dto.setCreatedDate(communityPostReplyVO.getCreatedDate());
             dto.setUpdatedDate(communityPostReplyVO.getUpdatedDate());
             dto.setTimeAgo(timeAgo);
