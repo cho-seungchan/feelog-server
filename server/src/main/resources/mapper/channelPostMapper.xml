@@ -85,8 +85,23 @@
 <!--    박정근 :: 전체조회 추가 지우면 저 죽음-->
     <select id="selectPostAll" resultType="mainPostListDTO">
         select * from view_post_info
+                 where post_type = '포스트'
                  order by id desc
         limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectCheerPostAll" resultType="mainPostListDTO">
+        select * from view_post_info
+        where post_type = '응원글'
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectCheerOne" resultType="mainPostListDTO">
+        select * from view_post_info
+        where post_type = '응원글'
+        order by id desc
+        limit 1
     </select>
 
     <select id="selectPostCount" resultType="_int">
@@ -103,6 +118,7 @@
 
     <select id="selectPostReplyCountByPostId" resultType="_int">
         select count(*) from feelog.view_find_reply_count where post_id = #{postId}
+    </select>
 
     <select id="searchChannelPosts" resultType="com.app.feelog.domain.dto.ChannelPostSearchDTO">
         SELECT
@@ -137,4 +153,55 @@
         LIMIT 5
     </select>
 
+<!--    박정근 :: 포스트 상세조회-->
+    <select id="selectPostByPostId" resultType="channelPostDTO">
+        select * from view_post_info_detail where id = #{id}
+    </select>
+
+<!--    해당포스트의 다음 게시글-->
+    <select id="selectNextPost" resultType="channelPostVO">
+    <![CDATA[
+        SELECT
+            cp.id as id,
+            cp.channel_id,
+            p.post_title
+            FROM tbl_channel_post cp
+            JOIN tbl_post p ON cp.id = p.id
+        WHERE cp.channel_id = #{channelId}
+          AND post_type = '포스트'
+          AND cp.id > #{id}
+        LIMIT 1;
+        ]]>
+    </select>
+
+    <select id="selectPreviousPost" resultType="channelPostVO">
+    <![CDATA[
+        SELECT
+            cp.id as id,
+            cp.channel_id,
+            p.post_title
+        FROM tbl_channel_post cp
+                 JOIN tbl_post p ON cp.id = p.id
+        WHERE cp.channel_id = #{channelId}
+          AND post_type = '포스트'
+          AND cp.id < #{id}
+        ORDER BY cp.id DESC
+        LIMIT 1;
+        ]]>
+    </select>
+
+    <select id="selectSubscribeCount" resultType="_int">
+        select count(*)
+        from tbl_channel_post cp
+                 join tbl_channel c
+                      on cp.channel_id = c.id
+                 join tbl_subscribe s
+                      on c.id = s.channel_id
+        where cp.id = ${id}
+    </select>
+
+<!--    랜덤 4개 포스트 조회-->
+    <select id="selectPostRandom" resultType="mainPostListDTO">
+        select * from view_post_info order by rand() limit 4
+    </select>
 </mapper>

@@ -232,20 +232,20 @@ public interface ToDTO {
         return notifyReplyListDTO;
     }
 
-    public default NotifyAdminListDTO toNotifyAdminListDTO(NoticeVO noticeVO, String timeAgo) {
-        NotifyAdminListDTO notifyAdminListDTO = null;
-        if (noticeVO != null) {
-            notifyAdminListDTO = new NotifyAdminListDTO();
-            notifyAdminListDTO.setId(noticeVO.getId());
-            notifyAdminListDTO.setNoticeTitle(noticeVO.getNoticeTitle());
-            notifyAdminListDTO.setNoticeContent(noticeVO.getNoticeContent());
-            notifyAdminListDTO.setMemberId(noticeVO.getMemberId());
-            notifyAdminListDTO.setNoticeFilePath(noticeVO.getNoticeFilePath());
-            notifyAdminListDTO.setNoticeFileName(noticeVO.getNoticeFileName());
-            notifyAdminListDTO.setCreatedDate(noticeVO.getCreatedDate());
-            notifyAdminListDTO.setUpdatedDate(noticeVO.getUpdatedDate());
-            notifyAdminListDTO.setTimeAgo(timeAgo);
-        }
-        return notifyAdminListDTO;
-    }
+//    public default NotifyAdminListDTO toNotifyAdminListDTO(NoticeVO noticeVO, String timeAgo) {
+//        NotifyAdminListDTO notifyAdminListDTO = null;
+//        if (noticeVO != null) {
+//            notifyAdminListDTO = new NotifyAdminListDTO();
+//            notifyAdminListDTO.setId(noticeVO.getId());
+//            notifyAdminListDTO.setNoticeTitle(noticeVO.getNoticeTitle());
+//            notifyAdminListDTO.setNoticeContent(noticeVO.getNoticeContent());
+//            notifyAdminListDTO.setMemberId(noticeVO.getMemberId());
+//            notifyAdminListDTO.setNoticeFilePath(noticeVO.getNoticeFilePath());
+//            notifyAdminListDTO.setNoticeFileName(noticeVO.getNoticeFileName());
+//            notifyAdminListDTO.setCreatedDate(noticeVO.getCreatedDate());
+//            notifyAdminListDTO.setUpdatedDate(noticeVO.getUpdatedDate());
+//            notifyAdminListDTO.setTimeAgo(timeAgo);
+//        }
+//        return notifyAdminListDTO;
+//    }
 }

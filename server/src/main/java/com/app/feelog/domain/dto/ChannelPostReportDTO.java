@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.ReportStatus;
 import com.app.feelog.domain.vo.ChannelPostReportVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,8 @@ public class ChannelPostReportDTO {
     private Long postId;
     private String createdDate;
     private String updatedDate;
+    private ReportStatus reportStatus;
+
 
     public ChannelPostReportVO toVO() {
         return ChannelPostReportVO.builder()
@@ -25,6 +28,7 @@ public class ChannelPostReportDTO {
                 .postId(postId)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
+                .reportStatus(reportStatus)
                 .build();
     }
 }

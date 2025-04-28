@@ -528,7 +528,7 @@ body {
     gap: 12px;
     position: relative;
     align-items: flex-start;
-    padding-top: 70px;
+    padding-top: 24px;
 }
 
 .joy-16vwv4v > * {
@@ -2229,37 +2229,6 @@ body {
     width: 140px;
 }
 
-.joy-1nwwb6p {
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    -webkit-box-align: center;
-    align-items: center;
-    align-self: stretch;
-    text-align: initial;
-    background-color: initial;
-    cursor: pointer;
-    margin-block-start: 0px;
-    padding-inline-start: calc(00.75rem, 0px);
-    padding-inline-end: calc(00.75rem, 0px);;
-    min-block-size: 40px;
-    min-inline-size: 0px;
-    color: #202022;
-    font: inherit;
-    gap: 0.625rem;
-    text-decoration: initial;
-    margin-inline: 0px;
-    padding-block: calc(0.25rem - 0px, 0px);
-    border-width: 1px;
-    border-style: solid;
-    border-color: transparent;
-    border-image: initial;
-    flex: none;
-    padding: 8px 16px;
-}
-
 .joy-rdn5wq {
     margin: 0;
     display: block;
@@ -2269,7 +2238,7 @@ body {
     color: #D41724;
 }
 
-.menu-button:hover {
+.menu-button:hover, .scrap-button:hover {
     background-color: #f2f2f3;
         color: #202022;
 }
@@ -2284,4 +2253,27 @@ body {
     width: 1em;
     height: 1em;
     color: #3478ff;
+}
+
+.cheerComentContainer{
+    border-bottom: none;
+    display: flex
+;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.slide-out {
+    animation: slideOut 0.5s ease forwards; /* 0.5초 동안 왼쪽으로 이동하면서 사라짐 */
 }

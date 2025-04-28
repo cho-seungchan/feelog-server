@@ -305,11 +305,6 @@ public class MyPageController {
         return "myPage/message-list";
     }
 
-    @GetMapping("/notify-admin-list")
-    public String notifyAdminList(){
-        return "myPage/notify-admin-list";
-    }
-
     @GetMapping("/storage-reply")
     public String storageReply(){
         return "myPage/storage-reply";
