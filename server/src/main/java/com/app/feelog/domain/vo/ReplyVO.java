@@ -18,5 +18,4 @@ public class ReplyVO extends SuperPeriod {
     private String replyFilePath;
     private String replyFileName;
     private ReplyStatus replyStatus;
-
 }

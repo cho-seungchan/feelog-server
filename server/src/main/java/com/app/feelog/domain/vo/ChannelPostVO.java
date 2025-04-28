@@ -21,5 +21,4 @@ public class ChannelPostVO extends PostJKVO{
     private String postFileSize;
     private Long   memberId;
     private Long   channelId;
-    private int postReadCount;
 }

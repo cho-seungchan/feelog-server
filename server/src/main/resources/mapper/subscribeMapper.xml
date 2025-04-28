@@ -22,7 +22,6 @@
           AND channel_id = #{channelId}
     </delete>
 
-
     <select id="selectSubscribeOne" resultType="subscribeVO">
         select * from tbl_subscribe where member_id = #{memberId} and channel_id = #{channelId} limit 1
     </select>
