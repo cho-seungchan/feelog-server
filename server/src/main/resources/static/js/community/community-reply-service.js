@@ -1,7 +1,6 @@
 // 2025.04.12 조승찬
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", (e) => {
-        console.log("body click  " + e.target.outerHTML);
 
         // 이미지 이전 버튼 클릭시
         if (e.target.closest(".prev-button")) {
@@ -197,14 +196,23 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".flog-div-176").style.display = "block";
             document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
             document.querySelector(".flog-nav-6").style.zIndex = "100";
+        }
 
-            // 기존에 열린 메뉴가 있으면 삭제
-            document.querySelector(".flog-ul-8")?.remove();
+        // 댓글 이미지 추가 버튼 클릭시
+        if (e.target.closest(".flog-button-41")) {
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
 
-            // 모든 케밥 버튼에서 expanded 클래스 제거
-            document.querySelectorAll(".flog-button-31.expanded").forEach((btn) => {
-                btn.classList.remove("expanded");
+            // 최대 1개 :: <ul class="FeelogStack-root flog-ul-7"> 에 data-count 추가해서 체크하는거로 수정
+            input.addEventListener("change", (event) => {
+                if (event.target.files.length > 1) {
+                    alert("1개의 이미지만 업로드할 수 있습니다.");
+                    event.target.value = "";
+                }
             });
+
+            input.click();
         }
 
         // 좋아요 버튼 클릭시
@@ -241,5 +249,199 @@ document.addEventListener("DOMContentLoaded", () => {
             // 기존 버튼 교체
             currentButton.outerHTML = newLikeButtonHTML;
         }
+
+        // 신고 버튼 클릭시 이벤트
+        if (e.target.closest(".report-button")) {
+            e.preventDefault();
+
+            // 확인 모달창 생성
+            conformModal = document.createElement("div");
+            conformModal.classList.add("FeelogModal-root", "flog-div-40");
+            conformModal.innerHTML = `
+                    <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
+                    <div tabindex="0" data-testid="sentinelStart"></div>
+                    <div
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby=":r2b:"
+                        aria-describedby=":r2c:"
+                        tabindex="-1"
+                        class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAlert flog-div-42"
+                    >
+                        <h2 id=":r2b:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
+                            확인
+                        </h2>
+                        <button
+                            aria-label="닫기"
+                            class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-9"
+                            type="button"
+                        >
+                            <svg
+                                focusable="false"
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                data-testid="CloseIcon"
+                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
+                            >
+                                <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                            </svg>
+                        </button>
+                        <div id=":r2c:" class="FeelogDialogContent-root flog-div-43">
+                            해당 메시지를 신고할까요?
+                        </div>
+                        <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
+                            <button
+                                class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
+                                type="button"
+                            >
+                                네
+                            </button>
+                            <button
+                                class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeMd flog-a-13"
+                                type="button"
+                            >
+                                아니요
+                            </button>
+                        </div>
+                    </div>
+                    <div tabindex="0" data-testid="sentinelEnd"></div>`;
+
+            // 확인 모달창 삽입
+            document.body.appendChild(conformModal);
+        }
+
+        // 모달창(메세지창 포함) 의 네, 아니요, x 버튼 클릭시  이벤트  :: 모달창 삭제
+        if (e.target.closest(".flog-svg-6") || e.target.closest(".flog-div-44")) {
+            // 클릭된 모달화면 전체 삭제
+            if (e.target.closest(".FeelogModal-root.flog-div-40").style.display) {
+                document.querySelector(".FeelogModal-root.flog-div-40").style.display = "none";
+            } else {
+                e.target.closest(".FeelogModal-root.flog-div-40").remove();
+            }
+
+            // 열려있는 케밥 메뉴 삭제
+            if (document.querySelector(".flog-ul-2")) {
+                document.querySelector(".flog-ul-2").remove();
+                document.querySelector(".flog-button-18").classList.remove("expanded");
+            }
+        }
+
+        // 네 버튼 클릭시 :: 서버에 갔다 온 후 메세지를 다르게 변경하고, 동의 한 내용에 따라 다른 액션 실시
+        if (e.target.classList.contains("flog-button-10")) {
+            e.preventDefault();
+
+            // 확인 버튼 클릭시 :: 최종 결과를 보여주는 창에만 뜨는 버튼 명
+            if (e.target.textContent.trim() == "확인") {
+                e.target.closest(".FeelogModal-root.flog-div-40").remove();
+                return;
+            }
+
+            // 서버 결과 보여주는 창 생성
+            conformModal = document.createElement("div");
+            conformModal.classList.add("FeelogModal-root", "flog-div-40");
+            conformModal.innerHTML = `
+                        <div aria-hidden="true" open="" class="FeelogModal-backdrop flog-div-41"></div>
+                        <div tabindex="0" data-testid="sentinelStart"></div>
+                        <div
+                            role="dialog"
+                            aria-modal="true"
+                            aria-labelledby=":r28:"
+                            aria-describedby=":r29:"
+                            tabindex="-1"
+                            class="FeelogModalDialog-root FeelogModalDialog-variantOutlined FeelogModalDialog-colorNeutral FeelogModalDialog-sizeMd FeelogModalDialog-layoutAlert flog-div-42"
+                        >
+                            <h2 id=":r28:" data-first-child="" class="FeelogDialogTitle-root FeelogDialogTitle-title-lg flog-h2-4">
+                                알림
+                            </h2>
+                            <button
+                                aria-label="닫기"
+                                class="FeelogModalClose-root FeelogModalClose-variantPlain FeelogModalClose-colorNeutral FeelogModalClose-sizeMd flog-button-9"
+                                type="button"
+                            >
+                                <svg
+                                    focusable="false"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    data-testid="CloseIcon"
+                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"
+                                >
+                                    <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                                </svg>
+                            </button>
+                            <div id=":r29:" class="FeelogDialogContent-root flog-div-43">
+                                이미 차단한 이용자예요.
+                            </div>
+                            <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
+                                <button
+                                    class="FeelogButton-root FeelogButton-variantSolid FeelogButton-colorPrimary FeelogButton-sizeMd flog-button-10"
+                                    type="button"
+                                >
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+                        <div tabindex="0" data-testid="sentinelEnd"></div>`;
+
+            // 확인 모달창 삽입
+            document.body.appendChild(conformModal);
+        }
+
+        // 신고버튼 클릭
+        // if (e.target.closest(".report-button")) {
+        //     const reportButton = e.target.closest(".report-button");
+        //     if (reportButton.classList.contains("white")) {
+        //         reportButton.classList.remove("white");
+        //         reportButton.classList.add("red");
+        //     } else {
+        //         reportButton.classList.remove("red");
+        //         reportButton.classList.add("white");
+        //     }
+        // }
+    });
+
+    document.body.addEventListener("input", (e) => {
+        // 입력창에 글자 입력시 5줄까지는 입력창 확장, 등록버튼 활성화
+        if (e.target.classList.contains("flog-textarea-6")) {
+            const textarea = document.querySelector(".flog-textarea-6");
+
+            // 등록버튼 활성화 비활성화
+            const button = document.querySelector(".flog-button-42");
+            const hasDisabledClass = button.classList.contains("Feelog-disabled"); // Feelog-disabled 존재 여부 확인
+
+            if (textarea.value.trim().length > 0) {
+                // 글자가 있고 Feelog-disabled 클래스가 있다면 제거
+                if (hasDisabledClass) {
+                    button.classList.remove("Feelog-disabled");
+                }
+            } else {
+                // 글자가 없고 Feelog-disabled 클래스가 없다면 추가
+                if (!hasDisabledClass) {
+                    button.classList.add("Feelog-disabled");
+                }
+            }
+
+            // 입력창 크기 조절
+            textarea.style.height = "auto"; // 항상 먼저 초기화
+
+            const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
+            const maxHeight = lineHeight * 5;
+            const scrollHeight = textarea.scrollHeight;
+
+            if (scrollHeight > maxHeight) {
+                textarea.style.height = `${maxHeight}px`;
+                textarea.style.overflowY = "auto";
+            } else {
+                textarea.style.height = `${scrollHeight}px`;
+                textarea.style.overflowY = "hidden";
+            }
+        }
+    });
+
+    // 댓글 입력 창 포커스
+    document.querySelector(".flog-textarea-6").addEventListener("focus", (e) => {
+        document.querySelector(".flog-div-201").classList.toggle("Feelog-focused");
+    });
+    document.querySelector(".flog-textarea-6").addEventListener("blur", (e) => {
+        document.querySelector(".flog-div-201").classList.toggle("Feelog-focused");
     });
 });

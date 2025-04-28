@@ -12,13 +12,12 @@ import org.springframework.stereotype.Component;
 @SuperBuilder
 public class CommunityPostFileVO extends FileVO {
     @EqualsAndHashCode.Include
-    private Long id;
-    private Long communityPostId;
+    private Long postId;
 
 //    @Builder
 //    public CommunityPostFileVO(String createdDate, String updatedDate, Long id, Long communityPostId) {
 //        super(createdDate, updatedDate);
 //        this.id = id;
-//        this.communityId = communityId;
+//        this.postId = postId;
 //    }
 }

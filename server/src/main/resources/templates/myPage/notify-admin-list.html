@@ -47,6 +47,36 @@
                     <main class="FeelogStack-root flog-main-4">
                         <div class="FeelogStack-root flog-div-60">
                             <div class="FeelogStack-root flog-div-61">
+<!--                                <form method="GET">-->
+<!--                                    <div-->
+<!--                                            class="FeelogInput-root FeelogInput-variantSoft FeelogInput-colorNeutral FeelogInput-sizeMd flog-div-120"-->
+<!--                                    >-->
+<!--                                        <div class="FeelogInput-startDecorator flog-div-121">-->
+<!--                                            <svg-->
+<!--                                                    focusable="false"-->
+<!--                                                    aria-hidden="true"-->
+<!--                                                    viewBox="0 0 24 24"-->
+<!--                                                    width="24"-->
+<!--                                                    height="24"-->
+<!--                                                    fill="none"-->
+<!--                                                    xmlns="http://www.w3.org/2000/svg"-->
+<!--                                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-8"-->
+<!--                                            >-->
+<!--                                                <path-->
+<!--                                                        d="M16.375 10.125a6.25 6.25 0 1 0-12.5 0 6.25 6.25 0 0 0 12.5 0Zm-1.207 6.371a8.086 8.086 0 0 1-5.043 1.754A8.124 8.124 0 0 1 2 10.125 8.124 8.124 0 0 1 10.125 2a8.124 8.124 0 0 1 8.125 8.125c0 1.906-.656 3.66-1.754 5.043l5.23 5.23a.937.937 0 0 1-1.324 1.324l-5.234-5.226Z"-->
+<!--                                                        fill="currentcolor"-->
+<!--                                                ></path>-->
+<!--                                            </svg>-->
+<!--                                        </div>-->
+<!--                                        <input-->
+<!--                                                aria-label="포스트 제목, 닉네임 검색"-->
+<!--                                                placeholder="포스트 제목, 닉네임 검색"-->
+<!--                                                class="FeelogInput-input flog-input-4"-->
+<!--                                                name="library_keyword"-->
+<!--                                        />-->
+<!--                                    </div>-->
+<!--                                    <input hidden="" type="submit" value="전송" />-->
+<!--                                </form>-->
 
 <!--                                2025.04.24 조승찬 리스트 보여주기-->
                                 <th:block th:each="admin : ${admins}">
@@ -68,44 +98,16 @@
                                     ></span
                                     ></span>
                                         <div class="FeelogStack-root flog-article-1">
-                                            <div class="FeelogBox-root flog-div-64">
-                                                <h6 class="FeelogTypography-root FeelogTypography-body-md flog-h6-1">
-                                                <span
-                                                        class="FeelogTypography-root FeelogTypography-title-md flog-span-12"
-                                                >포스트를 썸네일 없이 발행하고 있진 않으신가요? 썸네일만 넣어도
-                                                    조회수가 36% 높아져요!</span
-                                                ><span
-                                                        class="FeelogTypography-root FeelogTypography-body-sm flog-span-13"
-                                                >
-                                                    3일 전</span
-                                                >
-                                                </h6>
-                                            </div>
-                                            <div class="FeelogBox-root flog-div-65">
-                                                <div
-                                                        class="FeelogSheet-root FeelogSheet-variantSoft FeelogSheet-colorNeutral flog-div-66"
-                                                >
-                                                    <div class="FeelogStack-root flog-div-67">
-                                                        <a
-                                                                class="FeelogBox-root flog-a-19"
-                                                                href="https://www.postype.com/notification/2317727988"
-                                                        ><p
-                                                                class="FeelogTypography-root FeelogTypography-body-md flog-p-12"
-                                                        >
-                                                            조승찬 님, 썸네일을 포함한 포스트의 경우 그렇지 않은
-                                                            포스트에 비해 조회수는 36%, 구매·후원 수는 40% 더 높다는
-                                                            사실 알고 계셨나요?&nbsp; 지금 바로 제목과 작품 내용,
-                                                            분위기와 관련성이 높은 이미지를 썸네일로 설정하여 작품을 좀
-                                                            더 매력적으로 세팅해 보세요. 관련하여 더욱 자세한 팁은
-                                                            크리에이터 가이드 '#2. 조회수 높이는 포스트 제목&amp;썸네일
-                                                            노하우' 를 통해 확인하실 수 있어요. 그럼, 한 단계 더 성장한
-                                                            크리에이터 조승찬 님의 모습 기대할게요! 창작에 수익을
-                                                            더하다, 필로그.
-                                                        </p></a
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <h3 class="FeelogTypography-root FeelogTypography-h4 flog-h3-1" th:text="*{admin.facilityName}">
+                                            </h3>
+                                            <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6" th:text="*{admin.districtName}">
+                                            </p>
+                                            <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6" th:text="*{admin.facilityKindName}">
+                                            </p>
+                                            <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6" th:text="*{admin.facilityAddress}">
+                                            </p>
+                                            <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6" th:text="*{admin.facilityTellNo}">
+                                            </p>
                                         </div>
                                     </div>
                                     <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
@@ -144,11 +146,11 @@
                     </main>
                 </div>
             </div>
-            <!-- footer 넣을 곳 -->
-            <footer id="main-footer"
-                    th:replace="~{main/footer.html :: #main-footer}"></footer>
-            <!-- footer 넣을 곳 -->
         </div>
+        <!-- footer 넣을 곳 -->
+        <footer id="main-footer"
+                th:replace="~{main/footer.html :: #main-footer}"></footer>
+        <!-- footer 넣을 곳 -->
     </body>
     <script src="/js/myPage/notify-admin-list-event.js"></script>
     <script src="/js/main/main-modal.js"></script>
