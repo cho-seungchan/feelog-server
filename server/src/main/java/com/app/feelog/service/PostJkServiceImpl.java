@@ -5,6 +5,7 @@ import com.app.feelog.domain.dto.PostJkDTO;
 import com.app.feelog.domain.enumeration.PostStatus;
 import com.app.feelog.domain.vo.PostJKVO;
 import com.app.feelog.repository.PostDAO;
+import com.app.feelog.repository.SubscribeDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

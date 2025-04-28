@@ -865,3 +865,10 @@ body {
 .flog-a-16:hover {
     text-decoration: underline;
 }
+
+/* 로그인 버튼 이벤트*/
+.flog-button-11:active {
+    transform: scale(0.95); /* 버튼 크기 살짝 줄임 */
+    background-color: #2c66cc; /* 약간 어두운 색으로 변경 */
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2); /* 안쪽 음영 효과 추가 */
+}

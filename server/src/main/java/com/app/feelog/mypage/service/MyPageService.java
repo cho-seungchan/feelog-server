@@ -3,11 +3,11 @@ package com.app.feelog.mypage.service;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.*;
-import com.app.feelog.mypage.dto.NotifyAdminListDTO;
-import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
-import com.app.feelog.mypage.dto.NotifyReplyListDTO;
+import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.repository.MyPageDAO;
+import com.app.feelog.mypage.util.CalculateTimeAgo;
 import com.app.feelog.util.SixRowPagination;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -35,6 +35,7 @@ import java.util.Optional;
 public class MyPageService implements ToDTO {
 
     private final MyPageDAO myPageDAO;
+    private final CalculateTimeAgo calculateTimeAgo;
 
     // 2025.04.21  조승찬 :: 프로필 수정
     public void postSettingProfile(MemberDTO memberDTO) {
@@ -97,9 +98,9 @@ public class MyPageService implements ToDTO {
             // 작성자 채널 정보 가져오기
             ChannelVO memberChannel = myPageDAO.getChannelByMemberId(communityPost.getMemberId()).orElse(null);
             // 작성 시간 계산하기
-            String timAgo = calculateTimeAgo(communityPost.getCreatedDate());
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(communityPost.getCreatedDate());
 
-            resultList.add(toNotifyCommunityListDTO(communityPost, member, memberChannel, timAgo));
+            resultList.add(toNotifyCommunityListDTO(communityPost, member, memberChannel, timeAgo));
         });
 
         return resultList;
@@ -121,11 +122,11 @@ public class MyPageService implements ToDTO {
             // 작성자 채널 정보 가져오기
             ChannelVO memberChannel = myPageDAO.getChannelByMemberId(channelPostReply.getMemberId()).orElse(null);
             // 작성 시간 계산하기
-            String timAgo = calculateTimeAgo(channelPostReply.getCreatedDate());
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(channelPostReply.getCreatedDate());
             // 포스트 정보 가져오기
             PostVO post = myPageDAO.getPostById(channelPostReply.getPostId()).orElse(null);
 
-            resultList.add(toNotifyReplyListDTO(channelPostReply, member, memberChannel, timAgo, post.getPostTitle()));
+            resultList.add(toNotifyReplyListDTO(channelPostReply, member, memberChannel, timeAgo, post.getPostTitle()));
         });
 
         return resultList;
@@ -198,6 +199,7 @@ public class MyPageService implements ToDTO {
                     NotifyAdminListDTO  admin = new NotifyAdminListDTO();
                     admin.setFacilityName(row.getString("FCLT_NM"));
                     admin.setDistrictName(row.getString("JRSD_SGG_NM"));
+                    admin.setFacilityKindName(row.getString("FCLT_KIND_NM"));
                     admin.setFacilityAddress(row.getString("FCLT_ADDR"));
                     admin.setFacilityTellNo(row.getString("FCLT_TEL_NO"));
 
@@ -221,25 +223,160 @@ public class MyPageService implements ToDTO {
         return admins;
     }
 
-    // 2025.04.23 조승찬 :: create data의 작성시점 변환하기
-    public String calculateTimeAgo(String createdDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime createdDateTime = LocalDateTime.parse(createdDate, formatter);
-        LocalDateTime now = LocalDateTime.now();
+    // 2025.04.24 조승찬 :: 구독자 리스트 조회
+    public List<NotifySubscribeListDTO> getNotifySubscribe(Long memberId, SixRowPagination pagination) {
 
-        long days = ChronoUnit.DAYS.between(createdDateTime, now);
-        long hours = ChronoUnit.HOURS.between(createdDateTime, now) % 24;
-        long minutes = ChronoUnit.MINUTES.between(createdDateTime, now) % 60;
+        // 페이지 네이션을 위한 총 건수 가져오기
+        pagination.create(myPageDAO.getNotifySubscribeTotalCount(memberId));
+        // 구독자 채널 정보 가져오기
+        List<ChannelVO> channels = myPageDAO.getNotifySubscribe(memberId, pagination);
 
-        if (days > 0) {
-            return days + "일 전";
-        } else if (hours > 0) {
-            return hours + "시간 전";
-        } else if (minutes > 0) {
-            return minutes + "분 전";
-        } else {
-            return "방금 전";
-        }
+        // DTO에 멤버 정보 채우기
+        List<NotifySubscribeListDTO> subscribes = new ArrayList<>();
+        channels.forEach(channel -> {
+            // 멤버 정보 가져오기
+            MemberVO member = myPageDAO.getMemberById(channel.getMemberId()).orElse(null);
+            subscribes.add(toNotifySubscribeListDTO(channel, member));
+        });
+
+        return subscribes;
     }
 
+    // 2025.04.24 조승찬 :: 구독 취소
+    public void cancelSubscribe(SubscribeDTO subscribeDTO) {
+        myPageDAO.cancelSubscribe(subscribeDTO.toVO());
+    }
+
+    // 2025.04.24 조승찬 :: 채널정보 가져오기
+    public Optional<ChannelDTO> getChannelByMemberId(Long memberId) {
+        return Optional.ofNullable(toChannelDTO(myPageDAO.getChannelByMemberId(memberId)
+                .orElse(null)));
+    };
+
+    // 2025.04.24 조승찬 :: 구독 리스트 조회
+    public List<StorageSubscribeListDTO> getStorageSubscribe(Long memberId, SixRowPagination pagination) {
+
+        // 페이지 네이션을 위한 총 건수 가져오기
+        pagination.create(myPageDAO.getStorageSubscribeTotalCount(memberId));
+        // 구독자 채널 정보 가져오기
+        List<ChannelVO> channels = myPageDAO.getStorageSubscribe(memberId, pagination);
+
+        // DTO에 멤버 정보 채우기
+        List<StorageSubscribeListDTO> subscribes = new ArrayList<>();
+        channels.forEach(channel -> {
+            // 멤버 정보 가져오기
+            MemberVO member = myPageDAO.getMemberById(channel.getMemberId()).orElse(null);
+            subscribes.add(toStorageSubscribeListDTO(channel, member));
+        });
+
+        return subscribes;
+    }
+
+    // 2025.04.25 조승찬 :: 스크랩 리스트 조회
+    public List<StorageScrapListDTO> getStorageScrap(Long memberId, SixRowPagination pagination) {
+
+        // 페이지네이션을 위한 총 건수 가져오기
+        pagination.create(myPageDAO.getStorageScrapTotalCount(memberId));
+
+        // 스크랩 목록 가져오기
+        List<ChannelPostScrapVO> scraps = myPageDAO.getStorageScrap(memberId, pagination);
+
+        List<StorageScrapListDTO> scrapList = new ArrayList<>();
+        scraps.forEach(scrap -> {
+            // 멤버정보 가져오기
+            MemberVO member = myPageDAO.getMemberById(scrap.getMemberId()).orElse(null);
+            // channel post 정보 가져오기
+            ChannelPostVO post = myPageDAO.getChannelPostById(scrap.getPostId()).orElse(null);
+            // 작성 시간 계산하기
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(post.getCreatedDate());
+            // 좋아요 건수
+            int likes = myPageDAO.getLikeCount(scrap.getPostId());
+            // 댓글 건수
+            int replys =myPageDAO.getReplyCount(scrap.getPostId());
+            // dto로 변환하기
+            scrapList.add(toStorageScrapListDTO(scrap, member, post, timeAgo, replys, likes));
+        });
+
+        return scrapList;
+    };
+
+    // 2025.04.25 스크랩 취소하기
+    public void storageOffScrap(Long id) {
+        myPageDAO.storageOffScrap(id);
+    }
+
+    // 2025.04.25 스크랩 재설정하기
+    public void storageOnScrap(Long id) {
+        myPageDAO.storageOnScrap(id);
+    }
+
+    // 2025.04.25 조승찬 :: 좋아요 리스트 조회
+    public List<StorageLikeListDTO> getStorageLike(Long memberId, SixRowPagination pagination) {
+
+        // 페이지네이션을 위한 총 건수 가져오기
+        pagination.create(myPageDAO.getStorageLikeTotalCount(memberId));
+
+        // 좋아요 목록 가져오기
+        List<ChannelPostLikeVO> list = myPageDAO.getStorageLike(memberId, pagination);
+
+        List<StorageLikeListDTO> likeList = new ArrayList<>();
+        list.forEach(like -> {
+            // 멤버정보 가져오기
+            MemberVO member = myPageDAO.getMemberById(like.getMemberId()).orElse(null);
+            // channel post 정보 가져오기
+            ChannelPostVO post = myPageDAO.getChannelPostById(like.getPostId()).orElse(null);
+            // 작성 시간 계산하기
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(post.getCreatedDate());
+            // 좋아요 건수
+            int likes = myPageDAO.getLikeCount(like.getPostId());
+            // 댓글 건수
+            int replys =myPageDAO.getReplyCount(like.getPostId());
+            // dto로 변환하기
+            likeList.add(toStorageLikeListDTO(like, member, post, timeAgo, replys, likes));
+        });
+
+        return likeList;
+    }
+
+    // 2025.04.25 조승찬 ::  좋아요 취소하기
+    public void storageOffLike(Long id) {
+        myPageDAO.storageOffLike(id);
+    }
+
+    // 2025.04.25 조승찬 ::  좋아요 재설정하기
+    public void storageOnLike(Long id) {
+        myPageDAO.storageOnLike(id);
+    }
+
+    // 2025.04.25 조승찬 ::  좋아요 건수 가져오기
+    public int getLikeCount(Long postId) {
+        return myPageDAO.getLikeCount(postId);
+    }
+
+    // 2025.04.25  조승찬 :: 댓글 목록
+    public List<StorageReplyListDTO> getStorageReply(Long memberId, SixRowPagination pagination) {
+
+        // 페이지네이션을 위한 총 건수 가져오기
+        pagination.create(myPageDAO.getStorageReplyTotalCount(memberId));
+
+        // 좋아요 목록 가져오기
+        List<ChannelPostReplyVO> replies = myPageDAO.getStorageReply(memberId, pagination);
+
+        List<StorageReplyListDTO> replyList = new ArrayList<>();
+        replies.forEach(reply -> {
+            // channel post 정보 가져오기
+            ChannelPostVO post = myPageDAO.getChannelPostById(reply.getPostId()).orElse(null);
+            // 작성 시간 계산하기
+            String timeAgo = calculateTimeAgo.calculateTimeAgo(post.getCreatedDate());
+            // dto로 변환하기
+            replyList.add(toStorageReplyListDTO(reply, post, timeAgo));
+        });
+
+        return replyList;
+    }
+
+    // 2025.04.25 조승찬 :: 댓글 삭제
+    public void deleteStorageReply(Long id) {
+        myPageDAO.deleteStorageReply(id);
+    }
 }

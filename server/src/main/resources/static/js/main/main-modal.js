@@ -262,7 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
         // =========================메세지 창==========================//
         const messageButton = document.querySelector(".message-button");
-        console.log(messageButton);
         const messageList = document.querySelector(".message-listContainer");
         const messageButtonImg = document.querySelector(".message-buttonImg");
         const xButtonImg = document.querySelector(".x-buttonImg");

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class NotifyAdminListDTO {
     @EqualsAndHashCode.Include
     private String      facilityName;
-    private String      facilityKindDetailName;
+    private String      facilityKindName;
     private String      districtName;
     private String      facilityAddress;
     private String      facilityTellNo;

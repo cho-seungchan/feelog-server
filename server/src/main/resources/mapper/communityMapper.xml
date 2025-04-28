@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.feelog.mypage.mapper.CommunityMapper">
+
+    <select id="getCommunityPostListTotalCount" resultType="_int">
+        select   count(*)
+        from     tbl_community_post cp
+                join     tbl_channel c
+                    on   c.id   =   cp.channel_id
+                join     tbl_post p
+                    on   cp.id   =  p.id
+        where    c.channel_url = #{channelUrl}
+        and      p.post_status = '정상'
+    </select>
+
+    <select id="getCommunityPostList" resultType="communityPostVO">
+        select   p.id,
+                 p.post_content,
+                 p.created_date,
+                 p.updated_date,
+                 cp.member_id,
+                 cp.channel_id
+        from     tbl_community_post cp
+                     join     tbl_channel c
+                              on   c.id   =   cp.channel_id
+                     join     tbl_post p
+                              on   cp.id   =  p.id
+        where    c.channel_url = #{channelUrl}
+          and    p.post_status = '정상'
+        order    by  p.id desc
+    </select>
+
+    <select id="getCommunityPostFiles"  resultType="communityPostFileVO">
+        select f.id,
+               f.file_path,
+               f.file_name,
+               cpf.post_id
+        from   tbl_file f
+        join   tbl_community_post_file cpf
+        on     f.id          =    cpf.id
+        where  cpf.post_id   = #{postId}
+        and    f.file_status = '정상'
+    </select>
+
+    <select id="getLikeCount" resultType="_int">
+        select coalesce(count(*), 0)
+        from tbl_like l
+                 inner join tbl_community_post_like cpl
+                            on l.id = cpl.id
+        where cpl.post_id = #{postId}
+          and l.like_status = '정상'
+    </select>
+
+    <select id="getReplyCount" resultType="_int">
+        select coalesce(count(*), 0)
+        from tbl_reply r
+                 inner join tbl_community_post_reply cpr
+                            on r.id = cpr.id
+        where cpr.post_id = #{postId}
+          and r.reply_status = '정상'
+    </select>
+
+    <select id="getReportCount" resultType="_int">
+        select coalesce(count(*), 0)
+        from tbl_report r
+                 inner join tbl_community_post_report cpr
+                            on r.id = cpr.id
+        where cpr.post_id = #{postId}
+          and r.report_status = '정상'
+    </select>
+
+    <select id="getILike" resultType="boolean">
+        SELECT CASE
+                   WHEN COUNT(*) > 0 THEN TRUE
+                   ELSE FALSE
+                   END
+        FROM   tbl_community_post_like cpl
+                   JOIN   tbl_like l
+                          ON     l.id             =  cpl.id
+        WHERE  cpl.member_id      =  #{memberId}
+          AND    cpl.post_id      =  #{postId}
+          AND    l.like_status    = '정상'
+    </select>
+
+    <select id="getIReport" resultType="boolean">
+        SELECT CASE
+                   WHEN COUNT(*) > 0 THEN TRUE
+                   ELSE FALSE
+                   END
+        FROM   tbl_community_post_report cpr
+                   JOIN   tbl_report r
+                          ON     r.id             =  cpr.id
+        WHERE  cpr.member_id    =  #{memberId}
+          AND    cpr.post_id      =  #{postId}
+          AND    r.report_status    = '정상'
+    </select>
+
+    <select id="getCommunityPost" resultType="communityPostVO">
+        select   id,
+                 post_content
+        from     tbl_post
+        where    id   =  #{postId}
+    </select>
+
+    <select id="getCommunityPostReply" resultType="communityPostReplyVO">
+        select   r.reply_content,
+                 r.reply_file_path,
+                 r.reply_file_name,
+                 r.created_date,
+                 r.updated_date,
+                 pr.member_id,
+                 pr.post_id
+        from     tbl_community_post_reply  pr
+        join     tbl_reply r
+        on       r.id            =   pr.id
+        where    pr.post_id      =  #{postId}
+        and      r.reply_status  =  '정상'
+    </select>
+
+    <insert id="postPost" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_post
+                  (post_title, post_content)
+        values    (#{postContent}, #{postContent})
+    </insert>
+
+    <insert id="postCommunityPost">
+        INSERT INTO tbl_community_post (id, member_id, channel_id)
+        VALUES (
+                   #{postVO.id},
+                   #{postVO.memberId},
+                   (SELECT id FROM tbl_channel WHERE channel_url = #{channelUrl})
+               )
+    </insert>
+
+    <insert id="postFile" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_file
+                (file_path, file_name)
+        values ( #{filePath}, #{fileName})
+    </insert>
+
+    <insert id="postCommunityPostFile">
+        insert into  tbl_community_post_file
+                    (id,  post_id)
+        values      (#{file.id}, #{postId})
+    </insert>
+
+    <insert id="postLike" useGeneratedKeys="true" keyProperty="id">
+        insert into  tbl_like
+        values ()
+    </insert>
+
+    <insert id="postCommunityPostLike">
+        insert into   tbl_community_post_like
+                    ( id,  member_id,  post_id )
+            values  (#{id}, #{memberId}, #{postId})
+    </insert>
+
+    <insert id="postReport" useGeneratedKeys="true" keyProperty="id">
+        insert into  tbl_Report
+        values ()
+    </insert>
+
+    <insert id="postCommunityPostReport">
+        insert into   tbl_community_post_report
+            ( id,  member_id,  post_id )
+        values  (#{id}, #{memberId}, #{postId})
+    </insert>
+
+    <update id="deleteCommunityPost">
+        update     tbl_post
+        set        post_status  = '삭제',
+                   updated_date = current_timestamp
+        where      id    =   #{id}
+    </update>
+
+    <update id="updateCommunityPost">
+        update    tbl_post
+        set       post_title   =  #{postContent},
+                  post_content =  #{postContent},
+                  updated_date = current_timestamp
+        where     id           =  #{id}
+    </update>
+
+    <update id="updateCommunityPostFile">
+        update  tbl_file f
+            join    tbl_community_post_file cpf on cpf.id = f.id
+        set     f.file_status = '삭제'
+        where   cpf.post_id = #{postId};
+    </update>
+
+    <update id="deleteCommunityPostLike">
+        update  tbl_Like l
+            join    tbl_community_post_like cpl on cpl.id = l.id
+            set     l.like_status = '삭제'
+        where   cpl.post_id = #{postId};
+    </update>
+
+    <update id="deleteCommunityPostReport">
+        update  tbl_report r
+            join    tbl_community_post_report cpr on cpr.id = r.id
+            set     r.report_status = '삭제'
+        where   cpr.post_id = #{postId};
+    </update>
+
+    <update id="deleteCommunityPostReply">
+        update  tbl_reply r
+            join    tbl_community_post_reply cpr on cpr.id = r.id
+            set     r.reply_status = '삭제'
+        where   cpr.post_id = #{postId};
+    </update>
+
+    <update id="deleteCommunityPostReplyLike">
+        update tbl_like l
+        set l.like_status = '삭제',
+            l.updated_date = current_timestamp
+        where l.id in (
+            select rl.id
+            from tbl_community_post_reply r
+                     join tbl_community_post_reply_like rl on r.id = rl.reply_id
+            where r.post_id = #{postid}
+        );
+    </update>
+
+    <update id="deleteCommunityPostReplyReport">
+        update tbl_report r
+        set r.report_status = '삭제',
+            r.updated_date = current_timestamp
+        where r.id in (
+            select rr.id
+            from tbl_community_post_reply r
+                     join tbl_community_post_reply_report rr on r.id = rr.reply_id
+            where r.post_id = #{postid}
+        );
+    </update>
+
+    <update id="cancelCommunityPostLike">
+        update    tbl_like l
+        join      tbl_community_post_like pl
+        on        l.id           =  pl.id
+        set       l.like_status  =  '삭제'
+        where     pl.member_id   =  #{memberId}
+        and       pl.post_id     =  #{postId}
+    </update>
+
+    <update id="cancelCommunityPostReport">
+        update    tbl_report r
+            join      tbl_community_post_report pr
+        on        r.id           =  pr.id
+            set       r.report_status  =  '삭제'
+        where     pr.member_id   =  #{memberId}
+          and       pr.post_id     =  #{postId}
+    </update>
+
+    <delete id="deleteCommunityPostFile">
+        DELETE cpf, f
+        FROM  tbl_community_post_file cpf
+        JOIN  tbl_file f ON cpf.id = f.id
+        WHERE cpf.post_id = #{postId};
+    </delete>
+
+</mapper>

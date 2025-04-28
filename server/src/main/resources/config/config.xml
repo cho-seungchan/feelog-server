@@ -17,6 +17,10 @@
         <typeAlias type="com.app.feelog.domain.dto.FaqAdminDTO" alias="faqAdminDTO"/>
         <typeAlias type="com.app.feelog.domain.dto.MainPostListDTO" alias="mainPostListDTO"/>
         <typeAlias type="com.app.feelog.domain.dto.ChannelPostTagListDTO" alias="channelPostTagListDTO"/>
+        <typeAlias type="com.app.feelog.domain.vo.ChannelPostScrapVO" alias="channelPostScrapVO"/>
+        <typeAlias type="com.app.feelog.domain.vo.ChannelPostReportVO" alias="channelPostReportVO"/>
+        <typeAlias type="com.app.feelog.domain.vo.SubscribeVO" alias="subscribeVO"/>
+        <typeAlias type="com.app.feelog.domain.dto.ChannelPostDTO" alias="channelPostDTO"/>
     </typeAliases>
 
 

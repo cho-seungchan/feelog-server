@@ -1,5 +1,6 @@
 package com.app.feelog.mybatis;
 
+import com.app.feelog.domain.enumeration.FaqStatus;
 import com.app.feelog.domain.enumeration.SubscribeStatus;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @MappedTypes(SubscribeStatus.class)
+
 public class SubscribeStatusHandler implements TypeHandler<SubscribeStatus> {
 
     @Override

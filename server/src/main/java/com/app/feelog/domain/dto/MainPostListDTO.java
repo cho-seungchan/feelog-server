@@ -31,5 +31,8 @@ public class MainPostListDTO {
         private String channelFileName;
         private String channelUrl;
         private String channelMemberNickname;
+        private String memberFileName;
+        private String memberFilePath;
         private List<ChannelPostTagListDTO> tagList;
+        private boolean isScrapped;
 }

@@ -15,8 +15,11 @@ public class ChannelPostVO extends PostJKVO{
     @EqualsAndHashCode.Include
     private Long   id;
     private PostType postType;
+    private int    postReadCount;
     private String postFilePath;
     private String postFileName;
+    private String postFileSize;
     private Long   memberId;
     private Long   channelId;
+    private int postReadCount;
 }

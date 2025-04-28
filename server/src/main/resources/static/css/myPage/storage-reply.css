@@ -1,0 +1,2031 @@
+/* 2025.04.07 조승찬 */
+body {
+    margin: 0;
+    min-width: 320px;
+    height: 100dvh;
+    font-family: "Postype Sans-serif KR", Apple SD Gothic Neo, Malgun Gothic, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #ffffff;
+    /* padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom); */
+}
+body {
+    margin: 0;
+    color: #202022;
+    /* font-family: ; */
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    background-color: #ffffff;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+.flog-div-1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100dvh;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+/* 헤더 여기서 부터 */
+.flog-header-1 {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #ffffff;
+}
+.flog-nav-1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 1144px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+@media (min-width: 0px) {
+    .flog-nav-1 {
+        padding: 4px 8px;
+        height: 48px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-nav-1 {
+        padding: 12px 32px;
+        height: 64px;
+    }
+}
+.flog-div-2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    position: relative;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+@media (min-width: 0px) {
+    .flog-div-2 {
+        gap: 0px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-2 {
+        gap: 8px;
+    }
+}
+.sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+}
+.flog-a-1 {
+    cursor: pointer;
+}
+@media (min-width: 0px) {
+    .flog-a-1 {
+        display: none;
+        padding: 11px 8px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-a-1 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 0 8px 0 0;
+    }
+}
+.flog-button-10.FeelogButton-sizeMd {
+    min-height: 40px;
+    font-size: 16px;
+}
+
+.flog-a-2 {
+    cursor: pointer;
+    padding: 8px;
+}
+@media (min-width: 0px) {
+    .flog-a-2 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+@media (min-width: 744px) {
+    .flog-a-2 {
+        display: none;
+    }
+}
+.flog-svg-2 {
+    user-select: none;
+    margin: initial;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #202022;
+    width: 24px;
+    height: 24px;
+    color: #1976d2;
+}
+.flog-svg-2 g > rect {
+    fill: #1976d2;
+}
+.flog-svg-2 clipPath rect {
+    fill: #f2f2f3;
+}
+.flog-h2-1 {
+    position: absolute;
+    margin: 0px;
+    z-index: 500;
+}
+@media (min-width: 0px) {
+    .flog-h2-1 {
+        left: 32px;
+        padding: 8.75px 12px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-h2-1 {
+        top: 60px;
+        left: 0;
+        padding: 7.5px 8px;
+    }
+}
+.flog-h2-5 {
+    font-size: calc(1em * 1.25);
+    margin: 20px 0px 0px 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.25;
+    color: #202022;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.flog-div-3 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+@media (min-width: 0px) {
+    .flog-div-3 {
+        gap: 4px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-3 {
+        gap: 8px;
+    }
+}
+@media (min-width: 0px) {
+    .flog-div-4 {
+        display: none;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-4 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+.flog-button-1 {
+    margin: initial;
+    color: #202022;
+    font-size: 14px;
+    min-height: 2.25rem;
+    padding-block: 0.375rem;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: none;
+    background-color: #f2f2f3;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    font-weight: 500;
+}
+.flog-button-1.FeelogMenuButton-sizeMd {
+    min-height: 40px;
+}
+.flog-span-1 {
+    margin: 0 0 0 calc(0.5rem / -2);
+    display: inherit;
+    margin-right: 0.5rem;
+}
+.flog-svg-3 {
+    user-select: none;
+    margin: initial;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #202022;
+}
+.flog-button-2 {
+    margin: initial;
+    color: #202022;
+    font-size: calc(2.25rem / 1.5);
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    padding-inline: 0.25rem;
+    padding-block: 0;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.flog-button-2.FeelogIconButton-sizeMd {
+    font-size: calc(40px / 1.667);
+    min-width: 40px;
+    min-height: 40px;
+}
+.flog-div-5 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 8px;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.flog-div-6 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 8px;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+@media (min-width: 0px) {
+    .flog-div-6 {
+        display: none;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-6 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+.flog-span-15 {
+    min-height: 1.25rem;
+    padding-inline: 0.375rem;
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0px #f2f2f3;
+}
+.flog-span-16 {
+    color: currentColor;
+    font-size: calc(1em * 1.5);
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 2px #f2f2f3;
+    line-height: 1.5;
+    padding: 0 calc(0.375rem - 0px);
+    min-height: 1.25rem;
+    min-width: 1.25rem;
+    border-radius: 1.25rem;
+    z-index: 1000;
+    background-color: #1976d2;
+    top: 0;
+    right: 0;
+    transform: scale(1) translateX(50%) translateY(-50%);
+    transform-origin: 100% 0%;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.flog-span-3 {
+    min-height: 0.75rem;
+    padding-inline: 0.375rem;
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0px #f2f2f3;
+}
+.flog-span-2 {
+    color: currentColor;
+    font-size: calc(1em * 1.5);
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 2px #f2f2f3;
+    line-height: 1.5;
+    padding: 0 calc(0.375rem - 0px);
+    min-height: 1.25rem;
+    min-width: 1.25rem;
+    border-radius: 1.25rem;
+    z-index: 1000;
+    background-color: #d32f2f;
+    top: 0;
+    right: 0;
+    transform: scale(1) translateX(50%) translateY(-50%);
+    transform-origin: 100% 0%;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.flog-span-2.FeelogBadge-invisible {
+    transform: scale(0) translateX(50%) translateY(-50%);
+}
+.flog-div-7 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 40px;
+    height: 40px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+@media (min-width: 0px) {
+    .flog-div-8 {
+        display: none;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-8 {
+        display: initial;
+    }
+}
+.flog-button-3 {
+    margin: initial;
+    color: #202022;
+    font-size: 14px;
+    min-height: 2rem;
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    font-weight: 700;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.flog-button-3.FeelogMenuButton-sizeSm {
+    min-height: 32px;
+}
+.flog-button-3 {
+    margin: initial;
+    color: #202022;
+    font-size: 14px;
+    min-height: 2rem;
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    font-weight: 700;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.flog-button-3.FeelogMenuButton-sizeSm {
+    min-height: 32px;
+}
+.flog-img-1 {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+    color: transparent;
+    text-indent: 10000px;
+}
+@media (min-width: 0px) {
+    .flog-div-10 {
+        display: initial;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-10 {
+        display: none;
+    }
+}
+.flog-div-9 {
+    color: #202022;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 700;
+    font-size: calc(32px * 0.4375);
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    margin-inline-start: initial;
+    box-shadow: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    user-select: none;
+    cursor: pointer;
+}
+.flog-button-4 {
+    font-size: 1.25em;
+    color: currentColor;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    text-decoration: none;
+    text-decoration-thickness: max(0.08em, 1px);
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    margin: 0;
+    border-radius: 4px;
+    padding: 0;
+    cursor: pointer;
+    text-decoration-color: rgba(25, 118, 210, 0.72);
+    user-select: none;
+    appearance: none;
+    position: relative;
+}
+.flog-span-18 {
+    color: currentColor;
+    font-size: calc(1em * 1.5);
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 2px #f2f2f3;
+    line-height: 1.5;
+    padding: 0 calc(0.375rem - 0px);
+    min-height: 1.25rem;
+    min-width: 1.25rem;
+    border-radius: 1.25rem;
+    z-index: 1000;
+    background-color: #1976d2;
+    top: 0;
+    right: 0;
+    transform: scale(1) translateX(50%) translateY(-50%);
+    transform-origin: 100% 0%;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #ffffff;
+    white-space: nowrap;
+}
+/* 헤더 여기까지 */
+/* 2단 헤더 시작 */
+.flog-div-12 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-height: 240px;
+}
+.flog-div-13 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 100%;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.flog-nav-2 {
+    width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    background-color: #ffffff;
+    z-index: 499;
+    border-bottom: 1px solid;
+    border-color: rgba(118 118 127 / 0.15);
+}
+@media (min-width: 0px) {
+    .flog-nav-2 {
+        top: 48px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-nav-2 {
+        min-height: 56px;
+        top: 56px;
+    }
+}
+.flog-ul-1 {
+    --ListDivider-gap: 0.375rem;
+    --ListItem-minHeight: 2.25rem;
+    --ListItem-paddingY: 0.25rem;
+    --ListItem-paddingX: 0.75rem;
+    --ListItem-gap: 0.625rem;
+    --ListItemDecorator-size: 2.5rem;
+    --Icon-fontSize: 24px;
+    --List-gap: 0px;
+    --List-nestedInsetStart: 0px;
+    --ListItem-paddingLeft: 0.75rem;
+    --ListItem-paddingRight: 0.75rem;
+    --unstable_List-childRadius: calc(max(8px - 12px, min(12px / 2, 8px / 2)) - 0px);
+    --ListItem-radius: calc(max(8px - 12px, min(12px / 2, 8px / 2)) - 0px);
+    --ListItem-startActionTranslateX: calc(0.5 * 0.75rem);
+    --ListItem-endActionTranslateX: calc(-0.5 * 0.75rem);
+    margin: initial;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    font-weight: 400;
+    padding-block: 12px;
+    padding-inline: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    list-style: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    position: relative;
+    --variant-borderWidth: 0px;
+    color: #333333;
+    --unstable_List-borderWidth: 0px;
+    overflow-x: auto;
+    max-width: 1144px;
+    margin-inline: auto;
+    padding-block: 0px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    scrollbar-width: none;
+}
+@media (min-width: 0px) {
+    .flog-ul-1 {
+        padding-inline: 16px;
+        gap: 16px;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+    }
+}
+@media (min-width: 744px) {
+    .flog-ul-1 {
+        padding-inline: 24px;
+        gap: 24px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+}
+.flog-a-7:not([hidden]) {
+    --_ListItem-display: flex;
+}
+
+.flog-a-7 {
+    --ListItemButton-marginInline: calc(-1 * 12px) calc(-1 * 12px);
+    --ListItemButton-marginBlock: calc(-1 * 8px);
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 10px;
+    margin-inline: 0px;
+    --unstable_actionRadius: calc(8px - 0px);
+    box-sizing: border-box;
+    display: flex;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    list-style-type: disc;
+    position: relative;
+    padding-block-start: 8px;
+    padding-block-end: 8px;
+    -webkit-padding-start: 12px;
+    padding-inline-start: 12px;
+    -webkit-padding-end: 12px;
+    padding-inline-end: 12px;
+    margin-block-start: 0px;
+    min-block-size: 36px;
+    --variant-borderWidth: 0px;
+    color: #333333;
+    padding-inline: 4px;
+    border-bottom: 2px solid;
+    border-color: #666666;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+@media (min-width: 0px) {
+    .flog-a-7 {
+        height: 48px;
+    }
+}
+
+@media (min-width: 744px) {
+    .flog-a-7 {
+        height: 56px;
+    }
+}
+
+.flog-ul-1.FeelogList-sizeMd {
+    --ListItem-minHeight: 40px;
+}
+.flog-a-6 {
+    --ListItemButton-marginInline: calc(-1 * 12px) calc(-1 * 12px);
+    --ListItemButton-marginBlock: calc(-1 * 8px);
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 10px;
+    margin-inline: 0px;
+    --unstable_actionRadius: calc(8px - 0px);
+    box-sizing: border-box;
+    border-radius: 8px;
+    display: flex;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    list-style-type: disc;
+    position: relative;
+    padding-block-start: 8px;
+    padding-block-end: 8px;
+    -webkit-padding-start: 12px;
+    padding-inline-start: 12px;
+    -webkit-padding-end: 12px;
+    padding-inline-end: 12px;
+    margin-block-start: 0px;
+    min-block-size: 36px;
+    --variant-borderWidth: 0px;
+    color: #333333;
+    padding-inline: 4px;
+    border-bottom: 2px solid;
+    border-color: #f5f5f5;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+@media (min-width: 0px) {
+    .flog-a-6 {
+        height: 48px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-a-6 {
+        height: 56px;
+    }
+}
+.flog-a-6:not([hidden]) {
+    --_ListItem-display: flex;
+}
+.flog-p-4 {
+    --Icon-fontSize: calc(1em * 1.5);
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    font-weight: 400;
+    color: #b3b3b3;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.flog-p-5 {
+    --Icon-fontSize: calc(1em * 1.5);
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    text-decoration: none;
+    white-space: nowrap;
+    font-weight: 700;
+}
+/* 2단 헤더 끝 */
+
+.flog-main-4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+}
+.flog-div-60 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+}
+@media (min-width: 0px) {
+    .flog-div-60 {
+        width: 360px;
+        padding-inline: 16px;
+        padding-top: 50px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-60 {
+        width: 100%;
+        margin-left: -0px;
+        padding-inline: 24px;
+        padding-top: 50px;
+    }
+}
+@media (min-width: 992px) {
+    .flog-div-60 {
+        width: 100%;
+        margin-left: -0px;
+        max-width: 640px;
+        padding-inline: 0px;
+        padding-top: 50px;
+    }
+}
+.flog-div-120 {
+    border-radius: 0.25rem;
+    gap: 0.5rem;
+    color: rgba(67, 60, 60, 0.64);
+    opacity: 0.64;
+    min-height: 2.25rem;
+    padding-inline: 0.75rem;
+    font-size: 1.5rem;
+    box-shadow: none;
+    border-radius: 20px;
+    padding-left: 14px;
+    background-color: #f2f2f2;
+}
+@media (min-width: 0px) {
+    .flog-div-120 {
+        margin-block: 16px 20px;
+    }
+}
+
+@media (min-width: 744px) {
+    .flog-div-120 {
+        height: 40px;
+        margin-block: 40px 32px;
+    }
+}
+.flog-div-120:not([data-skip-inverted-colors]) {
+    border-width: 1px;
+    box-shadow: 0px 0px 0px #000, 0px 1px 2px 0px rgba(21, 21, 21, 0.08);
+}
+.flog-div-120.FeelogInput-sizeMd {
+    min-height: 40px;
+}
+.flog-div-120::before {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    border-radius: inherit;
+    margin: 0px; /* var(--variant-borderWidth)가 0px일 경우 */
+    box-shadow: inset 0 0 0 0px #0000ff; /* 예를 들어, var(--Input-focusedHighlight)가 #0000FF일 경우 */
+}
+.flog-div-121 {
+    display: flex; /* inherit 대신 명시적 flex로 변경 */
+    align-items: center;
+    margin-inline-end: 0.5rem;
+}
+.flog-input-4 {
+    margin-left: 2px; /* 왼쪽으로 2px 이동 */
+    border: none; /* 테두리 선 제거 */
+    background-color: #f2f2f2; /* 바탕색 설정 */
+    color: #000000 !important; /* 글자색 설정 */
+    flex: 1;
+    min-width: 90%; /* 부모 요소 보다 작게 */
+    outline: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: 14px !important;
+    font-style: inherit;
+    font-weight: 900 !important;
+    line-height: inherit;
+    text-overflow: ellipsis;
+}
+.flog-svg-8 {
+    color: #111111;
+    margin: 0; /* 불필요한 margin 제거 */
+    width: 16px;
+    height: 16px;
+}
+
+.flog-div-120 {
+    display: flex;
+    align-items: center;
+    padding-left: 0.75rem; /* padding을 줄임 */
+    box-shadow: none;
+}
+.flog-div-122 {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.flog-p-20 {
+    font-size: 16px;
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #000000;
+    color: #808080;
+}
+.flog-div-123 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-block-width: 1px;
+    border-block-style: solid;
+    border-color: rgba(118 118 127 / 0.15);
+}
+@media (min-width: 0px) {
+    .flog-div-123 {
+        margin-top: 14px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-123 {
+        margin-top: 20px;
+    }
+}
+.flog-div-124 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+@media (min-width: 0px) {
+    .flog-div-124 {
+        padding-block: 20px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-124 {
+        padding-block: 24px;
+    }
+}
+.jflog-div-125 {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+@media (min-width: 0px) {
+    .jflog-div-125 {
+        gap: 24px;
+    }
+}
+@media (min-width: 744px) {
+    .jflog-div-125 {
+        gap: 32px;
+    }
+}
+.flog-a-29 {
+    --Icon-fontSize: 1.25em;
+    --Icon-color: currentColor;
+    --CircularProgress-size: 1.25em;
+    --CircularProgress-thickness: 3px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(52 120 255 / 1);
+    font-weight: 400;
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    border-radius: 6px;
+    padding: 0px;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    text-decoration: none;
+}
+.flog-blockquote-1 {
+    --Icon-fontSize: 1.5em;
+    margin: 0px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    font-weight: 400;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+.flog-p-11 {
+    --Icon-fontSize: 1.5em;
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #757575;
+}
+.flog-button-20 {
+    --Icon-margin: initial;
+    --Icon-color: #76767f;
+    --Icon-fontSize: 20px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 14px;
+    -webkit-tap-highlight-color: transparent;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    --variant-borderWidth: 0px;
+    color: #202022;
+    --IconButton-size: 32px;
+    margin-right: 8px;
+    padding-inline: 2px;
+    padding-block: 0px;
+    border-radius: 8px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+.flog-button-20.FeelogIconButton-sizeSm {
+    --Icon-fontSize: 20px;
+    min-width: 32px;
+    min-height: 32px;
+}
+.flog-svg-7 {
+    user-select: none;
+    margin: 0px;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 24px;
+    width: 20px;
+    height: 20px;
+    color: currentcolor;
+}
+
+.flog-a-30 {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    text-decoration: none;
+}
+@media (min-width: 0px) {
+    .flog-a-30 {
+        height: 48px;
+    }
+}
+.flog-hr-5 {
+    --Divider-thickness: 1px;
+    --Divider-lineColor: rgba(118 118 127 / 0.15);
+    margin-top: initial;
+    margin-bottom: initial;
+    margin-left: initial;
+    margin-inline: initial;
+    position: relative;
+    align-self: stretch;
+    flex-shrink: 0;
+    border: none;
+    list-style: none;
+    background-color: rgba(118 118 127 / 0.15);
+    inline-size: 1px;
+    block-size: initial;
+    margin-block: 2px;
+    margin-right: 10px;
+}
+.flog-div-127 {
+    flex: 1 1 0%;
+    overflow: hidden;
+    max-width: calc(100% - 117.33px);
+}
+.flog-p-18 {
+    --Icon-fontSize: 1.5em;
+    margin: 0px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #202022;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+}
+.flog-div-128 {
+    position: relative;
+    margin-left: 32px;
+    width: 85.33px;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.flog-div-126 {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 0%;
+}
+.flog-div-129 {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+@media (min-width: 0px) {
+    .flog-div-129 {
+        gap: 12px;
+        padding-block: 20px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-129 {
+        gap: 16px;
+        padding-block: 24px;
+    }
+}
+.flog-div-129 * {
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+.flog-div-130 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    width: 100%;
+}
+@media (min-width: 0px) {
+    .flog-div-130 {
+        gap: 12px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-div-130 {
+        gap: 24px;
+    }
+}
+.flog-div-131 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+}
+.flog-a-31 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 4px;
+}
+.flog-h3-2 {
+    font-size: 1.125rem;
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #000000;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+@media (min-width: 0px) {
+    .flog-h3-2 {
+        font-size: 1rem;
+    }
+}
+@media (min-width: 744px) {
+    .flog-h3-2 {
+        font-size: 1.125rem;
+    }
+}
+.flog-p-21 {
+    font-size: 1rem;
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    color: #000000;
+    font-weight: 400;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+@media (min-width: 0px) {
+    .flog-p-21 {
+        font-size: 0.875rem;
+    }
+}
+@media (min-width: 744px) {
+    .flog-p-21 {
+        font-size: 1rem;
+    }
+}
+.flog-span-28 {
+    font-size: 1rem;
+    margin: 0px;
+    display: inline;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #000000;
+    color: #808080;
+}
+@media (min-width: 0px) {
+    .flog-span-28 {
+        font-size: 0.875rem;
+    }
+}
+@media (min-width: 744px) {
+    .flog-span-28 {
+        font-size: 1rem;
+    }
+}
+.flog-a-32 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+}
+@media (min-width: 0px) {
+    .flog-a-32 {
+        width: 112px;
+        min-width: 112px;
+        height: 64px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-a-32 {
+        width: 144px;
+        min-width: 144px;
+        height: 81px;
+    }
+}
+.flog-a-32:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(0, 0, 0, 7.5%);
+}
+.flog-div-132 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.flog-div-133 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+.flog-a-33 {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(0, 123, 255, 1); /* Assuming the primary color */
+    font-weight: 400;
+    text-decoration: none;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    margin: 0;
+    border-radius: 0.125rem; /* Small radius */
+    padding: 0;
+    cursor: pointer;
+    text-decoration-color: rgba(0, 123, 255, 0.72); /* Assuming outlined border color */
+    position: relative;
+}
+@media (min-width: 0px) {
+    .flog-a-33 {
+        margin-right: 8px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-a-33 {
+        margin-right: 12px;
+    }
+}
+.flog-div-134 {
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem; /* Calculated as 32px * 0.4375 */
+    line-height: 1;
+    color: #808080;
+    width: 50px;
+    height: 50px;
+    margin-inline-start: 0;
+    box-shadow: none; /* Placeholder if --Avatar-ring is not defined */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    user-select: none;
+    background-color: #f5f5f5;
+}
+.flog-img-1 {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+    color: transparent;
+    text-indent: 10000px;
+}
+.flog-div-135 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    overflow: hidden;
+}
+.flog-p-22 {
+    font-size: 0.875rem;
+    margin: 0px;
+    display: flex;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    color: #000000;
+    font-weight: 400;
+    overflow: hidden;
+}
+@media (min-width: 0px) {
+    .flog-p-22 {
+        font-size: 0.75rem;
+    }
+}
+@media (min-width: 744px) {
+    .flog-p-22 {
+        font-size: 0.875rem;
+    }
+}
+.flog-a-34 {
+    font-size: inherit;
+    margin: 0px;
+    display: inline;
+    color: #000000;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    word-break: break-all;
+}
+.flog-span-29 {
+    font-size: inherit;
+    margin: 0px;
+    display: inline;
+    color: #808080;
+    padding-inline: 4px;
+}
+.flog-div-136 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 10px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    white-space: nowrap;
+    overflow: auto;
+    padding-right: 10px;
+    scrollbar-width: none;
+}
+.flog-p-23 {
+    font-size: 0.875rem;
+    margin: 0px;
+    display: block;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    color: #000000;
+    font-weight: 400;
+    color: #808080;
+}
+@media (min-width: 0px) {
+    .flog-p-23 {
+        font-size: 0.75rem;
+    }
+}
+@media (min-width: 744px) {
+    .flog-p-23 {
+        font-size: 0.875rem;
+    }
+}
+.flog-span-30 {
+    font-size: 0.875rem;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    color: #808080;
+    font-weight: 400;
+    gap: 2px;
+}
+@media (min-width: 0px) {
+    .flog-span-30 {
+        font-size: 0.75rem;
+    }
+}
+@media (min-width: 744px) {
+    .flog-span-30 {
+        font-size: 0.875rem;
+    }
+}
+.flog-span-31 {
+    display: inline-flex;
+    margin-inline-end: clamp(4px, 0.375em, 0.75rem);
+}
+.flog-svg-9 {
+    user-select: none;
+    margin: 3px;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    color: #808080;
+    color: currentcolor;
+}
+@media (min-width: 0px) {
+    .flog-svg-9 {
+        width: 14px;
+        height: 14px;
+    }
+}
+@media (min-width: 744px) {
+    .flog-svg-9 {
+        width: 16px;
+        height: 16px;
+    }
+}
+.flog-div-133:after {
+    content: "";
+    background: linear-gradient(to left, #ffffff, transparent);
+    width: 10px;
+    height: 42px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.flog-button-6 {
+    font-size: 0.875rem;
+    padding-inline: 2px;
+    padding-block: 0;
+    font-family: sans-serif;
+    font-weight: 500;
+    margin: 0px;
+    border-radius: 0.25rem;
+    border: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #333333;
+    min-width: 32px;
+    min-height: 32px;
+}
+.flog-button-6.FeelogIconButton-sizeSm {
+    font-size: 20px;
+    min-width: 32px;
+    min-height: 32px;
+}
+.flog-svg-11 {
+    user-select: none;
+    margin: 0px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    color: #808080;
+    color: #0094ff; /* Assuming primary color */
+}
+/* 더보기 버튼 */
+.flog-div-68 {
+    margin-block: 40px;
+}
+.flog-div-31 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 6px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.flog-a-20 {
+    --Icon-margin: initial;
+    --Icon-color: #666666;
+    --IconButton-size: 32px;
+    --Icon-fontSize: calc(32px / 1.6);
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 14px;
+    padding-inline: 2px;
+    -webkit-tap-highlight-color: transparent;
+    padding-block: 0;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    margin: 0px;
+    border-radius: 6px;
+    border: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative;
+    --variant-borderWidth: 0px;
+    color: #333333;
+    background-color: #f5f5f5;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    line-height: normal;
+}
+.flog-a-20.FeelogIconButton-sizeSm {
+    --Icon-fontSize: calc(32px / 1.6);
+    min-width: 32px;
+    min-height: 32px;
+}
+/* 더보기 호버 */
+.flog-a-20:hover {
+    color: #333333;
+    background-color: #cccccc;
+}
+/*페이지 처리부분 시작*/
+.pagination-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.change-page code,
+.change-page + code{
+    margin: 0 10px;
+    font-size: 16px;
+}
+.iItkLq {
+    border: none;
+    width: 40px;
+    height: 40px;
+    line-height: normal;
+    padding: 0px;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    outline: none;
+}
+.jVxRns {
+    transform-origin: center center;
+    transform: rotate(180deg);
+}
+.PaginationButtonGroup__Icon-x0iffd-2 {
+    filter: grayscale(100%) brightness(50%);
+}
+/*페이지 처리부분 끝*/
+/* 모달창 시작 */
+
+.flog-div-40 {
+    background-color: rgba(200, 200, 200, 0.4);
+    --unstable_popup-zIndex: calc(1000 + 1);
+    position: fixed;
+    z-index: 1000;
+    inset: 0px;
+}
+.flog-div-42 {
+    --Icon-color: #666666;
+    --Card-childRadius: max((8px - 1px) - 20px, min(20px / 2, (8px - 1px) / 2));
+    --AspectRatio-radius: var(--Card-childRadius);
+    --unstable_actionMargin: calc(-1 * 1px);
+    --unstable_actionRadius: 8px;
+    --CardCover-radius: calc(8px - 1px);
+    --CardOverflow-offset: calc(-1 * 20px);
+    --CardOverflow-radius: calc(8px - 1px);
+    --Divider-inset: calc(-1 * 20px);
+    --Card-radius: 8px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    font-weight: 400;
+    --variant-borderWidth: 1px;
+    box-sizing: border-box;
+    box-shadow: 0 0 #000, 0px 2px 8px -2px rgba(21, 21, 21, 0.08), 0px 6px 12px -2px rgba(21, 21, 21, 0.08);
+    min-width: min(calc(100vw - 2 * 20px), 300px);
+    position: absolute;
+    --ModalDialog-vertical-padding: 44px;
+    --Card-padding: 20px;
+    top: var(--ModalDialog-vertical-padding);
+    left: 50%;
+    width: 320px;
+    transform: translateX(-50%);
+    max-height: calc(100% - 4 * 20px);
+    padding: 20px;
+    border-radius: 8px;
+    border-color: #cccccc;
+    outline: 0px;
+    border-width: 0px;
+    gap: 0px;
+}
+.flog-h2-4 {
+    --Icon-fontSize: calc(1em * 1.25);
+    display: flex;
+    gap: clamp(4px, 0.375em, 0.75rem);
+    margin: 0px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.25;
+    color: inherit;
+}
+.flog-button-9 {
+    --Icon-margin: initial;
+    --Icon-color: #666666;
+    --Icon-fontSize: calc(32px / 1.5);
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 16px;
+    padding-inline: 0.25rem;
+    -webkit-tap-highlight-color: transparent;
+    padding-block: 0px;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 500;
+    margin: 0px;
+    border: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    --variant-borderWidth: 0px;
+    position: absolute;
+    z-index: 1;
+    top: 16px;
+    right: 16px;
+    border-radius: 6px;
+    color: #999999;
+}
+.flog-svg-6 {
+    user-select: none;
+    margin: 0px;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #666666;
+}
+.flog-svg-6 {
+    user-select: none;
+    margin: 0px;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #666666;
+}
+.flog-div-44 {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    z-index: 1;
+    padding: 12px 20px;
+    gap: 8px;
+    margin-left: calc(-1 * 20px);
+    margin-right: calc(-1 * 20px);
+    margin-bottom: calc(-1 * 20px);
+    --Button-radius: unset;
+    --IconButton-radius: unset;
+}
+.flog-div-42 .FeelogDialogActions-root {
+    padding-top: 8px;
+    padding-bottom: 20px;
+}
+.flog-button-10 {
+    --Icon-margin: initial;
+    --Icon-color: currentColor;
+    --Icon-fontSize: 24px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    --Button-gap: 0.5rem;
+    min-height: 36px;
+    font-size: 14px;
+    padding-block: 6px;
+    padding-inline: 16px;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin: 0px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    --variant-borderWidth: 0px;
+    color: #ffffff;
+    background-color: #3478ff;
+    font-weight: 500;
+}
+.flog-div-44 > :not(.FeelogIconButton-root) {
+    flex: 0 0 auto;
+}
+.flog-div-43 {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    column-gap: 20px;
+    row-gap: max(2px, calc(0.1875 * 20px));
+    margin-left: calc(-1 * 20px);
+    margin-right: calc(-1 * 20px);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #666666;
+    flex: 9999 1 0%;
+    overflow: auto;
+    padding: 20px;
+}
+.flog-a-13 {
+    --Icon-margin: initial;
+    --Icon-color: #666666;
+    --Icon-fontSize: 24px;
+    --CircularProgress-size: 20px;
+    --CircularProgress-thickness: 2px;
+    --Button-gap: 0.5rem;
+    min-height: 36px;
+    font-size: 14px;
+    padding-block: 0.375rem;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin: 0px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    --variant-borderWidth: 0px;
+    color: #333333;
+    background-color: #e0e0e0;
+    font-weight: 500;
+}
+.flog-div-44 > :not(.FeelogIconButton-root) {
+    flex: 0 0 auto;
+}
+.flog-a-13.FeelogButton-sizeMd {
+    min-height: 40px;
+    font-size: 16px;
+}
+/* 모달창 버튼 호버 */
+.flog-button-10:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+}
+.flog-a-13:hover {
+    background-color: #d6d6d6;
+    color: #333333;
+}
+/* 모달창 끝 */
