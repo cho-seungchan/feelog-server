@@ -335,10 +335,11 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         subscribeDAO.insertSubscribe(memberId, channelId);
     }
 
-//    @Override
-//    public SubscribeDTO getSubscribe(Long memberId, Long channelId) {
-//        return Optional.ofNullable(subscribeDAO.findSubscribeOne(memberId, channelId));
-//    }
+    @Override
+    public SubscribeDTO getSubscribe(Long memberId, Long channelId) {
+        return Optional.ofNullable(subscribeDAO.findSubscribeOne(memberId, channelId));
+        return subscribeDAO.findByMemberAndChannel(memberId, channelId);
+    }
 
     @Override
     public List<MainPostListDTO> getPostRandom() {
