@@ -83,7 +83,7 @@ public interface MyPageMapper {
     int getStorageScrapTotalCount(Long memberId);
 
     // 2025.04.25 조승찬 :: 스크랩 목록 가져오기
-    List<ScrapVO> getStorageScrap(Long memberId, SixRowPagination pagination);
+    List<ChannelPostScrapVO> getStorageScrap(Long memberId, SixRowPagination pagination);
 
     // 2025.04.25 조승찬 :: 스크랩한 포스크 정보 가져오기
     Optional<ChannelPostVO> getChannelPostById(Long id);

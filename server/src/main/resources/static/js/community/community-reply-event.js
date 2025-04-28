@@ -1,6 +1,7 @@
 // 2025.04.12 조승찬
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", (e) => {
+        console.log("body click  " + e.target.outerHTML);
 
         // 이미지 이전 버튼 클릭시
         if (e.target.closest(".prev-button")) {

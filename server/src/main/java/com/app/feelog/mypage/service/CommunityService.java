@@ -3,9 +3,7 @@
 package com.app.feelog.mypage.service;
 
 import com.app.feelog.domain.vo.*;
-import com.app.feelog.mypage.dto.CommunityPostListDTO;
-import com.app.feelog.mypage.dto.CommunityPostWriteDTO;
-import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
+import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.repository.CommunityDAO;
 import com.app.feelog.mypage.repository.MyPageDAO;
 import com.app.feelog.mypage.util.CalculateTimeAgo;
@@ -30,7 +28,7 @@ public class CommunityService implements ToDTO{
     private final CommunityPostWriteDTO communityPostWriteDTO;
 
     // 2025.04.26 조승찬 :: 개인채널 커뮤니티 글 목록
-    public List<CommunityPostListDTO> getCommunityPostList(Long myId, String channelUrl, SixRowPagination pagination) {
+    public List<CommunityPostListDTO> getCommunityPostList(Long loginId, String channelUrl, SixRowPagination pagination) {
 
         // 페이지네이션 처리
         // pagination.create(communityDAO.getCommunityPostListTotalCount(channelUrl));
@@ -54,9 +52,9 @@ public class CommunityService implements ToDTO{
             // 신고 건수
             int reports =communityDAO.getReportCount(community.getId());
             // 내가 포스트에 좋아요 했는지 알아보기
-            boolean iLike = communityDAO.getILike(myId, community.getId());
+            boolean iLike = communityDAO.getILike(loginId, community.getId());
             // 내가 포스트에 신고 했는지 알아보기
-            boolean iReport = communityDAO.getIReport(myId, community.getId());
+            boolean iReport = communityDAO.getIReport(loginId, community.getId());
 
             resultList.add(toCommunityPostListDTO(community, member, files, memberChannel,
                                                     timeAgo,replys, likes, reports, iLike, iReport));
@@ -166,5 +164,58 @@ public class CommunityService implements ToDTO{
     // 2025.04.27 조승찬 :: 신고 취소
     public void cancelCommunityPostReport(Long memberId, Long postId) {
         communityDAO.cancelCommunityPostReport(memberId, postId);
+    }
+
+    // 2025.04.28 조승찬 :: 댓글 목록
+    public CommunityPostReplyListDTO getCommunityPostReplyList(Long loginId, String channelUrl, Long postId) {
+
+        // 포스트 내용 가져오기
+        CommunityPostVO postVO = communityDAO.getCommunityPost(postId).orElse(null);
+        // 포스트 파일 가져오기
+        List<CommunityPostFileVO> files = communityDAO.getCommunityPostFiles(postId);
+        // 작성자 정보 가져오기
+        MemberVO member = myPageDAO.getMemberById(postVO.getMemberId()).orElse(null);
+        // 작성자 채널 정보 가져오기
+        ChannelVO memberChannel = myPageDAO.getChannelByMemberId(postVO.getMemberId()).orElse(null);
+        // 작성 시간 계산하기
+        String timeAgo = calculateTimeAgo.calculateTimeAgo(postVO.getCreatedDate());
+        // 좋아요 건수
+        int likes = communityDAO.getLikeCount(postId);
+        // 댓글 건수
+        int replys =communityDAO.getReplyCount(postId);
+        // 신고 건수
+        int reports =communityDAO.getReportCount(postId);
+        // 내가 포스트에 좋아요 했는지 알아보기
+        boolean iLike = communityDAO.getILike(loginId, postId);
+        // 내가 포스트에 신고 했는지 알아보기
+        boolean iReport = communityDAO.getIReport(loginId, postId);
+
+        List<CommunityPostReplyDetailDTO> replies = new ArrayList<>();
+        // 댓글 정보 가져오기
+        List<CommunityPostReplyVO> replyList = communityDAO.getCommunityPostReply(postId);
+        replyList.forEach(reply -> {
+            // 작성자 정보 가져오기
+            MemberVO memberReply = myPageDAO.getMemberById(reply.getMemberId()).orElse(null);
+            // 작성자 채널 정보 가져오기
+            ChannelVO memberChannelReply = myPageDAO.getChannelByMemberId(reply.getMemberId()).orElse(null);
+            // 작성 시간 계산하기
+            String timeAgoReply = calculateTimeAgo.calculateTimeAgo(reply.getCreatedDate());
+            // 좋아요 건수
+            int likesReply = communityDAO.getLikeCount(reply.getId());
+            // 댓글 건수
+            int replysReply =communityDAO.getReplyCount(reply.getId());
+            // 신고 건수
+            int reportsReply =communityDAO.getReportCount(reply.getId());
+            // 내가 포스트에 좋아요 했는지 알아보기
+            boolean iLikeReply = communityDAO.getILike(loginId, reply.getId());
+            // 내가 포스트에 신고 했는지 알아보기
+            boolean iReportReply = communityDAO.getIReport(loginId, reply.getId());
+
+            replies.add(toCommunityPostReplyDetailDTO(reply, memberReply, memberChannelReply,
+                    timeAgoReply,replysReply, likesReply, iLikeReply, iReportReply));
+        });
+
+        return toCommunityPostReplyListDTO(postVO, member, files, memberChannel,
+                timeAgo,replys, likes, reports, iLike, iReport, replies);
     }
 }

@@ -3,9 +3,11 @@
 package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
+import com.app.feelog.domain.dto.CommunityPostReplyDTO;
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.domain.vo.CommunityPostVO;
 import com.app.feelog.mypage.dto.CommunityPostListDTO;
+import com.app.feelog.mypage.dto.CommunityPostReplyListDTO;
 import com.app.feelog.mypage.dto.CommunityPostWriteDTO;
 import com.app.feelog.mypage.service.CommunityService;
 import com.app.feelog.mypage.service.MyPageService;
@@ -174,8 +176,28 @@ public class CommunityController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/@{channelUrl}/community-reply")
-    public String communityReply(){
+    // 2025.04.28  조승찬 :: 댓글 목록
+    @GetMapping("/@{channelUrl}/community-reply/{postId}")
+    public String getCommunityPostReplyList(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                 @PathVariable String channelUrl, @PathVariable Long postId,
+                                 Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        CommunityPostReplyListDTO reply = communityService.getCommunityPostReplyList(member.getId(), channelUrl, postId);
+
+        CommunityPostWriteDTO communityPost = new CommunityPostWriteDTO();
+        CommunityPostReplyDTO communityPostReply = new CommunityPostReplyDTO();
+        model.addAttribute("reply", reply);
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("currentChannelUrl",channelUrl);
+        model.addAttribute("loginId", member.getId());
+        model.addAttribute("communityPost", communityPost);
+        model.addAttribute("communityPostReply", communityPostReply);
+
         return "community/community-reply";
     }
 

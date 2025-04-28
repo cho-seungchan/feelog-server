@@ -162,4 +162,9 @@ public class CommunityDAO {
     public void cancelCommunityPostReport(Long memberId, Long postId) {
         communityMapper.cancelCommunityPostReport(memberId, postId);
     }
+
+    // 2025.04.28 조승찬 :: 커뮤니티 게시글 댓글 정보 가져오기
+    public List<CommunityPostReplyVO> getCommunityPostReply(Long postId) {
+        return communityMapper.getCommunityPostReply(postId);
+    }
 }

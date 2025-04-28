@@ -266,9 +266,9 @@
 
     <select id="getStorageScrapTotalCount" resultType="_int">
         select count(*)
-        from   tbl_scrap
+        from   tbl_channel_post_scrap
         where  member_id = #{memberId}
-          and    scrap_status = '정상'
+          and    channel_post_scrap_status = '정상'
     </select>
 
     <select id="getStorageScrap" resultType="scrapVO">
@@ -276,9 +276,9 @@
             id,
             member_id,
             post_id
-        from   tbl_scrap
+        from   tbl_channel_post_scrap
         where  member_id = #{memberId}
-          and    scrap_status = '정상'
+          and    channel_post_scrap_status = '정상'
         order by id desc
             limit #{pagination.offset}, #{pagination.rowCount};
     </select>
@@ -416,15 +416,15 @@
     </update>
 
     <update id="storageOnScrap">
-        update   tbl_scrap
-        set      scrap_status = '정상',
+        update   tbl_channel_post_scrap
+        set      channel_post_scrap_status = '정상',
                  updated_date = current_timestamp
         where    id  = #{id}
     </update>
 
     <update id="storageOffScrap">
-        update   tbl_scrap
-        set      scrap_status = '삭제',
+        update   tbl_channel_post_scrap
+        set      channel_post_scrap_status = '삭제',
                  updated_date = current_timestamp
         where    id  = #{id}
     </update>

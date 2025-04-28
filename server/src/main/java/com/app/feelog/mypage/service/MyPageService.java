@@ -279,7 +279,7 @@ public class MyPageService implements ToDTO {
         pagination.create(myPageDAO.getStorageScrapTotalCount(memberId));
 
         // 스크랩 목록 가져오기
-        List<ScrapVO> scraps = myPageDAO.getStorageScrap(memberId, pagination);
+        List<ChannelPostScrapVO> scraps = myPageDAO.getStorageScrap(memberId, pagination);
 
         List<StorageScrapListDTO> scrapList = new ArrayList<>();
         scraps.forEach(scrap -> {

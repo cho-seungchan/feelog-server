@@ -96,4 +96,8 @@ public interface CommunityMapper {
 
     // 2025.04.27 조승찬 :: 신고 취소
     void cancelCommunityPostReport(Long memberId, Long postId);
+
+    // 2025.04.28 조승찬 :: 커뮤니티 게시글 댓글 정보 가져오기
+    List<CommunityPostReplyVO> getCommunityPostReply(Long postId);
+
 }

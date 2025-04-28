@@ -145,7 +145,7 @@ public class MyPageDAO {
     }
 
     // 2025.04.25 조승찬 :: 스크랩 목록 가져오기
-    public List<ScrapVO> getStorageScrap(Long memberId, SixRowPagination pagination) {
+    public List<ChannelPostScrapVO> getStorageScrap(Long memberId, SixRowPagination pagination) {
         return myPageMapper.getStorageScrap(memberId, pagination);
     }
 

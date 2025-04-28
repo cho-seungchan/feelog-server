@@ -102,6 +102,21 @@
         where    id   =  #{postId}
     </select>
 
+    <select id="getCommunityPostReply" resultType="communityPostReplyVO">
+        select   r.reply_content,
+                 r.reply_file_path,
+                 r.reply_file_name,
+                 r.created_date,
+                 r.updated_date,
+                 pr.member_id,
+                 pr.post_id
+        from     tbl_community_post_reply  pr
+        join     tbl_reply r
+        on       r.id            =   pr.id
+        where    pr.post_id      =  #{postId}
+        and      r.reply_status  =  '정상'
+    </select>
+
     <insert id="postPost" useGeneratedKeys="true" keyProperty="id">
         insert into tbl_post
                   (post_title, post_content)
@@ -114,7 +129,7 @@
                    #{postVO.id},
                    #{postVO.memberId},
                    (SELECT id FROM tbl_channel WHERE channel_url = #{channelUrl})
-               );
+               )
     </insert>
 
     <insert id="postFile" useGeneratedKeys="true" keyProperty="id">

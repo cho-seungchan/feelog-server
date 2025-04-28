@@ -1,6 +1,7 @@
 package com.app.feelog.domain.vo;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,17 +9,12 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class CommunityPostReplyVO extends Period {
+@SuperBuilder
+public class CommunityPostReplyVO extends ReplyVO {
     @EqualsAndHashCode.Include
-    private Long id;
+    private String community_post_reply_file_path;
+    private String community_post_reply_file_name;
     private Long memberId;
     private Long postId;
 
-    @Builder
-    public CommunityPostReplyVO(String createdDate, String updatedDate, Long id, Long memberId, Long postId) {
-        super(createdDate, updatedDate);
-        this.id = id;
-        this.memberId = memberId;
-        this.postId = postId;
-    }
 }
