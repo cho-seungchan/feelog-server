@@ -23,7 +23,16 @@ const readLayout = (() => {
             `;
             channelPostWrap.appendChild(newATag);
         } else{
-            console.log("없음")
+            const newDiv = document.createElement("div")
+            newDiv.classList.add("joy-mvjxa7");
+            newDiv.innerHTML = `
+                    <p class="MuiTypography-root MuiTypography-body-sm joy-g4c415">다음 포스트가 없어요.</p>
+                    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1opsxzr">
+                        <path d="M15.291 11.332a.934.934 0 0 1 0 1.325l-5.25 5.254a.937.937 0 0 1-1.324-1.324L13.303 12l-4.59-4.59a.937.937 0 0 1 1.324-1.324l5.254 5.245Z" fill="currentcolor">
+                        </path>
+                    </svg>
+            `;
+            channelPostWrap.appendChild(newDiv);
         }
     }
 
@@ -51,24 +60,33 @@ const readLayout = (() => {
                 </div>
             `;
            channelPostWrap.prepend(newATag)
-       }else{
-           console.log("없음")
+       }else {
+           const newDiv = document.createElement("div");
+           newDiv.classList.add("joy-yov4xo")
+           newDiv.innerHTML = `
+                   <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1opsxzr">
+                       <path
+                           d="M8.713 11.332a.934.934 0 0 0 0 1.325l5.25 5.254a.937.937 0 0 0 1.324-1.324l-4.586-4.59 4.59-4.586a.937.937 0 0 0-1.324-1.324l-5.254 5.245Z"
+                           fill="currentcolor"></path>
+                   </svg>
+                   <p class="MuiTypography-root MuiTypography-body-sm joy-g4c415">이전 포스트가 없어요.</p>
+           `;
+
+           channelPostWrap.prepend(newDiv)
        }
     }
 
-    const showRandomPost = (postData) =>{
+    const showRandomPost = (postData) => {
         const randomPostWrap = document.querySelector(".recommend_post_wrap_01");
 
         postData.forEach((post) => {
-            console.log(post)
-
             const newDiv = document.createElement("div")
             newDiv.classList.add("post_container_04");
 
             const date = post.updatedDate;
             const newDate = new Date(date);
             const formatDate = newDate.toISOString().split("T")[0];
-
 
 
             newDiv.innerHTML = `

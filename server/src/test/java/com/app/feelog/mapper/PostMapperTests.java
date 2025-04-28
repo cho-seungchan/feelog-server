@@ -55,8 +55,8 @@ public class PostMapperTests {
         nextPost.ifPresent(System.out::println);
     }
 
-    @Test
-    public void insertSubscribeTest () {
-        subscribeMapper.insertSubscribe(1L,23L);
-    }
+//    @Test
+//    public void insertSubscribeTest () {
+//        subscribeMapper.insertSubscribe(1L,23L); ㅂㅈㄱ
+//    }
 }

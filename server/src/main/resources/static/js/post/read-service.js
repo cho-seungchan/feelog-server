@@ -1,4 +1,4 @@
-console.log(postInfo)
+console.log(loginMember)
 const readService = (() => {
     const getNextPost = async (callback, channelId, id) => {
         try {
@@ -81,10 +81,20 @@ const readService = (() => {
     }
 
     const addScrap = async (scrap) => {
-        console.log(scrap)
         await fetch("/scrapPost", {
             method: "post",
             body: JSON.stringify(scrap),
+            headers: {
+                "Content-Type": "application/json;charset=utf-8"
+            }
+        });
+    }
+
+    const addReply = async (reply) => {
+        console.log(reply)
+        await fetch("/post/addReply", {
+            method: "post",
+            body: JSON.stringify(reply),
             headers: {
                 "Content-Type": "application/json;charset=utf-8"
             }
@@ -97,6 +107,7 @@ const readService = (() => {
         addSubscribe:addSubscribe,
         deleteSubscribe:deleteSubscribe,
         getRandomPost:getRandomPost,
-        addScrap:addScrap
+        addScrap:addScrap,
+        addReply:addReply
     }
 })()
