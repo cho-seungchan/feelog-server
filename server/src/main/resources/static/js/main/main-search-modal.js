@@ -7,7 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", function (e) {
         e.preventDefault();
         const keyword = searchInput.value.trim();
-        if (keyword) fetchAndRenderSearch(keyword);
+        if (keyword) {
+            // 검색어 저장
+            sessionStorage.setItem("searchKeyword", keyword);
+            // 검색 실행
+            fetchAndRenderSearch(keyword);
+        }
     });
 });
 

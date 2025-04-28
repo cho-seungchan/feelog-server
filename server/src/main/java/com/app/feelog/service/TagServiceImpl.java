@@ -54,4 +54,9 @@ public class TagServiceImpl implements TagService {
     public Long findTagIdByContent(String content) {
         return tagDAO.findTagIdByContent(content);
     }
+
+    @Override
+    public List<String> getPopularTags() {
+        return tagDAO.findPopularTags();
+    }
 }

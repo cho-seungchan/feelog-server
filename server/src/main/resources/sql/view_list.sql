@@ -1,4 +1,4 @@
-#게시글 정보 찾기
+-- #게시글 정보 찾기
 
 create or replace view view_post_info as
 select

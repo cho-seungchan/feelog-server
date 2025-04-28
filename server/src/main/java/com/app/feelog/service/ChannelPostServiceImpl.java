@@ -194,7 +194,7 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         return postList;
     }
 
-
+    // 정도영 :: 검색기능
     @Override
     public List<ChannelPostSearchDTO> searchChannelPosts(String keyword) {
         List<ChannelPostSearchDTO> result = channelPostDAO.searchChannelPosts(keyword);
@@ -212,12 +212,73 @@ public class ChannelPostServiceImpl implements ChannelPostService {
                 dto.setTagsList(new ArrayList<>());
             }
 
-            // 2. 본문에서 img 제거 + p, h1~h6 태그만 추출
+            // 2. 본문에서 img 제거
             if (dto.getContent() != null && !dto.getContent().isEmpty()) {
                 dto.setContent(extractTextOnly(dto.getContent()));
             }
         }
 
+        return result;
+    }
+
+    @Override
+    public List<ChannelPostSearchDTO> searchChannelPostsCheer(String keyword) {
+        List<ChannelPostSearchDTO> result = channelPostDAO.searchChannelPostsCheer(keyword);
+
+        for (ChannelPostSearchDTO dto : result) {
+            // 1. 태그 리스트 변환 + 중복 제거 + 최대 5개 제한
+            if (dto.getTags() != null && !dto.getTags().isEmpty()) {
+                List<String> tagList = Arrays.asList(dto.getTags().split(","));
+                List<String> distinctLimitedTags = tagList.stream()
+                        .distinct()
+                        .limit(5)
+                        .collect(Collectors.toList());
+                dto.setTagsList(distinctLimitedTags);
+            } else {
+                dto.setTagsList(new ArrayList<>());
+            }
+
+            // 2. 본문에서 img 제거 + p
+            if (dto.getContent() != null && !dto.getContent().isEmpty()) {
+                dto.setContent(extractTextOnly(dto.getContent()));
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<ChannelPostSearchDTO> searchMoreChannelPosts(String keyword, int limit, int offset) {
+        List<ChannelPostSearchDTO> result = channelPostDAO.searchMoreChannelPosts(keyword, limit, offset);
+
+        for (ChannelPostSearchDTO dto : result) {
+            if (dto.getTags() != null && !dto.getTags().isEmpty()) {
+                dto.setTagsList(Arrays.asList(dto.getTags().split(",")));
+            } else {
+                dto.setTagsList(new ArrayList<>());
+            }
+
+            if (dto.getContent() != null && !dto.getContent().isEmpty()) {
+                dto.setContent(extractTextOnly(dto.getContent()));
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<ChannelPostSearchDTO> searchMoreChannelPostsCheer(String keyword, int limit, int offset) {
+        List<ChannelPostSearchDTO> result = channelPostDAO.searchMoreChannelPostsCheer(keyword, limit, offset);
+        for (ChannelPostSearchDTO dto : result) {
+            if (dto.getTags() != null && !dto.getTags().isEmpty()) {
+                dto.setTagsList(Arrays.asList(dto.getTags().split(",")));
+            } else {
+                dto.setTagsList(new ArrayList<>());
+            }
+            if (dto.getContent() != null && !dto.getContent().isEmpty()) {
+                dto.setContent(extractTextOnly(dto.getContent()));
+            }
+        }
         return result;
     }
 

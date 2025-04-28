@@ -1,18 +1,20 @@
 package com.app.feelog.mapper;
 
 import com.app.feelog.domain.dto.SubscribeDTO;
+import com.app.feelog.domain.enumeration.SubscribeStatus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface SubscribeMapper {
 
-    SubscribeDTO findByMemberAndChannel(@Param("memberId") Long memberId, @Param("channelId") Long channelId);
+    // 1. 구독 중인지 확인
+    boolean isSubscribed(@Param("memberId") Long memberId, @Param("channelId") Long channelId);
 
-    void insertSubscribe(@Param("channelId") Long channelId, @Param("memberId") Long memberId);
+    // 2. 구독 시작
+    void subscribe(SubscribeDTO subscribeDTO);
 
-    void updateSubscribeStatus(@Param("memberId") Long memberId, @Param("channelId") Long channelId, @Param("status") String status);
-
-    Long findChannelOwnerId(Long channelId);
+    // 3. 구독 취소
+    void unsubscribe(@Param("memberId") Long memberId, @Param("channelId") Long channelId);
 
 }

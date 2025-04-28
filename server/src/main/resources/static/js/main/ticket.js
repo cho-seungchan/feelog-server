@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // a 안 텍스트 변경
             trigger.textContent = selectedText;
 
+            // 숨겨진 input에 선택한 값 넣기
+            document.getElementById("request_subject").value = selectedText;
+
             // aria-selected 갱신
             options.forEach((opt) =>
                 opt.setAttribute("aria-selected", "false")
@@ -50,6 +53,16 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (e) {
         if (!trigger.contains(e.target) && !panel.contains(e.target)) {
             panel.style.display = "none";
+        }
+    });
+
+    const form = document.getElementById("new_request");
+    const agreeCheckbox = document.getElementById("request_custom_fields_360009496894");
+
+    form.addEventListener("submit", function (e) {
+        if (!agreeCheckbox.checked) {
+            e.preventDefault();
+            alert("개인정보 수집·이용에 동의해주셔야 제출할 수 있습니다.");
         }
     });
 });

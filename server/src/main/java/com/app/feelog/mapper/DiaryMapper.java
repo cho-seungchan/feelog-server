@@ -3,6 +3,7 @@ package com.app.feelog.mapper;
 import com.app.feelog.domain.dto.DiarySearchDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,5 +24,9 @@ public interface DiaryMapper {
     List<DiarySearchDTO> searchDiaries(String keyword);
 
     List<DiarySearchDTO> getRecentDiaries();
+
+    List<DiarySearchDTO> searchMoreDiaries(@Param("keyword") String keyword,
+                                           @Param("limit") int limit,
+                                           @Param("offset") int offset);
 
 }

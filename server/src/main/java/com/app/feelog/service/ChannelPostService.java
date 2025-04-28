@@ -64,5 +64,10 @@ public interface ChannelPostService {
 
     List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 
+    List<ChannelPostSearchDTO> searchChannelPostsCheer(String keyword);
+
+    List<ChannelPostSearchDTO> searchMoreChannelPosts(String keyword, int limit, int offset);
+
+    List<ChannelPostSearchDTO> searchMoreChannelPostsCheer(String keyword, int limit, int offset);
 
 }

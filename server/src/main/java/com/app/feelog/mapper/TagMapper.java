@@ -32,4 +32,8 @@ public interface TagMapper {
 
     void softDeleteById(@Param("id") Long id);
 
+    List<String> findPopularTags();
+
+    TagVO findByContent(@Param("content") String content);
+
 }

@@ -30,4 +30,6 @@ public interface TagService {
     Long findTagIdByContentAndChannelPostId(String content, Long channelPostId);
 
     Long findTagIdByContent(String content);
+
+    public List<String> getPopularTags();
 }

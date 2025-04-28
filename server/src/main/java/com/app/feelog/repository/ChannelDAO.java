@@ -17,4 +17,12 @@ public class ChannelDAO {
         return channelMapper.searchChannels(keyword);
     }
 
+    public List<ChannelSearchDTO> searchMoreChannels(String keyword, int limit, int offset) {
+        return channelMapper.searchMoreChannels(keyword, limit, offset);
+    }
+
+    public Long findChannelOwnerId(Long channelId) {
+        return channelMapper.findChannelOwnerId(channelId);
+    }
+
 }

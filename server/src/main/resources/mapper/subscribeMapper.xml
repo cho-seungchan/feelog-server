@@ -2,30 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.SubscribeMapper">
 
-    <select id="findByMemberAndChannel" resultType="com.app.feelog.domain.dto.SubscribeDTO">
-        SELECT *
-        FROM tbl_subscribe
-        WHERE member_id = #{memberId}
-          AND channel_id = #{channelId}
-    </select>
-
-    <insert id="insertSubscribe">
-        INSERT INTO tbl_subscribe (channel_id, member_id, subscribe_status)
-        VALUES (#{channelId}, #{memberId}, '정상')
+    <insert id="subscribe" parameterType="com.app.feelog.domain.dto.SubscribeDTO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tbl_subscribe (member_id, channel_id)
+        VALUES (#{memberId}, #{channelId})
     </insert>
 
-    <update id="updateSubscribeStatus">
-        UPDATE tbl_subscribe
-        SET subscribe_status = #{status},
-            updated_date = NOW()
+    <select id="isSubscribed" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1
+            FROM tbl_subscribe
+            WHERE member_id = #{memberId}
+              AND channel_id = #{channelId}
+        )
+    </select>
+
+    <delete id="unsubscribe">
+        DELETE FROM tbl_subscribe
         WHERE member_id = #{memberId}
           AND channel_id = #{channelId}
-    </update>
+    </delete>
 
-    <select id="findChannelOwnerId" resultType="long">
-        SELECT member_id
-        FROM tbl_channel
-        WHERE id = #{channelId}
-    </select>
 
 </mapper>

@@ -9,7 +9,6 @@ create table tbl_diary (
                            diary_file_path 		varchar(500) default '',
                            diary_file_name 		varchar(500) default '',
                            diary_file_size 		varchar(500) default '',
-                           diary_weather        varchar(500) default '',
                            diary_score          int default 0,
                            member_id 		    bigint not null,
                            feel_id              bigint not null,
@@ -77,3 +76,17 @@ WHERE id = 20;
 SELECT * FROM tbl_diary WHERE id = 22;
 
 select * from tbl_file;
+
+
+INSERT INTO tbl_diary (
+    diary_title,diary_content,diary_score,member_id,feel_id) VALUES
+(
+'제목',
+'내용',
+1,1,1
+);
+
+INSERT INTO tbl_diary (diary_title, diary_content, diary_score, member_id, feel_id) VALUES
+                                                                                        ('깨어있는 것이 고통이다.', '눈을 뜨는 순간부터 다시 시작되는 고통에 지친다. 잠시라도 나를 놓아버리고 싶은 마음뿐이다. 아무리 애써도 삶의 무게는 나를 짓누르고, 살아있는 것 자체가 버거운 고통이다.', 1, 1, 1),
+                                                                                        ('무언가를 해보려는 의지도 없다.', '기운이 빠지고, 아무것도 시도할 용기가 나지 않는다. 그냥 살아있는 것만으로도 벅차다. 더 이상 무엇을 시도할 힘조차 남아 있지 않다.', 1, 1, 1),
+                                                                                        ('내가 느끼는 아픔은 설명할 수 없다.', '이 아픔은 아무리 말해도 전혀 전달될 수 없다. 나만 느끼는 고통이기 때문에, 아무도 이해하지 못할 것이다. 그저 내 안에서 깊이 쌓여가는 이 아픔을 홀로 감당하고 있다.', 1, 1, 1);

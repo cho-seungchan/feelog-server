@@ -160,106 +160,106 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
 
         // ======= 추가된 검색 모달 기능 끝 =======
-        const button = document.getElementById("notificationBtn");
-        const menu = document.getElementById("notificationMenu");
-
-        if (button && menu) {
-            button.addEventListener("click", toggleMenu);
-            document.addEventListener("click", function (e) {
-                if (!menu.contains(e.target) && !button.contains(e.target)) {
-                    closeMenu();
-                }
-            });
-        }
-
-        // 메뉴 열림 상태 체크 변수
-        let isOpen = false;
-
-        function toggleProfileMenu(e) {
-            e.stopPropagation();
-
-            // 알림 메뉴가 열려 있으면 닫기
-            if (isOpen) {
-                closeMenu(); // 메뉴 상태값까지 같이 닫기
-            }
-
-            const isVisible = !profileMenu.classList.contains("hidden");
-            if (isVisible) {
-                profileMenu.classList.add("hidden");
-            } else {
-                updateMenuPosition();
-                profileMenu.classList.remove("hidden");
-            }
-        }
-
-        // 메뉴 닫기
-        function closeMenu() {
-            if (isOpen) {
-                isOpen = false;
-                menu.style.display = "none";
-            }
-        }
-
-        // 버튼 클릭 시 토글
-        button.addEventListener("click", toggleMenu);
-
-        // 메뉴 바깥 클릭 시 닫기
-        document.addEventListener("click", function (e) {
-            const isClickInside =
-                menu.contains(e.target) || button.contains(e.target);
-            if (!isClickInside) {
-                closeMenu();
-            }
-        });
-
-        function updateNotificationMenuPosition() {
-            const rect = button.getBoundingClientRect();
-            const menuWidth = menu.offsetWidth;
-            const viewportWidth = window.innerWidth;
-
-            const left = rect.left - 440;
-            const top = rect.bottom + 14; // 버튼 아래 8px 정도
-
-            const adjustedLeft = Math.min(left, viewportWidth - menuWidth - 8);
-
-            menu.style.position = "absolute";
-            menu.style.left = `${adjustedLeft}px`;
-            menu.style.top = `${top}px`;
-        }
-
-        function toggleMenu(e) {
-            e.stopPropagation();
-
-            // 프로필 메뉴가 열려 있으면 닫기
-            if (!profileMenu.classList.contains("hidden")) {
-                profileMenu.classList.add("hidden");
-            }
-
-            isOpen = !isOpen;
-            if (isOpen) {
-                updateNotificationMenuPosition();
-                menu.style.display = "block";
-            } else {
-                menu.style.display = "none";
-            }
-        }
-
-        window.addEventListener("resize", () => {
-            if (isOpen) {
-                updateNotificationMenuPosition();
-            }
-        });
-
-        const markAllAsReadBtn = document.querySelector(".joy-fsdjpg");
-        const allBadges = document.querySelectorAll(".joy-yhhqut");
-        const topCount = document.querySelector(".feelog-header-topSpan01");
-
-        if (markAllAsReadBtn) {
-            markAllAsReadBtn.addEventListener("click", () => {
-                allBadges.forEach((badge) => (badge.style.display = "none"));
-                if (topCount) topCount.style.display = "none";
-            });
-        }
+        // const button = document.getElementById("notificationBtn");
+        // const menu = document.getElementById("notificationMenu");
+        //
+        // if (button && menu) {
+        //     button.addEventListener("click", toggleMenu);
+        //     document.addEventListener("click", function (e) {
+        //         if (!menu.contains(e.target) && !button.contains(e.target)) {
+        //             closeMenu();
+        //         }
+        //     });
+        // }
+        //
+        // // 메뉴 열림 상태 체크 변수
+        // let isOpen = false;
+        //
+        // function toggleProfileMenu(e) {
+        //     e.stopPropagation();
+        //
+        //     // 알림 메뉴가 열려 있으면 닫기
+        //     if (isOpen) {
+        //         closeMenu(); // 메뉴 상태값까지 같이 닫기
+        //     }
+        //
+        //     const isVisible = !profileMenu.classList.contains("hidden");
+        //     if (isVisible) {
+        //         profileMenu.classList.add("hidden");
+        //     } else {
+        //         updateMenuPosition();
+        //         profileMenu.classList.remove("hidden");
+        //     }
+        // }
+        //
+        // // 메뉴 닫기
+        // function closeMenu() {
+        //     if (isOpen) {
+        //         isOpen = false;
+        //         menu.style.display = "none";
+        //     }
+        // }
+        //
+        // // 버튼 클릭 시 토글
+        // button.addEventListener("click", toggleMenu);
+        //
+        // // 메뉴 바깥 클릭 시 닫기
+        // document.addEventListener("click", function (e) {
+        //     const isClickInside =
+        //         menu.contains(e.target) || button.contains(e.target);
+        //     if (!isClickInside) {
+        //         closeMenu();
+        //     }
+        // });
+        //
+        // function updateNotificationMenuPosition() {
+        //     const rect = button.getBoundingClientRect();
+        //     const menuWidth = menu.offsetWidth;
+        //     const viewportWidth = window.innerWidth;
+        //
+        //     const left = rect.left - 440;
+        //     const top = rect.bottom + 14; // 버튼 아래 8px 정도
+        //
+        //     const adjustedLeft = Math.min(left, viewportWidth - menuWidth - 8);
+        //
+        //     menu.style.position = "absolute";
+        //     menu.style.left = `${adjustedLeft}px`;
+        //     menu.style.top = `${top}px`;
+        // }
+        //
+        // function toggleMenu(e) {
+        //     e.stopPropagation();
+        //
+        //     // 프로필 메뉴가 열려 있으면 닫기
+        //     if (!profileMenu.classList.contains("hidden")) {
+        //         profileMenu.classList.add("hidden");
+        //     }
+        //
+        //     isOpen = !isOpen;
+        //     if (isOpen) {
+        //         updateNotificationMenuPosition();
+        //         menu.style.display = "block";
+        //     } else {
+        //         menu.style.display = "none";
+        //     }
+        // }
+        //
+        // window.addEventListener("resize", () => {
+        //     if (isOpen) {
+        //         updateNotificationMenuPosition();
+        //     }
+        // });
+        //
+        // const markAllAsReadBtn = document.querySelector(".joy-fsdjpg");
+        // const allBadges = document.querySelectorAll(".joy-yhhqut");
+        // const topCount = document.querySelector(".feelog-header-topSpan01");
+        //
+        // if (markAllAsReadBtn) {
+        //     markAllAsReadBtn.addEventListener("click", () => {
+        //         allBadges.forEach((badge) => (badge.style.display = "none"));
+        //         if (topCount) topCount.style.display = "none";
+        //     });
+        // }
         // =========================메세지 창==========================//
         const messageButton = document.querySelector(".message-button");
         console.log(messageButton);

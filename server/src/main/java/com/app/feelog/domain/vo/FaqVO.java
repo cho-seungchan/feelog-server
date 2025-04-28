@@ -2,6 +2,7 @@ package com.app.feelog.domain.vo;
 
 import com.app.feelog.domain.enumeration.FaqStatus;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class FaqVO extends Period{
+@SuperBuilder
+public class FaqVO extends SuperPeriod{
     @EqualsAndHashCode.Include
     private Long id;
     private String faqTitle;
@@ -17,13 +19,4 @@ public class FaqVO extends Period{
     private Long memberId;
     private FaqStatus faqStatus;
 
-    @Builder
-    public FaqVO(String createdDate, String updatedDate, Long id, String faqTitle, String faqContent, Long memberId, FaqStatus faqStatus) {
-        super(createdDate, updatedDate);
-        this.id = id;
-        this.faqTitle = faqTitle;
-        this.faqContent = faqContent;
-        this.memberId = memberId;
-        this.faqStatus = faqStatus;
-    }
 }

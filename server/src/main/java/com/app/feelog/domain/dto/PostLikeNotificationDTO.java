@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PostLikeNotificationDTO {
     @EqualsAndHashCode.Include
-    Long id;
-    Long postLikeId;
+    private Long id;
+    private Long postLikeId;
 
-   public PostLikeNotificationVO toVO() {
-       return PostLikeNotificationVO.builder()
-               .id(id)
-               .postLikeId(postLikeId)
-               .build();
-   }
+    public PostLikeNotificationVO toVO() {
+        return PostLikeNotificationVO.builder()
+                .id(id)
+                .postLikeId(postLikeId)
+                .build();
+    }
 }

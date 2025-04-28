@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.feelog.mapper.RelatedSearchMapper">
+
+    <insert id="insertRelatedSearch">
+        INSERT INTO tbl_related_search (
+            keyword,
+            tag_id,
+            member_id
+        ) VALUES (
+                     #{keyword},
+                     #{tagId},
+                     #{memberId}
+                 )
+    </insert>
+
+    <select id="findRelatedTagsByKeyword" resultType="string">
+        SELECT DISTINCT contents
+        FROM (
+                 SELECT t.contents, rs.created_date
+                 FROM tbl_related_search rs
+                          JOIN tbl_tag t ON rs.tag_id = t.id
+                 WHERE rs.keyword = #{keyword}
+                   AND t.tag_status = 'ACTIVE'
+                 ORDER BY rs.created_date DESC
+                 LIMIT 100
+             ) AS recent_tags
+        LIMIT 10
+    </select>
+
+
+</mapper>

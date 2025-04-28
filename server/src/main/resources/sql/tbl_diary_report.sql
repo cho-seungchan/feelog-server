@@ -13,6 +13,7 @@ create table tbl_diary_report (
 );
 
 
+
 create view view_diary_report as
 select
     dr.id as report_id,

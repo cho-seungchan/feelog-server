@@ -6,6 +6,7 @@ import com.app.feelog.domain.dto.MainPostListDTO;
 import com.app.feelog.domain.vo.ChannelPostVO;
 import com.app.feelog.util.pagination.PostPagination;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -37,4 +38,11 @@ public interface ChannelPostMapper {
     public int selectPostReplyCountByPostId(Long id);
 
     List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
+
+    List<ChannelPostSearchDTO> searchChannelPostsCheer(String keyword);
+
+    List<ChannelPostSearchDTO> searchMoreChannelPosts(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+
+    List<ChannelPostSearchDTO> searchMoreChannelPostsCheer(String keyword, int limit, int offset);
+
 }

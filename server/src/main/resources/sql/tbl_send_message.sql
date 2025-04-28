@@ -10,3 +10,6 @@ create table tbl_send_message(
     constraint fk_send_message_sender foreign key (receiver_id)
         references tbl_member(id)
 );
+
+
+select * from tbl_message join tbl_send_message join tbl_receive_message;

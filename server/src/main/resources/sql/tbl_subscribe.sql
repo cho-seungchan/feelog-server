@@ -12,6 +12,7 @@ create table tbl_subscribe(
 );
 
 
+
 select * from view_subscribe_status;
 
 CREATE OR REPLACE VIEW view_subscribe_status AS

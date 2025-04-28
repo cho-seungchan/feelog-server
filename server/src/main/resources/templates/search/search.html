@@ -51,7 +51,7 @@
                                                 aria-label="검색어 입력"
                                                 maxlength="50"
                                                 class="FlgInput-input-need joy-eq6fv7"
-                                                value="검색어를 입력해 주세요."
+                                                placeholder="검색어를 입력해 주세요."
                                                 name="keyword"
                                             />
                                             <div
@@ -101,13 +101,13 @@
                                                     ></path>
                                                 </svg>
                                             </div>
-                                            <input
+                                            <!--<input
                                                 aria-label="검색어 입력"
                                                 maxlength="50"
                                                 class="FlgInput-input-need joy-eq6fv7"
                                                 value="청"
                                                 name="keyword"
-                                            />
+                                            />-->
                                             <div
                                                 class="FlgInput-endDecorator joy-tob0ta"
                                             >
@@ -142,50 +142,37 @@
                             </div>
                             <div class="FlgBox-root-need joy-79elbk">
                                 <nav class="FlgBox-root-need joy-1a2ckny">
-                                    <ul class="FlgList-sizeMd-need joy-13gry7j">
+                                    <ul class="search-tab FlgList-sizeMd-need joy-13gry7j">
                                         <a
-                                            class="default joy-yhpm4r"
-                                            href="/search?keyword=청"
+                                            th:href="@{/search/search(keyword=${keyword})}"
+                                            th:class="${type} == null ? 'default joy-yhpm4r' : 'joy-1t2bmje'"
                                             ><p
-                                                data-first-child=""
-                                                class="joy-7rqbdn"
-                                            >
+                                                th:class="${type} == null ? 'joy-7rqbdn' : 'joy-r8ur5l'">
                                                 전체
                                             </p></a
                                         ><a
-                                            class="joy-1t2bmje"
-                                            href="/search/post?keyword=청"
+                                            th:href="@{/search/search(keyword=${keyword}, type='diary')}"
+                                            th:class="${type} == 'diary' ? 'default joy-yhpm4r' : 'joy-1t2bmje'"
                                             ><p
-                                                data-first-child=""
-                                                class="joy-r8ur5l"
-                                            >
-                                                마음일기
+                                            th:class="${type} == 'diary' ? 'joy-7rqbdn' : 'joy-r8ur5l'">
+                                                마음 일기
                                             </p></a
                                         ><a
-                                            class="joy-1t2bmje"
-                                            href="/search/series?keyword=청"
-                                            ><p
-                                                data-first-child=""
-                                                class="joy-r8ur5l"
-                                            >
+                                            th:href="@{/search/search(keyword=${keyword}, type='post')}"
+                                            th:class="${type} == 'post' ? 'default joy-yhpm4r' : 'joy-1t2bmje'"
+                                            ><p th:class="${type} == 'post' ? 'joy-7rqbdn' : 'joy-r8ur5l'">
                                                 포스트
                                             </p></a
                                         ><a
-                                            class="joy-1t2bmje"
-                                            href="/search/request?keyword=청"
-                                            ><p
-                                                data-first-child=""
-                                                class="joy-r8ur5l"
-                                            >
+                                            th:href="@{/search/search(keyword=${keyword}, type='cheer')}"
+                                            th:class="${type} == 'cheer' ? 'default joy-yhpm4r' : 'joy-1t2bmje'"
+                                            ><p th:class="${type} == 'cheer' ? 'joy-7rqbdn' : 'joy-r8ur5l'">
                                                 응원글
                                             </p></a
                                         ><a
-                                            class="joy-1t2bmje"
-                                            href="/search/channel?keyword=청"
-                                            ><p
-                                                data-first-child=""
-                                                class="joy-r8ur5l"
-                                            >
+                                            th:href="@{/search/search(keyword=${keyword}, type='channel')}"
+                                            th:class="${type} == 'channe;' ? 'default joy-yhpm4r' : 'joy-1t2bmje'"
+                                            ><p th:class="${type} == 'channel' ? 'joy-7rqbdn' : 'joy-r8ur5l'">
                                                 채널
                                             </p></a
                                         >
@@ -194,23 +181,28 @@
                             </div>
                         </div>
                         <div class="FlgStack-root-need joy-spflnw">
+                            <div th:if="${type} == null or ${type} == 'diary'">
                             <div class="FlgStack-root-need jk-feelog-div031">
                                 <header class="joy-1yenopd">
-                                    마음일기
+                                    [마음 일기]
                                 </header>
-                                <div class="FlgStack-root-need joy-6ye9za">
+                                <div class="FlgStack-root-need joy-6ye9za container-diary">
                                     <div class="FlgBox-root-need joy-1hw15it" th:each="diary : ${diaries}" data-google-interstitial="false">
-                                        <div class="FlgStack-root-need joy-w5a8kp">
-                                            <div class="FlgStack-root-need joy-16yrq9k">
-                                                <a class="FlgStack-root-need joy-1kkt86i" th:href="@{'/diary/' + ${diary.id}}">
+                                        <div class="FlgStack-root-need joy-w5a8kp diary-card" th:attr="data-diary-id=${diary.id}">
+                                            <div class="FlgStack-root-need joy-16yrq9k ">
+                                                <span class="FlgStack-root-need joy-1kkt86i"  role="link" style="cursor: pointer;" th:attr="data-href='/diary/' + ${diary.id}">
                                                     <h3 class="joy-qs45i0" th:text="${diary.title}">제목</h3>
                                                     <p class="main-post-subtitle jk-feelog-p010">
                                                         <span class="joy-i9tg8j" th:utext="${#strings.abbreviate(diary.content, 100)}">내용 일부</span>
                                                     </p>
-                                                </a>
+                                                </span>
                                                 <div class="FlgStack-root-need joy-1q1zl3i">
-                                                    <a th:each="tag : ${diary.tagsList}" th:href="@{/search/diary(keyword=${tag})}" class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeSm-need FlgChip-variantSoft-need jk-feelog-a-004">
-                                                        <span class="FlgChip-label-need jk-feelog-span006" th:text="${tag}">태그</span>
+                                                    <a th:each="tag : ${diary.tagsList}"
+                                                       th:href="@{/search/search(keyword=${tag})}"
+                                                       class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeSm-need FlgChip-variantSoft-need jk-feelog-a-004">
+                                                        <span class="tag FlgChip-label-need jk-feelog-span006"
+                                                              th:attr="data-tag-content=${tag}"
+                                                              th:text="'#' + ${tag}">태그</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -240,64 +232,141 @@
                                     </div>
                                 </div>
                                 <div class="FlgBox-root-need joy-lbtr12">
-                                    <a
-                                            class="FlgButton-sizeMd-need joy-47vq9z"
-                                            href="/search/diary?keyword="
-                                    >마음일기 더 보기</a
+                                    <button
+                                            class="FlgButton-sizeMd-need joy-47vq9z load-more-btn-diary"
+                                            th:data-type="diary"
+                                            th:data-offset="5"
+                                            th:data-keyword="${keyword == null ? '' : keyword}">
+                                    마음 일기 더 보기</button
                                     >
                                 </div>
 
                             </div>
+                            </div>
+                            <div th:if="${type} == null or ${type} == 'post'">
                             <div
                                 class="FlgStack-root-need jk-feelog-div031"
                                 data-google-interstitial="false"
                             >
-                                <header class="joy-1yenopd">포스트/응원글</header>
-                                <div class="FlgStack-root-need joy-4473rl">
-                                    <div class="FlgStack-root-need joy-12smpxv" th:each="post : ${channelPosts}">
-                                        <a class="FlgBox-root-need joy-1lrlkwu" th:href="@{'/post/' + ${post.id}}">
-                                            <div class="FlgBox-root-need jk-feelog-div056">
-                                                <img th:src="@{'/files/display?path=' + ${post.thumbnailUrl}}" alt="대표 이미지"
-                                                     loading="lazy" decoding="async" data-nimg="fill"
-                                                     style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;" />
-                                            </div>
-                                        </a>
+                                <header class="joy-1yenopd">[포스트]</header>
+                                <div class="FlgStack-root-need joy-4473rl container-post">
+                                    <div class="FlgStack-root-need joy-12smpxv post-card"
+                                         th:each="post : ${channelPosts}"
+                                         th:attr="data-post-id=${post.id}">
+
+        <span class="FlgBox-root-need joy-1lrlkwu"
+              role="link"
+              style="cursor: pointer;"
+              th:attr="data-href='/post/' + ${post.id}">
+            <div class="FlgBox-root-need jk-feelog-div056">
+                <img th:src="@{'/files/display?path=' + ${post.thumbnailUrl}}"
+                     alt="대표 이미지"
+                     loading="lazy" decoding="async"
+                     style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover;" />
+            </div>
+        </span>
+
                                         <div class="FlgStack-root-need joy-pvvyl1">
-                                            <a th:href="@{'/post/' + ${post.id}}">
-                                                <h3 class="joy-j4zrps" th:text="${post.title}">제목</h3>
-                                            </a>
-                                            <a th:href="@{'/post/' + ${post.id}}">
-                                                <p class="joy-if6bzd" th:utext="${#strings.abbreviate(post.content, 100)}">내용 요약</p>
-                                            </a>
+            <span role="link" style="cursor: pointer;" th:attr="data-href='/post/' + ${post.id}">
+                <h3 class="joy-j4zrps" th:text="${post.title}">제목</h3>
+            </span>
+                                            <span role="link" style="cursor: pointer;" th:attr="data-href='/post/' + ${post.id}">
+                <p class="joy-if6bzd" th:utext="${#strings.abbreviate(post.content, 100)}">내용 요약</p>
+            </span>
                                             <p class="joy-mf6g6b">
-                                                <a class="FlgTypography-inherit joy-1onqwxe" th:href="@{'/profile/' + ${post.memberId}}" th:text="${post.nickname}">닉네임</a>
+                                                <a class="FlgTypography-inherit joy-1onqwxe"
+                                                   th:href="@{'/profile/' + ${post.memberId}}"
+                                                   th:text="${post.nickname}">닉네임</a>
                                             </p>
                                             <div class="FlgStack-root-need joy-cs0i1i">
-                                                <a th:each="tag : ${post.tagsList}" th:href="@{/search/post(keyword=${tag})}"
+                                                <a th:each="tag : ${post.tagsList}"
+                                                   th:href="@{/search/search(keyword=${tag})}"
                                                    class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeSm-need FlgChip-variantSoft-need joy-1e5bhkj">
-                                                    <span class="FlgChip-label-need jk-feelog-span006" th:text="${tag}">태그</span>
+                                                    <span class="tag FlgChip-label-need jk-feelog-span006" th:text="${tag}">태그</span>
                                                 </a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                                 <div class="FlgBox-root-need joy-lbtr12">
-                                    <a
-                                        class="FlgButton-sizeMd-need joy-47vq9z"
-                                        href="/search/channelPost?keyword=청"
-                                        >포스트/응원글 더 보기</a
+                                    <button
+                                        class="FlgButton-sizeMd-need joy-47vq9z load-more-btn-post"
+                                        th:data-type="post"
+                                        th:data-offset="5"
+                                        th:data-keyword="${keyword == null ? '' : keyword}"
+                                        >포스트 더 보기</button
                                     >
                                 </div>
                             </div>
+                            </div>
+
+                            <div th:if="${type} == null or ${type} == 'cheer'">
+                                <div
+                                        class="FlgStack-root-need jk-feelog-div031"
+                                        data-google-interstitial="false"
+                                >
+                                    <header class="joy-1yenopd">[응원글]</header>
+                                    <div class="FlgStack-root-need joy-4473rl container-cheer">
+                                        <div class="FlgStack-root-need joy-12smpxv cheer-card"
+                                             th:each="cheer : ${channelPostsCheer}"
+                                             th:attr="data-cheer-id=${cheer.id}">
+
+    <span class="FlgBox-root-need joy-1lrlkwu"
+          role="link" style="cursor: pointer;"
+          th:attr="data-href='/cheer/' + ${cheer.id}">
+        <div class="FlgBox-root-need jk-feelog-div056">
+            <img th:src="@{'/files/display?path=' + ${cheer.thumbnailUrl}}" alt="대표 이미지"
+                 loading="lazy" decoding="async"
+                 style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;" />
+        </div>
+    </span>
+
+                                            <div class="FlgStack-root-need joy-pvvyl1">
+        <span role="link" style="cursor: pointer;" th:attr="data-href='/cheer/' + ${cheer.id}">
+            <h3 class="joy-j4zrps" th:text="${cheer.title}">제목</h3>
+        </span>
+                                                <span role="link" style="cursor: pointer;" th:attr="data-href='/cheer/' + ${cheer.id}">
+            <p class="joy-if6bzd" th:utext="${#strings.abbreviate(cheer.content, 100)}">내용 요약</p>
+        </span>
+                                                <p class="joy-mf6g6b">
+                                                    <a class="FlgTypography-inherit joy-1onqwxe"
+                                                       th:href="@{'/profile/' + ${cheer.memberId}}"
+                                                       th:text="${cheer.nickname}">닉네임</a>
+                                                </p>
+                                                <div class="FlgStack-root-need joy-cs0i1i">
+                                                    <a th:each="tag : ${cheer.tagsList}"
+                                                       th:href="@{/search/search(keyword=${tag})}"
+                                                       class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeSm-need FlgChip-variantSoft-need joy-1e5bhkj">
+                <span class="tag FlgChip-label-need jk-feelog-span006"
+                      th:attr="data-tag-content=${tag}"
+                      th:text="'#' + ${tag}">태그</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="FlgBox-root-need joy-lbtr12">
+                                        <button
+                                                class="FlgButton-sizeMd-need joy-47vq9z load-more-btn-cheer"
+                                                th:data-type="cheer"
+                                                th:data-offset="5"
+                                                th:data-keyword="${keyword == null ? '' : keyword}"
+                                        >응원글 더 보기</button
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div th:if="${type} == null or ${type} == 'channel'">
                             <div
                                 class="FlgStack-root-need jk-feelog-div031"
                                 data-google-interstitial="false"
                             >
                                 <header class="joy-1yenopd">
-                                    채널 6,550개
+                                    [채널]
                                 </header>
-                                <div class="FlgStack-root-need joy-4473rl">
+                                <div class="FlgStack-root-need joy-4473rl container-channel">
                                     <div class="FlgBox-root-need joy-c1ffoy" th:each="channel : ${channels}">
                                         <a th:href="@{'/@' + ${channel.channelUrl}}" style="height: fit-content">
                                             <div class="joy-1mszhh9">
@@ -333,70 +402,56 @@
                                                     </p>
                                                 </div>
                                                 <div class="FlgStack-root-need joy-19sxttz">
-                                                    <button class="FlgButton-sizeSm-need joy-ubyl7c subscribe-btn" type="button" th:data-channel-id="${channel.id}">구독</button>
+                                                    <button
+                                                            class="FlgButton-sizeSm-need joy-ubyl7c subscribe-btn"
+                                                            type="button"
+                                                            th:data-channel-id="${channel.id}"
+                                                            th:text="${channel.subscribed} ? '구독 취소' : '구독'">
+                                                    </button>
+
                                                 </div>
                                             </div>
                                             <p class="joy-1dtob7v" th:text="${channel.description}">채널 소개</p>
                                         </div>
                                     </div>
-                                    <hr class="jk-feelog-hr01" />
                                 </div>
                                 <div class="FlgBox-root-need joy-1iwjh4a">
-                                    <a
-                                        class="FlgButton-sizeMd-need joy-47vq9z"
-                                        href="/search/channel?keyword=청"
-                                        >채널 더 보기</a
+                                    <button
+                                        class="FlgButton-sizeMd-need joy-47vq9z load-more-btn-channel"
+                                        th:data-type="channel"
+                                        th:data-offset="5"
+                                        th:data-keyword="${keyword == null ? '' : keyword}"
+                                        >채널 더 보기</button
                                     >
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </div>
-                    <section
-                        class="FlgStack-root-need joy-5x3w9r"
-                        data-google-interstitial="false"
-                    >
+                    <section class="FlgStack-root-need joy-5x3w9r" data-google-interstitial="false">
                         <div class="FlgStack-root-need joy-1p7f5no">
                             <p class="joy-artgpu">연관 검색어</p>
                             <div class="FlgStack-root-need joy-tz0dn6">
-                                <a
-                                    class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeLg FlgChip-variantSoft-need joy-1sf5u6j"
-                                    href="/search?keyword=밤텬"
-                                    ><span
-                                        class="FlgChip-label-need FlgChip-label-needLg jk-feelog-span006"
-                                        id=":r87:"
-                                        >마음</span
-                                    ></a
-                                ><a
-                                    class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeLg FlgChip-variantSoft-need joy-1sf5u6j"
-                                    href="/search?keyword=밤텬 청"
-                                    ><span
-                                        class="FlgChip-label-need FlgChip-label-needLg jk-feelog-span006"
-                                        id=":r88:"
-                                        >일기</span
-                                    ></a
-                                >
+                                <th:block th:each="keyword, iterStat : ${relatedKeywords}" th:if="${iterStat.index} < 10">
+                                    <a class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeLg FlgChip-variantSoft-need joy-1sf5u6j"
+                                       th:href="@{/search/search(keyword=${keyword})}">
+                <span class="FlgChip-label-need FlgChip-label-needLg jk-feelog-span006"
+                      th:text="'#' + ${keyword}">#키워드</span>
+                                    </a>
+                                </th:block>
                             </div>
                         </div>
+
                         <div class="FlgStack-root-need joy-1t7isdu">
                             <div class="FlgStack-root-need jk-feelog-div022">
                                 <p class="joy-artgpu">추천 태그</p>
                                 <div class="FlgStack-root-need joy-tz0dn6">
-                                    <a
-                                        class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeLg FlgChip-variantSoft-need joy-1sf5u6j"
-                                        href="/search?keyword=가끔"
-                                        ><span
-                                            class="FlgChip-label-need FlgChip-label-needLg jk-feelog-span006"
-                                            id=":r8a:"
-                                            >#마음일기</span
-                                        ></a
-                                    ><a
-                                        class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeLg FlgChip-variantSoft-need joy-1sf5u6j"
-                                        href="/search?keyword=구건일"
-                                        ><span
-                                            class="FlgChip-label-need FlgChip-label-needLg jk-feelog-span006"
-                                            id=":r8b:"
-                                            >#응원글</span
-                                        ></a>
+                                    <a th:each="tag : ${recommendedTags}"
+                                       class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeLg FlgChip-variantSoft-need joy-1sf5u6j"
+                                       th:href="@{/search/search(keyword=${tag})}">
+                    <span class="FlgChip-label-need FlgChip-label-needLg jk-feelog-span006"
+                          th:text="'#' + ${tag}">#태그</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -404,372 +459,10 @@
                 </main>
             </div>
         </div>
-        <ul
-            role="menu"
-            tabindex="-1"
-            id="report-menu"
-            class="FlgMenu-root FlgMenu-variantPlain FlgMenu-colorNeutral FlgMenu-sizeMd joy-1apgu09"
-            style="
-                display: none;
-                position: absolute;
-                inset: 0px 0px auto auto;
-                margin: 0px;
-                transform: translate(-852px, 465px);
-            "
-            data-popper-placement="bottom-end"
-        >
-            <li
-                tabindex="0"
-                id="report-btn"
-                role="menuitem"
-                class="FlgMenuItem-root FlgMenuItem-colorNeutral FlgMenuItem-variantPlain joy-16nydwy"
-            >
-                신고하기
-            </li>
-        </ul>
-        <div
-            role="presentation"
-            class="report-detail FlgModal-root-need jk-feelog-div013"
-            style="display: none"
-        >
-            <div aria-hidden="true" open="" class="jk-feelog-div014"></div>
-            <div tabindex="0" data-testid="sentinelStart"></div>
-            <form>
-                <div
-                    role="dialog"
-                    aria-modal="true"
-                    aria-labelledby=":rjt:"
-                    aria-describedby=":rju:"
-                    class="FlgModalDialog-sizeLg-need FlgModalDialog-layoutTop joy-61usv1"
-                >
-                    <div class="FlgBox-root-need jk-feelog-div016">
-                        <h2 id=":rjt:" class="jk-feelog-h2-001">신고하기</h2>
-                        <div class="FlgStack-root-need joy-1eay3sz"></div>
-                        <button
-                            aria-label="닫기"
-                            class="FlgModalClose-root-need jk-feelog-btn006"
-                            type="button"
-                        >
-                            <svg
-                                focusable="false"
-                                aria-hidden="true"
-                                viewBox="0 0 24 24"
-                                data-testid="CloseIcon"
-                                class="jk-feelog-main-svg03"
-                            >
-                                <path
-                                    d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                                ></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <hr class="jk-feelog-hr03" />
-                    <div id=":rju:" class="jk-feelog-div017">
-                        <p class="joy-79ekfx">
-                            포스타입
-                            <a
-                                href="https://help.postype.com/hc/ko/articles/360008340054"
-                                target="_blank"
-                                class="FlgLink-inherit FlgLink-underlineAlways joy-ht2uii"
-                                >콘텐츠 정책</a
-                            >
-                            및
-                            <a
-                                href="https://help.postype.com/hc/articles/360022267273"
-                                target="_blank"
-                                class="FlgLink-inherit FlgLink-underlineAlways joy-ht2uii"
-                                >커뮤니티 가이드라인</a
-                            >에 위배되는 콘텐츠를 신고합니다. 다음 중 신고
-                            사유를 한 가지 선택하고, 상세 내용을 작성해 주세요.
-                        </p>
-                        <p class="FlgTypography-colorDanger joy-osh8l9">
-                            ※ 모든 신고 접수 건은 관리자 검토 후 조치됩니다.
-                            신고 사유와 관련해 구체적인 내용, 예시를 포함하여
-                            작성해 주시면 신속한 조치가 가능합니다.
-                        </p>
-                        <hr class="joy-jkrphs" />
-                        <div class="joy-1ibsnld">
-                            <label
-                                for=":rjv:"
-                                id=":rjv:-label"
-                                class="jk-feelog-label001"
-                                >신고 사유</label
-                            >
-                            <div
-                                role="radiogroup"
-                                id=":rjv:"
-                                aria-labelledby=":rjv:-label"
-                                class="FlgRadioGroup-root FlgRadioGroup-vertical FlgRadioGroup-variantPlain FlgRadioGroup-colorNeutral FlgRadioGroup-sizeMd joy-10nyz2e"
-                            >
-                                <div
-                                    class="FlgStack-root-need jk-feelog-div031"
-                                    data-first-child=""
-                                    data-parent="RadioGroup"
-                                >
-                                    <span
-                                        aria-describedby="성인/음란물:rh5:"
-                                        class="FlgRadio-root Flg-checked FlgRadio-variantSolid FlgRadio-colorPrimary FlgRadio-sizeSm joy-19ayu5a"
-                                        ><span
-                                            class="FlgRadio-radio Flg-checked joy-11c58eo"
-                                            ><span
-                                                class="FlgRadio-icon joy-jm3ztl"
-                                            ></span
-                                            ><span
-                                                class="FlgRadio-action Flg-checked joy-tpe6zg"
-                                                ><input
-                                                    id=":rk1:"
-                                                    class="FlgRadio-input joy-zo1pqd"
-                                                    type="radio"
-                                                    value="adult"
-                                                    checked=""
-                                                    name="reason" /></span></span
-                                        ><label
-                                            for=":rk1:"
-                                            class="FlgRadio-label joy-1fjtzvx"
-                                            >성인/음란물</label
-                                        ></span
-                                    >
-                                    <p id="성인/음란물:rh5:" class="joy-mcnwub">
-                                        성인물을 공개적으로 게시하거나
-                                        아동·청소년의 성 묘사 화상 등 음란물로
-                                        판별될 수 있는 경우
-                                    </p>
-                                </div>
-                                <div
-                                    class="FlgStack-root-need jk-feelog-div031"
-                                    data-parent="RadioGroup"
-                                >
-                                    <span
-                                        aria-describedby="홍보/도배:rh5:"
-                                        class="FlgRadio-root FlgRadio-variantSolid FlgRadio-colorNeutral FlgRadio-sizeSm joy-1cao2zj"
-                                        ><span class="FlgRadio-radio joy-8ktuf5"
-                                            ><span
-                                                class="FlgRadio-icon joy-7aolzd"
-                                            ></span
-                                            ><span
-                                                class="FlgRadio-action joy-tpe6zg"
-                                                ><input
-                                                    id=":rk2:"
-                                                    class="FlgRadio-input joy-zo1pqd"
-                                                    type="radio"
-                                                    value="spam"
-                                                    name="reason" /></span></span
-                                        ><label
-                                            for=":rk2:"
-                                            class="FlgRadio-label joy-1fjtzvx"
-                                            >홍보/도배</label
-                                        ></span
-                                    >
-                                    <p id="홍보/도배:rh5:" class="joy-mcnwub">
-                                        단순 홍보, 도배, 광고성 내용을 포함하는
-                                        경우
-                                    </p>
-                                </div>
-                                <div
-                                    class="FlgStack-root-need jk-feelog-div031"
-                                    data-parent="RadioGroup"
-                                >
-                                    <span
-                                        aria-describedby="범죄 및 불법 정보:rh5:"
-                                        class="FlgRadio-root FlgRadio-variantSolid FlgRadio-colorNeutral FlgRadio-sizeSm joy-1cao2zj"
-                                        ><span class="FlgRadio-radio joy-8ktuf5"
-                                            ><span
-                                                class="FlgRadio-icon joy-7aolzd"
-                                            ></span
-                                            ><span
-                                                class="FlgRadio-action joy-tpe6zg"
-                                                ><input
-                                                    id=":rk3:"
-                                                    class="FlgRadio-input joy-zo1pqd"
-                                                    type="radio"
-                                                    value="illegal"
-                                                    name="reason" /></span></span
-                                        ><label
-                                            for=":rk3:"
-                                            class="FlgRadio-label joy-1fjtzvx"
-                                            >범죄 및 불법 정보</label
-                                        ></span
-                                    >
-                                    <p
-                                        id="범죄 및 불법 정보:rh5:"
-                                        class="joy-mcnwub"
-                                    >
-                                        성매매·마약 등 현행법상 금지하는 불법성
-                                        정보를 포함한 경우
-                                    </p>
-                                </div>
-                                <div
-                                    class="FlgStack-root-need jk-feelog-div031"
-                                    data-parent="RadioGroup"
-                                >
-                                    <span
-                                        aria-describedby="차별/혐오:rh5:"
-                                        class="FlgRadio-root FlgRadio-variantSolid FlgRadio-colorNeutral FlgRadio-sizeSm joy-1cao2zj"
-                                        ><span class="FlgRadio-radio joy-8ktuf5"
-                                            ><span
-                                                class="FlgRadio-icon joy-7aolzd"
-                                            ></span
-                                            ><span
-                                                class="FlgRadio-action joy-tpe6zg"
-                                                ><input
-                                                    id=":rk4:"
-                                                    class="FlgRadio-input joy-zo1pqd"
-                                                    type="radio"
-                                                    value="hate"
-                                                    name="reason" /></span></span
-                                        ><label
-                                            for=":rk4:"
-                                            class="FlgRadio-label joy-1fjtzvx"
-                                            >차별/혐오</label
-                                        ></span
-                                    >
-                                    <p id="차별/혐오:rh5:" class="joy-mcnwub">
-                                        타인을 위협하거나 저속한 언어를 사용하여
-                                        혐오감 또는 불쾌감을 주는 경우
-                                    </p>
-                                </div>
-                                <div
-                                    class="FlgStack-root-need jk-feelog-div031"
-                                    data-parent="RadioGroup"
-                                >
-                                    <span
-                                        aria-describedby="권리 침해:rh5:"
-                                        class="FlgRadio-root Flg-disabled-need FlgRadio-variantSolid FlgRadio-colorNeutral FlgRadio-sizeSm joy-1cao2zj"
-                                        ><span
-                                            class="FlgRadio-radio Flg-disabled-need joy-8ktuf5"
-                                            ><span
-                                                class="FlgRadio-icon joy-7aolzd"
-                                            ></span
-                                            ><span
-                                                class="FlgRadio-action joy-tpe6zg"
-                                                ><input
-                                                    disabled=""
-                                                    id=":rk5:"
-                                                    class="FlgRadio-input joy-zo1pqd"
-                                                    type="radio"
-                                                    value="undefined"
-                                                    name="reason" /></span></span
-                                        ><label
-                                            for=":rk5:"
-                                            class="FlgRadio-label joy-1fjtzvx"
-                                            >권리 침해</label
-                                        ></span
-                                    >
-                                    <p id="권리 침해:rh5:" class="joy-mcnwub">
-                                        지식재산권, 저작권, 인격권(성명, 초상,
-                                        명예 등) 등 타인의 권리를 침해하는 경우.
-                                        해당 콘텐츠의 신고는
-                                        <a
-                                            href="https://right.postype.com/hc/ko"
-                                            target="_blank"
-                                            class="FlgLink-inherit FlgLink-underlineAlways joy-ht2uii"
-                                            >권리 침해 신고 센터</a
-                                        >를 이용해 주시기 바랍니다.
-                                    </p>
-                                </div>
-                                <div
-                                    class="FlgStack-root-need jk-feelog-div031"
-                                    data-last-child=""
-                                    data-parent="RadioGroup"
-                                >
-                                    <span
-                                        aria-describedby="허위 유료 콘텐츠:rh5:"
-                                        class="FlgRadio-root FlgRadio-variantSolid FlgRadio-colorNeutral FlgRadio-sizeSm joy-1cao2zj"
-                                        ><span class="FlgRadio-radio joy-8ktuf5"
-                                            ><span
-                                                class="FlgRadio-icon joy-7aolzd"
-                                            ></span
-                                            ><span
-                                                class="FlgRadio-action joy-tpe6zg"
-                                                ><input
-                                                    id=":rk6:"
-                                                    class="FlgRadio-input joy-zo1pqd"
-                                                    type="radio"
-                                                    value="scam"
-                                                    name="reason" /></span></span
-                                        ><label
-                                            for=":rk6:"
-                                            class="FlgRadio-label joy-1fjtzvx"
-                                            >허위 유료 콘텐츠</label
-                                        ></span
-                                    >
-                                    <p
-                                        id="허위 유료 콘텐츠:rh5:"
-                                        class="joy-mcnwub"
-                                    >
-                                        허위/불법 콘텐츠 구매로 인한 피해는
-                                        <a
-                                            href="https://help.postype.com/hc/ko/articles/900006791583"
-                                            target="_blank"
-                                            class="FlgLink-inherit FlgLink-underlineAlways joy-ht2uii"
-                                            >피해 구제 절차 문서</a
-                                        >를 참고하시기 바랍니다. 포스타입은
-                                        이용자의 권익 보호를 위해 내부적으로
-                                        피해 구제 절차를 마련하고 있습니다.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="joy-tsfmhy" />
-                        <div class="joy-1ibsnld">
-                            <label
-                                for=":rk7:"
-                                id=":rk7:-label"
-                                class="jk-feelog-label001"
-                                >신고 상세 내용</label
-                            >
-                            <div
-                                class="FlgTextarea-variantOutlined-need joy-xt0h28"
-                            >
-                                <textarea
-                                    rows="3"
-                                    id=":rk7:"
-                                    name="reporterMemo"
-                                    placeholder="신고 사유에 해당하는 문구를 발췌하거나 맥락 등을 포함하여 최대한 구체적으로 작성해 주세요. (10자 이상)"
-                                    maxlength="200"
-                                    class="jk-feelog-txtarea001"
-                                    style="height: 72px"
-                                ></textarea
-                                ><textarea
-                                    aria-hidden="true"
-                                    class="jk-feelog-txtarea001"
-                                    readonly=""
-                                    tabindex="-1"
-                                    style="
-                                        visibility: hidden;
-                                        position: absolute;
-                                        overflow: hidden;
-                                        height: 0px;
-                                        top: 0px;
-                                        left: 0px;
-                                        transform: translateZ(0px);
-                                        padding-top: 0px;
-                                        padding-bottom: 0px;
-                                        width: 611px;
-                                    "
-                                ></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="joy-kn5871" />
-                    <div data-last-child="" class="joy-1ao94ot">
-                        <button
-                            type="submit"
-                            class="Flg-disabled-need FlgButton-sizeMd-need joy-10kto0v"
-                            disabled=""
-                        >
-                            신고하기</button
-                        ><button
-                            class="FlgButton-sizeMd-need joy-1bxt4bb"
-                            type="button"
-                        >
-                            취소
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <div tabindex="0" data-testid="sentinelEnd"></div>
-        </div>
+
+
+
+
         <!-- footer 넣을 곳 -->
         <footer id="main-footer"
                 th:replace="~{main/footer.html :: #main-footer}"></footer>
@@ -779,4 +472,13 @@
     <script src="/js/search/search.js"></script>
     <script src="/js/subscribe/subscribe.js"></script>
     <script src="/js/main/main-search-modal.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const keyword = /*[[${keyword}]]*/ '';
+        if (keyword) {
+            sessionStorage.setItem('searchKeyword', keyword);
+            console.log("서버에서 받은 키워드 sessionStorage에 재저장:", keyword);
+        }
+        /*]]>*/
+    </script>
 </html>
