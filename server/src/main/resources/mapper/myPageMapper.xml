@@ -147,6 +147,23 @@
         limit #{pagination.offset}, #{pagination.rowCount};
     </select>
 
+    <select id="getChannelPostById" resultType="channelPostVO">
+        select
+            p.id,
+            p.post_title,
+            p.post_content,
+            p.created_date,
+            p.updated_date,
+            cp.post_read_count,
+            cp.post_file_path,
+            cp.post_file_name
+       from   tbl_post p
+       join   tbl_channel_post cp
+       on     p.id  = cp.id
+       where  p.id          =  #{id}
+       and    p.post_status = '정상'
+    </select>
+
     <select id="getPostById" resultType="postVO">
         select
             id,
@@ -187,6 +204,147 @@
           and  date(created_date) = current_date()
     </select>
 
+    <select id="getNotifySubscribeTotalCount" resultType="_int">
+        SELECT count(*)
+        FROM tbl_subscribe s
+                 JOIN tbl_channel c1 ON s.channel_id = c1.id
+                 JOIN tbl_channel c2 ON s.member_id = c2.member_id
+        WHERE c1.member_id = #{memberId}
+          AND s.subscribe_status = '정상'
+          AND c2.channel_status = '정상';
+    </select>
+
+    <select id="getNotifySubscribe" resultType="channelVO">
+        SELECT
+            c2.id,
+            c2.channel_title,
+            c2.channel_introduce,
+            c2.channel_url,
+            c2.channel_file_path,
+            c2.channel_file_name,
+            c2.member_id,
+            c2.created_date,
+            c2.updated_date
+        FROM tbl_subscribe s
+                 JOIN tbl_channel c1 ON s.channel_id = c1.id
+                 JOIN tbl_channel c2 ON s.member_id = c2.member_id
+        WHERE c1.member_id = #{memberId}
+          AND s.subscribe_status = '정상'
+          AND c2.channel_status = '정상'
+        order by s.id desc
+        limit #{pagination.offset}, #{pagination.rowCount};
+    </select>
+
+    <select id="getStorageSubscribeTotalCount" resultType="_int">
+        SELECT count(*)
+        FROM tbl_subscribe s
+                 JOIN tbl_channel c ON s.channel_id = c.id
+        WHERE s.member_id = #{memberId}
+          AND s.subscribe_status = '정상'
+          AND c.channel_status = '정상'
+    </select>
+
+    <select id="getStorageSubscribe" resultType="channelVO">
+        SELECT
+            c.id,
+            c.channel_title,
+            c.channel_introduce,
+            c.channel_url,
+            c.channel_file_path,
+            c.channel_file_name,
+            c.member_id,
+            c.created_date,
+            c.updated_date
+        FROM tbl_subscribe s
+                 JOIN tbl_channel c ON s.channel_id = c.id
+        WHERE s.member_id = #{memberId}
+          AND s.subscribe_status = '정상'
+          AND c.channel_status = '정상'
+        order by s.id desc
+            limit #{pagination.offset}, #{pagination.rowCount}
+    </select>
+
+    <select id="getStorageScrapTotalCount" resultType="_int">
+        select count(*)
+        from   tbl_channel_post_scrap
+        where  member_id = #{memberId}
+          and    channel_post_scrap_status = '정상'
+    </select>
+
+    <select id="getStorageScrap" resultType="scrapVO">
+        select
+            id,
+            member_id,
+            post_id
+        from   tbl_channel_post_scrap
+        where  member_id = #{memberId}
+          and    channel_post_scrap_status = '정상'
+        order by id desc
+            limit #{pagination.offset}, #{pagination.rowCount};
+    </select>
+
+    <select id="getLikeCount" resultType="_int">
+        select coalesce(count(*), 0)
+        from tbl_like l
+                 inner join tbl_channel_post_like cpl
+                            on l.id = cpl.id
+        where cpl.post_id = #{postId}
+          and l.like_status = '정상'
+    </select>
+
+    <select id="getReplyCount" resultType="_int">
+        select coalesce(count(*), 0)
+        from tbl_reply r
+                 inner join tbl_channel_post_reply cpr
+                            on r.id = cpr.id
+        where cpr.post_id = #{postId}
+          and r.reply_status = '정상'
+    </select>
+
+    <select id="getStorageLikeTotalCount" resultType="_int">
+        select count(*)
+        from   tbl_like l
+        join   tbl_channel_post_like cpl
+        on     l.id  =  cpl.id
+        where  cpl.member_id = #{memberId}
+        and    l.like_status = '정상'
+    </select>
+
+    <select id="getStorageLike" resultType="channelPostLikeVO">
+        select cpl.id,
+               cpl.member_id,
+               cpl.post_id
+        from   tbl_like l
+                   join   tbl_channel_post_like cpl
+                          on     l.id  =  cpl.id
+        where  cpl.member_id = #{memberId}
+          and    l.like_status = '정상'
+        order by id desc
+            limit #{pagination.offset}, #{pagination.rowCount};
+    </select>
+
+    <select id="getStorageReplyTotalCount" resultType="_int">
+        select count(*)
+        from   tbl_channel_post_reply cpr
+        join   tbl_reply r
+        on     r.id           =  cpr.id
+        where  cpr.member_id  =  #{memberId}
+        and    r.reply_status = '정상'
+    </select>
+
+    <select id="getStorageReply" resultType="channelPostReplyVO">
+        select r.id,
+               r.reply_content,
+               cpr.post_id
+        from   tbl_channel_post_reply cpr
+                   join   tbl_reply r
+                          on     r.id           =  cpr.id
+        where  cpr.member_id  =  #{memberId}
+          and    r.reply_status = '정상'
+        order by id desc
+            limit #{pagination.offset}, #{pagination.rowCount};
+    </select>
+
     <insert id="postMakingChannel">
         insert into tbl_channel (
             channel_title,
@@ -214,7 +372,7 @@
             member_file_path = #{memberFilePath},
             member_file_name = #{memberFileName},
             updated_date = current_timestamp
-        where id = #{id};
+        where id = #{id}
     </update>
 
     <update id="postSettingNotify">
@@ -227,7 +385,7 @@
             member_notification_community_post = #{memberNotificationCommunityPost},
             member_notification_message        = #{memberNotificationMessage},
             updated_date = current_timestamp
-        where id = #{id};
+        where id = #{id}
     </update>
 
     <update id="postUpdateChannel">
@@ -238,13 +396,57 @@
             channel_file_path = #{channelFilePath},
             channel_file_name = #{channelFileName},
             updated_date      =  current_timestamp
-        where id = #{id};
+        where id = #{id}
     </update>
 
     <update id="postDeleteChannel">
         update  tbl_channel
-        set     channel_status  = '삭제'
-        where   id = #{id}
+        set     channel_status  = '삭제',
+                updated_date = current_timestamp
+        where   id         = #{id}
+        and     channel_id = #{channel_id}
     </update>
 
+    <update id="cancelSubscribe">
+        update   tbl_subscribe
+        set      subscribe_status = '삭제',
+                 updated_date = current_timestamp
+        where    member_id  = #{memberId}
+        and      channel_id = #{channelId}
+    </update>
+
+    <update id="storageOnScrap">
+        update   tbl_channel_post_scrap
+        set      channel_post_scrap_status = '정상',
+                 updated_date = current_timestamp
+        where    id  = #{id}
+    </update>
+
+    <update id="storageOffScrap">
+        update   tbl_channel_post_scrap
+        set      channel_post_scrap_status = '삭제',
+                 updated_date = current_timestamp
+        where    id  = #{id}
+    </update>
+
+    <update id="storageOnLike">
+        update   tbl_Like
+        set      like_status = '정상',
+                 updated_date = current_timestamp
+        where    id  = #{id}
+    </update>
+
+    <update id="storageOffLike">
+        update   tbl_Like
+        set      like_status = '삭제',
+                 updated_date = current_timestamp
+        where    id  = #{id}
+    </update>
+
+    <update id="deleteStorageReply">
+        update    tbl_reply
+        set       reply_status = '삭제',
+                  updated_date = current_timestamp
+        where     id   =   #{id}
+    </update>
 </mapper>

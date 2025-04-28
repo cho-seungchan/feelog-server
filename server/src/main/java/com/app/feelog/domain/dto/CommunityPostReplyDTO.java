@@ -13,16 +13,20 @@ import org.springframework.stereotype.Component;
 public class CommunityPostReplyDTO {
     @EqualsAndHashCode.Include
     private Long id;
+    private String community_post_reply_file_path;
+    private String community_post_reply_file_name;
     private Long memberId;
-    private Long communityId;
+    private Long postId;
     private String createdDate;
     private String updatedDate;
 
     public CommunityPostReplyVO toVO() {
         return CommunityPostReplyVO.builder()
                 .id(id)
+                .community_post_reply_file_path(community_post_reply_file_path)
+                .community_post_reply_file_name(community_post_reply_file_name)
                 .memberId(memberId)
-                .communityId(communityId)
+                .postId(postId)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
                 .build();

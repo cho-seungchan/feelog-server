@@ -13,14 +13,14 @@ import org.springframework.stereotype.Component;
 public class CommunityPostFileDTO {
     @EqualsAndHashCode.Include
     private Long id;
-    private Long communityPostId;
+    private Long   postId;
     private String createdDate;
     private String updatedDate;
 
     public CommunityPostFileVO toVO() {
         return CommunityPostFileVO.builder()
                 .id(id)
-                .communityPostId(communityPostId)
+                .postId(postId)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
                 .build();

@@ -4,25 +4,23 @@ package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.DiaryVO;
-import com.app.feelog.mypage.dto.NotifyAdminListDTO;
-import com.app.feelog.mypage.dto.NotifyCommunityListDTO;
-import com.app.feelog.mypage.dto.NotifyReplyListDTO;
+import com.app.feelog.domain.vo.SubscribeNotificationVO;
+import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.service.MyPageService;
 import com.app.feelog.util.SixRowPagination;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,7 +30,6 @@ public class MyPageController {
     private final HttpSession session;
     private final HttpServletRequest request;
     private final MyPageService myPageService;
-    private final ChannelDTO channelDTO;
 
     // 2025.04.21  조승찬 :: 프로필 조회
     @GetMapping("/setting-profile")
@@ -280,44 +277,185 @@ public class MyPageController {
         return "myPage/notify-admin-list";
     }
 
-    @GetMapping("/admin-notice-list")
-    public String adminNoticeList(){
-        return "myPage/admin-notice-list";
+    // 2025.04.24 조승찬 :: 구독자 리스트 조회
+    @GetMapping("/notify-subscribe")
+    public String getNotifySubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                      Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 구독자 리스트 가져오기
+        List<NotifySubscribeListDTO> subscribes = myPageService.getNotifySubscribe(member.getId(), pagination);
+
+        model.addAttribute("subscribes", subscribes);
+        model.addAttribute("pagination", pagination);
+
+        return "myPage/notify-subscribe";
     }
 
-    @GetMapping("/block-list")
-    public String blockList(){
-        return "myPage/block-list";
+    // 2025.04.24 조승찬 :: 구독자 취소
+    @PostMapping("/notify-cancel-subscribe")
+    public String cancelNotifySubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                  SubscribeDTO subscribeDTO, Model model, SixRowPagination pagination){
+
+        // 채널 정보 가져오기
+        ChannelDTO channel = myPageService.getChannelByMemberId(member.getId()).orElse(null);
+
+        // 취소 처리
+        subscribeDTO.setChannelId(channel.getId());
+        myPageService.cancelSubscribe(subscribeDTO);
+
+        return "redirect:/myPage/notify-subscribe?page="+pagination.getPage();
     }
 
-    @GetMapping("/community")
-    public String community(){
-        return "myPage/community";
+    // 2025.04.24 조승찬 :: 구독 리스트 조회
+    @GetMapping("/storage-subscribe")
+    public String getStorageSubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                     Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 구독 리스트 가져오기
+        List<StorageSubscribeListDTO> subscribes = myPageService.getStorageSubscribe(member.getId(), pagination);
+
+        model.addAttribute("subscribes", subscribes);
+        model.addAttribute("pagination", pagination);
+
+        return "myPage/storage-subscribe";
     }
 
-    @GetMapping("/community-reply")
-    public String communityReply(){
-        return "myPage/community-reply";
+    // 2025.04.24 조승찬 :: 구독 취소
+    @PostMapping("/storage-cancel-subscribe")
+    public String cancelStorageSubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                  SubscribeDTO subscribeDTO, Model model, SixRowPagination pagination){
+
+        // 취소 처리
+        subscribeDTO.setMemberId(member.getId());
+        myPageService.cancelSubscribe(subscribeDTO);
+
+        return "redirect:/myPage/storage-subscribe?page="+pagination.getPage();
     }
 
-    @GetMapping("/message-list")
-    public String messageList(){
-        return "myPage/message-list";
+    // 2025.04.25 조승찬 :: 스크랩 목록 보기
+    @GetMapping("/storage-scrap")
+    public String getStorageScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                  Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 스크랩 목록 가져오기
+        List<StorageScrapListDTO> scraps = myPageService.getStorageScrap(member.getId(), pagination);
+
+        model.addAttribute("scraps", scraps);
+        model.addAttribute("pagination", pagination);
+
+        return "/myPage/storage-scrap";
     }
 
+    // 2025.04.25 조승찬 :: 스크랩 취소
+    @ResponseBody
+    @PostMapping("/storage-off-scrap")
+    public void storageOffScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                @RequestParam Long id){
+
+        myPageService.storageOffScrap(id);
+    };
+
+    // 2025.04.25 조승찬 :: 스크랩 재설정
+    @ResponseBody
+    @PostMapping("/storage-on-scrap")
+    public void storageOnScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                               @RequestParam Long id){
+
+        myPageService.storageOnScrap(id);
+    };
+
+    // 2025.04.25 조승찬 :: 좋아요 목록
+    @GetMapping("/storage-like")
+    public String storageLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                              Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 좋아요 목록 가져오기
+        List<StorageLikeListDTO> likes = myPageService.getStorageLike(member.getId(), pagination);
+
+        model.addAttribute("likes", likes);
+        model.addAttribute("pagination", pagination);
+
+        return "myPage/storage-like";
+    }
+
+
+    // 2025.04.25 조승찬 :: 좋아요 취소
+    @ResponseBody
+    @PostMapping("/storage-off-like")
+    public ResponseEntity<Map<String, Object>> storageOffLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                                              @RequestParam Long id, @RequestParam Long postId){
+
+        myPageService.storageOffLike(id);
+
+        Map<String, Object> response = new HashMap<String, Object>();
+        int likeCount = myPageService.getLikeCount(postId);
+        response.put("likeCount", likeCount);
+        return ResponseEntity.ok(response);
+    };
+
+    // 2025.04.25 조승찬 :: 좋아요 재설정
+    @ResponseBody
+    @PostMapping("/storage-on-like")
+    public ResponseEntity<Map<String, Object>> storageOnLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                               @RequestParam Long id, @RequestParam Long postId){
+
+        myPageService.storageOnLike(id);
+
+        Map<String, Object> response = new HashMap<String, Object>();
+        int likeCount = myPageService.getLikeCount(postId);
+        response.put("likeCount", likeCount);
+        return ResponseEntity.ok(response);
+    };
+
+    // 2025.04.25  조승찬 :: 댓글 목록
     @GetMapping("/storage-reply")
-    public String storageReply(){
+    public String getStorageReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                               Model model, SixRowPagination pagination){
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 댓글 목록 가져오기
+        List<StorageReplyListDTO> replies = myPageService.getStorageReply(member.getId(), pagination);
+
+        model.addAttribute("replies", replies);
+        model.addAttribute("pagination", pagination);
+
         return "myPage/storage-reply";
     }
 
-    @GetMapping("/storage-scrab")
-    public String storageScrab(){
-        return "myPage/storage-scrab";
+    // 2025.04.25 조승찬 :: 댓글 삭제
+    @PostMapping("/storage-delete-reply")
+    public String deleteStorageReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                     @RequestParam Long id, SixRowPagination pagination){
+
+        // 삭제 처리
+        myPageService.deleteStorageReply(id);
+
+        return "redirect:/myPage/storage-reply?page="+pagination.getPage();
     }
 
-    @GetMapping("/subscribe-list")
-    public String subscribeList(){
-        return "myPage/subscribe-list";
-    }
 
 }

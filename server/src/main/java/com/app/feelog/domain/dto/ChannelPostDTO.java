@@ -19,6 +19,7 @@ public class ChannelPostDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private PostType postType;
+    private int    postReadCount;
     private String postFilePath;
     private String postFileName;
     private Long memberId;
@@ -55,6 +56,7 @@ public class ChannelPostDTO {
         return ChannelPostVO.builder()
                 .id(id)
                 .postType(postType)
+                .postReadCount(postReadCount)
                 .postFilePath(postFilePath)
                 .postFileName(postFileName)
                 .postContent(postContent)
