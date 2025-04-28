@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="/css/main/main-jg.css" />
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/main/search-modal.css">
+    <link rel="stylesheet" href="/css/all/message.css" />
+</head>
+<body>
+<div class="joy-91keta">
+    <!-- 헤더 넣을 곳 -->
+    <header id="main-header"
+            th:replace="~{main/header.html :: #main-header}"></header>
+    <!-- 헤더 넣을 곳 -->
+    <div class="joy-1j46z6j">
+        <nav class="MuiBox-root joy-18lu9f5">
+            <ul class="subnavigation joy-1wegxv0">
+                <li class="joy-6u9hs2">
+                    <a
+                            href="/"
+                            class="MuiTypography-root MuiTypography-body-md joy-1xzjzsf"
+                    >피드</a
+                    >
+                </li>
+                <li class="joy-hrba6h">
+                    <a
+                            href="/request"
+                            class="MuiTypography-root MuiTypography-body-md joy-10c7stv"
+                    >마음일기</a
+                    >
+                </li>
+            </ul>
+        </nav>
+        <div class="MuiBox-root joy-1yxq76r">
+            <div class="joy-fvjjjv">
+                <main class="joy-11dfn0q" id="main-content">
+                    <nav
+                            class="MuiSheet-root MuiSheet-variantPlain MuiSheet-colorNeutral joy-3ys6m0"
+                    >
+                        <ul class="MuiStack-root joy-v6a3cw">
+                            <li>
+                                <a
+                                        class="MuiChip-root MuiChip-colorNeutral MuiChip-sizeXl MuiChip-variantSolid joy-14fbtec"
+                                        href="/"
+                                ><span
+                                        class="MuiChip-label MuiChip-labelXl joy-tymi7a"
+                                        id=":rjr:"
+                                >포스트</span
+                                ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                        class="MuiChip-root MuiChip-colorNeutral MuiChip-sizeXl MuiChip-variantSoft joy-90lb7v"
+                                        href="/cheerPost"
+                                ><span
+                                        class="MuiChip-label MuiChip-labelXl joy-tymi7a"
+                                        id=":rjs:"
+                                >응원</span
+                                ></a
+                                >
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="MuiBox-root joy-0">
+                        <div class="joy-j7qwjs">
+                            <div class="joy-16vwv4v">
+                                <div style="padding-top: 70px"></div>
+                            </div>
+                            <div class="MuiBox-root joy-17wd1bi">
+                                <div class="MuiBox-root joy-1yo53pd">
+                                            <span
+                                                    role="progressbar"
+                                                    style="
+                                                    --CircularProgress-percent: 67;
+                                                "
+                                                    class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-variantSoft MuiCircularProgress-sizeSm joy-oz3twp"
+                                            ><svg
+                                                    class="MuiCircularProgress-svg joy-18a5s3t"
+                                            >
+                                                    <circle
+                                                            class="MuiCircularProgress-track joy-1c73xhe"
+                                                    ></circle>
+                                                    <circle
+                                                            class="MuiCircularProgress-progress joy-skc48w"
+                                                    ></circle>
+                                                </svg>
+                                            </span>
+                                </div>
+                                <button
+                                        class="MuiButton-root MuiButton-variantSoft MuiButton-colorNeutral MuiButton-sizeMd joy-1fkv557"
+                                        type="button"
+                                        data-index="2"
+                                >
+                                    더 보기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <aside class="joy-8cxh2n">
+                    <div class="joy-1myle5f">
+                        <section
+                                class="MuiCard-root MuiCard-vertical MuiCard-variantOutlined MuiCard-colorNeutral MuiCard-sizeMd joy-111fecy"
+                        >
+                            <div class="e1e6st7u5 css-we1gxf e17lobue1">
+                                <div id="lottie-timer"></div>
+                                <div
+                                        class="time-units css-hb6k3w e17lobue0"
+                                >
+                                    <span id="hour">--</span>
+                                    <span id="minute">--</span>
+                                    <span id="second">--</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="joy-1i43dhb">
+                            <a
+                                    class="MuiLink-root MuiLink-colorPrimary MuiLink-body-sm MuiLink-underlineNone joy-u5jzww"
+                                    href="/@blog"
+                            ><div class="joy-h72smr">
+                                <h2
+                                        class="MuiTypography-root MuiTypography-title-lg joy-j4zuwg"
+                                >
+                                    포스타입 공식 채널
+                                </h2>
+                                <svg
+                                        focusable="false"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-s1s0o1"
+                                >
+                                    <path
+                                            d="M15.291 11.332a.934.934 0 0 1 0 1.325l-5.25 5.254a.937.937 0 0 1-1.324-1.324L13.303 12l-4.59-4.59a.937.937 0 0 1 1.324-1.324l5.254 5.245Z"
+                                            fill="currentcolor"
+                                    ></path>
+                                </svg>
+                            </div>
+                            </a>
+                            <div class="joy-j7qwjs">
+                                <article class="joy-ht0wgf">
+                                    <div class="joy-bco1gb">
+                                        <a
+                                                href="/@blog/post/19114287"
+                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"
+                                        ><h2
+                                                class="MuiTypography-root MuiTypography-title-sm joy-lf9fqo"
+                                        >
+                                            3월 수익에 관한 가상
+                                            출금 정보 제공 안내
+                                        </h2></a
+                                        >
+                                        <div class="joy-cboudr">
+                                            <div class="joy-loaz0u">
+                                                <div
+                                                        class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeXs2 joy-1fpbmdi"
+                                                >
+                                                    <img
+                                                            alt="이용자 포스타입"
+                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2022/10/14/09/27/66fc5bd61c3d9969c7e6cb8845fb3e3e.png?w=50&amp;h=50&amp;q=65"
+                                                            loading="lazy"
+                                                            class="MuiAvatar-img aTag_divImg_01"
+                                                    />
+                                                </div>
+                                                <a
+                                                        href="/profile/@1ll3c6"
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"
+                                                ><span
+                                                        class="MuiTypography-root MuiTypography-title-sm joy-ixn4cl"
+                                                >포스타입</span
+                                                ></a
+                                                >
+                                            </div>
+                                            <p
+                                                    class="MuiTypography-root MuiTypography-body-sm joy-zpfz47"
+                                            >
+                                                4일 전
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="MuiAspectRatio-root joy-1x63z2m"
+                                    >
+                                        <div
+                                                class="MuiAspectRatio-content MuiAspectRatio-variantSoft MuiAspectRatio-colorNeutral joy-1h16"
+                                        >
+                                            <img
+                                                    class="MuiBox-root joy-0"
+                                                    src="https://d3mcojo3jv0dbr.cloudfront.net/2024/04/24/12/55/40be7d13128072962910900921.png?w=100&amp;h=56&amp;q=65"
+                                                    alt="포스트 3월 수익에 관한 가상 출금 정보 제공 안내"
+                                                    data-first-child=""
+                                            />
+                                        </div>
+                                    </div>
+                                </article>
+                                <hr
+                                        class="MuiDivider-root MuiDivider-horizontal joy-1txva48"
+                                />
+                                <article class="joy-ht0wgf">
+                                    <div class="joy-bco1gb">
+                                        <a
+                                                href="/@blog/post/19143537"
+                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"
+                                        ><h2
+                                                class="MuiTypography-root MuiTypography-title-sm joy-lf9fqo"
+                                        >
+                                            포스타입 프리미엄을
+                                            출시합니다.
+                                        </h2></a
+                                        >
+                                        <div class="joy-cboudr">
+                                            <div class="joy-loaz0u">
+                                                <div
+                                                        class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeXs2 joy-1fpbmdi"
+                                                >
+                                                    <img
+                                                            alt="이용자 포스타입"
+                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2022/10/14/09/27/66fc5bd61c3d9969c7e6cb8845fb3e3e.png?w=50&amp;h=50&amp;q=65"
+                                                            loading="lazy"
+                                                            class="MuiAvatar-img aTag_divImg_01"
+                                                    />
+                                                </div>
+                                                <a
+                                                        href="/profile/@1ll3c6"
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"
+                                                ><span
+                                                        class="MuiTypography-root MuiTypography-title-sm joy-ixn4cl"
+                                                >포스타입</span
+                                                ></a
+                                                >
+                                            </div>
+                                            <p
+                                                    class="MuiTypography-root MuiTypography-body-sm joy-zpfz47"
+                                            >
+                                                5일 전
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="MuiAspectRatio-root joy-1x63z2m"
+                                    >
+                                        <div
+                                                class="MuiAspectRatio-content MuiAspectRatio-variantSoft MuiAspectRatio-colorNeutral joy-1h16"
+                                        >
+                                            <img
+                                                    class="MuiBox-root joy-0"
+                                                    src="https://d3mcojo3jv0dbr.cloudfront.net/2025/04/01/09/22/90d3e79346899524472783111.png?w=100&amp;h=56&amp;q=65"
+                                                    alt="포스트 포스타입 프리미엄을 출시합니다."
+                                                    data-first-child=""
+                                            />
+                                        </div>
+                                    </div>
+                                </article>
+                                <hr
+                                        class="MuiDivider-root MuiDivider-horizontal joy-1txva48"
+                                />
+                                <article class="joy-ht0wgf">
+                                    <div class="joy-bco1gb">
+                                        <a
+                                                href="/@blog/post/19108440"
+                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"
+                                        ><h2
+                                                class="MuiTypography-root MuiTypography-title-sm joy-lf9fqo"
+                                        >
+                                            대표 이미지를 20개
+                                            설정할 수 있고,
+                                            에디터에서 마우스 없이
+                                            서식을 적용할 수
+                                            있습니다.
+                                        </h2></a
+                                        >
+                                        <div class="joy-cboudr">
+                                            <div class="joy-loaz0u">
+                                                <div
+                                                        class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeXs2 joy-1fpbmdi"
+                                                >
+                                                    <img
+                                                            alt="이용자 포스타입"
+                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2022/10/14/09/27/66fc5bd61c3d9969c7e6cb8845fb3e3e.png?w=50&amp;h=50&amp;q=65"
+                                                            loading="lazy"
+                                                            class="MuiAvatar-img aTag_divImg_01"
+                                                    />
+                                                </div>
+                                                <a
+                                                        href="/profile/@1ll3c6"
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"
+                                                ><span
+                                                        class="MuiTypography-root MuiTypography-title-sm joy-ixn4cl"
+                                                >포스타입</span
+                                                ></a
+                                                >
+                                            </div>
+                                            <p
+                                                    class="MuiTypography-root MuiTypography-body-sm joy-zpfz47"
+                                            >
+                                                2025. 3. 27.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="MuiAspectRatio-root joy-1x63z2m"
+                                    >
+                                        <div
+                                                class="MuiAspectRatio-content MuiAspectRatio-variantSoft MuiAspectRatio-colorNeutral joy-1h16"
+                                        >
+                                            <img
+                                                    class="MuiBox-root joy-0"
+                                                    src="https://d3mcojo3jv0dbr.cloudfront.net/2024/04/24/12/55/40be7d13128072962910900921.png?w=100&amp;h=56&amp;q=65"
+                                                    alt="포스트 대표 이미지를 20개 설정할 수 있고, 에디터에서 마우스 없이 서식을 적용할 수 있습니다."
+                                                    data-first-child=""
+                                            />
+                                        </div>
+                                    </div>
+                                </article>
+                                <hr
+                                        class="MuiDivider-root MuiDivider-horizontal joy-1txva48"
+                                />
+                                <article class="joy-ht0wgf">
+                                    <div class="joy-bco1gb">
+                                        <a
+                                                href="/@blog/post/19102478"
+                                                class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"
+                                        ><h2
+                                                class="MuiTypography-root MuiTypography-title-sm joy-lf9fqo"
+                                        >
+                                            지금 리퀘스트를 신청하면
+                                            1,000P를 드려요!
+                                        </h2></a
+                                        >
+                                        <div class="joy-cboudr">
+                                            <div class="joy-loaz0u">
+                                                <div
+                                                        class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeXs2 joy-1fpbmdi"
+                                                >
+                                                    <img
+                                                            alt="이용자 포스타입"
+                                                            src="https://d3mcojo3jv0dbr.cloudfront.net/2022/10/14/09/27/66fc5bd61c3d9969c7e6cb8845fb3e3e.png?w=50&amp;h=50&amp;q=65"
+                                                            loading="lazy"
+                                                            class="MuiAvatar-img aTag_divImg_01"
+                                                    />
+                                                </div>
+                                                <a
+                                                        href="/profile/@1ll3c6"
+                                                        class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"
+                                                ><span
+                                                        class="MuiTypography-root MuiTypography-title-sm joy-ixn4cl"
+                                                >포스타입</span
+                                                ></a
+                                                >
+                                            </div>
+                                            <p
+                                                    class="MuiTypography-root MuiTypography-body-sm joy-zpfz47"
+                                            >
+                                                2025. 3. 26.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="MuiAspectRatio-root joy-1x63z2m"
+                                    >
+                                        <div
+                                                class="MuiAspectRatio-content MuiAspectRatio-variantSoft MuiAspectRatio-colorNeutral joy-1h16"
+                                        >
+                                            <img
+                                                    class="MuiBox-root joy-0"
+                                                    src="https://d3mcojo3jv0dbr.cloudfront.net/2025/03/26/16/06/6fe8a010988068916321789154.png?w=100&amp;h=56&amp;q=65"
+                                                    alt="포스트 지금 리퀘스트를 신청하면 1,000P를 드려요!"
+                                                    data-first-child=""
+                                            />
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <!-- 검색창 들어가야하는 곳 -->
+</div>
+<!-- footer 넣을 곳 -->
+<footer id="main-footer"
+        th:replace="~{main/footer.html :: #main-footer}"></footer>
+<!-- footer 넣을 곳 -->
+</body>
+<script th:inline="javascript">
+    const loginMember = [[${session.member}]]
+    const loginMemberId = Number(loginMember.id);
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script src="/js/main/main-modal.js"></script>
+<script src="/js/main/main-clock.js"></script>
+<script src="/js/main/main-search-modal.js"></script>
+<script src="/js/post/cheer-post-service.js"></script>
+<script src="/js/post/cheer-post-layout.js"></script>
+<script src="/js/post/cheer-post-event.js"></script>
+</html>

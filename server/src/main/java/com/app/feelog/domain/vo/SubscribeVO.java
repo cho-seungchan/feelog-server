@@ -17,6 +17,7 @@ public class SubscribeVO extends Period{
     private SubscribeStatus subscribeStatus;
 
     @Builder
+
     public SubscribeVO(String createdDate, String updatedDate, Long id, Long channelId, Long memberId, SubscribeStatus subscribeStatus) {
         super(createdDate, updatedDate);
         this.id = id;

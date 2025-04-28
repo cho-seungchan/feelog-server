@@ -2,11 +2,14 @@ package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.vo.ChannelPostFileVO;
+import com.app.feelog.domain.vo.ChannelPostReportVO;
 import com.app.feelog.domain.vo.ChannelPostVO;
 import com.app.feelog.util.pagination.PostPagination;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public interface ChannelPostService {
@@ -30,6 +33,8 @@ public interface ChannelPostService {
         dto.setPostStatus(vo.getPostStatus());
         dto.setCreatedDate(vo.getCreatedDate());
         dto.setUpdatedDate(vo.getUpdatedDate());
+        dto.setPostTitle(vo.getPostTitle());
+        dto.setChannelId(vo.getChannelId());
         return dto;
     }
 
@@ -57,6 +62,17 @@ public interface ChannelPostService {
         return dtoList;
     }
 
+    default ChannelPostReportDTO toReportDTO(ChannelPostReportVO vo) {
+        ChannelPostReportDTO dto = new ChannelPostReportDTO();
+        dto.setId(vo.getId());
+        dto.setMemberId(vo.getMemberId());
+        dto.setPostId(vo.getPostId());
+        dto.setCreatedDate(vo.getCreatedDate());
+        dto.setUpdatedDate(vo.getUpdatedDate());
+        dto.setReportStatus(vo.getReportStatus());
+        return dto;
+    }
+
     List<ChannelPostSearchDTO> getRecentChannelPosts();
 
 //    박정근 :: 전체조회
@@ -64,5 +80,27 @@ public interface ChannelPostService {
 
     List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 
+    MainPostListDTO getCheerPost();
 
+    ChannelPostListDTO getCheerPostList(PostPagination pagination);
+
+    List<Long> getMemberScrap(Long id);
+
+    public void addChannelPostReport(ChannelPostReportListDTO channelPostReportListDTO);
+
+    public void addReport(ChannelPostReportListDTO channelPostReportListDTO);
+
+    public List<ChannelPostReportDTO> getReportByMemberId(Long id);
+//    박정근 :: 포스트 상세 조회
+    public ChannelPostDTO getPostByPostId(Long id);
+
+    public Optional<ChannelPostDTO> getNextPost(@Param("channelId") Long channelId, @Param("id") Long id);
+
+    public Optional<ChannelPostDTO> getPreviousPost(@Param("channelId") Long channelId, @Param("id") Long id);
+
+    public void addSubscriber(@Param("memberId") Long memberId, @Param("channelId") Long channelId);
+
+    public SubscribeDTO getSubscribe(@Param("memberId") Long memberId, @Param("channelId") Long channelId);
+
+    public List<MainPostListDTO> getPostRandom();
 }

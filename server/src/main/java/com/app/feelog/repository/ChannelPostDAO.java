@@ -1,5 +1,6 @@
 package com.app.feelog.repository;
 
+import com.app.feelog.domain.dto.ChannelPostDTO;
 import com.app.feelog.domain.dto.ChannelPostSearchDTO;
 import com.app.feelog.domain.dto.ChannelPostTagListDTO;
 import com.app.feelog.domain.dto.MainPostListDTO;
@@ -7,9 +8,11 @@ import com.app.feelog.domain.vo.ChannelPostVO;
 import com.app.feelog.mapper.ChannelPostMapper;
 import com.app.feelog.util.pagination.PostPagination;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -62,6 +65,34 @@ public class ChannelPostDAO {
     public List<ChannelPostSearchDTO> searchChannelPosts(String keyword) {
         return channelPostMapper.searchChannelPosts(keyword);
     }
+
+    public Optional<MainPostListDTO> findCheerOne(){
+        return channelPostMapper.selectCheerOne();
+    };
+
+    public List<MainPostListDTO> findCheerPostAll(PostPagination postPagination){
+        return channelPostMapper.selectCheerPostAll(postPagination);
+    };
+
+//    박정근 :: 포스트 상세조회
+    public Optional<ChannelPostDTO> findPostByPostId(Long id){
+        return channelPostMapper.selectPostByPostId(id);
+    };
+
+    public Optional<ChannelPostVO> findNextPost(@Param("channelId") Long channelId, @Param("id")Long id){
+        return channelPostMapper.selectNextPost(channelId, id);
+    };
+
+    public Optional<ChannelPostVO> findPreviousPost(@Param("channelId") Long channelId, @Param("id")Long id){
+        return channelPostMapper.selectPreviousPost(channelId, id);
+    };
+
+    public int findSubscribeCount(Long channelId){
+        return channelPostMapper.selectSubscribeCount(channelId);
+    };
+    public List<MainPostListDTO> findPostRandom(){
+        return channelPostMapper.selectPostRandom();
+    };
 
 
 }

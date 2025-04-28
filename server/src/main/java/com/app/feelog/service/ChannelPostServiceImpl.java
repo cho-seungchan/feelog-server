@@ -3,6 +3,7 @@ package com.app.feelog.service;
 import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.enumeration.TagStatus;
 import com.app.feelog.domain.vo.ChannelPostFileVO;
+import com.app.feelog.domain.vo.ChannelPostReportVO;
 import com.app.feelog.domain.vo.ChannelPostVO;
 import com.app.feelog.repository.*;
 import com.app.feelog.util.pagination.PostPagination;
@@ -15,10 +16,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +37,9 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     private final TagService tagService;
     private final ChannelPostTagService channelPostTagService;
     private final FileDAO fileDAO;
+    private final ChannelPostScrapDAO channelPostScrapDAO;
+    private final ChannelPostReportDAO channelPostReportDAO;
+    private final SubscribeDAO subscribeDAO;
 
     @Override
     public void writeChannelPost(ChannelPostDTO dto) {
@@ -189,6 +190,10 @@ public class ChannelPostServiceImpl implements ChannelPostService {
             post.setTagList(channelPostDAO.findPostTagByPostId(post.getId()));
             post.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(post.getId()));
             post.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(post.getId()));
+            if ( post.getPostContent() != null && ! post.getPostContent().isEmpty()) {
+                post.setPostContent(extractTextOnly(post.getPostContent()));
+            };
+
         });
 
         return postList;
@@ -228,4 +233,119 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         return doc.body().text();
     }
 
+    @Override
+    public MainPostListDTO getCheerPost() {
+        MainPostListDTO postList = new MainPostListDTO();
+        postList = channelPostDAO.findCheerOne().orElseThrow(RuntimeException::new);
+
+        postList.setTagList(channelPostDAO.findPostTagByPostId(postList.getId()));
+        postList.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(postList.getId()));
+        postList.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(postList.getId()));
+        if ( postList.getPostContent() != null && ! postList.getPostContent().isEmpty()) {
+            postList.setPostContent(extractTextOnly(postList.getPostContent()));
+        };
+
+        return postList;
+    }
+
+    @Override
+    public ChannelPostListDTO getCheerPostList(PostPagination pagination) {
+        ChannelPostListDTO postList = new ChannelPostListDTO();
+
+        pagination.create(channelPostDAO.findPostCount());
+
+        postList.setPostPagination(pagination);
+        postList.setPostList(channelPostDAO.findCheerPostAll(pagination));
+
+        postList.getPostList().forEach((post)->{
+            post.setTagList(channelPostDAO.findPostTagByPostId(post.getId()));
+            post.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(post.getId()));
+            post.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(post.getId()));
+            if ( post.getPostContent() != null && ! post.getPostContent().isEmpty()) {
+                post.setPostContent(extractTextOnly(post.getPostContent()));
+            };
+        });
+
+        return postList;
+    }
+
+
+//    박정근 :: 스크랩, 신고
+    @Override
+    public List<Long> getMemberScrap(Long id) {
+        return channelPostScrapDAO.findMemberScrap(id);
+    }
+
+    @Override
+    public void addChannelPostReport(ChannelPostReportListDTO channelPostReportListDTO) {
+        channelPostReportDAO.saveChannelPostReport(channelPostReportListDTO);
+    }
+
+    @Override
+    public void addReport(ChannelPostReportListDTO channelPostReportListDTO) {
+        channelPostReportDAO.saveReport(channelPostReportListDTO);
+    }
+
+    @Override
+    public List<ChannelPostReportDTO> getReportByMemberId(Long id) {
+        List<ChannelPostReportVO> reportVOs = channelPostReportDAO.findReportByMemberId(id);
+        List<ChannelPostReportDTO> result = reportVOs.stream().map(this::toReportDTO).collect(Collectors.toList());
+
+        return result;
+    }
+
+//    박정근 :: 포스트 상세조회
+
+    @Override
+    public ChannelPostDTO getPostByPostId(Long id) {
+        ChannelPostDTO post = channelPostDAO.findPostByPostId(id).orElseThrow(RuntimeException::new);
+
+        post.setLikeCount(channelPostDAO.findPostLikeCountByPostId(id));
+        post.setReplyCount(channelPostDAO.findPostReplyCountByPostId(id));
+        post.setTags(channelPostTagDAO.findTagContentsByChannelPostId(id));
+        post.setSubscribeCount(subscribeDAO.findSubscribeCount(post.getChannelId()));
+
+        return post;
+    }
+
+    @Override
+    public Optional<ChannelPostDTO> getNextPost(Long channelId, Long id) {
+        try {
+            return Optional.ofNullable(
+                    toDTO(channelPostDAO.findNextPost(channelId, id)
+                            .orElseThrow(RuntimeException::new)));
+        } catch (RuntimeException e) {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<ChannelPostDTO> getPreviousPost(Long channelId, Long id) {
+        try {
+            return Optional.ofNullable(
+                    toDTO(channelPostDAO.findPreviousPost(channelId, id)
+                            .orElseThrow(RuntimeException::new)));
+        } catch (RuntimeException e) {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public void addSubscriber(Long memberId, Long channelId) {
+        subscribeDAO.insertSubscribe(memberId, channelId);
+    }
+
+    @Override
+    public SubscribeDTO getSubscribe(Long memberId, Long channelId) {
+        return subscribeDAO.findByMemberAndChannel(memberId, channelId);
+    }
+
+    @Override
+    public List<MainPostListDTO> getPostRandom() {
+        List<MainPostListDTO> randomPosts = channelPostDAO.findPostRandom();
+        randomPosts.forEach(post->{
+            post.setTagList(channelPostDAO.findPostTagByPostId(post.getId()));
+        });
+        return randomPosts;
+    }
 }

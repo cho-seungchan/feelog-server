@@ -1188,6 +1188,51 @@ blockquote>:last-child {
     font-weight: 500;
 }
 
+.subscribing {
+    min-height: 36px;
+    font-size: 14px;
+    padding-block: 6px;
+    padding-inline: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex
+;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    line-height: 1.5;
+    color: #202022;
+    background-color: #f2f2f3;
+    font-weight: 500;
+}
+
+@media (min-width: 0px) {
+    .subscribing {
+        width: 100%;
+        display: none;
+    }
+}
+
+@media (min-width: 744px) {
+    .subscribing {
+        width: 88px;
+        display: flex
+    ;
+    }
+}
+
+@media (hover: hover) {
+    .joy-5wm9cu:hover {
+        background-color: #eaeaeb;
+    }
+}
+
 @media (min-width: 0px) {
     .add_channelButton_01 {
         width: 100%;
@@ -2661,7 +2706,7 @@ textarea {
 }
 
 @media (hover: hover) {
-    .like_button_01:hover, .moreReply_button_01:hover, .post-button:hover {
+    .like_button_01:hover, .moreReply_button_01:hover, .post-button:hover, .scrap-button_01:hover {
         background-color: #f2f2f3;
         color: #202022;
     }

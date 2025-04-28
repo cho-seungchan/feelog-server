@@ -1,19 +1,9 @@
-let lastScrapId =null
-
-const indexService = (() => {
-    const getList = async (callback, page=1) => {
-        const response = await fetch(`/postList?page=${page}`)
-        const postListData = await response.json()
+const cheerPostService = (() => {
+    const getCheerPostList = async (callback, page = 1) =>{
+        const response = await fetch(`/cheerPostList?page=${page}`)
+        const cheerPostListData = await response.json()
         if(callback){
-            callback(postListData);
-        }
-    }
-
-    const getCheerPost = async (callback) => {
-        const response = await fetch("/cheerPost")
-        const cheerPostData = await response.json()
-        if(callback){
-            callback(cheerPostData)
+            callback(cheerPostListData)
         }
     }
 
@@ -45,8 +35,7 @@ const indexService = (() => {
     }
 
     return{
-        getList:getList,
-        getCheerPost:getCheerPost,
+        getCheerPostList:getCheerPostList,
         addScrap:addScrap,
         addReport:addReport,
         getReportList:getReportList

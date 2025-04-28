@@ -1,11 +1,9 @@
-indexService.getCheerPost(indexLayout.showCheerPost)
-indexService.getList(indexLayout.showList)
+cheerPostService.getCheerPostList(cheerPostLayout.showList)
 
 const reportDiv = document.createElement("div");
 const postContainer = document.querySelector(".joy-16vwv4v");
 const body = document.querySelector("body");
 const moreButton = document.querySelector(".joy-1fkv557");
-const cheerContainer = document.querySelector(".cheerComentContainer");
 
 reportDiv.id = "report-button";
 
@@ -20,7 +18,7 @@ postContainer.addEventListener("click", async (e) => {
 
         const memberId = loginMemberId;
         const postId = e.target.closest(".joy-11dfn0q").querySelector(".post-id-wrap").getAttribute("data-index")
-        await indexService.addScrap({
+        await cheerPostService.addScrap({
             memberId: memberId,
             postId: postId
         })
@@ -80,7 +78,7 @@ body.addEventListener("click", async (e)=> {
             return;
         }
 
-        const reportListData = await indexService.getReportList();
+        const reportListData = await cheerPostService.getReportList();
         const reportPostIds = reportListData.map(report => report.postId);
         const reportPostId = e.target.closest(".report-post").id;
         const duplicationId = reportPostIds.includes(Number(reportPostId));
@@ -89,11 +87,13 @@ body.addEventListener("click", async (e)=> {
         if(!duplicationId){
             console.log("들어옴")
             if(confirm("이 게시글을 신고하시겠습니까?")){
-                await indexService.addReport({
+                await cheerPostService.addReport({
                     reportMemberId:loginMemberId,
                     postId:reportPostId
                 })
             }
+            alert("신고가 완료됐습니다.")
+            window.location.href = "/post/cheer-post"
         }else{
             alert("이미 신고된 게시글입니다.")
         }
@@ -102,28 +102,8 @@ body.addEventListener("click", async (e)=> {
 
 moreButton.addEventListener("click", async (e) =>{
     const pageIndex = parseInt(moreButton.getAttribute("data-index"));
-    await indexService.getList(indexLayout.showList, pageIndex);
+    await cheerPostService.getCheerPostList(cheerPostLayout.showList, pageIndex);
     moreButton.setAttribute("data-index", pageIndex + 1);
 })
 
-cheerContainer.addEventListener("click", (e)=>{
-    if(e.target.closest(".joy-oklso3")){
-        const container = e.target.closest(".joy-16vwv4v");
-        const cheerPost = container.querySelector(".cheerPostContainer")
-        if(cheerPost){
-            cheerPost.classList.add("slide-out")
-
-            setTimeout(()=>{
-                cheerPost.remove();
-            }, 500);
-        }
-        if(cheerContainer){
-            cheerContainer.classList.add("slide-out")
-
-            setTimeout(()=>{
-                cheerContainer.remove();
-            }, 500);
-        }
-    }
-})
 

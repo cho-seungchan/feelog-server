@@ -45,7 +45,7 @@
                                     <li>
                                         <a
                                             class="MuiChip-root MuiChip-colorNeutral MuiChip-sizeXl MuiChip-variantSolid joy-90lb7v"
-                                            href="/?feed-type=recommendation"
+                                            href="/"
                                             ><span
                                                 class="MuiChip-label MuiChip-labelXl joy-tymi7a"
                                                 id=":rjr:"
@@ -56,7 +56,7 @@
                                     <li>
                                         <a
                                             class="MuiChip-root MuiChip-colorNeutral MuiChip-sizeXl MuiChip-variantSoft joy-14fbtec"
-                                            href="/?feed-type=subscription"
+                                            href="/post/cheer-post"
                                             ><span
                                                 class="MuiChip-label MuiChip-labelXl joy-tymi7a"
                                                 id=":rjs:"
@@ -69,6 +69,14 @@
                             <div class="MuiBox-root joy-0">
                                 <div class="joy-j7qwjs">
                                     <div class="joy-16vwv4v">
+                                        <div style="padding-top: 70px"></div>
+                                        <div class="cheerComentContainer">
+                                            <h2 class="cheerPostText">오늘의 응원글</h2>
+                                            <button class="MuiModalClose-root MuiModalClose-variantPlain MuiModalClose-colorNeutral MuiModalClose-sizeMd joy-oklso3" type="button">
+                                                <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CloseIcon" class="joy-c6bb0f"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="MuiBox-root joy-17wd1bi">
                                         <div class="MuiBox-root joy-1yo53pd">
@@ -93,6 +101,7 @@
                                         <button
                                             class="MuiButton-root MuiButton-variantSoft MuiButton-colorNeutral MuiButton-sizeMd joy-1fkv557"
                                             type="button"
+                                            data-index="2"
                                         >
                                             더 보기
                                         </button>
@@ -390,12 +399,15 @@
                 th:replace="~{main/footer.html :: #main-footer}"></footer>
         <!-- footer 넣을 곳 -->
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script src="/js/main/main-modal.js"></script>
     <script src="/js/main/main-clock.js"></script>
     <script src="/js/main/main-search-modal.js"></script>
-    <script src="/js/post/post-event.js"></script>
     <script src="/js/index-service.js"></script>
     <script src="/js/index-layout.js"></script>
     <script src="/js/index-event.js"></script>

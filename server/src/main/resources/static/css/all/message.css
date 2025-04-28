@@ -889,7 +889,7 @@ textarea {
     padding: 5px 5px 5px 15px;
 }
 
-.joy-spcbp9.{
+.joy-spcbp9{
     background-color: transparent;
 }
 
@@ -928,7 +928,6 @@ textarea {
     z-index: 1;
     border-radius: inherit;
     margin: -1px;
-    box-shadow: inset 1 0 0 1px #3478FF;
 }
 
 .joy-18i8jzi {
@@ -1036,4 +1035,41 @@ textarea {
 }
 .joy-1521dpu {
     pointer-events: auto; /* li는 클릭 가능 */
+}
+
+.joy-1nwwb6p {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: stretch;
+    text-align: initial;
+    background-color: initial;
+    cursor: pointer;
+    margin-block-start: 0px;
+    padding-inline-start: calc(00.75rem, 0px);
+    padding-inline-end: calc(00.75rem, 0px);;
+    min-block-size: 40px;
+    min-inline-size: 0px;
+    color: #202022;
+    font: inherit;
+    gap: 0.625rem;
+    text-decoration: initial;
+    margin-inline: 0px;
+    padding-block: calc(0.25rem - 0px, 0px);
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    flex: none;
+    padding: 8px 16px;
+    height: 10px;
+}
+
+.joy-1nwwb6p:hover {
+    background-color: #f2f2f3;
+    color: #202022;
 }
