@@ -228,14 +228,12 @@ public class MyPageService implements ToDTO {
 
         // 페이지 네이션을 위한 총 건수 가져오기
         pagination.create(myPageDAO.getNotifySubscribeTotalCount(memberId));
-        // 구독자 채널 정보 가져오기
-        List<ChannelVO> channels = myPageDAO.getNotifySubscribe(memberId, pagination);
-
+        // 구독하는 멤버 정보 가져오기
+        List<MemberVO> members = myPageDAO.getNotifySubscribe(memberId,pagination);
         // DTO에 멤버 정보 채우기
         List<NotifySubscribeListDTO> subscribes = new ArrayList<>();
-        channels.forEach(channel -> {
-            // 멤버 정보 가져오기
-            MemberVO member = myPageDAO.getMemberById(channel.getMemberId()).orElse(null);
+        members.forEach(member -> {
+            ChannelVO channel = myPageDAO.getChannelByMemberId(member.getId()).orElse(null);
             subscribes.add(toNotifySubscribeListDTO(channel, member));
         });
 

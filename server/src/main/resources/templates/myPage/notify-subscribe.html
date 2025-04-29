@@ -44,8 +44,9 @@
                             <div class="FeelogStack-root flog-div-20">
 <!--                                2025.04.24 조승찬 리스트 보여주기-->
                                 <th:block th:each="subscribe : ${subscribes}">
-                                    <div class="FeelogStack-root flog-div-72" th:attr="data-channelId=${subscribe.id}">
-                                        <a class="FeelogBox-root flog-a-21" href=""
+                                    <div class="FeelogStack-root flog-div-72" th:attr="data-channelId=${subscribe.id != null ? subscribe.id : ''}">
+                                        <a class="FeelogBox-root flog-a-21"
+                                           th:href="*{subscribe.channelUrl != null and !subscribe.channelUrl.isEmpty()} ? '/feelog.com/@' + subscribe.channelUrl + '/community' :  null"
                                         >
                                             <img
                                                     alt="채널"
@@ -77,7 +78,7 @@
                                         <div class="FeelogStack-root flog-div-73">
                                             <div class="FeelogStack-root flog-div-74">
                                                 <a
-                                                        href="/@tests123"
+                                                        href=""
                                                         class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-22"
                                                 ><span
                                                         class="FeelogTypography-root FeelogTypography-title-md flog-span-14" th:text="${subscribe.channelTitle}"
@@ -86,7 +87,7 @@
                                                 >
                                                 <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-15" th:text="${subscribe.channelIntroduce}">
                                                 </p>
-                                                <a class="FeelogStack-root flog-a-23" href="/profile/@lr3uee"
+                                                <a class="FeelogStack-root flog-a-23" href=""
                                                 ><div
                                                         class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeXs2 flog-div-75"
                                                 >
@@ -112,7 +113,7 @@
                                             </div>
                                             <button
                                                     class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeSm flog-button-13"
-                                                    type="button"  th:attr="data-memberId=${subscribe.memberId}, data-page=${pagination.page}"
+                                                    type="button"  th:attr="data-channelId=${subscribe.id}, data-memberId=${subscribe.memberId}, data-page=${pagination.page}"
                                             >
                                                 구독 중
                                             </button>
@@ -192,7 +193,7 @@
                     </svg>
                 </button>
                 <div id=":r1:" class="FeelogDialogContent-root flog-div-43">
-                    구독은 크리에이터에게 큰 힘이 돼요. 정말로 구독을 취소할까요?
+                    구독은 친구에게 큰 힘이 돼요. 정말로 구독을 취소할까요?
                 </div>
                 <div data-last-child="" class="FeelogDialogActions-root flog-div-44">
                     <button

@@ -120,7 +120,7 @@ public class MyPageDAO {
     }
 
     // 2025.04.24 조승찬 :: 구독자 채널 리스트 조회
-    public List<ChannelVO> getNotifySubscribe(Long memberId, SixRowPagination pagination) {
+    public List<MemberVO> getNotifySubscribe(Long memberId, SixRowPagination pagination) {
         return myPageMapper.getNotifySubscribe(memberId, pagination);
     }
 

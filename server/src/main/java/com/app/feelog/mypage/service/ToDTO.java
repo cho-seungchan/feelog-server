@@ -254,18 +254,20 @@ public interface ToDTO {
 
     public default NotifySubscribeListDTO toNotifySubscribeListDTO(ChannelVO channelVO, MemberVO memberVO) {
         NotifySubscribeListDTO dto = null;
-        if (channelVO != null && memberVO != null) {
+        if (memberVO != null) {
             dto = new NotifySubscribeListDTO();
+            dto.setMemberId(memberVO.getId());
+            dto.setMemberNickname(memberVO.getMemberNickname());
+            dto.setMemberFilePath(memberVO.getMemberFilePath());
+            dto.setMemberFileName(memberVO.getMemberFileName());
+        }
+        if (channelVO != null) {
             dto.setId(channelVO.getId());
             dto.setChannelTitle(channelVO.getChannelTitle());
             dto.setChannelIntroduce(channelVO.getChannelIntroduce());
             dto.setChannelUrl(channelVO.getChannelUrl());
             dto.setChannelFilePath(channelVO.getChannelFilePath());
             dto.setChannelFileName(channelVO.getChannelFileName());
-            dto.setMemberId(channelVO.getMemberId());
-            dto.setMemberNickname(memberVO.getMemberNickname());
-            dto.setMemberFilePath(memberVO.getMemberFilePath());
-            dto.setMemberFileName(memberVO.getMemberFileName());
             dto.setCreatedDate(channelVO.getCreatedDate());
             dto.setUpdatedDate(channelVO.getUpdatedDate());
         }

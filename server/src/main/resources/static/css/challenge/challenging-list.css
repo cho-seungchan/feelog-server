@@ -1427,3 +1427,14 @@ body {
     filter: grayscale(100%) brightness(50%);
 }
 /*페이지 처리부분 끝*/
+/* 링크 버튼 */
+.custom-link {
+    font-style: italic; /* 이탤릭체 적용 */
+    color: lightblue;
+}
+.custom-link:hover {
+    color: blue;
+    transform: scale(1.1); /* 살짝 커지게 */
+    text-decoration: underline;
+}
+/* 링크 버튼 */
