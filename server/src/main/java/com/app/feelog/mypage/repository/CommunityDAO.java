@@ -177,4 +177,59 @@ public class CommunityDAO {
     public void postCommunityPostReply(CommunityPostReplyVO replyVO) {
         communityMapper.postCommunityPostReply(replyVO);
     }
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 건수 가져오기
+    public int getReplyLikeCount(Long replyId) {
+        return communityMapper.getReplyLikeCount(replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 저장
+    public void postCommunityPostReplyLike(Long id, Long memberId, Long replyId) {
+        communityMapper.postCommunityPostReplyLike(id, memberId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 취소
+    public void cancelCommunityPostReplyLike(Long memberId, Long replyId) {
+        communityMapper.cancelCommunityPostReplyLike(memberId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글 신고 건수 가져오기
+    public int getReplyReportCount(Long replyId) {
+        return communityMapper.getReplyReportCount(replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글  신고  저장
+    public void postCommunityPostReplyReport(Long id, Long memberId, Long replyId) {
+        communityMapper.postCommunityPostReplyReport(id, memberId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글  신고  취소
+    public void cancelCommunityPostReplyReport(Long memberId, Long replyId) {
+        communityMapper.cancelCommunityPostReplyReport(memberId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 내가 댓글에 좋아요 했는지 여부
+    public boolean getILikeReply(Long loginId, Long replyId) {
+        return communityMapper.getILikeReply(loginId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 내가 댓글을 신고 했는지 여부
+    public boolean getIReportReply(Long loginId, Long replyId) {
+        return communityMapper.getIReportReply(loginId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 특정 댓글에 달린 좋아요 삭제
+    public void deleteCommunityPostReplyLikeByReplyId(Long replyId) {
+        communityMapper.deleteCommunityPostReplyLikeByReplyId(replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 특정 댓글에 달린 신고 삭제
+    public void deleteCommunityPostReplyReportByReplyId(Long replyId) {
+        communityMapper.deleteCommunityPostReplyReportByReplyId(replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 특정 댓글 삭제
+    public void deleteCommunityPostReplyByReplyId(Long id) {
+        communityMapper.deleteCommunityPostReplyByReplyId(id);
+    }
 }

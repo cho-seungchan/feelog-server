@@ -3126,11 +3126,13 @@ prev-button {
 .flog-div-44 > :not(.FeelogIconButton-root) {
     flex: 0 0 auto;
 }
-.flog-button-10.FeelogButton-sizeMd {
+.flog-button-10.FeelogButton-sizeMd,
+.delete-reply-button.FeelogButton-sizeMd {
     min-height: 40px;
     font-size: 16px;
 }
-.flog-button-10 {
+.flog-button-10,
+.delete-reply-button {
     --Icon-margin: initial;
     --Icon-color: currentColor;
     --Icon-fontSize: 24px;
@@ -3205,7 +3207,8 @@ prev-button {
 /* 신고창 모달 */
 
 /* 모달창 버튼 호버 */
-.flog-button-10:hover {
+.flog-button-10:hover,
+.delete-reply-button:hover  {
     background-color: #0056b3;
     color: #ffffff;
 }

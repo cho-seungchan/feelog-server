@@ -158,3 +158,95 @@ function cancelCommunityPostReport(postId, currentChannelUrl) {
         });
 }
 
+
+// 2025.04.29 조승찬 :: 댓글  좋아요
+function postCommunityPostReplyLike(replyId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-reply-like/${replyId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setReplyLikeCount(replyId, data.likeCount);
+        })
+        .catch(error => {
+            console.error("댓글 좋아요 요청 중 오류 발생:", error);
+        });
+}
+
+
+// 2025.04.29 조승찬 :: 댓글   좋아요 취소
+function cancelCommunityPostReplyLike(replyId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-reply-like-cancel/${replyId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setReplyLikeCount(replyId, data.likeCount);
+        })
+        .catch(error => {
+            console.error("댓글 좋아요 취소 요청 중 오류 발생:", error);
+        });
+}
+
+
+// 2025.04.29 조승찬 :: 댓글   신고
+function postCommunityPostReplyReport(replyId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-reply-report/${replyId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setReplyReportCount(replyId, data.reportCount);1
+        })
+        .catch(error => {
+            console.error("댓글 신고 요청 중 오류 발생:", error);
+        });
+}
+
+
+// 2025.04.29 조승찬 :: 댓글   신고 취소
+function cancelCommunityPostReplyReport(replyId, currentChannelUrl) {
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-reply-report-cancel/${replyId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setReplyReportCount(replyId, data.reportCount);
+        })
+        .catch(error => {
+            console.error("댓글 신고 취소 요청 중 오류 발생:", error);
+        });
+}
+

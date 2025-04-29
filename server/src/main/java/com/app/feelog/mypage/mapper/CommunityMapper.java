@@ -105,4 +105,37 @@ public interface CommunityMapper {
 
     // 2025.04.28  조승찬 :: 댓글 저장
     void postCommunityPostReply(CommunityPostReplyVO replyVO);
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 건수 가져오기
+    int getReplyLikeCount(Long replyId);
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 저장
+    void postCommunityPostReplyLike(Long id, Long memberId, Long replyId);
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 취소
+    void cancelCommunityPostReplyLike(Long memberId, Long replyId);
+
+    // 2025.04.29  조승찬 :: 댓글 신고 건수 가져오기
+    int getReplyReportCount(Long replyId);
+
+    // 2025.04.29  조승찬 :: 댓글  신고  저장
+    void postCommunityPostReplyReport(Long id, Long memberId, Long replyId);
+
+    // 2025.04.29  조승찬 :: 댓글  신고  취소
+    void cancelCommunityPostReplyReport(Long memberId, Long replyId);
+
+    // 2025.04.29  조승찬 :: 내가 댓글에 좋아요 했는지 여부
+    boolean getILikeReply(Long memberId, Long replyId);
+
+    // 2025.04.29  조승찬 :: 내가 댓글을 신고 했는지 여부
+    boolean getIReportReply(Long memberId, Long replyId);
+
+    // 2025.04.29  조승찬 :: 특정 댓글에 달린 좋아요 삭제
+    void deleteCommunityPostReplyLikeByReplyId(Long replyId);
+
+    // 2025.04.29  조승찬 :: 특정 댓글에 달린 신고 삭제
+    void deleteCommunityPostReplyReportByReplyId(Long replyId);
+
+    // 2025.04.29  조승찬 :: 특정 댓글 삭제
+    void deleteCommunityPostReplyByReplyId(Long id);
 }
