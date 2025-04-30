@@ -65,7 +65,6 @@ public class ChannelPostDTO {
                 .postStatus(postStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
-                .postReadCount(postReadCount)
                 .build();
     }
 }
