@@ -135,6 +135,29 @@
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
+    <select id="findVisibleDiaries" resultType="com.example.vo.DiaryVO">
+        SELECT *
+        FROM tbl_diary d
+        WHERE d.member_id = #{channelOwnerId}
+          AND (
+            #{viewerId} = #{channelOwnerId}
+                OR (
+                d.diary_open = '전체공개'
+                    OR (
+                    d.diary_open = '구독자에게만 공개'
+                        AND EXISTS (
+                        SELECT 1
+                        FROM tbl_subscribe s
+                        WHERE s.member_id = #{viewerId}
+                          AND s.channel_id = #{channelOwnerId}
+                    )
+                    )
+                )
+            )
+          AND d.diary_status = '정상'
+        ORDER BY d.created_date DESC
+    </select>
+
 
 
 </mapper>

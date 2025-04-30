@@ -36,4 +36,9 @@ public class ChannelServiceImpl implements ChannelService {
                 .map(this::toDTO);
     }
 
+    @Override
+    public Long findMemberIdByChannelUrl(String channelUrl) {
+        return channelDAO.findMemberIdByChannelUrl(channelUrl);
+    }
+
 }

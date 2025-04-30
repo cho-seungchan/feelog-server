@@ -19,7 +19,7 @@ public interface DiaryService {
 
     List<DiarySearchDTO> searchMoreDiaries(String keyword, int limit, int offset);
 
-
+    List<DiaryDTO> findVisibleDiaries(Long channelOwnerId, Long viewerId);
 
     default DiaryDTO toDTO(DiaryVO vo) {
         DiaryDTO dto = new DiaryDTO();
