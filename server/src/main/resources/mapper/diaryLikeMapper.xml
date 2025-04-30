@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.DiaryLikeMapper">
+    <select id="selectLikeCount" resultType="_int">
+        select count(*) from tbl_diary_like dl join tbl_like l on dl.id = l.id where diary_id = #{diaryId}
+    </select>
+
+    <select id="selectReplyCount" resultType="_int">
+        select count(*) from tbl_diary_reply dr join tbl_reply r on dr.id = r.id where diary_id = #{diaryId}
+    </select>
 </mapper>

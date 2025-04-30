@@ -1,6 +1,7 @@
 package com.app.feelog.domain.vo;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,16 +9,10 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class DiaryReportVO {
+@SuperBuilder
+public class DiaryReportVO extends ReportVO{
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
     private Long diaryId;
-
-    @Builder
-    public DiaryReportVO(String createdDate, String updatedDate, Long id, Long memberId, Long diaryId) {
-        this.id = id;
-        this.memberId = memberId;
-        this.diaryId = diaryId;
-    }
 }

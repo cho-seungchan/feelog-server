@@ -56,6 +56,8 @@ public class PostController {
             post.setScraped(scrapIdSet.contains(id));
         }
 
+        channelPostService.addReadCountByPostId(id);
+
         model.addAttribute("post", post);
 
         return "/post/read";

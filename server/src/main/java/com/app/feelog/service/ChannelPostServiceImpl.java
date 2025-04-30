@@ -344,4 +344,9 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         });
         return randomPosts;
     }
+
+    @Override
+    public void addReadCountByPostId(Long id) {
+        channelPostDAO.setReadCountByPostId(id);
+    }
 }

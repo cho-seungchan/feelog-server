@@ -104,4 +104,6 @@ public interface ChannelPostService {
 
     public List<MainPostListDTO> getPostRandom();
 
+    public void addReadCountByPostId(Long id);
+
 }
