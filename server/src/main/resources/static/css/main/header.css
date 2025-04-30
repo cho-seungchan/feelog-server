@@ -52,7 +52,7 @@ body {
     position: -webkit-sticky;
     position: fixed;
     top: 0;
-    z-index: 500;
+    z-index: 505;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1869,6 +1869,7 @@ animation-os2n7p animation {
     flex-grow: 1;
     position: relative;
     color: #202022;
+    overflow: hidden;
   }
   
 .menu-ui03.feelog-header-menuUi {

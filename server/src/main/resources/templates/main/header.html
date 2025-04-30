@@ -136,7 +136,7 @@
                 </div>
 
                 <!-- 로그인 안했을때 -->
-                <!-- <div class="feelog-header-write">
+                 <div class="feelog-header-write" th:if="${session.member == null}">
                 <button
                     aria-label="검색"
                     class="feelog-header-topside feelog-header-emoji search-btn"
@@ -160,19 +160,19 @@
                 </button>
                 <div class="feelog-header-login-div">
                     <a
-                        href="/login"
+                        href="/login/login"
                         class="  feelog-header-2as login-a01"
                         >로그인</a
                     ><a
-                        href="/signup"
+                        href="/join/join"
                         class="  feelog-header-2as signup-a01"
                         >회원 가입</a
                     >
                 </div>
-            </div> -->
+            </div>
                 <!-- 로그인 안했을때 끝 -->
                 <!-- 로그인 했을때 -->
-                <div class="feelog-header-write">
+                <div class="feelog-header-write" th:if="${session.member != null}">
                     <div class="feelog-header-write02">
                         <button
                             aria-haspopup="menu"
@@ -308,6 +308,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- 로그인 했을때 끝 -->
             </nav>
             <ul
                     role="menu"
@@ -328,26 +329,33 @@
                             data-first-child=""
                             data-last-child=""
                             class="feelog-header-profileMenu menu-li01"
-                    >
+                    ><a href="/myPage/setting-profile">
                         <button data-first-child="" class="menu-01-btn">
                             <div class="feelog-header-topDiv05">
                                 <img
                                         alt=""
-                                        src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                        th:if="${session.member != null and session.member.memberFilePath != null}"
+                                        th:src="@{'/files/display?path=' + ${session.member.memberFilePath} + '/' + ${session.member.memberFileName}}"
+                                        loading="lazy"
+                                        class="feelog-header-topImages"
+                                />
+                                <img
+                                        alt=""
+                                        th:unless="${session.member != null and session.member.memberFilePath != null}"
+                                        th:src="@{/images/avatar_blank.png}"
                                         loading="lazy"
                                         class="feelog-header-topImages"
                                 />
                             </div>
                             <div class="feelog-header-topDiv06">
-                            <span class="feelog-header-topSpan04"
-                            >Jake Jung</span
-                            >
+                                <span class="feelog-header-topSpan04" th:text="${session.member != null ? session.member.memberNickname : '비회원'}">Jake Jung</span>
                             </div>
                         </button>
+                    </a>
                     </li>
                 </ul>
                 <div class="feelog-header-topDiv07" data-last-child="">
-                    <ul role="group" class="feelog-header-menuUi">
+                    <!--<ul role="group" class="feelog-header-menuUi">
                         <p class="feelog-header-top1stp">내 프로필</p>
                         <li
                                 role="presentation"
@@ -363,18 +371,26 @@
                                 ><div class="feelog-header-topDiv09">
                                     <img
                                             alt=""
-                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=50&amp;h=50&amp;q=65"
-                                            loading="lazy"
+                                            th:if="${session.member != null and session.member.memberFilePath != null}"
+                                            th:src="@{'/files/display?path=' + ${session.member.memberFilePath} + '/' + ${session.member.memberFileName}}"
                                             class="feelog-header-topImages"
+                                            loading="lazy"
+                                    />
+                                    <img
+                                            alt=""
+                                            th:unless="${session.member != null and session.member.memberFilePath != null}"
+                                            th:src="@{/images/avatar_blank.png}"
+                                            class="feelog-header-topImages"
+                                            loading="lazy"
                                     />
                                 </div>
-                                    <p class="feelog-header-top2ndp">
+                                    <p class="feelog-header-top2ndp" th:text="${session.member != null ? session.member.memberNickname : 'Guest'}">
                                         Jake Jung
                                     </p></a
                                 ><button
                                     class="feelog-header-menuBtns menu-02-btn"
                                     type="button"
-                            >
+                            ><a href="/myPage/setting-profile" style="color: black">
                                 <svg
                                         focusable="false"
                                         aria-hidden="true"
@@ -392,10 +408,11 @@
                                             fill="currentcolor"
                                     ></path>
                                 </svg>
+                                </a>
                             </button>
                             </div>
                         </li>
-                    </ul>
+                    </ul>-->
                     <ul role="group" class="feelog-header-menuUi menu-ui02">
                         <ul role="group" class="feelog-header-menuUi menu-ui03">
                             <p data-first-child="" class="feelog-header-top1stp">
@@ -406,7 +423,7 @@
                                     class="feelog-header-profileMenu menu-li02"
                             >
                                 <a
-                                        href="/@korjake"
+                                        href="/myPage/make-channel"
                                         data-first-child=""
                                         class="feelog-header-topA02"
                                 ><div class="feelog-header-topDiv10">
@@ -415,26 +432,12 @@
                                                 class="feelog-header-topDiv12"
                                                 data-first-child=""
                                         >
-                                            <img
-                                                    alt="channel"
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                    data-nimg="fill"
-                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png?w=50&amp;h=50&amp;q=65"
-                                                    style="
-                                                    position: absolute;
-                                                    height: 100%;
-                                                    width: 100%;
-                                                    inset: 0px;
-                                                    object-fit: cover;
-                                                    color: transparent;
-                                                "
-                                            />
+                                            <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-4rp8fm"><path d="M11.063 16.188v-3.25h-3.25A.935.935 0 0 1 6.875 12c0-.52.418-.938.938-.938h3.25v-3.25c0-.519.417-.937.937-.937s.938.418.938.938v3.25h3.25c.519 0 .937.417.937.937s-.418.938-.938.938h-3.25v3.25c0 .519-.417.937-.937.937a.935.935 0 0 1-.938-.938Z" fill="currentcolor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M18 3.88H6c-1.17 0-2.12.95-2.12 2.12v12c0 1.17.95 2.12 2.12 2.12h12c1.17 0 2.12-.95 2.12-2.12V6c0-1.17-.95-2.12-2.12-2.12ZM6 2a4 4 0 0 0-4 4v12a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4H6Z" fill="currentcolor"></path></svg>
                                         </div>
                                     </div>
                                 </div>
                                     <span class="feelog-header-topSpan05"
-                                    >kor.jake</span
+                                    >채널 만들기</span
                                     ></a
                                 >
                                 <div class="feelog-header-topDiv13"></div>
@@ -477,7 +480,7 @@
                                 class="feelog-header-profileMenu feelog-header-top-multipleLi"
                         >
                             <a
-                                    href="/notifications"
+                                    href="/myPage/notify-reply-list"
                                     target=""
                                     data-first-child=""
                                     class="feelog-header-top-as"
@@ -507,13 +510,7 @@
                                 </div>
                                 <p class="feelog-header-top-ps">알림</p>
                             </div>
-                                <div
-                                        class="feelog-header-menuAlert feelog-header-topDiv14"
-                                >
-                                <span class="feelog-header-topSpan06" id=""
-                                >1</span
-                                >
-                                </div></a
+                                </a
                             >
                         </li>
                         <li
@@ -521,38 +518,7 @@
                                 class="feelog-header-profileMenu feelog-header-top-multipleLi"
                         >
                             <a
-                                    href="/messages"
-                                    target=""
-                                    data-first-child=""
-                                    class="feelog-header-top-as"
-                            ><div class="feelog-header-topDivs">
-                                <div class="feelog-header-topDivs-01">
-                                    <svg
-                                            focusable="false"
-                                            aria-hidden="true"
-                                            viewBox="0 0 24 24"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="feelog-header-write-opened-svgs"
-                                    >
-                                        <path
-                                                d="M4.5 5.875a.627.627 0 0 0-.625.625v.863l6.738 5.532a2.185 2.185 0 0 0 2.778 0l6.734-5.532V6.5a.627.627 0 0 0-.625-.625h-15Zm-.625 3.914V17.5c0 .344.281.625.625.625h15a.627.627 0 0 0 .625-.625V9.79l-5.547 4.554a4.063 4.063 0 0 1-5.156 0L3.875 9.789ZM2 6.5C2 5.121 3.121 4 4.5 4h15C20.879 4 22 5.121 22 6.5v11c0 1.379-1.121 2.5-2.5 2.5h-15A2.502 2.502 0 0 1 2 17.5v-11Z"
-                                                fill="currentcolor"
-                                        ></path>
-                                    </svg>
-                                </div>
-                                <p class="feelog-header-top-ps">메시지</p>
-                            </div></a
-                            >
-                        </li>
-                        <li
-                                role="presentation"
-                                class="feelog-header-profileMenu feelog-header-top-multipleLi"
-                        >
-                            <a
-                                    href="/subscriptions"
+                                    href="/myPage/storage-subscribe"
                                     target=""
                                     data-first-child=""
                                     class="feelog-header-top-as"
@@ -583,7 +549,7 @@
                                 class="feelog-header-profileMenu feelog-header-top-multipleLi"
                         >
                             <a
-                                    href="/library/view"
+                                    href="/myPage/storage-scrap"
                                     target=""
                                     data-first-child=""
                                     class="feelog-header-top-as"
@@ -615,7 +581,7 @@
                                 class="feelog-header-profileMenu feelog-header-top-multipleLi"
                         >
                             <a
-                                    href="/premium/history"
+                                    href="/myPage/setting-profile"
                                     target=""
                                     data-first-child=""
                                     class="feelog-header-top-as"
@@ -639,7 +605,7 @@
                                         ></path>
                                     </svg>
                                 </div>
-                                <p class="feelog-header-top-ps">프리미엄</p>
+                                <p class="feelog-header-top-ps">설정</p>
                             </div></a
                             >
                         </li>
@@ -648,74 +614,7 @@
                                 class="feelog-header-profileMenu feelog-header-top-multipleLi"
                         >
                             <a
-                                    href="/order/list"
-                                    target=""
-                                    data-first-child=""
-                                    class="feelog-header-top-as"
-                            ><div class="feelog-header-topDivs">
-                                <div class="feelog-header-topDivs-01">
-                                    <svg
-                                            focusable="false"
-                                            aria-hidden="true"
-                                            viewBox="0 0 24 24"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="feelog-header-write-opened-svgs"
-                                    >
-                                        <path
-                                                d="M9.5 5.375V7.25h5V5.375c0-1.379-1.121-2.5-2.5-2.5a2.502 2.502 0 0 0-2.5 2.5Zm-1.875 3.75h-2.75v9.125c0 1.035.59 1.875 1.875 1.875h10.5c1.285 0 1.875-.84 1.875-1.875V9.125h-2.75v2.188c0 .519-.418.937-.938.937a.935.935 0 0 1-.937-.938V9.126h-5v2.188c0 .519-.418.937-.938.937a.935.935 0 0 1-.937-.938V9.126Zm0-1.875V5.375A4.373 4.373 0 0 1 12 1a4.373 4.373 0 0 1 4.375 4.375V7.25h2.75C20.16 7.25 21 8.09 21 9.125v9.125c0 2.07-1.68 3.75-3.75 3.75H6.75C4.43 22 3 20.32 3 18.25V9.125C3 8.09 3.84 7.25 4.875 7.25h2.75Z"
-                                                fill="currentcolor"
-                                        ></path>
-                                    </svg>
-                                </div>
-                                <p class="feelog-header-top-ps">
-                                    스토어 주문 내역
-                                </p>
-                            </div></a
-                            >
-                        </li>
-                        <li
-                                role="presentation"
-                                class="feelog-header-profileMenu feelog-header-top-multipleLi"
-                        >
-                            <a
-                                    href="/request/order/list"
-                                    target=""
-                                    data-first-child=""
-                                    class="feelog-header-top-as"
-                            ><div class="feelog-header-topDivs">
-                                <div class="feelog-header-topDivs-01">
-                                    <svg
-                                            focusable="false"
-                                            aria-hidden="true"
-                                            viewBox="0 0 24 24"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="feelog-header-write-opened-svgs"
-                                    >
-                                        <path
-                                                d="m3.642 16.091-.899 3.054-.485 1.65a.927.927 0 0 0 .239.927.947.947 0 0 0 .927.239l1.65-.485 3.054-.9a3.429 3.429 0 0 0 1.462-.867L21.486 7.817a2.504 2.504 0 0 0 0-3.54l-1.54-1.544a2.502 2.502 0 0 0-3.54 0L4.511 14.63a3.468 3.468 0 0 0-.869 1.462Zm1.8.528c.066-.219.175-.422.328-.594l.066-.07 9.178-9.174 2.425 2.424-9.174 9.178a1.58 1.58 0 0 1-.665.395l-.915.27-2.143.63.63-2.144.27-.915Zm6.655 2.792A4.695 4.695 0 0 0 16.293 22h5.944a1.25 1.25 0 0 0 1.251-1.251 1.25 1.25 0 0 0-1.251-1.252h-.235c-.708 0-1.177-.774-1.071-1.47a4.699 4.699 0 0 0-2.53-4.916l-1.455 1.455a2.815 2.815 0 0 1 2.162 2.742c0 .148-.011.293-.031.433a3.295 3.295 0 0 0 .54 2.347l.027.035h-3.351a2.822 2.822 0 0 1-2.741-2.163l-1.455 1.455v-.004ZM6.286 2.917a3.099 3.099 0 0 0-4.38 0 3.099 3.099 0 0 0 0 4.38l3.86 3.86L7.092 9.83l-3.86-3.86a1.218 1.218 0 0 1 0-1.724 1.218 1.218 0 0 1 1.724 0l3.86 3.86 1.326-1.326-3.856-3.864Z"
-                                                fill="currentcolor"
-                                        ></path>
-                                    </svg>
-                                </div>
-                                <p class="feelog-header-top-ps">
-                                    리퀘스트 신청 내역
-                                </p>
-                            </div></a
-                            >
-                        </li>
-                        <li role="separator" class="menu-li03"></li>
-                        <li
-                                role="presentation"
-                                class="feelog-header-profileMenu feelog-header-top-multipleLi"
-                        >
-                            <a
-                                    href="https://help.postype.com/"
+                                    href="/main/cs"
                                     target="_blank"
                                     data-first-child=""
                                     class="feelog-header-top-as"
@@ -747,7 +646,7 @@
                                 class="feelog-header-profileMenu feelog-header-top-multipleLi"
                         >
                             <a
-                                    href="https://www.postype.com/logout"
+                                    href="/login/logout"
                                     data-first-child=""
                                     class="feelog-header-top-as"
                             ><div class="feelog-header-topDivs-02">
@@ -1834,7 +1733,7 @@
                                     target=""
                                     rel="noreferrer"
                                     referrerpolicy=""
-                                    href="/notifications"
+                                    href="/myPage/notify-reply-list"
                                     class="FlgButton-variantPlain FlgButton-sizeMd-need joy-zok3ae"
                             ><p class="joy-mkgk3h">알림</p>
                                 <svg

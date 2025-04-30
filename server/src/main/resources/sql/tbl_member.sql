@@ -5,8 +5,8 @@ create table tbl_member (
                             member_password	                            varchar(200),
                             member_nickname 		                        varchar(50),
                             member_introduce 		                    varchar(300) default '',
-                            member_file_path 		                    varchar(500) default '',
-                            member_file_name 		                    varchar(500) default '',
+                            member_file_path 		                    varchar(500),
+                            member_file_name 		                    varchar(500),
                             member_type 		                        varchar(50) default '일반 회원',
                             member_notification_post_reply              varchar(50) default '설정',
                             member_notification_post_reply_like         varchar(50) default '설정',
@@ -21,3 +21,6 @@ create table tbl_member (
 
 ALTER TABLE tbl_member
     MODIFY COLUMN member_notification_message VARCHAR(50) DEFAULT '설정';
+
+ALTER TABLE tbl_member
+    MODIFY member_file_path VARCHAR(500) NULL;
