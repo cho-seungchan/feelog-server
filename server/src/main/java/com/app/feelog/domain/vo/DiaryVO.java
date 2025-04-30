@@ -28,4 +28,5 @@ public class DiaryVO extends SuperPeriod {
     private Long memberId;
     private Long feelId;
     private DiaryStatus diaryStatus;
+    private int diaryReadCount;
 }

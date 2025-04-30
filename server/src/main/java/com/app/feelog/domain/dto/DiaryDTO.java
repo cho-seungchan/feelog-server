@@ -33,6 +33,7 @@ public class DiaryDTO {
     private DiaryStatus diaryStatus;
     private String createdDate;
     private String updatedDate;
+    private int diaryReadCount;
 
     // 첨부파일 및 태그
     private List<Long> fileIds;      // summernote용
@@ -56,6 +57,7 @@ public class DiaryDTO {
                 .diaryStatus(diaryStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
+                .diaryReadCount(diaryReadCount)
                 .build();
     }
 }

@@ -202,4 +202,11 @@
     <select id="selectPostRandom" resultType="mainPostListDTO">
         select * from view_post_info order by rand() limit 4
     </select>
+
+<!--    조회수 증가-->
+    <update id="updateReadCountByPostId">
+        update tbl_channel_post
+        set post_read_count = post_read_count + 1
+        where id = #{id}
+    </update>
 </mapper>

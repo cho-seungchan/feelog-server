@@ -1,8 +1,10 @@
 package com.app.feelog.repository;
 
 import com.app.feelog.domain.dto.DiarySearchDTO;
+import com.app.feelog.domain.dto.joinDTO.DiaryJoinDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.mapper.DiaryMapper;
+import com.app.feelog.util.pagination.PostPagination;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -38,4 +40,28 @@ public class DiaryDAO {
         return diaryMapper.searchMoreDiaries(keyword,limit,offset);
     }
 
+    //    박정근 :: 다이어리 페이지네이션
+    public List<DiaryJoinDTO> findDiaryListPagination(PostPagination postPagination){
+        return diaryMapper.selectDiaryListPagination(postPagination);
+    };
+
+    public int selectDiaryCount(){
+        return diaryMapper.selectDiaryCount();
+    };
+
+    public int selectDiaryCountAllAndSubscribe(){
+        return diaryMapper.selectDiaryCountAllAndSubscribe();
+    };
+
+    public int selectDiaryCountAll(){
+        return diaryMapper.selectDiaryCountAll();
+    };
+
+    public List<DiaryJoinDTO> findDiaryListPaginationAllAndSubscribe(PostPagination postPagination){
+        return diaryMapper.selectDiaryListPaginationAllAndSubscribe(postPagination);
+    };
+
+    public List<DiaryJoinDTO> findDiaryListPaginationAll(PostPagination postPagination){
+        return diaryMapper.selectDiaryListPaginationAll(postPagination);
+    };
 }

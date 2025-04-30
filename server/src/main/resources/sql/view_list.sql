@@ -143,12 +143,29 @@ from(
 ) m on p.member_id = m.member_id;
 
 
+create or replace view view_diary as
 select
+    d.id as id,
     m.id as member_id,
     m.member_nickname,
     m.member_file_path,
     m.member_file_name,
-    m.member_status
+    m.member_status,
+    d.diary_title,
+    d.diary_content,
+    d.diary_open,
+    d.diary_name_open,
+    d.diary_file_path,
+    d.diary_file_name,
+    d.diary_status,
+    d.updated_date as updated_date,
+    d.diary_read_count,
+    c.id as channel_id,
+    c.channel_title,
+    c.channel_url,
+    c.channel_file_path,
+    c.channel_file_name,
+    c.channel_status
 from tbl_member m
     join tbl_diary d
         on m.id = d.member_id
