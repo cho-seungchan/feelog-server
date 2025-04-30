@@ -1,6 +1,6 @@
 -- post 댓글 좋아요 테이블
 create table tbl_channel_post_reply_like (
-        id 		   bigint primary key,
+        id 		   bigint auto_increment primary key,
         member_id  bigint not null,
         reply_id   bigint not null,
         constraint fk_channel_post_reply_like foreign key (id)

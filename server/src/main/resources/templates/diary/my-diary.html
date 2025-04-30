@@ -5,24 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>나의 마음일기</title>
         <link rel="stylesheet" href="/css/diary/diary.css" />
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/footer.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
         <link rel="stylesheet" href="/css/all/message.css">
     </head>
     <body>
         <div class="joy-91keta">
             <!-- 헤더 넣을 곳 -->
-            <div class="feelog-header-mainDiv" id="header-container"></div>
-            <script>
-                // Load header.html and insert it in#header-placeholder
-                fetch("../main/header.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("header-container").innerHTML =
-                            data;
-                    })
-                    .catch((error) =>
-                        console.error("Error loading header:", error)
-                    );
-            </script>
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
             <!-- 헤더 넣을 곳 -->
             <div class="main_container_01">
                 <nav class=" nav_container_01">
@@ -60,7 +52,7 @@
                                     <li>
                                         <a
                                             class="aTag_myDiary_01 aTag_myDiary_02 aTag_allDiary_01"
-                                            href="/?feed-type=recommendation"
+                                            href="/diary/my-diary"
                                             ><span
                                                 class="  aTag_span_01"
                                                 id=":rjr:"
@@ -71,7 +63,7 @@
                                     <li>
                                         <a
                                             class="aTag_myDiary_01 aTag_myDiary_02 aTag_myDiary_03 aTag_myDiary_04"
-                                            href="/?feed-type=subscription"
+                                            href="/diary/all-diary"
                                             ><span
                                                 class="  aTag_span_01"
                                                 id=":rjs:"
@@ -775,25 +767,14 @@
             </div>
             <!-- 검색창 들어가야하는 곳 -->
             <!-- footer 넣을 곳 -->
-            <div class="joy-17imqrx" id="footer-container"></div>
-            <script>
-                // Load footer.html and insert it into #footer-placeholder
-                fetch("../main/footer.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("footer-container").innerHTML =
-                            data;
-                    })
-                    .catch((error) =>
-                        console.error("Error loading footer:", error)
-                    );
-            </script>
+            <footer id="main-footer"
+                    th:replace="~{main/footer.html :: #main-footer}"></footer>
             <!-- footer 넣을 곳 -->
         </div>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script src="/js/main/main-modal.js"></script>
     <script src="/js/main/main-clock.js"></script>
+    <script src="/js/main/main-search-modal.js"></script>
     <script src="/js/post/cheer-post-event.js"></script>
-    <script src="/js/all/message.js"></script>
 </html>

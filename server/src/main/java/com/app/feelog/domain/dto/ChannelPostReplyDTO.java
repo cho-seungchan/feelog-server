@@ -23,6 +23,11 @@ public class ChannelPostReplyDTO {
     private Long postMemberId;
     private String createdDate;
     private String updatedDate;
+    private String memberNickname;
+    private String memberFilePath;
+    private String memberFileName;
+    private int replyLikeCount;
+    private boolean isLiked;
 
     public ChannelPostReplyVO toVO() {
         return ChannelPostReplyVO.builder()
