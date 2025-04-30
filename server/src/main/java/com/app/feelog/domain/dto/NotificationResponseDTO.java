@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter
-@Setter
 @ToString
+@Setter
 public class NotificationResponseDTO {
     private Long notificationId;     // 알림 ID
     private Long senderId;            // 보낸 사람 ID

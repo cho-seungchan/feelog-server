@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    // note-editor 찾기
+    // note-editor 찾
     let noteEditor = summernote;
     while (noteEditor && !noteEditor.classList.contains("note-editor")) {
         noteEditor = noteEditor.parentElement;
@@ -192,10 +192,17 @@ function initSelectDropdown(container) {
         // 여기에서 input[name='visibilityOption']에 값 설정
         const selectedEnumValue = diaryOpenMap[clicked.textContent.trim()];
         const hiddenInput = container.querySelector("input[name='diaryOpen']");
-        if (hiddenInput && selectedEnumValue) {
-            hiddenInput.value = selectedEnumValue;
+        if (selectedEnumValue) {
+            if (hiddenInput) {
+                hiddenInput.value = selectedEnumValue;
+            } else {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "diaryOpen";
+                input.value = selectedEnumValue;
+                container.appendChild(input);
+            }
         }
-
 
     });
 
@@ -265,8 +272,16 @@ function initSelectDropdown2nd(container) {
         // 여기에서 input[name='diaryNameOpen']에 값 설정
         const selectedNameEnumValue = diaryNameOpenMap[clicked2nd.textContent.trim()];
         const hiddenNameInput = container.querySelector("input[name='diaryNameOpen']");
-        if (hiddenNameInput && selectedNameEnumValue) {
-            hiddenNameInput.value = selectedNameEnumValue;
+        if (selectedNameEnumValue) {
+            if (hiddenNameInput) {
+                hiddenNameInput.value = selectedNameEnumValue;
+            } else {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "diaryNameOpen";
+                input.value = selectedNameEnumValue;
+                container.appendChild(input);
+            }
         }
     });
 
