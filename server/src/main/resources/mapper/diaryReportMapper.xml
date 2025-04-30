@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.DiaryReportMapper">
+    <select id="selectDiaryReportByMemberId" resultType="long">
+        select diary_id from tbl_diary_report where member_id = #{memberId}
+    </select>
+
+    <insert id="insertDiaryReport">
+        insert into tbl_diary_report (id, member_id, diary_id) VALUE (#{id}, #{memberId}, #{diaryId})
+    </insert>
+
+    <insert id="insertSuperReport" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_report() values()
+    </insert>
 </mapper>

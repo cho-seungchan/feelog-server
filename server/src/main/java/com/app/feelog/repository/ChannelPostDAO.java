@@ -107,5 +107,8 @@ public class ChannelPostDAO {
         return channelPostMapper.selectPostRandom();
     };
 
+    public void setReadCountByPostId(Long id){
+        channelPostMapper.updateReadCountByPostId(id);
+    };
 
 }

@@ -19,7 +19,7 @@ const indexLayout = (() => {
 
             let channelMainImg = null;
             let postMainImg = null;
-            const defaultImg = "/images/messageIcon2.jpg"
+            const defaultImg = "/images/avatar_blank.png"
 
             if(post.memberFilePath !== null && post.memberFileName !==null){
                 channelMainImg = encodeURIComponent(`${post.memberFilePath}/${post.memberFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
@@ -42,7 +42,8 @@ const indexLayout = (() => {
                     tagLists.push(aTag);
                 })
             }
-            console.log(post)
+
+
             text = `
                                 <!--추후 개인채널 주소 연결-->
                 <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1eriol4" href="/feelog.com/@${post.channelUrl}/community">
@@ -213,7 +214,7 @@ const indexLayout = (() => {
 
         let channelMainImg = null;
         let postMainImg = null;
-        const defaultImg = "/images/messageIcon2.jpg"
+        const defaultImg = "/images/avatar_blank.png"
 
         if(post.memberFilePath !== null && post.memberFileName !==null){
             channelMainImg = encodeURIComponent(`${post.memberFilePath}/${post.memberFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공

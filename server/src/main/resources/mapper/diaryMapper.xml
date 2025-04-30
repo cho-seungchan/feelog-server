@@ -135,6 +135,37 @@
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
+<!--    박정근 :: 나의다이어리 페이지네이션-->
+    <select id="selectDiaryListPagination" resultType="diaryJoinDTO">
+        select * from view_diary
+                 where diary_open = '비공개'
+                 order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
 
+    <select id="selectDiaryCount" resultType="_int">
+        select count(*) from view_diary where diary_open = '비공개'
+    </select>
 
+    <select id="selectDiaryListPaginationAllAndSubscribe" resultType="diaryJoinDTO">
+        select * from view_diary
+        where diary_open = '전체 공개' and diary_open = '구독자에게만 공개'
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectDiaryListPaginationAll" resultType="diaryJoinDTO">
+        select * from view_diary
+        where diary_open = '전체 공개'
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectDiaryCountAllAndSubscribe" resultType="_int">
+        select count(*) from view_diary where diary_open = '전체 공개' and diary_open = '구독자에게만 공개'
+    </select>
+
+    <select id="selectDiaryCountAll" resultType="_int">
+        select count(*) from view_diary where diary_open = '전체 공개'
+    </select>
 </mapper>

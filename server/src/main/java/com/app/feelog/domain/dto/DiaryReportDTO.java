@@ -15,12 +15,16 @@ public class DiaryReportDTO {
     private Long id;
     private Long memberId;
     private Long diaryId;
+    private String createdDate;
+    private String updatedDate;
 
     public DiaryReportVO toVO() {
         return DiaryReportVO.builder()
                 .id(id)
                 .memberId(memberId)
                 .diaryId(diaryId)
+                .createdDate(createdDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

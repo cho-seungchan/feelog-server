@@ -10,6 +10,7 @@ create table tbl_diary (
                            diary_file_name 		varchar(500),
                            diary_file_size 		varchar(500),
                            diary_score          bigint ,
+                           diary_read_count     int default 0,
                            member_id 		    bigint not null,
                            diary_status 		varchar(50) default '정상',
                            created_date 		datetime default current_timestamp,
@@ -22,6 +23,8 @@ create table tbl_diary (
 
 
 alter table tbl_diary add diary_name_open      varchar(50) default '비공개(익명)';
+
+alter table tbl_diary add diary_read_count int default 0;
 
 
 select * from view_diary_detail;

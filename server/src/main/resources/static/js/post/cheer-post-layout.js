@@ -20,7 +20,7 @@ const cheerPostLayout = (() => {
 
             let channelMainImg = null;
             let postMainImg = null;
-            const defaultImg = "/images/messageIcon2.jpg"
+            const defaultImg = "/images/avatar_blank.png"
 
             if(post.memberFilePath !== null && post.memberFileName !==null){
                 channelMainImg = encodeURIComponent(`${post.memberFilePath}/${post.memberFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공

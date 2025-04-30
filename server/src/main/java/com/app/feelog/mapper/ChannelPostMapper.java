@@ -63,4 +63,5 @@ public interface ChannelPostMapper {
 
     public List<MainPostListDTO> selectPostRandom();
 
+    public void updateReadCountByPostId(Long id);
 }

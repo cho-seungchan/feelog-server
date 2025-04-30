@@ -114,21 +114,21 @@ select
     m.channel_file_name,
     m.channel_file_path
 from(
-    select
-        cp.id as id,
-        cp.post_type as post_type,
-        cp.member_id as member_id,
-        cp.channel_id as channel_id,
-        cp.post_read_count as post_read_count,
-        cp.post_file_path as post_file_path,
-        cp.post_file_name as post_file_name,
-        p.post_title as post_title,
-        p.post_content as post_content,
-        p.post_status as post_status,
-        p.created_date as created_date,
-        p.updated_date as updated_date
-    from tbl_channel_post cp join tbl_post p on cp.id = p.id
-     ) p join (
+        select
+            cp.id as id,
+            cp.post_type as post_type,
+            cp.member_id as member_id,
+            cp.channel_id as channel_id,
+            cp.post_read_count as post_read_count,
+            cp.post_file_path as post_file_path,
+            cp.post_file_name as post_file_name,
+            p.post_title as post_title,
+            p.post_content as post_content,
+            p.post_status as post_status,
+            p.created_date as created_date,
+            p.updated_date as updated_date
+        from tbl_channel_post cp join tbl_post p on cp.id = p.id
+    ) p join (
     select
         m.id as member_id,
         m.member_file_name,
@@ -140,5 +140,34 @@ from(
         c.channel_file_path,
         c.channel_file_name
     from tbl_member m join tbl_channel c on m.id = c.member_id
-     ) m on p.member_id = m.member_id;
+) m on p.member_id = m.member_id;
 
+
+create or replace view view_diary as
+select
+    d.id as id,
+    m.id as member_id,
+    m.member_nickname,
+    m.member_file_path,
+    m.member_file_name,
+    m.member_status,
+    d.diary_title,
+    d.diary_content,
+    d.diary_open,
+    d.diary_name_open,
+    d.diary_file_path,
+    d.diary_file_name,
+    d.diary_status,
+    d.updated_date as updated_date,
+    d.diary_read_count,
+    c.id as channel_id,
+    c.channel_title,
+    c.channel_url,
+    c.channel_file_path,
+    c.channel_file_name,
+    c.channel_status
+from tbl_member m
+    join tbl_diary d
+        on m.id = d.member_id
+    join tbl_channel c
+                on m.id = c.member_id;
