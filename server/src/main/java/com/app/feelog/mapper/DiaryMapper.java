@@ -29,4 +29,6 @@ public interface DiaryMapper {
                                            @Param("limit") int limit,
                                            @Param("offset") int offset);
 
+    List<DiaryVO> findVisibleDiaries(@Param("channelOwnerId") Long channelOwnerId,
+                                     @Param("viewerId") Long viewerId);
 }

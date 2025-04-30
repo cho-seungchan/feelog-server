@@ -68,6 +68,13 @@
         LIMIT 1
     </select>
 
+    <select id="findMemberIdByChannelUrl" resultType="long">
+        SELECT member_id
+        FROM tbl_channel
+        WHERE channel_url = #{channelUrl}
+          AND channel_status = '정상'
+    </select>
+
 
 
 
