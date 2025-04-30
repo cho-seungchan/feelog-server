@@ -2160,8 +2160,8 @@ slot {
     user-select: none;
     --variant-borderWidth: 0px;
     background-color: #f2f2f3;
-    width: 32px;
-    height: 32px;
+    width: 60px;
+    height: 60px;
     overflow: visible;
 }
 .flog-div-200 .FeelogAvatar-img {
@@ -3126,11 +3126,13 @@ prev-button {
 .flog-div-44 > :not(.FeelogIconButton-root) {
     flex: 0 0 auto;
 }
-.flog-button-10.FeelogButton-sizeMd {
+.flog-button-10.FeelogButton-sizeMd,
+.delete-reply-button.FeelogButton-sizeMd {
     min-height: 40px;
     font-size: 16px;
 }
-.flog-button-10 {
+.flog-button-10,
+.delete-reply-button {
     --Icon-margin: initial;
     --Icon-color: currentColor;
     --Icon-fontSize: 24px;
@@ -3205,7 +3207,8 @@ prev-button {
 /* 신고창 모달 */
 
 /* 모달창 버튼 호버 */
-.flog-button-10:hover {
+.flog-button-10:hover,
+.delete-reply-button:hover  {
     background-color: #0056b3;
     color: #ffffff;
 }
@@ -3214,3 +3217,27 @@ prev-button {
     color: #333333;
 }
 /* 삭제시 네, 아니오, 모달창 끝 */
+/*첨부파일 관련 시작*/
+.uploadFile {
+    margin-right: 10px;
+    padding-block-start: 20px;
+    height: 64px;
+    position: relative; /* 상대적인 위치를 설정하여 자식 요소의 기준점 제공 */
+    display: inline-block; /* 자식 요소 정렬 */
+}
+
+.file-cancel {
+    position: absolute; /* 절대 위치를 설정하여 부모 요소 기준 */
+    top: 5px; /* 두 번째 이미지의 위쪽 끝부분에 위치 */
+    right: -5px; /* 두 번째 이미지의 오른쪽 끝부분에 위치 */
+    width: 16px; /* 버튼 크기를 조정 */
+    height: 16px;
+    cursor: pointer; /* 사용자 경험 향상을 위해 클릭 가능한 커서 추가 */
+}
+
+.image-files {
+    display: block; /* 기본 블록 형태로 설정 */
+    width: 64px;
+    height: 64px;
+}
+/*첨부파일 관련 끝*/

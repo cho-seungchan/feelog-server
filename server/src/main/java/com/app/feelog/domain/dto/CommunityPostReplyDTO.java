@@ -13,8 +13,9 @@ import org.springframework.stereotype.Component;
 public class CommunityPostReplyDTO {
     @EqualsAndHashCode.Include
     private Long id;
-    private String community_post_reply_file_path;
-    private String community_post_reply_file_name;
+    private String replyContent;
+    private String replyFilePath;
+    private String replyFileName;
     private Long memberId;
     private Long postId;
     private String createdDate;
@@ -23,8 +24,9 @@ public class CommunityPostReplyDTO {
     public CommunityPostReplyVO toVO() {
         return CommunityPostReplyVO.builder()
                 .id(id)
-                .community_post_reply_file_path(community_post_reply_file_path)
-                .community_post_reply_file_name(community_post_reply_file_name)
+                .replyContent(replyContent)
+                .replyFilePath(replyFilePath)
+                .replyFileName(replyFileName)
                 .memberId(memberId)
                 .postId(postId)
                 .createdDate(createdDate)

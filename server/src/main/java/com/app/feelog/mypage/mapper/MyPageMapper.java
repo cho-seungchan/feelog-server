@@ -68,7 +68,7 @@ public interface MyPageMapper {
     int getNotifySubscribeTotalCount(Long memberId);
 
     // 2025.04.24 조승찬 :: 구독자 채널 리스트 조회
-    List<ChannelVO> getNotifySubscribe(Long memberId, SixRowPagination pagination);
+    List<MemberVO> getNotifySubscribe(Long memberId, SixRowPagination pagination);
 
     // 2025.04.24 조승찬 :: 구독자 취소
     void cancelSubscribe(SubscribeVO subscribeVO);

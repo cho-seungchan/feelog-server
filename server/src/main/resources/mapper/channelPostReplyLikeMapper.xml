@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.ChannelPostReplyLikeMapper">
+    <insert id="insertReplyLike">
+        insert into tbl_channel_post_reply_like (id,member_id, reply_id)
+        value (#{id}, #{memberId}, #{replyId})
+    </insert>
 
+    <insert id="insertSuperLike" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_like () value ()
+    </insert>
+
+    <delete id="deleteReplyLike">
+        DELETE rl, l
+        FROM tbl_channel_post_reply_like rl
+                 LEFT JOIN tbl_like l ON rl.id = l.id
+        WHERE rl.reply_id = #{replyId} AND rl.member_id = #{memberId};
+    </delete>
+
+
+    <select id="selectReplyLikeCount" resultType="_int">
+        select count(*) from tbl_channel_post_reply_like where reply_id = #{replyId}
+    </select>
+
+    <select id="selectReplyLikeByReplyId" resultType="channelPostReplyLikeVO">
+        select * from tbl_channel_post_reply_like where reply_id = #{replyId} and member_id = #{memberId}
+    </select>
 </mapper>

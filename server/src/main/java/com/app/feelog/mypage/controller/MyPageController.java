@@ -299,8 +299,9 @@ public class MyPageController {
     // 2025.04.24 조승찬 :: 구독자 취소
     @PostMapping("/notify-cancel-subscribe")
     public String cancelNotifySubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                  SubscribeDTO subscribeDTO, Model model, SixRowPagination pagination){
+                                        SubscribeDTO subscribeDTO, SixRowPagination pagination){
 
+        log.info("취소처리 :: "+subscribeDTO.toString());
         // 채널 정보 가져오기
         ChannelDTO channel = myPageService.getChannelByMemberId(member.getId()).orElse(null);
 

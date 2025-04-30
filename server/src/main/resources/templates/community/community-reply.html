@@ -49,7 +49,7 @@
 
 <!--                                2025.04.28 조승찬 댓글 목록의 포스크 글과 댓글 목록 보여주기-->
                                 <div class="FeelogStack-root flog-div-188">
-                                    <div class="FeelogStack-root flog-div-189">
+                                    <div class="FeelogStack-root flog-div-189"  th:attr="data-currentChannelUrl=${currentChannelUrl}, data-postId=${reply.id}">
                                         <div class="FeelogStack-root flog-div-156">
                                             <div class="FeelogStack-root flog-div-157">
                                                 <div class="FeelogStack-root flog-div-158">
@@ -149,7 +149,7 @@
                                                 </div>
                                                 <div class="FeelogBox-root flog-div-169">
                                                     <div class="FeelogBox-root flog-div-170">
-                                                        <div class="slider-container" th:attr="data-total=${reply.files.size()}">
+                                                        <div class="slider-container" th:attr="data-total=${reply.files != null ? reply.files.size() : 0}">
                                                             <div class="slider">
                                                                 <th:block th:each="file, stat: ${reply.files}">
                                                                     <div class="swiper-slide active"
@@ -161,7 +161,7 @@
                                                                                     th:if="*{file.fileName != null && !file.fileName.isEmpty()}"
                                                                                     th:src="@{/files/display(path=|*{file.filePath}/*{file.fileName}|)}"
                                                                                     loading="lazy"
-                                                                                    alt="유저가 업로드한 3개의 이미지 중 1번째 이미지"/>
+                                                                                    alt="유저가 업로드한 이미지"/>
                                                                         </div>
                                                                     </div>
                                                                 </th:block>
@@ -191,7 +191,7 @@
 
                                                             <!-- Next Button -->
                                                             <button
-                                                                th:classappend="${reply.files.size()} < 2 ? 'swiper-button-disabled' : ''"
+                                                                th:classappend="${reply.files == null || reply.files.size() < 2} ? 'swiper-button-disabled' : ''"
                                                                 aria-label="Next slide"
                                                                 class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeSm next-button flog-button-35"
                                                                 tabindex="0"
@@ -303,17 +303,20 @@
                                                 <div class="FeelogBox-root flog-div-169">
 
                                                     <form class="FeelogStack-root flog-form-1"  name="communityPostReply-form"
+                                                          th:action="@{'/feelog.com/@'+${currentChannelUrl}+'/community-reply'}"
                                                           th:object="${communityPostReply}" method="post" enctype="multipart/form-data">
                                                         <input type="hidden" name="postId" th:value="${reply.id}">
                                                         <div
                                                                 class="FeelogTextarea-root FeelogTextarea-variantOutlined FeelogTextarea-colorNeutral FeelogTextarea-sizeMd community-comment-textarea flog-div-201">
                                                         <textarea th:field="*{replyContent}"
+                                                                  name="replyContent"
                                                                 rows="1"
                                                                 placeholder="댓글 추가하기"
                                                                 class="FeelogTextarea-textarea flog-textarea-6">
                                                         </textarea>
                                                             <div class="FeelogTextarea-endDecorator flog-div-194">
                                                                 <div class="FeelogStack-root flog-div-195">
+                                                                    <div class="uploadFile-container2"></div>
                                                                     <div class="FeelogStack-root flog-div-196">
                                                                         <div class="FeelogBox-root flog-div-169">
                                                                             <input
@@ -375,7 +378,7 @@
                                                                         class="FeelogAvatar-img flog-img-10"/>
                                                                 <img
                                                                         alt=""
-                                                                        th:if="*{reply.memberFileName == null || !reply.memberFileName.isEmpty()}"
+                                                                        th:if="*{reply.memberFileName == null || reply.memberFileName.isEmpty()}"
                                                                         src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
                                                                         loading="lazy"
                                                                         class="FeelogAvatar-img flog-img-10"/>
@@ -424,6 +427,11 @@
                                                                 <p      th:text="*{reply.replyContent}"
                                                                         class="FeelogTypography-root FeelogTypography-body-md flog-p-38">
                                                                 </p>
+                                                                <div class="FeelogBox-root flog-div-169"  >
+                                                                    <img class="FeelogBox-root flog-img-12"
+                                                                         th:if="${reply.replyFileName != null && !reply.replyFileName.isEmpty()}"
+                                                                         th:src="@{/files/display(path=|${reply.replyFilePath}/${reply.replyFileName}|)}" alt="">
+                                                                </div>
                                                             </div>
                                                             <div class="FeelogStack-root flog-div-208">
                                                                 <div class="FeelogStack-root flog-div-209">
@@ -480,7 +488,8 @@
                                                                         </svg>
                                                                         <span class="reportCount" th:attr="data-replyId=*{reply.id}" th:text="*{reply.reportCount}"></span>
                                                                     </button>
-                                                                    <button th:attr="data-replyId=*{reply.id}"
+                                                                    <button th:if="${loginId} == *{reply.memberId}"
+                                                                            th:attr="data-replyId=*{reply.id}"
                                                                             class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-20"
                                                                             type="button">
                                                                         <svg
@@ -600,6 +609,7 @@
                                             </svg>
                                         </button>
                                     </li>
+                                    <ul class="uploadFile-container"></ul>
                                 </ul>
                                 <input
                                         accept="image/jpeg, image/png, image/heic, image/heif, image/webp"
@@ -626,5 +636,7 @@
         </div>
     </body>
     <script src="/js/community/community-reply-event.js"></script>
+    <script src="/js/community/community-reply-service.js"></script>
+    <script src="/js/community/community-reply-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

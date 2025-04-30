@@ -40,6 +40,7 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     private final ChannelPostScrapDAO channelPostScrapDAO;
     private final ChannelPostReportDAO channelPostReportDAO;
     private final SubscribeDAO subscribeDAO;
+    private final ChannelPostLikeDAO channelPostLikeDAO;
 
     @Override
     public void writeChannelPost(ChannelPostDTO dto) {

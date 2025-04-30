@@ -2068,7 +2068,7 @@ body {
     color: #202022;
     font-weight: 400;
     position: sticky;
-    z-index: 500;
+    z-index: 2;
 }
 
 @media (min-width: 0px) {
