@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="FlgStack-root-need jk-feelog-div031" data-first-child="" data-last-child="">
                 <div class="FlgStack-root-need joy-1dox06v">
                     <div class="FlgStack-root-need joy-dmwqxb">
-                        <a href="/notifications" class="FlgButton-variantPlain FlgButton-sizeMd-need joy-zok3ae">
+                        <a href="/myPage/notify-reply-list" class="FlgButton-variantPlain FlgButton-sizeMd-need joy-zok3ae">
                             <p class="joy-mkgk3h">알림</p>
                             <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="joy-1w4q56z">
                                 <path d="M16.416 11.332a.934.934 0 0 1 0 1.325l-7.5 7.504a.937.937 0 0 1-1.324-1.324L14.428 12l-6.84-6.84a.937.937 0 0 1 1.324-1.324l7.504 7.495Z" fill="currentColor"></path>
@@ -187,11 +187,44 @@ document.addEventListener("DOMContentLoaded", () => {
         notificationMenu.style.left = `${adjustedLeft}px`;
         notificationMenu.style.top = `${top}px`;
     }
+    function closeAllMenusExcept(except) {
+        // profile
+        const profileMenu = document.getElementById("profile-menu");
+        if (profileMenu && except !== "profile") profileMenu.classList.add("hidden");
+
+        // 알림
+        if (notificationMenu && except !== "notification") {
+            notificationMenu.style.display = "none";
+            isOpen = false;
+        }
+
+        // 메시지 패널
+        const messageList = document.querySelector(".message-listContainer");
+        const messageButtonImg = document.querySelector(".message-buttonImg");
+        const xButtonImg = document.querySelector(".x-buttonImg");
+        if (messageList && !messageList.classList.contains("message-listHidden") && except !== "message") {
+            messageList.classList.add("message-listHidden");
+            if (messageButtonImg && xButtonImg) {
+                messageButtonImg.classList.remove("hidden-messageImg");
+                messageButtonImg.classList.add("view-messageImg");
+                xButtonImg.classList.remove("view-xImg");
+                xButtonImg.classList.add("hidden-xImg");
+            }
+        }
+
+        // 모달
+        const modal = document.getElementById("customModal");
+        if (modal && except !== "modal") {
+            modal.style.display = "none";
+        }
+    }
+
 
     function toggleNotificationMenu(e) {
         e.stopPropagation();
         isOpen = !isOpen;
         if (isOpen) {
+            closeAllMenusExcept("notification");
             loadNotifications();
             updateNotificationMenuPosition();
             notificationMenu.style.display = "block";
@@ -223,5 +256,85 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     });
+
+    fetch("/main/channel/my")
+        .then(res => {
+            if (!res.ok) throw new Error("채널 없음");
+            return res.json();
+        })
+        .then(data => {
+            // 채널이 있을 경우: 아무 것도 하지 않음 (href 유지)
+        })
+        .catch(() => {
+            // 채널이 없을 경우: 링크 클릭 막고 리디렉션
+            const requiresChannel = [
+                "/main/mind-log",
+                "/main/post"
+            ];
+
+            document.querySelectorAll("a.feelog-header-mdl-a01").forEach(link => {
+                const href = link.getAttribute("href");
+                if (requiresChannel.includes(href)) {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        window.location.href = "/myPage/make-channel";
+                    });
+                }
+            });
+        });
+
+    fetch("/main/channel/my")
+        .then(res => {
+            if (!res.ok || res.status === 204) return null;
+            return res.json();
+        })
+        .then(data => {
+            const menuList = document.querySelector(".feelog-header-menuUi.menu-ui03");
+            if (!menuList) return;
+
+            // 기존 채널 li 제거
+            const oldLi = menuList.querySelector(".feelog-header-profileMenu");
+            if (oldLi) oldLi.remove();
+
+            // 새 li 생성
+            const li = document.createElement("li");
+            li.setAttribute("role", "presentation");
+            li.className = "feelog-header-profileMenu menu-li02";
+
+            const a = document.createElement("a");
+            a.href = data && data.channelUrl ? `/feelog.com/@${data.channelUrl}` : "/myPage/make-channel";
+            a.className = "feelog-header-topA02";
+            a.setAttribute("data-first-child", "");
+
+            a.innerHTML = `
+            <div class="feelog-header-topDiv10">
+                <div class="feelog-header-topDiv11">
+                    <div class="feelog-header-topDiv12" data-first-child="">
+                        <img alt="channel" loading="lazy" decoding="async" data-nimg="fill"
+                            src="${data && data.channelFilePath && data.channelFileName
+                ? `/files/display?path=${data.channelFilePath}/${data.channelFileName}`
+                : 'https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png?w=50&h=50&q=65'}"
+                            style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;">
+                    </div>
+                </div>
+            </div>
+            <span class="feelog-header-topSpan05">${data && data.channelTitle ? data.channelTitle : "채널 만들기"}</span>
+        `;
+
+            const div = document.createElement("div");
+            div.className = "feelog-header-topDiv13";
+
+            li.appendChild(a);
+            li.appendChild(div);
+
+            // 구분선 앞에 삽입
+            const separator = menuList.querySelector(".menu-li03");
+            menuList.insertBefore(li, separator);
+        })
+        .catch(err => {
+            console.error("채널 정보 불러오기 실패", err);
+        });
+
+
 
 });

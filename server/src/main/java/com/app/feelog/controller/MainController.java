@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,6 +39,8 @@ public class MainController {
     private final NotificationService notificationService;
     private final FaqService faqService;
     private final EmailServiceJk emailServiceJk;
+    private final ChannelService channelService;
+    private final DiaryScoreService diaryScoreService;
 
     @GetMapping("/cs")
     public String getMainCs() {
@@ -77,7 +80,6 @@ public class MainController {
         Long memberId = member.getId();
 
         diaryDTO.setMemberId(memberId);
-        diaryDTO.setFeelId(1L);
         diaryDTO.setTags(tags);
         diaryDTO.setFileIds(fileIds);
 
@@ -99,9 +101,24 @@ public class MainController {
 
         return "redirect:/";
     }
+
     @GetMapping("/mind-log/edit/{id}")
-    public String editDiaryForm(@PathVariable("id") Long id, Model model) {
-        DiaryDTO diaryDTO = diaryService.getDiary(id); // 기존 글 불러오기
+    public String editDiaryForm(@PathVariable("id") Long id, Model model,
+                                @SessionAttribute(value = "member", required = false) MemberDTO member) {
+
+        if (member == null) {
+            return "login/login";
+        }
+
+        // 기존 글 불러오기
+        DiaryDTO diaryDTO = diaryService.getDiary(id);
+
+        // 본인 글이 아닐 경우 접근 차단 (선택적 처리)
+        if (!member.getId().equals(diaryDTO.getMemberId())) {
+            return "/error/error-page"; // 접근 권한 없음 페이지 등으로 리디렉션 가능
+        }
+
+        log.info("diaryDTO: " + diaryDTO);
 
         // 연결된 챌린지 ID가 있다면 조회해서 세팅
         ChallengeDiaryDTO challengeDiaryDTO = challengeDiaryService.findById(id);
@@ -110,8 +127,9 @@ public class MainController {
         }
 
         model.addAttribute("diary", diaryDTO);
-        model.addAttribute("tags", diaryDTO.getTags()); // 태그도 따로 넘기기
-        return "main/mind-log-edit"; // edit.html Thymeleaf 템플릿
+        model.addAttribute("tags", diaryDTO.getTags());
+
+        return "main/mind-log-edit";
     }
 
     @PostMapping("/diary/image/save")
@@ -313,6 +331,66 @@ public class MainController {
                                @RequestParam("request[description]") String description) {
         emailServiceJk.sendTicketEmail(email, subject, description);
         return "redirect:/main/faq";
+    }
+
+
+    @GetMapping("/channel/my")
+    @ResponseBody
+    public ResponseEntity<?> getMyChannel(HttpSession session) {
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
+        if (loginMember == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+        }
+
+        Optional<ChannelDTO> optionalChannel = channelService.getMyChannel(loginMember.getId());
+
+        if (optionalChannel.isPresent()) {
+            return ResponseEntity.ok(optionalChannel.get());
+        } else {
+            return ResponseEntity.ok(null);
+        }
+    }
+
+
+    @PostMapping("/api/feeling-check")
+    @ResponseBody
+    public ResponseEntity<?> checkFeeling(@RequestBody FeelingRequestDTO request) {
+        String contents = request.getContents();
+
+        log.info(contents);
+
+        // 1. 점수 산정
+        int score = diaryScoreService.getEmotionScore(contents);
+        log.info("감정 분석 결과 점수: {}", score); // 로그 추가
+
+        // 2. 점수로 정보 조회
+        Optional<DiaryScoreDTO> scoreDTO = diaryScoreService.getScoreById((long) score);
+        if (scoreDTO.isEmpty()) {
+            log.warn("감정 점수 {}에 해당하는 정보 없음", score);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Score info not found.");
+        }
+
+        // 3. 응답 구성
+        DiaryScoreDTO dto = scoreDTO.get();
+        Map<String, Object> result = new HashMap<>();
+        result.put("score", score); //score 그대로 유지 (프론트 연동용)
+        result.put("id", dto.getId()); // 필요하면 이거도 명시적으로 전달
+        result.put("message", dto.getScoreMessage());
+        result.put("imgUrl", "/files/display?path=" + dto.getScoreFilePath() + "/" + dto.getScoreFileName());
+
+        log.info("감정 분석 결과 응답: {}", result); //최종 응답 로그
+
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/feeling-score/{id}")
+    @ResponseBody
+    public ResponseEntity<?> getFeelingScore(@PathVariable("id") Long id) {
+        Optional<DiaryScoreDTO> optionalScore = diaryScoreService.getScoreById(id);
+
+        return optionalScore
+                .<ResponseEntity<?>>map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 감정 점수가 존재하지 않습니다."));
     }
 
 }

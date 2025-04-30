@@ -6,19 +6,16 @@ create table tbl_diary (
                            diary_content 		varchar(4000) not null,
                            diary_open       	varchar(50) default '비공개',
                            diary_name_open      varchar(50) default '비공개(익명)',
-                           diary_file_path 		varchar(500) default '',
-                           diary_file_name 		varchar(500) default '',
-                           diary_file_size 		varchar(500) default '',
+                           diary_file_path 		varchar(500),
+                           diary_file_name 		varchar(500),
+                           diary_file_size 		varchar(500),
                            diary_score          bigint ,
                            member_id 		    bigint not null,
-                           feel_id              bigint not null,
                            diary_status 		varchar(50) default '정상',
                            created_date 		datetime default current_timestamp,
                            updated_date 	    datetime default current_timestamp,
                            constraint fk_diary_member foreign key (member_id)
                                references tbl_member (id),
-                           constraint fk_diary_feel foreign key (feel_id)
-                               references tbl_feel (id),
                             constraint fk_score_diary_score foreign key (diary_score)
                                 references tbl_diary_score(id)
 );
@@ -89,10 +86,12 @@ INSERT INTO tbl_diary (
 1,1,1
 );
 
+ALTER TABLE tbl_diary
+    DROP FOREIGN KEY fk_diary_feel;
 
 
-
-
+ALTER TABLE tbl_diary
+    DROP COLUMN feel_id;
 
 
 

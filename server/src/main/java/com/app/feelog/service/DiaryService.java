@@ -33,7 +33,6 @@ public interface DiaryService {
         dto.setDiaryFileSize(vo.getDiaryFileSize());
         dto.setDiaryWeather(vo.getDiaryWeather());
         dto.setMemberId(vo.getMemberId());
-        dto.setFeelId(vo.getFeelId());
         dto.setDiaryStatus(vo.getDiaryStatus());
         dto.setCreatedDate(vo.getCreatedDate());
         dto.setUpdatedDate(vo.getUpdatedDate());

@@ -34,6 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
         clone.innerHTML = modalContent.innerHTML;
         editorZone.appendChild(clone);
 
+        function stripHtmlTags(html) {
+            const temp = document.createElement("div");
+            temp.innerHTML = html;
+            return temp.textContent || temp.innerText || "";
+        }
+
         // 다음버튼 누르면 제목이 p 태그로 바뀌고, input은 사라짐
         const titleInput = document.querySelector("#title-input");
         if (titleInput) {
@@ -127,7 +133,87 @@ document.addEventListener("DOMContentLoaded", () => {
             cancelBtn.onclick = null;
         };
 
-        // 7. 이벤트 연결
+        // 7. 감정 검사 API 요청 (제목 + 내용 합치기)
+        // 제목 추출 (입력 필드 또는 고정된 p 태그 중 하나에서)
+        let title = "";
+        const titleInputEl = document.querySelector("#title-input");
+        // 제목 입력란
+        if (titleInputEl) {
+            title = titleInputEl.value || ""; // 입력된 제목이 있으면 사용
+        } else {
+            const fixedTitleEl = document.querySelector("#title-fixed");
+            // p 태그로 변환된 제목
+            if (fixedTitleEl) {
+                title = fixedTitleEl.textContent || "";
+                // 표시된 텍스트 가져오기
+            }
+        }
+
+        // Summernote 에디터에서 HTML 포함된 내용 가져오기
+        const contentHtml = $(".summernote").summernote("code");
+
+        // HTML 태그 제거한 순수 텍스트만 추출
+        const plainTextContent = stripHtmlTags(contentHtml);
+
+        // 제목과 본문을 합쳐서 감정 분석 대상으로 구성
+        const contents = title.trim() + " " + plainTextContent.trim();
+
+        // 감정 분석 API 요청 (컨텐츠 합친 값 전송)
+        fetch("/main/api/feeling-check", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json" // JSON 형식 명시
+            },
+            body: JSON.stringify({
+                contents // 백엔드에서 @RequestBody(contents)로 받음
+            })
+        })
+            .then(res => res.json()) // 응답을 JSON으로 변환
+            .then(data => {
+                const { score } = data; // 감정 점수 추출
+                console.log("감정 분석 결과 점수:", score);
+
+                // 점수에 해당하는 상세 감정 정보 요청
+                return fetch(`/main/feeling-score/${score}`);
+            })
+            .then(res => res.json()) // 응답을 JSON으로 변환
+            .then(scoreData => {
+                const { scoreMessage, scoreFilePath, scoreFileName, id } = scoreData;
+                // 상세 정보 디스트럭처링
+
+                console.log("감정 점수 상세 정보:", scoreData);
+
+                // 감정 점수를 diaryScore라는 이름으로 form에 숨김 인풋으로 삽입
+                const hiddenScoreInput = document.createElement("input");
+                hiddenScoreInput.type = "hidden";
+                hiddenScoreInput.name = "diaryScore"; // 서버에서 사용되는 필드 이름
+                hiddenScoreInput.value = id; // 감정 점수 ID 설정
+                clone.appendChild(hiddenScoreInput); // 폼 안에 추가
+
+                // 감정 이미지 및 메시지를 프리뷰 영역에 표시
+                const previewBox = document.querySelector(".inline-publish-section > div");
+                if (previewBox) {
+                    previewBox.innerHTML = `
+                <div style="padding: 20px; text-align: center;">
+                <p style="font-size: 20px; font-weight: bold;">Feelog AI 생각</p>
+                    <img src="/files/display?path=${scoreFilePath}/${scoreFileName}" 
+                         alt="감정 이미지" 
+                         style="max-height: 200px; margin-bottom: 10px;" />
+                    <p style="font-size: 16px; font-weight: bold;">${scoreMessage}</p>
+                    <p style="color: #666;">감정 점수: ${id}</p>
+                </div>
+            `;
+                }
+            })
+            .catch(err => {
+                // 감정 분석 API 호출 실패 시 에러 출력
+                console.error("감정 검사 실패:", err);
+            });
+
+
+
+
+        // 8. 이벤트 연결
         initSelectDropdown(clone);
         initSelectDropdown2nd(clone);
         initFileUpload(clone);

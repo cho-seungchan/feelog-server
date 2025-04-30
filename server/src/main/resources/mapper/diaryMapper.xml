@@ -3,8 +3,8 @@
 <mapper namespace="com.app.feelog.mapper.DiaryMapper">
 
     <insert id="insert" parameterType="com.app.feelog.domain.vo.DiaryVO" useGeneratedKeys="true" keyProperty="id">
-        insert into tbl_diary (diary_title, diary_content, diary_file_path, diary_file_name, diary_file_size,diary_open,diary_name_open, member_id, feel_id)
-        values (#{diaryTitle}, #{diaryContent}, #{diaryFilePath}, #{diaryFileName}, #{diaryFileSize}, #{diaryOpen}, #{diaryNameOpen}, #{memberId}, #{feelId})
+        insert into tbl_diary (diary_title, diary_content, diary_file_path, diary_file_name, diary_file_size,diary_open,diary_name_open,diary_score, member_id)
+        values (#{diaryTitle}, #{diaryContent}, #{diaryFilePath}, #{diaryFileName}, #{diaryFileSize}, #{diaryOpen}, #{diaryNameOpen}, #{diaryScore}, #{memberId})
     </insert>
 
     <!-- 단일 조회 -->
@@ -18,9 +18,7 @@
             diary_file_path,
             diary_file_name,
             diary_file_size,
-            diary_weather,
             member_id,
-            feel_id,
             diary_status,
             created_date,
             updated_date
@@ -38,6 +36,7 @@
             diary_file_path = #{diaryFilePath},
             diary_file_name = #{diaryFileName},
             diary_file_size = #{diaryFileSize},
+            diary_score = #{diaryScore},
             updated_date = NOW()
         where id = #{id}
     </update>
