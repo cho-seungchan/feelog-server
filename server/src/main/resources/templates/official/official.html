@@ -5,15 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="/css/official/official.css" />
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/all/message.css" />
     </head>
     <body>
         <div class="Toastify"></div>
         <section>
+            <!-- 헤더 넣을 곳 -->
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
+            <!-- 헤더 넣을 곳 -->
             <div class="FlgStack-root-need jk-feelog-div046">
                 <div class="FlgStack-root-need jk-feelog-div047">
                     <div class="FlgStack-root-need jk-feelog-div048">
                         <div class="FlgBox-root-need jk-feelog-div043"></div>
-                        <nav class="FlgStack-root-need jk-feelog-nav002">
+                        <!--<nav class="FlgStack-root-need jk-feelog-nav002">
                             <div class="FlgStack-root-need jk-feelog-div066">
                                 <div
                                     class="FlgStack-root-need jk-feelog-div067"
@@ -275,7 +283,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </nav>
+                        </nav>-->
                         <a id="skip" class="sr-only" href="#main"
                             >주요 내용으로 건너뛰기</a
                         >
@@ -6297,4 +6305,7 @@
             </div>
         </section>
     </body>
+    <script src="/js/main/main-modal.js"></script>
+    <script src="/js/main/notification.js"></script>
+    <script src="/js/main/main-search-modal.js"></script>
 </html>

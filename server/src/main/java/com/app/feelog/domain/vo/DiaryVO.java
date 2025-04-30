@@ -24,8 +24,7 @@ public class DiaryVO extends SuperPeriod {
     private String diaryFileName;
     private String diaryFileSize;
     private String diaryWeather;
-    private int    diaryScore;
+    private Long    diaryScore;
     private Long memberId;
-    private Long feelId;
     private DiaryStatus diaryStatus;
 }
