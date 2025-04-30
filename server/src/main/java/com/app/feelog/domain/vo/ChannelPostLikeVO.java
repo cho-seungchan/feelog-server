@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
 @SuperBuilder
-public class ChannelPostLikeVO extends SuperPeriod {
+public class ChannelPostLikeVO extends LikeVO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;

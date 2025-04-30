@@ -2819,7 +2819,7 @@ textarea {
     font-size: 16px;
     line-height: 1.5;
     font-weight: 400;
-    color: #d41724;
+    color: #202022;
 }
 
 .button_text_02 {
@@ -3138,4 +3138,40 @@ textarea {
     width: 24px;
     height: 24px;
     color: #76767f;
+}
+
+.reply-imgWrap {
+    margin-top: 8px;
+}
+
+.reply-img {
+    height: auto;
+    object-fit: cover;
+}
+
+@media (min-width: 0px) {
+    .reply-img {
+        max-height: 140px;
+    }
+}
+
+@media (min-width: 744px) {
+    .reply-img {
+        max-height: 210px;
+    }
+}
+
+.like_button_01.feelog-disabled {
+    pointer-events: none;
+    cursor: default;
+    color: #A4A4A8;
+}
+
+.none-post {
+    margin: 0px;
+    display: block;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #79797f;
 }

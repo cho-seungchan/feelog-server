@@ -103,4 +103,5 @@ public interface ChannelPostService {
 //    public SubscribeDTO getSubscribe(@Param("memberId") Long memberId, @Param("channelId") Long channelId);
 
     public List<MainPostListDTO> getPostRandom();
+
 }

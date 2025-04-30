@@ -1,12 +1,16 @@
 const readLayout = (() => {
     const showNextPost = (nextPostData) => {
         const channelPostWrap = document.querySelector(".channel-posts");
-
+        const nextButton = document.querySelector(".next-post")
+        const buttonText = nextButton.querySelector("p")
 
         if(nextPostData) {
             const newATag = document.createElement("a");
+
+            nextButton.setAttribute("href", `/post/read?id=${nextPostData.id}`)
             newATag.classList.add("next_a_01");
             newATag.setAttribute("href", `/post/read?id=${nextPostData.id}`);
+
             newATag.innerHTML = `
                 <div class="post_buttonWrap_01" role="button" tabindex="0">
                     <div class="title_subtitleWrap_01">
@@ -24,7 +28,11 @@ const readLayout = (() => {
             channelPostWrap.appendChild(newATag);
         } else{
             const newDiv = document.createElement("div")
+
+            buttonText.classList.replace("button_text_02", "none-post")
+            nextButton.classList.add("feelog-disabled");
             newDiv.classList.add("joy-mvjxa7");
+
             newDiv.innerHTML = `
                     <p class="MuiTypography-root MuiTypography-body-sm joy-g4c415">다음 포스트가 없어요.</p>
                     <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1opsxzr">
@@ -38,11 +46,16 @@ const readLayout = (() => {
 
     const showPreviousPost = (previousData) => {
         const channelPostWrap = document.querySelector(".channel-posts");
+        const previousButton = document.querySelector(".previous-post")
+        const buttonText = previousButton.querySelector("p");
 
        if(previousData){
            const newATag = document.createElement("a");
+
+           previousButton.setAttribute("href", `/post/read?id=${previousData.id}`)
            newATag.classList.add("next_a_01");
            newATag.setAttribute("href", `/post/read?id=${previousData.id}`);
+
            newATag.innerHTML = `
                 <div class="post_buttonWrap_01" role="button" tabindex="0">
                     <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="post_buttonWrap_svg_01">
@@ -62,7 +75,11 @@ const readLayout = (() => {
            channelPostWrap.prepend(newATag)
        }else {
            const newDiv = document.createElement("div");
+
+           buttonText.classList.replace("button_text_02","none-post")
+           previousButton.classList.add("feelog-disabled")
            newDiv.classList.add("joy-yov4xo")
+
            newDiv.innerHTML = `
                    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1opsxzr">
@@ -207,9 +224,97 @@ const readLayout = (() => {
         })
     }
 
+    const showReplyList = (replyListData) => {
+        const replyContainer = document.querySelector(".reply-container");
+
+        replyListData.forEach((reply)=> {
+            const newDiv = document.createElement("div");
+            newDiv.classList.add("diary_div_001");
+            newDiv.innerHTML = `
+                <div class="diary_container_01" id="comment-19227472">
+                    <div class="diary_container_01">
+                        <div class="post_container_001">
+                            <div class="profile_wrap_01">
+                            <a href="" class="profile_a_02">
+                                <div class="nickname_imgWrap_01"></div>
+                            </a>
+                        </div>
+                        <div class="post_contentContainer_01">
+                            <div class="post_contentWrap_01">
+                                <div class="nickname_a_01">
+                                    <a href="" class="profile_a_02">
+                                        <span class="diary_nicknameWrap_01 nickname_span_01">${reply.memberNickname}</span>
+                                    </a>
+                                </div>
+                                <button aria-label="2025. 3. 18. 01:49" class="date_button_01">
+                                    ${timeAgo(reply.updatedDate)}
+                                </button>
+                            </div>
+                            <div class="replyContent_wrap_01">
+                                <p class="replyContent_01">
+                                    ${reply.replyContent}
+                                </p>
+                            </div>
+                            <div class="likeButton_container_01 button-wrap">
+                                <div class="likeButton_wrap_01">
+                                    <button class="upload-buttonSize_01 like_button_01 like_button" type="button" data-index=${reply.id}>
+                                        <span class="more_diaryButton_span_01 reply-button-wrap unlike-wrap">
+                                            <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="like_svg_01">
+                                                <path d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z" fill="currentcolor"></path></svg></span>${reply.replyLikeCount}
+                                    </button>
+                                </div>
+                                <button data-index=${reply.id} aria-haspopup="menu" aria-expanded="false" aria-controls=":r5a:" aria-label="댓글 더보기 메뉴" class="uploadButton_01 moreReply_button_01 reply-button menu-button" type="button">
+                                    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="section_div_svg_02">
+                                        <path d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z" fill="currentcolor"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            replyContainer.prepend(newDiv);
+
+            const replyImgWrap = newDiv.querySelector(".replyContent_wrap_01");
+            const memberImgWrap = newDiv.querySelector(".nickname_imgWrap_01");
+            const likeSvg = newDiv.querySelector(".like_button").querySelector("svg")
+
+            const replyDiv = document.createElement("div");
+            replyDiv.classList.add("reply-imgWrap");
+
+            if(reply.replyFileName){
+                replyDiv.innerHTML = `
+                    <img class="reply-img" src="/files/display?path=${reply.replyFilePath}/${reply.replyFileName}" alt="">
+                `;
+
+                replyImgWrap.appendChild(replyDiv);
+            }
+
+            if(reply.memberFilePath){
+                memberImgWrap.innerHTML = `
+                    <img alt="" src="/files/display?path=${reply.memberFilePath}/${reply.memberFileName}" loading="lazy" class="aTag_divImg_01"></div></a>
+                `;
+            } else {
+                memberImgWrap.innerHTML = `
+                    <img alt="" src="/images/avatar_blank.png" loading="lazy" class="aTag_divImg_01"></div></a>
+                `;
+            }
+            if(reply.liked){
+                likeSvg.classList.remove("like_svg_01");
+                likeSvg.classList.add("joy-fkbdob");
+                likeSvg.innerHTML = `
+                <path d="M7.313 3.268a5.319 5.319 0 0 0-3.761 1.585A5.492 5.492 0 0 0 2 8.667c0 1.415.566 2.81 1.552 3.814l7.86 8.004c.323.33.853.33 1.177 0l7.859-8.004A5.444 5.444 0 0 0 22 8.667c0-1.428-.557-2.8-1.552-3.814a5.27 5.27 0 0 0-3.76-1.585 5.27 5.27 0 0 0-3.761 1.585L12 5.797l-.927-.944a5.319 5.319 0 0 0-3.76-1.585Z" fill="currentcolor"></path>
+                `;
+            }
+        })
+    }
+
     return{
         showNextPost:showNextPost,
         showPreviousPost:showPreviousPost,
-        showRandomPost:showRandomPost
+        showRandomPost:showRandomPost,
+        showReplyList:showReplyList
     }
 })()

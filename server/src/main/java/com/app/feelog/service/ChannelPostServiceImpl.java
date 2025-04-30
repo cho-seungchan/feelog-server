@@ -40,6 +40,7 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     private final ChannelPostScrapDAO channelPostScrapDAO;
     private final ChannelPostReportDAO channelPostReportDAO;
     private final SubscribeDAO subscribeDAO;
+    private final ChannelPostLikeDAO channelPostLikeDAO;
 
     @Override
     public void writeChannelPost(ChannelPostDTO dto) {
@@ -333,12 +334,6 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     @Override
     public void addSubscriber(Long memberId, Long channelId) {
         subscribeDAO.insertSubscribe(memberId, channelId);
-    }
-
-    @Override
-    public SubscribeDTO getSubscribe(Long memberId, Long channelId) {
-        return Optional.ofNullable(subscribeDAO.findSubscribeOne(memberId, channelId));
-        return subscribeDAO.findByMemberAndChannel(memberId, channelId);
     }
 
     @Override

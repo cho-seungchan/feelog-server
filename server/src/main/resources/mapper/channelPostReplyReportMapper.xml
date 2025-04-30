@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.ChannelPostReplyReportMapper">
+    <insert id="insertReplyReport">
+        insert into tbl_channel_post_reply_report (id, member_id, reply_id)
+        value (#{id}, #{memberId}, #{replyId})
+    </insert>
+    
+    <select id="selectReplyReportByMemberAndReplyId" resultType="channelPostReplyReportDTO">
+        select * from tbl_channel_post_reply_report where reply_id = #{replyId} and member_id = #{memberId}
+    </select>
+
+    <delete id="deleteReplyReport">
+        delete rr, r
+        from tbl_channel_post_reply_report rr
+            join tbl_report r on rr.id = r.id
+        where rr.reply_id = #{replyId} and rr.member_id = #{memberId}
+    </delete>
 
 </mapper>

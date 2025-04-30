@@ -9,6 +9,7 @@ reportDiv.id = "report-button";
 
 postContainer.addEventListener("click", async (e) => {
     if(e.target.closest(".scrap-button")){
+        e.preventDefault()
         const svg = e.target.closest(".scrap-button").querySelector("svg");
 
         if(!loginMember){
