@@ -2,6 +2,8 @@
 
 package com.app.feelog.mypage.service;
 
+import com.app.feelog.domain.dto.CommunityPostReplyDTO;
+import com.app.feelog.domain.dto.CommunityPostReplyLikeDTO;
 import com.app.feelog.domain.vo.*;
 import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.repository.CommunityDAO;
@@ -113,20 +115,20 @@ public class CommunityService implements ToDTO{
 
     // 2025.04.27  조승찬 :: 커뮤니티 게시글 삭제
     public void deleteCommunityPost(Long postId) {
-        // 게시글 삭제
-        communityDAO.deleteCommunityPost(postId);
-        // 게시글 첨부 파일 삭제
-        communityDAO.updateCommunityPostFile(postId);
-        // 게시글 좋아요 삭제
-        communityDAO.deleteCommunityPostLike(postId);
-        // 게시글 신고 삭제
-        communityDAO.deleteCommunityPostReport(postId);
         // 게시글 댓글 좋아요 삭제
         communityDAO.deleteCommunityPostReplyLike(postId);
         // 게시글 댓글 신고 삭제
         communityDAO.deleteCommunityPostReplyReport(postId);
         // 게시글 댓글 삭제
         communityDAO.deleteCommunityPostReply(postId);
+        // 게시글 첨부 파일 삭제
+        communityDAO.updateCommunityPostFile(postId);
+        // 게시글 좋아요 삭제
+        communityDAO.deleteCommunityPostLike(postId);
+        // 게시글 신고 삭제
+        communityDAO.deleteCommunityPostReport(postId);
+        // 게시글 삭제
+        communityDAO.deleteCommunityPost(postId);
     }
 
     // 2025.04.27 조승찬 :: 좋아요 건수 가져오기
@@ -201,21 +203,79 @@ public class CommunityService implements ToDTO{
             // 작성 시간 계산하기
             String timeAgoReply = calculateTimeAgo.calculateTimeAgo(reply.getCreatedDate());
             // 좋아요 건수
-            int likesReply = communityDAO.getLikeCount(reply.getId());
-            // 댓글 건수
-            int replysReply =communityDAO.getReplyCount(reply.getId());
+            int likesReply = communityDAO.getReplyLikeCount(reply.getId());
             // 신고 건수
-            int reportsReply =communityDAO.getReportCount(reply.getId());
-            // 내가 포스트에 좋아요 했는지 알아보기
-            boolean iLikeReply = communityDAO.getILike(loginId, reply.getId());
-            // 내가 포스트에 신고 했는지 알아보기
-            boolean iReportReply = communityDAO.getIReport(loginId, reply.getId());
+            int reportsReply =communityDAO.getReplyReportCount(reply.getId());
+            // 내가 댓글에 좋아요 했는지 알아보기
+            boolean iLikeReply = communityDAO.getILikeReply(loginId, reply.getId());
+            // 내가 댓글에 신고 했는지 알아보기
+            boolean iReportReply = communityDAO.getIReportReply(loginId, reply.getId());
 
             replies.add(toCommunityPostReplyDetailDTO(reply, memberReply, memberChannelReply,
-                    timeAgoReply,replysReply, likesReply, iLikeReply, iReportReply));
+                    timeAgoReply, likesReply, reportsReply, iLikeReply, iReportReply));
         });
 
         return toCommunityPostReplyListDTO(postVO, member, files, memberChannel,
                 timeAgo,replys, likes, reports, iLike, iReport, replies);
+    }
+
+    // 2025.04.28  조승찬 :: 댓글 저장
+    public void postCommunityPostReply(CommunityPostReplyDTO reply) {
+        CommunityPostReplyVO replyVO = reply.toVO();
+        // 슈퍼키 저장
+        communityDAO.postReply(replyVO);
+        // 커뮤니티 포스트 댓글 저장
+        communityDAO.postCommunityPostReply(replyVO);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 건수 가져오기
+    public int getReplyLikeCount(Long replyId) {
+        return communityDAO.getReplyLikeCount(replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 저장
+    public void postCommunityPostReplyLike(Long memberId, Long replyId) {
+
+        // 슈퍼키 생성
+        LikeVO likeVO = new LikeVO();
+        communityDAO.postLike(likeVO);
+        // 좋아요 저장
+        communityDAO.postCommunityPostReplyLike(likeVO.getId(), memberId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글 좋아요 취소
+    public void cancelCommunityPostReplyLike(Long memberId, Long replyId) {
+        communityDAO.cancelCommunityPostReplyLike(memberId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글 신고 건수 가져오기
+    public int getReplyReportCount(Long replyId) {
+        return communityDAO.getReplyReportCount(replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글  신고  저장
+    public void postCommunityPostReplyReport(Long memberId, Long replyId) {
+
+        // 슈퍼키 생성
+        ReportVO reportVO = new ReportVO();
+        communityDAO.postReport(reportVO);
+        // 신고 저장
+        communityDAO.postCommunityPostReplyReport(reportVO.getId(), memberId, replyId);
+
+    }
+
+    // 2025.04.29  조승찬 :: 댓글  신고  취소
+    public void cancelCommunityPostReplyReport(Long memberId, Long replyId) {
+        communityDAO.cancelCommunityPostReplyReport(memberId, replyId);
+    }
+
+    // 2025.04.29  조승찬 :: 댓글  삭제
+    public void deleteCommunityPostReply(Long id) {
+        // 댓글 좋아요 삭제
+        communityDAO.deleteCommunityPostReplyLikeByReplyId(id);
+        // 댓글 신고 삭제
+        communityDAO.deleteCommunityPostReplyReportByReplyId(id);
+        // 댓글 삭제
+        communityDAO.deleteCommunityPostReplyByReplyId(id);
     }
 }

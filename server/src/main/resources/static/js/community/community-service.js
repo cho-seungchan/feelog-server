@@ -141,3 +141,20 @@ function cancelCommunityPostReport(postId, currentChannelUrl) {
         });
 }
 
+// 2025.04.28 조승찬 :: 댓글 목록 호출
+function postCommunityPostReplyList(postId, currentChannelUrl){
+    return fetch(`/feelog.com/@${currentChannelUrl}/community-reply/${postId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`서버 요청 실패: ${response.status}`);
+            }
+        })
+        .catch(error => {
+            console.error("댓글 목록 요청 중 오류 발생:", error);
+        });
+}
