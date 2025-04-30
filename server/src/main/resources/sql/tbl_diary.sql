@@ -37,7 +37,6 @@ SELECT
     d.diary_file_path        AS rep_file_path,
     d.diary_file_name        AS rep_file_name,
     d.diary_file_size        AS rep_file_size,
-    d.feel_id,
     d.member_id,
     d.diary_status,
     d.created_date           AS diary_created_date,
