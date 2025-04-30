@@ -336,12 +336,6 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     }
 
     @Override
-    public SubscribeDTO getSubscribe(Long memberId, Long channelId) {
-        return Optional.ofNullable(subscribeDAO.findSubscribeOne(memberId, channelId));
-        return subscribeDAO.findByMemberAndChannel(memberId, channelId);
-    }
-
-    @Override
     public List<MainPostListDTO> getPostRandom() {
         List<MainPostListDTO> randomPosts = channelPostDAO.findPostRandom();
         randomPosts.forEach(post->{

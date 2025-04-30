@@ -9,7 +9,7 @@ create table tbl_diary (
                            diary_file_path 		varchar(500) default '',
                            diary_file_name 		varchar(500) default '',
                            diary_file_size 		varchar(500) default '',
-                           diary_score          int default 0,
+                           diary_score          bigint ,
                            member_id 		    bigint not null,
                            feel_id              bigint not null,
                            diary_status 		varchar(50) default '정상',
@@ -18,8 +18,11 @@ create table tbl_diary (
                            constraint fk_diary_member foreign key (member_id)
                                references tbl_member (id),
                            constraint fk_diary_feel foreign key (feel_id)
-                               references tbl_feel (id)
+                               references tbl_feel (id),
+                            constraint fk_score_diary_score foreign key (diary_score)
+                                references tbl_diary_score(id)
 );
+
 
 alter table tbl_diary add diary_name_open      varchar(50) default '비공개(익명)';
 
@@ -85,14 +88,6 @@ INSERT INTO tbl_diary (
 '내용',
 1,1,1
 );
-
-
-
-
-
-
-
-
 
 
 

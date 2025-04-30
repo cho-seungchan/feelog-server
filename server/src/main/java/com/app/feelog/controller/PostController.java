@@ -2,6 +2,7 @@ package com.app.feelog.controller;
 
 import com.app.feelog.domain.dto.*;
 import com.app.feelog.service.ChannelPostService;
+import com.app.feelog.service.NotificationService;
 import com.app.feelog.service.SubscribeService;
 import com.app.feelog.service.voToDto.ChannelPostReplyService;
 import jakarta.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ public class PostController {
     private final HttpSession session;
     private final SubscribeService subscribeService;
     private final ChannelPostReplyService channelPostReplyService;
+    private final NotificationService notificationService;
 
     @GetMapping("/read")
     public String goToRead(Model model, @RequestParam Long id) {
