@@ -28,6 +28,7 @@
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_reply_like.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_reply_report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_report.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_score.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_diary_tag.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_faq.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_feel.sql" dialect="MySQL" />
@@ -46,7 +47,6 @@
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_post_reply_notification.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_receive_message.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_receive_message_notification.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_related_search.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_reply.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_scrab.sql" dialect="MySQL" />

@@ -26,4 +26,5 @@ public interface SubscribeMapper {
 
     public void deleteSubscribe(@Param("memberId") Long memberId, @Param("channelId") Long channelId);
 
+    SubscribeDTO findByMemberAndChannel(Long memberId, Long channelId);
 }

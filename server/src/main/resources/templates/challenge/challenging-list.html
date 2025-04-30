@@ -157,10 +157,9 @@
                                                         </h3>
                                                         <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6" th:text="${challenge.commonTaskAddr}"></p>
                                                         <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6" th:text="${challenge.commonTaskTell}"></p>
-                                                        <a class="FeelogTypography-root FeelogTypography-body-md flog-p-6"
+                                                        <a class="FeelogTypography-root FeelogTypography-body-md flog-p-6  custom-link"
                                                            th:if="${challenge.commonTaskUrl != null && !challenge.commonTaskUrl.isEmpty()}"
-                                                           th:href="${challenge.commonTaskUrl}"
-                                                           th:text="${challenge.commonTaskUrl}">
+                                                           th:href="${challenge.commonTaskUrl}">HomePage
                                                         </a>
                                                         <div style="display: flex; " class="button-conatiner">
                                                             <button

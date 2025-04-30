@@ -54,8 +54,6 @@ public class CommunityController {
         model.addAttribute("loginId", member.getId());
         model.addAttribute("communityPost", communityPost);
 
-//        System.out.println(" 확인 해 보자 ");
-//        communities.forEach(System.out::println);
         return "community/community";
     }
 
@@ -97,7 +95,7 @@ public class CommunityController {
     }
 
     // 2025.04.27 조승찬  :: 커뮤니티 글 삭제하기
-    @PostMapping("/@{channelUrl}/community-delete/{postId}")
+    @GetMapping("/@{channelUrl}/community-delete/{postId}")
     public String deleteCommunityPost(@SessionAttribute(name = "member", required = false) MemberDTO member,
                                       @PathVariable String channelUrl,
                                       @PathVariable Long postId, SixRowPagination pagination) {
@@ -200,5 +198,113 @@ public class CommunityController {
 
         return "community/community-reply";
     }
+
+    // 2025.04.28 조승찬 :: 댓글 처리
+    @PostMapping("/@{channelUrl}/community-reply")
+    public String postCommunityPostReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                         @PathVariable String channelUrl, CommunityPostReplyDTO reply,
+                                         SixRowPagination pagination) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 댓글 저장
+        reply.setMemberId(member.getId());
+        communityService.postCommunityPostReply(reply);
+
+        return "redirect:/feelog.com/@"+channelUrl+"/community-reply/"+reply.getPostId();
+    }
+
+
+    // 2025.04.28 조승찬 :: 댓글 삭제
+    @PostMapping("/@{channelUrl}/community-reply-delete")
+    public String deleteCommunityPostReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
+                                           @PathVariable String channelUrl, CommunityPostReplyDTO reply,
+                                           SixRowPagination pagination) {
+
+        if (member == null) {
+            session.setAttribute("redirectAfterLogin", request.getRequestURI());
+            return "redirect:/login/login";
+        }
+
+        // 댓글 삭제
+        communityService.deleteCommunityPostReply(reply.getId());
+
+        return "redirect:/feelog.com/@"+channelUrl+"/community-reply/"+reply.getPostId();
+    }
+
+
+    // 2025.04.29 조승찬  ::  댓글 좋아요
+    @ResponseBody
+    @PostMapping("/@{channelUrl}/community-reply-like/{replyId}")
+    public ResponseEntity<Map<String, Object>> postCommunityPostReplyLike(
+            @SessionAttribute(name = "member", required = false) MemberDTO member,
+            @PathVariable String channelUrl, @PathVariable Long replyId,
+            SixRowPagination pagination) {
+
+        // 좋아요 생성
+        communityService.postCommunityPostReplyLike(member.getId(), replyId);
+
+        Map<String, Object> response = new HashMap<String, Object>();
+        int likeCount = communityService.getReplyLikeCount(replyId);
+        response.put("likeCount", likeCount);
+        return ResponseEntity.ok(response);
+    }
+
+    // 2025.04.29 조승찬  ::  댓글 좋아요 취소
+    @ResponseBody
+    @PostMapping("/@{channelUrl}/community-reply-like-cancel/{replyId}")
+    public ResponseEntity<Map<String, Object>> cancelCommunityPostReplyLike(
+            @SessionAttribute(name = "member", required = false) MemberDTO member,
+            @PathVariable String channelUrl, @PathVariable Long replyId,
+            SixRowPagination pagination) {
+
+        // 좋아요 취소
+        communityService.cancelCommunityPostReplyLike(member.getId(), replyId);
+
+        Map<String, Object> response = new HashMap<String, Object>();
+        int likeCount = communityService.getReplyLikeCount(replyId);
+        response.put("likeCount", likeCount);
+        return ResponseEntity.ok(response);
+    }
+
+
+    // 2025.04.27 조승찬  ::  댓글 신고
+    @ResponseBody
+    @PostMapping("/@{channelUrl}/community-reply-report/{replyId}")
+    public ResponseEntity<Map<String, Object>> postCommunityPostReplyReport(
+            @SessionAttribute(name = "member", required = false) MemberDTO member,
+            @PathVariable String channelUrl, @PathVariable Long replyId,
+            SixRowPagination pagination) {
+
+        // 신고 생성
+        communityService.postCommunityPostReplyReport(member.getId(), replyId);
+
+        Map<String, Object> response = new HashMap<String, Object>();
+        int reportCount = communityService.getReplyReportCount(replyId);
+        response.put("reportCount", reportCount);
+        return ResponseEntity.ok(response);
+    }
+
+
+    // 2025.04.27 조승찬  ::  댓글 신고 취소
+    @ResponseBody
+    @PostMapping("/@{channelUrl}/community-reply-report-cancel/{replyId}")
+    public ResponseEntity<Map<String, Object>> cancelCommunityPostReplyReport
+    (@SessionAttribute(name = "member", required = false) MemberDTO member,
+     @PathVariable String channelUrl, @PathVariable Long replyId,
+     SixRowPagination pagination) {
+
+        // 신고 취소
+        communityService.cancelCommunityPostReplyReport(member.getId(), replyId);
+
+        Map<String, Object> response = new HashMap<String, Object>();
+        int reportCount = communityService.getReplyReportCount(replyId);
+        response.put("reportCount", reportCount);
+        return ResponseEntity.ok(response);
+    }
+
 
 }

@@ -481,7 +481,7 @@
                                                     </div>
                                                     <div class="FeelogBox-root flog-div-169">
                                                         <div class="FeelogBox-root flog-div-170">
-                                                            <div class="slider-container" th:attr="data-total=*{community.files.size()}">
+                                                            <div class="slider-container" th:attr="data-total=*{community.files != null ? community.files.size() : 0}">
                                                                 <div class="slider">
                                                                     <th:block th:each="file, stat: ${community.files}">
                                                                         <div class="swiper-slide"
@@ -528,7 +528,7 @@
                                                                 <button
                                                                         aria-label="Next slide"
                                                                         class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeSm next-button flog-button-35"
-                                                                        th:classappend="*{community.files.size()} < 2 ? 'swiper-button-disabled' : ''"
+                                                                        th:classappend="*{community.files == null || community.files.size() < 2} ? 'swiper-button-disabled' : ''"
                                                                         tabindex="0"
                                                                         aria-controls="swiper-wrapper-b86af18d10f2780f1"
                                                                         aria-disabled="false"

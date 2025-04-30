@@ -206,34 +206,67 @@
 
     <select id="getNotifySubscribeTotalCount" resultType="_int">
         SELECT count(*)
-        FROM tbl_subscribe s
-                 JOIN tbl_channel c1 ON s.channel_id = c1.id
-                 JOIN tbl_channel c2 ON s.member_id = c2.member_id
-        WHERE c1.member_id = #{memberId}
+        FROM tbl_channel c
+                 JOIN tbl_subscribe s ON c.id = s.channel_id
+                 JOIN tbl_member m ON s.member_id = m.id
+        WHERE c.member_id = #{memberId}
+          AND c.channel_status = '정상'
           AND s.subscribe_status = '정상'
-          AND c2.channel_status = '정상';
+          AND m.member_status = '정상'
     </select>
 
-    <select id="getNotifySubscribe" resultType="channelVO">
+    <select id="getNotifySubscribe" resultType="memberVO">
         SELECT
-            c2.id,
-            c2.channel_title,
-            c2.channel_introduce,
-            c2.channel_url,
-            c2.channel_file_path,
-            c2.channel_file_name,
-            c2.member_id,
-            c2.created_date,
-            c2.updated_date
-        FROM tbl_subscribe s
-                 JOIN tbl_channel c1 ON s.channel_id = c1.id
-                 JOIN tbl_channel c2 ON s.member_id = c2.member_id
-        WHERE c1.member_id = #{memberId}
+            m.id,
+            m.member_email,
+            m.member_nickname,
+            m.member_introduce,
+            m.member_file_path,
+            m.member_file_name,
+            m.member_status,
+            s.created_date,
+            s.updated_date
+        FROM tbl_channel c
+                 JOIN tbl_subscribe s ON c.id = s.channel_id
+                 JOIN tbl_member m ON s.member_id = m.id
+        WHERE c.member_id = #{memberId}
+          AND c.channel_status = '정상'
           AND s.subscribe_status = '정상'
-          AND c2.channel_status = '정상'
-        order by s.id desc
-        limit #{pagination.offset}, #{pagination.rowCount};
+          AND m.member_status = '정상'
+        order by  s.created_date  desc
+        limit #{pagination.offset}, #{pagination.rowCount}
     </select>
+
+<!--    <select id="getNotifySubscribeTotalCount" resultType="_int">-->
+<!--        SELECT count(*)-->
+<!--        FROM tbl_subscribe s-->
+<!--                 JOIN tbl_channel c1 ON s.channel_id = c1.id-->
+<!--                 JOIN tbl_channel c2 ON s.member_id = c2.member_id-->
+<!--        WHERE c1.member_id = #{memberId}-->
+<!--          AND s.subscribe_status = '정상'-->
+<!--          AND c2.channel_status = '정상';-->
+<!--    </select>-->
+
+<!--    <select id="getNotifySubscribe" resultType="channelVO">-->
+<!--        SELECT-->
+<!--            c2.id,-->
+<!--            c2.channel_title,-->
+<!--            c2.channel_introduce,-->
+<!--            c2.channel_url,-->
+<!--            c2.channel_file_path,-->
+<!--            c2.channel_file_name,-->
+<!--            c2.member_id,-->
+<!--            c2.created_date,-->
+<!--            c2.updated_date-->
+<!--        FROM tbl_subscribe s-->
+<!--                 JOIN tbl_channel c1 ON s.channel_id = c1.id-->
+<!--                 JOIN tbl_channel c2 ON s.member_id = c2.member_id-->
+<!--        WHERE c1.member_id = #{memberId}-->
+<!--          AND s.subscribe_status = '정상'-->
+<!--          AND c2.channel_status = '정상'-->
+<!--        order by s.id desc-->
+<!--        limit #{pagination.offset}, #{pagination.rowCount};-->
+<!--    </select>-->
 
     <select id="getStorageSubscribeTotalCount" resultType="_int">
         SELECT count(*)
@@ -404,7 +437,6 @@
         set     channel_status  = '삭제',
                 updated_date = current_timestamp
         where   id         = #{id}
-        and     channel_id = #{channel_id}
     </update>
 
     <update id="cancelSubscribe">

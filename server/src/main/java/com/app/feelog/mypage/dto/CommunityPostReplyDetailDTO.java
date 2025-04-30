@@ -16,8 +16,8 @@ public class CommunityPostReplyDetailDTO {
     @EqualsAndHashCode.Include
     private Long        id;
     private String      replyContent;
-    private String      community_post_reply_file_path;
-    private String      community_post_reply_file_name;
+    private String      replyFilePath;
+    private String      replyFileName;
     private Long        memberId;
     private Long        postId;
     private String      createdDate;
