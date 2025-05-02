@@ -4,4 +4,95 @@
     <insert id="insertReport" useGeneratedKeys="true" keyProperty="id">
         insert into tbl_report() values()
     </insert>
+
+    <select id="selectPostReportList" resultType="postReportListDTO">
+        select
+            pr.id as id,
+            pr.post_id,
+            p.post_title,
+            r.report_status,
+            p.updated_date
+        from tbl_channel_post_report pr join tbl_post p on pr.post_id = p.id join tbl_report r on pr.id = r.id
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectDiaryReportList" resultType="diaryReportListDTO">
+        select
+            dr.id as id,
+            dr.diary_id,
+            d.diary_title,
+            r.report_status,
+            d.updated_date
+        from tbl_diary_report dr join tbl_diary d on dr.diary_id = d.id join tbl_report r on dr.id = r.id
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+    
+    <select id="selectReplyReportList" resultType="replyReportListDTO">
+        select
+            rr.id as id,
+            dr.diary_id as post_id,
+            r.reply_content,
+            r.updated_date,
+            rp.report_status
+        from tbl_diary_reply dr
+                 join tbl_reply r
+                      on dr.id = r.id
+                 join tbl_diary_reply_report rr
+                      on r.id = rr.reply_id
+                join tbl_report rp on rp.id = rr.id
+        union
+        select
+            rr.id as id,
+            cp.post_id,
+            r.reply_content,
+            r.updated_date,
+            rp.report_status
+        from tbl_channel_post_reply cp
+                 join tbl_reply r
+                      on cp.id = r.id
+                 join tbl_channel_post_reply_report rr
+                      on r.id = rr.reply_id
+                 join tbl_report rp on rp.id = rr.id
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectReplyReportCount" resultType="_int">
+        SELECT SUM(total_count) AS total_reply_count
+        FROM (
+                 SELECT COUNT(*) AS total_count
+                 FROM tbl_diary_reply dr
+                          JOIN tbl_reply r ON dr.id = r.id
+                          JOIN tbl_diary_reply_report rr ON r.id = rr.reply_id
+
+                 UNION ALL
+
+                 SELECT COUNT(*) AS total_count
+                 FROM tbl_channel_post_reply cp
+                          JOIN tbl_reply r ON cp.id = r.id
+                          JOIN tbl_channel_post_reply_report rr ON r.id = rr.reply_id
+             ) AS combined_counts
+    </select>
+
+    <select id="selectPostReportCount" resultType="_int">
+        select
+            count(*)
+        from tbl_channel_post_report pr join tbl_post p on pr.post_id = p.id
+    </select>
+
+    <select id="selectDiaryReportCount" resultType="_int">
+        select
+            count(*)
+        from tbl_diary_report dr join tbl_diary d on dr.diary_id = d.id
+    </select>
+
+    <update id="deleteReportById">
+        update tbl_report set report_status = '삭제' where id = #{id}
+    </update>
+
+    <update id="returnReport">
+        update tbl_report set report_status = '정상' where id = #{id}
+    </update>
 </mapper>

@@ -2,6 +2,9 @@ package com.app.feelog.service.voToDto;
 
 import com.app.feelog.domain.dto.ChannelPostReplyDTO;
 import com.app.feelog.domain.dto.ChannelPostReplyReportDTO;
+import com.app.feelog.domain.dto.joinDTO.DiaryReportListDTO;
+import com.app.feelog.domain.dto.joinDTO.PostReportListDTO;
+import com.app.feelog.domain.dto.joinDTO.ReplyReportListDTO;
 import com.app.feelog.domain.vo.ChannelPostReplyReportVO;
 import com.app.feelog.domain.vo.ChannelPostReplyVO;
 
@@ -23,4 +26,5 @@ public interface ChannelPostReplyReportService {
         }
         return channelPostReplyReportDTO;
     }
+
 }
