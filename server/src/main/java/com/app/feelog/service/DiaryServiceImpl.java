@@ -1,12 +1,15 @@
 package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.*;
+import com.app.feelog.domain.dto.joinDTO.DiaryDetailDTO;
+import com.app.feelog.domain.dto.joinDTO.DiaryJoinDTO;
 import com.app.feelog.domain.dto.joinDTO.DiaryPaginationDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.repository.*;
 import com.app.feelog.util.pagination.PostPagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
@@ -208,13 +211,12 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public DiaryPaginationDTO getDiaryListAll(PostPagination postPagination) {
+    public DiaryPaginationDTO getDiaryListAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId")Long memberId) {
         DiaryPaginationDTO diaryPagination = new DiaryPaginationDTO();
 
-        postPagination.create(diaryDAO.selectDiaryCount());
-
+        postPagination.create(diaryDAO.selectDiaryCountAllAndSubscribe(memberId));
         diaryPagination.setPostPagination(postPagination);
-        diaryPagination.setDiaryList(diaryDAO.findDiaryListPagination(postPagination));
+        diaryPagination.setDiaryList(diaryDAO.findDiaryListPaginationAllAndSubscribe(postPagination, memberId));
 
         diaryPagination.getDiaryList().forEach((diary) -> {
             if ( diary.getDiaryContent() != null && ! diary.getDiaryContent().isEmpty()) {
@@ -230,17 +232,16 @@ public class DiaryServiceImpl implements DiaryService {
             diary.setLikeCount(diaryLikeDAO.findLikeCount(diary.getId()));
             diary.setReplyCount(diaryLikeDAO.findReplyCount(diary.getId()));
         });
-
         return diaryPagination;
     }
 
     @Override
-    public DiaryPaginationDTO getDiaryListAllAndSubscribe(PostPagination postPagination) {
+    public DiaryPaginationDTO getDiaryListAll(PostPagination postPagination) {
         DiaryPaginationDTO diaryPagination = new DiaryPaginationDTO();
 
-        postPagination.create(diaryDAO.selectDiaryCount());
+        postPagination.create(diaryDAO.findDiaryCountAll());
         diaryPagination.setPostPagination(postPagination);
-        diaryPagination.setDiaryList(diaryDAO.findDiaryListPagination(postPagination));
+        diaryPagination.setDiaryList(diaryDAO.findDiaryListPaginationAll(postPagination));
 
         diaryPagination.getDiaryList().forEach((diary) -> {
             if ( diary.getDiaryContent() != null && ! diary.getDiaryContent().isEmpty()) {
@@ -256,7 +257,36 @@ public class DiaryServiceImpl implements DiaryService {
             diary.setLikeCount(diaryLikeDAO.findLikeCount(diary.getId()));
             diary.setReplyCount(diaryLikeDAO.findReplyCount(diary.getId()));
         });
-
         return diaryPagination;
+    }
+
+//    박정근 :: 다이어리 상세보기
+    @Override
+    public DiaryDetailDTO getDiaryDetailByDiaryId(Long diaryId) {
+        DiaryDetailDTO diaryDetailDTO = diaryDAO.findDiaryDetailByDiaryId(diaryId);
+
+        diaryDetailDTO.setTags(diaryTagDAO.findTagContentsByDiaryId(diaryId));
+        diaryDetailDTO.setDiaryLikeCount(diaryLikeDAO.findLikeCount(diaryId));
+        diaryDetailDTO.setDiaryReplyCount(diaryLikeDAO.findReplyCount(diaryId));
+
+        return diaryDetailDTO;
+    }
+
+    @Override
+    public List<DiaryJoinDTO> getDiaryRandom() {
+        List<DiaryJoinDTO> randomDiaryList = diaryDAO.findRandomDiary();
+
+        randomDiaryList.forEach((diary) -> {
+            diary.setLikeCount(diaryDAO.findDiaryLikeCount(diary.getId()));
+            diary.setReplyCount(diaryDAO.findDiaryReplyCount(diary.getId()));
+            diary.setDiaryTags(diaryTagDAO.findTagContentsByDiaryId(diary.getId()));
+        });
+
+        return randomDiaryList;
+    }
+
+    @Override
+    public void addDiaryReadCount(Long diaryId) {
+        diaryDAO.addReadCount(diaryId);
     }
 }

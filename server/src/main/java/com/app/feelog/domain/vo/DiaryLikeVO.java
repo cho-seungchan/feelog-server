@@ -1,6 +1,7 @@
 package com.app.feelog.domain.vo;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,16 +9,10 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class DiaryLikeVO {
+@SuperBuilder
+public class DiaryLikeVO extends LikeVO{
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
     private Long diaryId;
-
-    @Builder
-    public DiaryLikeVO(Long id, Long memberId, Long diaryId) {
-        this.id = id;
-        this.memberId = memberId;
-        this.diaryId = diaryId;
-    }
 }

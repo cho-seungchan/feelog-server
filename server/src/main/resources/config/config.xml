@@ -24,9 +24,14 @@
         <typeAlias type="com.app.feelog.domain.vo.ChannelPostLikeVO" alias="channelPostLikeVO"/>
         <typeAlias type="com.app.feelog.domain.vo.ChannelPostReplyReportVO" alias="channelPostReplyReportVO"/>
         <typeAlias type="com.app.feelog.domain.vo.DiaryReportVO" alias="diaryReportVO"/>
+        <typeAlias type="com.app.feelog.domain.vo.DiaryReplyLikeVO" alias="diaryReplyLikeVO"/>
+        <typeAlias type="com.app.feelog.domain.vo.DiaryReplyReportVO" alias="diaryReplyReportVO"/>
         <typeAlias type="com.app.feelog.domain.dto.ChannelPostDTO" alias="channelPostDTO"/>
         <typeAlias type="com.app.feelog.domain.dto.ChannelPostReplyDTO" alias="channelPostReplyDTO"/>
         <typeAlias type="com.app.feelog.domain.dto.joinDTO.DiaryJoinDTO" alias="diaryJoinDTO"/>
+        <typeAlias type="com.app.feelog.domain.dto.joinDTO.DiaryDetailDTO" alias="diaryDetailDTO"/>
+        <typeAlias type="com.app.feelog.domain.dto.DiaryReplyDTO" alias="diaryReplyDTO"/>
+        <typeAlias type="com.app.feelog.util.pagination.PostPagination" alias="postPagination"/>
     </typeAliases>
 
 

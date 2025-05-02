@@ -38,4 +38,6 @@ public class DiaryJoinDTO {
     private int diaryReadCount;
     private int replyCount;
     private int likeCount;
+    private boolean isSubscribedPost;
+    private boolean isLiked;
 }

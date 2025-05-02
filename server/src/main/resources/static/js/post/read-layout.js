@@ -209,7 +209,7 @@ const readLayout = (() => {
             }
 
             if(post.tagList){
-                const tagWrap = document.querySelector(".tagWrap");
+                const tagWrap = newDiv.querySelector(".tagWrap");
                 post.tagList.forEach((tag)=>{
                     const newAtag = document.createElement("a")
                     newAtag.classList.add("aTag_myDiary_01", "aTag_myDiary_03", "aTag_tag_01")

@@ -35,4 +35,5 @@ public class MainPostListDTO {
         private String memberFilePath;
         private List<ChannelPostTagListDTO> tagList;
         private boolean isScrapped;
+        private boolean isLiked;
 }

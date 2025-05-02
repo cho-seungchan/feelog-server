@@ -3,6 +3,7 @@ package com.app.feelog.controller;
 import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.vo.ChannelPostScrapVO;
 import com.app.feelog.service.ChannelPostService;
+import com.app.feelog.service.voToDto.ChannelPostLikeService;
 import com.app.feelog.service.voToDto.ChannelPostScrapService;
 import com.app.feelog.util.pagination.PostPagination;
 import jakarta.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ public class IndexController {
     private final ChannelPostService channelPostService;
     private final ChannelPostScrapService channelPostScrapService;
     private final HttpSession session;
+    private final ChannelPostLikeService channelPostLikeService;
 
     @GetMapping("/")
     public String goToMain() {
@@ -46,6 +48,13 @@ public class IndexController {
             channelPostListDTO.getPostList().forEach((post) -> {
                 post.setScrapped(scrapIdSet.contains(post.getId()));
             });
+
+            List<Long> likeIds = channelPostLikeService.getPostLikeByMemberId(loginMember.getId());
+            Set<Long> likeIdSet = new HashSet<>(likeIds);
+
+            channelPostListDTO.getPostList().forEach(post -> {
+                post.setLiked(likeIdSet.contains(post.getId()));
+            });
         }
 
         return channelPostListDTO;
@@ -62,6 +71,11 @@ public class IndexController {
             Set<Long> scrapIdSet = new HashSet<>(scrapIds);
 
             mainPostListDTO.setScrapped(scrapIdSet.contains(mainPostListDTO.getId()));
+
+            List<Long> likeIds = channelPostLikeService.getPostLikeByMemberId(loginMember.getId());
+            Set<Long> likeIdSet = new HashSet<>(likeIds);
+
+            mainPostListDTO.setLiked(likeIdSet.contains(mainPostListDTO.getId()));
         }
 
         return mainPostListDTO;
@@ -81,6 +95,13 @@ public class IndexController {
 
             channelPostListDTO.getPostList().forEach((post) -> {
                 post.setScrapped(scrapIdSet.contains(post.getId()));
+            });
+
+            List<Long> likeIds = channelPostLikeService.getPostLikeByMemberId(loginMember.getId());
+            Set<Long> likeIdSet = new HashSet<>(likeIds);
+
+            channelPostListDTO.getPostList().forEach(post -> {
+                post.setLiked(likeIdSet.contains(post.getId()));
             });
         }
         return channelPostListDTO;

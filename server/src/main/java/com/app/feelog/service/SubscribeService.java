@@ -4,6 +4,8 @@ package com.app.feelog.service;
 import com.app.feelog.domain.enumeration.SubscribeStatus;
 import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.SubscribeVO;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface SubscribeService {
@@ -34,4 +36,7 @@ public interface SubscribeService {
     public Optional<SubscribeDTO> getSubscribeOne(Long memberId, Long channelId);
 
     public void deleteSubscribe(Long memberId, Long channelId);
+
+//    박정근 :: 멤버ID로 구독중인 채널 ID 조회
+    public List<Long> getSubscribeIdsByMemberId(Long memberId);
 }

@@ -339,8 +339,11 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     @Override
     public List<MainPostListDTO> getPostRandom() {
         List<MainPostListDTO> randomPosts = channelPostDAO.findPostRandom();
+
         randomPosts.forEach(post->{
             post.setTagList(channelPostDAO.findPostTagByPostId(post.getId()));
+            post.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(post.getId()));
+            post.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(post.getId()));
         });
         return randomPosts;
     }

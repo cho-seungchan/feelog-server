@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -52,6 +53,11 @@ public class SubscribeDAO {
 //    public void deleteSubscribe(@Param("memberId") Long memberId, @Param("channelId") Long channelId){
 //        subscribeMapper.deleteSubscribe(memberId, channelId);
 //    };
+
+    //    박정근 :: 회원ID로 구독중인 채널 ID 조회
+    public List<Long> findSubscribeIdsByMemberId(Long memberId){
+        return subscribeMapper.selectSubscribeIdsByMemberId(memberId);
+    };
 
 
 }
