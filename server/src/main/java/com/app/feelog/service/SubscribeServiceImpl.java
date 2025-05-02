@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,5 +48,11 @@ public class SubscribeServiceImpl implements SubscribeService {
     @Override
     public void deleteSubscribe(Long memberId, Long channelId) {
         subscribeDAO.deleteSubscribe(memberId, channelId);
+    }
+
+//    박정근 :: 멤버ID로 구독중인 채널ID 조회
+    @Override
+    public List<Long> getSubscribeIdsByMemberId(Long memberId) {
+        return subscribeDAO.findSubscribeIdsByMemberId(memberId);
     }
 }

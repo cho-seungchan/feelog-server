@@ -219,9 +219,7 @@
                     </section>
                     <section class="" id="comments">
                         <div class="reply_container_01">
-                            <p class="diary_nicknameWrap_01reply_count_01">
-                                0개의 댓글
-                            </p>
+                            <p class="diary_nicknameWrap_01 reply_count_01" th:text="${post.replyCount} + '개의 댓글'"></p>
                             <!-- 로그인 후 댓글창 -->
                             <div class="comment-list comment_container_01" th:if="${session.member != null}">
                                 <label for="comment" class="tag_h6_01"

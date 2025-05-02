@@ -28,6 +28,7 @@ public class FileService {
         String rootPath = "C:/upload/" + todayPath;
         String fileName = null;
         UUID uuid = UUID.randomUUID();
+        String originalFileName = file.getOriginalFilename().replaceAll(" ", "");
 
         try {
             File directory = new File(rootPath);
@@ -35,11 +36,11 @@ public class FileService {
                 directory.mkdirs();
             }
 
-            file.transferTo(new File(rootPath, uuid.toString() + "_" + file.getOriginalFilename()));
+            file.transferTo(new File(rootPath, uuid.toString() + "_" + originalFileName));
 
 //            썸네일 가공
             if(file.getContentType().startsWith("image")){
-                fileName = "t_" + uuid.toString() + "_" + file.getOriginalFilename();
+                fileName = "t_" + uuid.toString() + "_" + originalFileName;
                 FileOutputStream out = new FileOutputStream(new File(rootPath, fileName));
                 Thumbnailator.createThumbnail(file.getInputStream(), out, 1300,350);
                 out.close();

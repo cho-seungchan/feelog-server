@@ -6,6 +6,7 @@ import com.app.feelog.domain.vo.SubscribeVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -27,4 +28,7 @@ public interface SubscribeMapper {
     public void deleteSubscribe(@Param("memberId") Long memberId, @Param("channelId") Long channelId);
 
     SubscribeDTO findByMemberAndChannel(Long memberId, Long channelId);
+
+//    박정근 :: 회원ID로 구독중인 채널 ID 조회
+    public List<Long> selectSubscribeIdsByMemberId(Long memberId);
 }

@@ -8,4 +8,20 @@
     <select id="selectReplyCount" resultType="_int">
         select count(*) from tbl_diary_reply dr join tbl_reply r on dr.id = r.id where diary_id = #{diaryId}
     </select>
+
+    <insert id="insertSuperLike" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_like () values ()
+    </insert>
+
+    <insert id="insertDiaryLike">
+        insert into tbl_diary_like (id, member_id, diary_id) values (#{id}, #{memberId}, #{diaryId})
+    </insert>
+
+    <select id="selectDiaryLikeIdsByMemberId" resultType="long">
+        select diary_id from tbl_diary_like where member_id = #{memberId}
+    </select>
+
+    <delete id="deleteDiaryLike">
+        delete from tbl_diary_like where diary_id = #{diaryId}
+    </delete>
 </mapper>

@@ -1,11 +1,13 @@
 package com.app.feelog.repository;
 
 import com.app.feelog.domain.dto.DiarySearchDTO;
+import com.app.feelog.domain.dto.joinDTO.DiaryDetailDTO;
 import com.app.feelog.domain.dto.joinDTO.DiaryJoinDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.mapper.DiaryMapper;
 import com.app.feelog.util.pagination.PostPagination;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -55,20 +57,41 @@ public class DiaryDAO {
         return diaryMapper.selectDiaryCount();
     };
 
-    public int selectDiaryCountAllAndSubscribe(){
-        return diaryMapper.selectDiaryCountAllAndSubscribe();
+    public int selectDiaryCountAllAndSubscribe(Long memberId) {
+        return diaryMapper.selectDiaryCountAllAndSubscribe(memberId);
     };
 
-    public int selectDiaryCountAll(){
-        return diaryMapper.selectDiaryCountAll();
-    };
-
-    public List<DiaryJoinDTO> findDiaryListPaginationAllAndSubscribe(PostPagination postPagination){
-        return diaryMapper.selectDiaryListPaginationAllAndSubscribe(postPagination);
+    public List<DiaryJoinDTO> findDiaryListPaginationAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId")Long memberId){
+        return diaryMapper.selectDiaryListPaginationAllAndSubscribe(postPagination, memberId);
     };
 
     public List<DiaryJoinDTO> findDiaryListPaginationAll(PostPagination postPagination){
         return diaryMapper.selectDiaryListPaginationAll(postPagination);
+    };
+
+    public int findDiaryCountAll(){
+        return diaryMapper.selectDiaryCountAll();
+    };
+
+    //    박정근 :: 다이어리 상세보기
+    public DiaryDetailDTO findDiaryDetailByDiaryId(Long diaryId){
+        return diaryMapper.selectDiaryDetailByDiaryId(diaryId);
+    };
+
+    public List<DiaryJoinDTO> findRandomDiary(){
+        return diaryMapper.selectRandomDiary();
+    };
+
+    public int findDiaryLikeCount(Long diaryId){
+        return diaryMapper.selectDiaryLikeCount(diaryId);
+    };
+
+    public int findDiaryReplyCount(Long diaryId){
+        return diaryMapper.selectDiaryReplyCount(diaryId);
+    };
+
+    public void addReadCount(Long diaryId){
+        diaryMapper.addReadCount(diaryId);
     };
 
 }

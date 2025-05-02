@@ -171,3 +171,17 @@ from tbl_member m
         on m.id = d.member_id
     join tbl_channel c
                 on m.id = c.member_id;
+
+-- #다이어리 좋아요 개수
+create or replace view view_find_diary_like_count as
+select d.id as diary_id
+from tbl_diary d
+         join tbl_diary_like l
+              on d.id = l.diary_id;
+
+-- #다이어리 댓글 개수 찾기
+create or replace view view_find_diary_reply_count as
+select d.id as diary_id
+from tbl_diary d
+         join tbl_diary_reply r
+              on d.id = r.diary_id;
