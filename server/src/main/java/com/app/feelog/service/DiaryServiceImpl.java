@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -163,6 +164,13 @@ public class DiaryServiceImpl implements DiaryService {
         }
 
         return result;
+    }
+
+    @Override
+    public List<DiaryDTO> findVisibleDiaries(Long channelOwnerId, Long viewerId) {
+        return diaryDAO.findVisibleDiaries(channelOwnerId, viewerId).stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
 

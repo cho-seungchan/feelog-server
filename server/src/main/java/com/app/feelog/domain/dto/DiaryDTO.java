@@ -27,7 +27,7 @@ public class DiaryDTO {
     private String diaryFileName;
     private String diaryFileSize;
     private String diaryWeather;
-    private Long    diaryScore;
+    private Long   diaryScore;
     private Long   memberId;
     private DiaryStatus diaryStatus;
     private String createdDate;

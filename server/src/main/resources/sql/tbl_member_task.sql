@@ -12,3 +12,12 @@ create table tbl_member_task(
            references tbl_member_task_pool (id)
 );
 
+-- 1. 먼저 컬럼을 추가합니다.
+ALTER TABLE tbl_member_task
+    ADD COLUMN member_id BIGINT NOT NULL;
+
+-- 2. 그다음 외래키 제약조건을 추가합니다.
+ALTER TABLE tbl_member_task
+    ADD CONSTRAINT fk_member_task_member
+        FOREIGN KEY (member_id)
+            REFERENCES tbl_member(id);

@@ -97,8 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // 게시글 작성 버튼 클릭시
         if (e.target.closest(".flog-button-30")) {
             document.querySelector(".flog-div-176").style.display = "block";
-            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
-            document.querySelector(".flog-nav-6").style.zIndex = "100";
+            document.querySelector(".feelog-header-mainHeader").style.zIndex = "100";
+            document.querySelector(".jk-feelog-nav003").style.zIndex = "100";
             // 첨부 파일 보관 배열 클리어
             allFiles.splice(0, allFiles.length);
             // 액션을 입력으로
@@ -164,8 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
             e.target.classList.contains("cancel")
         ) {
             document.querySelector(".flog-div-176").style.display = "none";
-            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "10000";
-            document.querySelector(".flog-nav-6").style.zIndex = "500";
+            document.querySelector(".feelog-header-mainHeader").style.zIndex = "10000";
+            document.querySelector(".jk-feelog-nav003").style.zIndex = "500";
             // 첨부 파일 보관 배열 클리어
         }
 
@@ -278,8 +278,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.classList.contains("flog-li-13")) {
             // 수정화면 보여주기
             document.querySelector(".flog-div-176").style.display = "block";
-            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
-            document.querySelector(".flog-nav-6").style.zIndex = "100";
+            document.querySelector(".feelog-header-mainHeader").style.zIndex = "100";
+            document.querySelector(".jk-feelog-nav003").style.zIndex = "100";
 
             // 기존에 열린 메뉴가 있으면 삭제
             document.querySelector(".flog-ul-8")?.remove();
@@ -304,8 +304,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.classList.contains("flog-li-14")) {
             // 확인창 보여주기
             document.querySelector(".flog-div-40").style.display = "block";
-            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "100";
-            document.querySelector(".flog-nav-6").style.zIndex = "100";
+            document.querySelector(".feelog-header-mainHeader").style.zIndex = "100";
+            document.querySelector(".jk-feelog-nav003").style.zIndex = "100";
 
             // 기존에 열린 메뉴가 있으면 삭제
             document.querySelector(".flog-ul-8")?.remove();
@@ -326,8 +326,8 @@ document.addEventListener("DOMContentLoaded", () => {
             e.target.classList.contains("flog-button-10")) {
             // 확인창 닫기
             document.querySelector(".flog-div-40").style.display = "none";
-            //document.querySelector(".feelog-header-mainDiv").style.zIndex = "10000";
-            document.querySelector(".flog-nav-6").style.zIndex = "500";
+            document.querySelector(".feelog-header-mainHeader").style.zIndex = "10000";
+            document.querySelector(".jk-feelog-nav003").style.zIndex = "500";
         }
 
         // 네 버튼 클릭시 서버에 삭제 요청

@@ -844,7 +844,7 @@ body {
 
 @media (min-width: 744px) {
     .jk-feelog-section004 {
-        padding: 62px 32px 8px;
+        padding: 100px 32px 8px;
     }
 }
 
@@ -1126,7 +1126,7 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    cursor: pointer;
+    cursor: default;
 }
 
 @media (min-width: 744px) {
@@ -1262,7 +1262,7 @@ body {
 
 @media (min-width: 744px) {
     .jk-feelog-btn019 {
-        width: 96px;
+        width: 105px;
     }
 }
 
@@ -3004,6 +3004,29 @@ body {
 .slick-track:after {
     clear: both;
 }
+.slick-track {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+
+.slick-track::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.slick-list {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.slick-list::-webkit-scrollbar {
+    display: none;
+}
 
 .joy-1yqy26p {
     position: absolute;
@@ -4206,9 +4229,15 @@ body {
     color: #76767F;
 }
 
+.left-prevBtn {
+    transform: rotate(180deg);
+    top: 40px;
+    left: -1110px;
+}
 
-
-
+.hidden {
+    display: none !important;
+}
 
 
 

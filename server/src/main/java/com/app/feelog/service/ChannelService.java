@@ -17,6 +17,8 @@ public interface ChannelService {
 
     public Optional<ChannelDTO> getMyChannel(Long memberId);
 
+    ChannelDTO findByUrl(String channelUrl);
+
     default ChannelDTO toDTO(ChannelVO vo) {
         ChannelDTO dto = new ChannelDTO();
         dto.setId(vo.getId());
