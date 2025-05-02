@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="/css/main/footer.css">
         <link rel="stylesheet" href="/css/main/search-modal.css">
         <link rel="stylesheet" href="/css/all/message.css" />
+        <link rel="stylesheet" href="/css/official/official.css">
+        <link rel="stylesheet" href="/css/blog/blog-mind-log.css">
         <title>개인 채널 댓글 목록/입력</title>
     </head>
     <body>
@@ -23,10 +25,10 @@
                             <div class="FeelogBox-root flog-div-186">
                                 <header class="FeelogStack-root flog-header-11">
                                     <div class="FeelogBox-root flog-div-187">
-                                        <button
+                                        <a
                                             aria-label="목록 페이지로 이동"
                                             class="FeelogIconButton-root FeelogIconButton-variantPlain FeelogIconButton-colorNeutral FeelogIconButton-sizeMd flog-button-40"
-                                            type="button"
+                                            th:href="${currentChannelUrl != null and !currentChannelUrl.isEmpty()} ? '/feelog.com/@' + ${currentChannelUrl} + '/community' :  null"
                                         >
                                             <svg
                                                 focusable="false"
@@ -43,7 +45,7 @@
                                                     fill="currentcolor"
                                                 ></path>
                                             </svg>
-                                        </button>
+                                        </a>
                                     </div>
                                 </header>
 

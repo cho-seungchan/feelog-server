@@ -1,4 +1,5 @@
 -- diary 댓글 테이블
+
 create table tbl_diary_reply (
                                  id 		                    bigint primary key ,
                                  member_id 	                    bigint not null,
