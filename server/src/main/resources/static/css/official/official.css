@@ -844,7 +844,7 @@ body {
 
 @media (min-width: 744px) {
     .jk-feelog-section004 {
-        padding: 62px 32px 8px;
+        padding: 100px 32px 8px;
     }
 }
 
@@ -1126,7 +1126,7 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    cursor: pointer;
+    cursor: default;
 }
 
 @media (min-width: 744px) {
@@ -1262,7 +1262,7 @@ body {
 
 @media (min-width: 744px) {
     .jk-feelog-btn019 {
-        width: 96px;
+        width: 105px;
     }
 }
 

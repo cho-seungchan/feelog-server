@@ -1069,6 +1069,13 @@ body {
     position: relative;
 }
 
+.jk-feelog-no-content-message1 {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 1.1rem;
+    color: #888;
+    position: relative;
+}
 
 
 

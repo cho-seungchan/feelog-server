@@ -1,10 +1,7 @@
 package com.app.feelog.controller;
 
 import com.app.feelog.domain.dto.*;
-import com.app.feelog.service.ChannelPostPreviewService;
-import com.app.feelog.service.ChannelService;
-import com.app.feelog.service.DiaryPreviewService;
-import com.app.feelog.service.DiaryService;
+import com.app.feelog.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,10 +18,11 @@ import java.util.List;
 @Slf4j
 public class BlogController {
 
-    private final DiaryService diaryService;
     private final ChannelService channelService;
     private final DiaryPreviewService diaryPreviewService;
     private final ChannelPostPreviewService channelPostPreviewService;
+    private final ChannelInfoService channelInfoService;
+    private final SubscribeService subscribeService;
 
     @GetMapping("/blog-challenge")
     public String getBlogChallenge() {
@@ -36,13 +34,25 @@ public class BlogController {
     public String getBlogHome(@PathVariable("channelUrl") String channelUrl,
                               @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
                               Model model) {
+
         ChannelDTO channel = channelService.findByUrl(channelUrl);
         if (channel == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
         }
 
+        Long viewerId = sessionMember != null ? sessionMember.getId() : null;
+
+        ChannelInfoDTO channelInfo = channelInfoService.findInfoByUrl(channelUrl);
+        boolean isSubscribed = viewerId != null && channelInfo != null
+                && subscribeService.isSubscribed(viewerId, channelInfo.getChannelId());
+
+        boolean isOwner = viewerId != null && viewerId.equals(channelInfo.getMemberId());
+
+        model.addAttribute("isOwner", isOwner);
         model.addAttribute("channel", channel);
-        model.addAttribute("viewerId", sessionMember != null ? sessionMember.getId() : "");
+        model.addAttribute("channelInfo", channelInfo);
+        model.addAttribute("viewerId", viewerId != null ? viewerId : "");
+        model.addAttribute("isSubscribed", isSubscribed);
 
         return "blog/blog-home";
     }
@@ -52,52 +62,81 @@ public class BlogController {
     public String diaryTab(@PathVariable("channelUrl") String channelUrl,
                            @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
                            Model model) {
+
         ChannelDTO channel = channelService.findByUrl(channelUrl);
         if (channel == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
         }
 
+        Long viewerId = sessionMember != null ? sessionMember.getId() : null;
+
+        ChannelInfoDTO channelInfo = channelInfoService.findInfoByUrl(channelUrl);
+        boolean isSubscribed = viewerId != null && channelInfo != null
+                && subscribeService.isSubscribed(viewerId, channelInfo.getChannelId());
+
+        boolean isOwner = viewerId != null && viewerId.equals(channelInfo.getMemberId());
+
+        model.addAttribute("isOwner", isOwner);
         model.addAttribute("channel", channel);
-        model.addAttribute("viewerId", sessionMember != null ? sessionMember.getId() : "");
+        model.addAttribute("channelInfo", channelInfo);
+        model.addAttribute("viewerId", viewerId != null ? viewerId : "");
+        model.addAttribute("isSubscribed", isSubscribed);
 
         return "blog/blog-mind-log";
     }
 
     @GetMapping("/@{channelUrl}/post")
     public String postTab(@PathVariable("channelUrl") String channelUrl,
-                           @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
-                           Model model) {
+                          @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
+                          Model model) {
+
         ChannelDTO channel = channelService.findByUrl(channelUrl);
         if (channel == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
         }
 
+        Long viewerId = sessionMember != null ? sessionMember.getId() : null;
+
+        ChannelInfoDTO channelInfo = channelInfoService.findInfoByUrl(channelUrl);
+        boolean isSubscribed = viewerId != null && channelInfo != null
+                && subscribeService.isSubscribed(viewerId, channelInfo.getChannelId());
+
+        boolean isOwner = viewerId != null && viewerId.equals(channelInfo.getMemberId());
+
+        model.addAttribute("isOwner", isOwner);
         model.addAttribute("channel", channel);
-        model.addAttribute("viewerId", sessionMember != null ? sessionMember.getId() : "");
+        model.addAttribute("channelInfo", channelInfo);
+        model.addAttribute("viewerId", viewerId != null ? viewerId : "");
+        model.addAttribute("isSubscribed", isSubscribed);
 
         return "blog/blog-post";
     }
 
     @GetMapping("/@{channelUrl}/cheers")
     public String cheersTab(@PathVariable("channelUrl") String channelUrl,
-                          @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
-                          Model model) {
+                            @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
+                            Model model) {
+
         ChannelDTO channel = channelService.findByUrl(channelUrl);
         if (channel == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
         }
 
+        Long viewerId = sessionMember != null ? sessionMember.getId() : null;
+
+        ChannelInfoDTO channelInfo = channelInfoService.findInfoByUrl(channelUrl);
+        boolean isSubscribed = viewerId != null && channelInfo != null
+                && subscribeService.isSubscribed(viewerId, channelInfo.getChannelId());
+
+        boolean isOwner = viewerId != null && viewerId.equals(channelInfo.getMemberId());
+
+        model.addAttribute("isOwner", isOwner);
         model.addAttribute("channel", channel);
-        model.addAttribute("viewerId", sessionMember != null ? sessionMember.getId() : "");
+        model.addAttribute("channelInfo", channelInfo);
+        model.addAttribute("viewerId", viewerId != null ? viewerId : "");
+        model.addAttribute("isSubscribed", isSubscribed);
 
         return "blog/blog-cheer";
-    }
-
-
-
-    @GetMapping("/blog-post")
-    public String getBlogPost() {
-        return "blog-post-test";
     }
 
 

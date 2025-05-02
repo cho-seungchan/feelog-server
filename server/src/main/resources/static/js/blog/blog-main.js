@@ -1,3 +1,7 @@
+let totalSliderCount = 3;
+let loadedSliderCount = 0;
+let emptySliderCount = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
     const channelUrl = document.body.dataset.channelUrl;
     const viewerId = document.body.dataset.viewerId || '';
@@ -30,48 +34,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+    // 섹션 제거용
 function loadSlider({ sectionId, wrapperClass, nextBtnId, prevBtnId, api, linkPrefix }) {
     const section = document.getElementById(sectionId);
-    const track = section.querySelector('.slick-track');
     const wrapper = document.querySelector(`.${wrapperClass}`);
+    const track = section?.querySelector('.slick-track');
+
+    if (!section || !track) return;
 
     fetch(api)
         .then(res => res.json())
         .then(data => {
             track.innerHTML = '';
-            if (!data || data.length === 0) {
-                wrapper.style.display = 'none';
-                return;
-            }
-            data.forEach(item => {
-                const html = renderSlideHtml(item, linkPrefix);
-                track.insertAdjacentHTML('beforeend', html);
-            });
-        });
 
-    // 섹션 제거용
-    // fetch(api)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         track.innerHTML = '';
-    //         if (!data || data.length === 0) {
-    //             // 섹션은 제거 (wrapper 자체를 날림)
-    //             wrapper.remove();
-    //
-    //             // p 태그를 섹션 바깥에 삽입
-    //             const message = document.createElement('p');
-    //             message.className = 'jk-feelog-no-content-message';
-    //             message.textContent = '아직 등록된 콘텐츠가 없어요.';
-    //
-    //             section.parentElement.insertBefore(message, section.nextSibling);
-    //             return;
-    //         }
-    //
-    //         data.forEach(item => {
-    //             const html = renderSlideHtml(item, linkPrefix);
-    //             track.insertAdjacentHTML('beforeend', html);
-    //         });
-    //     });
+            if (!data || data.length === 0) {
+                wrapper?.remove();
+                emptySliderCount++;
+            } else {
+                data.forEach(item => {
+                    const html = renderSlideHtml(item, linkPrefix);
+                    track.insertAdjacentHTML('beforeend', html);
+                });
+            }
+        })
+        .finally(() => {
+            loadedSliderCount++;
+
+            // 모든 슬라이더 다 로딩됐고 모두 비어있을 경우만 메시지 출력
+            if (loadedSliderCount === totalSliderCount && emptySliderCount === totalSliderCount) {
+                const main = document.getElementById('main');
+                main.innerHTML = ''; // 기존 내용 제거
+
+                const message = document.createElement('p');
+                message.className = 'jk-feelog-no-content-message1';
+                message.textContent = '아직 등록된 콘텐츠가 없어요.';
+
+                main.appendChild(message);
+            }
+        });
 
     document.getElementById(nextBtnId)?.addEventListener('click', () => {
         track.scrollBy({ left: 368, behavior: 'smooth' });
@@ -80,8 +80,6 @@ function loadSlider({ sectionId, wrapperClass, nextBtnId, prevBtnId, api, linkPr
     document.getElementById(prevBtnId)?.addEventListener('click', () => {
         track.scrollBy({ left: -368, behavior: 'smooth' });
     });
-
-
 }
 
 function stripHtml(html) {
