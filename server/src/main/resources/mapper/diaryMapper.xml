@@ -135,6 +135,7 @@
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
+
 <!--    박정근 :: 나의다이어리 페이지네이션-->
     <select id="selectDiaryListPagination" resultType="diaryJoinDTO">
         select * from view_diary
@@ -142,6 +143,7 @@
                  order by id desc
         limit #{offset}, #{rowCount}
     </select>
+
 
     <select id="selectDiaryCount" resultType="_int">
         select count(*) from view_diary where diary_open = '비공개'

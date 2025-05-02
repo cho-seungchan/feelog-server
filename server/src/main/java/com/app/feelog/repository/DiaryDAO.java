@@ -40,6 +40,12 @@ public class DiaryDAO {
         return diaryMapper.searchMoreDiaries(keyword,limit,offset);
     }
 
+
+    public List<DiaryVO> findVisibleDiaries(Long channelOwnerId, Long viewerId) {
+        return diaryMapper.findVisibleDiaries(channelOwnerId, viewerId);
+    }
+
+
     //    박정근 :: 다이어리 페이지네이션
     public List<DiaryJoinDTO> findDiaryListPagination(PostPagination postPagination){
         return diaryMapper.selectDiaryListPagination(postPagination);
@@ -64,4 +70,5 @@ public class DiaryDAO {
     public List<DiaryJoinDTO> findDiaryListPaginationAll(PostPagination postPagination){
         return diaryMapper.selectDiaryListPaginationAll(postPagination);
     };
+
 }
