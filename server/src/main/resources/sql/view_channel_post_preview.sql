@@ -30,3 +30,4 @@ FROM tbl_post p
          JOIN tbl_member m ON cp.member_id = m.id
 WHERE cp.channel_post_status = '정상'
   AND p.post_status = '정상';
+
