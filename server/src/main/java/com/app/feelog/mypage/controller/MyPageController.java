@@ -164,6 +164,9 @@ public class MyPageController {
         ChannelDTO channel = myPageService.getChannelByUrl(channelUrl)
                 .orElse(null);
 
+        if (member.getId() != channel.getMemberId()) {
+            return "error/error-page";
+        }
         model.addAttribute("channel", channel);
 
         return "myPage/read-channel";

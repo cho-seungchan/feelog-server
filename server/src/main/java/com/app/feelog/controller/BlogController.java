@@ -35,6 +35,10 @@ public class BlogController {
                               @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
                               Model model) {
 
+        if ("official".equals(channelUrl)) {
+            return "redirect:/feelog/official";
+        }
+
         ChannelDTO channel = channelService.findByUrl(channelUrl);
         if (channel == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
@@ -219,4 +223,5 @@ public class BlogController {
         Long channelId = channelService.findByUrl(channelUrl).getId();
         return channelPostPreviewService.getCheerSlides(channelId);
     }
+
 }
