@@ -33,4 +33,8 @@
     <delete id="deleteSubscribe">
         delete from tbl_subscribe where member_id = #{memberId} and channel_id = #{channelId}
     </delete>
+
+    <select id="selectSubscribeIdsByMemberId" resultType="long">
+        select channel_id from tbl_subscribe where member_id = #{memberId}
+    </select>
 </mapper>

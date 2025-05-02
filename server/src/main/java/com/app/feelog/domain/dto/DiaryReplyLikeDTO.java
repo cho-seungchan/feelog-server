@@ -15,6 +15,7 @@ public class DiaryReplyLikeDTO {
     private Long id;
     private Long memberId;
     private Long replyId;
+    private boolean liked;
 
     public DiaryReplyLikeVO toVO() {
         return DiaryReplyLikeVO.builder()

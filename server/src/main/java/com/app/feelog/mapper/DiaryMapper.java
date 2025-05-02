@@ -1,6 +1,7 @@
 package com.app.feelog.mapper;
 
 import com.app.feelog.domain.dto.DiarySearchDTO;
+import com.app.feelog.domain.dto.joinDTO.DiaryDetailDTO;
 import com.app.feelog.domain.dto.joinDTO.DiaryJoinDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.util.pagination.PostPagination;
@@ -38,14 +39,26 @@ public interface DiaryMapper {
 //    박정근 :: 다이어리 페이지네이션
     public List<DiaryJoinDTO> selectDiaryListPagination(PostPagination postPagination);
 
-
-    public List<DiaryJoinDTO> selectDiaryListPaginationAllAndSubscribe(PostPagination postPagination);
-
-    public List<DiaryJoinDTO> selectDiaryListPaginationAll(PostPagination postPagination);
+    public List<DiaryJoinDTO> selectDiaryListPaginationAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId")Long memberId);
 
     public int selectDiaryCount();
 
-    public int selectDiaryCountAllAndSubscribe();
+    public int selectDiaryCountAllAndSubscribe(Long memberId);
+
+    public List<DiaryJoinDTO> selectDiaryListPaginationAll(PostPagination postPagination);
+
+    public int selectDiaryCountAll();
+
+//    박정근 :: 다이어리 상세보기
+    public DiaryDetailDTO selectDiaryDetailByDiaryId(Long diaryId);
+
+    public List<DiaryJoinDTO> selectRandomDiary();
+
+    public int selectDiaryLikeCount(Long diaryId);
+
+    public int selectDiaryReplyCount(Long diaryId);
+
+    public void addReadCount(Long diaryId);
 
     public int selectDiaryCountAll();
 

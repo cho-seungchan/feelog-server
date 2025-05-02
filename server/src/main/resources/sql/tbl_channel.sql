@@ -31,10 +31,10 @@ INSERT INTO tbl_member (
     member_type,
     member_status
 ) VALUES (
-             'jdy2@jdy.jdy',
+             'feelog@feelog.com',
              'qwer123123', -- 비밀번호는 암호화 전 값
-             'jdy2',
-             'jdyjdy1',
+             'FEELOG',
+             'FEELOG는 항상 여러분과 함께 합니다. 도움이 필요하시다면 언제든지 연락주세요. 감사합니다',
              '정상',
              '정상',
              '정상',
@@ -60,11 +60,11 @@ INSERT INTO tbl_channel (
     channel_status,
     member_id
 ) VALUES (
-             '123123123',
-             '123123123123123123123123',
-             '123123123',
+             'FEELOG',
+             'FEELOG는 항상 여러분과 함께 합니다. 도움이 필요하시다면 언제든지 연락주세요. 감사합니다',
+             'official',
              'channel/2025/04/24',
              'channel_banner.png',
              '정상',
-             11
+             16
          );

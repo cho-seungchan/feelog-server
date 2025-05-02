@@ -32,6 +32,9 @@ public class FileController {
     @PostMapping("upload")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> upload(@RequestParam("file") MultipartFile file) {
+        log.info("file = {}",file.getOriginalFilename());
+        log.info("fileGetName = {}",file.getName());
+
 
         FileVO thumbnail = fileService.upload(file);
 

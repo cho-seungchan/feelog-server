@@ -1,4 +1,3 @@
-console.log(postInfo);
 readService.getNextPost(readLayout.showNextPost, postInfo.channelId, postInfo.id)
 readService.getPreviousPost(readLayout.showPreviousPost, postInfo.channelId, postInfo.id)
 readService.getRandomPost(readLayout.showRandomPost);
@@ -117,6 +116,8 @@ if(writeReplyButton){
         replyCountText.innerText = replyCount
         replyWrap.innerHTML = "";
         replyContent.value = "";
+        addImg.querySelector(".joy-jj02o9").remove();
+
         await readService.getReplyList(readLayout.showReplyList);
     })
 }
@@ -252,6 +253,7 @@ document.body.addEventListener("click", async (e) => {
             const memberId = Number(loginMember.id);
             if(confirm("이 댓글을 신고하시겠습니까?")){
                 const replyData = await readService.getReplyReportCheck(replyId, memberId);
+
                 if(!replyData){
                     await readService.addReplyReport({
                         replyId:replyId,

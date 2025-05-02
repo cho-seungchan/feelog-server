@@ -297,3 +297,10 @@ input, textarea {
 .AppLayout_container_adminList {
     position: relative;
 }
+
+.postInfo-wrap {
+    text-decoration: none;
+    display: grid
+;
+    grid-template-columns: 250px 242px 147px 179px;
+}

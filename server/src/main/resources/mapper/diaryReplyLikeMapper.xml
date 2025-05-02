@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.DiaryReplyLikeMapper">
+    <insert id="insertSuperLike" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_like() values()
+    </insert>
+
+    <insert id="insertDiaryReplyLike">
+        insert into feelog.tbl_diary_reply_like (id, member_id, reply_id)
+            VALUE (#{id}, #{memberId}, #{replyId})
+    </insert>
+
+    <select id="selectLikeIdsByMemberId" resultType="long">
+        select reply_id from tbl_diary_reply_like where member_id = #{memberId}
+    </select>
+
+    <select id="selectDiaryReplyLikeCount" resultType="_int">
+        select count(*) from tbl_diary_reply_like where reply_id = #{replyId}
+    </select>
+
+    <select id="selectDiaryReplyByMemberIdAndReplyId" resultType="diaryReplyLikeVO">
+        select * from tbl_diary_reply_like where member_id = #{memberId} and reply_id = #{replyId}
+    </select>
+
+    <delete id="deleteDiaryReplyLikeByReplyId">
+        delete from tbl_diary_reply_like where member_id = #{memberId} and reply_id = #{replyId}
+    </delete>
 </mapper>

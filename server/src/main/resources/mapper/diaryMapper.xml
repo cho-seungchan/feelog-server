@@ -149,25 +149,175 @@
         select count(*) from view_diary where diary_open = '비공개'
     </select>
 
+<!--    박정근 :: 구독자에게만 공개, 전체공개-->
     <select id="selectDiaryListPaginationAllAndSubscribe" resultType="diaryJoinDTO">
-        select * from view_diary
-        where diary_open = '전체 공개' and diary_open = '구독자에게만 공개'
+        SELECT * FROM (
+                          SELECT
+                              d.id AS id,
+                              m.id AS member_id,
+                              m.member_nickname,
+                              m.member_file_path,
+                              m.member_file_name,
+                              m.member_status,
+                              d.diary_title,
+                              d.diary_content,
+                              d.diary_open,
+                              d.diary_name_open,
+                              d.diary_file_path,
+                              d.diary_file_name,
+                              d.diary_status,
+                              d.updated_date AS updated_date,
+                              d.diary_read_count,
+                              c.id AS channel_id,
+                              c.channel_title,
+                              c.channel_url,
+                              c.channel_file_path,
+                              c.channel_file_name,
+                              c.channel_status
+                          FROM tbl_member m
+                                   JOIN tbl_diary d ON m.id = d.member_id
+                                   JOIN tbl_channel c ON m.id = c.member_id
+                          WHERE d.diary_open IN ('전체 공개', '구독자에게만 공개')
+                      ) d
+        WHERE EXISTS (
+            SELECT 1 FROM tbl_subscribe s
+            WHERE s.member_id = #{memberId}
+              AND s.channel_id = d.channel_id
+        )
+           OR d.diary_open = '전체 공개'
+
+        UNION
+
+        SELECT * FROM (
+                          SELECT
+                              d.id AS id,
+                              m.id AS member_id,
+                              m.member_nickname,
+                              m.member_file_path,
+                              m.member_file_name,
+                              m.member_status,
+                              d.diary_title,
+                              d.diary_content,
+                              d.diary_open,
+                              d.diary_name_open,
+                              d.diary_file_path,
+                              d.diary_file_name,
+                              d.diary_status,
+                              d.updated_date AS updated_date,
+                              d.diary_read_count,
+                              c.id AS channel_id,
+                              c.channel_title,
+                              c.channel_url,
+                              c.channel_file_path,
+                              c.channel_file_name,
+                              c.channel_status
+                          FROM tbl_member m
+                                   JOIN tbl_diary d ON m.id = d.member_id
+                                   JOIN tbl_channel c ON m.id = c.member_id
+                          WHERE d.diary_open = '전체 공개'
+                      ) d
+        WHERE NOT EXISTS (
+            SELECT 1 FROM tbl_subscribe WHERE member_id = #{memberId}
+        )
         order by id desc
-        limit #{offset}, #{rowCount}
+        limit #{postPagination.offset}, #{postPagination.rowCount}
     </select>
 
     <select id="selectDiaryListPaginationAll" resultType="diaryJoinDTO">
-        select * from view_diary
-        where diary_open = '전체 공개'
+        select * from view_diary where diary_open = '전체 공개'
         order by id desc
         limit #{offset}, #{rowCount}
     </select>
 
     <select id="selectDiaryCountAllAndSubscribe" resultType="_int">
-        select count(*) from view_diary where diary_open = '전체 공개' and diary_open = '구독자에게만 공개'
+        SELECT
+            (
+                SELECT count(*) FROM (
+                                         SELECT
+                                             d.id,
+                                             c.id AS channel_id,
+                                             d.diary_open
+                                         FROM tbl_member m
+                                                  JOIN tbl_diary d ON m.id = d.member_id
+                                                  JOIN tbl_channel c ON m.id = c.member_id
+                                         WHERE d.diary_open IN ('전체 공개', '구독자에게만 공개')
+                                     ) d
+                WHERE EXISTS (
+                    SELECT 1 FROM tbl_subscribe s
+                    WHERE s.member_id = #{memberId}
+                      AND s.channel_id = d.channel_id
+                )
+                   OR d.diary_open = '전체 공개'
+            )
+                +
+            (
+                SELECT count(*) FROM (
+                                         SELECT
+                                             d.id,
+                                             d.diary_open,
+                                             c.id AS channel_id
+                                         FROM tbl_member m
+                                                  JOIN tbl_diary d ON m.id = d.member_id
+                                                  JOIN tbl_channel c ON m.id = c.member_id
+                                         WHERE d.diary_open = '전체 공개'
+                                     ) d
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM tbl_subscribe WHERE member_id = #{memberId}
+                )
+            ) AS total_count
     </select>
 
     <select id="selectDiaryCountAll" resultType="_int">
         select count(*) from view_diary where diary_open = '전체 공개'
     </select>
+
+<!--    박정근 :: 다이어리 상세보기-->
+    <select id="selectDiaryDetailByDiaryId" resultType="diaryDetailDTO">
+        select
+            d.id as id,
+            d. diary_title,
+            d.diary_content,
+            d.diary_open,
+            d.diary_name_open,
+            d.member_id as member_id,
+            d.diary_status,
+            d.updated_date as updated_date,
+            d.diary_read_count,
+            d.diary_score,
+            m.member_nickname,
+            m.member_file_name,
+            m.member_file_path,
+            c.id as channel_id,
+            c.channel_title,
+            c.channel_file_path,
+            c.channel_file_name,
+            c.channel_status,
+            c.channel_url,
+            s.score_message
+        from tbl_diary d
+                 join tbl_member m
+                      on d.member_id = m.id
+                 join tbl_channel c
+                      on c.member_id = m.id
+                 join tbl_diary_score s
+                      on s.id = d.diary_score
+        where d.id = #{id}
+    </select>
+
+    <select id="selectRandomDiary" resultType="diaryJoinDTO">
+        select * from view_diary where view_diary.diary_open = '전체 공개' order by rand() limit 4
+    </select>
+
+    <select id="selectDiaryLikeCount" resultType="_int">
+        select count(*) from view_find_diary_like_count where diary_id = #{diaryId}
+    </select>
+
+    <select id="selectDiaryReplyCount" resultType="_int">
+        select count(*) from view_find_diary_reply_count where diary_id = #{diaryId}
+    </select>
+
+    <update id="addReadCount">
+        update tbl_diary set diary_read_count = diary_read_count + 1 where id = #{id}
+    </update>
+
 </mapper>

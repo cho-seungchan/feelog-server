@@ -2,9 +2,12 @@ package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.DiaryDTO;
 import com.app.feelog.domain.dto.DiarySearchDTO;
+import com.app.feelog.domain.dto.joinDTO.DiaryDetailDTO;
+import com.app.feelog.domain.dto.joinDTO.DiaryJoinDTO;
 import com.app.feelog.domain.dto.joinDTO.DiaryPaginationDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.util.pagination.PostPagination;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,12 +30,18 @@ public interface DiaryService {
 //    박정근 :: 다이어리 페이지네이션
     public DiaryPaginationDTO getDiaryList(PostPagination postPagination);
 
-    public DiaryPaginationDTO getDiaryListAllAndSubscribe(PostPagination postPagination);
-
-    public DiaryPaginationDTO getDiaryListAll(PostPagination postPagination);
+    public DiaryPaginationDTO getDiaryListAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId);
 
     public List<Long> getDiaryReportIds(Long memberId);
 
+    public DiaryPaginationDTO getDiaryListAll(PostPagination postPagination);
+
+//    박정근 :: 다이어리 상세보기
+    public DiaryDetailDTO getDiaryDetailByDiaryId(Long diaryId);
+
+    public List<DiaryJoinDTO> getDiaryRandom();
+
+    public void addDiaryReadCount(Long diaryId);
 
 
 

@@ -2,12 +2,18 @@ package com.app.feelog.controller;
 
 import ch.qos.logback.core.model.Model;
 import com.app.feelog.domain.dto.*;
+import com.app.feelog.domain.dto.joinDTO.DiaryReportListDTO;
+import com.app.feelog.domain.dto.joinDTO.PostReportListDTO;
+import com.app.feelog.domain.dto.joinDTO.ReplyReportListDTO;
+import com.app.feelog.domain.dto.joinDTO.ReportListDTO;
 import com.app.feelog.mapper.MemberTaskPoolMapper;
 import com.app.feelog.service.*;
+import com.app.feelog.service.voToDto.ReportService;
 import com.app.feelog.util.Pagination;
 import com.app.feelog.util.pagination.AdminPagination;
 import com.app.feelog.util.pagination.MemberPagination;
 import com.app.feelog.util.pagination.NoticePagination;
+import com.app.feelog.util.pagination.PostPagination;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +34,7 @@ public class AdminController {
     private final FaqServiceImpl faqServiceImpl;
     private final MemberServiceImpl memberServiceImpl;
     private final MemberTaskPoolServiceImpl memberTaskPoolServiceImpl;
+    private final ReportService reportService;
 
 
     @GetMapping("/admin")
@@ -158,6 +165,39 @@ public class AdminController {
     @PutMapping("/updateMemberTaskPool")
     public void updateMemberTaskPool(@RequestBody MemberTaskPoolDTO memberTaskPoolDTO) {
         memberTaskPoolServiceImpl.updateMemberTaskPool(memberTaskPoolDTO);
+    }
+
+    @GetMapping("/postReportList")
+    @ResponseBody
+    public ReportListDTO getPostReportList(NoticePagination pagination) {
+        return reportService.getPostReportList(pagination);
+    }
+
+    @GetMapping("/diaryReportList")
+    @ResponseBody
+    public ReportListDTO getDiaryReportList(NoticePagination pagination) {
+        return reportService.getDiaryReportList(pagination);
+    }
+
+    @GetMapping("/replyReportList")
+    @ResponseBody
+    public ReportListDTO getReplyReportList(NoticePagination pagination) {
+        return reportService.getReplyReportList(pagination);
+    }
+
+    @PutMapping("/deleteReport")
+    public void deleteReport(@RequestBody List<String> idList) {
+        idList.forEach(id->{
+            reportService.deleteReportById(Long.parseLong(id));
+        });
+    }
+
+    @PutMapping("/returnReport")
+    public void returnReport(@RequestBody List<String> idList) {
+        log.info("ids = {}", idList);
+        idList.forEach(id->{
+            reportService.returnReport(Long.parseLong(id));
+        });
     }
 
 }
