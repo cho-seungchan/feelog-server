@@ -1,17 +1,17 @@
 package com.app.feelog.controller;
 
-import com.app.feelog.domain.dto.DiaryDTO;
-import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.domain.dto.*;
+import com.app.feelog.service.ChannelPostPreviewService;
 import com.app.feelog.service.ChannelService;
+import com.app.feelog.service.DiaryPreviewService;
 import com.app.feelog.service.DiaryService;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -23,47 +23,161 @@ public class BlogController {
 
     private final DiaryService diaryService;
     private final ChannelService channelService;
+    private final DiaryPreviewService diaryPreviewService;
+    private final ChannelPostPreviewService channelPostPreviewService;
 
     @GetMapping("/blog-challenge")
     public String getBlogChallenge() {
         return "blog/blog-challenge";
     }
 
-    @GetMapping("/blog-home")
-    public String getBlogHome() {
+
+    @GetMapping("/@{channelUrl}")
+    public String getBlogHome(@PathVariable("channelUrl") String channelUrl,
+                              @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
+                              Model model) {
+        ChannelDTO channel = channelService.findByUrl(channelUrl);
+        if (channel == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
+        }
+
+        model.addAttribute("channel", channel);
+        model.addAttribute("viewerId", sessionMember != null ? sessionMember.getId() : "");
+
         return "blog/blog-home";
     }
 
-    @GetMapping("/blog-mind-log")
-    public String getBlogMindLog() {
+
+    @GetMapping("/@{channelUrl}/diary")
+    public String diaryTab(@PathVariable("channelUrl") String channelUrl,
+                           @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
+                           Model model) {
+        ChannelDTO channel = channelService.findByUrl(channelUrl);
+        if (channel == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
+        }
+
+        model.addAttribute("channel", channel);
+        model.addAttribute("viewerId", sessionMember != null ? sessionMember.getId() : "");
+
         return "blog/blog-mind-log";
     }
 
-    @GetMapping("/blog-post")
-    public String getBlogPost() {
+    @GetMapping("/@{channelUrl}/post")
+    public String postTab(@PathVariable("channelUrl") String channelUrl,
+                           @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
+                           Model model) {
+        ChannelDTO channel = channelService.findByUrl(channelUrl);
+        if (channel == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
+        }
+
+        model.addAttribute("channel", channel);
+        model.addAttribute("viewerId", sessionMember != null ? sessionMember.getId() : "");
+
         return "blog/blog-post";
     }
 
-    @GetMapping("/feelog.com/{channelUrl}")
-    public ResponseEntity<List<DiaryDTO>> getVisibleDiariesByChannelUrl(
-            @PathVariable("channelUrl") String channelUrl,
-            HttpSession session
-    ) {
-        Long viewerId = null;
-        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-        if (loginMember != null) {
-            viewerId = loginMember.getId();
+    @GetMapping("/@{channelUrl}/cheers")
+    public String cheersTab(@PathVariable("channelUrl") String channelUrl,
+                          @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
+                          Model model) {
+        ChannelDTO channel = channelService.findByUrl(channelUrl);
+        if (channel == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
         }
 
-        // 채널 URL을 기준으로 채널 주인의 memberId 조회
-        Long channelOwnerId = channelService.findMemberIdByChannelUrl(channelUrl);
+        model.addAttribute("channel", channel);
+        model.addAttribute("viewerId", sessionMember != null ? sessionMember.getId() : "");
 
-        if (channelOwnerId == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        List<DiaryDTO> diaries = diaryService.findVisibleDiaries(channelOwnerId, viewerId);
-        return ResponseEntity.ok(diaries);
+        return "blog/blog-cheer";
     }
 
+
+
+    @GetMapping("/blog-post")
+    public String getBlogPost() {
+        return "blog-post-test";
+    }
+
+
+    // 05 01 더보기
+    @GetMapping("/channel/{channelUrl}/diaries")
+    @ResponseBody
+    public DiaryPreviewListResponseDTO getDiaryList(
+            @PathVariable("channelUrl") String channelUrl,
+            @RequestParam(value = "viewerId", required = false) Long viewerId,
+            @RequestParam("offset") int offset,
+            @RequestParam("limit") int limit
+    ) {
+        log.info("channelUrl = {}", channelUrl);
+
+        List<DiaryPreviewDTO> diaries = diaryPreviewService.getVisibleDiariesWithPagination(channelUrl, viewerId, offset, limit);
+        int totalCount = diaryPreviewService.countVisibleDiaries(channelUrl, viewerId);
+
+        DiaryPreviewListResponseDTO response = new DiaryPreviewListResponseDTO();
+        response.setDiaries(diaries);
+        response.setTotalCount(totalCount);
+        return response;
+    }
+
+    // 메인 5개 미리보기
+    @GetMapping("/channel/{channelUrl}/diaries/slide")
+    @ResponseBody
+    public List<DiaryPreviewDTO> getDiarySlide(
+            @PathVariable("channelUrl") String channelUrl,
+            @RequestParam(value = "viewerId", required = false) Long viewerId
+    ) {
+        return diaryPreviewService.getVisibleDiariesForSlide(channelUrl, viewerId);
+    }
+
+    @GetMapping("/channel/{channelUrl}/posts")
+    @ResponseBody
+    public ChannelPostPreviewListResponseDTO getPostList(
+            @PathVariable("channelUrl") String channelUrl,
+            @RequestParam(value = "viewerId", required = false) Long viewerId,
+            @RequestParam("offset") int offset,
+            @RequestParam("limit") int limit
+    ) {
+        Long channelId = channelService.findByUrl(channelUrl).getId();
+        List<ChannelPostPreviewDTO> posts = channelPostPreviewService.getVisiblePostsWithPagination(channelId, offset, limit);
+        int totalCount = channelPostPreviewService.countVisiblePosts(channelId);
+
+        ChannelPostPreviewListResponseDTO response = new ChannelPostPreviewListResponseDTO();
+        response.setPosts(posts);
+        response.setTotalCount(totalCount);
+        return response;
+    }
+
+    @GetMapping("/channel/{channelUrl}/posts/slide")
+    @ResponseBody
+    public List<ChannelPostPreviewDTO> getPostSlides(@PathVariable String channelUrl) {
+        Long channelId = channelService.findByUrl(channelUrl).getId();
+        return channelPostPreviewService.getPostSlides(channelId);
+    }
+
+    @GetMapping("/channel/{channelUrl}/cheers")
+    @ResponseBody
+    public ChannelPostPreviewListResponseDTO getCheerList(
+            @PathVariable("channelUrl") String channelUrl,
+            @RequestParam(value = "viewerId", required = false) Long viewerId,
+            @RequestParam("offset") int offset,
+            @RequestParam("limit") int limit
+    ) {
+        Long channelId = channelService.findByUrl(channelUrl).getId();
+        List<ChannelPostPreviewDTO> cheers = channelPostPreviewService.getVisibleCheersWithPagination(channelId, offset, limit);
+        int totalCount = channelPostPreviewService.countVisibleCheers(channelId);
+
+        ChannelPostPreviewListResponseDTO response = new ChannelPostPreviewListResponseDTO();
+        response.setPosts(cheers);
+        response.setTotalCount(totalCount);
+        return response;
+    }
+
+    @GetMapping("/channel/{channelUrl}/cheers/slide")
+    @ResponseBody
+    public List<ChannelPostPreviewDTO> getCheerSlides(@PathVariable String channelUrl) {
+        Long channelId = channelService.findByUrl(channelUrl).getId();
+        return channelPostPreviewService.getCheerSlides(channelId);
+    }
 }

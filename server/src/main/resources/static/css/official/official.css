@@ -3004,6 +3004,29 @@ body {
 .slick-track:after {
     clear: both;
 }
+.slick-track {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+
+.slick-track::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.slick-list {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.slick-list::-webkit-scrollbar {
+    display: none;
+}
 
 .joy-1yqy26p {
     position: absolute;
@@ -4206,9 +4229,15 @@ body {
     color: #76767F;
 }
 
+.left-prevBtn {
+    transform: rotate(180deg);
+    top: 40px;
+    left: -1110px;
+}
 
-
-
+.hidden {
+    display: none !important;
+}
 
 
 

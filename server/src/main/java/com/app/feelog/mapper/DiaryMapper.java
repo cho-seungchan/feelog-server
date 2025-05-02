@@ -31,10 +31,10 @@ public interface DiaryMapper {
                                            @Param("limit") int limit,
                                            @Param("offset") int offset);
 
-<<<<<<< HEAD
+
     List<DiaryVO> findVisibleDiaries(@Param("channelOwnerId") Long channelOwnerId,
                                      @Param("viewerId") Long viewerId);
-=======
+
 //    박정근 :: 다이어리 페이지네이션
     public List<DiaryJoinDTO> selectDiaryListPagination(PostPagination postPagination);
 
@@ -48,5 +48,5 @@ public interface DiaryMapper {
     public int selectDiaryCountAllAndSubscribe();
 
     public int selectDiaryCountAll();
->>>>>>> 4a4d0677416c2c38b42b4db8816bcf241d7b6506
+
 }

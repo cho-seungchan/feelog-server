@@ -4,24 +4,637 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="/css/blog/blog-post.css" />
-        <link rel="stylesheet" href="/css/blog/blog.css" />
+        <link rel="stylesheet" href="/css/blog/blog-mind-log.css" />
+        <link rel="stylesheet" href="/css/official/official.css" />
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/all/message.css" />
     </head>
     <body>
-        <section>
-            <div class="feelog-header-mainDiv" id="header-container"></div>
-            <script>
-                // Load header.html and insert it in#header-placeholder
-                fetch("blog-header.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("header-container").innerHTML =
-                            data;
-                    })
-                    .catch((error) =>
-                        console.error("Error loading header:", error)
-                    );
-            </script>
+        <section >
+            <!-- 헤더 넣을 곳 -->
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
+            <!-- 헤더 넣을 곳 -->
+            <div class="FlgStack-root-need jk-feelog-div046">
+                <div class="FlgStack-root-need jk-feelog-div047">
+                    <div class="FlgStack-root-need jk-feelog-div048">
+                        <div class="FlgBox-root-need jk-feelog-div043"></div>
+                        <!--<nav class="FlgStack-root-need jk-feelog-nav002">
+                            <div class="FlgStack-root-need jk-feelog-div066">
+                                <div
+                                    class="FlgStack-root-need jk-feelog-div067"
+                                >
+                                    <a
+                                        class="FlgBox-root-need jk-feelog-a-009"
+                                        href="/"
+                                        ><svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="jk-feelog-main-svg09"
+                                        >
+                                            <g
+                                                clip-path="url(#clip0_263_23020)"
+                                            >
+                                                <rect
+                                                    class="bg"
+                                                    width="24"
+                                                    height="24"
+                                                    rx="5"
+                                                ></rect>
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    clip-rule="evenodd"
+                                                    d="M13.9863 5.5C16.6171 5.5 18.75 7.63295 18.75 10.2641C18.75 12.8953 16.6171 15.0283 13.9863 15.0283L12.2457 15.0311V18.5H10.5104V7.44196H8.99858V18.5H7.26273V7.44196H5.75V5.5H13.9863ZM14.1352 7.45H12.25V13.04H14.1352C15.6787 13.04 16.93 11.7887 16.93 10.2452C16.93 8.70178 15.6787 7.45 14.1352 7.45Z"
+                                                ></path>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_263_23020">
+                                                    <rect
+                                                        width="24"
+                                                        height="24"
+                                                    ></rect>
+                                                </clipPath>
+                                            </defs></svg></a
+                                    ><a
+                                        class="FlgBox-root-need jk-feelog-a-010"
+                                        href="/"
+                                        ><svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="jk-feelog-main-svg10"
+                                        >
+                                            <g
+                                                clip-path="url(#clip0_263_23020)"
+                                            >
+                                                <rect
+                                                    class="bg"
+                                                    width="24"
+                                                    height="24"
+                                                    rx="5"
+                                                ></rect>
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    clip-rule="evenodd"
+                                                    d="M13.9863 5.5C16.6171 5.5 18.75 7.63295 18.75 10.2641C18.75 12.8953 16.6171 15.0283 13.9863 15.0283L12.2457 15.0311V18.5H10.5104V7.44196H8.99858V18.5H7.26273V7.44196H5.75V5.5H13.9863ZM14.1352 7.45H12.25V13.04H14.1352C15.6787 13.04 16.93 11.7887 16.93 10.2452C16.93 8.70178 15.6787 7.45 14.1352 7.45Z"
+                                                ></path>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_263_23020">
+                                                    <rect
+                                                        width="24"
+                                                        height="24"
+                                                    ></rect>
+                                                </clipPath>
+                                            </defs></svg></a
+                                    ><a href="/@blog" class="jk-feelog-a-011"
+                                        ><span class="jk-feelog-span008"
+                                            >포스타입 공식 채널</span
+                                        ></a
+                                    >
+                                </div>
+                                <div
+                                    class="FlgStack-root-need jk-feelog-div068"
+                                >
+                                    <div
+                                        class="FlgBox-root-need jk-feelog-div069"
+                                    >
+                                        <button
+                                            aria-haspopup="menu"
+                                            aria-expanded="false"
+                                            aria-controls=":R9jakqfl7lqakq:"
+                                            tabindex="0"
+                                            class="jk-feelog-div008 FlgMenuButton-sizeMd-need jk-feelog-btn016"
+                                            type="button"
+                                        >
+                                            <span class="jk-feelog-span009"
+                                                ><svg
+                                                    focusable="false"
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="jk-feelog-main-svg01"
+                                                >
+                                                    <path
+                                                        d="M12.938 4.813A.935.935 0 0 0 12 3.875a.935.935 0 0 0-.938.938v6.25h-6.25a.935.935 0 0 0-.937.937c0 .52.418.938.938.938h6.25v6.25c0 .519.417.937.937.937s.938-.418.938-.938v-6.25h6.25c.519 0 .937-.417.937-.937a.935.935 0 0 0-.938-.938h-6.25v-6.25Z"
+                                                        fill="currentcolor"
+                                                    ></path></svg></span
+                                            >만들기
+                                        </button>
+                                    </div>
+                                    <button
+                                        aria-label="검색"
+                                        class="FlgIconButton-root-need FlgIconButton-sizeMd-need jk-feelog-btn017"
+                                        type="button"
+                                    >
+                                        <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="jk-feelog-main-svg01"
+                                        >
+                                            <path
+                                                d="M16.375 10.125a6.25 6.25 0 1 0-12.5 0 6.25 6.25 0 0 0 12.5 0Zm-1.207 6.371a8.086 8.086 0 0 1-5.043 1.754A8.124 8.124 0 0 1 2 10.125 8.124 8.124 0 0 1 10.125 2a8.124 8.124 0 0 1 8.125 8.125c0 1.906-.656 3.66-1.754 5.043l5.23 5.23a.937.937 0 0 1-1.324 1.324l-5.234-5.226Z"
+                                                fill="currentcolor"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <div
+                                        class="FlgStack-root-need jk-feelog-div070"
+                                    >
+                                        <div
+                                            class="FlgStack-root-need jk-feelog-div071"
+                                        >
+                                            <button
+                                                tabindex="0"
+                                                aria-haspopup="menu"
+                                                aria-expanded="false"
+                                                aria-controls=""
+                                                aria-label="알림"
+                                                class="FlgIconButton-root-need FlgIconButton-sizeMd-need jk-feelog-div008 FlgMenuButton-sizeMd-need jk-feelog-btn017"
+                                                type="button"
+                                            >
+                                                <span class="jk-feelog-span010"
+                                                    ><svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="jk-feelog-main-svg01"
+                                                    >
+                                                        <path
+                                                            fill-rule="evenodd"
+                                                            clip-rule="evenodd"
+                                                            d="M10.606 2.118C11.191 2 12 2 12 2s.809 0 1.394.118a6.967 6.967 0 0 1 5.571 6.825v1.819c0 2.045.753 4.022 2.111 5.554l.322.361c.366.41.453.997.231 1.497a1.39 1.39 0 0 1-1.271.823H3.642a1.39 1.39 0 0 1-1.271-.823 1.398 1.398 0 0 1 .23-1.497l.323-.361a8.378 8.378 0 0 0 2.11-5.554V8.943a6.967 6.967 0 0 1 5.572-6.825Zm6.484 6.825a5.092 5.092 0 0 0-4.068-4.987h-2.044A5.092 5.092 0 0 0 6.91 8.943v1.819a10.25 10.25 0 0 1-2.216 6.36h14.612a10.25 10.25 0 0 1-2.216-6.36V8.943Zm-4.713-5.056c.246.013.487.037.645.07h-2.044c.158-.033.399-.057.645-.07a9.014 9.014 0 0 1 .36-.012h.034a6.795 6.795 0 0 1 .36.012Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                        <path
+                                                            d="M12 22.5A3.5 3.5 0 0 1 8.5 19h1.875a1.625 1.625 0 1 0 3.25 0H15.5a3.5 3.5 0 0 1-3.5 3.5Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                    </svg>
+                                                    <span
+                                                        class="FlgBadge-invisible-need jk-feelog-span011"
+                                                    ></span
+                                                ></span></button
+                                            ><button
+                                                tabindex="0"
+                                                aria-haspopup="menu"
+                                                aria-expanded="false"
+                                                aria-controls=""
+                                                aria-label="메시지"
+                                                class="FlgIconButton-root-need FlgIconButton-sizeMd-need jk-feelog-div008 FlgMenuButton-sizeMd-need jk-feelog-btn017"
+                                                type="button"
+                                            >
+                                                <span class="jk-feelog-span010"
+                                                    ><svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="jk-feelog-main-svg01"
+                                                    >
+                                                        <path
+                                                            d="M4.5 5.875a.627.627 0 0 0-.625.625v.863l6.738 5.532a2.185 2.185 0 0 0 2.778 0l6.734-5.532V6.5a.627.627 0 0 0-.625-.625h-15Zm-.625 3.914V17.5c0 .344.281.625.625.625h15a.627.627 0 0 0 .625-.625V9.79l-5.547 4.554a4.063 4.063 0 0 1-5.156 0L3.875 9.789ZM2 6.5C2 5.121 3.121 4 4.5 4h15C20.879 4 22 5.121 22 6.5v11c0 1.379-1.121 2.5-2.5 2.5h-15A2.502 2.502 0 0 1 2 17.5v-11Z"
+                                                            fill="currentcolor"
+                                                        ></path>
+                                                    </svg>
+                                                    <span
+                                                        class="FlgBadge-invisible-need jk-feelog-span011"
+                                                    ></span
+                                                ></span>
+                                            </button>
+                                        </div>
+                                        <div
+                                            class="FlgStack-root-need jk-feelog-div072"
+                                        >
+                                            <div
+                                                class="FlgBox-root-need jk-feelog-div073"
+                                            >
+                                                <button
+                                                    aria-haspopup="menu"
+                                                    aria-expanded="false"
+                                                    aria-controls=""
+                                                    tabindex="0"
+                                                    aria-label="사용자 메뉴"
+                                                    class="jk-feelog-div008 FlgMenuButton-sizeSm-need jk-feelog-btn018"
+                                                    type="button"
+                                                >
+                                                    <div
+                                                        class="jk-feelog-div074"
+                                                    >
+                                                        <img
+                                                            alt=""
+                                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                            loading="lazy"
+                                                            class="jk-feelog-img001"
+                                                        />
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <div
+                                                class="FlgBox-root-need jk-feelog-div075"
+                                            >
+                                                <span class="jk-feelog-span012"
+                                                    ><button
+                                                        aria-label="사용자 메뉴"
+                                                        class="jk-feelog-btn014"
+                                                    >
+                                                        <div
+                                                            class="jk-feelog-div076"
+                                                        >
+                                                            <img
+                                                                alt=""
+                                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=50&amp;h=50&amp;q=65"
+                                                                loading="lazy"
+                                                                class="jk-feelog-img001"
+                                                            />
+                                                        </div></button
+                                                    ><span
+                                                        class="FlgBadge-invisible-need jk-feelog-span013"
+                                                    ></span
+                                                ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>-->
+                        <a id="skip" class="sr-only" href="#main"
+                        >주요 내용으로 건너뛰기</a
+                        >
+                        <header class="FlgStack-root-need jk-feelog-header-001">
+                            <section
+                                    class="FlgStack-root-need jk-feelog-section004"
+                            >
+                                <div
+                                        class="FlgStack-root-need jk-feelog-div077"
+                                >
+                                    <div
+                                            class="FlgStack-root-need jk-feelog-div078"
+                                    >
+                                        <div
+                                                class="FlgBox-root-need jk-feelog-div079"
+                                        >
+                                            <div
+                                                    class="FlgBox-root-need jk-feelog-div056"
+                                            >
+                                                <img
+                                                        alt="채널 썸네일"
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        data-nimg="fill"
+                                                        style="
+                                                        position: absolute;
+                                                        height: 100%;
+                                                        width: 100%;
+                                                        left: 0;
+                                                        top: 0;
+                                                        right: 0;
+                                                        bottom: 0;
+                                                        object-fit: cover;
+                                                        color: transparent;
+                                                    "
+                                                        src="https://d3mcojo3jv0dbr.cloudfront.net/2023/03/16/15/23/5d8c2513698820107444144488.png?w=100&amp;h=100&amp;q=65"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div
+                                                class="FlgStack-root-need jk-feelog-div080"
+                                        >
+                                            <a
+                                                    class="channel-title jk-feelog-a-012"
+                                                    th:href="@{'/feelog.com/@' + ${channel.channelUrl}}"
+                                            ><h1
+                                                    class="FlgTypography-h1 jk-feelog-h1-001"
+                                            >
+                                                포스타입 공식 채널
+                                            </h1></a
+                                            >
+                                            <div
+                                                    class="FlgStack-root-need jk-feelog-div081"
+                                            >
+                                                <a
+                                                        href="/profile/@1ll3c6"
+                                                        class="jk-feelog-a-013"
+                                                ><span
+                                                        class="jk-feelog-span014"
+                                                >포스타입</span
+                                                ></a
+                                                >·
+                                                <p class="jk-feelog-p014">
+                                                    구독자
+                                                </p>
+                                                <p class="jk-feelog-p014">
+                                                    1.3만명
+                                                </p>
+                                                ·
+                                                <p class="jk-feelog-p014">
+                                                    감정 기록
+                                                </p>
+                                                <p class="jk-feelog-p014">
+                                                    <!--486개-->
+                                                </p>
+                                            </div>
+                                            <div
+                                                    class="FlgStack-root-need jk-feelog-div082"
+                                            >
+                                                <p class="jk-feelog-p015">
+                                                    창작에 수익을 더하다,
+                                                    크리에이터를 위한 슈퍼 앱
+                                                    포스타입
+                                                </p>
+                                                <svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="jk-feelog-main-svg11"
+                                                >
+                                                    <path
+                                                            d="M16.416 11.332a.934.934 0 0 1 0 1.325l-7.5 7.504a.937.937 0 0 1-1.324-1.324L14.428 12l-6.84-6.84a.937.937 0 0 1 1.324-1.324l7.504 7.495Z"
+                                                            fill="currentcolor"
+                                                    ></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="FlgStack-root-need jk-feelog-div083"
+                                    >
+                                        <button
+                                                class="FlgButton-sizeMd-need jk-feelog-btn019"
+                                                type="button"
+                                        >
+                                            구독</button
+                                        ><button
+                                            aria-label="공유하기"
+                                            class="FlgIconButton-root-need FlgIconButton-sizeMd-need jk-feelog-btn020"
+                                            type="button"
+                                    >
+                                        <svg
+                                                focusable="false"
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="jk-feelog-main-svg01"
+                                        >
+                                            <path
+                                                    d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
+                                                    fill="currentcolor"
+                                            ></path>
+                                        </svg></button
+                                    ><button
+                                            aria-label="공유하기"
+                                            class="FlgIconButton-root-need FlgIconButton-sizeMd-need jk-feelog-btn021"
+                                            type="button"
+                                    >
+                                        <svg
+                                                focusable="false"
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="jk-feelog-main-svg01"
+                                        >
+                                            <path
+                                                    d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
+                                                    fill="currentcolor"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    </div>
+                                </div>
+                                <a class="jk-feelog-a-014"
+                                ><span
+                                        class="FlgLink-startDecorator jk-feelog-span015"
+                                ><svg
+                                        focusable="false"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="jk-feelog-main-svg12"
+                                >
+                                            <path
+                                                    d="M22.17 12.436a5.62 5.62 0 0 0 0-7.949 5.618 5.618 0 0 0-7.672-.254l-.238.211a.94.94 0 0 0 1.234 1.414l.238-.21a3.745 3.745 0 0 1 5.114 5.468l-4.426 4.422a3.745 3.745 0 0 1-5.469-5.113l.184-.211A.94.94 0 0 0 9.72 8.979l-.184.211a5.62 5.62 0 0 0 8.207 7.672l4.426-4.426Zm-20.336-.875a5.62 5.62 0 0 0 7.676 8.204l.238-.211a.94.94 0 0 0-1.234-1.414l-.239.21a3.745 3.745 0 0 1-5.113-5.468L7.588 8.46a3.745 3.745 0 0 1 5.469 5.113l-.211.238a.94.94 0 0 0 1.414 1.235l.21-.239a5.62 5.62 0 0 0-8.203-7.676l-4.433 4.43Z"
+                                                    fill="currentcolor"
+                                            ></path></svg></span
+                                ><span class="jk-feelog-span016"
+                                >http://www.twitter.com/postype</span
+                                ><span class="jk-feelog-span017"
+                                >외 링크 3개</span
+                                ></a
+                                >
+                                <div
+                                        class="FlgStack-root-need jk-feelog-div084"
+                                >
+                                    <button
+                                            class="FlgButton-sizeSm-need jk-feelog-btn022"
+                                            type="button"
+                                    >
+                                        구독</button
+                                    ><button
+                                        aria-label="공유하기"
+                                        class="FlgIconButton-root-need FlgIconButton-sizeSm-need jk-feelog-btn023"
+                                        type="button"
+                                >
+                                    <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="jk-feelog-main-svg01"
+                                    >
+                                        <path
+                                                d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
+                                                fill="currentcolor"
+                                        ></path>
+                                    </svg></button
+                                ><button
+                                        aria-label="공유하기"
+                                        class="FlgIconButton-root-need FlgIconButton-sizeSm-need jk-feelog-btn024"
+                                        type="button"
+                                >
+                                    <svg
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="jk-feelog-main-svg01"
+                                    >
+                                        <path
+                                                d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
+                                                fill="currentcolor"
+                                        ></path>
+                                    </svg>
+                                </button>
+                                </div>
+                            </section>
+                        </header>
+                        <nav class="FlgStack-root-need jk-feelog-nav003">
+                            <div
+                                    class="FlgStack-root-need jk-feelog-header-001"
+                            >
+                                <ul
+                                        aria-label="채널 탭 리스트"
+                                        class="FlgList-sizeMd-need jk-feelog-ul003"
+                                >
+                                    <li
+                                            data-first-child=""
+                                            class="jk-feelog-li005"
+                                    >
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl}}"
+                                        ><span class="jk-feelog-span018"
+                                        >홈</span
+                                        ></a
+                                        >
+                                    </li>
+                                    <li class="jk-feelog-li005">
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/diary'}"
+                                        ><span class="jk-feelog-span018"
+                                        >감정 기록</span
+                                        ></a
+                                        >
+                                    </li>
+                                    <li class="jk-feelog-li004">
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/post'}"
+                                        ><span class="jk-feelog-span018"
+                                        >포스트</span
+                                        ></a
+                                        >
+                                    </li>
+                                    <li class="jk-feelog-li005">
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/cheers'}"
+                                        ><span class="jk-feelog-span018"
+                                        >응원글</span
+                                        ></a
+                                        >
+                                    </li>
+                                    <li class="jk-feelog-li005">
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/challenge'}"
+                                        ><span class="jk-feelog-span018"
+                                        >챌린지</span
+                                        ></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="jk-feelog-hr01" />
+                        </nav>
+                    </div>
+                </div>
+            </div>
             <div class="FlgStack-root-need jk-feelog-div046">
                 <div class="FlgStack-root-need jk-feelog-div047">
                     <div class="FlgStack-root-need jk-feelog-div048">
@@ -30,14 +643,16 @@
                         <main class="FlgStack-root-need jk-feelog-main-002">
                             <section
                                 class="FlgStack-root-need jk-feelog-section002"
+                                th:data-channel-url="${channel.channelUrl}"
+                                th:data-viewer-id="${viewerId}"
                             >
                                 <div
                                     class="FlgStack-root-need jk-feelog-div049"
                                 >
                                     <h2 class="jk-feelog-h2-003">
-                                        포스트 486개
+                                        감정 기록
                                     </h2>
-                                    <div
+                                    <!--<div
                                         class="FlgStack-root-need jk-feelog-div050"
                                     >
                                         <button class="jk-feelog-btn014">
@@ -51,7 +666,7 @@
                                                 >인기순</span
                                             >
                                         </button>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <section
                                     class="FlgGrid-root-need jk-feelog-section003"
@@ -377,4 +992,8 @@
             </div>
         </section>
     </body>
+    <script src="/js/main/main-modal.js"></script>
+    <script src="/js/main/notification.js"></script>
+    <script src="/js/main/main-search-modal.js"></script>
+    <script src="/js/blog/blog-post.js"></script>
 </html>

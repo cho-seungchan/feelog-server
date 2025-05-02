@@ -61,7 +61,7 @@ body {
 
 @media (min-width: 1132px) {
     .jk-feelog-main-002 {
-        padding: 40px 32px;
+        padding: 40px 32px 100px 32px
     }
 }
 
@@ -1060,7 +1060,14 @@ body {
     min-height: 32px;
 }
 
-
+.jk-feelog-no-content-message {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 1.1rem;
+    color: #888;
+    left: 473px;
+    position: relative;
+}
 
 
 

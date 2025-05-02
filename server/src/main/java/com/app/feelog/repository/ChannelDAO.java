@@ -31,7 +31,7 @@ public class ChannelDAO {
         return channelMapper.findByMemberId(memberId);
     }
 
-    public Long findMemberIdByChannelUrl(String channelUrl) {
-        return channelMapper.findMemberIdByChannelUrl(channelUrl);
-    }
+    public ChannelVO findByUrl(String channelUrl){
+        return channelMapper.findByUrl(channelUrl);
+    };
 }
