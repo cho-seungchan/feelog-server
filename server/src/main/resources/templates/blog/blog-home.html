@@ -310,7 +310,7 @@
                                             <h1 class="FlgTypography-h1 jk-feelog-h1-001" th:text="${channelInfo.channelTitle}">채널명</h1>
                                         </a>
                                         <div class="FlgStack-root-need jk-feelog-div081">
-                                            <a th:href="@{'/myPage/read-channel/' + ${channelInfo.channelUrl}}" class="jk-feelog-a-013">
+                                            <a th:href="@{'/feelog.com/@' + ${channelInfo.channelUrl}}" class="jk-feelog-a-013">
                                                 <span class="jk-feelog-span014" th:text="${channelInfo.memberNickname}">닉네임</span>
                                             </a>
                                             ·
@@ -4319,7 +4319,7 @@
                                                 포스트
                                             </h2>
                                             <a
-                                                href="/@blog/post"
+                                                    th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/post'}"
                                                 class="jk-feelog-a-012"
                                                 ><span
                                                     class="FlgTypography-inherit joy-qmw0re"
@@ -8092,7 +8092,7 @@
                                                 응원글
                                             </h2>
                                             <a
-                                                    href="/@blog/post"
+                                                    th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/cheers'}"
                                                     class="jk-feelog-a-012"
                                             ><span
                                                     class="FlgTypography-inherit joy-qmw0re"

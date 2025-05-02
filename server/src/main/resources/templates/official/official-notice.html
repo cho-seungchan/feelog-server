@@ -9,27 +9,187 @@
             href="/css/official/official-notice.css"
         />
         <link rel="stylesheet" href="/css/official/official.css" />
+        <link rel="stylesheet" href="/css/blog/blog-mind-log.css" />
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/main/header.css">
+        <link rel="stylesheet" href="/css/main/search-modal.css">
+        <link rel="stylesheet" href="/css/all/message.css" />
     </head>
     <body>
         <section>
-            <div class="feelog-header-mainDiv" id="header-container"></div>
-            <script>
-                // Load header.html and insert it in#header-placeholder
-                fetch("official-header.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        document.getElementById("header-container").innerHTML =
-                            data;
-                    })
-                    .catch((error) =>
-                        console.error("Error loading header:", error)
-                    );
-            </script>
+            <header id="main-header"
+                    th:replace="~{main/header.html :: #main-header}"></header>
+            <!-- 헤더 넣을 곳 -->
             <div class="FlgStack-root-need jk-feelog-div046">
                 <div class="FlgStack-root-need jk-feelog-div047">
                     <div class="FlgStack-root-need jk-feelog-div048">
                         <div class="FlgBox-root-need jk-feelog-div043"></div>
+                        <header class="FlgStack-root-need jk-feelog-header-001">
+                            <section class="FlgStack-root-need jk-feelog-section004">
+                                <div class="FlgStack-root-need jk-feelog-div077">
+                                    <div class="FlgStack-root-need jk-feelog-div078">
+                                        <div class="FlgBox-root-need jk-feelog-div079">
+                                            <div class="FlgBox-root-need jk-feelog-div056">
+                                                <img th:if="${channelInfo.channelFilePath != null}"
+                                                     th:src="@{'/files/display?path=' + ${channelInfo.channelFilePath} + '/' + ${channelInfo.channelFileName}}"
+                                                     style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;" />
+                                                <img th:if="${channelInfo.channelFilePath == null}"
+                                                     th:src="@{/images/default_thumbnail.png}"
+                                                     style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;" />
+                                            </div>
+                                        </div>
 
+                                        <div class="FlgStack-root-need jk-feelog-div080">
+                                            <a class="channel-title jk-feelog-a-012" th:href="@{'/feelog/' + ${channelInfo.channelUrl}}">
+                                                <h1 class="FlgTypography-h1 jk-feelog-h1-001" th:text="${channelInfo.channelTitle}">채널명</h1>
+                                            </a>
+                                            <div class="FlgStack-root-need jk-feelog-div081">
+                                                <a th:href="@{'/feelog/' + ${channelInfo.channelUrl}}" class="jk-feelog-a-013">
+                                                    <span class="jk-feelog-span014" th:text="${channelInfo.memberNickname}">닉네임</span>
+                                                </a>
+                                                ·
+                                                <p class="jk-feelog-p014">구독자</p>
+                                                <p class="jk-feelog-p014" th:text="${channelInfo.subscriberCount} + '명'">0명</p>
+                                                ·
+                                                <p class="jk-feelog-p014">공지사항</p>
+                                                <p class="jk-feelog-p014" th:text="${channelInfo.postCount} + '개'">0개</p>
+                                            </div>
+                                            <div class="FlgStack-root-need jk-feelog-div082">
+                                                <p class="jk-feelog-p015" th:text="${channelInfo.channelIntroduce}">
+                                                    채널 소개 문구
+                                                </p>
+                                                <svg
+                                                        focusable="false"
+                                                        aria-hidden="true"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="jk-feelog-main-svg11"
+                                                >
+                                                    <path
+                                                            d="M16.416 11.332a.934.934 0 0 1 0 1.325l-7.5 7.504a.937.937 0 0 1-1.324-1.324L14.428 12l-6.84-6.84a.937.937 0 0 1 1.324-1.324l7.504 7.495Z"
+                                                            fill="currentcolor"
+                                                    ></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="FlgStack-root-need jk-feelog-div083">
+                                        <!-- 내 채널이면 "채널 설정" -->
+                                        <a th:if="${isOwner}" th:href="@{'/myPage/read-channel/' + ${channelInfo.channelUrl}}">
+                                            <button class="FlgButton-sizeMd-need jk-feelog-btn019" type="button">
+                                                설정
+                                            </button>
+                                        </a>
+
+                                        <!-- 남의 채널이면 "구독 / 구독 취소" -->
+                                        <button th:if="${!isOwner}"
+                                                class="FlgButton-sizeMd-need jk-feelog-btn019 subscribe-btn"
+                                                type="button"
+                                                th:data-channel-id="${channelInfo.channelId}"
+                                                th:text="${isSubscribed} ? '구독 취소' : '구독'">
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="FlgStack-root-need jk-feelog-div084">
+                                    <!-- 내 채널이면 "채널 설정" -->
+                                    <a th:if="${isOwner}" th:href="@{'/myPage/read-channel/' + ${channelInfo.channelUrl}}">
+                                        <button class="FlgButton-sizeMd-need jk-feelog-btn019" type="button">
+                                            설정
+                                        </button>
+                                    </a>
+
+                                    <!-- 남의 채널이면 "구독 / 구독 취소" -->
+                                    <button th:if="${!isOwner}"
+                                            class="FlgButton-sizeMd-need jk-feelog-btn019 subscribe-btn"
+                                            type="button"
+                                            th:data-channel-id="${channelInfo.channelId}"
+                                            th:text="${isSubscribed} ? '구독 취소' : '구독'">
+                                    </button>
+                                </div>
+                            </section>
+                        </header>
+                        <nav class="FlgStack-root-need jk-feelog-nav003">
+                            <div
+                                    class="FlgStack-root-need jk-feelog-header-001"
+                            >
+                                <ul
+                                        aria-label="채널 탭 리스트"
+                                        class="FlgList-sizeMd-need jk-feelog-ul003"
+                                >
+                                    <li
+                                            data-first-child=""
+                                            class="jk-feelog-li004"
+                                    >
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl}}"
+                                        ><span class="jk-feelog-span018"
+                                        >홈</span
+                                        ></a
+                                        >
+                                    </li>
+                                    <li class="jk-feelog-li005">
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/feelog/official-notice'}"
+                                        ><span class="jk-feelog-span018"
+                                        >공지사항</span
+                                        ></a
+                                        >
+                                    </li>
+                                    <li class="jk-feelog-li005">
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/challenge/task-list'}"
+                                        ><span class="jk-feelog-span018"
+                                        >챌린지</span
+                                        ></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="jk-feelog-hr01" />
+                        </nav>
                         <main class="FlgStack-root-need jk-feelog-main-002">
                             <section
                                 class="FlgStack-root-need jk-feelog-section002"
@@ -38,7 +198,7 @@
                                     class="FlgStack-root-need jk-feelog-div049"
                                 >
                                     <h2 class="jk-feelog-h2-003">
-                                        포스트 486개
+                                        공지사항
                                     </h2>
                                     <div
                                         class="FlgStack-root-need jk-feelog-div050"
@@ -58,6 +218,7 @@
                                 </div>
                                 <section
                                     class="FlgGrid-root-need jk-feelog-section003"
+                                    id="notice-card-wrapper"
                                 >
                                     <div
                                         class="FlgGrid-root-need jk-feelog-div051"
@@ -304,6 +465,7 @@
                                 </section>
                                 <div
                                     class="FlgStack-root-need jk-feelog-div065"
+                                    id="pagination-container"
                                 >
                                     <button
                                         aria-label="이전 페이지"
@@ -380,4 +542,10 @@
             </div>
         </section>
     </body>
+    <script src="/js/main/main-modal.js"></script>
+    <script src="/js/main/notification.js"></script>
+    <script src="/js/main/main-search-modal.js"></script>
+    <script src="/js/blog/blog-main.js"></script>
+    <script src="/js/subscribe/subscribe.js"></script>
+    <script src="/js/blog/official-notice.js"></script>
 </html>
