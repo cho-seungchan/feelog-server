@@ -4,17 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const notificationCount = document.querySelector(".feelog-header-topSpan01");
 
 
-        fetch("/main/notifications/unread-count")
-            .then(res => res.json())
-            .then(count => {
-                if (count > 0) {
+    fetch("/main/notifications/unread-count")
+        .then(res => {
+            if (res.status === 401) return null;
+            return res.json();
+        })
+        .then(count => {
+            if (count > 0) {
+                if (notificationCount) {
                     notificationCount.style.display = "inline-block";
                     notificationCount.innerText = count;
-                } else {
+                }
+            } else {
+                if (notificationCount) {
                     notificationCount.style.display = "none";
                 }
-            })
-            .catch(err => console.error("알림 수 가져오기 실패", err));
+            }
+        })
+        .catch(err => console.error("알림 수 가져오기 실패", err));
 
     loadNotifications();
 
@@ -23,7 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function loadNotifications() {
         fetch("/main/notifications")
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401) return []; // 비로그인이면 빈 배열
+                return res.json();
+            })
             .then(data => {
                 const limitedData = data.slice(0, 15);
                 renderNotifications(limitedData);
@@ -124,11 +134,13 @@ document.addEventListener("DOMContentLoaded", () => {
         updateMarkAllAsReadBtn(); // 모두 읽기 버튼 다시 바인딩
 
         const unreadCount = notifications.filter(n => n.notificationChecked === "UNREAD" || n.notificationChecked === "안읽음").length;
-        if (unreadCount > 0) {
-            notificationCount.style.display = "inline-block";
-            notificationCount.innerText = unreadCount;
-        } else {
-            notificationCount.style.display = "none";
+        if (notificationCount) {
+            if (unreadCount > 0) {
+                notificationCount.style.display = "inline-block";
+                notificationCount.innerText = unreadCount;
+            } else {
+                notificationCount.style.display = "none";
+            }
         }
     }
 
@@ -141,6 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     method: "POST"
                 })
                     .then(res => {
+                        if (res.status === 401) {
+                            console.warn("비로그인 상태로 알림 읽음 요청 무시됨");
+                            return;
+                        }
+
                         if (res.ok) {
                             // 성공했으면 UI도 변경
                             document.querySelectorAll(".joy-yhhqut").forEach(badge => badge.style.display = "none");

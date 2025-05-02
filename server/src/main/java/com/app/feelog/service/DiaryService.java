@@ -24,6 +24,9 @@ public interface DiaryService {
 
     List<DiarySearchDTO> searchMoreDiaries(String keyword, int limit, int offset);
 
+
+    List<DiaryDTO> findVisibleDiaries(Long channelOwnerId, Long viewerId);
+
 //    박정근 :: 다이어리 페이지네이션
     public DiaryPaginationDTO getDiaryList(PostPagination postPagination);
 
@@ -39,6 +42,7 @@ public interface DiaryService {
     public List<DiaryJoinDTO> getDiaryRandom();
 
     public void addDiaryReadCount(Long diaryId);
+
 
 
     default DiaryDTO toDTO(DiaryVO vo) {

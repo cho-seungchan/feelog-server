@@ -19,4 +19,6 @@ public interface ChannelMapper {
 
     Optional<ChannelVO> findByMemberId(Long memberId);
 
+    ChannelVO findByUrl(String channelUrl);
+
 }

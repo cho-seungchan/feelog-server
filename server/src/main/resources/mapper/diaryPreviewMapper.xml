@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.feelog.mapper.DiaryPreviewMapper">
+
+    <select id="findVisibleDiariesByChannelUrl" resultType="com.app.feelog.domain.dto.DiaryPreviewDTO">
+        <![CDATA[
+        SELECT *
+        FROM view_diary_preview
+        WHERE
+            channel_url = #{channelUrl}
+          AND (
+            (#{viewerId} IS NULL AND diary_open = '전체 공개')
+                OR (#{viewerId} IS NOT NULL AND #{viewerId} = (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl}))
+                OR (
+                #{viewerId} IS NOT NULL
+                    AND #{viewerId} != (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                    AND EXISTS (
+                    SELECT 1
+                    FROM tbl_subscribe s
+                    WHERE s.member_id = #{viewerId}
+                      AND s.channel_id = (SELECT id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                )
+                    AND diary_open IN ('전체 공개', '구독자에게만 공개')
+                )
+                OR (
+                #{viewerId} IS NOT NULL
+                    AND #{viewerId} != (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                    AND NOT EXISTS (
+                    SELECT 1
+                    FROM tbl_subscribe s
+                    WHERE s.member_id = #{viewerId}
+                      AND s.channel_id = (SELECT id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                )
+                    AND diary_open = '전체 공개'
+                )
+            )
+
+                AND (
+                diary_name_open != '비공개(익명)'
+                OR  #{viewerId} = (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                )
+
+        ORDER BY updated_date DESC
+        LIMIT 5
+        ]]>
+    </select>
+
+    <select id="findVisibleDiariesWithPaginationByChannelUrl" resultType="com.app.feelog.domain.dto.DiaryPreviewDTO">
+    <![CDATA[
+        SELECT *
+        FROM view_diary_preview
+          WHERE channel_url = #{channelUrl}
+          AND (
+            (#{viewerId} IS NULL AND diary_open = '전체 공개')
+                OR (#{viewerId} IS NOT NULL AND #{viewerId} = (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl}))
+                OR (
+                #{viewerId} IS NOT NULL
+                    AND #{viewerId} != (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                    AND EXISTS (
+                    SELECT 1
+                    FROM tbl_subscribe s
+                    WHERE s.member_id = #{viewerId}
+                      AND s.channel_id = (SELECT id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                )
+                    AND diary_open IN ('전체 공개', '구독자에게만 공개')
+                )
+                OR (
+                #{viewerId} IS NOT NULL
+                    AND #{viewerId} != (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                    AND NOT EXISTS (
+                    SELECT 1
+                    FROM tbl_subscribe s
+                    WHERE s.member_id = #{viewerId}
+                      AND s.channel_id = (SELECT id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                )
+                    AND diary_open = '전체 공개'
+                )
+            )
+          AND (
+            diary_name_open != '비공개(익명)'
+                OR #{viewerId} = (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+            )
+        ORDER BY updated_date DESC
+        LIMIT #{limit} OFFSET #{offset}
+        ]]>
+</select>
+
+    <select id="countVisibleDiaries" resultType="int">
+  <![CDATA[
+        SELECT COUNT(*)
+        FROM view_diary_preview
+        WHERE
+            channel_url = #{channelUrl}
+          AND (
+            (#{viewerId} IS NULL AND diary_open = '전체 공개')
+                OR (#{viewerId} IS NOT NULL AND #{viewerId} = (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl}))
+                OR (
+                #{viewerId} IS NOT NULL
+                    AND #{viewerId} != (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                    AND EXISTS (
+                    SELECT 1
+                    FROM tbl_subscribe s
+                    WHERE s.member_id = #{viewerId}
+                      AND s.channel_id = (SELECT id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                )
+                    AND diary_open IN ('전체 공개', '구독자에게만 공개')
+                )
+                OR (
+                #{viewerId} IS NOT NULL
+                    AND #{viewerId} != (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                    AND NOT EXISTS (
+                    SELECT 1
+                    FROM tbl_subscribe s
+                    WHERE s.member_id = #{viewerId}
+                      AND s.channel_id = (SELECT id FROM tbl_channel WHERE channel_url = #{channelUrl})
+                )
+                    AND diary_open = '전체 공개'
+                )
+            )
+          AND (
+            diary_name_open != '비공개(익명)'
+                OR #{viewerId} = (SELECT member_id FROM tbl_channel WHERE channel_url = #{channelUrl})
+            )
+        ]]>
+</select>
+
+</mapper>
