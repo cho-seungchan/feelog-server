@@ -60,6 +60,14 @@
         WHERE id = #{channelId}
     </select>
 
+    <select id="findByMemberId" parameterType="long" resultType="com.app.feelog.domain.vo.ChannelVO">
+        SELECT *
+        FROM tbl_channel
+        WHERE member_id = #{memberId}
+          AND channel_status = '정상'
+        LIMIT 1
+    </select>
+
 
 
 

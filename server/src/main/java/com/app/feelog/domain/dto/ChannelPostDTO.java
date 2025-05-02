@@ -49,6 +49,8 @@ public class ChannelPostDTO {
     private int subscribeCount;
     private MemberDTO loginMember;
     private boolean subscribe;
+    private boolean isLiked;
+    private boolean isScraped;
     private SubscribeDTO subscribeDTO;
 
     public ChannelPostVO toVO() {
@@ -65,7 +67,6 @@ public class ChannelPostDTO {
                 .postStatus(postStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
-                .postReadCount(postReadCount)
                 .build();
     }
 }

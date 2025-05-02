@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.ChannelPostReplyMapper">
+    <insert id="insertPostReply">
+        insert into tbl_channel_post_reply (id, member_id, post_id)
+            value (#{id} ,#{memberId}, #{postId});
+    </insert>
 
+    <insert id="insertReply" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="ChannelPostReplyVO">
+        INSERT INTO tbl_reply (reply_content, reply_file_path, reply_file_name)
+        value (#{replyContent}, #{replyFilePath}, #{replyFileName})
+    </insert>
+
+    <select id="selectReplyByPostId" resultType="channelPostReplyDTO">
+        select
+            r.id as id,
+            member_id,
+            post_id,
+            reply_content,
+            reply_file_path,
+            reply_file_name,
+            reply_status,
+            r.updated_date as updated_date,
+            member_nickname,
+            member_file_name,
+            member_file_path
+        from (
+                 select
+                     pr.id as id,
+                     pr.member_id,
+                     pr.post_id,
+                     p.reply_content,
+                     p.reply_file_path,
+                     p.reply_file_name,
+                     p.reply_status,
+                     p.updated_date
+                 from tbl_channel_post_reply pr join tbl_reply p on pr.id = p.id where reply_status = '정상' and post_id = #{postId}
+             ) r join tbl_member m on r.member_id = m.id
+        ;
+    </select>
+
+    <select id="selectIsLiked" resultType="long">
+        select reply_id from tbl_channel_post_reply_like where member_id = #{memberId}
+    </select>
 </mapper>

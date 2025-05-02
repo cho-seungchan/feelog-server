@@ -27,12 +27,12 @@ public class DiaryDTO {
     private String diaryFileName;
     private String diaryFileSize;
     private String diaryWeather;
-    private int    diaryScore;
+    private Long    diaryScore;
     private Long   memberId;
-    private Long   feelId;
     private DiaryStatus diaryStatus;
     private String createdDate;
     private String updatedDate;
+    private int diaryReadCount;
 
     // 첨부파일 및 태그
     private List<Long> fileIds;      // summernote용
@@ -52,10 +52,10 @@ public class DiaryDTO {
                 .diaryFileSize(diaryFileSize)
                 .diaryScore(diaryScore)
                 .memberId(memberId)
-                .feelId(feelId)
                 .diaryStatus(diaryStatus)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
+                .diaryReadCount(diaryReadCount)
                 .build();
     }
 }

@@ -1,18 +1,14 @@
 package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.*;
+import com.app.feelog.domain.dto.joinDTO.DiaryPaginationDTO;
 import com.app.feelog.domain.vo.DiaryVO;
-import com.app.feelog.domain.vo.FileVO;
-import com.app.feelog.repository.DiaryDAO;
-import com.app.feelog.repository.DiaryFileDAO;
-import com.app.feelog.repository.DiaryTagDAO;
-import com.app.feelog.repository.FileDAO;
+import com.app.feelog.repository.*;
+import com.app.feelog.util.pagination.PostPagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +27,8 @@ public class DiaryServiceImpl implements DiaryService {
     private final DiaryTagDAO diaryTagDAO;
     private final FileDAO fileDAO;
     private final DiaryFileDAO diaryFileDAO;
+    private final DiaryLikeDAO diaryLikeDAO;
+    private final DiaryReportDAO diaryReportDAO;
 
     @Override
     @Transactional
@@ -176,4 +174,89 @@ public class DiaryServiceImpl implements DiaryService {
         return doc.body().text();
     }
 
+//    박정근 :: 다이어리 페이지네이션
+    @Override
+    public DiaryPaginationDTO getDiaryList(PostPagination postPagination) {
+        DiaryPaginationDTO diaryPagination = new DiaryPaginationDTO();
+
+        postPagination.create(diaryDAO.selectDiaryCount());
+
+        diaryPagination.setPostPagination(postPagination);
+        diaryPagination.setDiaryList(diaryDAO.findDiaryListPagination(postPagination));
+
+        diaryPagination.getDiaryList().forEach((diary) -> {
+            if ( diary.getDiaryContent() != null && ! diary.getDiaryContent().isEmpty()) {
+                diary.setDiaryContent(extractTextOnly(diary.getDiaryContent()));
+            };
+
+            try {
+                diary.setDiaryTags(diaryTagDAO.findTagContentsByDiaryId(diary.getId()));
+            } catch (Exception e) {
+                diary.setDiaryTags(new ArrayList<>());
+            }
+
+            diary.setLikeCount(diaryLikeDAO.findLikeCount(diary.getId()));
+            diary.setReplyCount(diaryLikeDAO.findReplyCount(diary.getId()));
+        });
+
+        return diaryPagination;
+    }
+
+    @Override
+    public List<Long> getDiaryReportIds(Long memberId) {
+        return diaryReportDAO.findDiaryReportByMemberId(memberId);
+    }
+
+    @Override
+    public DiaryPaginationDTO getDiaryListAll(PostPagination postPagination) {
+        DiaryPaginationDTO diaryPagination = new DiaryPaginationDTO();
+
+        postPagination.create(diaryDAO.selectDiaryCount());
+
+        diaryPagination.setPostPagination(postPagination);
+        diaryPagination.setDiaryList(diaryDAO.findDiaryListPagination(postPagination));
+
+        diaryPagination.getDiaryList().forEach((diary) -> {
+            if ( diary.getDiaryContent() != null && ! diary.getDiaryContent().isEmpty()) {
+                diary.setDiaryContent(extractTextOnly(diary.getDiaryContent()));
+            };
+
+            try {
+                diary.setDiaryTags(diaryTagDAO.findTagContentsByDiaryId(diary.getId()));
+            } catch (Exception e) {
+                diary.setDiaryTags(new ArrayList<>());
+            }
+
+            diary.setLikeCount(diaryLikeDAO.findLikeCount(diary.getId()));
+            diary.setReplyCount(diaryLikeDAO.findReplyCount(diary.getId()));
+        });
+
+        return diaryPagination;
+    }
+
+    @Override
+    public DiaryPaginationDTO getDiaryListAllAndSubscribe(PostPagination postPagination) {
+        DiaryPaginationDTO diaryPagination = new DiaryPaginationDTO();
+
+        postPagination.create(diaryDAO.selectDiaryCount());
+        diaryPagination.setPostPagination(postPagination);
+        diaryPagination.setDiaryList(diaryDAO.findDiaryListPagination(postPagination));
+
+        diaryPagination.getDiaryList().forEach((diary) -> {
+            if ( diary.getDiaryContent() != null && ! diary.getDiaryContent().isEmpty()) {
+                diary.setDiaryContent(extractTextOnly(diary.getDiaryContent()));
+            };
+
+            try {
+                diary.setDiaryTags(diaryTagDAO.findTagContentsByDiaryId(diary.getId()));
+            } catch (Exception e) {
+                diary.setDiaryTags(new ArrayList<>());
+            }
+
+            diary.setLikeCount(diaryLikeDAO.findLikeCount(diary.getId()));
+            diary.setReplyCount(diaryLikeDAO.findReplyCount(diary.getId()));
+        });
+
+        return diaryPagination;
+    }
 }

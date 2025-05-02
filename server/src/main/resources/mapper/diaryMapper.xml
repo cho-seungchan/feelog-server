@@ -3,8 +3,8 @@
 <mapper namespace="com.app.feelog.mapper.DiaryMapper">
 
     <insert id="insert" parameterType="com.app.feelog.domain.vo.DiaryVO" useGeneratedKeys="true" keyProperty="id">
-        insert into tbl_diary (diary_title, diary_content, diary_file_path, diary_file_name, diary_file_size,  member_id, feel_id)
-        values (#{diaryTitle}, #{diaryContent}, #{diaryFilePath}, #{diaryFileName}, #{diaryFileSize}, #{memberId}, #{feelId})
+        insert into tbl_diary (diary_title, diary_content, diary_file_path, diary_file_name, diary_file_size,diary_open,diary_name_open,diary_score, member_id)
+        values (#{diaryTitle}, #{diaryContent}, #{diaryFilePath}, #{diaryFileName}, #{diaryFileSize}, #{diaryOpen}, #{diaryNameOpen}, #{diaryScore}, #{memberId})
     </insert>
 
     <!-- 단일 조회 -->
@@ -18,9 +18,7 @@
             diary_file_path,
             diary_file_name,
             diary_file_size,
-            diary_weather,
             member_id,
-            feel_id,
             diary_status,
             created_date,
             updated_date
@@ -38,6 +36,7 @@
             diary_file_path = #{diaryFilePath},
             diary_file_name = #{diaryFileName},
             diary_file_size = #{diaryFileSize},
+            diary_score = #{diaryScore},
             updated_date = NOW()
         where id = #{id}
     </update>
@@ -136,6 +135,37 @@
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
+<!--    박정근 :: 나의다이어리 페이지네이션-->
+    <select id="selectDiaryListPagination" resultType="diaryJoinDTO">
+        select * from view_diary
+                 where diary_open = '비공개'
+                 order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
 
+    <select id="selectDiaryCount" resultType="_int">
+        select count(*) from view_diary where diary_open = '비공개'
+    </select>
 
+    <select id="selectDiaryListPaginationAllAndSubscribe" resultType="diaryJoinDTO">
+        select * from view_diary
+        where diary_open = '전체 공개' and diary_open = '구독자에게만 공개'
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectDiaryListPaginationAll" resultType="diaryJoinDTO">
+        select * from view_diary
+        where diary_open = '전체 공개'
+        order by id desc
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <select id="selectDiaryCountAllAndSubscribe" resultType="_int">
+        select count(*) from view_diary where diary_open = '전체 공개' and diary_open = '구독자에게만 공개'
+    </select>
+
+    <select id="selectDiaryCountAll" resultType="_int">
+        select count(*) from view_diary where diary_open = '전체 공개'
+    </select>
 </mapper>

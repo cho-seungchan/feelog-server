@@ -1,5 +1,6 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.LikeStatus;
 import com.app.feelog.domain.vo.ChannelPostReplyLikeVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ public class ChannelPostReplyLikeDTO {
     private Long id;
     private Long memberId;
     private Long replyId;
+    private LikeStatus likeStatus;
     private String createdDate;
     private String updatedDate;
 
@@ -25,6 +27,7 @@ public class ChannelPostReplyLikeDTO {
                 .replyId(replyId)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
+                .likeStatus(likeStatus)
                 .build();
     }
 }

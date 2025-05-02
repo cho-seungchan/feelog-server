@@ -19,7 +19,7 @@ const indexLayout = (() => {
 
             let channelMainImg = null;
             let postMainImg = null;
-            const defaultImg = "/images/messageIcon2.jpg"
+            const defaultImg = "/images/avatar_blank.png"
 
             if(post.memberFilePath !== null && post.memberFileName !==null){
                 channelMainImg = encodeURIComponent(`${post.memberFilePath}/${post.memberFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
@@ -42,10 +42,11 @@ const indexLayout = (() => {
                     tagLists.push(aTag);
                 })
             }
-            console.log(post)
+
+
             text = `
                                 <!--추후 개인채널 주소 연결-->
-                <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1eriol4" href="">
+                <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1eriol4" href="/feelog.com/@${post.channelUrl}/community">
                     <div class="MuiAvatar-root MuiAvatar-variantPlain MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-1stxrp2 channelImgWrap">
                     </div>
                 </a>
@@ -59,7 +60,7 @@ const indexLayout = (() => {
                                     </p>
                                 </div>
                                 <div class="MuiBox-root joy-0">
-                                        <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr" href="/@pampa234">
+                                        <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr" href="/feelog.com/@${post.channelUrl}/community">
                                             <span class="MuiTypography-root MuiTypography-body-sm joy-1iqmx8b">
                                                 <time class="MuiTypography-root MuiTypography-inherit joy-1g74u8a">${formattedDate}</time>
                                                 <span class="MuiTypography-root MuiTypography-inherit joy-hke6pf">&nbsp;·&nbsp;
@@ -90,7 +91,7 @@ const indexLayout = (() => {
                         <div class="MuiStack-root joy-1r6jpu3">
                         </div>
                     </div>
-                    <a href="/post/read?id=${post.id}">
+                    <a href="/post/read?id=${post.id}" style="text-decoration: none">
                         <div class="MuiBox-root joy-8a80tx">
                             <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden" style="width: 100%">
                                 <div class="swiper-wrapper" style="
@@ -195,6 +196,7 @@ const indexLayout = (() => {
     }
 
     const showCheerPost = async (cheerPostData) => {
+        console.log(cheerPostData)
         const post = cheerPostData;
         const postContainer = document.querySelector(".joy-16vwv4v");
         let text = "";
@@ -212,7 +214,7 @@ const indexLayout = (() => {
 
         let channelMainImg = null;
         let postMainImg = null;
-        const defaultImg = "/images/messageIcon2.jpg"
+        const defaultImg = "/images/avatar_blank.png"
 
         if(post.memberFilePath !== null && post.memberFileName !==null){
             channelMainImg = encodeURIComponent(`${post.memberFilePath}/${post.memberFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
@@ -238,7 +240,7 @@ const indexLayout = (() => {
 
         text = `
                                 <!--추후 개인채널 주소 연결-->
-                <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1eriol4" href="">
+                <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-1eriol4" href="/feelog.com/@${post.channelUrl}/community">
                     <div class="MuiAvatar-root MuiAvatar-variantPlain MuiAvatar-colorNeutral MuiAvatar-sizeMd joy-1stxrp2 channelImgWrap">
                     </div>
                 </a>
@@ -252,7 +254,7 @@ const indexLayout = (() => {
                                     </p>
                                 </div>
                                 <div class="MuiBox-root joy-0">
-                                        <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr" href="/@pampa234">
+                                        <a class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr" href="/feelog.com/@${post.channelUrl}/community">
                                             <span class="MuiTypography-root MuiTypography-body-sm joy-1iqmx8b">
                                                 <time class="MuiTypography-root MuiTypography-inherit joy-1g74u8a">${formattedDate}</time>
                                                 <span class="MuiTypography-root MuiTypography-inherit joy-hke6pf">&nbsp;·&nbsp;
@@ -283,7 +285,7 @@ const indexLayout = (() => {
                         <div class="MuiStack-root joy-1r6jpu3">
                         </div>
                     </div>
-                    <a href="/post/read?id=${post.id}">
+                    <a href="/post/read?id=${post.id}" style="text-decoration: none">
                         <div class="MuiBox-root joy-8a80tx">
                             <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden" style="width: 100%">
                                 <div class="swiper-wrapper" style="

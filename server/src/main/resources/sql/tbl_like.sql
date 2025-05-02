@@ -6,4 +6,6 @@ create table tbl_like (
     updated_date datetime default current_timestamp
 );
 
+alter table tbl_like modify like_status varchar(50) default '정상';
+
 

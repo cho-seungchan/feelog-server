@@ -1,6 +1,7 @@
 package com.app.feelog.domain.vo;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,17 +10,11 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode
         (onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class ChannelPostReplyLikeVO extends Period {
+@SuperBuilder
+public class ChannelPostReplyLikeVO extends LikeVO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
     private Long replyId;
 
-    @Builder
-    public ChannelPostReplyLikeVO(String createdDate, String updatedDate, Long id, Long memberId, Long replyId) {
-        super(createdDate, updatedDate);
-        this.id = id;
-        this.memberId = memberId;
-        this.replyId = replyId;
-    }
 }

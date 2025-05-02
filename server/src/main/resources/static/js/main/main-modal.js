@@ -21,11 +21,45 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+    function closeAllMenusExcept2(except) {
+        // profile
+        const profileMenu = document.getElementById("profile-menu");
+        if (profileMenu && except !== "profile") profileMenu.classList.add("hidden");
+
+        // 알림
+        if (notificationMenu && except !== "notification") {
+            notificationMenu.style.display = "none";
+            isOpen = false;
+        }
+
+        // 메시지 패널
+        const messageList = document.querySelector(".message-listContainer");
+        const messageButtonImg = document.querySelector(".message-buttonImg");
+        const xButtonImg = document.querySelector(".x-buttonImg");
+        if (messageList && !messageList.classList.contains("message-listHidden") && except !== "message") {
+            messageList.classList.add("message-listHidden");
+            if (messageButtonImg && xButtonImg) {
+                messageButtonImg.classList.remove("hidden-messageImg");
+                messageButtonImg.classList.add("view-messageImg");
+                xButtonImg.classList.remove("view-xImg");
+                xButtonImg.classList.add("hidden-xImg");
+            }
+        }
+
+        // 모달
+        const modal = document.getElementById("customModal");
+        if (modal && except !== "modal") {
+            modal.style.display = "none";
+        }
+    }
+
         const avatarBtn = document.getElementById("avatar-button");
         const profileMenu = document.getElementById("profile-menu");
 
         function toggleProfileMenu(e) {
             e.stopPropagation();
+
+            closeAllMenusExcept2("profile");
 
             const isVisible = !profileMenu.classList.contains("hidden");
             if (isVisible) {

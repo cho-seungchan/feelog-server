@@ -66,12 +66,13 @@
                                     </div>
                                     <div class="button-wrap">
                                         <button
+                                            th:data-index="${post.id}"
                                             aria-haspopup="menu"
                                             aria-expanded="false"
                                             aria-controls="font-size-setting"
                                             tabindex="0"
                                             aria-label="포스트 더보기 메뉴"
-                                            class="post_moreButton_01 post-button"
+                                            class="post_moreButton_01 post-button menu-button"
                                             type="button"
                                         >
                                             <svg
@@ -222,7 +223,7 @@
                                 0개의 댓글
                             </p>
                             <!-- 로그인 후 댓글창 -->
-                            <div class="comment-list comment_container_01">
+                            <div class="comment-list comment_container_01" th:if="${session.member != null}">
                                 <label for="comment" class="tag_h6_01"
                                     >작가에게 힘이 되는 한마디 남기기</label
                                 >
@@ -233,16 +234,24 @@
                                         <div class="nickname_div_01">
                                             <div class="nickname_imgWrap_01">
                                                 <img
+                                                    th:if="${session.member !=null}"
                                                     alt=""
-                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
+                                                    th:src="'/files/display?path=' + ${session.member.memberFilePath} + '/' + ${session.member.memberFileName}"
+                                                    loading="lazy"
+                                                    class="aTag_divImg_01"
+                                                />
+                                                <img
+                                                    th:if="${session.member ==null}"
+                                                    alt=""
+                                                    th:src="@{/images/avatar_blank.png}"
                                                     loading="lazy"
                                                     class="aTag_divImg_01"
                                                 />
                                             </div>
                                             <p
                                                 class="diary_nicknameWrap_01title_h5_01"
+                                                th:text="${session.member.memberNickname}"
                                             >
-                                                박정근
                                             </p>
                                         </div>
                                     </div>
@@ -277,39 +286,14 @@
                                     >
                                         <div class="uploadButton_wrap_01">
                                             <div class="uploadButton_div_01">
-                                                <div class="">
-                                                    <label
-                                                        class="tag_h6_01"
-                                                        for="upload-image"
-                                                        >이미지</label
-                                                    ><input
-                                                        id="upload-image"
-                                                        accept="image/jpeg, image/png, image/heic, image/heif, image/webp"
-                                                        type="file"
-                                                        style="display: none"
-                                                    /><button
-                                                        aria-label="이미지 업로드"
-                                                        class="uploadButton_01 uploadButton_02"
-                                                        type="button"
-                                                    >
-                                                        <svg
-                                                            focusable="false"
-                                                            aria-hidden="true"
-                                                            viewBox="0 0 24 24"
-                                                            width="24"
-                                                            height="24"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            class="post_moreButton_svg_01"
-                                                        >
-                                                            <path
-                                                                fill-rule="evenodd"
-                                                                clip-rule="evenodd"
-                                                                d="M9.745 2.85c-.895 0-1.716.495-2.133 1.286L6.766 5.74H4.752A2.9 2.9 0 0 0 1.85 8.637v9.616a2.9 2.9 0 0 0 2.902 2.897h14.496a2.9 2.9 0 0 0 2.902-2.897V8.637a2.9 2.9 0 0 0-2.902-2.897h-2.005l-.849-1.606a2.411 2.411 0 0 0-2.132-1.284H9.745ZM9.27 5.006a.538.538 0 0 1 .476-.287h4.517c.2 0 .383.11.476.287l.89 1.686c.299.565.886.918 1.524.918h2.096c.569 0 1.03.46 1.03 1.027v9.616c0 .567-.461 1.027-1.03 1.027H4.752c-.569 0-1.03-.46-1.03-1.027V8.637c0-.567.461-1.027 1.03-1.027h2.105c.64 0 1.226-.354 1.524-.919l.888-1.685ZM12 8.704a4.372 4.372 0 0 0-4.376 4.368A4.372 4.372 0 0 0 12 17.44a4.372 4.372 0 0 0 4.376-4.368A4.372 4.372 0 0 0 12 8.704Zm-2.504 4.368c0-1.38 1.121-2.498 2.504-2.498a2.501 2.501 0 0 1 2.504 2.498c0 1.38-1.121 2.499-2.504 2.499a2.501 2.501 0 0 1-2.504-2.499Z"
-                                                                fill="currentcolor"
-                                                            ></path>
+                                                <div class="image-wrap-reply">
+                                                    <label for="upload-image" class="uploadButton_01 uploadButton_02">
+                                                        <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg" class="post_moreButton_svg_01">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.745 2.85c-.895 0-1.716.495-2.133 1.286L6.766 5.74H4.752A2.9 2.9 0 0 0 1.85 8.637v9.616a2.9 2.9 0 0 0 2.902 2.897h14.496a2.9 2.9 0 0 0 2.902-2.897V8.637a2.9 2.9 0 0 0-2.902-2.897h-2.005l-.849-1.606a2.411 2.411 0 0 0-2.132-1.284H9.745ZM9.27 5.006a.538.538 0 0 1 .476-.287h4.517c.2 0 .383.11.476.287l.89 1.686c.299.565.886.918 1.524.918h2.096c.569 0 1.03.46 1.03 1.027v9.616c0 .567-.461 1.027-1.03 1.027H4.752c-.569 0-1.03-.46-1.03-1.027V8.637c0-.567.461-1.027 1.03-1.027h2.105c.64 0 1.226-.354 1.524-.919l.888-1.685ZM12 8.704a4.372 4.372 0 0 0-4.376 4.368A4.372 4.372 0 0 0 12 17.44a4.372 4.372 0 0 0 4.376-4.368A4.372 4.372 0 0 0 12 8.704Zm-2.504 4.368c0-1.38 1.121-2.498 2.504-2.498a2.501 2.501 0 0 1 2.504 2.498c0 1.38-1.121 2.499-2.504 2.499a2.501 2.501 0 0 1-2.504-2.499Z" fill="currentcolor"></path>
                                                         </svg>
-                                                    </button>
+                                                    </label>
+                                                    <input id="upload-image" accept="image/jpeg, image/png, image/heic, image/heif, image/webp" type="file" style="display: none">
                                                 </div>
                                                 <div
                                                     class="button_container_01"
@@ -320,7 +304,7 @@
                                                         <button
                                                             class="button_disabled_01 upload-buttonSize_01 uploadButton_css_01"
                                                             type="button"
-                                                            disabled=""
+                                                            th:data-index="${post.id}"
                                                         >
                                                             등록
                                                         </button>
@@ -331,8 +315,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- 로그인 전 댓글 창 
-                            <div class="comment-list comment_container_01">
+                            <div class="comment-list comment_container_01" th:if="${session.member == null}">
                                 <div
                                     class="button_disabled_01 button_disabled_01 comment-folded button_disabled_02"
                                 >
@@ -388,128 +371,8 @@
                                         "
                                     ></textarea>
                                 </div>
-                            </div>-->
-                            <div class="diary_div_001">
-                                <div
-                                    class="diary_container_01"
-                                    id="comment-19227472"
-                                >
-                                    <div class="diary_container_01">
-                                        <div class="post_container_001">
-                                            <div class="profile_wrap_01">
-                                                <a
-                                                    href="/profile/@7cwl48"
-                                                    aria-label="프로필"
-                                                    class="profile_a_02"
-                                                    ><div
-                                                        class="nickname_imgWrap_01"
-                                                    >
-                                                        <img
-                                                            alt=""
-                                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
-                                                            loading="lazy"
-                                                            class="aTag_divImg_01"
-                                                        /></div
-                                                ></a>
-                                            </div>
-                                            <div
-                                                class="post_contentContainer_01"
-                                            >
-                                                <div
-                                                    class="post_contentWrap_01"
-                                                >
-                                                    <div class="nickname_a_01">
-                                                        <a
-                                                            href="/profile/@7cwl48"
-                                                            aria-label="프로필"
-                                                            class="profile_a_02"
-                                                            ><span
-                                                                class="diary_nicknameWrap_01 nickname_span_01"
-                                                                >차은우</span
-                                                            ></a
-                                                        >
-                                                    </div>
-                                                    <button
-                                                        aria-label="2025. 3. 18. 01:49"
-                                                        class="date_button_01"
-                                                    >
-                                                        3주 전
-                                                    </button>
-                                                </div>
-                                                <div
-                                                    class="replyContent_wrap_01"
-                                                >
-                                                    <p class="replyContent_01">
-                                                        만화 낙서 글들 전부
-                                                        넘좋아해서 수시로
-                                                        들여다봐용.. 어디로
-                                                        가시든 따라가겠습니닷
-                                                        최고
-                                                    </p>
-                                                </div>
-                                                <div
-                                                    class="likeButton_container_01 button-wrap"
-                                                >
-                                                    <div
-                                                        class="likeButton_wrap_01"
-                                                    >
-                                                        <button
-                                                            aria-label="좋아요2개"
-                                                            class="upload-buttonSize_01 like_button_01 like_button"
-                                                            type="button"
-                                                        >
-                                                            <span
-                                                                class="more_diaryButton_span_01 reply-button-wrap unlike-wrap"
-                                                            >
-                                                                <!-- 좋아요 클릭시 -->
-                                                                <svg
-                                                                    focusable="false"
-                                                                    aria-hidden="true"
-                                                                    viewBox="0 0 24 24"
-                                                                    width="24"
-                                                                    height="24"
-                                                                    fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    class="like_svg_01"
-                                                                >
-                                                                    <path
-                                                                        d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
-                                                                        fill="currentcolor"
-                                                                    ></path></svg></span
-                                                            >2
-                                                        </button>
-                                                    </div>
-                                                    <button
-                                                        tabindex="0"
-                                                        aria-haspopup="menu"
-                                                        aria-expanded="false"
-                                                        aria-controls=":r5a:"
-                                                        aria-label="댓글 더보기 메뉴"
-                                                        class="uploadButton_01 moreReply_button_01 post-button"
-                                                        type="button"
-                                                    >
-                                                        <svg
-                                                            focusable="false"
-                                                            aria-hidden="true"
-                                                            viewBox="0 0 24 24"
-                                                            width="24"
-                                                            height="24"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            class="section_div_svg_02"
-                                                        >
-                                                            <path
-                                                                d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z"
-                                                                fill="currentcolor"
-                                                            ></path>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
+                            <div class="reply-container"></div>
                         </div>
                     </section>
                 </article>
@@ -519,29 +382,46 @@
                     <div class="nav_wrap_01">
                         <button
                             aria-label="좋아요"
-                            class="upload-buttonSize_01 like_button_01 like_button"
+                            class="upload-buttonSize_01 like_button_01 like-post-button"
                             type="button"
+                            th:data-index="${post.id}"
                         >
                             <span class="more_diaryButton_span_01"
-                                ><svg
-                                    focusable="false"
+                                >
+                                <svg
+                                        th:if="${post.liked == false}"
                                     aria-hidden="true"
                                     viewBox="0 0 24 24"
                                     width="24"
                                     height="24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="post_menuButton_svg_01"
+                                    class="like_svg_01"
                                 >
                                     <path
                                         d="m10.82 20.116-.097-.09-6.844-6.355A5.882 5.882 0 0 1 2 9.359v-.13C2 6.48 3.953 4.12 6.656 3.606A5.71 5.71 0 0 1 12 5.417a5.562 5.562 0 0 1 .977-.871 5.73 5.73 0 0 1 4.367-.945A5.73 5.73 0 0 1 22 9.23v.129c0 1.636-.68 3.199-1.879 4.312l-6.844 6.355-.097.09c-.32.297-.742.465-1.18.465a1.72 1.72 0 0 1-1.18-.465Zm.52-12.625a.205.205 0 0 1-.04-.043l-.695-.78-.003-.005A3.85 3.85 0 0 0 3.875 9.23v.13c0 1.113.465 2.18 1.281 2.937L12 18.651l6.844-6.355a4.012 4.012 0 0 0 1.281-2.937v-.13a3.851 3.851 0 0 0-6.723-2.566l-.004.004-.003.004-.696.781c-.011.016-.027.028-.039.043a.935.935 0 0 1-1.32 0v-.004Z"
                                         fill="currentcolor"
-                                    ></path></svg
-                            ></span>
-                            <p class="">123</p></button
+                                    ></path>
+                                </svg
+                            >
+                                <svg
+                                        th:if="${post.liked == true}"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="joy-fkbdob"
+                                >
+                                   <path d="M7.313 3.268a5.319 5.319 0 0 0-3.761 1.585A5.492 5.492 0 0 0 2 8.667c0 1.415.566 2.81 1.552 3.814l7.86 8.004c.323.33.853.33 1.177 0l7.859-8.004A5.444 5.444 0 0 0 22 8.667c0-1.428-.557-2.8-1.552-3.814a5.27 5.27 0 0 0-3.76-1.585 5.27 5.27 0 0 0-3.761 1.585L12 5.797l-.927-.944a5.319 5.319 0 0 0-3.76-1.585Z" fill="currentcolor"></path>
+                                </svg
+                                >
+                            </span>
+                            <p class="" th:text="${post.likeCount}"></p></button
                         ><button
                             aria-label="댓글"
-                            class="upload-buttonSize_01 like_button_01"
+                            class="upload-buttonSize_01 like_button_01 reply-count-button"
                             type="button"
                         >
                             <span class="more_diaryButton_span_01"
@@ -560,32 +440,24 @@
                                         fill="currentcolor"
                                     ></path></svg
                             ></span>
-                            <p class="">0</p></button
+                            <p class="" th:text="${post.replyCount}"></p></button
                         ><button
                             class="uploadButton_01 noComent_01 scrap-button_01"
                             type="button"
+                            th:data-index="${post.id}"
                         >
-                            <svg
-                                focusable="false"
-                                aria-hidden="true"
-                                viewBox="0 0 24 24"
-                                width="24"
-                                height="24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="scrap-button_svg_01"
-                            >
-                                <path
-                                    d="M4.5 3.875C4.5 2.84 5.34 2 6.375 2v17.242l5.082-3.629a.933.933 0 0 1 1.09 0l5.078 3.63V3.874H6.375V2h11.25c1.035 0 1.875.84 1.875 1.875v17.188a.938.938 0 0 1-1.48.762L12 17.526l-6.02 4.297a.938.938 0 0 1-1.48-.762V3.875Z"
-                                    fill="currentcolor"
-                                ></path>
-                            </svg>
+                        <svg th:if="${post.scraped == false}"  aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd post_menuButton_svg_01">
+                            <path d="M4.5 3.875C4.5 2.84 5.34 2 6.375 2v17.242l5.082-3.629a.933.933 0 0 1 1.09 0l5.078 3.63V3.874H6.375V2h11.25c1.035 0 1.875.84 1.875 1.875v17.188a.938.938 0 0 1-1.48.762L12 17.526l-6.02 4.297a.938.938 0 0 1-1.48-.762V3.875Z" fill="currentcolor"></path>
+                        </svg>
+                        <svg th:if="${post.scraped == true}" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1wbk7pq">
+                            <path d="M4.5 3.875v17.176a.95.95 0 0 0 1.496.777L12 17.625l6.004 4.203a.95.95 0 0 0 1.496-.777V3.875C19.5 2.84 18.66 2 17.625 2H6.375C5.34 2 4.5 2.84 4.5 3.875Z" fill="currentcolor"></path>
+                        </svg>
                         </button>
                     </div>
                     <div class="moveButton_container_01">
                         <a
                             href="/@pampa234/post/18881035"
-                            class="upload-buttonSize_01 like_button_01"
+                            class="upload-buttonSize_01 like_button_01 previous-post"
                             ><span class="more_diaryButton_span_01"
                                 ><svg
                                     focusable="false"
@@ -605,7 +477,7 @@
                             <p class="button_text_02">이전</p></a
                         ><a
                             href="/@pampa234/post/19114845"
-                            class="upload-buttonSize_01 like_button_01"
+                            class="upload-buttonSize_01 like_button_01 next-post"
                             ><p class="button_text_02">다음</p>
                             <span class="moveButton_span_01"
                                 ><svg
@@ -637,6 +509,8 @@
     </script>
     <script src="/js/main/main-modal.js"></script>
     <script src="/js/main/main-search-modal.js"></script>
+    <script src="/js/post/date-from-now.js"></script>
+    <script src="/js/post/file-service.js"></script>
     <script src="/js/post/read-service.js"></script>
     <script src="/js/post/read-layout.js"></script>
     <script src="/js/post/read-event.js"></script>
