@@ -67,6 +67,7 @@ public class BlogController {
                            @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
                            Model model) {
 
+
         ChannelDTO channel = channelService.findByUrl(channelUrl);
         if (channel == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
@@ -94,6 +95,7 @@ public class BlogController {
                           @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
                           Model model) {
 
+
         ChannelDTO channel = channelService.findByUrl(channelUrl);
         if (channel == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
@@ -120,6 +122,7 @@ public class BlogController {
     public String cheersTab(@PathVariable("channelUrl") String channelUrl,
                             @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
                             Model model) {
+
 
         ChannelDTO channel = channelService.findByUrl(channelUrl);
         if (channel == null) {
@@ -224,4 +227,21 @@ public class BlogController {
         return channelPostPreviewService.getCheerSlides(channelId);
     }
 
+    @GetMapping("/@official/diary")
+    public String redirectOfficialDiary() {
+        return "redirect:/feelog/official";
+    }
+
+    @GetMapping("/@official/post")
+    public String redirectOfficialPost() {
+        return "redirect:/feelog/official";
+    }
+    @GetMapping("/@official/cheers")
+    public String redirectOfficialCheers() {
+        return "redirect:/feelog/official";
+    }
+    @GetMapping("/@official/community")
+    public String redirectOfficialCommunity() {
+        return "redirect:/feelog/official";
+    }
 }

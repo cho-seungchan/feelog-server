@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Feelog 공식 채널 - 공지사항</title>
         <link
             rel="stylesheet"
             href="/css/official/official-notice.css"
@@ -52,7 +52,7 @@
                                                 <p class="jk-feelog-p014" th:text="${channelInfo.subscriberCount} + '명'">0명</p>
                                                 ·
                                                 <p class="jk-feelog-p014">공지사항</p>
-                                                <p class="jk-feelog-p014" th:text="${channelInfo.postCount} + '개'">0개</p>
+                                                <p class="jk-feelog-p014" th:text="${channelInfo.noticeCount} + '개'">0개</p>
                                             </div>
                                             <div class="FlgStack-root-need jk-feelog-div082">
                                                 <p class="jk-feelog-p015" th:text="${channelInfo.channelIntroduce}">
@@ -122,7 +122,7 @@
                                 >
                                     <li
                                             data-first-child=""
-                                            class="jk-feelog-li004"
+                                            class="jk-feelog-li005"
                                     >
                                         <a
                                                 style="
@@ -138,13 +138,13 @@
                                                 text-decoration: none;
                                             "
                                                 data-first-child=""
-                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl}}"
+                                                th:href="@{'/feelog/' + ${channel.channelUrl}}"
                                         ><span class="jk-feelog-span018"
                                         >홈</span
                                         ></a
                                         >
                                     </li>
-                                    <li class="jk-feelog-li005">
+                                    <li class="jk-feelog-li004">
                                         <a
                                                 style="
                                                 display: flex;
@@ -200,21 +200,7 @@
                                     <h2 class="jk-feelog-h2-003">
                                         공지사항
                                     </h2>
-                                    <div
-                                        class="FlgStack-root-need jk-feelog-div050"
-                                    >
-                                        <button class="jk-feelog-btn014">
-                                            <span class="jk-feelog-span004"
-                                                >최신순</span
-                                            >
-                                        </button>
-                                        <hr class="jk-feelog-hr05" />
-                                        <button class="jk-feelog-btn014">
-                                            <span class="jk-feelog-span005"
-                                                >인기순</span
-                                            >
-                                        </button>
-                                    </div>
+
                                 </div>
                                 <section
                                     class="FlgGrid-root-need jk-feelog-section003"

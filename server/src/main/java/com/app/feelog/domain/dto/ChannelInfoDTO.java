@@ -20,6 +20,6 @@ public class ChannelInfoDTO {
     private Long memberId;
     private String memberNickname;
     private int subscriberCount;
-    private int postCount;
+    private int noticeCount;
 
 }

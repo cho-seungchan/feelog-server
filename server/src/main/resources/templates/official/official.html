@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Feelog 공식 채널</title>
         <link rel="stylesheet" href="/css/official/official.css" />
         <link rel="stylesheet" href="/css/blog/blog-mind-log.css" />
         <link rel="stylesheet" href="/css/main/search-modal.css">
@@ -308,7 +308,7 @@
                                                     <h1 class="FlgTypography-h1 jk-feelog-h1-001" th:text="${channelInfo.channelTitle}">채널명</h1>
                                                 </a>
                                                 <div class="FlgStack-root-need jk-feelog-div081">
-                                                    <a th:href="@{'/myPage/read-channel/' + ${channelInfo.channelUrl}}" class="jk-feelog-a-013">
+                                                    <a th:href="@{'/feelog/' + ${channelInfo.channelUrl}}" class="jk-feelog-a-013">
                                                         <span class="jk-feelog-span014" th:text="${channelInfo.memberNickname}">닉네임</span>
                                                     </a>
                                                     ·
@@ -316,7 +316,7 @@
                                                     <p class="jk-feelog-p014" th:text="${channelInfo.subscriberCount} + '명'">0명</p>
                                                     ·
                                                     <p class="jk-feelog-p014">공지사항</p>
-                                                    <p class="jk-feelog-p014" th:text="${channelInfo.postCount} + '개'">0개</p>
+                                                    <p class="jk-feelog-p014" th:text="${channelInfo.noticeCount} + '개'">0개</p>
                                                 </div>
                                                 <div class="FlgStack-root-need jk-feelog-div082">
                                                     <p class="jk-feelog-p015" th:text="${channelInfo.channelIntroduce}">
@@ -423,7 +423,7 @@
                                                 text-decoration: none;
                                             "
                                                     data-first-child=""
-                                                    th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/diary'}"
+                                                    th:href="@{'/feelog/' + ${channel.channelUrl} + '-notice'}"
                                             ><span class="jk-feelog-span018"
                                             >공지사항</span
                                             ></a
@@ -464,10 +464,9 @@
                                             <h2
                                                 class="FlgTypography-h3 joy-1k47tyc"
                                             >
-                                                포스트
+                                                공지사항
                                             </h2>
-                                            <a
-                                                href="/@blog/post"
+                                            <a th:href="@{'/feelog/' + ${channel.channelUrl} + '-notice'}"
                                                 class="jk-feelog-a-012"
                                                 ><span
                                                     class="FlgTypography-inherit joy-qmw0re"
@@ -4237,7 +4236,7 @@
                                         >
                                             <h2 class="joy-3uoinf">챌린지</h2>
                                             <a
-                                                href="/@blog/store"
+                                                    th:href="@{'/challenge/task-list'}"
                                                 class="jk-feelog-a-012"
                                                 ><span
                                                     class="FlgTypography-inherit joy-18puca4"
