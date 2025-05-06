@@ -108,10 +108,10 @@ public class OfficialController {
     }
 
 
-    @GetMapping("/official-challenge")
-    public String getOfficialChallenge() {
-        return "official/official-challenge";
-    }
+//    @GetMapping("/official-challenge")
+//    public String getOfficialChallenge() {
+//        return "official/official-challenge";
+//    }
 
     @GetMapping("/notice/slider")
     @ResponseBody
