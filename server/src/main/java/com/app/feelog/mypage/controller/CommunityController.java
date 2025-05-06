@@ -3,6 +3,7 @@
 package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
+import com.app.feelog.domain.dto.ChannelInfoDTO;
 import com.app.feelog.domain.dto.CommunityPostReplyDTO;
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.domain.vo.CommunityPostVO;
@@ -11,15 +12,20 @@ import com.app.feelog.mypage.dto.CommunityPostReplyListDTO;
 import com.app.feelog.mypage.dto.CommunityPostWriteDTO;
 import com.app.feelog.mypage.service.CommunityService;
 import com.app.feelog.mypage.service.MyPageService;
+import com.app.feelog.service.ChannelInfoService;
+import com.app.feelog.service.ChannelService;
+import com.app.feelog.service.SubscribeService;
 import com.app.feelog.util.SixRowPagination;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +39,9 @@ public class CommunityController {
     private final HttpSession session;
     private final HttpServletRequest request;
     private final CommunityService communityService;
+    private final ChannelService channelService;
+    private final ChannelInfoService channelInfoService;
+    private final SubscribeService subscribeService;
 
     // 2025.04.26 조승찬 :: 커뮤니티 글 목록
     @GetMapping("/@{channelUrl}/community")
@@ -44,10 +53,29 @@ public class CommunityController {
             return "redirect:/login/login";
         }
 
+        ChannelDTO channel = channelService.findByUrl(channelUrl);
+        if (channel == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "채널을 찾을 수 없습니다.");
+        }
+
+        Long viewerId = member != null ? member.getId() : null;
+
+        ChannelInfoDTO channelInfo = channelInfoService.findInfoByUrl(channelUrl);
+        boolean isSubscribed = viewerId != null && channelInfo != null
+                && subscribeService.isSubscribed(viewerId, channelInfo.getChannelId());
+
+        boolean isOwner = viewerId != null && viewerId.equals(channelInfo.getMemberId());
+
+
         // 커뮤니티 글 목록 가져오기
         List<CommunityPostListDTO> communities = communityService.getCommunityPostList(member.getId(), channelUrl, pagination);
 
         CommunityPostWriteDTO communityPost = new CommunityPostWriteDTO();
+        model.addAttribute("isOwner", isOwner);
+        model.addAttribute("channel", channel);
+        model.addAttribute("channelInfo", channelInfo);
+        model.addAttribute("viewerId", viewerId != null ? viewerId : "");
+        model.addAttribute("isSubscribed", isSubscribed);
         model.addAttribute("communities", communities);
         model.addAttribute("pagination", pagination);
         model.addAttribute("currentChannelUrl",channelUrl);

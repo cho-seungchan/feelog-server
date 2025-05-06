@@ -68,6 +68,20 @@
         LIMIT 1
     </select>
 
+    <select id="findMemberIdByChannelUrl" resultType="long">
+        SELECT member_id
+        FROM tbl_channel
+        WHERE channel_url = #{channelUrl}
+          AND channel_status = '정상'
+    </select>
+
+    <select id="findByUrl" resultType="com.app.feelog.domain.vo.ChannelVO">
+        SELECT *
+        FROM tbl_channel
+        WHERE channel_url = #{channelUrl}
+          AND channel_status = '정상'
+        LIMIT 1
+    </select>
 
 
 

@@ -2,6 +2,7 @@ package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.ChannelSearchDTO;
+import com.app.feelog.domain.vo.ChannelVO;
 import com.app.feelog.repository.ChannelDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,12 @@ public class ChannelServiceImpl implements ChannelService {
     public Optional<ChannelDTO> getMyChannel(Long memberId) {
         return channelDAO.findByMemberId(memberId)
                 .map(this::toDTO);
+    }
+
+    @Override
+    public ChannelDTO findByUrl(String channelUrl) {
+        ChannelVO vo = channelDAO.findByUrl(channelUrl);
+        return vo != null ? toDTO(vo) : null;
     }
 
 }

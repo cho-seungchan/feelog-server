@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="/css/main/footer.css">
         <link rel="stylesheet" href="/css/main/search-modal.css">
         <link rel="stylesheet" href="/css/all/message.css" />
+        <link rel="stylesheet" href="/css/official/official.css">
+        <link rel="stylesheet" href="/css/blog/blog-mind-log.css">
         <title>개인 채널 커뮤니티</title>
     </head>
     <body>
@@ -22,67 +24,40 @@
                         <!-- 헤더 넣을 곳 -->
                         <a id="skip" class="sr-only" href="#main">주요 내용으로 건너뛰기</a>
                         <header class="FeelogStack-root flog-header-10">
-                            <section class="FeelogStack-root flog-section-5">
-                                <div class="FeelogStack-root flog-div-144">
-                                    <div class="FeelogStack-root flog-div-145">
-                                        <div class="FeelogBox-root flog-div-146">
-                                            <div class="FeelogBox-root flog-div-147">
-                                                <img
-                                                    alt="채널 썸네일"
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                    data-nimg="fill"
-                                                    style="
-                                                        position: absolute;
-                                                        height: 100%;
-                                                        width: 100%;
-                                                        left: 0;
-                                                        top: 0;
-                                                        right: 0;
-                                                        bottom: 0;
-                                                        object-fit: cover;
-                                                        color: transparent;
-                                                    "
-                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png?w=100&amp;h=100&amp;q=65"
-                                                />
-                                            </div>
+                            <section class="FlgStack-root-need jk-feelog-section004">
+                            <div class="FlgStack-root-need jk-feelog-div077">
+                                <div class="FlgStack-root-need jk-feelog-div078">
+                                    <div class="FlgBox-root-need jk-feelog-div079">
+                                        <div class="FlgBox-root-need jk-feelog-div056">
+                                            <img th:if="${channelInfo.channelFilePath != null}"
+                                                 th:src="@{'/files/display?path=' + ${channelInfo.channelFilePath} + '/' + ${channelInfo.channelFileName}}"
+                                                 style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;" />
+                                            <img th:if="${channelInfo.channelFilePath == null}"
+                                                 th:src="@{/images/default_thumbnail.png}"
+                                                 style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;" />
                                         </div>
-                                        <div class="FeelogStack-root flog-div-148">
-                                            <a
-                                                class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone channel-title flog-a-41"
-                                                href="/@jffkkk"
-                                                ><h1 class="FeelogTypography-root FeelogTypography-h1 flog-h1-11">
-                                                    jffkkk
-                                                </h1></a
-                                            >
-                                            <div class="FeelogStack-root flog-div-149">
-                                                <a
-                                                    href="/profile/@nwjhyj"
-                                                    class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-42"
-                                                    ><span
-                                                        class="FeelogTypography-root FeelogTypography-body-sm flog-span-36"
-                                                        >조승찬</span
-                                                    ></a
-                                                >·
-                                                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-31">
-                                                    구독자
-                                                </p>
-                                                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-31">
-                                                    1명
-                                                </p>
-                                                ·
-                                                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-31">
-                                                    포스트
-                                                </p>
-                                                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-31">
-                                                    7개
-                                                </p>
-                                            </div>
-                                            <div class="FeelogStack-root flog-div-150">
-                                                <p class="FeelogTypography-root FeelogTypography-body-sm flog-p-32">
-                                                    테스트입니다.
-                                                </p>
-                                                <svg
+                                    </div>
+
+                                    <div class="FlgStack-root-need jk-feelog-div080">
+                                        <a class="channel-title jk-feelog-a-012" th:href="@{'/@' + ${channelInfo.channelUrl}}">
+                                            <h1 class="FlgTypography-h1 jk-feelog-h1-001" th:text="${channelInfo.channelTitle}">채널명</h1>
+                                        </a>
+                                        <div class="FlgStack-root-need jk-feelog-div081">
+                                            <a th:href="@{'/myPage/read-channel/' + ${channelInfo.channelUrl}}" class="jk-feelog-a-013">
+                                                <span class="jk-feelog-span014" th:text="${channelInfo.memberNickname}">닉네임</span>
+                                            </a>
+                                            ·
+                                            <p class="jk-feelog-p014">구독자</p>
+                                            <p class="jk-feelog-p014" th:text="${channelInfo.subscriberCount} + '명'">0명</p>
+                                            ·
+                                            <p class="jk-feelog-p014">포스트</p>
+                                            <p class="jk-feelog-p014" th:text="${channelInfo.postCount} + '개'">0개</p>
+                                        </div>
+                                        <div class="FlgStack-root-need jk-feelog-div082">
+                                            <p class="jk-feelog-p015" th:text="${channelInfo.channelIntroduce}">
+                                                채널 소개 문구
+                                            </p>
+                                            <svg
                                                     focusable="false"
                                                     aria-hidden="true"
                                                     viewBox="0 0 24 24"
@@ -90,126 +65,66 @@
                                                     height="24"
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-16"
-                                                >
-                                                    <path
+                                                    class="jk-feelog-main-svg11"
+                                            >
+                                                <path
                                                         d="M16.416 11.332a.934.934 0 0 1 0 1.325l-7.5 7.504a.937.937 0 0 1-1.324-1.324L14.428 12l-6.84-6.84a.937.937 0 0 1 1.324-1.324l7.504 7.495Z"
                                                         fill="currentcolor"
-                                                    ></path>
-                                                </svg>
-                                            </div>
+                                                ></path>
+                                            </svg>
                                         </div>
                                     </div>
-                                    <div class="FeelogStack-root flog-div-151">
-                                        <a
-                                            href="/studio/jffkkk/dashboard"
-                                            class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeMd flog-a-43"
-                                            >스튜디오</a
-                                        ><button
-                                            aria-label="공유하기"
-                                            class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeMd flog-button-26"
-                                            type="button"
-                                        >
-                                            <svg
-                                                focusable="false"
-                                                aria-hidden="true"
-                                                viewBox="0 0 24 24"
-                                                width="24"
-                                                height="24"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-17"
-                                            >
-                                                <path
-                                                    d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
-                                                    fill="currentcolor"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                        <button
-                                            aria-label="공유하기"
-                                            class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeMd flog-button-27"
-                                            type="button"
-                                        >
-                                            <svg
-                                                focusable="false"
-                                                aria-hidden="true"
-                                                viewBox="0 0 24 24"
-                                                width="24"
-                                                height="24"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-17"
-                                            >
-                                                <path
-                                                    d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
-                                                    fill="currentcolor"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
                                 </div>
-                                <div class="FeelogStack-root flog-div-152">
-                                    <a
-                                        href="/studio/jffkkk/dashboard"
-                                        class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeSm flog-a-44"
-                                        >스튜디오</a
-                                    ><button
-                                        aria-label="공유하기"
-                                        class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-28"
-                                        type="button"
-                                    >
-                                        <svg
-                                            focusable="false"
-                                            aria-hidden="true"
-                                            viewBox="0 0 24 24"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-17"
-                                        >
-                                            <path
-                                                d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
-                                                fill="currentcolor"
-                                            ></path>
-                                        </svg></button
-                                    ><button
-                                        aria-label="공유하기"
-                                        class="FeelogIconButton-root FeelogIconButton-variantSoft FeelogIconButton-colorNeutral FeelogIconButton-sizeSm flog-button-29"
-                                        type="button"
-                                    >
-                                        <svg
-                                            focusable="false"
-                                            aria-hidden="true"
-                                            viewBox="0 0 24 24"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-17"
-                                        >
-                                            <path
-                                                d="M12.664 2.275a.934.934 0 0 0-1.324 0l-5.004 5A.937.937 0 0 0 7.66 8.6l3.399-3.398v9.614c0 .519.418.937.937.937.52 0 .938-.418.938-.938V5.202L16.332 8.6a.937.937 0 0 0 1.324-1.324l-4.992-5ZM5.125 15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124a3.438 3.438 0 0 0 3.438 3.438h10.625a3.438 3.438 0 0 0 3.437-3.438V15.44a.935.935 0 0 0-.938-.938.935.935 0 0 0-.937.938v3.124c0 .864-.7 1.563-1.563 1.563H6.688c-.863 0-1.562-.7-1.562-1.563V15.44Z"
-                                                fill="currentcolor"
-                                            ></path>
-                                        </svg>
+
+                                <div class="FlgStack-root-need jk-feelog-div083">
+                                    <!-- 내 채널이면 "채널 설정" -->
+                                    <a th:if="${isOwner}" th:href="@{'/myPage/read-channel/' + ${channelInfo.channelUrl}}">
+                                        <button class="FlgButton-sizeMd-need jk-feelog-btn019" type="button">
+                                            설정
+                                        </button>
+                                    </a>
+
+                                    <!-- 남의 채널이면 "구독 / 구독 취소" -->
+                                    <button th:if="${!isOwner}"
+                                            class="FlgButton-sizeMd-need jk-feelog-btn019 subscribe-btn"
+                                            type="button"
+                                            th:data-channel-id="${channelInfo.channelId}"
+                                            th:text="${isSubscribed} ? '구독 취소' : '구독'">
                                     </button>
                                 </div>
-                            </section>
+                            </div>
+                            <div class="FlgStack-root-need jk-feelog-div084">
+                                <!-- 내 채널이면 "채널 설정" -->
+                                <a th:if="${isOwner}" th:href="@{'/myPage/read-channel/' + ${channelInfo.channelUrl}}">
+                                    <button class="FlgButton-sizeMd-need jk-feelog-btn019" type="button">
+                                        설정
+                                    </button>
+                                </a>
+
+                                <!-- 남의 채널이면 "구독 / 구독 취소" -->
+                                <button th:if="${!isOwner}"
+                                        class="FlgButton-sizeMd-need jk-feelog-btn019 subscribe-btn"
+                                        type="button"
+                                        th:data-channel-id="${channelInfo.channelId}"
+                                        th:text="${isSubscribed} ? '구독 취소' : '구독'">
+                                </button>
+                            </div>
+                        </section>
                         </header>
-                        <nav class="FeelogStack-root flog-nav-6">
-                            <div class="FeelogStack-root flog-header-10">
+                        <nav class="FlgStack-root-need jk-feelog-nav003">
+                            <div
+                                    class="FlgStack-root-need jk-feelog-header-001"
+                            >
                                 <ul
-                                    aria-label="채널 탭 리스트"
-                                    class="FeelogList-root FeelogList-vertical FeelogList-variantPlain FeelogList-colorNeutral FeelogList-sizeMd flog-ul-6"
+                                        aria-label="채널 탭 리스트"
+                                        class="FlgList-sizeMd-need jk-feelog-ul003"
                                 >
                                     <li
-                                        data-first-child=""
-                                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-li-10"
+                                            data-first-child=""
+                                            class="jk-feelog-li005"
                                     >
                                         <a
-                                            style="
+                                                style="
                                                 display: flex;
                                                 width: 100%;
                                                 height: 100%;
@@ -221,18 +136,16 @@
                                                 border-radius: 0;
                                                 text-decoration: none;
                                             "
-                                            data-first-child=""
-                                            href="/@blog"
-                                            ><span class="FeelogTypography-root FeelogTypography-body-md flog-span-37"
-                                                >홈</span
-                                            ></a
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl}}"
+                                        ><span class="jk-feelog-span018"
+                                        >홈</span
+                                        ></a
                                         >
                                     </li>
-                                    <li
-                                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-li-10"
-                                    >
+                                    <li class="jk-feelog-li005">
                                         <a
-                                            style="
+                                                style="
                                                 display: flex;
                                                 width: 100%;
                                                 height: 100%;
@@ -244,18 +157,16 @@
                                                 border-radius: 0;
                                                 text-decoration: none;
                                             "
-                                            data-first-child=""
-                                            href="/@blog/post"
-                                            ><span class="FeelogTypography-root FeelogTypography-body-md flog-span-37"
-                                                >포스트</span
-                                            ></a
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/diary'}"
+                                        ><span class="jk-feelog-span018"
+                                        >감정 기록</span
+                                        ></a
                                         >
                                     </li>
-                                    <li
-                                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-li-10"
-                                    >
+                                    <li class="jk-feelog-li005">
                                         <a
-                                            style="
+                                                style="
                                                 display: flex;
                                                 width: 100%;
                                                 height: 100%;
@@ -267,18 +178,16 @@
                                                 border-radius: 0;
                                                 text-decoration: none;
                                             "
-                                            data-first-child=""
-                                            href="/@blog/series"
-                                            ><span class="FeelogTypography-root FeelogTypography-body-md flog-span-37"
-                                                >시리즈</span
-                                            ></a
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/post'}"
+                                        ><span class="jk-feelog-span018"
+                                        >포스트</span
+                                        ></a
                                         >
                                     </li>
-                                    <li
-                                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-li-11"
-                                    >
+                                    <li class="jk-feelog-li005">
                                         <a
-                                            style="
+                                                style="
                                                 display: flex;
                                                 width: 100%;
                                                 height: 100%;
@@ -290,19 +199,16 @@
                                                 border-radius: 0;
                                                 text-decoration: none;
                                             "
-                                            data-first-child=""
-                                            href="/@blog/series"
-                                            ><span class="FeelogTypography-root FeelogTypography-body-md flog-span-37"
-                                                >커뮤니티</span
-                                            ></a
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/cheers'}"
+                                        ><span class="jk-feelog-span018"
+                                        >응원글</span
+                                        ></a
                                         >
                                     </li>
-                                    <li
-                                        data-last-child=""
-                                        class="FeelogListItem-root FeelogListItem-colorNeutral FeelogListItem-variantPlain flog-li-10"
-                                    >
+                                    <li class="jk-feelog-li004">
                                         <a
-                                            style="
+                                                style="
                                                 display: flex;
                                                 width: 100%;
                                                 height: 100%;
@@ -314,29 +220,37 @@
                                                 border-radius: 0;
                                                 text-decoration: none;
                                             "
-                                            aria-label="검색"
-                                            data-first-child=""
-                                            href="/@blog/search"
-                                            ><svg
-                                                focusable="false"
-                                                aria-hidden="true"
-                                                viewBox="0 0 24 24"
-                                                width="24"
-                                                height="24"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-18"
-                                            >
-                                                <path
-                                                    d="M16.375 10.125a6.25 6.25 0 1 0-12.5 0 6.25 6.25 0 0 0 12.5 0Zm-1.207 6.371a8.086 8.086 0 0 1-5.043 1.754A8.124 8.124 0 0 1 2 10.125 8.124 8.124 0 0 1 10.125 2a8.124 8.124 0 0 1 8.125 8.125c0 1.906-.656 3.66-1.754 5.043l5.23 5.23a.937.937 0 0 1-1.324 1.324l-5.234-5.226Z"
-                                                    fill="currentcolor"
-                                                ></path>
-                                            </svg>
-                                        </a>
+                                                data-first-child=""
+                                                th:href="@{'/feelog.com/@' + ${channel.channelUrl} + '/community'}"
+                                        ><span class="jk-feelog-span018"
+                                        >커뮤니티</span
+                                        ></a
+                                        >
+                                    </li>
+                                    <li class="jk-feelog-li005">
+                                        <a
+                                                style="
+                                                display: flex;
+                                                width: 100%;
+                                                height: 100%;
+                                                min-width: 0;
+                                                padding: 0 4px;
+                                                margin: 0;
+                                                align-items: center;
+                                                justify-content: center;
+                                                border-radius: 0;
+                                                text-decoration: none;
+                                            "
+                                                data-first-child=""
+                                                th:href="@{'/challenge/task-list'}"
+                                        ><span class="jk-feelog-span018"
+                                        >챌린지</span
+                                        ></a
+                                        >
                                     </li>
                                 </ul>
                             </div>
-                            <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-11" />
+                            <hr class="jk-feelog-hr01" />
                         </nav>
                         <main class="FeelogStack-root flog-main-11" id="main">
                             <section class="FeelogStack-root flog-section-10">
@@ -818,4 +732,7 @@
     <script src="/js/community/community-service.js"></script>
     <script src="/js/community/community-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
+    <script src="/js/main/notification.js"></script>
+    <script src="/js/main/main-search-modal.js"></script>
+    <script src="/js/subscribe/subscribe.js"></script>
 </html>

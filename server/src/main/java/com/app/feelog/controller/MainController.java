@@ -14,10 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -265,7 +262,12 @@ public class MainController {
 
     @GetMapping("/notifications")
     @ResponseBody
-    public List<NotificationResponseDTO> getMyNotifications(@SessionAttribute(value = "member", required = false) MemberDTO member) {
+    public List<NotificationResponseDTO> getMyNotifications(
+            @SessionAttribute(value = "member", required = false) MemberDTO member) {
+
+        if (member == null) {
+            return Collections.emptyList(); // 로그인 안 한 경우 빈 리스트 반환
+        }
 
         Long myId = member.getId();
         return notificationService.getNotificationsByReceiver(myId);
@@ -273,7 +275,13 @@ public class MainController {
 
     @GetMapping("/notifications/unread-count")
     @ResponseBody
-    public int getUnreadNotificationCount(@SessionAttribute(value = "member", required = false) MemberDTO member) {
+    public int getUnreadNotificationCount(
+            @SessionAttribute(value = "member", required = false) MemberDTO member) {
+
+        if (member == null) {
+            return 0; // 로그인 안 한 경우 안 읽은 알림 없음
+        }
+
         Long receiverId = member.getId();
         return notificationService.getUnreadNotificationCount(receiverId);
     }
@@ -281,6 +289,10 @@ public class MainController {
     @PostMapping("/notifications/mark-all-read")
     @ResponseBody
     public void markAllNotificationsAsRead(@SessionAttribute(value = "member", required = false) MemberDTO member) {
+        if (member == null) {
+            return; // 로그인 안 되어 있으면 아무 작업도 하지 않음
+        }
+
         Long receiverId = member.getId();
         notificationService.markAllAsRead(receiverId);
     }
