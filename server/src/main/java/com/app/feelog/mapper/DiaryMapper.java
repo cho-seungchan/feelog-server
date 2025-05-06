@@ -36,10 +36,10 @@ public interface DiaryMapper {
     List<DiaryVO> findVisibleDiaries(@Param("channelOwnerId") Long channelOwnerId,
                                      @Param("viewerId") Long viewerId);
 
-//    박정근 :: 다이어리 페이지네이션
+    //    박정근 :: 다이어리 페이지네이션
     public List<DiaryJoinDTO> selectDiaryListPagination(PostPagination postPagination);
 
-    public List<DiaryJoinDTO> selectDiaryListPaginationAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId")Long memberId);
+    public List<DiaryJoinDTO> selectDiaryListPaginationAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId);
 
     public int selectDiaryCount();
 
@@ -49,7 +49,7 @@ public interface DiaryMapper {
 
     public int selectDiaryCountAll();
 
-//    박정근 :: 다이어리 상세보기
+    //    박정근 :: 다이어리 상세보기
     public DiaryDetailDTO selectDiaryDetailByDiaryId(Long diaryId);
 
     public List<DiaryJoinDTO> selectRandomDiary();
@@ -59,7 +59,4 @@ public interface DiaryMapper {
     public int selectDiaryReplyCount(Long diaryId);
 
     public void addReadCount(Long diaryId);
-
-    public int selectDiaryCountAll();
-
 }
