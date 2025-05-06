@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @ToString(callSuper = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class NoticeVO extends Period{
+public class NoticeVO extends Period {
     @EqualsAndHashCode.Include
     private Long id;
     private String noticeTitle;
@@ -18,10 +18,11 @@ public class NoticeVO extends Period{
     private NoticeStatus noticeStatus;
     private String noticeFilePath;
     private String noticeFileName;
+    private int readCount;
 
     @Builder
 
-    public NoticeVO(String createdDate, String updatedDate, Long id, String noticeTitle, String noticeContent, Long memberId, NoticeStatus noticeStatus, String noticeFilePath, String noticeFileName) {
+    public NoticeVO(String createdDate, String updatedDate, Long id, String noticeTitle, String noticeContent, Long memberId, NoticeStatus noticeStatus, String noticeFilePath, String noticeFileName, int readCount) {
         super(createdDate, updatedDate);
         this.id = id;
         this.noticeTitle = noticeTitle;
@@ -30,5 +31,6 @@ public class NoticeVO extends Period{
         this.noticeStatus = noticeStatus;
         this.noticeFilePath = noticeFilePath;
         this.noticeFileName = noticeFileName;
+        this.readCount = readCount;
     }
 }

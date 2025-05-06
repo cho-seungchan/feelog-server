@@ -1,22 +1,17 @@
 package com.app.feelog.domain.vo;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
 @Getter
 @ToString(callSuper = true)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class MessageVO extends Period{
+@SuperBuilder
+public class MessageVO extends SuperPeriod{
     @EqualsAndHashCode.Include
     private Long id;
     private String messageContent;
-
-    @Builder
-    public MessageVO(String createdDate, String updatedDate, Long id, String messageContent) {
-        super(createdDate, updatedDate);
-        this.id = id;
-        this.messageContent = messageContent;
-    }
 }

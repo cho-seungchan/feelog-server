@@ -3,25 +3,26 @@
 <mapper namespace="com.app.feelog.mapper.DiaryMapper">
 
     <insert id="insert" parameterType="com.app.feelog.domain.vo.DiaryVO" useGeneratedKeys="true" keyProperty="id">
-        insert into tbl_diary (diary_title, diary_content, diary_file_path, diary_file_name, diary_file_size,diary_open,diary_name_open,diary_score, member_id)
-        values (#{diaryTitle}, #{diaryContent}, #{diaryFilePath}, #{diaryFileName}, #{diaryFileSize}, #{diaryOpen}, #{diaryNameOpen}, #{diaryScore}, #{memberId})
+        insert into tbl_diary (diary_title, diary_content, diary_file_path, diary_file_name, diary_file_size,
+                               diary_open, diary_name_open, diary_score, member_id)
+        values (#{diaryTitle}, #{diaryContent}, #{diaryFilePath}, #{diaryFileName}, #{diaryFileSize}, #{diaryOpen},
+                #{diaryNameOpen}, #{diaryScore}, #{memberId})
     </insert>
 
     <!-- 단일 조회 -->
     <select id="selectById" resultType="com.app.feelog.domain.vo.DiaryVO">
-        select
-            id,
-            diary_title,
-            diary_content,
-            diary_open,
-            diary_name_open,
-            diary_file_path,
-            diary_file_name,
-            diary_file_size,
-            member_id,
-            diary_status,
-            created_date,
-            updated_date
+        select id,
+               diary_title,
+               diary_content,
+               diary_open,
+               diary_name_open,
+               diary_file_path,
+               diary_file_name,
+               diary_file_size,
+               member_id,
+               diary_status,
+               created_date,
+               updated_date
         from tbl_diary
         where id = #{id}
     </select>
@@ -29,35 +30,30 @@
     <!-- 수정 -->
     <update id="update" parameterType="DiaryVO">
         update tbl_diary
-        set diary_title = #{diaryTitle},
-            diary_content = #{diaryContent},
-            diary_open = #{diaryOpen},
+        set diary_title     = #{diaryTitle},
+            diary_content   = #{diaryContent},
+            diary_open      = #{diaryOpen},
             diary_name_open = #{diaryNameOpen},
             diary_file_path = #{diaryFilePath},
             diary_file_name = #{diaryFileName},
             diary_file_size = #{diaryFileSize},
-            diary_score = #{diaryScore},
-            updated_date = NOW()
+            diary_score     = #{diaryScore},
+            updated_date    = NOW()
         where id = #{id}
     </update>
 
 
-
-
     <select id="getRecentDiaries" resultType="com.app.feelog.domain.dto.DiarySearchDTO">
-        SELECT
-            d.id,
-            d.diary_title AS title,
-            m.member_nickname AS nickname,
-            CONCAT(d.diary_file_path, '/', d.diary_file_name) AS thumbnailUrl,
-            d.created_date,
-            (
-                SELECT GROUP_CONCAT(t.contents)
+        SELECT d.id,
+               d.diary_title                                     AS title,
+               m.member_nickname                                 AS nickname,
+               CONCAT(d.diary_file_path, '/', d.diary_file_name) AS thumbnailUrl,
+               d.created_date,
+               (SELECT GROUP_CONCAT(t.contents)
                 FROM tbl_diary_tag dt
                          JOIN tbl_tag t ON dt.id = t.id
                 WHERE dt.diary_id = d.id
-                  AND t.tag_status = 'ACTIVE'
-            ) AS tags
+                  AND t.tag_status = 'ACTIVE')                   AS tags
         FROM tbl_diary d
                  JOIN tbl_member m ON d.member_id = m.id
         WHERE d.diary_status = '정상'
@@ -66,22 +62,19 @@
     </select>
 
     <select id="searchDiaries" resultType="com.app.feelog.domain.dto.DiarySearchDTO">
-        SELECT
-            d.id,
-            d.diary_title AS title,
-            d.diary_content AS content,
-            m.member_nickname AS nickname,
-            CONCAT(d.diary_file_path, '/', d.diary_file_name) AS thumbnailUrl,
-            CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImg,
-            m.id AS memberId,
-            d.created_date AS createdDate,
-            (
-                SELECT GROUP_CONCAT(t.contents)
+        SELECT d.id,
+               d.diary_title                                       AS title,
+               d.diary_content                                     AS content,
+               m.member_nickname                                   AS nickname,
+               CONCAT(d.diary_file_path, '/', d.diary_file_name)   AS thumbnailUrl,
+               CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImg,
+               m.id                                                AS memberId,
+               d.created_date                                      AS createdDate,
+               (SELECT GROUP_CONCAT(t.contents)
                 FROM tbl_diary_tag dt
                          JOIN tbl_tag t ON dt.id = t.id
                 WHERE dt.diary_id = d.id
-                  AND t.tag_status = 'ACTIVE'
-            ) AS tags
+                  AND t.tag_status = 'ACTIVE')                     AS tags
         FROM tbl_diary d
                  JOIN tbl_member m ON d.member_id = m.id
                  LEFT JOIN tbl_diary_tag dt ON d.id = dt.diary_id
@@ -99,199 +92,192 @@
     </select>
 
     <select id="searchMoreDiaries" resultType="com.app.feelog.domain.dto.DiarySearchDTO">
-        SELECT
-            d.id,
-            d.diary_title AS title,
-            d.diary_content AS content,
-            d.diary_open AS openStatus,
-            d.created_date AS createdDate,
-            m.id AS memberId,
-            m.member_nickname AS nickname,
-            CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImg,
-            CONCAT(d.diary_file_path, '/', d.diary_file_name) AS thumbnailUrl,
-            (
-                SELECT GROUP_CONCAT(t.contents)
+        SELECT d.id,
+               d.diary_title                                       AS title,
+               d.diary_content                                     AS content,
+               d.diary_open                                        AS openStatus,
+               d.created_date                                      AS createdDate,
+               m.id                                                AS memberId,
+               m.member_nickname                                   AS nickname,
+               CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImg,
+               CONCAT(d.diary_file_path, '/', d.diary_file_name)   AS thumbnailUrl,
+               (SELECT GROUP_CONCAT(t.contents)
                 FROM tbl_diary_tag dt
                          JOIN tbl_tag t ON dt.id = t.id
                 WHERE dt.diary_id = d.id
-                  AND t.tag_status = '정상'
-            ) AS tags
+                  AND t.tag_status = '정상')                         AS tags
         FROM tbl_diary d
                  JOIN tbl_member m ON d.member_id = m.id
         WHERE d.diary_status = '정상'
           AND (
             d.diary_title LIKE CONCAT('%', #{keyword}, '%')
                 OR d.diary_content LIKE CONCAT('%', #{keyword}, '%')
-                OR EXISTS (
-                SELECT 1
-                FROM tbl_diary_tag dt
-                         JOIN tbl_tag t ON dt.id = t.id
-                WHERE dt.diary_id = d.id
-                  AND t.tag_status = '정상'
-                  AND t.contents LIKE CONCAT('%', #{keyword}, '%')
-            )
+                OR EXISTS (SELECT 1
+                           FROM tbl_diary_tag dt
+                                    JOIN tbl_tag t ON dt.id = t.id
+                           WHERE dt.diary_id = d.id
+                             AND t.tag_status = '정상'
+                             AND t.contents LIKE CONCAT('%', #{keyword}, '%'))
             )
         ORDER BY d.created_date DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
-<!--    박정근 :: 나의다이어리 페이지네이션-->
+    <!--    박정근 :: 나의다이어리 페이지네이션-->
     <select id="selectDiaryListPagination" resultType="diaryJoinDTO">
-        select * from view_diary
-                 where diary_open = '비공개'
-                 order by id desc
+        select *
+        from view_diary
+        where diary_open = '비공개'
+        order by id desc
         limit #{offset}, #{rowCount}
     </select>
 
     <select id="selectDiaryCount" resultType="_int">
-        select count(*) from view_diary where diary_open = '비공개'
+        select count(*)
+        from view_diary
+        where diary_open = '비공개'
     </select>
 
-<!--    박정근 :: 구독자에게만 공개, 전체공개-->
+    <!--    박정근 :: 구독자에게만 공개, 전체공개-->
     <select id="selectDiaryListPaginationAllAndSubscribe" resultType="diaryJoinDTO">
-        SELECT * FROM (
-                          SELECT
-                              d.id AS id,
-                              m.id AS member_id,
-                              m.member_nickname,
-                              m.member_file_path,
-                              m.member_file_name,
-                              m.member_status,
-                              d.diary_title,
-                              d.diary_content,
-                              d.diary_open,
-                              d.diary_name_open,
-                              d.diary_file_path,
-                              d.diary_file_name,
-                              d.diary_status,
-                              d.updated_date AS updated_date,
-                              d.diary_read_count,
-                              c.id AS channel_id,
-                              c.channel_title,
-                              c.channel_url,
-                              c.channel_file_path,
-                              c.channel_file_name,
-                              c.channel_status
-                          FROM tbl_member m
-                                   JOIN tbl_diary d ON m.id = d.member_id
-                                   JOIN tbl_channel c ON m.id = c.member_id
-                          WHERE d.diary_open IN ('전체 공개', '구독자에게만 공개')
-                      ) d
-        WHERE EXISTS (
-            SELECT 1 FROM tbl_subscribe s
-            WHERE s.member_id = #{memberId}
-              AND s.channel_id = d.channel_id
-        )
+        SELECT *
+        FROM (SELECT d.id           AS id,
+                     m.id           AS member_id,
+                     m.member_nickname,
+                     m.member_file_path,
+                     m.member_file_name,
+                     m.member_status,
+                     d.diary_title,
+                     d.diary_content,
+                     d.diary_open,
+                     d.diary_name_open,
+                     d.diary_file_path,
+                     d.diary_file_name,
+                     d.diary_status,
+                     d.updated_date AS updated_date,
+                     d.diary_read_count,
+                     c.id           AS channel_id,
+                     c.channel_title,
+                     c.channel_url,
+                     c.channel_file_path,
+                     c.channel_file_name,
+                     c.channel_status,
+                     dm.score_message,
+                     d.diary_score
+              FROM tbl_member m
+                       JOIN tbl_diary d ON m.id = d.member_id
+                       JOIN tbl_channel c ON m.id = c.member_id
+                       join tbl_diary_score dm on d.diary_score = dm.id
+              WHERE d.diary_open IN ('전체 공개', '구독자에게만 공개')) d
+        WHERE EXISTS (SELECT 1
+                      FROM tbl_subscribe s
+                      WHERE s.member_id = #{memberId}
+                        AND s.channel_id = d.channel_id)
            OR d.diary_open = '전체 공개'
 
         UNION
 
-        SELECT * FROM (
-                          SELECT
-                              d.id AS id,
-                              m.id AS member_id,
-                              m.member_nickname,
-                              m.member_file_path,
-                              m.member_file_name,
-                              m.member_status,
-                              d.diary_title,
-                              d.diary_content,
-                              d.diary_open,
-                              d.diary_name_open,
-                              d.diary_file_path,
-                              d.diary_file_name,
-                              d.diary_status,
-                              d.updated_date AS updated_date,
-                              d.diary_read_count,
-                              c.id AS channel_id,
-                              c.channel_title,
-                              c.channel_url,
-                              c.channel_file_path,
-                              c.channel_file_name,
-                              c.channel_status
-                          FROM tbl_member m
-                                   JOIN tbl_diary d ON m.id = d.member_id
-                                   JOIN tbl_channel c ON m.id = c.member_id
-                          WHERE d.diary_open = '전체 공개'
-                      ) d
-        WHERE NOT EXISTS (
-            SELECT 1 FROM tbl_subscribe WHERE member_id = #{memberId}
-        )
+        SELECT *
+        FROM (SELECT d.id           AS id,
+                     m.id           AS member_id,
+                     m.member_nickname,
+                     m.member_file_path,
+                     m.member_file_name,
+                     m.member_status,
+                     d.diary_title,
+                     d.diary_content,
+                     d.diary_open,
+                     d.diary_name_open,
+                     d.diary_file_path,
+                     d.diary_file_name,
+                     d.diary_status,
+                     d.updated_date AS updated_date,
+                     d.diary_read_count,
+                     c.id           AS channel_id,
+                     c.channel_title,
+                     c.channel_url,
+                     c.channel_file_path,
+                     c.channel_file_name,
+                     c.channel_status,
+                     dm.score_message,
+                     d.diary_score
+              FROM tbl_member m
+                       JOIN tbl_diary d ON m.id = d.member_id
+                       JOIN tbl_channel c ON m.id = c.member_id
+                       join tbl_diary_score dm on d.diary_score = dm.id
+
+              WHERE d.diary_open = '전체 공개') d
+        WHERE NOT EXISTS (SELECT 1
+                          FROM tbl_subscribe
+                          WHERE member_id = #{memberId})
         order by id desc
         limit #{postPagination.offset}, #{postPagination.rowCount}
     </select>
 
     <select id="selectDiaryListPaginationAll" resultType="diaryJoinDTO">
-        select * from view_diary where diary_open = '전체 공개'
+        select *
+        from view_diary
+        where diary_open = '전체 공개'
         order by id desc
         limit #{offset}, #{rowCount}
     </select>
 
     <select id="selectDiaryCountAllAndSubscribe" resultType="_int">
-        SELECT
-            (
-                SELECT count(*) FROM (
-                                         SELECT
-                                             d.id,
-                                             c.id AS channel_id,
-                                             d.diary_open
-                                         FROM tbl_member m
-                                                  JOIN tbl_diary d ON m.id = d.member_id
-                                                  JOIN tbl_channel c ON m.id = c.member_id
-                                         WHERE d.diary_open IN ('전체 공개', '구독자에게만 공개')
-                                     ) d
-                WHERE EXISTS (
-                    SELECT 1 FROM tbl_subscribe s
-                    WHERE s.member_id = #{memberId}
-                      AND s.channel_id = d.channel_id
-                )
-                   OR d.diary_open = '전체 공개'
-            )
-                +
-            (
-                SELECT count(*) FROM (
-                                         SELECT
-                                             d.id,
-                                             d.diary_open,
-                                             c.id AS channel_id
-                                         FROM tbl_member m
-                                                  JOIN tbl_diary d ON m.id = d.member_id
-                                                  JOIN tbl_channel c ON m.id = c.member_id
-                                         WHERE d.diary_open = '전체 공개'
-                                     ) d
-                WHERE NOT EXISTS (
-                    SELECT 1 FROM tbl_subscribe WHERE member_id = #{memberId}
-                )
-            ) AS total_count
+        SELECT (SELECT count(*)
+                FROM (SELECT d.id,
+                             c.id AS channel_id,
+                             d.diary_open
+                      FROM tbl_member m
+                               JOIN tbl_diary d ON m.id = d.member_id
+                               JOIN tbl_channel c ON m.id = c.member_id
+                      WHERE d.diary_open IN ('전체 공개', '구독자에게만 공개')) d
+                WHERE EXISTS (SELECT 1
+                              FROM tbl_subscribe s
+                              WHERE s.member_id = #{memberId}
+                                AND s.channel_id = d.channel_id)
+                   OR d.diary_open = '전체 공개')
+                   +
+               (SELECT count(*)
+                FROM (SELECT d.id,
+                             d.diary_open,
+                             c.id AS channel_id
+                      FROM tbl_member m
+                               JOIN tbl_diary d ON m.id = d.member_id
+                               JOIN tbl_channel c ON m.id = c.member_id
+                      WHERE d.diary_open = '전체 공개') d
+                WHERE NOT EXISTS (SELECT 1
+                                  FROM tbl_subscribe
+                                  WHERE member_id = #{memberId})) AS total_count
     </select>
 
     <select id="selectDiaryCountAll" resultType="_int">
-        select count(*) from view_diary where diary_open = '전체 공개'
+        select count(*)
+        from view_diary
+        where diary_open = '전체 공개'
     </select>
 
-<!--    박정근 :: 다이어리 상세보기-->
+    <!--    박정근 :: 다이어리 상세보기-->
     <select id="selectDiaryDetailByDiaryId" resultType="diaryDetailDTO">
-        select
-            d.id as id,
-            d. diary_title,
-            d.diary_content,
-            d.diary_open,
-            d.diary_name_open,
-            d.member_id as member_id,
-            d.diary_status,
-            d.updated_date as updated_date,
-            d.diary_read_count,
-            d.diary_score,
-            m.member_nickname,
-            m.member_file_name,
-            m.member_file_path,
-            c.id as channel_id,
-            c.channel_title,
-            c.channel_file_path,
-            c.channel_file_name,
-            c.channel_status,
-            c.channel_url,
-            s.score_message
+        select d.id           as id,
+               d.diary_title,
+               d.diary_content,
+               d.diary_open,
+               d.diary_name_open,
+               d.member_id    as member_id,
+               d.diary_status,
+               d.updated_date as updated_date,
+               d.diary_read_count,
+               d.diary_score,
+               m.member_nickname,
+               m.member_file_name,
+               m.member_file_path,
+               c.id           as channel_id,
+               c.channel_title,
+               c.channel_file_path,
+               c.channel_file_name,
+               c.channel_status,
+               c.channel_url,
+               s.score_message
         from tbl_diary d
                  join tbl_member m
                       on d.member_id = m.id
@@ -303,19 +289,29 @@
     </select>
 
     <select id="selectRandomDiary" resultType="diaryJoinDTO">
-        select * from view_diary where view_diary.diary_open = '전체 공개' order by rand() limit 4
+        select *
+        from view_diary
+        where view_diary.diary_open = '전체 공개'
+        order by rand()
+        limit 4
     </select>
 
     <select id="selectDiaryLikeCount" resultType="_int">
-        select count(*) from view_find_diary_like_count where diary_id = #{diaryId}
+        select count(*)
+        from view_find_diary_like_count
+        where diary_id = #{diaryId}
     </select>
 
     <select id="selectDiaryReplyCount" resultType="_int">
-        select count(*) from view_find_diary_reply_count where diary_id = #{diaryId}
+        select count(*)
+        from view_find_diary_reply_count
+        where diary_id = #{diaryId}
     </select>
 
     <update id="addReadCount">
-        update tbl_diary set diary_read_count = diary_read_count + 1 where id = #{id}
+        update tbl_diary
+        set diary_read_count = diary_read_count + 1
+        where id = #{id}
     </update>
 
 </mapper>

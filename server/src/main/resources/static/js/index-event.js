@@ -1,20 +1,21 @@
 indexService.getCheerPost(indexLayout.showCheerPost)
 indexService.getList(indexLayout.showList)
+indexService.getNoticeListMain(indexLayout.showNoticeMain)
 
 const reportDiv = document.createElement("div");
 const postContainer = document.querySelector(".joy-16vwv4v");
 const body = document.querySelector("body");
 const moreButton = document.querySelector(".joy-1fkv557");
-const cheerContainer = document.querySelector(".cheerComentContainer");
+const cheerContainer = document.querySelector(".cheercommentContainer");
 
 reportDiv.id = "report-button";
 
 postContainer.addEventListener("click", async (e) => {
-    if(e.target.closest(".scrap-button")){
+    if (e.target.closest(".scrap-button")) {
         e.preventDefault()
         const svg = e.target.closest(".scrap-button").querySelector("svg");
 
-        if(!loginMember){
+        if (!loginMember) {
             alert("로그인 후 이용해주세요 😊")
             window.location.href = "/login/login";
         }
@@ -44,7 +45,7 @@ postContainer.addEventListener("click", async (e) => {
         }
     }
 
-    if(e.target.closest(".menu-button")){
+    if (e.target.closest(".menu-button")) {
         const existingDiv = document.querySelector("#report-button");
         const postId = e.target.closest(".menu-button").getAttribute("data-index")
 
@@ -73,9 +74,9 @@ postContainer.addEventListener("click", async (e) => {
 
 })
 
-body.addEventListener("click", async (e)=> {
-    if(e.target.closest(".report-post")){
-        if(loginMember == null){
+body.addEventListener("click", async (e) => {
+    if (e.target.closest(".report-post")) {
+        if (loginMember == null) {
             alert("로그인 후 이용해주세요")
             window.location.href = "/login/login";
             return;
@@ -87,41 +88,41 @@ body.addEventListener("click", async (e)=> {
         const duplicationId = reportPostIds.includes(Number(reportPostId));
         console.log(duplicationId)
 
-        if(!duplicationId){
+        if (!duplicationId) {
             console.log("들어옴")
-            if(confirm("이 게시글을 신고하시겠습니까?")){
+            if (confirm("이 게시글을 신고하시겠습니까?")) {
                 await indexService.addReport({
-                    reportMemberId:loginMemberId,
-                    postId:reportPostId
+                    reportMemberId: loginMemberId,
+                    postId: reportPostId
                 })
             }
-        }else{
+        } else {
             alert("이미 신고된 게시글입니다.")
         }
     }
 })
 
-moreButton.addEventListener("click", async (e) =>{
+moreButton.addEventListener("click", async (e) => {
     const pageIndex = parseInt(moreButton.getAttribute("data-index"));
     await indexService.getList(indexLayout.showList, pageIndex);
     moreButton.setAttribute("data-index", pageIndex + 1);
 })
 
-cheerContainer.addEventListener("click", (e)=>{
-    if(e.target.closest(".joy-oklso3")){
+cheerContainer.addEventListener("click", (e) => {
+    if (e.target.closest(".joy-oklso3")) {
         const container = e.target.closest(".joy-16vwv4v");
         const cheerPost = container.querySelector(".cheerPostContainer")
-        if(cheerPost){
+        if (cheerPost) {
             cheerPost.classList.add("slide-out")
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 cheerPost.remove();
             }, 500);
         }
-        if(cheerContainer){
+        if (cheerContainer) {
             cheerContainer.classList.add("slide-out")
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 cheerContainer.remove();
             }, 500);
         }

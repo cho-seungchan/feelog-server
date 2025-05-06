@@ -255,3 +255,9 @@ footerButtons.addEventListener("click", async (e) => {
         }
     }
 })
+
+// const aicomment = diaryService.getAicomment((response) => {
+//     // document.querySelector("#ai-output").innerText = response;
+//     // 이런식으로 여기서 받은 response를 바로 사용해야한다
+//     console.log("AI 응답:", response);
+// }, "오늘의 날씨에 대해서 긍정적인 문구 하나만 보여줘 이모티콘도 보여줄 수 있으면 같이 보내줘");

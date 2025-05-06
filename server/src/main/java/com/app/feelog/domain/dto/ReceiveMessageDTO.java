@@ -16,6 +16,9 @@ public class ReceiveMessageDTO {
     private Long memberId;
     private Long senderId;
     private ReceiveMessageStatus receiveMessageStatus;
+    private String messageContent;
+    private String createdDate;
+    private String updatedDate;
 
     public ReceiveMessageVO toVO() {
         return ReceiveMessageVO.builder()
@@ -23,6 +26,9 @@ public class ReceiveMessageDTO {
                 .memberId(memberId)
                 .senderId(senderId)
                 .receiveMessageStatus(receiveMessageStatus)
+                .messageContent(messageContent)
+                .createdDate(createdDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

@@ -4,7 +4,6 @@ import com.app.feelog.domain.dto.*;
 import com.app.feelog.domain.dto.joinDTO.DiaryDetailDTO;
 import com.app.feelog.domain.dto.joinDTO.DiaryJoinDTO;
 import com.app.feelog.domain.dto.joinDTO.DiaryPaginationDTO;
-import com.app.feelog.domain.enumeration.DiaryOpen;
 import com.app.feelog.service.DiaryService;
 import com.app.feelog.service.SubscribeService;
 import com.app.feelog.service.voToDto.LikeService;
@@ -22,11 +21,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/diary")
@@ -41,15 +38,19 @@ public class DiaryController {
     private final LikeService likeService;
 
     @GetMapping("/all-diary")
-    public void goToAllDiary(){};
+    public void goToAllDiary() {
+    }
+
+    ;
 
     @GetMapping("/diary-read")
-    public String goToDiaryRead(Model model, @RequestParam("id") Long diaryId){
+    public String goToDiaryRead(Model model, @RequestParam("id") Long diaryId) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
+        diaryService.addDiaryReadCount(diaryId);
 
         DiaryDetailDTO diary = diaryService.getDiaryDetailByDiaryId(diaryId);
 
-        if(loginMember != null){
+        if (loginMember != null) {
             List<Long> diaryLikeIds = likeService.getDiaryLikeIdsByMemberId(loginMember.getId());
 
             diary.setLiked(diaryLikeIds.contains(diaryId));
@@ -57,29 +58,32 @@ public class DiaryController {
 
         model.addAttribute("diary", diary);
 
-        diaryService.addDiaryReadCount(diaryId);
 
         return "/diary/diary-read";
-    };
+    }
+
+    ;
 
     @GetMapping("/my-diary")
-    public void goToMyDiary(){
+    public void goToMyDiary() {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
-    };
+    }
+
+    ;
 
     @GetMapping("diaryListClose")
     @ResponseBody
-    public DiaryPaginationDTO getDiaryList(PostPagination postPagination){
+    public DiaryPaginationDTO getDiaryList(PostPagination postPagination) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         DiaryPaginationDTO diaryPaginationDTO = diaryService.getDiaryList(postPagination);
 
-        if(loginMember != null){
-                List<Long> likeIds = likeService.getDiaryLikeIdsByMemberId(loginMember.getId());
-                Set<Long> likeIdSet = new HashSet<>(likeIds);
+        if (loginMember != null) {
+            List<Long> likeIds = likeService.getDiaryLikeIdsByMemberId(loginMember.getId());
+            Set<Long> likeIdSet = new HashSet<>(likeIds);
 
-                diaryPaginationDTO.getDiaryList().forEach(diary -> {
-                    diary.setLiked(likeIdSet.contains(diary.getId()));
-                });
+            diaryPaginationDTO.getDiaryList().forEach(diary -> {
+                diary.setLiked(likeIdSet.contains(diary.getId()));
+            });
         }
 
         return diaryPaginationDTO;
@@ -87,11 +91,11 @@ public class DiaryController {
 
     @GetMapping("/diaryListAllAndSubscribe")
     @ResponseBody
-    public DiaryPaginationDTO getDiaryListAllAndSubscribe(PostPagination postPagination){
+    public DiaryPaginationDTO getDiaryListAllAndSubscribe(PostPagination postPagination) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         DiaryPaginationDTO diaryPaginationDTO = new DiaryPaginationDTO();
 
-        if(loginMember != null){
+        if (loginMember != null) {
             diaryPaginationDTO = diaryService.getDiaryListAllAndSubscribe(postPagination, loginMember.getId());
 
             List<Long> likeIds = likeService.getDiaryLikeIdsByMemberId(loginMember.getId());
@@ -102,7 +106,7 @@ public class DiaryController {
             });
         } else {
             diaryPaginationDTO = diaryService.getDiaryListAll(postPagination);
-            log.info("diary : {}",diaryPaginationDTO);
+            log.info("diary : {}", diaryPaginationDTO);
         }
 
         return diaryPaginationDTO;
@@ -110,20 +114,20 @@ public class DiaryController {
 
     @GetMapping("/diaryReportIds")
     @ResponseBody
-    public List<Long> getDiaryReportIds(Long memberId){
+    public List<Long> getDiaryReportIds(Long memberId) {
         return diaryService.getDiaryReportIds(memberId);
     }
 
     @PostMapping("/insertDiaryReport")
-    public void addDiaryReport(@RequestBody DiaryReportDTO diaryReportDTO){
+    public void addDiaryReport(@RequestBody DiaryReportDTO diaryReportDTO) {
         log.info(diaryReportDTO.toString());
         reportService.addDiaryReport(diaryReportDTO);
     }
 
     @GetMapping("/randomDiaryList")
     @ResponseBody
-    public List<DiaryJoinDTO> diaryRandomList(){
-        return  diaryService.getDiaryRandom();
+    public List<DiaryJoinDTO> diaryRandomList() {
+        return diaryService.getDiaryRandom();
     }
 
     @PostMapping("/insertDiaryReply")
@@ -145,15 +149,17 @@ public class DiaryController {
 
     @GetMapping("/replyLists")
     @ResponseBody
-    public List<DiaryReplyDTO> getReplyLists(Long diaryId){
+    public List<DiaryReplyDTO> getReplyLists(Long diaryId) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         List<DiaryReplyDTO> diaryReplyList = replyService.getDiaryReplyByDiaryId(diaryId);
 
-        if(loginMember !=null){
+        if (loginMember != null) {
             List<Long> replyIds = likeService.getLikeIdsByMemberId(loginMember.getId());
             Set<Long> replyIdSet = new HashSet<>(replyIds);
 
-            diaryReplyList.forEach(reply -> {reply.setLiked(replyIdSet.contains(reply.getId()));});
+            diaryReplyList.forEach(reply -> {
+                reply.setLiked(replyIdSet.contains(reply.getId()));
+            });
         }
 
         diaryReplyList.forEach(diaryReplyDTO -> {
@@ -170,18 +176,18 @@ public class DiaryController {
 
     @GetMapping("/diaryReplyReportList")
     @ResponseBody
-    public List<DiaryReplyReportDTO> getDiaryReplyReportList(Long memberId){
+    public List<DiaryReplyReportDTO> getDiaryReplyReportList(Long memberId) {
         return reportService.getDiaryReplyReportListByMemberId(memberId);
     }
 
     @PostMapping("/addDiaryReplyReport")
-    public void addDiaryReplyReport(@RequestBody DiaryReplyReportDTO diaryReplyReportDTO){
+    public void addDiaryReplyReport(@RequestBody DiaryReplyReportDTO diaryReplyReportDTO) {
         log.info(diaryReplyReportDTO.toString());
         reportService.addDiaryReplyReport(diaryReplyReportDTO);
     }
 
     @PostMapping("/addOrDeleteDiaryLike")
-    public void addOrDeleteDiaryLike(@RequestBody DiaryLikeDTO diaryLikeDTO){
+    public void addOrDeleteDiaryLike(@RequestBody DiaryLikeDTO diaryLikeDTO) {
         likeService.addOrDeleteDiaryLike(diaryLikeDTO);
     }
 }

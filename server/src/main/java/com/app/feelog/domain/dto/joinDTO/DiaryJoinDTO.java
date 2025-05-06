@@ -1,8 +1,10 @@
 package com.app.feelog.domain.dto.joinDTO;
 
-import com.app.feelog.domain.dto.DiaryTagDTO;
 import com.app.feelog.domain.enumeration.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -40,4 +42,6 @@ public class DiaryJoinDTO {
     private int likeCount;
     private boolean isSubscribedPost;
     private boolean isLiked;
+    private Long diaryScore;
+    private String scoreMessage;
 }

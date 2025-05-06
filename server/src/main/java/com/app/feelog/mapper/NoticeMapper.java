@@ -6,6 +6,7 @@ import com.app.feelog.util.pagination.NoticePagination;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface NoticeMapper {
@@ -18,4 +19,15 @@ public interface NoticeMapper {
     public void updateNotice(NoticeVO noticeVO);
 
     public void deleteNotice(Long id);
+
+    public List<NoticeVO> selectNotice4();
+
+    public Optional<NoticeVO> selectNoticeDetailById(Long id);
+
+    public Optional<NoticeVO> nextNotice(Long id);
+
+    public Optional<NoticeVO> previousNotice(Long id);
+
+    public void updateReadCount(Long id);
+
 }

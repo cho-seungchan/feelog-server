@@ -3,34 +3,90 @@
 <mapper namespace="com.app.feelog.mapper.NoticeMapper">
     <insert id="insertNotice">
         insert into tbl_notice (notice_title, notice_content, member_id, notice_file_path, notice_file_name)
-        value (#{noticeTitle}, #{noticeContent}, #{memberId},#{noticeFilePath}, #{noticeFileName})
+            value (#{noticeTitle}, #{noticeContent}, #{memberId}, #{noticeFilePath}, #{noticeFileName})
     </insert>
 
     <select id="selectNoticeAll" resultType="noticeAdminDTO">
         select m.member_nickname,
-               n.id, n.notice_title, n.notice_content, n.notice_status, n.member_id, n.created_date, n.notice_file_name, n.notice_file_path
+               n.id,
+               n.notice_title,
+               n.notice_content,
+               n.notice_status,
+               n.member_id,
+               n.created_date,
+               n.notice_file_name,
+               n.notice_file_path
         from tbl_member m
-        join tbl_notice n
-        on m.id = n.member_id
-        where m.member_type = '관리자' and notice_status = '정상'
+                 join tbl_notice n
+                      on m.id = n.member_id
+        where m.member_type = '관리자'
+          and notice_status = '정상'
         order by n.id desc
         limit #{offset}, #{rowCount}
     </select>
 
     <select id="selectNoticeCount" resultType="_int">
-        select COUNT(*) from tbl_notice where notice_status = '정상'
+        select COUNT(*)
+        from tbl_notice
+        where notice_status = '정상'
     </select>
 
     <update id="updateNotice">
         update tbl_notice
-        set notice_title = #{noticeTitle}, notice_content = #{noticeContent},
-            notice_file_path = #{noticeFilePath}, notice_file_name = #{noticeFileName}
+        set notice_title     = #{noticeTitle},
+            notice_content   = #{noticeContent},
+            notice_file_path = #{noticeFilePath},
+            notice_file_name = #{noticeFileName}
         where id = #{id}
     </update>
 
     <update id="deleteNotice">
         update tbl_notice
         set notice_status = '삭제'
+        where id = #{id}
+    </update>
+
+    <select id="selectNotice4" resultType="noticeVO">
+        select id,
+               notice_title,
+               notice_status,
+               notice_file_path,
+               notice_file_name,
+               updated_date
+        from tbl_notice
+        where notice_status = '정상'
+        order by id desc
+        limit 4
+    </select>
+
+    <select id="selectNoticeDetailById" resultType="noticeVO">
+        select *
+        from tbl_notice
+        where id = #{id}
+    </select>
+
+    <select id="nextNotice" resultType="noticeVO">
+        select id, notice_title, notice_status
+        from tbl_notice
+        where id > #{id}
+          and notice_status = '정상'
+        limit 1
+    </select>
+
+    <select id="previousNotice" resultType="noticeVO">
+        <![CDATA[
+        select id, notice_title, notice_status
+        from tbl_notice
+        where id < #{id}
+          and notice_status = '정상'
+        order by id desc
+        limit 1
+        ]]>
+    </select>
+
+    <update id="updateReadCount">
+        update tbl_notice
+        set read_count = read_count + 1
         where id = #{id}
     </update>
 </mapper>

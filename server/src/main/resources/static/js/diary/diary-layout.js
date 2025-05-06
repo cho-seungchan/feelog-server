@@ -22,18 +22,17 @@ const diaryLayout = (() => {
             let diaryMainImg = null;
             const defaultImg = "/images/avatar_blank.png"
 
-            if(diary.memberFilePath !== null && diary.memberFileName !==null){
+            if (diary.memberFilePath !== null && diary.memberFileName !== null) {
                 channelMainImg = encodeURIComponent(`${diary.memberFilePath}/${diary.memberFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
             }
 
-            if(diary.diaryFilePath !== null && diary.diaryFileName !==null){
+            if (diary.diaryFilePath !== null && diary.diaryFileName !== null) {
                 diaryMainImg = encodeURIComponent(`${diary.diaryFilePath}/${diary.diaryFileName}`);
             }
 
 
-
-            if(diary.diaryTags){
-                diary.diaryTags.forEach((tag)=>{
+            if (diary.diaryTags) {
+                diary.diaryTags.forEach((tag) => {
                     const aTag = document.createElement("a");
                     aTag.classList.add("aTag_myDiary_01", "aTag_myDiary_03", "aTag_tag_01")
                     aTag.href = "";
@@ -170,12 +169,10 @@ const diaryLayout = (() => {
                                 <span class="ai-think">AI의 생각</span>
                                 <div class="comment-wrap">
                                     <span
-                                        >오늘의 점수는 ??
-                                        점이에요.😊</span
+                                        >오늘의 점수는 ${diary.diaryScore}점이에요.😊</span
                                     ></br>
                                     <div>
-                                        오늘의 코멘트를
-                                        적어주세요</div>
+                                        ${diary.scoreMessage}</div>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +260,7 @@ const diaryLayout = (() => {
             diaryWrap.appendChild(newArticle);
 
             const tagContainer = newArticle.querySelector(".aTag_wrap_01");
-            tagLists.forEach((tag)=>{
+            tagLists.forEach((tag) => {
                 tagContainer.appendChild(tag);
             })
 
@@ -273,16 +270,16 @@ const diaryLayout = (() => {
             const channelUrl = newArticle.querySelector(".known-channel")
             channelAtag.classList.add("article_aTag_01");
 
-            if(diary.diaryNameOpen === "KNOWN"){
+            if (diary.diaryNameOpen === "KNOWN") {
                 nameWrap.innerText = diary.memberNickname
-                if(channelMainImg !== null){
+                if (channelMainImg !== null) {
                     channelAtag.setAttribute("href", `/feelog.com/@${diary.channelUrl}/community`)
                     channelAtag.innerHTML = `
                     <div class="aTag_div_01">
                         <img alt="" src="/files/display?path=${channelMainImg}" loading="lazy" class="aTag_divImg_01">
                     </div>
                     `;
-                }else {
+                } else {
                     channelAtag.innerHTML = `
                     <div class="aTag_div_01">
                         <img alt="" src=${defaultImg} loading="lazy" class="aTag_divImg_01">
@@ -291,7 +288,7 @@ const diaryLayout = (() => {
                 }
 
                 newArticle.prepend(channelAtag)
-            } else{
+            } else {
                 nameWrap.innerText = "익명"
                 channelAtag.classList.add("unknown-member")
                 channelUrl.classList.replace("known-channel", "unknown-member")
@@ -305,18 +302,18 @@ const diaryLayout = (() => {
                 newArticle.prepend(channelAtag)
             }
 
-            if(diaryMainImg !== null){
+            if (diaryMainImg !== null) {
                 diaryMainImgWrap.innerHTML = `
                     <img class="" src="/files/display?path=${diaryMainImg}" alt="" draggable="false" loading="lazy">
                 `;
-            }else {
+            } else {
                 diaryMainImgWrap.innerHTML = `
                     <img class="" src=${defaultImg} alt="" draggable="false" loading="lazy">
                 `;
             }
 
             const likeWrap = newArticle.querySelector(".like-count");
-            if(diary.liked){
+            if (diary.liked) {
                 likeWrap.innerHTML = `
                 <span class="MuiTypography-startDecorator joy-oqc71l">
                 <svg
@@ -333,7 +330,7 @@ const diaryLayout = (() => {
                 >
                 </span>${diary.likeCount}
                 `;
-            }else {
+            } else {
                 likeWrap.innerHTML = `
                 <span class="MuiTypography-startDecorator joy-oqc71l">
                 <svg
@@ -468,7 +465,7 @@ const diaryLayout = (() => {
     const showReplyList = (replyListData) => {
         const replyContainer = document.querySelector(".reply-container");
 
-        replyListData.forEach((reply)=> {
+        replyListData.forEach((reply) => {
             const newDiv = document.createElement("div");
             newDiv.classList.add("diary_div_001");
             newDiv.innerHTML = `
@@ -525,7 +522,7 @@ const diaryLayout = (() => {
             const replyDiv = document.createElement("div");
             replyDiv.classList.add("reply-imgWrap");
 
-            if(reply.replyFileName){
+            if (reply.replyFileName) {
                 replyDiv.innerHTML = `
                     <img class="reply-img" src="/files/display?path=${reply.replyFilePath}/${reply.replyFileName}" alt="">
                 `;
@@ -533,7 +530,7 @@ const diaryLayout = (() => {
                 replyImgWrap.appendChild(replyDiv);
             }
 
-            if(reply.memberFilePath){
+            if (reply.memberFilePath) {
                 memberImgWrap.innerHTML = `
                     <img alt="" src="/files/display?path=${reply.memberFilePath}/${reply.memberFileName}" loading="lazy" class="aTag_divImg_01"></div></a>
                 `;
@@ -543,7 +540,7 @@ const diaryLayout = (() => {
                 `;
             }
 
-            if(reply.liked){
+            if (reply.liked) {
                 likeSvg.classList.remove("like_svg_01");
                 likeSvg.classList.add("joy-fkbdob");
                 likeSvg.innerHTML = `
@@ -553,9 +550,9 @@ const diaryLayout = (() => {
         })
     }
 
-    return{
-        showDiaryListClose:showDiaryListClose,
-        showRandomDiary:showRandomDiary,
-        showReplyList:showReplyList
+    return {
+        showDiaryListClose: showDiaryListClose,
+        showRandomDiary: showRandomDiary,
+        showReplyList: showReplyList
     }
 })()

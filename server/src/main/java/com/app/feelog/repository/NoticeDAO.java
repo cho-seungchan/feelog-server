@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -33,4 +34,29 @@ public class NoticeDAO {
     public void deleteNotice(Long id) {
         noticeMapper.deleteNotice(id);
     }
+
+    public List<NoticeVO> findNotice4() {
+        return noticeMapper.selectNotice4();
+    }
+
+    public Optional<NoticeVO> findNoticeDetailById(Long id) {
+        return noticeMapper.selectNoticeDetailById(id);
+    }
+
+    public Optional<NoticeVO> nextNotice(Long id) {
+        return noticeMapper.nextNotice(id);
+    }
+
+    ;
+
+    public Optional<NoticeVO> previousNotice(Long id) {
+        return noticeMapper.previousNotice(id);
+    }
+
+    public void setReadCount(Long id) {
+        noticeMapper.updateReadCount(id);
+    }
+
+    ;;;;
+
 }
