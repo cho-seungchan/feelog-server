@@ -60,6 +60,5 @@ public interface DiaryMapper {
 
     public void addReadCount(Long diaryId);
 
-    public int selectDiaryCountAll();
 
 }
