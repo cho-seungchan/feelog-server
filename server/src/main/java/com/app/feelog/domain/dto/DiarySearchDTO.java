@@ -1,5 +1,7 @@
 package com.app.feelog.domain.dto;
 
+import com.app.feelog.domain.enumeration.DiaryNameOpen;
+import com.app.feelog.domain.enumeration.DiaryOpen;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,8 @@ public class DiarySearchDTO {
     private String title;
     private String content;
     private String nickname;
+    private DiaryOpen diaryOpen;
+    private DiaryNameOpen diaryNameOpen;
     private String thumbnailUrl;
     private String memberProfileImg;
     private Long memberId;
