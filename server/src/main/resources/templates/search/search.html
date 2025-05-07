@@ -191,7 +191,7 @@
                                     <div class="FlgBox-root-need joy-1hw15it" th:each="diary : ${diaries}" data-google-interstitial="false">
                                         <div class="FlgStack-root-need joy-w5a8kp diary-card" th:attr="data-diary-id=${diary.id}">
                                             <div class="FlgStack-root-need joy-16yrq9k ">
-                                                <span class="FlgStack-root-need joy-1kkt86i"  role="link" style="cursor: pointer;" th:attr="data-href='/diary/' + ${diary.id}">
+                                                <span class="FlgStack-root-need joy-1kkt86i"  role="link" style="cursor: pointer;" th:attr="data-href='/diary/diary-read?id=' + ${diary.id}">
                                                     <h3 class="joy-qs45i0" th:text="${diary.title}">제목</h3>
                                                     <p class="main-post-subtitle jk-feelog-p010">
                                                         <span class="joy-i9tg8j" th:utext="${#strings.abbreviate(diary.content, 100)}">내용 일부</span>
@@ -207,7 +207,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <a class="FlgBox-root-need joy-rtjsnx" th:href="@{'/diary/' + ${diary.id}}">
+                                            <a class="FlgBox-root-need joy-rtjsnx" th:href="@{'/diary/diary-read?id=' + ${diary.id}}">
                                                 <img th:src="@{'/files/display?path=' + ${diary.thumbnailUrl}}" style="position: absolute; height: 100%; width: 100%; object-fit: cover;" alt="썸네일" />
                                             </a>
                                         </div>
@@ -258,7 +258,7 @@
         <span class="FlgBox-root-need joy-1lrlkwu"
               role="link"
               style="cursor: pointer;"
-              th:attr="data-href='/post/' + ${post.id}">
+              th:attr="data-href='/post/read?id=' + ${post.id}">
             <div class="FlgBox-root-need jk-feelog-div056">
                 <img th:src="@{'/files/display?path=' + ${post.thumbnailUrl}}"
                      alt="대표 이미지"
@@ -268,10 +268,10 @@
         </span>
 
                                         <div class="FlgStack-root-need joy-pvvyl1">
-            <span role="link" style="cursor: pointer;" th:attr="data-href='/post/' + ${post.id}">
+            <span role="link" style="cursor: pointer;" th:attr="data-href='/post/read?id=' + ${post.id}">
                 <h3 class="joy-j4zrps" th:text="${post.title}">제목</h3>
             </span>
-                                            <span role="link" style="cursor: pointer;" th:attr="data-href='/post/' + ${post.id}">
+                                            <span role="link" style="cursor: pointer;" th:attr="data-href='/post/read?id=' + ${post.id}">
                 <p class="joy-if6bzd" th:utext="${#strings.abbreviate(post.content, 100)}">내용 요약</p>
             </span>
                                             <p class="joy-mf6g6b">
@@ -314,7 +314,7 @@
 
     <span class="FlgBox-root-need joy-1lrlkwu"
           role="link" style="cursor: pointer;"
-          th:attr="data-href='/cheer/' + ${cheer.id}">
+          th:attr="data-href='/post/read?id=' + ${cheer.id}">
         <div class="FlgBox-root-need jk-feelog-div056">
             <img th:src="@{'/files/display?path=' + ${cheer.thumbnailUrl}}" alt="대표 이미지"
                  loading="lazy" decoding="async"
@@ -323,10 +323,10 @@
     </span>
 
                                             <div class="FlgStack-root-need joy-pvvyl1">
-        <span role="link" style="cursor: pointer;" th:attr="data-href='/cheer/' + ${cheer.id}">
+        <span role="link" style="cursor: pointer;" th:attr="data-href='/post/read?id=' + ${cheer.id}">
             <h3 class="joy-j4zrps" th:text="${cheer.title}">제목</h3>
         </span>
-                                                <span role="link" style="cursor: pointer;" th:attr="data-href='/cheer/' + ${cheer.id}">
+                                                <span role="link" style="cursor: pointer;" th:attr="data-href='/post/read?id=' + ${cheer.id}">
             <p class="joy-if6bzd" th:utext="${#strings.abbreviate(cheer.content, 100)}">내용 요약</p>
         </span>
                                                 <p class="joy-mf6g6b">
@@ -369,7 +369,7 @@
                                 </header>
                                 <div class="FlgStack-root-need joy-4473rl container-channel">
                                     <div class="FlgBox-root-need joy-c1ffoy" th:each="channel : ${channels}">
-                                        <a th:href="@{'/@' + ${channel.channelUrl}}" style="height: fit-content">
+                                        <a th:href="@{'/feelog.com/@' + ${channel.channelUrl}}" style="height: fit-content">
                                             <div class="joy-1mszhh9">
                                                 <div class="jk-feelog-div055">
                                                     <div class="FlgBox-root-need jk-feelog-div056" data-first-child="">

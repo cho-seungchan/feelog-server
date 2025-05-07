@@ -186,6 +186,22 @@ public class MainController {
     }
 
     // 등록 처리
+//    @PostMapping("/post")
+//    public String writePost(ChannelPostDTO dto,
+//                            @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
+//                            @RequestParam(value = "tags", required = false) List<String> tags,
+//                            @SessionAttribute(value = "member", required = false) MemberDTO member) {
+//
+//        Long memberId = member.getId();
+//
+//        dto.setMemberId(memberId);
+//        dto.setChannelId(1L);
+//        dto.setFileIds(fileIds);
+//        dto.setTags(tags);
+//        channelPostService.writeChannelPost(dto);
+//        return "redirect:/";
+//    }
+    // 등록 처리
     @PostMapping("/post")
     public String writePost(ChannelPostDTO dto,
                             @RequestParam(value = "fileIds", required = false) List<Long> fileIds,
@@ -193,11 +209,23 @@ public class MainController {
                             @SessionAttribute(value = "member", required = false) MemberDTO member) {
 
         Long memberId = member.getId();
-
         dto.setMemberId(memberId);
-        dto.setChannelId(1L);
+
+        // Service를 통해 내 채널 정보 조회
+        Optional<ChannelDTO> optionalChannelDTO = channelService.getMyChannel(memberId);
+
+        // 조회된 채널이 없으면 예외 처리
+        ChannelDTO channelDTO = optionalChannelDTO.orElseThrow(() ->
+                new IllegalArgumentException("해당 멤버가 소속된 채널이 없습니다.")
+        );
+
+        // DTO에 채널 ID 설정
+        dto.setChannelId(channelDTO.getId());
+
         dto.setFileIds(fileIds);
         dto.setTags(tags);
+
+        // 포스트 등록 실행
         channelPostService.writeChannelPost(dto);
         return "redirect:/";
     }

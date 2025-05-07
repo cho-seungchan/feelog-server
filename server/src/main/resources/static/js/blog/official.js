@@ -49,7 +49,7 @@ function createNoticeCard(item) {
         <div class="FlgStack-root-need jk-feelog-div052">
           <div class="FlgStack-root-need normal-post jk-feelog-div053">
             <div class="FlgStack-root-need jk-feelog-div054">
-              <a href="/@official/post/${item.id}" class="jk-feelog-a-002">
+              <a href="/notice/notice?id=${item.id}" class="jk-feelog-a-002">
                 <div class="jk-feelog-div055">
                   <div class="FlgBox-root-need" data-first-child="">
                     <div class="FlgBox-root-need jk-feelog-div056">
@@ -60,7 +60,7 @@ function createNoticeCard(item) {
                   </div>
                 </div>
               </a>
-              <a class="FlgStack-root-need jk-feelog-a-003" href="/@official/post/${item.id}">
+              <a class="FlgStack-root-need jk-feelog-a-003" href="/notice/notice?id=${item.id}">
                 <div class="FlgStack-root-need jk-feelog-div057">
                   <h3 class="jk-feelog-h3-001">${item.title}</h3>
                   <p class="jk-feelog-p010">${item.noticeContent || ''}</p>
