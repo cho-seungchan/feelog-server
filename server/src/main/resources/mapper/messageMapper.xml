@@ -38,11 +38,11 @@
         insert tbl_message (message_content) value (#{messageContent})
     </insert>
 
-    <insert id="insertReceiveMessage">
+    <insert id="insertReceiveMessage" useGeneratedKeys="true" keyProperty="id">
         insert into tbl_receive_message (id, member_id, sender_id) VALUE (#{id}, #{memberId}, #{senderId})
     </insert>
 
-    <insert id="insertSendMessage">
+    <insert id="insertSendMessage" useGeneratedKeys="true" keyProperty="id">
         insert into tbl_send_message (id, member_id, receiver_id) VALUE (#{id}, #{memberId}, #{receiverId})
     </insert>
 

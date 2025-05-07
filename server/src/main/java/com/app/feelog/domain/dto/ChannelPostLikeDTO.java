@@ -17,6 +17,7 @@ public class ChannelPostLikeDTO {
     private Long postId;
     private String createdDate;
     private String updatedDate;
+    private Long postMemberId;
 
     public ChannelPostLikeVO toVO() {
         return ChannelPostLikeVO.builder()

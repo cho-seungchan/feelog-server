@@ -40,9 +40,8 @@ public class MessageController {
     public void insertMessage(@RequestBody InsertMessageDTO insertMessageDTO) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
 
-        log.info("insertMessage = {}", insertMessageDTO);
         messageService.insertMessage(insertMessageDTO);
-
+        
         Long senderId = loginMember.getId();
         Long receiverId = insertMessageDTO.getParticipantId();
 

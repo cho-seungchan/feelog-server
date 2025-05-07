@@ -22,9 +22,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +43,7 @@ public class MyPageService implements ToDTO {
     public MemberDTO getMemberById(Long id) {
 
         return toMemberDTO(myPageDAO.getMemberById(id)
-                        .orElse(null));
+                .orElse(null));
     }
 
     // 2025.04.22  조승찬 :: 알림정보 수정
@@ -135,7 +132,7 @@ public class MyPageService implements ToDTO {
     // 2025.04.24 조승찬 :: 알림 메뉴 중 관리자 공지 목록을 위해 일기 정보 가져오기
     public Optional<DiaryVO> getDiaryByMemberId(Long memberId) {
         return Optional.ofNullable(myPageDAO.getDiaryByMemberId(memberId)
-                        .orElse(null));
+                .orElse(null));
     }
 
     // 2025.04.24 조승찬 :: 50점 미만이면 서울시 열린 광장 시설 정보 가져오기
@@ -143,7 +140,7 @@ public class MyPageService implements ToDTO {
     public List<NotifyAdminListDTO> getFacilityInfo() throws IOException {
 
         int startIndex = 1;   // 요청 시작위치
-        int endIndex =  500; // 요청 종료위치
+        int endIndex = 500; // 요청 종료위치
         boolean continueProcessing = true; // 반복 여부
 
         List<NotifyAdminListDTO> admins = new ArrayList<>();
@@ -186,7 +183,7 @@ public class MyPageService implements ToDTO {
 
             // "CODE" 값이 "INFO-000"이 아니면 중단
             if (!"INFO-000".equals(resultCode)) {
-                System.out.println(resultCode+" 코드가 감지되어 작업을 중단합니다.");
+                System.out.println(resultCode + " 코드가 감지되어 작업을 중단합니다.");
                 break;
             }
 
@@ -194,9 +191,9 @@ public class MyPageService implements ToDTO {
             JSONArray rows = culturalEventInfo.getJSONArray("row");
             for (int i = 0; i < rows.length(); i++) {
                 JSONObject row = rows.getJSONObject(i);
-                if (row.getString("FCLT_KIND_DTL_NM").trim().contains("정신")){
+                if (row.getString("FCLT_KIND_DTL_NM").trim().contains("정신")) {
 
-                    NotifyAdminListDTO  admin = new NotifyAdminListDTO();
+                    NotifyAdminListDTO admin = new NotifyAdminListDTO();
                     admin.setFacilityName(row.getString("FCLT_NM"));
                     admin.setDistrictName(row.getString("JRSD_SGG_NM"));
                     admin.setFacilityKindName(row.getString("FCLT_KIND_NM"));
@@ -229,7 +226,7 @@ public class MyPageService implements ToDTO {
         // 페이지 네이션을 위한 총 건수 가져오기
         pagination.create(myPageDAO.getNotifySubscribeTotalCount(memberId));
         // 구독하는 멤버 정보 가져오기
-        List<MemberVO> members = myPageDAO.getNotifySubscribe(memberId,pagination);
+        List<MemberVO> members = myPageDAO.getNotifySubscribe(memberId, pagination);
         // DTO에 멤버 정보 채우기
         List<NotifySubscribeListDTO> subscribes = new ArrayList<>();
         members.forEach(member -> {
@@ -249,7 +246,9 @@ public class MyPageService implements ToDTO {
     public Optional<ChannelDTO> getChannelByMemberId(Long memberId) {
         return Optional.ofNullable(toChannelDTO(myPageDAO.getChannelByMemberId(memberId)
                 .orElse(null)));
-    };
+    }
+
+    ;
 
     // 2025.04.24 조승찬 :: 구독 리스트 조회
     public List<StorageSubscribeListDTO> getStorageSubscribe(Long memberId, SixRowPagination pagination) {
@@ -258,14 +257,18 @@ public class MyPageService implements ToDTO {
         pagination.create(myPageDAO.getStorageSubscribeTotalCount(memberId));
         // 구독자 채널 정보 가져오기
         List<ChannelVO> channels = myPageDAO.getStorageSubscribe(memberId, pagination);
+        log.info("channels {}", channels);
 
         // DTO에 멤버 정보 채우기
         List<StorageSubscribeListDTO> subscribes = new ArrayList<>();
         channels.forEach(channel -> {
+            log.info("channel {}", channel.getMemberId());
             // 멤버 정보 가져오기
             MemberVO member = myPageDAO.getMemberById(channel.getMemberId()).orElse(null);
+            log.info("member {}", member);
             subscribes.add(toStorageSubscribeListDTO(channel, member));
         });
+        log.info("subscribes {}", subscribes);
 
         return subscribes;
     }
@@ -290,13 +293,15 @@ public class MyPageService implements ToDTO {
             // 좋아요 건수
             int likes = myPageDAO.getLikeCount(scrap.getPostId());
             // 댓글 건수
-            int replys =myPageDAO.getReplyCount(scrap.getPostId());
+            int replys = myPageDAO.getReplyCount(scrap.getPostId());
             // dto로 변환하기
             scrapList.add(toStorageScrapListDTO(scrap, member, post, timeAgo, replys, likes));
         });
 
         return scrapList;
-    };
+    }
+
+    ;
 
     // 2025.04.25 스크랩 취소하기
     public void storageOffScrap(Long id) {
@@ -328,7 +333,7 @@ public class MyPageService implements ToDTO {
             // 좋아요 건수
             int likes = myPageDAO.getLikeCount(like.getPostId());
             // 댓글 건수
-            int replys =myPageDAO.getReplyCount(like.getPostId());
+            int replys = myPageDAO.getReplyCount(like.getPostId());
             // dto로 변환하기
             likeList.add(toStorageLikeListDTO(like, member, post, timeAgo, replys, likes));
         });
