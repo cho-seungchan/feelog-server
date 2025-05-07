@@ -31,11 +31,21 @@
                                     <div class="FlgStack-root-need jk-feelog-div078">
                                         <div class="FlgBox-root-need jk-feelog-div079">
                                             <div class="FlgBox-root-need jk-feelog-div056">
-                                                <img th:if="${channelInfo.channelFilePath != null}"
+                                                <img th:if="${!#strings.isEmpty(channelInfo.channelFilePath)
+             && !#strings.isEmpty(channelInfo.channelFileName)
+             && channelInfo.channelFilePath.trim() != ''
+             && channelInfo.channelFilePath.trim() != '/'
+             && channelInfo.channelFileName.trim() != ''
+             && channelInfo.channelFileName.trim() != '/'}"
                                                      th:src="@{'/files/display?path=' + ${channelInfo.channelFilePath} + '/' + ${channelInfo.channelFileName}}"
                                                      style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;" />
-                                                <img th:if="${channelInfo.channelFilePath == null}"
-                                                     th:src="@{/images/default_thumbnail.png}"
+                                                <img th:if="${#strings.isEmpty(channelInfo.channelFilePath)
+            || #strings.isEmpty(channelInfo.channelFileName)
+            || channelInfo.channelFilePath.trim() == ''
+            || channelInfo.channelFilePath.trim() == '/'
+            || channelInfo.channelFileName.trim() == ''
+            || channelInfo.channelFileName.trim() == '/'}"
+                                                     th:src="@{/images/channel_official.png}"
                                                      style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;" />
                                             </div>
                                         </div>
