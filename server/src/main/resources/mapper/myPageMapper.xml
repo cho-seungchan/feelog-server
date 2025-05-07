@@ -52,7 +52,7 @@
             f.updated_date as file_updated_date
         from tbl_file f
                  join tbl_community_post_file cpf on f.id = cpf.id
-        where cpf.community_post_id = #{communityPostId}
+        where cpf.post_id = #{communityPostId}
     </select>
 
     <select id="getNotifyCommunityListTotalCount" resultType="_int">
