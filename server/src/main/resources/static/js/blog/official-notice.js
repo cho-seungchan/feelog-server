@@ -32,7 +32,9 @@ function createNoticeCard(item) {
                         <div class="FlgBox-root-need" data-first-child="">
                             <div class="FlgBox-root-need jk-feelog-div056">
                                 <img alt="${item.title}" loading="lazy" decoding="async"
-                                    src="/files/display?path=${item.filePath}/${item.fileName}"
+                                     src="${(item.filePath && item.fileName && item.filePath.trim() !== '' && item.fileName.trim() !== '') ?
+        '/files/display?path=' + item.filePath + '/' + item.fileName :
+        '/images/channel_notice.png'}"
                                     style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;" />
                             </div>
                         </div>
