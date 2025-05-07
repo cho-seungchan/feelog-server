@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="FlgStack-root-need jk-feelog-div052">
                         <div class="FlgStack-root-need normal-post jk-feelog-div053">
                             <div class="FlgStack-root-need jk-feelog-div054">
-                                <a href="/post/${p.postId}" class="jk-feelog-a-002">
+                                <a href="/post/read?id=${p.postId}" class="jk-feelog-a-002">
                                     <div class="jk-feelog-div055">
                                         <div class="FlgBox-root-need">
                                             <div class="FlgBox-root-need jk-feelog-div056">
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                         </div>
                                     </div>
                                 </a>
-                                <a href="/post/${p.postId}" class="FlgStack-root-need jk-feelog-a-003">
+                                <a href="/post/read?id=${p.postId}" class="FlgStack-root-need jk-feelog-a-003">
                                     <div class="FlgStack-root-need jk-feelog-div057">
                                         <h3 class="jk-feelog-h3-001">${p.postTitle}</h3>
                                         <p class="jk-feelog-p010">${stripHtml(p.postContent)}</p>
