@@ -1,10 +1,13 @@
 package com.app.feelog.controller;
 
+import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.domain.dto.joinDTO.InsertMessageDTO;
 import com.app.feelog.domain.dto.joinDTO.MessageInfoDTO;
 import com.app.feelog.domain.dto.joinDTO.MessageListDTO;
 import com.app.feelog.domain.dto.joinDTO.ReceivceMessageMemberListDTO;
+import com.app.feelog.service.NotificationService;
 import com.app.feelog.service.voToDto.MessageService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,8 @@ import java.util.List;
 @Slf4j
 public class MessageController {
     private final MessageService messageService;
+    private final HttpSession session;
+    private final NotificationService notificationService;
 
     @GetMapping("/list")
     @ResponseBody
@@ -33,8 +38,19 @@ public class MessageController {
 
     @PostMapping("/insertMessage")
     public void insertMessage(@RequestBody InsertMessageDTO insertMessageDTO) {
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
+
         log.info("insertMessage = {}", insertMessageDTO);
         messageService.insertMessage(insertMessageDTO);
+
+        Long senderId = loginMember.getId();
+        Long receiverId = insertMessageDTO.getParticipantId();
+
+        Long receiveMessageId = insertMessageDTO.getId();
+
+        if (!senderId.equals(receiverId)) {
+            notificationService.sendReceiveMessageNotification(senderId, receiverId, receiveMessageId);
+        }
     }
 
     @PutMapping("/deleteMessage")

@@ -1,11 +1,11 @@
 const cheerPostLayout = (() => {
-    const showList = (cheerPostListData) =>{
+    const showList = (cheerPostListData) => {
         console.log(cheerPostListData)
         const postContainer = document.querySelector(".joy-16vwv4v");
 
         let text = "";
 
-        cheerPostListData.postList.forEach((post)=>{
+        cheerPostListData.postList.forEach((post) => {
             const newArticle = document.createElement("article")
             newArticle.classList.add("MuiStack-root", "joy-65n013");
 
@@ -22,21 +22,20 @@ const cheerPostLayout = (() => {
             let postMainImg = null;
             const defaultImg = "/images/avatar_blank.png"
 
-            if(post.memberFilePath !== null && post.memberFileName !==null){
+            if (post.memberFilePath !== null && post.memberFileName !== null) {
                 channelMainImg = encodeURIComponent(`${post.memberFilePath}/${post.memberFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
             }
 
-            if(post.postMainFilePath !== null && post.postMainFileName !==null){
+            if (post.postMainFilePath !== null && post.postMainFileName !== null) {
                 postMainImg = encodeURIComponent(`${post.postMainFilePath}/${post.postMainFileName}`);
             }
 
 
-
-            if(post.tagList){
-                post.tagList.forEach((tag)=>{
+            if (post.tagList) {
+                post.tagList.forEach((tag) => {
                     const aTag = document.createElement("a");
                     aTag.classList.add("MuiChip-root", "MuiChip-colorNeutral", "MuiChip-sizeMd", "MuiChip-variantSoft", "joy-7upex7")
-                    aTag.href = "";
+                    aTag.href = `/search/search?keyword=${tag.tagContent}`;
                     aTag.innerHTML = `
                         <span class="MuiChip-label MuiChip-labelMd joy-tymi7a" id=":r15:">${tag.tagContent}</span>
                     `;
@@ -149,40 +148,40 @@ const cheerPostLayout = (() => {
 
 
             const tagContainer = newArticle.querySelector(".joy-1r6jpu3");
-            tagLists.forEach((tag)=>{
+            tagLists.forEach((tag) => {
                 tagContainer.appendChild(tag);
             })
 
             const channelImgWrap = newArticle.querySelector(".channelImgWrap")
             const postMainImgWrap = newArticle.querySelector(".postMainImgWrap")
-            if(channelMainImg !== null){
+            if (channelMainImg !== null) {
                 channelImgWrap.innerHTML = `
                         <img alt="" src="/files/display?path=${channelMainImg}" loading="lazy" class="MuiAvatar-img aTag_divImg_01">
                 `;
-            }else {
+            } else {
                 channelImgWrap.innerHTML = `
                         <img alt="" src=${defaultImg} loading="lazy" class="MuiAvatar-img aTag_divImg_01">
                 `;
             }
 
-            if(postMainImg !== null){
+            if (postMainImg !== null) {
                 postMainImgWrap.innerHTML = `
                     <img class="MuiBox-root joy-1hn5ivd" src="/files/display?path=${postMainImg}" alt="" draggable="false" loading="lazy">
                 `;
-            }else {
+            } else {
                 postMainImgWrap.innerHTML = `
                     <img class="MuiBox-root joy-1hn5ivd" src=${defaultImg} alt="" draggable="false" loading="lazy">
                 `;
             }
 
             const scrapButton = newArticle.querySelector(".scrap-button");
-            if(post.scrapped){
+            if (post.scrapped) {
                 scrapButton.innerHTML = `
                     <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1wbk7pq">
                         <path d="M4.5 3.875v17.176a.95.95 0 0 0 1.496.777L12 17.625l6.004 4.203a.95.95 0 0 0 1.496-.777V3.875C19.5 2.84 18.66 2 17.625 2H6.375C5.34 2 4.5 2.84 4.5 3.875Z" fill="currentcolor"></path>
                     </svg>
                 `;
-            }else{
+            } else {
                 scrapButton.innerHTML = `
                 <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd post_menuButton_svg_01">
                     <path d="M4.5 3.875C4.5 2.84 5.34 2 6.375 2v17.242l5.082-3.629a.933.933 0 0 1 1.09 0l5.078 3.63V3.874H6.375V2h11.25c1.035 0 1.875.84 1.875 1.875v17.188a.938.938 0 0 1-1.48.762L12 17.526l-6.02 4.297a.938.938 0 0 1-1.48-.762V3.875Z" fill="currentcolor"></path>
@@ -191,7 +190,7 @@ const cheerPostLayout = (() => {
             }
 
             const likeWrap = newArticle.querySelector(".like-count");
-            if(post.liked){
+            if (post.liked) {
                 likeWrap.innerHTML = `
                 <span class="MuiTypography-startDecorator joy-oqc71l">
                 <svg
@@ -208,7 +207,7 @@ const cheerPostLayout = (() => {
                 >
                 </span>${post.postLikeCount}
                 `;
-            }else {
+            } else {
                 likeWrap.innerHTML = `
                 <span class="MuiTypography-startDecorator joy-oqc71l">
                 <svg
@@ -234,7 +233,7 @@ const cheerPostLayout = (() => {
         })
     }
 
-    return{
-        showList:showList
+    return {
+        showList: showList
     }
 })()

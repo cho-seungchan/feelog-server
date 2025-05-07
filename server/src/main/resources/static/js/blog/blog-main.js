@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtnId: 'diary-slide-nextBtn',
         prevBtnId: 'diary-slide-prevBtn',
         api: `/feelog.com/channel/${channelUrl}/diaries/slide?viewerId=${viewerId}`,
-        linkPrefix: '/diary'
+        linkPrefix: '/diary/diary-read?id='
     });
 
     loadSlider({
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtnId: 'post-slide-nextBtn',
         prevBtnId: 'post-slide-prevBtn',
         api: `/feelog.com/channel/${channelUrl}/posts/slide`,
-        linkPrefix: '/post'
+        linkPrefix: '/post/read?id='
     });
 
     loadSlider({
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtnId: 'cheer-slide-nextBtn',
         prevBtnId: 'cheer-slide-prevBtn',
         api: `/feelog.com/channel/${channelUrl}/cheers/slide`,
-        linkPrefix: '/post'
+        linkPrefix: '/post/read?id='
     });
 });
 
@@ -120,7 +120,7 @@ function renderSlideHtml(item, urlPrefix) {
           <div class="FlgStack-root-need jk-feelog-div052">
             <div class="FlgStack-root-need normal-post jk-feelog-div053">
               <div class="FlgStack-root-need jk-feelog-div054">
-                <a href="${urlPrefix}/${id}" class="jk-feelog-a-002">
+                <a href="${urlPrefix}${id}" class="jk-feelog-a-002">
                   <div class="jk-feelog-div055">
                     <div class="FlgBox-root-need">
                       <div class="FlgBox-root-need jk-feelog-div056">
@@ -129,7 +129,7 @@ function renderSlideHtml(item, urlPrefix) {
                     </div>
                   </div>
                 </a>
-                <a href="${urlPrefix}/${id}" class="FlgStack-root-need jk-feelog-a-003">
+                <a href="${urlPrefix}${id}" class="FlgStack-root-need jk-feelog-a-003">
                   <div class="FlgStack-root-need jk-feelog-div057">
                     <h3 class="jk-feelog-h3-001">${title}</h3>
                     <p class="jk-feelog-p010">${content}</p>

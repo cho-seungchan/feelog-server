@@ -44,8 +44,8 @@ function renderSlider(wrapperSelector, posts, type) {
         console.log(`[${type}] 삽입할 포스트 #${idx}`, post);
 
         const postUrl = type === "diary"
-            ? `/mind-log/${post.id}`
-            : `/@${post.nickname || 'unknown'}/post/${post.id}` + (type === "cheering" ? "?postType=CHEERING" : "");
+            ? `/diary/diary-read?id=${post.id}`
+            : `/post/read?id=${post.id}`;
 
         const tagHTML = (post.tags || "")
             .split(",")

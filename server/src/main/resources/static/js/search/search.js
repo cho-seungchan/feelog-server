@@ -138,7 +138,7 @@ function attachDiaryCardClickHandler(card) {
         const keyword = sessionStorage.getItem("searchKeyword");
 
         const redirectSpan = card.querySelector("[data-href]");
-        const redirectUrl = redirectSpan?.dataset.href || `/diary/${diaryId}`;
+        const redirectUrl = redirectSpan?.dataset.href || `/diary/diary-read?id=${diaryId}`;
 
         console.log("sessionStorage.getItem('searchKeyword') =", keyword);
         console.log("바인딩된 diary-card ID:", diaryId, "→ 이동할 URL:", redirectUrl);
@@ -176,7 +176,7 @@ function attachPostCardClickHandler(card) {
         const keyword = sessionStorage.getItem("searchKeyword");
 
         const redirectSpan = card.querySelector("[data-href]");
-        const redirectUrl = redirectSpan?.dataset.href || `/post/${postId}`;
+        const redirectUrl = redirectSpan?.dataset.href || `/post/read?id=${postId}`;
 
         console.log("keyword =", keyword, "redirectUrl =", redirectUrl);
 
@@ -303,7 +303,7 @@ document.querySelectorAll(".load-more-btn-diary").forEach(button => {
                     
         <div class="FlgStack-root-need joy-w5a8kp diary-card">
             <div class="FlgStack-root-need joy-16yrq9k ">
-                <a class="FlgStack-root-need joy-1kkt86i" href="/diary/${diary.id}">
+                <a class="FlgStack-root-need joy-1kkt86i" href="/diary/diary-read?id=${diary.id}">
                     <h3 class="joy-qs45i0">${diary.title}</h3>
                     <p class="main-post-subtitle jk-feelog-p010">
                         <span class="joy-i9tg8j">${diary.content}</span>
@@ -318,8 +318,8 @@ document.querySelectorAll(".load-more-btn-diary").forEach(button => {
                     `).join('')}
                 </div>
             </div>
-            <a class="FlgBox-root-need joy-rtjsnx" href="/diary/${diary.id}">
-                <img src="/files/display?path=${diary.thumbnailUrl}" style="position: absolute; height: 100%; width: 100%; object-fit: cover;" alt="썸네일" />
+            <a class="FlgBox-root-need joy-rtjsnx" href="/diary/diary-read?id=${diary.id}">
+                <img src="${diary.thumbnailUrl ? `/files/display?path=${diary.thumbnailUrl}` : '/images/channel_banner.png'}" style="position: absolute; height: 100%; width: 100%; object-fit: cover;" alt="썸네일" />
             </a>
         </div>
         <div class="FlgStack-root-need joy-k2m8sx" data-google-interstitial="false">
@@ -380,18 +380,18 @@ document.querySelectorAll(".load-more-btn-post").forEach(button => {
                     el.dataset.postId = post.id;
 
                     el.innerHTML = `
-        <span class="FlgBox-root-need joy-1lrlkwu" role="link" style="cursor: pointer;" data-href="/post/${post.id}">
+        <span class="FlgBox-root-need joy-1lrlkwu" role="link" style="cursor: pointer;" data-href="/post/read?id=${post.id}">
             <div class="FlgBox-root-need jk-feelog-div056">
-                <img src="/files/display?path=${post.thumbnailUrl}" alt="대표 이미지"
+                <img src="${post.thumbnailUrl ? `/files/display?path=${post.thumbnailUrl}` : '/images/channel_banner.png'}" alt="대표 이미지"
                      loading="lazy" decoding="async"
                      style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;" />
             </div>
         </span>
         <div class="FlgStack-root-need joy-pvvyl1">
-            <span role="link" style="cursor: pointer;" data-href="/post/${post.id}">
+            <span role="link" style="cursor: pointer;" data-href="/post/read?id=${post.id}">
                 <h3 class="joy-j4zrps">${post.title}</h3>
             </span>
-            <span role="link" style="cursor: pointer;" data-href="/post/${post.id}">
+            <span role="link" style="cursor: pointer;" data-href="/post/read?id=${post.id}">
                 <p class="joy-if6bzd">${post.content}</p>
             </span>
             <p class="joy-mf6g6b">
@@ -448,7 +448,7 @@ document.querySelectorAll(".load-more-btn-cheer").forEach(button => {
               role="link" style="cursor: pointer;"
               data-href="/cheer/${cheer.id}">
             <div class="FlgBox-root-need jk-feelog-div056">
-                <img src="/files/display?path=${cheer.thumbnailUrl}" alt="대표 이미지"
+                <img src="${cheer.thumbnailUrl ? `/files/display?path=${cheer.thumbnailUrl}` : '/images/channel_banner.png'}" alt="대표 이미지"
                      loading="lazy" decoding="async"
                      style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;" />
             </div>
@@ -507,11 +507,11 @@ document.querySelectorAll(".load-more-btn-channel").forEach(button => {
                     const el = document.createElement("div");
                     el.className = "FlgBox-root-need joy-c1ffoy";
                     el.innerHTML = `
-    <a href="/@${channel.channelUrl}" style="height: fit-content">
+    <a href="/feelog.com/@${channel.channelUrl}" style="height: fit-content">
         <div class="joy-1mszhh9">
             <div class="jk-feelog-div055">
                 <div class="FlgBox-root-need jk-feelog-div056">
-                    <img src="/files/display?path=${channel.thumbnailUrl}" alt="채널 대표 이미지"
+                    <img src="${channel.thumbnailUrl && channel.thumbnailUrl.trim() !== '' ? `/files/display?path=${channel.thumbnailUrl}` : '/images/channel_banner.png'}" alt="채널 대표 이미지"
                          style="position:absolute;height:100%;width:100%;inset:0;object-fit:cover;" />
                 </div>
             </div>
@@ -519,7 +519,7 @@ document.querySelectorAll(".load-more-btn-channel").forEach(button => {
         <div class="joy-18i1ml1">
             <div class="jk-feelog-div055">
                 <div class="FlgBox-root-need jk-feelog-div056">
-                    <img src="/files/display?path=${channel.thumbnailUrl}" alt="프로필 미리보기"
+                    <img src="${channel.thumbnailUrl && channel.thumbnailUrl.trim() !== '' ? `/files/display?path=${channel.thumbnailUrl}` : '/images/channel_banner.png'}" alt="프로필 미리보기"
                          style="position:absolute;height:100%;width:100%;inset:0;object-fit:cover;" />
                 </div>
             </div>
