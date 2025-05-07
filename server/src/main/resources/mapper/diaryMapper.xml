@@ -130,7 +130,7 @@
         where diary_open = '비공개'
           and member_id = #{memberId}
         order by id desc
-        limit #{offset}, #{rowCount}
+        limit #{postPagination.offset}, #{postPagination.rowCount}
     </select>
 
     <select id="selectDiaryCount" resultType="_int">

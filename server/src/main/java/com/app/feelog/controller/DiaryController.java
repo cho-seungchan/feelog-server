@@ -67,8 +67,12 @@ public class DiaryController {
     ;
 
     @GetMapping("/my-diary")
-    public void goToMyDiary() {
+    public String goToMyDiary() {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
+        if (loginMember == null) {
+            return "redirect:/login/login";
+        }
+        return "/diary/my-diary";
     }
 
     ;
@@ -87,6 +91,8 @@ public class DiaryController {
                 diary.setLiked(likeIdSet.contains(diary.getId()));
             });
         }
+
+        log.info("diaryPaginationDTO = {}", diaryPaginationDTO);
 
         return diaryPaginationDTO;
     }
