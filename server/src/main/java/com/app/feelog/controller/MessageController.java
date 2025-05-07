@@ -48,6 +48,10 @@ public class MessageController {
 
         Long receiveMessageId = insertMessageDTO.getId();
 
+        log.info("🔍 senderId: {}", senderId);
+        log.info("🔍 receiverId: {}", receiverId);
+        log.info("🔍 receiveMessageId: {}", receiveMessageId);
+
         if (!senderId.equals(receiverId)) {
             notificationService.sendReceiveMessageNotification(senderId, receiverId, receiveMessageId);
         }
