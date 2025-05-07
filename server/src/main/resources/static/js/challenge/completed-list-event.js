@@ -131,6 +131,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     // 완료 클릭 이벤트
 
+    // 2025.05.07  조승찬 :: 완료 일 때는 일기쓰기로 연결되도록 처리
+    document.querySelectorAll(".flog-a-8").forEach(task => {
+        task.addEventListener("click", e => {
+           if (e.target.closest(".flog-div-28").querySelector(".no-completed").style.display == 'none') {
+               // 일기 작성으로 연결
+               const challengeId = e.target.closest(".flog-div-28").querySelector(".completed-id").getAttribute('data-challengeid');
+               window.location.href = `/main/mind-log?challengeId=${challengeId}`;
+           } else {
+               // 완료 취소 상태를 누른 경우이므로 일기 작성이 안됨.
+               alert(" 챌린지를 완료해야 일기를 작성 할 수 있습니다.");
+               return;
+           }
+        });
+    });
+    // 2025.05.07  조승찬 :: 완료 일 때는 일기쓰기로 연결되도록 처리
+
+
     // 2025.04.21  조승찬 ::  페이징 처리
     document.querySelector(".pagination-container").addEventListener("click", function (e) {
         const pageLink = e.target.closest(".change-page"); // 가장 가까운 .change-page 요소 찾기
