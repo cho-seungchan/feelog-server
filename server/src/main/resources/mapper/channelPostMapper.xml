@@ -121,6 +121,7 @@
             p.id,
             p.post_title AS title,
             p.post_content AS content,
+            cp.post_type AS postType,
             m.member_nickname AS nickname,
             CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImage,
             cp.post_type AS postType,
@@ -139,6 +140,7 @@
                  LEFT JOIN tbl_channel_post_tag pt ON p.id = pt.channel_post_id
                  LEFT JOIN tbl_tag t ON pt.id = t.id AND t.tag_status = '정상'
         WHERE p.post_status = '정상'
+          AND cp.post_type = '포스트'
           AND (
             p.post_title LIKE CONCAT('%', #{keyword}, '%')
                 OR p.post_content LIKE CONCAT('%', #{keyword}, '%')
@@ -205,4 +207,112 @@
         set post_read_count = post_read_count + 1
         where id = #{id}
     </update>
+
+
+
+    <select id="searchChannelPostsCheer" resultType="com.app.feelog.domain.dto.ChannelPostSearchDTO">
+        SELECT
+            p.id,
+            p.post_title AS title,
+            p.post_content AS content,
+            cp.post_type AS postType,
+            m.member_nickname AS nickname,
+            CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImage,
+            cp.post_type AS postType,
+            CONCAT(cp.post_file_path, '/', cp.post_file_name) AS thumbnailUrl,
+            p.created_date AS createdDate,
+            (
+                SELECT GROUP_CONCAT(t.contents)
+                FROM tbl_channel_post_tag pt
+                         JOIN tbl_tag t ON pt.id = t.id
+                WHERE pt.channel_post_id = p.id
+                  AND t.tag_status = 'ACTIVE'
+            ) AS tags
+        FROM tbl_post p
+                 JOIN tbl_channel_post cp ON p.id = cp.id
+                 JOIN tbl_member m ON cp.member_id = m.id
+                 LEFT JOIN tbl_channel_post_tag pt ON p.id = pt.channel_post_id
+                 LEFT JOIN tbl_tag t ON pt.id = t.id AND t.tag_status = '정상'
+        WHERE p.post_status = '정상'
+          AND cp.post_type = '응원글'
+          AND (
+            p.post_title LIKE CONCAT('%', #{keyword}, '%')
+                OR p.post_content LIKE CONCAT('%', #{keyword}, '%')
+                OR t.contents LIKE CONCAT('%', #{keyword}, '%')
+            )
+        GROUP BY p.id, p.post_title, m.member_nickname, m.member_file_path, m.member_file_name, cp.post_file_path, cp.post_file_name, cp.post_type, p.created_date
+        ORDER BY p.created_date DESC
+        LIMIT 5
+    </select>
+
+    <select id="searchMoreChannelPosts" resultType="com.app.feelog.domain.dto.ChannelPostSearchDTO">
+        SELECT
+            p.id,
+            p.post_title AS title,
+            p.post_content AS content,
+            cp.post_type AS postType,
+            m.member_nickname AS nickname,
+            m.id AS memberId,
+            CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImage,
+            CONCAT(cp.post_file_path, '/', cp.post_file_name) AS thumbnailUrl,
+            p.created_date AS createdDate,
+            (
+                SELECT GROUP_CONCAT(t.contents)
+                FROM tbl_channel_post_tag pt
+                         JOIN tbl_tag t ON pt.id = t.id
+                WHERE pt.channel_post_id = p.id
+                  AND t.tag_status = 'ACTIVE'
+            ) AS tags
+        FROM tbl_post p
+                 JOIN tbl_channel_post cp ON p.id = cp.id
+                 JOIN tbl_member m ON cp.member_id = m.id
+                 LEFT JOIN tbl_channel_post_tag pt ON p.id = pt.channel_post_id
+                 LEFT JOIN tbl_tag t ON pt.id = t.id AND t.tag_status = 'ACTIVE'
+        WHERE p.post_status = '정상'
+          AND cp.post_type = '포스트'
+          AND (
+            p.post_title LIKE CONCAT('%', #{keyword}, '%')
+                OR p.post_content LIKE CONCAT('%', #{keyword}, '%')
+                OR t.contents LIKE CONCAT('%', #{keyword}, '%')
+            )
+        ORDER BY p.created_date DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="searchMoreChannelPostsCheer" resultType="com.app.feelog.domain.dto.ChannelPostSearchDTO">
+        SELECT
+            p.id,
+            p.post_title AS title,
+            p.post_content AS content,
+            cp.post_type AS postType,
+            m.member_nickname AS nickname,
+            m.id AS memberId,
+            CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImage,
+            CONCAT(cp.post_file_path, '/', cp.post_file_name) AS thumbnailUrl,
+            p.created_date AS createdDate,
+            (
+                SELECT GROUP_CONCAT(t.contents)
+                FROM tbl_channel_post_tag pt
+                         JOIN tbl_tag t ON pt.id = t.id
+                WHERE pt.channel_post_id = p.id
+                  AND t.tag_status = 'ACTIVE'
+            ) AS tags
+        FROM tbl_post p
+                 JOIN tbl_channel_post cp ON p.id = cp.id
+                 JOIN tbl_member m ON cp.member_id = m.id
+                 LEFT JOIN tbl_channel_post_tag pt ON p.id = pt.channel_post_id
+                 LEFT JOIN tbl_tag t ON pt.id = t.id AND t.tag_status = 'ACTIVE'
+        WHERE p.post_status = '정상'
+          AND cp.post_type = '응원글'
+          AND (
+            p.post_title LIKE CONCAT('%', #{keyword}, '%')
+                OR p.post_content LIKE CONCAT('%', #{keyword}, '%')
+                OR t.contents LIKE CONCAT('%', #{keyword}, '%')
+            )
+        ORDER BY p.created_date DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+
+
 </mapper>

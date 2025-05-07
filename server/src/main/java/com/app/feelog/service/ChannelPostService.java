@@ -22,6 +22,15 @@ public interface ChannelPostService {
 
     void deleteTags(List<Long> tagIds);
 
+    List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
+
+    List<ChannelPostSearchDTO> searchChannelPostsCheer(String keyword);
+
+    List<ChannelPostSearchDTO> searchMoreChannelPosts(String keyword, int limit, int offset);
+
+    List<ChannelPostSearchDTO> searchMoreChannelPostsCheer(String keyword, int limit, int offset);
+
+
     default ChannelPostDTO toDTO(ChannelPostVO vo) {
         ChannelPostDTO dto = new ChannelPostDTO();
         dto.setId(vo.getId());
@@ -78,7 +87,6 @@ public interface ChannelPostService {
 //    박정근 :: 전체조회
     ChannelPostListDTO getPostAll(PostPagination pagination);
 
-    List<ChannelPostSearchDTO> searchChannelPosts(String keyword);
 
     MainPostListDTO getCheerPost();
 

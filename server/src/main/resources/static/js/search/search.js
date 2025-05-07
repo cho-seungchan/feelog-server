@@ -326,7 +326,7 @@ document.querySelectorAll(".load-more-btn-diary").forEach(button => {
             <div class="FlgStack-root-need joy-1uop93y">
                 <a href="/profile/${diary.memberId}" class="joy-12vg8yv">
                     <div class="main-post-avatar joy-auxif9">
-                        <img src="/files/display?path=${diary.memberProfileImg}" alt="프로필 이미지" class="jk-feelog-img001" />
+                        <img src="${diary.memberProfileImg ? `/files/display?path=${diary.memberProfileImg}` : '/images/avatar_blank.png'}" alt="프로필 이미지" class="jk-feelog-img001" />
                     </div>
                 </a>
                 <div class="FlgStack-root-need joy-1n1ctis">

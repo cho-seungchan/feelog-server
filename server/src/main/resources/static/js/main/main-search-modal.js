@@ -58,7 +58,7 @@ function renderSlider(wrapperSelector, posts, type) {
 
         const imageUrl = post.thumbnailUrl
             ? `/files/display?path=${post.thumbnailUrl}`
-            : '/images/icon_kakao.png';
+            : '/images/channel_banner.png';
         const html = `
             <div class="slick-slide" style="width: 220px;">
               <div class="FlgBox-root-need joy-121vee3">
