@@ -6,21 +6,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const channelUrl = document.body.dataset.channelUrl;
     const viewerId = document.body.dataset.viewerId || '';
 
-    document.querySelector(".write-message-button").addEventListener("click", (e) => {
-        const messageContainer = document.querySelector(".message-listContainer");
-        const messageButtonImg = document.querySelector(".message-buttonImg");
-        const xButtonImg = document.querySelector(".x-buttonImg");
+    if (document.querySelector(".write-message-button")) {
+        document.querySelector(".write-message-button").addEventListener("click", (e) => {
+            const messageContainer = document.querySelector(".message-listContainer");
+            const messageButtonImg = document.querySelector(".message-buttonImg");
+            const xButtonImg = document.querySelector(".x-buttonImg");
 
-        messageContainer.innerHTML = ``;
+            messageContainer.innerHTML = ``;
 
-        const targetInfo = e.target.closest(".write-message-button");
-        const newDiv = document.createElement("div")
+            const targetInfo = e.target.closest(".write-message-button");
+            const newDiv = document.createElement("div")
 
-        newDiv.classList.add("diary_container_01");
+            newDiv.classList.add("diary_container_01");
 
-        const chatImg = targetInfo.dataset.img ? `/files/display?path=${targetInfo.getAttribute("data-img")}` : "/images/avatar_blank.png"
+            const chatImg = targetInfo.dataset.img ? `/files/display?path=${targetInfo.getAttribute("data-img")}` : "/images/avatar_blank.png"
 
-        newDiv.innerHTML = `
+            newDiv.innerHTML = `
                 <div role="dialog" aria-modal="true" aria-labelledby=":r4j:" aria-describedby=":r4k:" data-google-interstitial="false" tabindex="-1" class="MuiModalDialog-root MuiModalDialog-variantOutlined MuiModalDialog-colorNeutral MuiModalDialog-sizeMd MuiModalDialog-layoutAdaptive joy-l3kvea">
                     <div class="joy-h3xwdq" data-first-child="">
                         <div class="joy-1r5to7m">
@@ -64,14 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>                        
             `;
-        messageContainer.appendChild(newDiv);
+            messageContainer.appendChild(newDiv);
 
-        messageContainer.classList.remove("message-listHidden");
-        messageButtonImg.classList.remove("view-messageImg");
-        messageButtonImg.classList.add("hidden-messageImg");
-        xButtonImg.classList.remove("hidden-xImg");
-        xButtonImg.classList.add("view-xImg");
-    })
+            messageContainer.classList.remove("message-listHidden");
+            messageButtonImg.classList.remove("view-messageImg");
+            messageButtonImg.classList.add("hidden-messageImg");
+            xButtonImg.classList.remove("hidden-xImg");
+            xButtonImg.classList.add("view-xImg");
+        })
+    }
 
     loadSlider({
         sectionId: 'diary-slider-section',
