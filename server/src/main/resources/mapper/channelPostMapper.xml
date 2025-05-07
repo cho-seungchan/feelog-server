@@ -9,7 +9,6 @@
         post_type,
         post_file_path,
         post_file_name,
-        post_file_size,
         member_id,
         channel_id
         )
@@ -18,7 +17,6 @@
         #{postType},
         #{postFilePath},
         #{postFileName},
-        #{postFileSize},
         #{memberId},
         #{channelId}
         )
@@ -31,7 +29,6 @@
             post_type,
             post_file_path,
             post_file_name,
-            post_file_size,
             member_id,
             channel_id
         FROM tbl_channel_post
@@ -45,7 +42,6 @@
             post_type = #{postType},
             post_file_path = #{postFilePath},
             post_file_name = #{postFileName},
-            post_file_size = #{postFileSize},
             member_id = #{memberId},
             channel_id = #{channelId}
         where id = #{id}
