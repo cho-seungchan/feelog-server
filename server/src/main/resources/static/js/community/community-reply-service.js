@@ -32,6 +32,7 @@ function inputFileUploadOne(formData){
             throw error;
         });
 }
+
 // 데이타 상세 조회
 function communityPostRead(postId, currentChannelUrl) {
     return fetch(`/feelog.com/@${currentChannelUrl}/community/${postId}`, {
@@ -250,3 +251,40 @@ function cancelCommunityPostReplyReport(replyId, currentChannelUrl) {
         });
 }
 
+
+// 2025.05.02 조승찬 :: 댓글  비속어 포함여부 확인
+async function replyCheck(content) {
+    try {
+        const response = await fetch("http://localhost:8000/api/reply-check", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ content })
+        });
+
+        if (!response.ok) { // 서버 응답 코드가 200~299가 아닐 경우 처리
+            throw new Error("서버 응답 오류");
+        }
+
+        const data = await response.json();
+        return data.isBadWord; // 정상 응답일 경우 값 반환
+    } catch (error) {
+        console.error("🚨 서버 연결 실패! 기본값(true) 반환.");
+        return false; // 서버가 작동하지 않으면 댓글 내용에 상관없이 등록되도록 처리
+    }
+}
+
+// 폼 제출 로직
+async function handleSubmit(content, form) {
+
+    const isBadWord = await replyCheck(content);
+
+    if (isBadWord) {
+        alert("🚨 부적절한 표현이 감지되었습니다! 제출할 수 없습니다.");
+        return; // 여기서 중단 (form.submit() 실행 안 됨)
+    }
+
+    form.submit(); // isBadWord가 false일 때만 실행
+}
+// 2025.05.02 조승찬 :: 댓글  비속어 포함여부 확인

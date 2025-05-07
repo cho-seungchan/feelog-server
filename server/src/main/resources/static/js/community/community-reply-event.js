@@ -535,13 +535,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (document.querySelector(".uploadFile-container2").querySelector(".uploadFile"))  {
                 // 첨부 파일을 input 태그에 저장
                 const filePath = document.querySelector(".uploadFile-container2").querySelector(".uploadFile").getAttribute("data-file-path");
-                pathInput = document.createElement('input');
+                let pathInput = document.createElement('input');
                 pathInput.setAttribute('type', 'hidden');
                 pathInput.setAttribute('name', 'replyFilePath');
                 pathInput.setAttribute('value', filePath); // 바로 설정
                 form.appendChild(pathInput);
                 const fileName = document.querySelector(".uploadFile-container2").querySelector(".uploadFile").getAttribute("data-file-name");
-                nameInput = document.createElement('input');
+                let nameInput = document.createElement('input');
                 nameInput.setAttribute('type', 'hidden');
                 nameInput.setAttribute('name', 'replyFileName');
                 nameInput.setAttribute('value', fileName); // 바로 설정
@@ -549,8 +549,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-            // 서버 전송
-            form.submit();
+            // 댓글 확인 후 서버 전송
+            // form.submit();
+            const content = document.querySelector(".flog-textarea-6").value;
+            handleSubmit(content, form);
         }
 
 

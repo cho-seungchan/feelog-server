@@ -10,3 +10,4 @@ create table tbl_receive_message(
     constraint fk_receive_message_sender foreign key (sender_id)
         references tbl_member(id)
 );
+

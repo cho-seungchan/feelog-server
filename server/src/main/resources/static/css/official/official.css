@@ -925,7 +925,7 @@ body {
     -ms-flex-direction: column;
     flex-direction: column;
     width: 100%;
-    max-width: 600px;
+    max-width: 680px;
     overflow: hidden;
 }
 
