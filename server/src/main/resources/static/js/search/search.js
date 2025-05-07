@@ -532,7 +532,13 @@ document.querySelectorAll(".load-more-btn-channel").forEach(button => {
         <div class="joy-1mszhh9">
             <div class="jk-feelog-div055">
                 <div class="FlgBox-root-need jk-feelog-div056">
-                    <img src="${channel.thumbnailUrl && channel.thumbnailUrl.trim() !== '' ? `/files/display?path=${channel.thumbnailUrl}` : '/images/channel_banner.png'}" alt="채널 대표 이미지"
+                    <img src="${(channel.thumbnailUrl
+                        && channel.thumbnailUrl.trim() !== ""
+                        && channel.thumbnailUrl !== "/"
+                        && channel.thumbnailUrl !== "null"
+                        && channel.thumbnailUrl !== null)
+                        ? `/files/display?path=${channel.thumbnailUrl.trim()}`
+                        : '/images/channel_banner.png'}" alt="채널 대표 이미지"
                          style="position:absolute;height:100%;width:100%;inset:0;object-fit:cover;" />
                 </div>
             </div>
@@ -540,7 +546,14 @@ document.querySelectorAll(".load-more-btn-channel").forEach(button => {
         <div class="joy-18i1ml1">
             <div class="jk-feelog-div055">
                 <div class="FlgBox-root-need jk-feelog-div056">
-                    <img src="${channel.thumbnailUrl && channel.thumbnailUrl.trim() !== '' ? `/files/display?path=${channel.thumbnailUrl}` : '/images/channel_banner.png'}" alt="프로필 미리보기"
+                    <img src="${(channel.thumbnailUrl
+                        && channel.thumbnailUrl.trim() !== ""
+                        && channel.thumbnailUrl !== "/"
+                        && channel.thumbnailUrl !== "null"
+                        && channel.thumbnailUrl !== null)
+                        ? `/files/display?path=${channel.thumbnailUrl.trim()}`
+                        : '/images/channel_banner.png'}"
+                    alt="프로필 미리보기"
                          style="position:absolute;height:100%;width:100%;inset:0;object-fit:cover;" />
                 </div>
             </div>

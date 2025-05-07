@@ -51,6 +51,8 @@ public class MessageServiceImpl implements MessageService {
         MessageVO messageVO = messageDTO.toVO();
         messageDAO.saveSuperMessage(messageVO);
 
+        Long generatedId = messageVO.getId();
+
         receiveMessageDTO.setId(messageVO.getId());
         receiveMessageDTO.setMemberId(insertMessageDTO.getParticipantId());
         receiveMessageDTO.setSenderId(insertMessageDTO.getMemberId());
@@ -61,6 +63,8 @@ public class MessageServiceImpl implements MessageService {
         sendMessageDTO.setMemberId(insertMessageDTO.getMemberId());
 
         messageDAO.saveSendMessage(sendMessageDTO.toVO());
+
+        insertMessageDTO.setId(generatedId);
     }
 
     @Override
