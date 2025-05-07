@@ -258,6 +258,10 @@
         </div>
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/myPage/read-channel-event.js"></script>
     <script src="/js/myPage/read-channel-service.js"></script>
     <script src="/js/myPage/read-channel-layout.js"></script>

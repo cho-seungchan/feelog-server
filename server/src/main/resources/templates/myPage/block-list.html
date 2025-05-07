@@ -306,6 +306,10 @@
             <div tabindex="0" data-testid="sentinelEnd"></div>
         </div>
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/myPage/block-list-event.js"></script>
     <script src="/js/main/main-modal.js"></script>
 </html>

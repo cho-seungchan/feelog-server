@@ -164,6 +164,10 @@
                 th:replace="~{main/footer.html :: #main-footer}"></footer>
         <!-- footer 넣을 곳 -->
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/myPage/notify-community-list-event.js"></script>
     <script src="/js/main/main-modal.js"></script>
     <script src="/js/main/notification.js"></script>

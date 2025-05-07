@@ -263,6 +263,10 @@
         <!-- 서버에 갔다온 뒤에 뿌려질 알람창  -->
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/myPage/storage-reply-event.js"></script>
     <script src="/js/main/main-modal.js"></script>
     <script src="/js/main/notification.js"></script>

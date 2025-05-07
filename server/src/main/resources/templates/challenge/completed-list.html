@@ -223,6 +223,10 @@
             <!-- footer 넣을 곳 -->
         </div>
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/challenge/completed-list-event.js"></script>
     <script src="/js/challenge/completed-list-service.js"></script>
     <script src="/js/challenge/completed-list-layout.js"></script>

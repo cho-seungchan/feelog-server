@@ -226,6 +226,10 @@
                     th:replace="~{main/footer.html :: #main-footer}"></footer>
             <!-- footer 넣을 곳 -->
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/challenge/challenging-list-event.js"></script>
     <script src="/js/challenge/challenging-list-service.js"></script>
     <script src="/js/challenge/challenging-list-layout.js"></script>

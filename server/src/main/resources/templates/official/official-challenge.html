@@ -381,4 +381,8 @@
             </div>
         </section>
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
 </html>
