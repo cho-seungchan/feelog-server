@@ -14,30 +14,34 @@ reportDiv.id = "report-button";
 
 let text = ``;
 
-moreButton.addEventListener("click", async(e) => {
+moreButton.addEventListener("click", async (e) => {
     const randomPostWrap = document.querySelector(".recommend_post_wrap_01");
     randomPostWrap.innerHTML = ``;
     await diaryService.getRandomDiaryList(diaryLayout.showRandomDiary)
 })
 
 document.body.addEventListener("click", async (e) => {
-    if(e.target.closest(".menu-button")){
+    if (e.target.closest(".menu-button")) {
         const existingDiv = document.querySelector("#report-button");
 
         if (existingDiv) {
             existingDiv.remove();
         } else {
-            if(e.target.closest(".post-button")){
+            if (e.target.closest(".post-button")) {
                 const postId = e.target.closest(".post-button").getAttribute("data-index")
+                const memberId = e.target.closest(".post-button").getAttribute("data-memberId")
 
                 text = `
                 <ul role="menu" tabindex="-1" id=":r2l:" class="base-Popper-root MuiMenu-root Mui-expanded MuiMenu-variantPlain MuiMenu-colorNeutral MuiMenu-sizeMd joy-oqjr4q" style="" data-popper-placement="bottom-start">
+                <button id=${postId} class="MuiMenuItem-root MuiMenuItem-colorNeutral MuiMenuItem-variantPlain joy-1nwwb6p edit-button" data-memberId="${memberId}">
+                        <p class=" button_text_01">수정하기</p>
+                    </button>
                     <button id=${postId} class="MuiMenuItem-root MuiMenuItem-colorNeutral MuiMenuItem-variantPlain joy-1nwwb6p report-button report-post">
                         <p class=" button_text_01">신고하기</p>
                     </button>
                 </ul>
             `;
-            }else {
+            } else {
                 const replyId = e.target.closest(".reply-button").getAttribute("data-index");
 
                 text = `
@@ -62,55 +66,72 @@ document.body.addEventListener("click", async (e) => {
         }
     }
 
-    if(e.target.closest(".report-button")){
+    if (e.target.closest(".edit-button")) {
+        const editPostId = e.target.closest(".edit-button").id;
+        const memberId = e.target.closest(".edit-button").getAttribute("data-memberId")
+
+        if (loginMember == null) {
+            alert("로그인 후 이용해주세요")
+            window.location.href = "/login/login"
+        }
+
+        if (Number(memberId) != Number(loginMember.id)) {
+            alert("작성자만 가능합니다.")
+            return;
+        }
+
+        window.location.href = `/main/mind-log/edit/${editPostId}`;
+    }
+
+    if (e.target.closest(".report-button")) {
         if (!loginMember) {
             alert("로그인 후 이용해주세요");
             window.location.href = "/login/login";
             return;
         }
-        if(e.target.closest(".report-post")){
+        if (e.target.closest(".report-post")) {
             const reportListData = await diaryService.getDiaryReportIds();
             const reportDiaryId = e.target.closest(".report-post").id;
             const duplicationId = reportListData.includes(Number(reportDiaryId));
 
-            if(!duplicationId){
+            if (!duplicationId) {
                 console.log("들어옴")
-                if(confirm("이 게시글을 신고하시겠습니까?")){
+                if (confirm("이 게시글을 신고하시겠습니까?")) {
                     await reportService.addDiaryReport({
-                        memberId:loginMember.id,
-                        diaryId:reportDiaryId
+                        memberId: loginMember.id,
+                        diaryId: reportDiaryId
                     })
                 }
-            }else{
+            } else {
                 alert("이미 신고된 게시글입니다.")
             }
         }
 
-        if(e.target.closest(".report-reply")){
+        if (e.target.closest(".report-reply")) {
             console.log("들어옴")
             const diaryReplyReportList = await reportService.getDiaryReplyReportList();
             const diaryReplyReportIds = diaryReplyReportList.map(report => report.replyId)
             const targetId = e.target.closest(".report-reply").id;
             const duplicationId = diaryReplyReportIds.includes(Number(targetId))
 
-            if(!duplicationId){
-                if(confirm("이 댓글을 신고하시겠습니까?")){
-                        await reportService.addDiaryReplyReport({
-                            replyId:targetId,
-                            memberId:loginMember.id
-                        })
-                        alert("신고완료")
-                    }
-                }else{
+            if (!duplicationId) {
+                if (confirm("이 댓글을 신고하시겠습니까?")) {
+                    await reportService.addDiaryReplyReport({
+                        replyId: targetId,
+                        memberId: loginMember.id
+                    })
+                    alert("신고완료")
+                }
+            } else {
                 alert("이미 신고된 댓글입니다.")
             }
-            }
         }
+    }
 })
 
 const writeReplyButton = document.querySelector(".uploadButton_css_01");
 
-if(addImg){
+if (addImg) {
     addImg.addEventListener("change", (e) => {
         console.log(e.target.files)
         const files = e.target.files[0]; // FileList 객체
@@ -121,15 +142,15 @@ if(addImg){
         inputFileUpload(formData);
     })
 
-    addImg.addEventListener("click",  (e) => {
-        if(e.target.closest(".joy-vbxkza")){
+    addImg.addEventListener("click", (e) => {
+        if (e.target.closest(".joy-vbxkza")) {
             e.target.closest(".joy-jj02o9").remove();
             return;
         }
     })
 }
 
-if(writeReplyButton){
+if (writeReplyButton) {
     writeReplyButton.addEventListener("click", async (e) => {
         const replyCountText = document.querySelector(".reply-count-button").querySelector("p");
         const replyContent = document.querySelector(".textareaInput_02");
@@ -137,24 +158,24 @@ if(writeReplyButton){
         const uploadFile = e.target.closest(".upload_buttonContainer_02").querySelector(".upload-file");
         let replyCount = diaryInfo.replyCount;
 
-        if(uploadFile){
+        if (uploadFile) {
             const filePath = uploadFile.getAttribute("data-file-path")
             const fileName = uploadFile.getAttribute("data-file-name")
 
             await replyService.insertDiaryReply({
-                diaryId:diaryInfo.id,
-                memberId:loginMember.id,
-                replyContent:replyContent.value,
-                replyFilePath:filePath,
-                replyFileName:fileName,
-                diaryMemberId:diaryInfo.memberId
+                diaryId: diaryInfo.id,
+                memberId: loginMember.id,
+                replyContent: replyContent.value,
+                replyFilePath: filePath,
+                replyFileName: fileName,
+                diaryMemberId: diaryInfo.memberId
             })
-        }else {
+        } else {
             await replyService.insertDiaryReply({
-                diaryId:diaryInfo.id,
-                memberId:loginMember.id,
-                replyContent:replyContent.value,
-                diaryMemberId:diaryInfo.memberId
+                diaryId: diaryInfo.id,
+                memberId: loginMember.id,
+                replyContent: replyContent.value,
+                diaryMemberId: diaryInfo.memberId
             })
         }
         alert("댓글이 등록됐습니다.")
@@ -163,7 +184,7 @@ if(writeReplyButton){
         replyWrap.innerHTML = "";
         replyContent.value = "";
 
-        if(addImg.querySelector(".joy-jj02o9")){
+        if (addImg.querySelector(".joy-jj02o9")) {
             addImg.querySelector(".joy-jj02o9").remove();
         }
 
@@ -172,14 +193,11 @@ if(writeReplyButton){
 }
 
 
-
-
-
-if(document.querySelector(".image-wrap-reply")){
-    document.querySelector(".image-wrap-reply").addEventListener("click",(e) => {
+if (document.querySelector(".image-wrap-reply")) {
+    document.querySelector(".image-wrap-reply").addEventListener("click", (e) => {
         const imgWrap = addImg.querySelector(".upload-file");
         console.log(imgWrap)
-        if(imgWrap){
+        if (imgWrap) {
             alert("이미지는 하나만 가능합니다.")
             e.stopPropagation();
             e.preventDefault();
@@ -190,7 +208,7 @@ if(document.querySelector(".image-wrap-reply")){
 
 
 replyContainer.addEventListener("click", async (e) => {
-    if(e.target.closest(".like_button")) {
+    if (e.target.closest(".like_button")) {
         if (!loginMember) {
             alert("로그인 후 이용해주세요");
             window.location.href = "/login/login";
@@ -211,7 +229,7 @@ replyContainer.addEventListener("click", async (e) => {
 })
 
 footerButtons.addEventListener("click", async (e) => {
-    if(e.target.closest(".like-post-button")){
+    if (e.target.closest(".like-post-button")) {
         if (!loginMember) {
             alert("로그인 후 이용해주세요");
             window.location.href = "/login/login";
@@ -223,14 +241,14 @@ footerButtons.addEventListener("click", async (e) => {
         const diaryId = e.target.closest(".like-post-button").getAttribute("data-index");
         const memberId = loginMember.id
         await diaryService.addOrDeleteDiaryLike({
-            diaryId:diaryId,
-            memberId:memberId
+            diaryId: diaryId,
+            memberId: memberId
         })
 
         // 좋아요추가
-        if(!diaryInfo.liked){
+        if (!diaryInfo.liked) {
             diaryInfo.liked = true;
-            diaryInfo.diaryLikeCount +=1
+            diaryInfo.diaryLikeCount += 1
 
             likeSvg.classList.remove("like_svg_01");
             likeSvg.classList.add("joy-fkbdob");
@@ -239,10 +257,10 @@ footerButtons.addEventListener("click", async (e) => {
             `;
             likeCount.innerText = diaryInfo.diaryLikeCount
 
-        }else{
+        } else {
             // 좋아요취소
             diaryInfo.liked = false
-            diaryInfo.diaryLikeCount -=1
+            diaryInfo.diaryLikeCount -= 1
 
             likeSvg.classList.remove("joy-fkbdob");
             likeSvg.classList.add("like_svg_01");
