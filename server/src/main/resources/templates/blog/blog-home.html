@@ -351,7 +351,6 @@
                                             설정
                                         </button>
                                     </a>
-
                                     <!-- 남의 채널이면 "구독 / 구독 취소" -->
                                     <button th:if="${!isOwner}"
                                             class="FlgButton-sizeMd-need jk-feelog-btn019 subscribe-btn"
@@ -359,6 +358,9 @@
                                             th:data-channel-id="${channelInfo.channelId}"
                                             th:text="${isSubscribed} ? '구독 취소' : '구독'">
                                     </button>
+                                    <div class="FlgStack-root-need jk-feelog-div083" th:if="${!isOwner}">
+                                        <button th:id="${channelInfo.memberId}" class="FlgButton-sizeMd-need jk-feelog-btn019 write-message-button" type="button" data-channel-id="1" th:data-member-id="${channelInfo.memberId}" th:data-url="${channelInfo.channelUrl}" th:data-name="${channelInfo.memberNickname}">메세지</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="FlgStack-root-need jk-feelog-div084">
@@ -11854,8 +11856,6 @@
                                         </div>
                                     </div>
                                 </section>
-
-
                             </article>
                         </main>
                     </div>

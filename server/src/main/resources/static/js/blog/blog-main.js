@@ -6,6 +6,73 @@ document.addEventListener('DOMContentLoaded', () => {
     const channelUrl = document.body.dataset.channelUrl;
     const viewerId = document.body.dataset.viewerId || '';
 
+    document.querySelector(".write-message-button").addEventListener("click", (e) => {
+        const messageContainer = document.querySelector(".message-listContainer");
+        const messageButtonImg = document.querySelector(".message-buttonImg");
+        const xButtonImg = document.querySelector(".x-buttonImg");
+
+        messageContainer.innerHTML = ``;
+
+        const targetInfo = e.target.closest(".write-message-button");
+        const newDiv = document.createElement("div")
+
+        newDiv.classList.add("diary_container_01");
+
+        const chatImg = targetInfo.dataset.img ? `/files/display?path=${targetInfo.getAttribute("data-img")}` : "/images/avatar_blank.png"
+
+        newDiv.innerHTML = `
+                <div role="dialog" aria-modal="true" aria-labelledby=":r4j:" aria-describedby=":r4k:" data-google-interstitial="false" tabindex="-1" class="MuiModalDialog-root MuiModalDialog-variantOutlined MuiModalDialog-colorNeutral MuiModalDialog-sizeMd MuiModalDialog-layoutAdaptive joy-l3kvea">
+                    <div class="joy-h3xwdq" data-first-child="">
+                        <div class="joy-1r5to7m">
+                            <a class="joy-uv29nh" href="/feelog.com/@${targetInfo.getAttribute("data-url")}/community">
+                                <div class="imgWrap_05">
+                                    <img alt="" src=${chatImg} loading="lazy" class="aTag_divImg_01">
+                                </div>
+                            </a>
+                            <p class="title_h5_01">${targetInfo.getAttribute("data-name")}</p>
+                        </div>
+                        <div class="joy-1j6tmez">
+                            <button tabindex="0" aria-haspopup="menu" aria-expanded="false" aria-controls=":r4l:" class="MuiIconButton-sizeMd joy-14llzfj" type="button" data-index=${targetInfo.id}>
+                                <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="menuButton_svg_01">
+                                    <path d="M20.125 12a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm-6.25 0a1.875 1.875 0 1 1-3.751 0 1.875 1.875 0 0 1 3.751 0ZM5.75 13.875a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75Z" fill="currentcolor"></path>
+                                </svg>
+                            </button>
+                            <button class="MuiModalClose-root MuiModalClose-variantPlain MuiModalClose-colorNeutral MuiModalClose-sizeMd joy-oklso3" type="button">
+                                <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CloseIcon" class="joy-c6bb0f">
+                                    <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <hr class="MuiDivider-insetContext joy-12udg69">
+                    <div class="joy-uabdzs">
+                        <div class="joy-1fptnyw">
+                        </div>
+                    </div>
+                    <hr class="MuiDivider-insetContext joy-12udg69">
+                    <div class="joy-1m2yi2j">
+                        <div class="joy-spcbp9">
+                            <textarea rows="1" placeholder="메시지를 입력하세요." class="textareaInput_01 textareaInput_02" style="height: 28px; overflow-y: auto;"></textarea>
+                            <div class="upload_buttonContainer_01 joy-18i8jzi">
+                                <button class="button_disabled_01 MuiIconButton-variantSolid MuiIconButton-colorPrimary MuiIconButton-sizeMd joy-ut6eac" type="button" data-index=${targetInfo.id}>
+                                    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="menuButton_svg_01">
+                                        <path d="M12.682 3.54a.949.949 0 0 0-.68-.29c-.258 0-.5.105-.68.29L4.76 10.413a.937.937 0 0 0 1.355 1.293l4.95-5.18v13.286c0 .519.418.937.937.937.52 0 .938-.418.938-.938V6.527l4.945 5.184a.938.938 0 0 0 1.355-1.293l-6.562-6.875.004-.004Z" fill="currentcolor"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                        
+            `;
+        messageContainer.appendChild(newDiv);
+
+        messageContainer.classList.remove("message-listHidden");
+        messageButtonImg.classList.remove("view-messageImg");
+        messageButtonImg.classList.add("hidden-messageImg");
+        xButtonImg.classList.remove("hidden-xImg");
+        xButtonImg.classList.add("view-xImg");
+    })
+
     loadSlider({
         sectionId: 'diary-slider-section',
         wrapperClass: 'diary-section-wrapper',
@@ -34,8 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-    // 섹션 제거용
-function loadSlider({ sectionId, wrapperClass, nextBtnId, prevBtnId, api, linkPrefix }) {
+// 섹션 제거용
+function loadSlider({sectionId, wrapperClass, nextBtnId, prevBtnId, api, linkPrefix}) {
     const section = document.getElementById(sectionId);
     const wrapper = document.querySelector(`.${wrapperClass}`);
     const track = section?.querySelector('.slick-track');
@@ -74,11 +141,11 @@ function loadSlider({ sectionId, wrapperClass, nextBtnId, prevBtnId, api, linkPr
         });
 
     document.getElementById(nextBtnId)?.addEventListener('click', () => {
-        track.scrollBy({ left: 368, behavior: 'smooth' });
+        track.scrollBy({left: 368, behavior: 'smooth'});
     });
 
     document.getElementById(prevBtnId)?.addEventListener('click', () => {
-        track.scrollBy({ left: -368, behavior: 'smooth' });
+        track.scrollBy({left: -368, behavior: 'smooth'});
     });
 }
 
@@ -168,4 +235,5 @@ function renderSlideHtml(item, urlPrefix) {
       </div>
     </div>
     `;
+
 }
