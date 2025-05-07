@@ -37,7 +37,7 @@ public interface DiaryMapper {
                                      @Param("viewerId") Long viewerId);
 
     //    박정근 :: 다이어리 페이지네이션
-    public List<DiaryJoinDTO> selectDiaryListPagination(PostPagination postPagination);
+    public List<DiaryJoinDTO> selectDiaryListPagination(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId);
 
     public List<DiaryJoinDTO> selectDiaryListPaginationAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId);
 

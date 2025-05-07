@@ -1,21 +1,21 @@
 const diaryService = (() => {
-    const getDiaryList = async (callback,page=1) => {
-        const response = await fetch(`/diary/diaryListClose?page=${page}`)
+    const getDiaryList = async (callback, page = 1, memberId = Number(loginMember.id)) => {
+        const response = await fetch(`/diary/diaryListClose?page=${page}&memberId=${memberId}`)
         const diaryListData = await response.json()
-        if(callback){
+        if (callback) {
             callback(diaryListData)
         }
     }
 
-    const getDiaryReportIds = async (memberId=Number(loginMember.id)) => {
+    const getDiaryReportIds = async (memberId = Number(loginMember.id)) => {
         const response = await fetch(`/diary/diaryReportIds?memberId=${memberId}`)
         return await response.json()
     }
 
-    const getDiaryListALlAndSubscribe = async (callback,page=1) => {
+    const getDiaryListALlAndSubscribe = async (callback, page = 1) => {
         const response = await fetch(`/diary/diaryListAllAndSubscribe?page=${page}`)
         const diaryListData = await response.json()
-        if(callback){
+        if (callback) {
             callback(diaryListData)
         }
     }
@@ -23,7 +23,7 @@ const diaryService = (() => {
     const getRandomDiaryList = async (callback) => {
         const response = await fetch("/diary/randomDiaryList")
         const randomDiaryListData = await response.json()
-        if (callback){
+        if (callback) {
             callback(randomDiaryListData)
         }
     }
@@ -39,11 +39,11 @@ const diaryService = (() => {
         });
     }
 
-    return{
-        getDiaryList:getDiaryList,
-        getDiaryReportIds:getDiaryReportIds,
-        getDiaryListALlAndSubscribe:getDiaryListALlAndSubscribe,
-        getRandomDiaryList:getRandomDiaryList,
-        addOrDeleteDiaryLike:addOrDeleteDiaryLike
+    return {
+        getDiaryList: getDiaryList,
+        getDiaryReportIds: getDiaryReportIds,
+        getDiaryListALlAndSubscribe: getDiaryListALlAndSubscribe,
+        getRandomDiaryList: getRandomDiaryList,
+        addOrDeleteDiaryLike: addOrDeleteDiaryLike
     }
 })()

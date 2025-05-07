@@ -34,7 +34,7 @@ const indexLayout = (() => {
                 post.tagList.forEach((tag) => {
                     const aTag = document.createElement("a");
                     aTag.classList.add("MuiChip-root", "MuiChip-colorNeutral", "MuiChip-sizeMd", "MuiChip-variantSoft", "joy-7upex7")
-                    aTag.href = "";
+                    aTag.href = `/search/search?keyword=${tag.tagContent}`;
                     aTag.innerHTML = `
                         <span class="MuiChip-label MuiChip-labelMd joy-tymi7a" id=":r15:">${tag.tagContent}</span>
                     `;
@@ -267,7 +267,7 @@ const indexLayout = (() => {
             post.tagList.forEach((tag) => {
                 const aTag = document.createElement("a");
                 aTag.classList.add("MuiChip-root", "MuiChip-colorNeutral", "MuiChip-sizeMd", "MuiChip-variantSoft", "joy-7upex7")
-                aTag.href = "";
+                aTag.href = `/search/search?keyword=${tag.tagContent}`;
                 aTag.innerHTML = `
                         <span class="MuiChip-label MuiChip-labelMd joy-tymi7a" id=":r15:">${tag.tagContent}</span>
                     `;
@@ -481,7 +481,7 @@ const indexLayout = (() => {
                 <div class="joy-cboudr">
                     <div class="joy-loaz0u">
                         <div class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeXs2 joy-1fpbmdi">
-                            <img alt="이용자 포스타입" src="/images/avatar_blank.png" loading="lazy" class="MuiAvatar-img aTag_divImg_01">
+                            <img alt="이용자 포스타입" src="/images/channel_banner.png" loading="lazy" class="MuiAvatar-img aTag_divImg_01">
                         </div>
                         <a href="/notice/notice" class="MuiLink-root MuiLink-colorPrimary MuiLink-body-md MuiLink-underlineNone joy-151y3tr"><span class="MuiTypography-root MuiTypography-title-sm joy-ixn4cl">필로그</span></a>
                     </div>
@@ -496,18 +496,18 @@ const indexLayout = (() => {
             </div>
             `;
 
-            const defaultImg = "/images/avatar_blank.png"
+            const defaultImg = "/images/channel_notice.png"
             const imgWrap = newArticle.querySelector(".joy-1h16");
             let noticeImg = null;
 
             if (notice.noticeFileName != null) {
                 noticeImg = encodeURIComponent(`${notice.noticeFilePath}/${notice.noticeFileName}`);
                 imgWrap.innerHTML = `
-                    <img class="MuiBox-root joy-0" src="/files/display?path=${noticeImg}" alt="포스트 3월 수익에 관한 가상 출금 정보 제공 안내" data-first-child="">
+                    <img class="MuiBox-root joy-0" src="/files/display?path=${noticeImg}" alt="" data-first-child="">
                 `;
             } else {
                 imgWrap.innerHTML = `
-                    <img class="MuiBox-root joy-0" src=${defaultImg} alt="포스트 3월 수익에 관한 가상 출금 정보 제공 안내" data-first-child="">
+                    <img class="MuiBox-root joy-0" src=${defaultImg} alt="" data-first-child="">
                 `;
             }
 

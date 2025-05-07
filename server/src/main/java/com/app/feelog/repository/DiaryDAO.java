@@ -18,7 +18,7 @@ import java.util.Optional;
 public class DiaryDAO {
     private final DiaryMapper diaryMapper;
 
-    public void save(DiaryVO diaryVO){
+    public void save(DiaryVO diaryVO) {
         diaryMapper.insert(diaryVO);
     }
 
@@ -38,8 +38,8 @@ public class DiaryDAO {
         return diaryMapper.getRecentDiaries();
     }
 
-    public List<DiarySearchDTO> searchMoreDiaries(String keyword, int limit, int offset){
-        return diaryMapper.searchMoreDiaries(keyword,limit,offset);
+    public List<DiarySearchDTO> searchMoreDiaries(String keyword, int limit, int offset) {
+        return diaryMapper.searchMoreDiaries(keyword, limit, offset);
     }
 
 
@@ -49,49 +49,71 @@ public class DiaryDAO {
 
 
     //    박정근 :: 다이어리 페이지네이션
-    public List<DiaryJoinDTO> findDiaryListPagination(PostPagination postPagination){
-        return diaryMapper.selectDiaryListPagination(postPagination);
-    };
+    public List<DiaryJoinDTO> findDiaryListPagination(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId) {
+        return diaryMapper.selectDiaryListPagination(postPagination, memberId);
+    }
 
-    public int selectDiaryCount(){
+    ;
+
+    public int selectDiaryCount() {
         return diaryMapper.selectDiaryCount();
-    };
+    }
+
+    ;
 
     public int selectDiaryCountAllAndSubscribe(Long memberId) {
         return diaryMapper.selectDiaryCountAllAndSubscribe(memberId);
-    };
+    }
 
-    public List<DiaryJoinDTO> findDiaryListPaginationAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId")Long memberId){
+    ;
+
+    public List<DiaryJoinDTO> findDiaryListPaginationAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId) {
         return diaryMapper.selectDiaryListPaginationAllAndSubscribe(postPagination, memberId);
-    };
+    }
 
-    public List<DiaryJoinDTO> findDiaryListPaginationAll(PostPagination postPagination){
+    ;
+
+    public List<DiaryJoinDTO> findDiaryListPaginationAll(PostPagination postPagination) {
         return diaryMapper.selectDiaryListPaginationAll(postPagination);
-    };
+    }
 
-    public int findDiaryCountAll(){
+    ;
+
+    public int findDiaryCountAll() {
         return diaryMapper.selectDiaryCountAll();
-    };
+    }
+
+    ;
 
     //    박정근 :: 다이어리 상세보기
-    public DiaryDetailDTO findDiaryDetailByDiaryId(Long diaryId){
+    public DiaryDetailDTO findDiaryDetailByDiaryId(Long diaryId) {
         return diaryMapper.selectDiaryDetailByDiaryId(diaryId);
-    };
+    }
 
-    public List<DiaryJoinDTO> findRandomDiary(){
+    ;
+
+    public List<DiaryJoinDTO> findRandomDiary() {
         return diaryMapper.selectRandomDiary();
-    };
+    }
 
-    public int findDiaryLikeCount(Long diaryId){
+    ;
+
+    public int findDiaryLikeCount(Long diaryId) {
         return diaryMapper.selectDiaryLikeCount(diaryId);
-    };
+    }
 
-    public int findDiaryReplyCount(Long diaryId){
+    ;
+
+    public int findDiaryReplyCount(Long diaryId) {
         return diaryMapper.selectDiaryReplyCount(diaryId);
-    };
+    }
 
-    public void addReadCount(Long diaryId){
+    ;
+
+    public void addReadCount(Long diaryId) {
         diaryMapper.addReadCount(diaryId);
-    };
+    }
+
+    ;
 
 }
