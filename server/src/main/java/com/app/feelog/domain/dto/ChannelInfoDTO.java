@@ -21,5 +21,6 @@ public class ChannelInfoDTO {
     private String memberNickname;
     private int subscriberCount;
     private int noticeCount;
+    private int postCount;
 
 }
