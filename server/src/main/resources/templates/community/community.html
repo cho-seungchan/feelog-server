@@ -729,6 +729,10 @@
             <div tabindex="0" data-testid="sentinelEnd"></div>
         </div>
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/community/community-event.js"></script>
     <script src="/js/community/community-service.js"></script>
     <script src="/js/community/community-layout.js"></script>

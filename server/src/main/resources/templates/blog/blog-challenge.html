@@ -506,5 +506,9 @@
             </div>
         </div>
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/challenge/task-list-event.js"></script>
 </html>

@@ -529,6 +529,10 @@
             </div>
         </section>
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/main/main-modal.js"></script>
     <script src="/js/main/notification.js"></script>
     <script src="/js/main/main-search-modal.js"></script>

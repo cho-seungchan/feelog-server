@@ -267,6 +267,10 @@
         </div>
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+        const loginMemberId = Number(loginMember.id);
+    </script>
     <script src="/js/myPage/setting-profile-event.js"></script>
     <script src="/js/myPage/setting-profile-service.js"></script>
     <script src="/js/myPage/setting-profile-layout.js"></script>
