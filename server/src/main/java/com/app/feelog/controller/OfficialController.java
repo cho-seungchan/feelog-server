@@ -44,6 +44,9 @@ public class OfficialController {
 
         ChannelInfoDTO channelInfo = channelInfoService.findInfoByUrl(channelUrl);
 
+        int noticeCount = officialContentPreviewService.countNotices();
+        channelInfo.setNoticeCount(noticeCount);
+
         Long viewerId = sessionMember != null ? sessionMember.getId() : null;
         boolean isSubscribed = viewerId != null && channelInfo != null &&
                 subscribeService.isSubscribed(viewerId, channelInfo.getChannelId());
@@ -79,6 +82,9 @@ public class OfficialController {
 
         ChannelInfoDTO channelInfo = channelInfoService.findInfoByUrl(channelUrl);
 
+        int noticeCount = officialContentPreviewService.countNotices();
+        channelInfo.setNoticeCount(noticeCount);
+
         Long viewerId = sessionMember != null ? sessionMember.getId() : null;
         boolean isSubscribed = viewerId != null && channelInfo != null &&
                 subscribeService.isSubscribed(viewerId, channelInfo.getChannelId());
@@ -102,10 +108,10 @@ public class OfficialController {
     }
 
 
-    @GetMapping("/official-challenge")
-    public String getOfficialChallenge() {
-        return "official/official-challenge";
-    }
+//    @GetMapping("/official-challenge")
+//    public String getOfficialChallenge() {
+//        return "official/official-challenge";
+//    }
 
     @GetMapping("/notice/slider")
     @ResponseBody

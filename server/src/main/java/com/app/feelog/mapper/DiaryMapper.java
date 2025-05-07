@@ -59,4 +59,5 @@ public interface DiaryMapper {
     public int selectDiaryReplyCount(Long diaryId);
 
     public void addReadCount(Long diaryId);
+
 }

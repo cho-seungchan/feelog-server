@@ -1,34 +1,27 @@
+// 전체 스크립트 시작
+
 document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.querySelector(".next-btn");
     const postBtn = document.querySelector(".post-btn");
     const cancelBtn = document.querySelector(".cancel-bnt");
     const editorZone = document.querySelector(".keep-editor-selection-zone");
     const summernote = document.querySelector(".summernote");
-    const modalContent = document.querySelector(
-        ".FlgModal-root-need .jk-feelog-div018"
-    );
+    const modalContent = document.querySelector(".FlgModal-root-need .jk-feelog-div018");
 
-
-    // note-editor 찾기
     let noteEditor = summernote;
     while (noteEditor && !noteEditor.classList.contains("note-editor")) {
         noteEditor = noteEditor.parentElement;
     }
 
     nextBtn.addEventListener("click", () => {
-        // 1. 에디터 숨기기
         summernote.style.display = "none";
         const noteEditor = document.querySelector(".note-editor");
         if (noteEditor)
             noteEditor.style.setProperty("display", "none", "important");
 
-        // 2. 기존 inline 영역 제거
-        const existingInline = editorZone.querySelector(
-            ".inline-publish-section"
-        );
+        const existingInline = editorZone.querySelector(".inline-publish-section");
         if (existingInline) existingInline.remove();
 
-        // 3. 모달 내용 복사하여 삽입
         const clone = document.createElement("div");
         clone.classList.add("inline-publish-section");
         clone.innerHTML = modalContent.innerHTML;
@@ -40,177 +33,112 @@ document.addEventListener("DOMContentLoaded", () => {
             return temp.textContent || temp.innerText || "";
         }
 
-        // 다음버튼 누르면 제목이 p 태그로 바뀌고, input은 사라짐
         const titleInput = document.querySelector("#title-input");
         if (titleInput) {
             const titleValue = titleInput.value.trim() || "제목 없음";
             const titleText = document.createElement("p");
-
-            // 클래스 복사
             titleText.className = titleInput.className;
             titleText.textContent = titleValue;
-            titleText.id = "title-fixed"; // 나중에 다시 input으로 돌릴 때 필요
+            titleText.id = "title-fixed";
 
-            // hidden input 생성
             const hiddenTitleInput = document.createElement("input");
             hiddenTitleInput.type = "hidden";
-            hiddenTitleInput.name = "diaryTitle"; // 이게 서버에서 필요했던 name
+            hiddenTitleInput.name = "diaryTitle";
             hiddenTitleInput.value = titleValue;
 
-            // 교체
             titleInput.parentNode.replaceChild(titleText, titleInput);
-            titleText.insertAdjacentElement("afterend", hiddenTitleInput); // p 뒤에 삽입
+            titleText.insertAdjacentElement("afterend", hiddenTitleInput);
         }
 
-        // 4. 버튼 전환
         nextBtn.style.display = "none";
         postBtn.style.display = "block";
 
-        // 5. cancel 버튼 → back 버튼으로 역할 변경
         cancelBtn.classList.remove("cancel-bnt");
         cancelBtn.classList.add("back-btn");
         cancelBtn.setAttribute("aria-label", "뒤로가기");
 
-        // 6. 뒤로가기 동작 정의
         cancelBtn.onclick = () => {
-            // 에디터 다시 보이기
             summernote.style.display = "";
             if (noteEditor) {
                 noteEditor.style.setProperty("display", "block", "important");
-                noteEditor.style.setProperty(
-                    "margin-left",
-                    "auto",
-                    "important"
-                );
-                noteEditor.style.setProperty(
-                    "margin-right",
-                    "auto",
-                    "important"
-                );
+                noteEditor.style.setProperty("margin-left", "auto", "important");
+                noteEditor.style.setProperty("margin-right", "auto", "important");
                 noteEditor.style.setProperty("max-width", "742px", "important");
             }
 
             const zone = document.querySelector(".keep-editor-selection-zone");
             if (zone) {
-                zone.style.setProperty(
-                    "justify-content",
-                    "center",
-                    "important"
-                );
+                zone.style.setProperty("justify-content", "center", "important");
             }
 
-            // 제목 p 태그를 다시 input으로 교체
             const titleFixed = document.querySelector("#title-fixed");
             if (titleFixed) {
                 const titleInput = document.createElement("input");
-
                 titleInput.type = "text";
                 titleInput.className = titleFixed.className;
                 titleInput.value = titleFixed.textContent;
                 titleInput.id = "title-input";
                 titleInput.placeholder = "제목을 입력하세요";
 
-                // <p> → <input>로 교체
                 titleFixed.parentNode.replaceChild(titleInput, titleFixed);
 
-                // hidden input도 제거
                 const hiddenInput = document.querySelector("input[name='diaryTitle']");
                 if (hiddenInput) hiddenInput.remove();
             }
 
-            // 발행 섹션 제거
             const inline = editorZone.querySelector(".inline-publish-section");
             if (inline) inline.remove();
 
-            // 버튼 원복
             postBtn.style.display = "none";
             nextBtn.style.display = "block";
 
-            // back → cancel 복원
             cancelBtn.classList.remove("back-btn");
             cancelBtn.classList.add("cancel-bnt");
             cancelBtn.setAttribute("aria-label", "종료");
             cancelBtn.onclick = null;
         };
 
-        // 7. 감정 검사 API 요청 (제목 + 내용 합치기)
-        // 제목 추출 (입력 필드 또는 고정된 p 태그 중 하나에서)
         let title = "";
         const titleInputEl = document.querySelector("#title-input");
-        // 제목 입력란
         if (titleInputEl) {
-            title = titleInputEl.value || ""; // 입력된 제목이 있으면 사용
+            title = titleInputEl.value || "";
         } else {
             const fixedTitleEl = document.querySelector("#title-fixed");
-            // p 태그로 변환된 제목
             if (fixedTitleEl) {
                 title = fixedTitleEl.textContent || "";
-                // 표시된 텍스트 가져오기
             }
         }
 
-        // Summernote 에디터에서 HTML 포함된 내용 가져오기
         const contentHtml = $(".summernote").summernote("code");
-
-        // HTML 태그 제거한 순수 텍스트만 추출
         const plainTextContent = stripHtmlTags(contentHtml);
-
-        // 제목과 본문을 합쳐서 감정 분석 대상으로 구성
         const contents = title.trim() + " " + plainTextContent.trim();
 
-        // 감정 분석 API 요청 (컨텐츠 합친 값 전송)
         fetch("/main/api/feeling-check", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json" // JSON 형식 명시
-            },
-            body: JSON.stringify({
-                contents // 백엔드에서 @RequestBody(contents)로 받음
-            })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents })
         })
-            .then(res => res.json()) // 응답을 JSON으로 변환
+            .then(res => res.json())
             .then(data => {
-                const { score } = data; // 감정 점수 추출
-                console.log("감정 분석 결과 점수:", score);
-
-                // 점수에 해당하는 상세 감정 정보 요청
+                const { score } = data;
                 return fetch(`/main/feeling-score/${score}`);
             })
-            .then(res => res.json()) // 응답을 JSON으로 변환
+            .then(res => res.json())
             .then(scoreData => {
                 const { scoreMessage, scoreFilePath, scoreFileName, id } = scoreData;
-                // 상세 정보 디스트럭처링
+                console.log("[DEBUG] clone DOM:", clone.outerHTML);
+                renderEmotionFeedback(clone, scoreData);
 
-                console.log("감정 점수 상세 정보:", scoreData);
-
-                // 감정 점수를 diaryScore라는 이름으로 form에 숨김 인풋으로 삽입
                 const hiddenScoreInput = document.createElement("input");
                 hiddenScoreInput.type = "hidden";
-                hiddenScoreInput.name = "diaryScore"; // 서버에서 사용되는 필드 이름
-                hiddenScoreInput.value = id; // 감정 점수 ID 설정
-                clone.appendChild(hiddenScoreInput); // 폼 안에 추가
-
-                // 감정 이미지 및 메시지를 프리뷰 영역에 표시
-                const previewBox = document.querySelector(".inline-publish-section > div");
-                if (previewBox) {
-                    previewBox.innerHTML = `
-                <div style="padding: 20px; text-align: center;">
-                <p style="font-size: 20px; font-weight: bold;">Feelog AI 생각</p>
-                    <img src="/files/display?path=${scoreFilePath}/${scoreFileName}" 
-                         alt="감정 이미지" 
-                         style="max-height: 200px; margin-bottom: 10px;" />
-                    <p style="font-size: 16px; font-weight: bold;">${scoreMessage}</p>
-                    <p style="color: #666;">감정 점수: ${id}</p>
-                </div>
-            `;
-                }
+                hiddenScoreInput.name = "diaryScore";
+                hiddenScoreInput.value = id;
+                clone.appendChild(hiddenScoreInput);
             })
             .catch(err => {
-                // 감정 분석 API 호출 실패 시 에러 출력
                 console.error("감정 검사 실패:", err);
             });
 
-        // 7. 이벤트 연결
         initSelectDropdown(clone);
         initSelectDropdown2nd(clone);
         initFileUpload(clone);
@@ -218,6 +146,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+function renderEmotionFeedback(container, scoreData) {
+    const { scoreMessage, scoreFilePath, scoreFileName, id } = scoreData;
+
+    const previewBox = container.querySelector("div");
+    if (previewBox) {
+        previewBox.innerHTML = `
+            <div style="padding: 20px; text-align: center;">
+                <p style="font-size: 20px; font-weight: bold;">Feelog AI 생각</p>
+                <img src="/files/display?path=${scoreFilePath}/${scoreFileName}" 
+                     alt="감정 이미지" 
+                     style="max-height: 200px; margin-bottom: 10px;" />
+                <p style="font-size: 16px; font-weight: bold;">${scoreMessage}</p>
+                <p style="color: #666;">AI 감정 점수: ${id}</p>
+                <label for="manual-score-select" style="font-weight: bold; margin-top: 10px;">
+                    혹시 AI 평가가 마음에 들지 않으신가요? 지금 기분을 점수로 말해주세요!
+                </label>
+                <select id="manual-score-select" style="border-color: #dadadc; border-radius:4px; margin-top: 5px;">
+                    ${[...Array(10).keys()].map(i => {
+            const val = i + 1;
+            return `<option value="${val}" ${val === id ? 'selected' : ''}>${val}점</option>`;
+        }).join('')}
+                </select>
+            </div>
+        `;
+
+        // hidden input이 이미 있으면 갱신, 없으면 새로 생성
+        let hiddenInput = container.querySelector("input[name='diaryScore']");
+        if (!hiddenInput) {
+            hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "diaryScore";
+            container.appendChild(hiddenInput);
+        }
+        hiddenInput.value = id;
+
+        // 셀렉트 변경 이벤트 연결
+        const select = previewBox.querySelector("#manual-score-select");
+        select.addEventListener("change", (e) => {
+            const newScore = e.target.value;
+            hiddenInput.value = newScore;
+
+            fetch(`/main/feeling-score/${newScore}`)
+                .then(res => res.json())
+                .then(newScoreData => {
+                    renderEmotionFeedback(container, newScoreData);
+                })
+                .catch(err => console.error("감정 점수 변경 실패:", err));
+        });
+    }
+}
 function initSelectDropdown(container) {
     const toggleBtn = container.querySelector("#select-toggle");
     const optionList = container.querySelector("#select-options");
