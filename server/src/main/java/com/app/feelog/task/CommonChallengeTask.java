@@ -28,7 +28,7 @@ public class CommonChallengeTask {
     private final ChallengeTaskService challengeService;
 
     @SneakyThrows
-    @Scheduled(cron = "0 0 6 * * *")
+    @Scheduled(cron = "0 1 * * * *")
     public void park() throws UnsupportedEncodingException {
 
         System.out.println("======================================");
@@ -66,8 +66,8 @@ public class CommonChallengeTask {
 
         // "CODE" 값이 "INFO-000"이 아니면 중단
         if (!"INFO-000".equals(resultCode)) {
-            System.out.println(resultCode+" 코드가 감지되어 작업을 중단합니다. 11111");
-            return ;
+            System.out.println(resultCode + " 코드가 감지되어 작업을 중단합니다. 11111");
+            return;
         }
         int totalCount = SearchParkInfoService.getInt("list_total_count");
 
@@ -84,8 +84,8 @@ public class CommonChallengeTask {
 
         // "CODE" 값이 "INFO-000"이 아니면 중단
         if (!"INFO-000".equals(resultCode)) {
-            System.out.println(resultCode+" 코드가 감지되어 작업을 중단합니다. 22222");
-            return ;
+            System.out.println(resultCode + " 코드가 감지되어 작업을 중단합니다. 22222");
+            return;
         }
 
         // DB 입력
@@ -109,8 +109,8 @@ public class CommonChallengeTask {
 
         // "CODE" 값이 "INFO-000"이 아니면 중단
         if (!"INFO-000".equals(resultCode)) {
-            System.out.println(resultCode+" 코드가 감지되어 작업을 중단합니다.");
-            return ;
+            System.out.println(resultCode + " 코드가 감지되어 작업을 중단합니다.");
+            return;
         }
         int totalCount = SearchParkInfoService.getInt("list_total_count");
 
@@ -127,8 +127,8 @@ public class CommonChallengeTask {
 
         // "CODE" 값이 "INFO-000"이 아니면 중단
         if (!"INFO-000".equals(resultCode)) {
-            System.out.println(resultCode+" 코드가 감지되어 작업을 중단합니다.");
-            return ;
+            System.out.println(resultCode + " 코드가 감지되어 작업을 중단합니다.");
+            return;
         }
 
         // DB 입력
@@ -150,8 +150,8 @@ public class CommonChallengeTask {
 
         // "CODE" 값이 "INFO-000"이 아니면 중단
         if (!"INFO-000".equals(resultCode)) {
-            System.out.println(resultCode+" 코드가 감지되어 작업을 중단합니다.");
-            return ;
+            System.out.println(resultCode + " 코드가 감지되어 작업을 중단합니다.");
+            return;
         }
 
         // DB 입력
@@ -162,7 +162,7 @@ public class CommonChallengeTask {
     private String fetchData(StringBuilder urlBuilder, int index) throws IOException {
 
         // 해당 인덱스 데이타 가져오기
-        if (index != 1){
+        if (index != 1) {
             // 마지막 "/"의 위치 찾기
             int lastSlashIndex = urlBuilder.lastIndexOf("/");
             // 마지막 "/" 바로 이전 "/"의 위치 찾기

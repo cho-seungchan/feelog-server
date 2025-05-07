@@ -496,21 +496,20 @@ const indexLayout = (() => {
             </div>
             `;
 
-            const defaultImg = "/images/channel_notice.png"
+            const defaultImg = "/images/channel_notice.png";
             const imgWrap = newArticle.querySelector(".joy-1h16");
             let noticeImg = null;
 
-            if (notice.noticeFileName != null) {
+            if (notice.noticeFileName && notice.noticeFileName.trim() !== '' && notice.noticeFilePath !== '') {
                 noticeImg = encodeURIComponent(`${notice.noticeFilePath}/${notice.noticeFileName}`);
                 imgWrap.innerHTML = `
-                    <img class="MuiBox-root joy-0" src="/files/display?path=${noticeImg}" alt="" data-first-child="">
+                <img class="MuiBox-root joy-0" src="/files/display?path=${noticeImg}" alt="" data-first-child="">
                 `;
             } else {
                 imgWrap.innerHTML = `
-                    <img class="MuiBox-root joy-0" src=${defaultImg} alt="" data-first-child="">
+                    <img class="MuiBox-root joy-0" src="${defaultImg}" alt="" data-first-child="">
                 `;
             }
-
             noticeContainer.appendChild(newArticle)
             noticeContainer.appendChild(newHr)
         })
