@@ -38,7 +38,8 @@ mybatis:
   type-handlers-package: com.app.feelog.mybatis
 
 openai:
-  model: gpt-3.5-turbo
-  secret-key: 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
-  api:
-    url: https://api.openai.com/v1/chat/completions
+    model: gpt-3.5-turbo
+    secret-key:
+    api:
+        url: https://api.openai.com/v1/chat/completions
+
