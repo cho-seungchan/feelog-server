@@ -197,7 +197,6 @@ function initFileUpload(container) {
             .then((data) => {
                 const filePath = data.thumbnail?.filePath || data.filePath;
                 const fileName = data.thumbnail?.fileName || data.fileName;
-                const fileSize = data.thumbnail?.fileSize || data.fileSize;
 
                 if (!filePath || !fileName) {
                     alert("대표 이미지 정보가 누락되어 있습니다.");
@@ -224,14 +223,13 @@ function initFileUpload(container) {
                     ">×</button>
                 </div>`;
 
-                ["postFilePath", "postFileName", "postFileSize"].forEach((key) => {
+                ["postFilePath", "postFileName"].forEach((key) => {
                     form.querySelector(`input[name='${key}']`)?.remove();
                 });
 
                 const inputs = [
                     { name: "postFilePath", value: filePath },
                     { name: "postFileName", value: fileName },
-                    { name: "postFileSize", value: fileSize },
                 ];
 
                 inputs.forEach(({ name, value }) => {
@@ -245,7 +243,7 @@ function initFileUpload(container) {
                 preview.querySelector(".delete-thumbnail-btn").addEventListener("click", () => {
                     preview.innerHTML = "";
                     clonedInput.value = "";
-                    ["postFilePath", "postFileName", "postFileSize"].forEach((key) => {
+                    ["postFilePath", "postFileName"].forEach((key) => {
                         form.querySelector(`input[name='${key}']`)?.remove();
                     });
                 });
@@ -258,7 +256,7 @@ function initFileUpload(container) {
         existingDelete.addEventListener("click", () => {
             preview.innerHTML = "";
             clonedInput.value = "";
-            ["postFilePath", "postFileName", "postFileSize"].forEach((key) => {
+            ["postFilePath", "postFileName"].forEach((key) => {
                 form.querySelector(`input[name='${key}']`)?.remove();
             });
         });

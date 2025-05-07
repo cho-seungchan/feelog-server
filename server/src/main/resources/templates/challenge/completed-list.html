@@ -97,7 +97,8 @@
                                                             color: transparent;"
                                                             th:if="${challenge.memberTaskPoolFileName == null || challenge.memberTaskPoolFileName.isEmpty()}"
                                                             th:src="@{/images/challenge.jfif}"
-                                                    /></div
+                                                    />
+                                                        <div class="img-text">일기작성</div> </div
                                                     ></div>
                                                 <div class="FeelogStack-root flog-div-30">
                                                     <div class="FeelogStack-root flog-a-9"
@@ -105,11 +106,11 @@
                                                     </h3>
                                                         <div style="display: flex; "  class="button-conatiner">
                                                             <button
-                                                                    class="challenge-member-task selected"  style="display: none; "
+                                                                    class="challenge-member-task selected no-completed"  style="display: none; "
                                                                     th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}">중단
                                                             </button>
                                                             <button
-                                                                    class="complete-member-task"
+                                                                    class="complete-member-task  completed-id"
                                                                     th:classappend="${challenge.challengeComplete != null && challenge.challengeComplete.name() == 'COMPLETED' ? 'selected' : ''}"
                                                                     th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}"
                                                                     th:attrappend="disabled=${challenge.challengeComplete != null && (challenge.challengeComplete.name() == 'CANCEL') ? 'disabled' : null}"
@@ -147,7 +148,8 @@
                                                             color: transparent;
                                                         "
                                                             th:src="${challenge.commonTaskImg != null && !challenge.commonTaskImg.isEmpty() ? challenge.commonTaskImg : '/images/challenge.jfif'}"
-                                                    /></div
+                                                    />
+                                                        <div class="img-text">일기작성</div> </div
                                                 ></div>
                                                 <div class="FeelogStack-root flog-div-30">
                                                     <div class="FeelogStack-root flog-a-9" >
@@ -161,11 +163,11 @@
                                                         </a>
                                                         <div style="display: flex; " class="button-conatiner">
                                                             <button
-                                                                    class="challenge-common-task selected"  style="display: none; "
+                                                                    class="challenge-common-task selected no-completed"  style="display: none; "
                                                                     th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}">중단
                                                             </button>
                                                             <button
-                                                                    class="complete-common-task"
+                                                                    class="complete-common-task completed-id"
                                                                     th:classappend="${challenge.challengeComplete != null && challenge.challengeComplete.name() == 'COMPLETED' ? 'selected' : ''}"
                                                                     th:attr="data-challengeid=${challenge.id}, data-taskid=${challenge.taskId}"
                                                                     th:attrappend="disabled=${challenge.challengeComplete != null && (challenge.challengeComplete.name() == 'CANCEL') ? 'disabled' : null}"
