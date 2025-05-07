@@ -56,9 +56,12 @@ function renderSlider(wrapperSelector, posts, type) {
              </a>`
         ).join("");
 
-        const imageUrl = post.thumbnailUrl
+        const imageUrl = (post.thumbnailUrl && post.thumbnailUrl.trim() !== "" && post.thumbnailUrl !== "/")
             ? `/files/display?path=${post.thumbnailUrl}`
             : '/images/channel_banner.png';
+
+        console.log("이미지 :",imageUrl)
+
         const html = `
             <div class="slick-slide" style="width: 220px;">
               <div class="FlgBox-root-need joy-121vee3">

@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <a href="/diary/diary-read?id=${d.id}" class="jk-feelog-a-002">
                                     <div class="jk-feelog-div055">
                                         <div class="FlgBox-root-need">
-                                            <div class="FlgBox-root-need jk-feelog-div056">
+                                            <div class="FlgBox-root-need jk-feelog-div056" style="height: 190px">
                                                 <img src="${thumbnail}" alt="${d.diaryTitle}" loading="lazy"
                                                      style="position:absolute; height:100%; width:100%; object-fit:cover;" />
                                             </div>
