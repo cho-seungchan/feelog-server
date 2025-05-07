@@ -27,8 +27,8 @@ public interface DiaryService {
 
     List<DiaryDTO> findVisibleDiaries(Long channelOwnerId, Long viewerId);
 
-//    박정근 :: 다이어리 페이지네이션
-    public DiaryPaginationDTO getDiaryList(PostPagination postPagination);
+    //    박정근 :: 다이어리 페이지네이션
+    public DiaryPaginationDTO getDiaryList(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId);
 
     public DiaryPaginationDTO getDiaryListAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId);
 
@@ -36,13 +36,12 @@ public interface DiaryService {
 
     public DiaryPaginationDTO getDiaryListAll(PostPagination postPagination);
 
-//    박정근 :: 다이어리 상세보기
+    //    박정근 :: 다이어리 상세보기
     public DiaryDetailDTO getDiaryDetailByDiaryId(Long diaryId);
 
     public List<DiaryJoinDTO> getDiaryRandom();
 
     public void addDiaryReadCount(Long diaryId);
-
 
 
     default DiaryDTO toDTO(DiaryVO vo) {

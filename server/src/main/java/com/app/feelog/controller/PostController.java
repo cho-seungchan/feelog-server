@@ -28,19 +28,20 @@ public class PostController {
     private final ChannelPostReplyReportService channelPostReplyReportService;
     private final ChannelPostLikeService channelPostLikeService;
     private final ChannelPostScrapService channelPostScrapService;
+    private final ChannelPostReplyDTO channelPostReplyDTO;
 
     @GetMapping("/read")
     public String goToRead(Model model, @RequestParam Long id) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         ChannelPostDTO post = channelPostService.getPostByPostId(id);
-        if(loginMember != null){
+        if (loginMember != null) {
             SubscribeDTO subscribePost = subscribeService.getSubscribeOne(loginMember.getId(), post.getChannelId()).orElse(null);
-            if(subscribePost != null){
+            if (subscribePost != null) {
                 post.setSubscribeDTO(subscribePost);
                 boolean alreadySubscribed = false;
-                    if(Objects.equals(subscribePost.getMemberId(), loginMember.getId())) {
-                        alreadySubscribed = true;
-                    }
+                if (Objects.equals(subscribePost.getMemberId(), loginMember.getId())) {
+                    alreadySubscribed = true;
+                }
 
                 post.setSubscribe(alreadySubscribed);
             }
@@ -61,13 +62,15 @@ public class PostController {
         model.addAttribute("post", post);
 
         return "/post/read";
-    };
+    }
+
+    ;
 
     @GetMapping("/nextPost")
     @ResponseBody
-    public ChannelPostDTO nextPost(@RequestParam("channelId")Long channelId, @RequestParam("id") Long id) {
+    public ChannelPostDTO nextPost(@RequestParam("channelId") Long channelId, @RequestParam("id") Long id) {
         Optional<ChannelPostDTO> nextPost = channelPostService.getNextPost(channelId, id);
-        if(nextPost.isEmpty()){
+        if (nextPost.isEmpty()) {
             return null;
         }
         return nextPost.orElse(null);
@@ -75,9 +78,9 @@ public class PostController {
 
     @GetMapping("/previousPost")
     @ResponseBody
-    public ChannelPostDTO previousPost(@RequestParam("channelId")Long channelId, @RequestParam("id") Long id) {
+    public ChannelPostDTO previousPost(@RequestParam("channelId") Long channelId, @RequestParam("id") Long id) {
         Optional<ChannelPostDTO> previousPost = channelPostService.getPreviousPost(channelId, id);
-        if(previousPost.isEmpty()){
+        if (previousPost.isEmpty()) {
             return null;
         }
 
@@ -103,10 +106,10 @@ public class PostController {
 
     @GetMapping("/randomPost")
     @ResponseBody
-    public List<MainPostListDTO> getRandomPost(){
+    public List<MainPostListDTO> getRandomPost() {
         List<MainPostListDTO> randomPost = channelPostService.getPostRandom();
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
-        if(loginMember != null){
+        if (loginMember != null) {
             List<Long> scrapIds = channelPostService.getMemberScrap(loginMember.getId());
             Set<Long> scrapIdSet = new HashSet<>(scrapIds);
 
@@ -122,7 +125,7 @@ public class PostController {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         channelPostReplyService.addPostReply(channelPostReplyDTO);
 
-        log.info("포스트댓글 id : {}",channelPostReplyDTO.getId());
+        log.info("포스트댓글 id : {}", channelPostReplyDTO.getId());
 
         Long myId = loginMember.getId();
         Long postOwnerId = channelPostReplyDTO.getPostMemberId();
@@ -140,7 +143,7 @@ public class PostController {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         List<ChannelPostReplyDTO> replyList = channelPostReplyService.getReplyByPostId(postId);
 
-        if(loginMember != null){
+        if (loginMember != null) {
             List<Long> likeIds = channelPostReplyService.getIsLiked(loginMember.getId());
             Set<Long> likeIdset = new HashSet<>(likeIds);
 
@@ -154,7 +157,18 @@ public class PostController {
 
     @PostMapping("addOrDeleteReplyLike")
     public void addOrDeleteReplyLike(@RequestBody ChannelPostReplyLikeDTO channelPostReplyLikeDTO) {
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
+
         channelPostReplyLikeService.addReplyLike(channelPostReplyLikeDTO);
+
+        Long senderId = loginMember.getId();
+        Long receiverId = channelPostReplyLikeDTO.getMemberId();
+
+        Long postReplyLikeId = channelPostReplyLikeDTO.getId();
+
+        if (!senderId.equals(receiverId)) {
+            notificationService.sendPostReplyLikeNotification(senderId, receiverId, postReplyLikeId);
+        }
     }
 
     @GetMapping("replyPostCheck")
@@ -166,10 +180,22 @@ public class PostController {
     @PostMapping("addReplyReport")
     public void addReplyReport(@RequestBody ChannelPostReplyReportDTO channelPostReplyReportDTO) {
         channelPostReplyReportService.addReplyReport(channelPostReplyReportDTO);
+
+
     }
 
     @PostMapping("addPostLike")
     public void addPostLike(@RequestBody ChannelPostLikeDTO channelPostLikeDTO) {
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         channelPostLikeService.addPostLike(channelPostLikeDTO);
+
+        Long senderId = loginMember.getId();
+        Long receiverId = channelPostLikeDTO.getMemberId();
+
+        Long postLikeId = channelPostLikeDTO.getId();
+
+        if (!senderId.equals(receiverId)) {
+            notificationService.sendPostLikeNotification(senderId, receiverId, postLikeId);
+        }
     }
 }

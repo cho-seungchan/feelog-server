@@ -2,7 +2,7 @@ const faqLayout = (() => {
     const showFaq = async (faqListData) => {
         const questionListButton = document.querySelector(".questionList");
 
-        questionListButton.addEventListener("click", (e)=>{
+        questionListButton.addEventListener("click", (e) => {
             const htmlWrap = document.querySelector(".AppLayout_contents")
 
             htmlWrap.innerHTML = `
@@ -82,44 +82,6 @@ const faqLayout = (() => {
                                                     >
                                                     </div>
                                                 </div>
-                                                <div
-                                                        class="search-container"
-                                                >
-                                                    <input
-                                                            type="hidden"
-                                                            name="page"
-                                                            value="1"
-                                                            class="adminList"
-                                                    />
-                                                    <div class="fields">
-                                                        <div class="field">
-                                                            <div
-                                                                    id="searchWrap"
-                                                            >
-                                                                <select
-                                                                        name="type"
-                                                                        class="custom-select"
-                                                                >
-                                                                    <option
-                                                                            value="anpe"
-                                                                    >
-                                                                        제목
-                                                                    </option>
-                                                                </select>
-                                                                <input
-                                                                        class="search_input"
-                                                                        type="text"
-                                                                        name="keyWord"
-                                                                        value=""
-                                                                />
-                                                                <button
-                                                                        class="search button primary icon solid search_button"
-                                                                >검색</button
-                                                                >
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </footer>
                                         </div>
                                     </div>
@@ -148,7 +110,7 @@ const faqLayout = (() => {
                             class="PaginationButtonGroup__Icon-x0iffd-2 jVxRns start-img img_left_end"
                     /></button
                 ><button
-                    data-index=${pagination.page-1}
+                    data-index=${pagination.page - 1}
                     width="40px"
                     height="40px"
                     font-size="18px"
@@ -161,26 +123,26 @@ const faqLayout = (() => {
                 />
             </button>
             `;
-            const startPage =document.querySelector(".start-page")
+            const startPage = document.querySelector(".start-page")
             const leftButton = document.querySelector(".left-button")
-            if(pagination.page !== 1) {
+            if (pagination.page !== 1) {
                 startPage.classList.remove("status-none");
                 startPage.classList.add("status-on");
                 startPage.removeAttribute("disabled")
                 leftButton.classList.remove("status-none")
                 leftButton.classList.add("status-on")
                 leftButton.removeAttribute("disabled")
-                document.querySelector(".start-img").src ="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E";
-                document.querySelector(".left-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
-            }else {
+                document.querySelector(".start-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E";
+                document.querySelector(".left-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+            } else {
                 startPage.classList.remove("status-on")
                 startPage.classList.add("status-none")
                 startPage.setAttribute("disabled", true)
                 leftButton.classList.remove("status-on")
                 leftButton.classList.add("status-none")
                 leftButton.setAttribute("disabled", true)
-                document.querySelector(".start-img").src ="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
-                document.querySelector(".left-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+                document.querySelector(".start-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+                document.querySelector(".left-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
             }
 
             rightButtons.innerHTML = `
@@ -211,30 +173,30 @@ const faqLayout = (() => {
             const lastPage = document.querySelector(".last-page");
             const rightButton = document.querySelector(".right-button");
 
-            if(pagination.page !== pagination.realEnd) {
+            if (pagination.page !== pagination.realEnd) {
                 lastPage.classList.remove("status-none");
                 lastPage.classList.add("status-on");
                 lastPage.removeAttribute("disabled")
                 rightButton.classList.remove("status-none")
                 rightButton.classList.add("status-on")
                 rightButton.removeAttribute("disabled")
-                document.querySelector(".last-img").src ="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E";
-                document.querySelector(".right-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
-            }else {
+                document.querySelector(".last-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E";
+                document.querySelector(".right-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+            } else {
                 lastPage.classList.remove("status-on")
                 lastPage.classList.add("status-none")
                 lastPage.setAttribute("disabled", true)
                 rightButton.classList.remove("status-on")
                 rightButton.classList.add("status-none")
                 rightButton.setAttribute("disabled", true)
-                document.querySelector(".last-img").src ="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
-                document.querySelector(".right-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+                document.querySelector(".last-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+                document.querySelector(".right-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
             }
 
             faqListData.faqLists.forEach((list) => {
                 const newLi = document.createElement("li");
                 const createdDate = new Date(list.createdDate);
-                const formatCreatedDate =  createdDate.toISOString().split('T')[0];
+                const formatCreatedDate = createdDate.toISOString().split('T')[0];
                 newLi.classList.add("lists")
 
                 newLi.innerHTML = `
@@ -260,8 +222,8 @@ const faqLayout = (() => {
 
             text = ``;
 
-            for(let i = pagination.startPage; i<= pagination.endPage; i++){
-                if(pagination.page === i){
+            for (let i = pagination.startPage; i <= pagination.endPage; i++) {
+                if (pagination.page === i) {
                     text += `
                     <button
                         data-index=${i}
@@ -299,7 +261,7 @@ const faqLayout = (() => {
         const rightButtons = document.querySelector(".right-button-wrap");
         const pagination = faqListData.noticePagination;
 
-        lists.forEach((list)=>{
+        lists.forEach((list) => {
             list.remove()
         })
 
@@ -317,7 +279,7 @@ const faqLayout = (() => {
                     class="PaginationButtonGroup__Icon-x0iffd-2 jVxRns start-img img_left_end"
             /></button
         ><button
-            data-index=${pagination.page-1}
+            data-index=${pagination.page - 1}
             width="40px"
             height="40px"
             font-size="18px"
@@ -330,26 +292,26 @@ const faqLayout = (() => {
         />
     </button>
     `;
-        const startPage =document.querySelector(".start-page")
+        const startPage = document.querySelector(".start-page")
         const leftButton = document.querySelector(".left-button")
-        if(pagination.page !== 1) {
+        if (pagination.page !== 1) {
             startPage.classList.remove("status-none");
             startPage.classList.add("status-on");
             startPage.removeAttribute("disabled")
             leftButton.classList.remove("status-none")
             leftButton.classList.add("status-on")
             leftButton.removeAttribute("disabled")
-            document.querySelector(".start-img").src ="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E";
-            document.querySelector(".left-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
-        }else {
+            document.querySelector(".start-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E";
+            document.querySelector(".left-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+        } else {
             startPage.classList.remove("status-on")
             startPage.classList.add("status-none")
             startPage.setAttribute("disabled", true)
             leftButton.classList.remove("status-on")
             leftButton.classList.add("status-none")
             leftButton.setAttribute("disabled", true)
-            document.querySelector(".start-img").src ="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
-            document.querySelector(".left-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+            document.querySelector(".start-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+            document.querySelector(".left-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
         }
 
         rightButtons.innerHTML = `
@@ -380,30 +342,30 @@ const faqLayout = (() => {
         const lastPage = document.querySelector(".last-page");
         const rightButton = document.querySelector(".right-button");
 
-        if(pagination.page !== pagination.realEnd) {
+        if (pagination.page !== pagination.realEnd) {
             lastPage.classList.remove("status-none");
             lastPage.classList.add("status-on");
             lastPage.removeAttribute("disabled")
             rightButton.classList.remove("status-none")
             rightButton.classList.add("status-on")
             rightButton.removeAttribute("disabled")
-            document.querySelector(".last-img").src ="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E";
-            document.querySelector(".right-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
-        }else {
+            document.querySelector(".last-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E";
+            document.querySelector(".right-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+        } else {
             lastPage.classList.remove("status-on")
             lastPage.classList.add("status-none")
             lastPage.setAttribute("disabled", true)
             rightButton.classList.remove("status-on")
             rightButton.classList.add("status-none")
             rightButton.setAttribute("disabled", true)
-            document.querySelector(".last-img").src ="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
-            document.querySelector(".right-img").src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+            document.querySelector(".last-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
+            document.querySelector(".right-img").src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='none' d='M0 0h40v40H0z'/%3E %3Cpath stroke='%23DDD' stroke-width='1.5' d='M18 16l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E";
         }
 
         faqListData.faqLists.forEach((list) => {
             const newLi = document.createElement("li");
             const createdDate = new Date(list.createdDate);
-            const formatCreatedDate =  createdDate.toISOString().split('T')[0];
+            const formatCreatedDate = createdDate.toISOString().split('T')[0];
             newLi.classList.add("lists")
 
             newLi.innerHTML = `
@@ -429,8 +391,8 @@ const faqLayout = (() => {
 
         text = ``;
 
-        for(let i = pagination.startPage; i<= pagination.endPage; i++){
-            if(pagination.page === i){
+        for (let i = pagination.startPage; i <= pagination.endPage; i++) {
+            if (pagination.page === i) {
                 text += `
             <button
                 data-index=${i}
@@ -459,8 +421,8 @@ const faqLayout = (() => {
         buttonWrap.innerHTML = text;
     }
 
-    return{
-        showFaq:showFaq,
-        faqButtonEvent:faqButtonEvent
+    return {
+        showFaq: showFaq,
+        faqButtonEvent: faqButtonEvent
     }
 })()

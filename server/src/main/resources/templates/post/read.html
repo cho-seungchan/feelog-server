@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/css/main/header.css">
         <link rel="stylesheet" href="/css/main/search-modal.css">
         <link rel="stylesheet" href="/css/all/message.css" />
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
         <style>
             @font-face {
                 font-family: "Postype Sans-serif KR";
@@ -32,8 +33,8 @@
                             </h1>
                             <div class="post_info_01">
                                 <a
-                                    href="/profile/@822am3"
-                                    class="channel_info_01"
+                                        th:href="'/feelog.com/@' + ${post.channelUrl} + '/community'"
+                                        class="channel_info_01"
                                     ><div class="imgWrap_05">
                                     <img th:alt="${post.channelTitle}"
                                          loading="lazy"
@@ -52,7 +53,7 @@
                                             href="/profile/@822am3"
                                             ><p
                                                 class="diary_nicknameWrap_01 noName_01"
-                                                th:text="${post.channelTitle}"
+                                                th:text="${post.memberNickname}"
                                             >
                                             </p></a
                                         >
@@ -130,7 +131,8 @@
                     <section class="aithink_container_01">
                         <div class="aithink_wrap_01">
 <!--                            채널주소 추가-->
-                            <a href="/@pampa234" class="channelWrap_01"
+                            <a class="channelWrap_01"
+                               th:href="'/feelog.com/@' + ${post.channelUrl} + '/community'"
                                 ><div class="channel_imgContainer_01">
                                     <div class="imgWrap_03123">
                                         <div
@@ -157,9 +159,11 @@
                             ></a>
                             <div class="aithink_div_01">
                                 <!--                            채널주소 추가-->
-                                <a href="/@pampa234" class="channelWrap_01"
-                                    ><span
+                                <a class="channelWrap_01"
+                                   th:href="'/feelog.com/@' + ${post.channelUrl} + '/community'"
+                                ><span
                                         class="diary_nicknameWrap_01channel_span_01"
+                                        style="color: #202022"
                                         th:text="${post.channelTitle}"
                                         ></span
                                     ></a
@@ -506,6 +510,7 @@
         }
     </script>
     <script src="/js/main/main-modal.js"></script>
+    <script src="/js/main/notification.js"></script>
     <script src="/js/main/main-search-modal.js"></script>
     <script src="/js/post/date-from-now.js"></script>
     <script src="/js/post/file-service.js"></script>

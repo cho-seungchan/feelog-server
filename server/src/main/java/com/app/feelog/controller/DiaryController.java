@@ -58,6 +58,8 @@ public class DiaryController {
 
         model.addAttribute("diary", diary);
 
+        log.info("diary = {}", diary);
+
 
         return "/diary/diary-read";
     }
@@ -75,7 +77,7 @@ public class DiaryController {
     @ResponseBody
     public DiaryPaginationDTO getDiaryList(PostPagination postPagination) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
-        DiaryPaginationDTO diaryPaginationDTO = diaryService.getDiaryList(postPagination);
+        DiaryPaginationDTO diaryPaginationDTO = diaryService.getDiaryList(postPagination, loginMember.getId());
 
         if (loginMember != null) {
             List<Long> likeIds = likeService.getDiaryLikeIdsByMemberId(loginMember.getId());

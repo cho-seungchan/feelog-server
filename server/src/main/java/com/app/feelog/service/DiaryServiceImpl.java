@@ -15,7 +15,9 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -177,7 +179,6 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
 
-
     private String extractTextOnly(String html) {
         Document doc = Jsoup.parse(html);
         doc.select("img").remove();
@@ -185,20 +186,21 @@ public class DiaryServiceImpl implements DiaryService {
         return doc.body().text();
     }
 
-//    박정근 :: 다이어리 페이지네이션
+    //    박정근 :: 다이어리 페이지네이션
     @Override
-    public DiaryPaginationDTO getDiaryList(PostPagination postPagination) {
+    public DiaryPaginationDTO getDiaryList(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId) {
         DiaryPaginationDTO diaryPagination = new DiaryPaginationDTO();
 
         postPagination.create(diaryDAO.selectDiaryCount());
 
         diaryPagination.setPostPagination(postPagination);
-        diaryPagination.setDiaryList(diaryDAO.findDiaryListPagination(postPagination));
+        diaryPagination.setDiaryList(diaryDAO.findDiaryListPagination(postPagination, memberId));
 
         diaryPagination.getDiaryList().forEach((diary) -> {
-            if ( diary.getDiaryContent() != null && ! diary.getDiaryContent().isEmpty()) {
+            if (diary.getDiaryContent() != null && !diary.getDiaryContent().isEmpty()) {
                 diary.setDiaryContent(extractTextOnly(diary.getDiaryContent()));
-            };
+            }
+            ;
 
             try {
                 diary.setDiaryTags(diaryTagDAO.findTagContentsByDiaryId(diary.getId()));
@@ -219,7 +221,7 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public DiaryPaginationDTO getDiaryListAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId")Long memberId) {
+    public DiaryPaginationDTO getDiaryListAllAndSubscribe(@Param("postPagination") PostPagination postPagination, @Param("memberId") Long memberId) {
         DiaryPaginationDTO diaryPagination = new DiaryPaginationDTO();
 
         postPagination.create(diaryDAO.selectDiaryCountAllAndSubscribe(memberId));
@@ -227,9 +229,10 @@ public class DiaryServiceImpl implements DiaryService {
         diaryPagination.setDiaryList(diaryDAO.findDiaryListPaginationAllAndSubscribe(postPagination, memberId));
 
         diaryPagination.getDiaryList().forEach((diary) -> {
-            if ( diary.getDiaryContent() != null && ! diary.getDiaryContent().isEmpty()) {
+            if (diary.getDiaryContent() != null && !diary.getDiaryContent().isEmpty()) {
                 diary.setDiaryContent(extractTextOnly(diary.getDiaryContent()));
-            };
+            }
+            ;
 
             try {
                 diary.setDiaryTags(diaryTagDAO.findTagContentsByDiaryId(diary.getId()));
@@ -252,9 +255,10 @@ public class DiaryServiceImpl implements DiaryService {
         diaryPagination.setDiaryList(diaryDAO.findDiaryListPaginationAll(postPagination));
 
         diaryPagination.getDiaryList().forEach((diary) -> {
-            if ( diary.getDiaryContent() != null && ! diary.getDiaryContent().isEmpty()) {
+            if (diary.getDiaryContent() != null && !diary.getDiaryContent().isEmpty()) {
                 diary.setDiaryContent(extractTextOnly(diary.getDiaryContent()));
-            };
+            }
+            ;
 
             try {
                 diary.setDiaryTags(diaryTagDAO.findTagContentsByDiaryId(diary.getId()));
@@ -268,7 +272,7 @@ public class DiaryServiceImpl implements DiaryService {
         return diaryPagination;
     }
 
-//    박정근 :: 다이어리 상세보기
+    //    박정근 :: 다이어리 상세보기
     @Override
     public DiaryDetailDTO getDiaryDetailByDiaryId(Long diaryId) {
         DiaryDetailDTO diaryDetailDTO = diaryDAO.findDiaryDetailByDiaryId(diaryId);

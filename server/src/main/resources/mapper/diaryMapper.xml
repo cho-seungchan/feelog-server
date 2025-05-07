@@ -128,6 +128,7 @@
         select *
         from view_diary
         where diary_open = '비공개'
+          and member_id = #{memberId}
         order by id desc
         limit #{offset}, #{rowCount}
     </select>
