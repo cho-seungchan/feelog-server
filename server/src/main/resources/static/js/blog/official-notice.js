@@ -30,7 +30,7 @@ function createNoticeCard(item) {
                 <a href="/notice/notice?id=${item.id}" class="jk-feelog-a-002">
                     <div class="jk-feelog-div055">
                         <div class="FlgBox-root-need" data-first-child="">
-                            <div class="FlgBox-root-need jk-feelog-div056">
+                            <div class="FlgBox-root-need jk-feelog-div056" style="height: 190px">
                                 <img alt="${item.title}" loading="lazy" decoding="async"
                                      src="${(item.filePath && item.fileName && item.filePath.trim() !== '' && item.fileName.trim() !== '') ?
         '/files/display?path=' + item.filePath + '/' + item.fileName :

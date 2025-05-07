@@ -208,7 +208,12 @@
                                                 </div>
                                             </div>
                                             <a class="FlgBox-root-need joy-rtjsnx" th:href="@{'/diary/diary-read?id=' + ${diary.id}}">
-                                                <img th:src="@{'/files/display?path=' + ${diary.thumbnailUrl}}" style="position: absolute; height: 100%; width: 100%; object-fit: cover;" alt="썸네일" />
+                                                <img th:src="${#strings.isEmpty(diary.thumbnailUrl)
+                                                                            || diary.thumbnailUrl == '/'
+                                                                            || diary.thumbnailUrl == 'null'
+                                                                            ? '/images/channel_banner.png'
+                                                                            : '/files/display?path=' + diary.thumbnailUrl}"
+                                                     style="position: absolute; height: 100%; width: 100%; object-fit: cover;" alt="썸네일" />
                                             </a>
                                         </div>
                                         <div class="FlgStack-root-need joy-k2m8sx" data-google-interstitial="false">
@@ -260,7 +265,11 @@
               style="cursor: pointer;"
               th:attr="data-href='/post/read?id=' + ${post.id}">
             <div class="FlgBox-root-need jk-feelog-div056">
-                <img th:src="@{'/files/display?path=' + ${post.thumbnailUrl}}"
+                <img th:src="${#strings.isEmpty(post.thumbnailUrl)
+            || post.thumbnailUrl == '/'
+            || post.thumbnailUrl == 'null'
+            ? '/images/channel_banner.png'
+            : '/files/display?path=' + post.thumbnailUrl}"
                      alt="대표 이미지"
                      loading="lazy" decoding="async"
                      style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover;" />
@@ -316,7 +325,12 @@
           role="link" style="cursor: pointer;"
           th:attr="data-href='/post/read?id=' + ${cheer.id}">
         <div class="FlgBox-root-need jk-feelog-div056">
-            <img th:src="@{'/files/display?path=' + ${cheer.thumbnailUrl}}" alt="대표 이미지"
+            <img th:src="${#strings.isEmpty(cheer.thumbnailUrl)
+            || cheer.thumbnailUrl == '/'
+            || cheer.thumbnailUrl == 'null'
+            ? '/images/channel_banner.png'
+            : '/files/display?path=' + cheer.thumbnailUrl}"
+                 alt="대표 이미지"
                  loading="lazy" decoding="async"
                  style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;" />
         </div>
@@ -382,7 +396,11 @@
                                             <div class="joy-18i1ml1">
                                                 <div class="jk-feelog-div055">
                                                     <div class="FlgBox-root-need jk-feelog-div056" data-first-child="">
-                                                        <img th:src="@{'/files/display?path=' + ${channel.thumbnailUrl}}"
+                                                        <img th:src="${#strings.isEmpty(channel.thumbnailUrl)
+            || channel.thumbnailUrl == '/'
+            || channel.thumbnailUrl == 'null'
+            ? '/images/channel_banner.png'
+            : '/files/display?path=' + channel.thumbnailUrl}"
                                                              alt="프로필 미리보기" loading="lazy" decoding="async"
                                                              style="position:absolute;height:100%;width:100%;inset:0;object-fit:cover;" />
                                                     </div>

@@ -319,7 +319,14 @@ document.querySelectorAll(".load-more-btn-diary").forEach(button => {
                 </div>
             </div>
             <a class="FlgBox-root-need joy-rtjsnx" href="/diary/diary-read?id=${diary.id}">
-                <img src="${diary.thumbnailUrl ? `/files/display?path=${diary.thumbnailUrl}` : '/images/channel_banner.png'}" style="position: absolute; height: 100%; width: 100%; object-fit: cover;" alt="썸네일" />
+                <img src="${(diary.thumbnailUrl
+                        && diary.thumbnailUrl.trim() !== ""
+                        && diary.thumbnailUrl !== "/"
+                        && diary.thumbnailUrl !== "null"
+                        && diary.thumbnailUrl !== null)
+                        ? `/files/display?path=${diary.thumbnailUrl.trim()}`
+                        : '/images/channel_banner.png'}" 
+                style="position: absolute; height: 100%; width: 100%; object-fit: cover;" alt="썸네일" />
             </a>
         </div>
         <div class="FlgStack-root-need joy-k2m8sx" data-google-interstitial="false">
@@ -382,7 +389,14 @@ document.querySelectorAll(".load-more-btn-post").forEach(button => {
                     el.innerHTML = `
         <span class="FlgBox-root-need joy-1lrlkwu" role="link" style="cursor: pointer;" data-href="/post/read?id=${post.id}">
             <div class="FlgBox-root-need jk-feelog-div056">
-                <img src="${post.thumbnailUrl ? `/files/display?path=${post.thumbnailUrl}` : '/images/channel_banner.png'}" alt="대표 이미지"
+                <img src="${(post.thumbnailUrl
+                        && post.thumbnailUrl.trim() !== ""
+                        && post.thumbnailUrl !== "/"
+                        && post.thumbnailUrl !== "null"
+                        && post.thumbnailUrl !== null)
+                        ? `/files/display?path=${post.thumbnailUrl.trim()}`
+                        : '/images/channel_banner.png'}"
+                alt="대표 이미지"
                      loading="lazy" decoding="async"
                      style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;" />
             </div>
@@ -448,7 +462,14 @@ document.querySelectorAll(".load-more-btn-cheer").forEach(button => {
               role="link" style="cursor: pointer;"
               data-href="/cheer/${cheer.id}">
             <div class="FlgBox-root-need jk-feelog-div056">
-                <img src="${cheer.thumbnailUrl ? `/files/display?path=${cheer.thumbnailUrl}` : '/images/channel_banner.png'}" alt="대표 이미지"
+                <img src="${(cheer.thumbnailUrl
+                        && cheer.thumbnailUrl.trim() !== ""
+                        && cheer.thumbnailUrl !== "/"
+                        && cheer.thumbnailUrl !== "null"
+                        && cheer.thumbnailUrl !== null)
+                        ? `/files/display?path=${cheer.thumbnailUrl.trim()}`
+                        : '/images/channel_banner.png'}"
+                 alt="대표 이미지"
                      loading="lazy" decoding="async"
                      style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;" />
             </div>
