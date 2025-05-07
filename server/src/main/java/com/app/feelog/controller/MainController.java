@@ -53,6 +53,7 @@ public class MainController {
     public String getMainMindLog(Model model, @RequestParam(required = false) Long challengeId,
                                  @SessionAttribute(value = "member", required = false) MemberDTO member) {
 
+        log.info("mind-log :: "+challengeId);
         if (member == null) {
             return "login/login";
         }
