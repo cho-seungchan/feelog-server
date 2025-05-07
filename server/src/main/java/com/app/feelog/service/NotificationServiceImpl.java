@@ -120,6 +120,7 @@ public class NotificationServiceImpl implements NotificationService {
         PostLikeNotificationDTO postLikeNotificationDTO = new PostLikeNotificationDTO();
         postLikeNotificationDTO.setId(newNotificationId);
         postLikeNotificationDTO.setPostLikeId(postLikeId);
+        log.info("postLike {}", postLikeNotificationDTO);
         postLikeNotificationDAO.insert(postLikeNotificationDTO.toVO());
     }
 

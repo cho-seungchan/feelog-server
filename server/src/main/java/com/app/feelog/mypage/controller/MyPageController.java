@@ -6,7 +6,6 @@ import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.DiaryVO;
-import com.app.feelog.domain.vo.SubscribeNotificationVO;
 import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.service.MyPageService;
 import com.app.feelog.util.SixRowPagination;
@@ -62,7 +61,7 @@ public class MyPageController {
         // 2025.04.23 조승찬 :: 닉네임 중복 체크
         Optional<MemberDTO> memberOptional = myPageService.getMemberByNickname(memberDTO.getMemberNickname());
         if (memberOptional.isPresent() && !memberOptional.get().getId().equals(member.getId())) {
-            model.addAttribute("errorMessage","중복된 Nickname 입니다.");
+            model.addAttribute("errorMessage", "중복된 Nickname 입니다.");
             model.addAttribute("member", memberDTO);
             return "myPage/setting-profile";
         }
@@ -77,7 +76,7 @@ public class MyPageController {
     // 2025.04.22 조승찬 :: 알림 설정 조회
     @GetMapping("/setting-notify")
     public String getSettingNotify(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                Model model) {
+                                   Model model) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -108,12 +107,14 @@ public class MyPageController {
 
         return "redirect:/myPage/setting-notify";
 
-    };
+    }
+
+    ;
 
     // 2025.04.22 조승찬 :: 채널 만들기 화면
     @GetMapping("/make-channel")
     public String getMakingChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                Model model){
+                                   Model model) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -129,7 +130,7 @@ public class MyPageController {
     // 2025.04.22 조승찬 :: 채널 만들기
     @PostMapping("/make-channel")
     public String PostMakingChannel(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                ChannelDTO channelDTO, Model model) {
+                                    ChannelDTO channelDTO, Model model) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -137,8 +138,8 @@ public class MyPageController {
         }
 
         // 중복 여부 확인. url만 존재하면 중복
-        if (myPageService.getChannelByUrl(channelDTO.getChannelUrl()).isPresent()){
-            model.addAttribute("errorMessage","중복된 url 입니다.");
+        if (myPageService.getChannelByUrl(channelDTO.getChannelUrl()).isPresent()) {
+            model.addAttribute("errorMessage", "중복된 url 입니다.");
             model.addAttribute("channel", channelDTO);
             return "myPage/make-channel";
         }
@@ -147,7 +148,7 @@ public class MyPageController {
         channelDTO.setMemberId(member.getId());
         myPageService.postMakingChannel(channelDTO);
 
-        return "redirect:/myPage/read-channel/"+channelDTO.getChannelUrl();
+        return "redirect:/myPage/read-channel/" + channelDTO.getChannelUrl();
     }
 
     // 2025.04.22 조승찬 :: 채널 보기(수정, 삭제용)
@@ -193,7 +194,7 @@ public class MyPageController {
         // 채널 정보 수정
         myPageService.postUpdateChannel(channelDTO);
 
-        return "redirect:/myPage/read-channel/"+channelDTO.getChannelUrl();
+        return "redirect:/myPage/read-channel/" + channelDTO.getChannelUrl();
     }
 
     // 2025.04.23 조승찬 :: 채널 삭제
@@ -219,7 +220,7 @@ public class MyPageController {
     // 2025.04.23 조승찬 :: 알림 메뉴 중 커뮤니티 목록
     @GetMapping("/notify-community-list")
     public String getNotifyCommunityList(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                             Model model, SixRowPagination pagination){
+                                         Model model, SixRowPagination pagination) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -240,7 +241,7 @@ public class MyPageController {
     // 2025.04.23 조승찬 :: 알림 메뉴 중 포스트 댓글 목록
     @GetMapping("/notify-reply-list")
     public String getNotifyReplyList(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                         Model model, SixRowPagination pagination){
+                                     Model model, SixRowPagination pagination) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -283,8 +284,8 @@ public class MyPageController {
     // 2025.04.24 조승찬 :: 구독자 리스트 조회
     @GetMapping("/notify-subscribe")
     public String getNotifySubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                      Model model, SixRowPagination pagination){
-
+                                     Model model, SixRowPagination pagination) {
+        log.info("들어옴noti");
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
             return "redirect:/login/login";
@@ -295,6 +296,7 @@ public class MyPageController {
 
         model.addAttribute("subscribes", subscribes);
         model.addAttribute("pagination", pagination);
+        log.info("나감noti");
 
         return "myPage/notify-subscribe";
     }
@@ -302,9 +304,9 @@ public class MyPageController {
     // 2025.04.24 조승찬 :: 구독자 취소
     @PostMapping("/notify-cancel-subscribe")
     public String cancelNotifySubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                        SubscribeDTO subscribeDTO, SixRowPagination pagination){
+                                        SubscribeDTO subscribeDTO, SixRowPagination pagination) {
 
-        log.info("취소처리 :: "+subscribeDTO.toString());
+        log.info("취소처리 :: " + subscribeDTO.toString());
         // 채널 정보 가져오기
         ChannelDTO channel = myPageService.getChannelByMemberId(member.getId()).orElse(null);
 
@@ -312,44 +314,44 @@ public class MyPageController {
         subscribeDTO.setChannelId(channel.getId());
         myPageService.cancelSubscribe(subscribeDTO);
 
-        return "redirect:/myPage/notify-subscribe?page="+pagination.getPage();
+        return "redirect:/myPage/notify-subscribe?page=" + pagination.getPage();
     }
 
     // 2025.04.24 조승찬 :: 구독 리스트 조회
     @GetMapping("/storage-subscribe")
     public String getStorageSubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                     Model model, SixRowPagination pagination){
-
+                                      Model model, SixRowPagination pagination) {
+        log.info("들어옴");
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
             return "redirect:/login/login";
         }
-
+        log.info("로그인멤버 통과");
         // 구독 리스트 가져오기
         List<StorageSubscribeListDTO> subscribes = myPageService.getStorageSubscribe(member.getId(), pagination);
-
+        log.info("subscribes {}", subscribes);
+        log.info("pagination {}", pagination);
         model.addAttribute("subscribes", subscribes);
         model.addAttribute("pagination", pagination);
-
         return "myPage/storage-subscribe";
     }
 
     // 2025.04.24 조승찬 :: 구독 취소
     @PostMapping("/storage-cancel-subscribe")
     public String cancelStorageSubscribe(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                  SubscribeDTO subscribeDTO, Model model, SixRowPagination pagination){
+                                         SubscribeDTO subscribeDTO, Model model, SixRowPagination pagination) {
 
         // 취소 처리
         subscribeDTO.setMemberId(member.getId());
         myPageService.cancelSubscribe(subscribeDTO);
 
-        return "redirect:/myPage/storage-subscribe?page="+pagination.getPage();
+        return "redirect:/myPage/storage-subscribe?page=" + pagination.getPage();
     }
 
     // 2025.04.25 조승찬 :: 스크랩 목록 보기
     @GetMapping("/storage-scrap")
     public String getStorageScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                  Model model, SixRowPagination pagination){
+                                  Model model, SixRowPagination pagination) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -369,24 +371,28 @@ public class MyPageController {
     @ResponseBody
     @PostMapping("/storage-off-scrap")
     public void storageOffScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                @RequestParam Long id){
+                                @RequestParam Long id) {
 
         myPageService.storageOffScrap(id);
-    };
+    }
+
+    ;
 
     // 2025.04.25 조승찬 :: 스크랩 재설정
     @ResponseBody
     @PostMapping("/storage-on-scrap")
     public void storageOnScrap(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                               @RequestParam Long id){
+                               @RequestParam Long id) {
 
         myPageService.storageOnScrap(id);
-    };
+    }
+
+    ;
 
     // 2025.04.25 조승찬 :: 좋아요 목록
     @GetMapping("/storage-like")
     public String storageLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                              Model model, SixRowPagination pagination){
+                              Model model, SixRowPagination pagination) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -407,7 +413,7 @@ public class MyPageController {
     @ResponseBody
     @PostMapping("/storage-off-like")
     public ResponseEntity<Map<String, Object>> storageOffLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                                              @RequestParam Long id, @RequestParam Long postId){
+                                                              @RequestParam Long id, @RequestParam Long postId) {
 
         myPageService.storageOffLike(id);
 
@@ -415,13 +421,15 @@ public class MyPageController {
         int likeCount = myPageService.getLikeCount(postId);
         response.put("likeCount", likeCount);
         return ResponseEntity.ok(response);
-    };
+    }
+
+    ;
 
     // 2025.04.25 조승찬 :: 좋아요 재설정
     @ResponseBody
     @PostMapping("/storage-on-like")
     public ResponseEntity<Map<String, Object>> storageOnLike(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                               @RequestParam Long id, @RequestParam Long postId){
+                                                             @RequestParam Long id, @RequestParam Long postId) {
 
         myPageService.storageOnLike(id);
 
@@ -429,12 +437,14 @@ public class MyPageController {
         int likeCount = myPageService.getLikeCount(postId);
         response.put("likeCount", likeCount);
         return ResponseEntity.ok(response);
-    };
+    }
+
+    ;
 
     // 2025.04.25  조승찬 :: 댓글 목록
     @GetMapping("/storage-reply")
     public String getStorageReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                               Model model, SixRowPagination pagination){
+                                  Model model, SixRowPagination pagination) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -453,12 +463,12 @@ public class MyPageController {
     // 2025.04.25 조승찬 :: 댓글 삭제
     @PostMapping("/storage-delete-reply")
     public String deleteStorageReply(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                     @RequestParam Long id, SixRowPagination pagination){
+                                     @RequestParam Long id, SixRowPagination pagination) {
 
         // 삭제 처리
         myPageService.deleteStorageReply(id);
 
-        return "redirect:/myPage/storage-reply?page="+pagination.getPage();
+        return "redirect:/myPage/storage-reply?page=" + pagination.getPage();
     }
 
 

@@ -303,10 +303,12 @@ footerButtons.addEventListener("click", async (e) => {
         const likeCount = e.target.closest(".like-post-button").querySelector("p");
 
         const postId = e.target.closest(".like-post-button").getAttribute("data-index");
+        const postMemberId = e.target.closest(".like-post-button").getAttribute("data-postMemberId");
         const memberId = loginMember.id
         await readService.addPostLike({
             postId: postId,
-            memberId: memberId
+            memberId: memberId,
+            postMemberId: postMemberId
         })
 
         // 좋아요추가

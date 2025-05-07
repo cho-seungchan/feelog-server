@@ -47,7 +47,7 @@
                                 <th:block th:each="subscribe : ${subscribes}">
                                     <div class="FeelogStack-root flog-div-72" th:attr="data-channelId=${subscribe.id != null ? subscribe.id : ''}">
                                         <a class="FeelogBox-root flog-a-21"
-                                           th:href="*{subscribe.channelUrl != null and !subscribe.channelUrl.isEmpty()} ? '/feelog.com/@' + subscribe.channelUrl + '/community' :  null"
+                                           th:href="*{subscribe.channelUrl != null and !subscribe.channelUrl.isEmpty()} ? '/feelog.com/@' + *{subscribe.channelUrl} + '/community' :  null"
                                         >
                                             <img
                                                     alt="채널"
