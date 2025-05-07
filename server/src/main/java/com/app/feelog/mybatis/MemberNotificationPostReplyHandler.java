@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @MappedTypes(MemberNotificationPostReply.class)
-public class MemberNotificationPostReplyHandler implements TypeHandler<MemberNotificationPostReply>{
+public class MemberNotificationPostReplyHandler implements TypeHandler<MemberNotificationPostReply> {
 
     @Override
     public void setParameter(PreparedStatement ps, int i, MemberNotificationPostReply parameter, JdbcType jdbcType) throws SQLException {
@@ -20,18 +20,22 @@ public class MemberNotificationPostReplyHandler implements TypeHandler<MemberNot
 
     @Override
     public MemberNotificationPostReply getResult(ResultSet rs, String columnName) throws SQLException {
-        switch (rs.getString(columnName)){
+        String value = rs.getString(columnName);
+        if (value == null) return null; // ✅ NullPointerException 방지
+
+        switch (value) {
             case "설정":
                 return MemberNotificationPostReply.ON;
             case "해지":
                 return MemberNotificationPostReply.OFF;
+            default:
+                return null;
         }
-        return null;
     }
 
     @Override
     public MemberNotificationPostReply getResult(ResultSet rs, int columnIndex) throws SQLException {
-        switch (rs.getString(columnIndex)){
+        switch (rs.getString(columnIndex)) {
             case "설정":
                 return MemberNotificationPostReply.ON;
             case "해지":
@@ -42,7 +46,7 @@ public class MemberNotificationPostReplyHandler implements TypeHandler<MemberNot
 
     @Override
     public MemberNotificationPostReply getResult(CallableStatement cs, int columnIndex) throws SQLException {
-        switch (cs.getString(columnIndex)){
+        switch (cs.getString(columnIndex)) {
             case "설정":
                 return MemberNotificationPostReply.ON;
             case "해지":

@@ -188,13 +188,17 @@ public class PostController {
     public void addPostLike(@RequestBody ChannelPostLikeDTO channelPostLikeDTO) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         channelPostLikeService.addPostLike(channelPostLikeDTO);
+        log.info(channelPostLikeDTO.toString());
 
         Long senderId = loginMember.getId();
-        Long receiverId = channelPostLikeDTO.getMemberId();
-
+        log.info("senderId: {}", senderId);
+        Long receiverId = channelPostLikeDTO.getPostMemberId();
+        log.info("receiverId : {}", receiverId);
         Long postLikeId = channelPostLikeDTO.getId();
+        log.info("like{}", postLikeId);
 
         if (!senderId.equals(receiverId)) {
+            log.info("들어옴");
             notificationService.sendPostLikeNotification(senderId, receiverId, postLikeId);
         }
     }

@@ -40,13 +40,13 @@ public class MessageController {
     public void insertMessage(@RequestBody InsertMessageDTO insertMessageDTO) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
 
-        log.info("insertMessage = {}", insertMessageDTO);
         messageService.insertMessage(insertMessageDTO);
-
+        
         Long senderId = loginMember.getId();
         Long receiverId = insertMessageDTO.getParticipantId();
 
         Long receiveMessageId = insertMessageDTO.getId();
+
 
         if (!senderId.equals(receiverId)) {
             notificationService.sendReceiveMessageNotification(senderId, receiverId, receiveMessageId);
