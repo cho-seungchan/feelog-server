@@ -190,9 +190,13 @@ document.body.addEventListener("click", async (e) => {
         } else {
             if (e.target.closest(".post-button")) {
                 const postId = e.target.closest(".post-button").getAttribute("data-index")
+                const memberId = e.target.closest(".post-button").getAttribute("data-memberId")
 
                 text = `
                 <ul role="menu" tabindex="-1" id=":r2l:" class="base-Popper-root MuiMenu-root Mui-expanded MuiMenu-variantPlain MuiMenu-colorNeutral MuiMenu-sizeMd joy-oqjr4q" style="" data-popper-placement="bottom-start">
+                    <button id=${postId} class="MuiMenuItem-root MuiMenuItem-colorNeutral MuiMenuItem-variantPlain joy-1nwwb6p edit-button" data-mebmerId="${memberId}">
+                        <p class=" button_text_01">수정하기</p>
+                    </button>
                     <button id=${postId} class="MuiMenuItem-root MuiMenuItem-colorNeutral MuiMenuItem-variantPlain joy-1nwwb6p report-button report-post">
                         <p class=" button_text_01">신고하기</p>
                     </button>
@@ -222,6 +226,24 @@ document.body.addEventListener("click", async (e) => {
             document.body.appendChild(reportDiv);
         }
     }
+
+    if (e.target.closest(".edit-button")) {
+        const editPostId = e.target.closest(".edit-button").id;
+        const memberId = e.target.closest(".edit-button").getAttribute("data-mebmerid")
+
+        if (loginMember == null) {
+            alert("로그인 후 이용해주세요")
+            window.location.href = "/login/login"
+        }
+
+        if (Number(memberId) != Number(loginMember.id)) {
+            alert("작성자만 가능합니다.")
+            return;
+        }
+
+        window.location.href = `/main/post/edit/${editPostId}`;
+    }
+
 
     if (e.target.closest(".report-button")) {
         if (!loginMember) {

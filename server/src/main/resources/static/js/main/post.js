@@ -190,7 +190,7 @@ function initFileUpload(container) {
                         ">×</button>
                     </div>`;
 
-                ["postFilePath", "postFileName", "postFileSize"].forEach((key) => {
+                ["postFilePath", "postFileName"].forEach((key) => {
                     const oldInput = form.querySelector(`input[name='${key}']`);
                     if (oldInput) oldInput.remove();
                 });
@@ -207,16 +207,10 @@ function initFileUpload(container) {
                 nameInput.value = fileDTO.fileName;
                 form.appendChild(nameInput);
 
-                const sizeInput = document.createElement("input");
-                sizeInput.type = "hidden";
-                sizeInput.name = "postFileSize";
-                sizeInput.value = fileDTO.fileSize;
-                form.appendChild(sizeInput);
-
                 preview.querySelector(".delete-thumbnail-btn").addEventListener("click", () => {
                     preview.innerHTML = "";
                     fileInput.value = "";
-                    [pathInput, nameInput, sizeInput].forEach(input => input.remove());
+                    [pathInput, nameInput].forEach(input => input.remove());
                 });
             })
             .catch(() => alert("대표 이미지 업로드 실패"));
