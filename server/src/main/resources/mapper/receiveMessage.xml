@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.ReceiveMessageMapper">
+    <select id="selectReceiveMessageByMemberId" resultType="receivceMessageMemberListDTO">
+        WITH CombinedMessages AS (SELECT rm.id        AS id,
+                                         rm.member_id AS member_id,
+                                         rm.sender_id AS participant_id,
+                                         rm.receive_message_status,
+                                         m.message_content,
+                                         m.updated_date,
+                                         mm.member_file_name,
+                                         mm.member_file_path,
+                                         mm.member_nickname,
+                                         'received'   AS message_type
+                                  FROM tbl_receive_message rm
+                                           JOIN tbl_message m ON rm.id = m.id
+                                           join tbl_member mm on mm.id = rm.sender_id
+                                  WHERE rm.member_id = #{memberId}
+                                    AND rm.receive_message_status = '정상'
 
+                                  UNION ALL
+
+                                  SELECT sm.id          AS id,
+                                         sm.member_id   AS member_id,
+                                         sm.receiver_id AS participant_id,
+                                         sm.receive_message_status,
+                                         m.message_content,
+                                         m.updated_date,
+                                         mm.member_file_name,
+                                         mm.member_file_path,
+                                         mm.member_nickname,
+                                         'sent'         AS message_type
+                                  FROM tbl_send_message sm
+                                           JOIN tbl_message m ON sm.id = m.id
+                                           join tbl_member mm on mm.id = sm.receiver_id
+                                  WHERE sm.member_id = #{memberId}
+                                    AND sm.receive_message_status = '정상')
+
+        SELECT *
+        FROM CombinedMessages
+        where member_id = #{memberId}
+        ORDER BY id desc
+    </select>
+
+    <select id="selectChannelUrl" resultType="string">
+        select c.channel_url
+        from tbl_member m
+                 join tbl_channel c on m.id = c.member_id
+        where m.id = #{participantId}
+    </select>
 </mapper>

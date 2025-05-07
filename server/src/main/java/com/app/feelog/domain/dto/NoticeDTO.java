@@ -3,7 +3,10 @@ package com.app.feelog.domain.dto;
 import com.app.feelog.domain.enumeration.NoticeStatus;
 import com.app.feelog.domain.vo.NoticeVO;
 import com.app.feelog.domain.vo.Period;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,6 +25,8 @@ public class NoticeDTO extends Period {
     private String noticeFileName;
     private String createdDate;
     private String updatedDate;
+    private int readCount;
+    private boolean isSubscribed;
 
     public NoticeVO toVO() {
         return NoticeVO.builder()
@@ -34,6 +39,7 @@ public class NoticeDTO extends Period {
                 .noticeFileName(noticeFileName)
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
+                .readCount(readCount)
                 .build();
     }
 }

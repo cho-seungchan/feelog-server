@@ -272,8 +272,12 @@ public class DiaryServiceImpl implements DiaryService {
     @Override
     public DiaryDetailDTO getDiaryDetailByDiaryId(Long diaryId) {
         DiaryDetailDTO diaryDetailDTO = diaryDAO.findDiaryDetailByDiaryId(diaryId);
+        log.info("DTO = {}", diaryDetailDTO);
+        log.info("id ={}", diaryId);
+        log.info("tags = {}", diaryTagDAO.findTagContentsByDiaryId(diaryId));
 
         diaryDetailDTO.setTags(diaryTagDAO.findTagContentsByDiaryId(diaryId));
+
         diaryDetailDTO.setDiaryLikeCount(diaryLikeDAO.findLikeCount(diaryId));
         diaryDetailDTO.setDiaryReplyCount(diaryLikeDAO.findReplyCount(diaryId));
 

@@ -16,6 +16,9 @@ public class SendMessageDTO {
     private Long memberId;
     private Long receiverId;
     private SendMessageStatus sendMessageStatus;
+    private String messageContent;
+    private String createdDate;
+    private String updatedDate;
 
     public SendMessageVO toVO() {
         return SendMessageVO.builder()
@@ -23,6 +26,9 @@ public class SendMessageDTO {
                 .memberId(memberId)
                 .receiverId(receiverId)
                 .sendMessageStatus(sendMessageStatus)
+                .messageContent(messageContent)
+                .createdDate(createdDate)
+                .updatedDate(updatedDate)
                 .build();
     }
 }

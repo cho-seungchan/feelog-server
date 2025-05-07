@@ -33,6 +33,8 @@
         <typeAlias type="com.app.feelog.domain.dto.joinDTO.PostReportListDTO" alias="postReportListDTO"/>
         <typeAlias type="com.app.feelog.domain.dto.joinDTO.DiaryReportListDTO" alias="diaryReportListDTO"/>
         <typeAlias type="com.app.feelog.domain.dto.joinDTO.ReplyReportListDTO" alias="replyReportListDTO"/>
+        <typeAlias type="com.app.feelog.domain.dto.joinDTO.ReceivceMessageMemberListDTO" alias="receivceMessageMemberListDTO"/>
+        <typeAlias type="com.app.feelog.domain.dto.joinDTO.MessageListDTO" alias="messageListDTO"/>
         <typeAlias type="com.app.feelog.domain.dto.DiaryReplyDTO" alias="diaryReplyDTO"/>
         <typeAlias type="com.app.feelog.util.pagination.PostPagination" alias="postPagination"/>
     </typeAliases>

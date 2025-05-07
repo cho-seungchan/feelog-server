@@ -2,26 +2,19 @@ package com.app.feelog.domain.vo;
 
 import com.app.feelog.domain.enumeration.ReceiveMessageStatus;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
 @Getter
 @ToString(callSuper = true)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
-public class ReceiveMessageVO {
+@SuperBuilder
+public class ReceiveMessageVO extends MessageVO{
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
     private Long senderId;
     private ReceiveMessageStatus receiveMessageStatus;
-
-    @Builder
-
-    public ReceiveMessageVO(Long id, Long memberId, Long senderId, ReceiveMessageStatus receiveMessageStatus) {
-        this.id = id;
-        this.memberId = memberId;
-        this.senderId = senderId;
-        this.receiveMessageStatus = receiveMessageStatus;
-    }
 }

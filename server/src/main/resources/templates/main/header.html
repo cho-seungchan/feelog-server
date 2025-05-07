@@ -635,6 +635,16 @@
                     </div>
                     <div data-nextjs-dialog-body="true">
                         <ul class="feelog-header-menuUi feelog-header-mdl-ul01">
+                            <li class="feelog-header-profileMenu feelog-header-mdl-li01">
+                                <div class="dayly-comment-container feelog-header-mdl-a01" style="border: 1px solid #dadadc;border-radius: 12px;display: block">
+                                    <div class="dayly-comment-wrap">
+                                        <p class="dayly-title feelog-header-mdl-p01">오늘의 한마디</p>
+                                    </div>
+                                    <div class="dayly-comment-wrapper">
+                                        <span class="dayly-comment"></span>
+                                    </div>
+                                </div>
+                            </li>
                             <li
                                     data-first-child=""
                                     class="feelog-header-profileMenu feelog-header-mdl-li01"
@@ -702,36 +712,7 @@
                                     <div class="feelog-header-mdl-div04"></div
                                     ></a>
                             </li>
-                            <li
-                                    class="feelog-header-profileMenu feelog-header-top-multipleLi"
-                            >
-                                <a
-                                        href="/main/post"
-                                        data-first-child=""
-                                        class="feelog-header-mdl-a01"
-                                ><div class="feelog-header-topDivs-02">
-                                    <svg
-                                            focusable="false"
-                                            aria-hidden="true"
-                                            viewBox="0 0 24 24"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="feelog-header-write-opened-svgs"
-                                    >
-                                        <path
-                                                d="m3.642 16.091-.899 3.054-.485 1.65a.927.927 0 0 0 .239.927.947.947 0 0 0 .927.239l1.65-.485 3.054-.9a3.429 3.429 0 0 0 1.462-.867L21.486 7.817a2.504 2.504 0 0 0 0-3.54l-1.54-1.544a2.502 2.502 0 0 0-3.54 0L4.511 14.63a3.468 3.468 0 0 0-.869 1.462Zm1.8.528c.066-.219.175-.422.328-.594l.066-.07 9.178-9.174 2.425 2.424-9.174 9.178a1.58 1.58 0 0 1-.665.395l-.915.27-2.143.63.63-2.144.27-.915Zm6.655 2.792A4.695 4.695 0 0 0 16.293 22h5.944a1.25 1.25 0 0 0 1.251-1.251 1.25 1.25 0 0 0-1.251-1.252h-.235c-.708 0-1.177-.774-1.071-1.47a4.699 4.699 0 0 0-2.53-4.916l-1.455 1.455a2.815 2.815 0 0 1 2.162 2.742c0 .148-.011.293-.031.433a3.295 3.295 0 0 0 .54 2.347l.027.035h-3.351a2.822 2.822 0 0 1-2.741-2.163l-1.455 1.455v-.004ZM6.286 2.917a3.099 3.099 0 0 0-4.38 0 3.099 3.099 0 0 0 0 4.38l3.86 3.86L7.092 9.83l-3.86-3.86a1.218 1.218 0 0 1 0-1.724 1.218 1.218 0 0 1 1.724 0l3.86 3.86 1.326-1.326-3.856-3.864Z"
-                                                fill="currentcolor"
-                                        ></path>
-                                    </svg>
-                                    <p class="feelog-header-mdl-p01">
-                                        응원글 작성
-                                    </p>
-                                </div>
-                                    <div class="feelog-header-mdl-div04"></div
-                                    ></a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -1826,196 +1807,14 @@
                         class="message-listContainer message-listView message-listHidden"
                         style="bottom: 100px !important; right: 22px !important"
                 >
-                    <div
-                            id="message-listContainer"
-                            style="
-                        position: relative !important;
-                        height: 100% !important;
-                        width: 100% !important;
-                        border: none !important;
-                    "
-                    >
-                        <div
-                                class="MuiStack-root joy-j7qwjs"
-                                data-first-child=""
-                                data-last-child=""
-                        >
-                            <div class="MuiStack-root joy-1dox06v">
-                                <div class="MuiStack-root joy-dmwqxb">
-                                    <a
-                                            target=""
-                                            rel="noreferrer"
-                                            href="/messages"
-                                            class="MuiButton-root MuiButton-variantPlain MuiButton-colorNeutral MuiButton-sizeMd joy-zok3ae"
-                                    >
-                                        <p
-                                                class="MuiTypography-root MuiTypography-title-lg joy-c7faj8"
-                                        >
-                                            메시지
-                                        </p>
-                                        <svg
-                                                focusable="false"
-                                                aria-hidden="true"
-                                                viewBox="0 0 24 24"
-                                                width="24"
-                                                height="24"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1w4q56z"
-                                        >
-                                            <path
-                                                    d="M16.416 11.332a.934.934 0 0 1 0 1.325l-7.5 7.504a.937.937 0 0 1-1.324-1.324L14.428 12l-6.84-6.84a.937.937 0 0 1 1.324-1.324l7.504 7.495Z"
-                                                    fill="currentcolor"
-                                            ></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                                <hr
-                                        class="MuiDivider-root MuiDivider-horizontal joy-w2e6ki"
-                                />
-                            </div>
-                            <ul
-                                    role="group"
-                                    class="MuiList-root MuiList-vertical MuiList-variantPlain MuiList-colorNeutral MuiList-nesting joy-50s8vl"
-                            >
-                                <li
-                                        tabindex="0"
-                                        id=":r2g:"
-                                        role="menuitem"
-                                        class="MuiMenuItem-root MuiMenuItem-colorNeutral MuiMenuItem-variantPlain joy-1521dpu"
-                                >
-                                    <div class="MuiListItemAvatar-root joy-11ol5nn">
-                                        <div
-                                                class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd imgWrap_05"
-                                        >
-                                            <img
-                                                    alt=""
-                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
-                                                    loading="lazy"
-                                                    class="MuiAvatar-img aTag_divImg_01"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="MuiListItemContent-root joy-hflw33">
-                                        <div
-                                                class="MuiStack-root diary_nicknameWrap_01"
-                                        >
-                                            <p
-                                                    class="MuiTypography-root MuiTypography-title-md title_h5_01"
-                                            >
-                                                Jake Jung
-                                            </p>
-                                            <p
-                                                    class="MuiTypography-root MuiTypography-body-sm joy-bfn6hx"
-                                            >
-                                                2025. 4. 10.
-                                            </p>
-                                        </div>
-                                        <p
-                                                class="MuiTypography-root MuiTypography-body-sm joy-wtfzkc"
-                                        >
-                                            ㄴㄴ
-                                        </p>
-                                    </div>
-                                </li>
-                                <hr
-                                        class="MuiDivider-root MuiDivider-horizontal joy-w2e6ki"
-                                />
-                                <li
-                                        tabindex="-1"
-                                        id=":r2i:"
-                                        role="menuitem"
-                                        class="MuiMenuItem-root MuiMenuItem-colorNeutral MuiMenuItem-variantPlain joy-1521dpu"
-                                >
-                                    <div class="MuiListItemAvatar-root joy-11ol5nn">
-                                        <div
-                                                class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd imgWrap_05"
-                                        >
-                                            <img
-                                                    alt=""
-                                                    src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
-                                                    loading="lazy"
-                                                    class="MuiAvatar-img aTag_divImg_01"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="MuiListItemContent-root joy-hflw33">
-                                        <div
-                                                class="MuiStack-root diary_nicknameWrap_01"
-                                        >
-                                            <p
-                                                    class="MuiTypography-root MuiTypography-title-md title_h5_01"
-                                            >
-                                                조승찬
-                                            </p>
-                                            <p
-                                                    class="MuiTypography-root MuiTypography-body-sm joy-bfn6hx"
-                                            >
-                                                2025. 4. 2.
-                                            </p>
-                                        </div>
-                                        <p
-                                                class="MuiTypography-root MuiTypography-body-sm joy-wtfzkc"
-                                        >
-                                            안녕하십니까
-                                        </p>
-                                    </div>
-                                </li>
-                                <hr
-                                        class="MuiDivider-root MuiDivider-horizontal joy-w2e6ki"
-                                />
-                                <li
-                                        tabindex="-1"
-                                        id=":r2k:"
-                                        role="menuitem"
-                                        class="MuiMenuItem-root MuiMenuItem-colorNeutral MuiMenuItem-variantPlain joy-1521dpu"
-                                >
-                                    <div class="MuiListItemAvatar-root joy-11ol5nn">
-                                        <div
-                                                class="MuiAvatar-root MuiAvatar-variantSoft MuiAvatar-colorNeutral MuiAvatar-sizeMd imgWrap_05"
-                                        >
-                                            <img
-                                                    alt=""
-                                                    src="https://d3mcojo3jv0dbr.cloudfront.net/2024/08/04/08/22/3e525faf47117161a07e6f5e548859d1.png?w=100&amp;h=100&amp;q=65"
-                                                    loading="lazy"
-                                                    class="MuiAvatar-img aTag_divImg_01"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="MuiListItemContent-root joy-hflw33">
-                                        <div
-                                                class="MuiStack-root diary_nicknameWrap_01"
-                                        >
-                                            <p
-                                                    class="MuiTypography-root MuiTypography-title-md title_h5_01"
-                                            >
-                                                하하호
-                                            </p>
-                                            <p
-                                                    class="MuiTypography-root MuiTypography-body-sm joy-bfn6hx"
-                                            >
-                                                2025. 4. 1.
-                                            </p>
-                                        </div>
-                                        <p
-                                                class="MuiTypography-root MuiTypography-body-sm joy-wtfzkc"
-                                        >
-                                            잘못보냈어요 ㅠㅠ
-                                        </p>
-                                    </div>
-                                </li>
-                                <hr
-                                        class="MuiDivider-root MuiDivider-horizontal joy-w2e6ki"
-                                />
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </header>
 
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/main/main-modal.js"></script>
-    <script src="/js/all/message.js"></script>
 </html>

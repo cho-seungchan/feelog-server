@@ -48,10 +48,7 @@ textarea {
 }
 
 
-
-
-
-.message-fix{
+.message-fix {
     position: relative !important;
     display: block !important;
     color-scheme: normal !important;
@@ -62,8 +59,7 @@ textarea {
     position: fixed;
     z-index: 10;
     overflow: visible;
-    display: flex
-;
+    display: flex;
     flex-wrap: nowrap;
     width: auto;
     background: transparent;
@@ -99,8 +95,7 @@ textarea {
 .fixed-button-container {
     position: relative;
     box-sizing: border-box;
-    display: flex
-;
+    display: flex;
     flex-wrap: nowrap;
     -webkit-box-align: center;
     align-items: center;
@@ -114,7 +109,7 @@ textarea {
     border-radius: 24px;
     will-change: transform, opacity;
     transition: transform 400ms cubic-bezier(0.36, 0, 0, 1) 10ms, box-shadow 200ms ease-out;
-    animation: 400ms cubic-bezier(0.36, 0, 0, 1) 0s 1 normal backwards running ;
+    animation: 400ms cubic-bezier(0.36, 0, 0, 1) 0s 1 normal backwards running;
 }
 
 .view-messageImg {
@@ -147,8 +142,7 @@ textarea {
 
 .view-xImg {
     position: absolute;
-    display: flex
-;
+    display: flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -165,8 +159,7 @@ textarea {
 
 .hidden-xImg {
     position: absolute;
-    display: flex
-;
+    display: flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -239,21 +232,19 @@ textarea {
     will-change: transform, opacity, width, max-height, max-width !important;
 }
 
-#message-listContainer{
+#message-listContainer {
     border-radius: 30px !important;
 }
 
 .diary_container_01 {
-    display: flex
-;
+    display: flex;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
 }
 
 .joy-1dox06v {
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     position: sticky;
     top: 0px;
@@ -261,8 +252,7 @@ textarea {
 }
 
 .joy-dmwqxb {
-    display: flex
-;
+    display: flex;
     flex-direction: row;
     padding: 4px 8px;
     -webkit-box-align: center;
@@ -283,8 +273,7 @@ textarea {
     border: none;
     background-color: transparent;
     cursor: pointer;
-    display: inline-flex
-;
+    display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -347,8 +336,7 @@ textarea {
     margin-block-end: initial;
     box-sizing: border-box;
     list-style: none;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -406,8 +394,7 @@ textarea {
     line-height: 1;
     color: #202022;
     position: relative;
-    display: flex
-;
+    display: flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -437,8 +424,7 @@ textarea {
 }
 
 .diary_nicknameWrap_01 {
-    display: flex
-;
+    display: flex;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -503,30 +489,28 @@ textarea {
     block-size: 1px;
 }
 
-.joy-1521dpu:not(.Mui-selected, [aria-selected="true"]):hover, .joy-zok3ae:hover, .joy-1j6tmez>button:hover {
+.joy-1521dpu:not(.Mui-selected, [aria-selected="true"]):hover, .joy-zok3ae:hover, .joy-1j6tmez > button:hover {
     background-color: #f2f2f3;
     color: #202022;
 }
 
-.view-list{
+.view-list {
     visibility: visible;
 }
 
-.hidden-list{
+.hidden-list {
     visibility: hidden;
 }
 
 .joy-h3xwdq {
-    display: flex
-;
+    display: flex;
     flex-direction: row;
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
 
 .joy-1r5to7m {
-    display: flex
-;
+    display: flex;
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
@@ -539,8 +523,7 @@ textarea {
     font-weight: 400;
     text-decoration: none max(0.08em, 1px) currentcolor;
     text-underline-offset: 0.15em;
-    display: inline-flex
-;
+    display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-tap-highlight-color: transparent;
@@ -556,8 +539,7 @@ textarea {
 }
 
 .joy-1j6tmez {
-    display: flex
-;
+    display: flex;
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
@@ -577,8 +559,7 @@ textarea {
     box-sizing: border-box;
     background-color: transparent;
     cursor: pointer;
-    display: inline-flex
-;
+    display: inline-flex;
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -628,8 +609,7 @@ textarea {
     box-sizing: border-box;
     background-color: transparent;
     cursor: pointer;
-    display: inline-flex
-;
+    display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -669,8 +649,7 @@ textarea {
 }
 
 .joy-uabdzs {
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     overflow-y: auto;
     position: relative;
@@ -678,9 +657,9 @@ textarea {
     flex: 1 1 auto;
 
 }
+
 .joy-1fptnyw {
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     padding: 20px;
     gap: 16px;
@@ -689,16 +668,14 @@ textarea {
 
 .joy-1age63q {
     width: 100%;
-    display: flex
-;
+    display: flex;
 }
 
 .joy-bwcods {
     margin: initial;
     position: relative;
     align-self: stretch;
-    display: flex
-;
+    display: flex;
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
@@ -723,13 +700,13 @@ textarea {
 }
 
 .joy-131bx5v {
-    display: flex
-;
+    display: flex;
     flex-flow: row;
     -webkit-box-pack: start;
     justify-content: flex-start;
     width: 100%;
 }
+
 .joy-kd81xj {
     font-size: 18px;
     line-height: 1.5;
@@ -737,8 +714,7 @@ textarea {
     font-weight: 400;
     text-decoration: none max(0.08em, 1px) currentcolor;
     text-underline-offset: 0.15em;
-    display: inline-flex
-;
+    display: inline-flex;
     -webkit-box-align: center;
     -webkit-tap-highlight-color: transparent;
     background-color: transparent;
@@ -755,8 +731,7 @@ textarea {
 
 .joy-7tv6fu {
     position: relative;
-    display: flex
-;
+    display: flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -773,16 +748,14 @@ textarea {
 }
 
 .joy-11cui4a {
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
 }
 
 .joy-e6pf26 {
-    display: flex
-;
+    display: flex;
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
@@ -825,8 +798,7 @@ textarea {
 }
 
 .joy-1udr1jv {
-    display: flex
-;
+    display: flex;
     flex-flow: row;
     -webkit-box-pack: end;
     justify-content: flex-end;
@@ -834,8 +806,7 @@ textarea {
 }
 
 .joy-1y9kyp6 {
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 6px;
@@ -860,8 +831,7 @@ textarea {
 }
 
 .joy-1m2yi2j {
-    display: flex
-;
+    display: flex;
     position: relative;
     flex-direction: row;
     gap: 8px;
@@ -889,7 +859,7 @@ textarea {
     padding: 5px 5px 5px 15px;
 }
 
-.joy-spcbp9{
+.joy-spcbp9 {
     background-color: transparent;
 }
 
@@ -931,8 +901,7 @@ textarea {
 }
 
 .joy-18i8jzi {
-    display: flex
-;
+    display: flex;
     margin-inline-start: -7px;
     margin-inline-end: calc(0.375rem - 1px);
     margin-block-start: 0.5rem;
@@ -956,8 +925,7 @@ textarea {
     border: none;
     box-sizing: border-box;
     cursor: pointer;
-    display: inline-flex
-;
+    display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -1033,6 +1001,7 @@ textarea {
 .joy-1521dpu * {
     pointer-events: none; /* 내부 요소의 클릭 비활성화 */
 }
+
 .joy-1521dpu {
     pointer-events: auto; /* li는 클릭 가능 */
 }
@@ -1070,6 +1039,55 @@ textarea {
 }
 
 .joy-1nwwb6p:hover {
+    background-color: #f2f2f3;
+    color: #202022;
+}
+
+.date-wrapper {
+    width: 100%;
+    display: flex;
+}
+
+.joy-ozngwz, .joy-1dgehg0 {
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 14px;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 500;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    color: #202022;
+    margin-right: 8px;
+    padding-inline: 2px;
+    padding-block: 0px;
+    border-radius: 8px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+
+.joy-s1s0o1 {
+    user-select: none;
+    margin: initial;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: calc(32px / 1.6);
+    width: 20px;
+    height: 20px;
+    color: currentcolor;
+}
+
+.joy-e6pf26:hover button {
+    visibility: visible;
     background-color: #f2f2f3;
     color: #202022;
 }

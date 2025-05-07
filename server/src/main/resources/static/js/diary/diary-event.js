@@ -1,4 +1,5 @@
 diaryService.getDiaryList(diaryLayout.showDiaryListClose);
+indexService.getNoticeListMain(indexLayout.showNoticeMain)
 
 const moreButton = document.querySelector(".moreInfo_button_01");
 const postContainer = document.querySelector(".diary_wrap_01");
@@ -6,14 +7,14 @@ const reportDiv = document.createElement("div");
 
 reportDiv.id = "report-button";
 
-moreButton.addEventListener("click", async (e) =>{
+moreButton.addEventListener("click", async (e) => {
     const pageIndex = parseInt(moreButton.getAttribute("data-index"));
     await diaryService.getDiaryList(diaryLayout.showDiaryListClose, pageIndex);
     moreButton.setAttribute("data-index", pageIndex + 1);
 })
 
 postContainer.addEventListener("click", (e) => {
-    if(e.target.closest(".menu-button")){
+    if (e.target.closest(".menu-button")) {
         const existingDiv = document.querySelector("#report-button");
         const diaryId = e.target.closest(".menu-button").getAttribute("data-index")
 
@@ -41,9 +42,9 @@ postContainer.addEventListener("click", (e) => {
     }
 })
 
-document.querySelector("body").addEventListener("click", async (e)=> {
-    if(e.target.closest(".report-post")){
-        if(loginMember == null){
+document.querySelector("body").addEventListener("click", async (e) => {
+    if (e.target.closest(".report-post")) {
+        if (loginMember == null) {
             alert("로그인 후 이용해주세요")
             window.location.href = "/login/login";
             return;
@@ -53,15 +54,15 @@ document.querySelector("body").addEventListener("click", async (e)=> {
         const reportDiaryId = e.target.closest(".report-post").id;
         const duplicationId = reportListData.includes(Number(reportDiaryId));
 
-        if(!duplicationId){
+        if (!duplicationId) {
             console.log("들어옴")
-            if(confirm("이 게시글을 신고하시겠습니까?")){
+            if (confirm("이 게시글을 신고하시겠습니까?")) {
                 await reportService.addDiaryReport({
-                    memberId:loginMember.id,
-                    diaryId:reportDiaryId
+                    memberId: loginMember.id,
+                    diaryId: reportDiaryId
                 })
             }
-        }else{
+        } else {
             alert("이미 신고된 게시글입니다.")
         }
     }
