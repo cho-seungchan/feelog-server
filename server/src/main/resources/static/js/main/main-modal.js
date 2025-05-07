@@ -336,32 +336,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const getMessageMemberList = (messageListData) => {
         const firstMember = new Map();
-        const uniqueMembers = new Set();
-        const duplicateSet = new Set();
 
         messageListData.forEach((message) => {
             const memberId = message.participantId;
 
+            // 첫 번째로 등장한 memberId만 저장 (이미 존재하면 덮어쓰지 않음)
             if (!firstMember.has(memberId)) {
-                firstMember.set(memberId, message); // ✅ 첫 번째로 등장한 `participantId` 저장
-            }
-
-            if (uniqueMembers.has(memberId)) {
-                uniqueMembers.delete(memberId);
-                duplicateSet.add(memberId); // ✅ 중복 발생 시 `duplicateSet`에 추가
-            } else if (!duplicateSet.has(memberId)) {
-                uniqueMembers.add(memberId);
+                firstMember.set(memberId, message);
             }
         });
 
-        const result = Array.from(firstMember.values()).concat(
-            messageListData.filter((message) => uniqueMembers.has(message.participantId) && !duplicateSet.has(message.participantId))
-        );
-
-        return result;
+        return Array.from(firstMember.values()); // 중복 제거된 메시지 리스트 반환
     };
 
     const renderMessageList = (messageListData) => {
+        console.log(messageListData)
         const result = getMessageMemberList(messageListData);
         const memberList = document.querySelector(".message-listContainer");
 
