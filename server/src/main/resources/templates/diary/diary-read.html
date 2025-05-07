@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/css/main/header.css">
         <link rel="stylesheet" href="/css/main/search-modal.css">
         <link rel="stylesheet" href="/css/all/message.css" />
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
         <style>
             @font-face {
                 font-family: "Postype Sans-serif KR";
@@ -37,7 +38,7 @@
                                     <a
                                         th:if="${diary.diaryNameOpen == T(com.app.feelog.domain.enumeration.DiaryNameOpen).KNOWN}"
                                         class="channel_info_01"
-                                        th:href="@{/feelog.com/{channelUrl}/community(channelUrl=${diary.channelUrl})}"
+                                        th:href="'/feelog.com/@' + ${diary.channelUrl} + '/community'"
                                         >
                                         <div
                                                 class="imgWrap_05"
@@ -455,6 +456,7 @@
         const loginMember = [[${session.member}]]
     </script>
     <script src="/js/main/main-modal.js"></script>
+    <script src="/js/main/notification.js"></script>
     <script src="/js/main/main-search-modal.js"></script>
     <script src="/js/post/date-from-now.js"></script>
     <script src="/js/post/file-service.js"></script>

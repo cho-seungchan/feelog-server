@@ -22,5 +22,4 @@ public class ChannelInfoDTO {
     private int subscriberCount;
     private int noticeCount;
     private int postCount;
-
 }

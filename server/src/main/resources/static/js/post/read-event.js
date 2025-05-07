@@ -2,6 +2,7 @@ readService.getNextPost(readLayout.showNextPost, postInfo.channelId, postInfo.id
 readService.getPreviousPost(readLayout.showPreviousPost, postInfo.channelId, postInfo.id)
 readService.getRandomPost(readLayout.showRandomPost);
 readService.getReplyList(readLayout.showReplyList);
+console.log(postInfo)
 
 const reportDiv = document.createElement("div");
 const replyContainer = document.querySelector(".reply_container_01");
@@ -36,9 +37,9 @@ document.addEventListener("click", async (e) => {
                 `;
             }
         } else {
-                if (confirm("구독을 해지하시겠습니까?")) {
-                    await readService.deleteSubscribe(channelId);
-                    subscribeButton.innerHTML = `
+            if (confirm("구독을 해지하시겠습니까?")) {
+                await readService.deleteSubscribe(channelId);
+                subscribeButton.innerHTML = `
                         <button class="more_diaryButton_01 add_channelButton_01 subscribe-button" type="button" data-index=${channelId}>
                             구독
                         </button>
@@ -47,10 +48,10 @@ document.addEventListener("click", async (e) => {
         }
     }
 
-    if(e.target.closest(".scrap-button_01")){
+    if (e.target.closest(".scrap-button_01")) {
         const svg = e.target.closest(".scrap-button_01").querySelector("svg");
 
-        if(loginMember == null){
+        if (loginMember == null) {
             alert("로그인 후 이용해주세요")
             window.location.href = "/login/login"
         }
@@ -83,7 +84,7 @@ document.addEventListener("click", async (e) => {
 
 const writeReplyButton = document.querySelector(".uploadButton_css_01");
 
-if(writeReplyButton){
+if (writeReplyButton) {
     writeReplyButton.addEventListener("click", async (e) => {
         const replyCountText = document.querySelector(".reply-count-button").querySelector("p");
         const replyContent = document.querySelector(".textareaInput_02");
@@ -91,24 +92,24 @@ if(writeReplyButton){
         const uploadFile = e.target.closest(".upload_buttonContainer_02").querySelector(".upload-file");
         let replyCount = postInfo.replyCount;
 
-        if(uploadFile){
+        if (uploadFile) {
             const filePath = uploadFile.getAttribute("data-file-path")
             const fileName = uploadFile.getAttribute("data-file-name")
 
             await readService.addReply({
-                postId:postInfo.id,
-                memberId:loginMember.id,
-                replyContent:replyContent.value,
-                replyFilePath:filePath,
-                replyFileName:fileName,
-                postMemberId:postInfo.memberId
+                postId: postInfo.id,
+                memberId: loginMember.id,
+                replyContent: replyContent.value,
+                replyFilePath: filePath,
+                replyFileName: fileName,
+                postMemberId: postInfo.memberId
             })
-        }else {
+        } else {
             await readService.addReply({
-                postId:postInfo.id,
-                memberId:loginMember.id,
-                replyContent:replyContent.value,
-                postMemberId:postInfo.memberId
+                postId: postInfo.id,
+                memberId: loginMember.id,
+                replyContent: replyContent.value,
+                postMemberId: postInfo.memberId
             })
         }
         alert("댓글이 등록됐습니다.")
@@ -122,12 +123,12 @@ if(writeReplyButton){
     })
 }
 
-moreButton.addEventListener("click", async(e) => {
+moreButton.addEventListener("click", async (e) => {
     const randomPostWrap = document.querySelector(".recommend_post_wrap_01");
     randomPostWrap.innerHTML = ``;
     await readService.getRandomPost(readLayout.showRandomPost)
 })
-if(addImg){
+if (addImg) {
     addImg.addEventListener("change", (e) => {
         console.log(e.target.files)
         const files = e.target.files[0]; // FileList 객체
@@ -138,19 +139,19 @@ if(addImg){
         inputFileUpload(formData);
     })
 
-    addImg.addEventListener("click",  (e) => {
-        if(e.target.closest(".joy-vbxkza")){
+    addImg.addEventListener("click", (e) => {
+        if (e.target.closest(".joy-vbxkza")) {
             e.target.closest(".joy-jj02o9").remove();
             return;
         }
     })
 }
 
-if(document.querySelector(".image-wrap-reply")){
-    document.querySelector(".image-wrap-reply").addEventListener("click",(e) => {
+if (document.querySelector(".image-wrap-reply")) {
+    document.querySelector(".image-wrap-reply").addEventListener("click", (e) => {
         const imgWrap = addImg.querySelector(".upload-file");
         console.log(imgWrap)
-        if(imgWrap){
+        if (imgWrap) {
             alert("이미지는 하나만 가능합니다.")
             e.stopPropagation();
             e.preventDefault();
@@ -160,7 +161,7 @@ if(document.querySelector(".image-wrap-reply")){
 }
 
 replyContainer.addEventListener("click", async (e) => {
-    if(e.target.closest(".like_button")){
+    if (e.target.closest(".like_button")) {
         if (!loginMember) {
             alert("로그인 후 이용해주세요");
             window.location.href = "/login/login";
@@ -171,8 +172,8 @@ replyContainer.addEventListener("click", async (e) => {
 
 
         await readService.addReplyLike({
-            replyId:Number(replyId),
-            memberId:Number(loginMember.id)
+            replyId: Number(replyId),
+            memberId: Number(loginMember.id)
         })
 
         replyWrap.innerHTML = "";
@@ -181,23 +182,23 @@ replyContainer.addEventListener("click", async (e) => {
 })
 
 document.body.addEventListener("click", async (e) => {
-    if(e.target.closest(".menu-button")){
+    if (e.target.closest(".menu-button")) {
         const existingDiv = document.querySelector("#report-button");
 
         if (existingDiv) {
             existingDiv.remove();
         } else {
-            if(e.target.closest(".post-button")){
-            const postId = e.target.closest(".post-button").getAttribute("data-index")
+            if (e.target.closest(".post-button")) {
+                const postId = e.target.closest(".post-button").getAttribute("data-index")
 
-            text = `
+                text = `
                 <ul role="menu" tabindex="-1" id=":r2l:" class="base-Popper-root MuiMenu-root Mui-expanded MuiMenu-variantPlain MuiMenu-colorNeutral MuiMenu-sizeMd joy-oqjr4q" style="" data-popper-placement="bottom-start">
                     <button id=${postId} class="MuiMenuItem-root MuiMenuItem-colorNeutral MuiMenuItem-variantPlain joy-1nwwb6p report-button report-post">
                         <p class=" button_text_01">신고하기</p>
                     </button>
                 </ul>
             `;
-            }else {
+            } else {
                 const replyId = e.target.closest(".reply-button").getAttribute("data-index");
 
                 text = `
@@ -222,45 +223,45 @@ document.body.addEventListener("click", async (e) => {
         }
     }
 
-    if(e.target.closest(".report-button")){
+    if (e.target.closest(".report-button")) {
         if (!loginMember) {
             alert("로그인 후 이용해주세요");
             window.location.href = "/login/login";
             return;
         }
 
-        if(e.target.closest(".report-post")){
+        if (e.target.closest(".report-post")) {
             const reportListData = await readService.getReportList();
             const reportPostIds = reportListData.map(report => report.postId);
             const reportPostId = e.target.closest(".report-post").id;
             const duplicationId = reportPostIds.includes(Number(reportPostId));
 
-            if(!duplicationId){
-                if(confirm("이 게시글을 신고하시겠습니까?")){
+            if (!duplicationId) {
+                if (confirm("이 게시글을 신고하시겠습니까?")) {
                     await readService.addReport({
-                        reportMemberId:loginMember.id,
-                        postId:reportPostId
+                        reportMemberId: loginMember.id,
+                        postId: reportPostId
                     })
                     alert("신고완료")
                 }
-            }else{
+            } else {
                 alert("이미 신고된 게시글입니다.")
             }
         }
 
-        if(e.target.closest(".report-reply")){
+        if (e.target.closest(".report-reply")) {
             const replyId = e.target.closest(".report-reply").id
             const memberId = Number(loginMember.id);
-            if(confirm("이 댓글을 신고하시겠습니까?")){
+            if (confirm("이 댓글을 신고하시겠습니까?")) {
                 const replyData = await readService.getReplyReportCheck(replyId, memberId);
 
-                if(!replyData){
+                if (!replyData) {
                     await readService.addReplyReport({
-                        replyId:replyId,
-                        memberId:memberId
+                        replyId: replyId,
+                        memberId: memberId
                     })
                     alert("신고완료")
-                } else{
+                } else {
                     alert("이미 신고된 댓글입니다.")
                 }
             }
@@ -270,7 +271,7 @@ document.body.addEventListener("click", async (e) => {
 })
 
 footerButtons.addEventListener("click", async (e) => {
-    if(e.target.closest(".like-post-button")){
+    if (e.target.closest(".like-post-button")) {
         if (!loginMember) {
             alert("로그인 후 이용해주세요");
             window.location.href = "/login/login";
@@ -282,14 +283,14 @@ footerButtons.addEventListener("click", async (e) => {
         const postId = e.target.closest(".like-post-button").getAttribute("data-index");
         const memberId = loginMember.id
         await readService.addPostLike({
-            postId:postId,
-            memberId:memberId
+            postId: postId,
+            memberId: memberId
         })
 
         // 좋아요추가
-        if(!postInfo.liked){
+        if (!postInfo.liked) {
             postInfo.liked = true;
-            postInfo.likeCount +=1
+            postInfo.likeCount += 1
 
             likeSvg.classList.remove("like_svg_01");
             likeSvg.classList.add("joy-fkbdob");
@@ -298,10 +299,10 @@ footerButtons.addEventListener("click", async (e) => {
             `;
             likeCount.innerText = postInfo.likeCount
 
-        }else{
+        } else {
             // 좋아요취소
             postInfo.liked = false
-            postInfo.likeCount -=1
+            postInfo.likeCount -= 1
 
             likeSvg.classList.remove("joy-fkbdob");
             likeSvg.classList.add("like_svg_01");

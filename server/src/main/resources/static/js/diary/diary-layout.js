@@ -35,7 +35,7 @@ const diaryLayout = (() => {
                 diary.diaryTags.forEach((tag) => {
                     const aTag = document.createElement("a");
                     aTag.classList.add("aTag_myDiary_01", "aTag_myDiary_03", "aTag_tag_01")
-                    aTag.href = "";
+                    aTag.href = `/search/search?keyword=${tag}`;
                     aTag.innerHTML = `
                         <span class="MuiChip-label MuiChip-labelMd joy-tymi7a" id=":r15:">${tag}</span>
                     `;

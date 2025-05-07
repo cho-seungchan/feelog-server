@@ -6,14 +6,13 @@ import com.app.feelog.domain.dto.ChannelDTO;
 import com.app.feelog.domain.dto.ChannelInfoDTO;
 import com.app.feelog.domain.dto.CommunityPostReplyDTO;
 import com.app.feelog.domain.dto.MemberDTO;
-import com.app.feelog.domain.vo.CommunityPostVO;
 import com.app.feelog.mypage.dto.CommunityPostListDTO;
 import com.app.feelog.mypage.dto.CommunityPostReplyListDTO;
 import com.app.feelog.mypage.dto.CommunityPostWriteDTO;
 import com.app.feelog.mypage.service.CommunityService;
-import com.app.feelog.mypage.service.MyPageService;
 import com.app.feelog.service.ChannelInfoService;
 import com.app.feelog.service.ChannelService;
+import com.app.feelog.service.NotificationService;
 import com.app.feelog.service.SubscribeService;
 import com.app.feelog.util.SixRowPagination;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,11 +41,12 @@ public class CommunityController {
     private final ChannelService channelService;
     private final ChannelInfoService channelInfoService;
     private final SubscribeService subscribeService;
+    private final NotificationService notificationService;
 
     // 2025.04.26 조승찬 :: 커뮤니티 글 목록
     @GetMapping("/@{channelUrl}/community")
     public String getCommunityPostList(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                        @PathVariable String channelUrl, Model model, SixRowPagination pagination){
+                                       @PathVariable String channelUrl, Model model, SixRowPagination pagination) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -78,9 +78,10 @@ public class CommunityController {
         model.addAttribute("isSubscribed", isSubscribed);
         model.addAttribute("communities", communities);
         model.addAttribute("pagination", pagination);
-        model.addAttribute("currentChannelUrl",channelUrl);
+        model.addAttribute("currentChannelUrl", channelUrl);
         model.addAttribute("loginId", member.getId());
         model.addAttribute("communityPost", communityPost);
+
 
         return "community/community";
     }
@@ -93,7 +94,16 @@ public class CommunityController {
         communityPostWriteDTO.setMemberId(member.getId());
         communityService.postCommunityPost(channelUrl, communityPostWriteDTO);
 
-        return "redirect:/feelog.com/@"+channelUrl+"/community";
+        Long senderId = member.getId();
+        Long receiverId = communityPostWriteDTO.getMemberId();
+
+        Long communityPostId = communityPostWriteDTO.getId();
+
+        if (!senderId.equals(receiverId)) {
+            notificationService.sendCommunityPostNotification(senderId, receiverId, communityPostId);
+        }
+
+        return "redirect:/feelog.com/@" + channelUrl + "/community";
     }
 
     // 2025.04.26 조승찬 :: 커뮤니티 글 읽어오기
@@ -119,7 +129,7 @@ public class CommunityController {
 
         communityService.updateCommunityPost(communityPostWriteDTO);
 
-        return "redirect:/feelog.com/@"+channelUrl+"/community";
+        return "redirect:/feelog.com/@" + channelUrl + "/community";
     }
 
     // 2025.04.27 조승찬  :: 커뮤니티 글 삭제하기
@@ -130,16 +140,16 @@ public class CommunityController {
 
         communityService.deleteCommunityPost(postId);
 
-        return "redirect:/feelog.com/@"+channelUrl+"/community";
+        return "redirect:/feelog.com/@" + channelUrl + "/community";
     }
 
     // 2025.04.27 조승찬  ::  좋아요
     @ResponseBody
     @PostMapping("/@{channelUrl}/community-like/{postId}")
     public ResponseEntity<Map<String, Object>> postCommunityPostLike(
-                    @SessionAttribute(name = "member", required = false) MemberDTO member,
-                    @PathVariable String channelUrl, @PathVariable Long postId,
-                    SixRowPagination pagination) {
+            @SessionAttribute(name = "member", required = false) MemberDTO member,
+            @PathVariable String channelUrl, @PathVariable Long postId,
+            SixRowPagination pagination) {
 
         // 좋아요 생성
         communityService.postCommunityPostLike(member.getId(), postId);
@@ -154,9 +164,9 @@ public class CommunityController {
     @ResponseBody
     @PostMapping("/@{channelUrl}/community-like-cancel/{postId}")
     public ResponseEntity<Map<String, Object>> cancelCommunityPostLike(
-                    @SessionAttribute(name = "member", required = false) MemberDTO member,
-                    @PathVariable String channelUrl, @PathVariable Long postId,
-                    SixRowPagination pagination) {
+            @SessionAttribute(name = "member", required = false) MemberDTO member,
+            @PathVariable String channelUrl, @PathVariable Long postId,
+            SixRowPagination pagination) {
 
         // 좋아요 취소
         communityService.cancelCommunityPostLike(member.getId(), postId);
@@ -171,9 +181,9 @@ public class CommunityController {
     @ResponseBody
     @PostMapping("/@{channelUrl}/community-report/{postId}")
     public ResponseEntity<Map<String, Object>> postCommunityPostReport(
-                    @SessionAttribute(name = "member", required = false) MemberDTO member,
-                    @PathVariable String channelUrl, @PathVariable Long postId,
-                    SixRowPagination pagination) {
+            @SessionAttribute(name = "member", required = false) MemberDTO member,
+            @PathVariable String channelUrl, @PathVariable Long postId,
+            SixRowPagination pagination) {
 
         // 신고 생성
         communityService.postCommunityPostReport(member.getId(), postId);
@@ -189,9 +199,9 @@ public class CommunityController {
     @ResponseBody
     @PostMapping("/@{channelUrl}/community-report-cancel/{postId}")
     public ResponseEntity<Map<String, Object>> cancelCommunityPostReport
-                        (@SessionAttribute(name = "member", required = false) MemberDTO member,
-                        @PathVariable String channelUrl, @PathVariable Long postId,
-                        SixRowPagination pagination) {
+    (@SessionAttribute(name = "member", required = false) MemberDTO member,
+     @PathVariable String channelUrl, @PathVariable Long postId,
+     SixRowPagination pagination) {
 
         // 신고 취소
         communityService.cancelCommunityPostReport(member.getId(), postId);
@@ -205,8 +215,8 @@ public class CommunityController {
     // 2025.04.28  조승찬 :: 댓글 목록
     @GetMapping("/@{channelUrl}/community-reply/{postId}")
     public String getCommunityPostReplyList(@SessionAttribute(name = "member", required = false) MemberDTO member,
-                                 @PathVariable String channelUrl, @PathVariable Long postId,
-                                 Model model, SixRowPagination pagination){
+                                            @PathVariable String channelUrl, @PathVariable Long postId,
+                                            Model model, SixRowPagination pagination) {
 
         if (member == null) {
             session.setAttribute("redirectAfterLogin", request.getRequestURI());
@@ -219,7 +229,7 @@ public class CommunityController {
         CommunityPostReplyDTO communityPostReply = new CommunityPostReplyDTO();
         model.addAttribute("reply", reply);
         model.addAttribute("pagination", pagination);
-        model.addAttribute("currentChannelUrl",channelUrl);
+        model.addAttribute("currentChannelUrl", channelUrl);
         model.addAttribute("loginId", member.getId());
         model.addAttribute("communityPost", communityPost);
         model.addAttribute("communityPostReply", communityPostReply);
@@ -242,7 +252,7 @@ public class CommunityController {
         reply.setMemberId(member.getId());
         communityService.postCommunityPostReply(reply);
 
-        return "redirect:/feelog.com/@"+channelUrl+"/community-reply/"+reply.getPostId();
+        return "redirect:/feelog.com/@" + channelUrl + "/community-reply/" + reply.getPostId();
     }
 
 
@@ -260,7 +270,7 @@ public class CommunityController {
         // 댓글 삭제
         communityService.deleteCommunityPostReply(reply.getId());
 
-        return "redirect:/feelog.com/@"+channelUrl+"/community-reply/"+reply.getPostId();
+        return "redirect:/feelog.com/@" + channelUrl + "/community-reply/" + reply.getPostId();
     }
 
 
