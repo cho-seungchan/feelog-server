@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const plainTextContent = stripHtmlTags(contentHtml);
         const contents = title.trim() + " " + plainTextContent.trim();
 
-        fetch("http://43.203.69.19/api/feeling-check", {
+        fetch("http://3.34.124.202/api/feeling-check", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ contents })

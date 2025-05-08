@@ -552,6 +552,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // 댓글 확인 후 서버 전송
             // form.submit();
             const content = document.querySelector(".flog-textarea-6").value;
+            console.log(content);
             handleSubmit(content, form);
         }
 

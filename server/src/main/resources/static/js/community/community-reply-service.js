@@ -255,8 +255,10 @@ function cancelCommunityPostReplyReport(replyId, currentChannelUrl) {
 
 // 2025.05.02 조승찬 :: 댓글  비속어 포함여부 확인
 async function replyCheck(content) {
+
+    console.log("into replyCheck ::  ")
     try {
-        const response = await fetch("http://13.124.27.211/api/reply-check", {
+        const response = await fetch("http://3.34.124.202/api/reply-check", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -268,8 +270,10 @@ async function replyCheck(content) {
             throw new Error("서버 응답 오류");
         }
 
+        console.log("after fetch ::  ")
         const data = await response.json();
         return data.isBadWord; // 정상 응답일 경우 값 반환
+
     } catch (error) {
         console.error("🚨 서버 연결 실패! 기본값(true) 반환.");
         return false; // 서버가 작동하지 않으면 댓글 내용에 상관없이 등록되도록 처리
@@ -279,6 +283,7 @@ async function replyCheck(content) {
 // 폼 제출 로직
 async function handleSubmit(content, form) {
 
+    console.log("in handleSubmit ")
     const isBadWord = await replyCheck(content);
 
     if (isBadWord) {

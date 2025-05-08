@@ -7,7 +7,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://13.209.68.9:3306/feelog?serverTimezone=Asia/Seoul&useSSL=false&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://3.34.124.202:3306/feelog?serverTimezone=Asia/Seoul&useSSL=false&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
     username: feelog
     password: 1234
 
@@ -38,8 +38,8 @@ mybatis:
   type-handlers-package: com.app.feelog.mybatis
 
 openai:
-  model: gpt-3.5-turbo
-  secret-key:
-  api:
-    url: https://api.openai.com/v1/chat/completions
+    model: gpt-3.5-turbo
+    secret-key: 
+    api:
+        url: https://api.openai.com/v1/chat/completions
 
