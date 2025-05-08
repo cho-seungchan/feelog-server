@@ -208,7 +208,7 @@
     </insert>
 
     <insert id="postReport" useGeneratedKeys="true" keyProperty="id">
-        insert into  tbl_Report
+        insert into  tbl_report
         values ()
     </insert>
 
