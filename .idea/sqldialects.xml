@@ -54,10 +54,12 @@
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_subscribe.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_subscribe_notification.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_tag.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/tbl_total.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/view_channel_info.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/view_channel_post_preview.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/view_diary_preview.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/view_list.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/view_official_content_preview.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/server/src/main/resources/sql/view_total.sql" dialect="MySQL" />
   </component>
 </project>

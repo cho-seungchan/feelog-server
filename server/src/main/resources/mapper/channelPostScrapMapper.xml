@@ -3,20 +3,25 @@
 <mapper namespace="com.app.feelog.mapper.ChannelPostScrapMapper">
     <insert id="insertScrap">
         insert into tbl_channel_post_scrap (member_id, post_id)
-        value (#{memberId}, ${postId})
+            value (#{memberId}, ${postId})
     </insert>
 
     <select id="selectScrapByMemberId" resultType="channelPostScrapVO">
         select *
         from tbl_channel_post_scrap
-        where member_id = 24 and channel_post_scrap_status = '정상';
+        where member_id = #{memberId}
+          and channel_post_scrap_status = '정상';
     </select>
 
     <delete id="deleteScrapByPostId">
-        delete from tbl_channel_post_scrap where post_id = #{postId}
+        delete
+        from tbl_channel_post_scrap
+        where post_id = #{postId}
     </delete>
 
     <select id="selectMemberScrap" resultType="long">
-        select post_id from tbl_channel_post_scrap where member_id = #{memberId}
+        select post_id
+        from tbl_channel_post_scrap
+        where member_id = #{memberId}
     </select>
 </mapper>

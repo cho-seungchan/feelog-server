@@ -32,6 +32,7 @@ public class DiaryScoreServiceImpl implements DiaryScoreService {
         RestTemplate restTemplate = new RestTemplate();
 
         // 호출할 API의 URL 설정
+
         String url = "http://3.34.124.202/api/feeling-check";
 
         // 요청 바디에 보낼 데이터 구성 (JSON으로 직렬화될 Map 형태)

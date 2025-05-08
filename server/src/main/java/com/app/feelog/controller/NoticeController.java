@@ -45,7 +45,7 @@ public class NoticeController {
 
         model.addAttribute("notice", noticeDTO);
 
-        return "/notice/notice";
+        return "notice/notice";
     }
 
     @GetMapping("/noticeListMain")

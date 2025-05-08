@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const summernote = document.querySelector(".summernote");
     const modalContent = document.querySelector(".FlgModal-root-need .jk-feelog-div018");
 
+    // 최초 로딩 시, 종료 버튼 이벤트 설정
+    cancelBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (cancelBtn.classList.contains("cancel-bnt")) {
+            window.location.href = '/';
+        }
+    });
+
     let noteEditor = summernote;
     while (noteEditor && !noteEditor.classList.contains("note-editor")) {
         noteEditor = noteEditor.parentElement;
@@ -55,7 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelBtn.classList.add("back-btn");
         cancelBtn.setAttribute("aria-label", "뒤로가기");
 
-        cancelBtn.onclick = () => {
+        cancelBtn.replaceWith(cancelBtn.cloneNode(true));
+
+        const newCancelBtn = document.querySelector(".back-btn");
+        newCancelBtn.onclick = () => {
             summernote.style.display = "";
             if (noteEditor) {
                 noteEditor.style.setProperty("display", "block", "important");
@@ -90,7 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
             cancelBtn.classList.remove("back-btn");
             cancelBtn.classList.add("cancel-bnt");
             cancelBtn.setAttribute("aria-label", "종료");
-            cancelBtn.onclick = null;
+            cancelBtn.onclick = () => {
+                window.location.href = '/';
+            };
         };
 
         initSelectDropdown(clone);

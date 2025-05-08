@@ -32,8 +32,8 @@ public class FileController {
     @PostMapping("upload")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> upload(@RequestParam("file") MultipartFile file) {
-        log.info("file = {}",file.getOriginalFilename());
-        log.info("fileGetName = {}",file.getName());
+        log.info("file = {}", file.getOriginalFilename());
+        log.info("fileGetName = {}", file.getName());
 
 
         FileVO thumbnail = fileService.upload(file);
@@ -49,7 +49,7 @@ public class FileController {
     public ResponseEntity<Map<String, Object>> uploadFiles(@RequestParam("files") List<MultipartFile> files) {
 
         List<FileVO> thumbnails = new ArrayList<>();
-        files.forEach( file -> {
+        files.forEach(file -> {
             thumbnails.add(fileService.upload(file));
         });
 
@@ -61,18 +61,23 @@ public class FileController {
 
     @GetMapping("display")
     @ResponseBody
-    public byte[] display(String path) throws IOException{
+    public byte[] display(String path) throws IOException {
+        log.info(path);
         byte[] file = null;
         try {
             file = FileCopyUtils.copyToByteArray(new File("/upload/" + path));
+
         }catch (NoSuchFileException e){
+          
             throw new RuntimeException();
         }
         return file;
     }
 
     @GetMapping("download")
+
     public ResponseEntity<Resource> download(String path) throws IOException{
+
         Resource resource = new FileSystemResource("/upload/" + path);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment; filename=" + new String(("한동석짱_" + path.split("_")[1]).getBytes("UTF-8"), "ISO-8859-1"));

@@ -16,9 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -43,8 +40,8 @@ public class LoginController {
     @PostMapping("/email-login")
     public ResponseEntity<String> postEmailLogin(@RequestBody MemberDTO memberDTO, HttpSession session) {
 
-        log.info("login "+memberDTO.toVO());
-        if (!loginService.getMemberByEmailAndPassword(memberDTO).isPresent()){
+        log.info("login " + memberDTO.toVO());
+        if (!loginService.getMemberByEmailAndPassword(memberDTO).isPresent()) {
             log.info("memberDTO is null");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("로그인 실패");
@@ -52,7 +49,7 @@ public class LoginController {
 
         // 로그인 성공 처리
         MemberDTO member = loginService.getMemberByEmailAndPassword(memberDTO).get();
-        log.info("member type "+member.getMemberType());
+        log.info("member type " + member.getMemberType());
 
         session.setAttribute("memberStatus", "email");
         session.setAttribute("member", member);
@@ -65,7 +62,7 @@ public class LoginController {
                     .body(redirectUrl); // 리다이렉션 URL 반환
         }
 
-        if("ADMIN".equals(member.getMemberType().toString())){
+        if ("ADMIN".equals(member.getMemberType().toString())) {
             session.removeAttribute("redirectAfterLogin");
             return ResponseEntity.status(HttpStatus.OK) // 성공 상태 200 반환
                     .body("/admin/admin"); // 리다이렉션 URL 반환
@@ -106,7 +103,7 @@ public class LoginController {
                                                     HttpSession session) throws MessagingException {
 
         // 이메일이 같은 멤버 찾기
-        if (!loginService.getMemberByEmail(memberDTO.getMemberEmail()).isPresent()){
+        if (!loginService.getMemberByEmail(memberDTO.getMemberEmail()).isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("존재하지 않는 회원입니다.");
         }
@@ -137,7 +134,7 @@ public class LoginController {
         }
 
         // 발급받은 토큰이 동일하다면 쿠키 초기화
-        if(token.equals(code)) {
+        if (token.equals(code)) {
             Cookie cookie = new Cookie("token", "");
             cookie.setMaxAge(0);
             cookie.setPath("/");

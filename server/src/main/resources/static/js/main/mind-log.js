@@ -6,6 +6,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const summernote = document.querySelector(".summernote");
     const modalContent = document.querySelector(".FlgModal-root-need .jk-feelog-div018");
 
+    // 종료 버튼 이벤트 설정 함수
+    const setCancelEvent = () => {
+        cancelBtn.onclick = (event) => {
+            event.preventDefault();
+            if (cancelBtn.classList.contains("cancel-bnt")) {
+                console.log("종료 버튼 클릭 - 메인으로 이동합니다.");
+                window.location.href = '/';
+            }
+        };
+    };
+
+    // 최초 로딩 시 종료 버튼에 이벤트 설정
+    setCancelEvent();
+
     let noteEditor = summernote;
     while (noteEditor && !noteEditor.classList.contains("note-editor")) {
         noteEditor = noteEditor.parentElement;
@@ -54,7 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelBtn.classList.add("back-btn");
         cancelBtn.setAttribute("aria-label", "뒤로가기");
 
-        cancelBtn.onclick = () => {
+        // 기존 이벤트 리스너 초기화 후 다시 등록
+        cancelBtn.replaceWith(cancelBtn.cloneNode(true));
+
+        // **여기서 다시 cancelBtn을 재선언해야 함** (cloneNode로 새롭게 생성된 DOM이기 때문)
+        const newCancelBtn = document.querySelector(".back-btn");
+
+        // **뒤로가기 클릭 이벤트 등록**
+        newCancelBtn.addEventListener("click", (event) => {
             summernote.style.display = "";
             if (noteEditor) {
                 noteEditor.style.setProperty("display", "block", "important");
@@ -91,8 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
             cancelBtn.classList.remove("back-btn");
             cancelBtn.classList.add("cancel-bnt");
             cancelBtn.setAttribute("aria-label", "종료");
-            cancelBtn.onclick = null;
-        };
+
+            setCancelEvent();
+        });
 
         // 7. 감정 분석 API 요청
         function stripHtmlTags(html) {
@@ -119,9 +141,19 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ contents })
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    console.error(`서버 응답 에러: ${res.status} ${res.statusText}`);
+                    return Promise.reject(new Error(`서버 응답 에러: ${res.status} ${res.statusText}`));
+                }
+                return res.json();
+            })
             .then(data => {
+                console.log("서버 응답 데이터:", data);
                 const { score } = data;
+                if (!score) {
+                    throw new Error("서버에서 score 값이 반환되지 않았습니다.");
+                }
                 console.log("AI 감정 분석 점수:", score);
                 return fetch(`/main/feeling-score/${score}`);
             })
@@ -133,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(err => {
                 console.error("감정 검사 실패:", err);
+                alert(`감정 분석에 실패했습니다. 오류 메시지: ${err.message}`);
             });
 
         // 8. 인터랙션 초기화
