@@ -7,7 +7,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://13.125.248.28:3306/feelog?serverTimezone=Asia/Seoul&useSSL=false&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://13.209.68.9:3306/feelog?serverTimezone=Asia/Seoul&useSSL=false&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
     username: feelog
     password: 1234
 
@@ -21,8 +21,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: jfk6725
-    password: wahs lkcx tvyl wfxc
+    username: feelogfl@gmail.com
+    password: qcnc kbed hynl onnn
     properties:
       mail:
         smtp:

@@ -396,32 +396,46 @@ public class MainController {
     @PostMapping("/api/feeling-check")
     @ResponseBody
     public ResponseEntity<?> checkFeeling(@RequestBody FeelingRequestDTO request) {
+        System.out.println("💡 [Controller] 요청 도착: " + request);
+
+        // 내용이 있는지 확인
         String contents = request.getContents();
-
-        log.info(contents);
-
-        // 1. 점수 산정
-        int score = diaryScoreService.getEmotionScore(contents);
-        log.info("감정 분석 결과 점수: {}", score); // 로그 추가
-
-        // 2. 점수로 정보 조회
-        Optional<DiaryScoreDTO> scoreDTO = diaryScoreService.getScoreById((long) score);
-        if (scoreDTO.isEmpty()) {
-            log.warn("감정 점수 {}에 해당하는 정보 없음", score);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Score info not found.");
+        if (contents == null || contents.trim().isEmpty()) {
+            System.out.println("[Controller] contents 값이 없습니다.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("contents 값이 없습니다.");
         }
 
-        // 3. 응답 구성
-        DiaryScoreDTO dto = scoreDTO.get();
-        Map<String, Object> result = new HashMap<>();
-        result.put("score", score); //score 그대로 유지 (프론트 연동용)
-        result.put("id", dto.getId()); // 필요하면 이거도 명시적으로 전달
-        result.put("message", dto.getScoreMessage());
-        result.put("imgUrl", "/files/display?path=" + dto.getScoreFilePath() + "/" + dto.getScoreFileName());
+        log.info("[Controller] 전달된 contents: {}", contents);
 
-        log.info("감정 분석 결과 응답: {}", result); //최종 응답 로그
+        try {
+            // 점수 산정
+            int score = diaryScoreService.getEmotionScore(contents);
+            log.info("[Controller] 감정 분석 결과 점수: {}", score);
 
-        return ResponseEntity.ok(result);
+            // 점수로 정보 조회
+            Optional<DiaryScoreDTO> scoreDTO = diaryScoreService.getScoreById((long) score);
+
+            if (scoreDTO.isEmpty()) {
+                log.warn("⚠️ [Controller] 감정 점수 {}에 해당하는 정보 없음", score);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Score info not found.");
+            }
+
+            // 응답 구성
+            DiaryScoreDTO dto = scoreDTO.get();
+            Map<String, Object> result = new HashMap<>();
+            result.put("score", score);
+            result.put("id", dto.getId());
+            result.put("message", dto.getScoreMessage());
+            result.put("imgUrl", "/files/display?path=" + dto.getScoreFilePath() + "/" + dto.getScoreFileName());
+
+            log.info("[Controller] 감정 분석 결과 응답: {}", result);
+
+            return ResponseEntity.ok(result);
+
+        } catch (Exception e) {
+            log.error("[Controller] 감정 분석 중 예외 발생: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류 발생");
+        }
     }
 
     @GetMapping("/feeling-score/{id}")

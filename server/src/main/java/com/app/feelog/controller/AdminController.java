@@ -38,9 +38,8 @@ public class AdminController {
             return "redirect:/login/email-login";
         }
         return "admin/admin";
-    }
+    };
 
-    ;
 
     @GetMapping("/adminlists")
     @ResponseBody

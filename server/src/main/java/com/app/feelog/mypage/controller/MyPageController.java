@@ -364,7 +364,7 @@ public class MyPageController {
         model.addAttribute("scraps", scraps);
         model.addAttribute("pagination", pagination);
 
-        return "/myPage/storage-scrap";
+        return "myPage/storage-scrap";
     }
 
     // 2025.04.25 조승찬 :: 스크랩 취소
