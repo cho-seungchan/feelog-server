@@ -19,10 +19,12 @@ function createThumbnail(file) {
             </div>
         </div>
         `;
+    console.log(file)
+    console.log(encodedFilePath)
     document.querySelector(".ImageList-sc-9v1mt2-0.hGJMVS").innerHTML = text;
 }
 
-function inputFileUpload(formData){
+function inputFileUpload(formData) {
     return fetch("/files/upload", {
         method: "post",
         body: formData

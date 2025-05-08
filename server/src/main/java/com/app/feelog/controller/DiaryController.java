@@ -61,7 +61,7 @@ public class DiaryController {
         log.info("diary = {}", diary);
 
 
-        return "/diary/diary-read";
+        return "diary/diary-read";
     }
 
     ;
@@ -72,7 +72,7 @@ public class DiaryController {
         if (loginMember == null) {
             return "redirect:/login/login";
         }
-        return "/diary/my-diary";
+        return "diary/my-diary";
     }
 
     ;

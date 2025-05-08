@@ -19,7 +19,7 @@ import java.util.Optional;
 public class KakaoService {
 
     // 2025.04.17 조승찬 :: Authorization Code로 Access Token 요청
-    public String getKakaoAccessToken(String code){
+    public String getKakaoAccessToken(String code) {
         String accessToken = null;
         String requestURI = "https://kauth.kakao.com/oauth/token";
 
@@ -33,20 +33,20 @@ public class KakaoService {
             connection.setDoOutput(true);
 
             stringBuilder.append("grant_type=authorization_code");
-            stringBuilder.append("&client_id=fae1d8d22225221e075546a8f1f4ac4d");
-            stringBuilder.append("&redirect_uri=http://localhost:10000/kakao/login");
+            stringBuilder.append("&client_id=3c94a5c05aa2286086a11146856039c4");
+            stringBuilder.append("&redirect_uri=http://13.124.27.211:10000/kakao/login");
             stringBuilder.append("&code=" + code);
 
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
             bufferedWriter.write(stringBuilder.toString());
             bufferedWriter.close();
 
-            if(connection.getResponseCode() == 200){
+            if (connection.getResponseCode() == 200) {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String line = null;
                 String result = "";
 
-                while((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
 
@@ -66,7 +66,7 @@ public class KakaoService {
     }
 
     // 2025.04.17 조승찬 :: Access Token으로 사용자 정보 요청
-    public Optional<MemberDTO> getKakaoInfo(String token){
+    public Optional<MemberDTO> getKakaoInfo(String token) {
         log.info("getKakaoInfo: {}", token);
         String accessToken = null;
         String requestURI = "https://kapi.kakao.com/v2/user/me";
@@ -81,13 +81,13 @@ public class KakaoService {
             connection.setDoOutput(true);
             connection.setRequestProperty("Authorization", "Bearer " + token);
 
-            if(connection.getResponseCode() == 200){
+            if (connection.getResponseCode() == 200) {
                 log.info("getKakaoInfo response code: {}", connection.getResponseCode());
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String line = null;
                 String result = "";
 
-                while((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
 

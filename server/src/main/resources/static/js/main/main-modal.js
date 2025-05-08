@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             newHr.classList.add("MuiDivider-root", "MuiDivider-horizontal", "joy-w2e6ki");
 
-            const defaultImg = "/images/avatar_blank.png";
+            const defaultImg = "/images/channel_banner.png";
             let senderImg = message.memberFileName ? encodeURIComponent(`${message.memberFilePath}/${message.memberFileName}`) : null;
 
             if (senderImg) {
@@ -456,7 +456,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             newDiv.classList.add("diary_container_01");
 
-            const chatImg = targetInfo.dataset.img ? `/files/display?path=${targetInfo.getAttribute("data-img")}` : "/images/avatar_blank.png"
+            const chatImg = targetInfo.dataset.img ? `/files/display?path=${targetInfo.getAttribute("data-img")}` : "/images/channel_banner.png"
 
             newDiv.innerHTML = `
                 <div role="dialog" aria-modal="true" aria-labelledby=":r4j:" aria-describedby=":r4k:" data-google-interstitial="false" tabindex="-1" class="MuiModalDialog-root MuiModalDialog-variantOutlined MuiModalDialog-colorNeutral MuiModalDialog-sizeMd MuiModalDialog-layoutAdaptive joy-l3kvea">

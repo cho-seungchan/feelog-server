@@ -1,50 +1,52 @@
 <!-- 2025.04.05 조승찬 -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="/css/login/login.css" />
-        <link rel="stylesheet" href="/css/main/header.css">
-        <link rel="stylesheet" href="/css/main/footer.css">
-        <link rel="stylesheet" href="/css/main/search-modal.css">
-        <link rel="stylesheet" href="/css/all/message.css" />
-        <title>로그인</title>
-    </head>
-    <body>
-        <div class="FeelogStack-root flog-div-45">
-            <!-- 헤더 넣을 곳 -->
-            <header id="main-header"
-                    th:replace="~{main/header.html :: #main-header}"></header>
-            <!-- 헤더 넣을 곳 -->
-            <main class="FeelogStack-root flog-main-3">
-                <div class="FeelogBox-root flog-div-46">
-                    <div class="FeelogStack-root flog-div-47">
-                        <h1 id=":R4vf7ql7rlqakq:" class="FeelogTypography-root FeelogTypography-h1 flog-h1-4">
-                            필로그 로그인
-                        </h1>
-                        <div class="FeelogStack-root flog-div-54" role="listbox" aria-labelledby=":R4vf7ql7rlqakq:">
-                            <a
-                                href="https://kauth.kakao.com/oauth/authorize?client_id=fae1d8d22225221e075546a8f1f4ac4d&redirect_uri=http://localhost:10000/kakao/login&response_type=code"
-                                class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeMd flog-a-13"
-                                ><span class="FeelogButton-startDecorator flog-span-1">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/css/login/login.css"/>
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/main/search-modal.css">
+    <link rel="stylesheet" href="/css/all/message.css"/>
+    <title>로그인</title>
+</head>
+<body>
+<div class="FeelogStack-root flog-div-45">
+    <!-- 헤더 넣을 곳 -->
+    <header id="main-header"
+            th:replace="~{main/header.html :: #main-header}"></header>
+    <!-- 헤더 넣을 곳 -->
+    <main class="FeelogStack-root flog-main-3">
+        <div class="FeelogBox-root flog-div-46">
+            <div class="FeelogStack-root flog-div-47">
+                <h1 id=":R4vf7ql7rlqakq:" class="FeelogTypography-root FeelogTypography-h1 flog-h1-4">
+                    필로그 로그인
+                </h1>
+                <div class="FeelogStack-root flog-div-54" role="listbox" aria-labelledby=":R4vf7ql7rlqakq:">
+                    <a
+                            href="https://kauth.kakao.com/oauth/authorize?client_id=3c94a5c05aa2286086a11146856039c4&redirect_uri=http://13.124.27.211:10000/kakao/login&response_type=code"
+                            class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeMd flog-a-13"
+                    ><span class="FeelogButton-startDecorator flog-span-1">
                                     <img
-                                        src="/images/kakao.webp"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-img-3"
-                                        href="/kakao/login"
+                                            src="/images/kakao.webp"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-img-3"
+                                            href="/kakao/login"
                                     />
                                 </span>
-                                <div class="FeelogBox-root flog-div-59">카카오로 로그인</div></a
-                            ><button
-                                class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeMd flog-a-13"
-                                type="button"
-                            >
+                        <div class="FeelogBox-root flog-div-59">카카오로 로그인</div>
+                    </a
+                    >
+                    <button
+                            class="FeelogButton-root FeelogButton-variantSoft FeelogButton-colorNeutral FeelogButton-sizeMd flog-a-13"
+                            type="button"
+                    >
                                 <span class="FeelogButton-startDecorator flog-span-1"
-                                    ><svg
+                                ><svg
                                         focusable="false"
                                         aria-hidden="true"
                                         viewBox="0 0 24 24"
@@ -53,69 +55,69 @@
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
                                         class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-img-3"
-                                    >
+                                >
                                         <path
-                                            d="M4.5 5.875a.627.627 0 0 0-.625.625v.863l6.738 5.532a2.185 2.185 0 0 0 2.778 0l6.734-5.532V6.5a.627.627 0 0 0-.625-.625h-15Zm-.625 3.914V17.5c0 .344.281.625.625.625h15a.627.627 0 0 0 .625-.625V9.79l-5.547 4.554a4.063 4.063 0 0 1-5.156 0L3.875 9.789ZM2 6.5C2 5.121 3.121 4 4.5 4h15C20.879 4 22 5.121 22 6.5v11c0 1.379-1.121 2.5-2.5 2.5h-15A2.502 2.502 0 0 1 2 17.5v-11Z"
-                                            fill="currentcolor"
+                                                d="M4.5 5.875a.627.627 0 0 0-.625.625v.863l6.738 5.532a2.185 2.185 0 0 0 2.778 0l6.734-5.532V6.5a.627.627 0 0 0-.625-.625h-15Zm-.625 3.914V17.5c0 .344.281.625.625.625h15a.627.627 0 0 0 .625-.625V9.79l-5.547 4.554a4.063 4.063 0 0 1-5.156 0L3.875 9.789ZM2 6.5C2 5.121 3.121 4 4.5 4h15C20.879 4 22 5.121 22 6.5v11c0 1.379-1.121 2.5-2.5 2.5h-15A2.502 2.502 0 0 1 2 17.5v-11Z"
+                                                fill="currentcolor"
                                         ></path></svg
                                 ></span>
-                                <div class="FeelogBox-root flog-div-59">이메일로 로그인</div>
-                            </button>
-                        </div>
-                        <div class="FeelogStack-root flog-div-55">
-<!--                            <span-->
-<!--                                class="FeelogCheckbox-root Feelog-checked FeelogCheckbox-variantSolid FeelogCheckbox-colorPrimary FeelogCheckbox-sizeSm flog-span-9"-->
-<!--                                ><span class="FeelogCheckbox-checkbox Feelog-checked flog-span-10"-->
-<!--                                    ><span class="FeelogCheckbox-action Feelog-checked flog-span-8"-->
-<!--                                        ><input-->
-<!--                                            type="checkbox"-->
-<!--                                            id=":R1ncvf7ql7rlqakq:"-->
-<!--                                            class="FeelogCheckbox-input flog-input-3"-->
-<!--                                            checked="" /></span-->
-<!--                                    ><svg-->
-<!--                                        focusable="false"-->
-<!--                                        aria-hidden="true"-->
-<!--                                        viewBox="0 0 24 24"-->
-<!--                                        data-testid="CheckIcon"-->
-<!--                                        class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"-->
-<!--                                    >-->
-<!--                                        <path-->
-<!--                                            d="M9 16.17 5.53 12.7a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0L9 16.17z"-->
-<!--                                        ></path></svg></span-->
-<!--                                ><label for=":R1ncvf7ql7rlqakq:" class="FeelogCheckbox-label flog-label-2"-->
-<!--                                    >로그인 상태 유지</label-->
-<!--                                ></span-->
-<!--                            >-->
-                            <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
-                            <div class="FeelogStack-root flog-div-58" role="listbox" aria-label="퀵 링크">
-                                <a
-                                    href="/login/password-issue"
-                                    class="FeelogTypography-root FeelogTypography-body-sm flog-a-16"
-                                    >비밀번호 재설정</a
-                                >
-                                <p role="separator" class="FeelogTypography-root FeelogTypography-body-sm flog-p-11">
-                                    ·
-                                </p>
-                                <a
-                                    href="/join/join"
-                                    class="FeelogTypography-root FeelogTypography-body-sm flog-a-16"
-                                    >회원 가입</a
-                                >
-                            </div>
-                            <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2" />
-                        </div>
-                    </div>
+                        <div class="FeelogBox-root flog-div-59">이메일로 로그인</div>
+                    </button>
                 </div>
-            </main>
+                <div class="FeelogStack-root flog-div-55">
+                    <!--                            <span-->
+                    <!--                                class="FeelogCheckbox-root Feelog-checked FeelogCheckbox-variantSolid FeelogCheckbox-colorPrimary FeelogCheckbox-sizeSm flog-span-9"-->
+                    <!--                                ><span class="FeelogCheckbox-checkbox Feelog-checked flog-span-10"-->
+                    <!--                                    ><span class="FeelogCheckbox-action Feelog-checked flog-span-8"-->
+                    <!--                                        ><input-->
+                    <!--                                            type="checkbox"-->
+                    <!--                                            id=":R1ncvf7ql7rlqakq:"-->
+                    <!--                                            class="FeelogCheckbox-input flog-input-3"-->
+                    <!--                                            checked="" /></span-->
+                    <!--                                    ><svg-->
+                    <!--                                        focusable="false"-->
+                    <!--                                        aria-hidden="true"-->
+                    <!--                                        viewBox="0 0 24 24"-->
+                    <!--                                        data-testid="CheckIcon"-->
+                    <!--                                        class="FeelogSvgIcon-root FeelogSvgIcon-sizeMd flog-svg-6"-->
+                    <!--                                    >-->
+                    <!--                                        <path-->
+                    <!--                                            d="M9 16.17 5.53 12.7a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0L9 16.17z"-->
+                    <!--                                        ></path></svg></span-->
+                    <!--                                ><label for=":R1ncvf7ql7rlqakq:" class="FeelogCheckbox-label flog-label-2"-->
+                    <!--                                    >로그인 상태 유지</label-->
+                    <!--                                ></span-->
+                    <!--                            >-->
+                    <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2"/>
+                    <div class="FeelogStack-root flog-div-58" role="listbox" aria-label="퀵 링크">
+                        <a
+                                href="/login/password-issue"
+                                class="FeelogTypography-root FeelogTypography-body-sm flog-a-16"
+                        >비밀번호 재설정</a
+                        >
+                        <p role="separator" class="FeelogTypography-root FeelogTypography-body-sm flog-p-11">
+                            ·
+                        </p>
+                        <a
+                                href="/join/join"
+                                class="FeelogTypography-root FeelogTypography-body-sm flog-a-16"
+                        >회원 가입</a
+                        >
+                    </div>
+                    <hr class="FeelogDivider-root FeelogDivider-horizontal flog-hr-2"/>
+                </div>
+            </div>
         </div>
-        <!-- footer 넣을 곳 -->
-        <footer id="main-footer"
-                th:replace="~{main/footer.html :: #main-footer}"></footer>
-        <!-- footer 넣을 곳 -->
-    </body>
-    <script src="/js/main/main-modal.js"></script>
-    <script src="/js/main/notification.js"></script>
-    <script src="/js/main/main-search-modal.js"></script>
-    <script src="/js/main/main-search-modal.js"></script>
-    <script src="/js/login/login-event.js"></script>
+    </main>
+</div>
+<!-- footer 넣을 곳 -->
+<footer id="main-footer"
+        th:replace="~{main/footer.html :: #main-footer}"></footer>
+<!-- footer 넣을 곳 -->
+</body>
+<script src="/js/main/main-modal.js"></script>
+<script src="/js/main/notification.js"></script>
+<script src="/js/main/main-search-modal.js"></script>
+<script src="/js/main/main-search-modal.js"></script>
+<script src="/js/login/login-event.js"></script>
 </html>

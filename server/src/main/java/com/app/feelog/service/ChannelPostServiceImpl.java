@@ -1,7 +1,6 @@
 package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.*;
-import com.app.feelog.domain.enumeration.TagStatus;
 import com.app.feelog.domain.vo.ChannelPostFileVO;
 import com.app.feelog.domain.vo.ChannelPostReportVO;
 import com.app.feelog.domain.vo.ChannelPostVO;
@@ -11,12 +10,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -187,13 +187,14 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         postList.setPostPagination(pagination);
         postList.setPostList(channelPostDAO.findPostAll(pagination));
 
-        postList.getPostList().forEach((post)->{
+        postList.getPostList().forEach((post) -> {
             post.setTagList(channelPostDAO.findPostTagByPostId(post.getId()));
             post.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(post.getId()));
             post.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(post.getId()));
-            if ( post.getPostContent() != null && ! post.getPostContent().isEmpty()) {
+            if (post.getPostContent() != null && !post.getPostContent().isEmpty()) {
                 post.setPostContent(extractTextOnly(post.getPostContent()));
-            };
+            }
+            ;
 
         });
 
@@ -303,9 +304,10 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         postList.setTagList(channelPostDAO.findPostTagByPostId(postList.getId()));
         postList.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(postList.getId()));
         postList.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(postList.getId()));
-        if ( postList.getPostContent() != null && ! postList.getPostContent().isEmpty()) {
+        if (postList.getPostContent() != null && !postList.getPostContent().isEmpty()) {
             postList.setPostContent(extractTextOnly(postList.getPostContent()));
-        };
+        }
+        ;
 
         return postList;
     }
@@ -319,20 +321,21 @@ public class ChannelPostServiceImpl implements ChannelPostService {
         postList.setPostPagination(pagination);
         postList.setPostList(channelPostDAO.findCheerPostAll(pagination));
 
-        postList.getPostList().forEach((post)->{
+        postList.getPostList().forEach((post) -> {
             post.setTagList(channelPostDAO.findPostTagByPostId(post.getId()));
             post.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(post.getId()));
             post.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(post.getId()));
-            if ( post.getPostContent() != null && ! post.getPostContent().isEmpty()) {
+            if (post.getPostContent() != null && !post.getPostContent().isEmpty()) {
                 post.setPostContent(extractTextOnly(post.getPostContent()));
-            };
+            }
+            ;
         });
 
         return postList;
     }
 
 
-//    박정근 :: 스크랩, 신고
+    //    박정근 :: 스크랩, 신고
     @Override
     public List<Long> getMemberScrap(Long id) {
         return channelPostScrapDAO.findMemberScrap(id);
@@ -346,6 +349,8 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     @Override
     public void addReport(ChannelPostReportListDTO channelPostReportListDTO) {
         channelPostReportDAO.saveReport(channelPostReportListDTO);
+        log.info(channelPostReportListDTO.toString());
+        channelPostReportDAO.saveChannelPostReport(channelPostReportListDTO);
     }
 
     @Override
@@ -401,7 +406,7 @@ public class ChannelPostServiceImpl implements ChannelPostService {
     public List<MainPostListDTO> getPostRandom() {
         List<MainPostListDTO> randomPosts = channelPostDAO.findPostRandom();
 
-        randomPosts.forEach(post->{
+        randomPosts.forEach(post -> {
             post.setTagList(channelPostDAO.findPostTagByPostId(post.getId()));
             post.setPostLikeCount(channelPostDAO.findPostLikeCountByPostId(post.getId()));
             post.setPostReplyCount(channelPostDAO.findPostReplyCountByPostId(post.getId()));
