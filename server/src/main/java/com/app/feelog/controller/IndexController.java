@@ -110,7 +110,7 @@ public class IndexController {
     @GetMapping("/post/cheer-post")
     public String goToCheerPost() {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
-        return "/post/cheer-post";
+        return "post/cheer-post";
     }
 
     @PostMapping("/scrapPost")

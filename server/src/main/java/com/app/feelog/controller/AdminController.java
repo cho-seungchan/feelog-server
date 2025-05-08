@@ -43,7 +43,7 @@ public class AdminController {
         if(loginMember == null) {
             return "redirect:/login/email-login";
         }
-        return "/admin/admin";
+        return "admin/admin";
     };
 
     @GetMapping("/adminlists")

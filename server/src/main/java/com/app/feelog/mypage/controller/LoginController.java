@@ -83,8 +83,8 @@ public class LoginController {
             if (session.getAttribute("memberStatus").equals("kakao")) {
 
                 String kakaoLogoutUrl = "https://kauth.kakao.com/oauth/logout?"
-                        + "client_id=" + "fae1d8d22225221e075546a8f1f4ac4d"
-                        + "&logout_redirect_uri=" + "http://localhost:10000/login/login";
+                        + "client_id=" + "1f0eec6d921e399c7940b9689a7896e3"
+                        + "&logout_redirect_uri=" + "http://43.203.69.19:10000/login/login";
             }
 
             session.invalidate();
