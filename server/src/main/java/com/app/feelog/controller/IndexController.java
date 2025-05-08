@@ -1,17 +1,18 @@
 package com.app.feelog.controller;
 
 import com.app.feelog.domain.dto.*;
-import com.app.feelog.domain.vo.ChannelPostScrapVO;
 import com.app.feelog.service.ChannelPostService;
 import com.app.feelog.service.voToDto.ChannelPostLikeService;
 import com.app.feelog.service.voToDto.ChannelPostScrapService;
 import com.app.feelog.util.pagination.PostPagination;
 import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashSet;
 import java.util.List;
@@ -41,7 +42,7 @@ public class IndexController {
 
         channelPostListDTO = channelPostService.getPostAll(pagination);
 
-        if(loginMember != null){
+        if (loginMember != null) {
             List<Long> scrapIds = channelPostService.getMemberScrap(loginMember.getId());
             Set<Long> scrapIdSet = new HashSet<>(scrapIds);
 
@@ -66,7 +67,7 @@ public class IndexController {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
         MainPostListDTO mainPostListDTO = channelPostService.getCheerPost();
 
-        if(loginMember != null){
+        if (loginMember != null) {
             List<Long> scrapIds = channelPostService.getMemberScrap(loginMember.getId());
             Set<Long> scrapIdSet = new HashSet<>(scrapIds);
 
@@ -89,7 +90,7 @@ public class IndexController {
 
         channelPostListDTO = channelPostService.getCheerPostList(pagination);
 
-        if(loginMember != null){
+        if (loginMember != null) {
             List<Long> scrapIds = channelPostService.getMemberScrap(loginMember.getId());
             Set<Long> scrapIdSet = new HashSet<>(scrapIds);
 
@@ -118,7 +119,7 @@ public class IndexController {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
 
         List<ChannelPostScrapDTO> scraps = channelPostScrapService.getScrapByMemberId(loginMember.getId());
-
+        log.info("scraps: " + scraps);
         boolean alreadyScrapped = false;
 
         for (ChannelPostScrapDTO scrap : scraps) {
@@ -137,10 +138,9 @@ public class IndexController {
     }
 
     @PostMapping("/insertChannelPostReport")
-    public void addChannelPostReport (@RequestBody ChannelPostReportListDTO channelPostReportListDTO) {
+    public void addChannelPostReport(@RequestBody ChannelPostReportListDTO channelPostReportListDTO) {
         log.info(channelPostReportListDTO.toString());
         channelPostService.addReport(channelPostReportListDTO);
-        channelPostService.addChannelPostReport(channelPostReportListDTO);
     }
 
     @GetMapping("/reportList")

@@ -8,6 +8,16 @@ let changeContent = null
 let defaultTitle = null
 let defaultContent = null
 
+modal.addEventListener("change", (e) => {
+    console.log(e.target.files)
+    const files = e.target.files[0]; // FileList 객체
+
+    const formData = new FormData();
+    formData.append("file", files);
+    // 서버로 전송하여 path와 썸네일 생성
+    inputFileUpload(formData);
+});
+
 htmlWrap.addEventListener("click", async (e) => {
     if (e.target.classList.contains("noticeButtons")) {
         await noticeService.getList(noticeLayout.noticeButtonEvent, e.target.getAttribute("data-index"));
@@ -81,7 +91,7 @@ htmlWrap.addEventListener("click", async (e) => {
         </div>
         `;
 
-        if(filePath.textContent.trim() !== "null" && fileName.textContent.trim() !== "null"){
+        if (filePath.textContent.trim() !== "null" && fileName.textContent.trim() !== "null") {
             const encodedFilePath = encodeURIComponent(`${filePath.textContent.trim()}/${fileName.textContent.trim()}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
             const imgWrap = document.querySelector(".hGJMVS")
             imgWrap.innerHTML = `
@@ -109,42 +119,49 @@ htmlWrap.addEventListener("click", async (e) => {
 });
 
 
-
 modal.addEventListener("input", (e) => {
-    if(e.target.classList.contains("noticeModal-TitleInput")){
+    if (e.target.classList.contains("noticeModal-TitleInput")) {
         changeTitle = document.querySelector(".noticeModal-TitleInput").value;
     }
-    if(e.target.classList.contains("noticeModal-ContentInput")){
+    if (e.target.classList.contains("noticeModal-ContentInput")) {
         changeContent = document.querySelector(".noticeModal-ContentInput").value;
     }
 })
 
 
-
 modal.addEventListener("click", async (e) => {
-    if(e.target.classList.contains("noticeWrite")){
+    if (e.target.classList.contains("noticeWrite")) {
         const titleText = document.querySelector(".noticeTitle");
         const content = document.querySelector(".noticeContent");
         const uploadFile = document.querySelector(".uploadFile");
-        const fileName = uploadFile.getAttribute("data-file-name");
-        const filePath = uploadFile.getAttribute("data-file-path");
 
-        if(titleText.value === ""){
+        if (titleText.value === "") {
             alert("제목을 입력해주세요")
             return;
         }
-        if(content.value === ""){
+        if (content.value === "") {
             alert("내용을 입력해주세요")
             return;
         }
 
-        await noticeService.addNotice({
-            noticeTitle: titleText.value,
-            noticeContent: content.value,
-            noticeFilePath:filePath,
-            noticeFileName:fileName,
-            memberId: loginMember.id //로그인 적용 후 로그인한 관리자 id로 변환
-        })
+        if (uploadFile) {
+            const fileName = uploadFile.getAttribute("data-file-name");
+            const filePath = uploadFile.getAttribute("data-file-path");
+            await noticeService.addNotice({
+                noticeTitle: titleText.value,
+                noticeContent: content.value,
+                noticeFilePath: filePath,
+                noticeFileName: fileName,
+                memberId: loginMember.id //로그인 적용 후 로그인한 관리자 id로 변환
+            })
+        } else {
+            await noticeService.addNotice({
+                noticeTitle: titleText.value,
+                noticeContent: content.value,
+                memberId: loginMember.id //로그인 적용 후 로그인한 관리자 id로 변환
+            })
+        }
+
 
         alert("등록완료")
 
@@ -152,7 +169,6 @@ modal.addEventListener("click", async (e) => {
         document.querySelector(".admin-modal-body").style.display = "none";
 
         await noticeService.getList(noticeLayout.noticeButtonEvent, 1);
-
     }
 
     if (e.target.classList.contains("noticeUpdateBtn")) {
@@ -160,22 +176,22 @@ modal.addEventListener("click", async (e) => {
         console.log(uploadFile)
         const id = document.querySelector(".noticeModal-TitleDiv").getAttribute("data-index");
 
-        if(uploadFile){
+        if (uploadFile) {
             const fileName = uploadFile.getAttribute("data-file-name");
             const filePath = uploadFile.getAttribute("data-file-path");
 
             await noticeService.update({
-                id:id,
-                noticeTitle:changeTitle,
-                noticeContent:changeContent,
-                noticeFileName:fileName,
+                id: id,
+                noticeTitle: changeTitle,
+                noticeContent: changeContent,
+                noticeFileName: fileName,
                 noticeFilePath: filePath
             })
-        }else{
+        } else {
             await noticeService.update({
-                id:id,
-                noticeTitle:changeTitle,
-                noticeContent:changeContent
+                id: id,
+                noticeTitle: changeTitle,
+                noticeContent: changeContent
             })
         }
 
@@ -186,8 +202,8 @@ modal.addEventListener("click", async (e) => {
         await noticeService.getList(noticeLayout.noticeButtonEvent, 1);
 
     }
-    
-    if(e.target.classList.contains("noticeDeleteBtn")){
+
+    if (e.target.classList.contains("noticeDeleteBtn")) {
         const id = document.querySelector(".noticeModal-TitleDiv").getAttribute("data-index");
 
         await noticeService.deleteNotice(id);

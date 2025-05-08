@@ -4,7 +4,7 @@ const readLayout = (() => {
         const nextButton = document.querySelector(".next-post")
         const buttonText = nextButton.querySelector("p")
 
-        if(nextPostData) {
+        if (nextPostData) {
             const newATag = document.createElement("a");
 
             nextButton.setAttribute("href", `/post/read?id=${nextPostData.id}`)
@@ -26,7 +26,7 @@ const readLayout = (() => {
                 </div>
             `;
             channelPostWrap.appendChild(newATag);
-        } else{
+        } else {
             const newDiv = document.createElement("div")
 
             buttonText.classList.replace("button_text_02", "none-post")
@@ -49,14 +49,14 @@ const readLayout = (() => {
         const previousButton = document.querySelector(".previous-post")
         const buttonText = previousButton.querySelector("p");
 
-       if(previousData){
-           const newATag = document.createElement("a");
+        if (previousData) {
+            const newATag = document.createElement("a");
 
-           previousButton.setAttribute("href", `/post/read?id=${previousData.id}`)
-           newATag.classList.add("next_a_01");
-           newATag.setAttribute("href", `/post/read?id=${previousData.id}`);
+            previousButton.setAttribute("href", `/post/read?id=${previousData.id}`)
+            newATag.classList.add("next_a_01");
+            newATag.setAttribute("href", `/post/read?id=${previousData.id}`);
 
-           newATag.innerHTML = `
+            newATag.innerHTML = `
                 <div class="post_buttonWrap_01" role="button" tabindex="0">
                     <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="post_buttonWrap_svg_01">
                         <path d="M8.713 11.332a.934.934 0 0 0 0 1.325l5.25 5.254a.937.937 0 0 0 1.324-1.324l-4.586-4.59 4.59-4.586a.937.937 0 0 0-1.324-1.324l-5.254 5.245Z" fill="currentcolor"></path>
@@ -72,15 +72,15 @@ const readLayout = (() => {
                     </div>
                 </div>
             `;
-           channelPostWrap.prepend(newATag)
-       }else {
-           const newDiv = document.createElement("div");
+            channelPostWrap.prepend(newATag)
+        } else {
+            const newDiv = document.createElement("div");
 
-           buttonText.classList.replace("button_text_02","none-post")
-           previousButton.classList.add("feelog-disabled")
-           newDiv.classList.add("joy-yov4xo")
+            buttonText.classList.replace("button_text_02", "none-post")
+            previousButton.classList.add("feelog-disabled")
+            newDiv.classList.add("joy-yov4xo")
 
-           newDiv.innerHTML = `
+            newDiv.innerHTML = `
                    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1opsxzr">
                        <path
@@ -90,8 +90,8 @@ const readLayout = (() => {
                    <p class="MuiTypography-root MuiTypography-body-sm joy-g4c415">이전 포스트가 없어요.</p>
            `;
 
-           channelPostWrap.prepend(newDiv)
-       }
+            channelPostWrap.prepend(newDiv)
+        }
     }
 
     const showRandomPost = (postData) => {
@@ -160,12 +160,12 @@ const readLayout = (() => {
 
             let channelMainImg = null;
             let postMainImg = null;
-            let defaultImg = "/images/avatar_blank.png"
+            let defaultImg = "/images/channel_banner.png"
 
-            if(post.channelFilePath != null && post.channelFileName != null){
+            if (post.channelFilePath != null && post.channelFileName != null) {
                 channelMainImg = encodeURIComponent(`${post.channelFilePath}/${post.channelFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
             }
-            if(post.postMainFilePath != null && post.postMainFileName != null){
+            if (post.postMainFilePath != null && post.postMainFileName != null) {
                 postMainImg = encodeURIComponent(`${post.postMainFilePath}/${post.postMainFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
             }
 
@@ -174,33 +174,33 @@ const readLayout = (() => {
             const scrapWrap = newDiv.querySelector(".scrap-button_01");
 
 
-            if(postMainImg){
+            if (postMainImg) {
                 postImgWrap.innerHTML = `
                 <img alt=${post.postTitle} loading="lazy" decoding="async" data-nimg="fill" src="/files/display?path=${postMainImg}" style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;">
                 `;
-            }else{
+            } else {
                 postImgWrap.innerHTML = `
                 <img alt=${post.postTitle} loading="lazy" decoding="async" data-nimg="fill" src=${defaultImg} style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;">
                 `;
             }
 
-            if(channelMainImg){
+            if (channelMainImg) {
                 channelImgWrap.innerHTML = `
                     <img alt=${post.channelMemberNickname} src="/files/display?path=${channelMainImg}" loading="lazy" class="aTag_divImg_01">
                 `;
-            }else{
+            } else {
                 channelImgWrap.innerHTML = `
                     <img alt=${post.channelMemberNickname} src=${defaultImg} loading="lazy" class="aTag_divImg_01">
                 `;
             }
 
-            if(post.scrapped){
+            if (post.scrapped) {
                 scrapWrap.innerHTML = `
                     <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd joy-1wbk7pq">
                         <path d="M4.5 3.875v17.176a.95.95 0 0 0 1.496.777L12 17.625l6.004 4.203a.95.95 0 0 0 1.496-.777V3.875C19.5 2.84 18.66 2 17.625 2H6.375C5.34 2 4.5 2.84 4.5 3.875Z" fill="currentcolor"></path>
                     </svg>
                 `;
-            }else{
+            } else {
                 scrapWrap.innerHTML = `
                 <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root MuiSvgIcon-sizeMd post_menuButton_svg_01">
                     <path d="M4.5 3.875C4.5 2.84 5.34 2 6.375 2v17.242l5.082-3.629a.933.933 0 0 1 1.09 0l5.078 3.63V3.874H6.375V2h11.25c1.035 0 1.875.84 1.875 1.875v17.188a.938.938 0 0 1-1.48.762L12 17.526l-6.02 4.297a.938.938 0 0 1-1.48-.762V3.875Z" fill="currentcolor"></path>
@@ -208,9 +208,9 @@ const readLayout = (() => {
                 `;
             }
 
-            if(post.tagList){
+            if (post.tagList) {
                 const tagWrap = newDiv.querySelector(".tagWrap");
-                post.tagList.forEach((tag)=>{
+                post.tagList.forEach((tag) => {
                     const newAtag = document.createElement("a")
                     newAtag.classList.add("aTag_myDiary_01", "aTag_myDiary_03", "aTag_tag_01")
                     newAtag.setAttribute("href", `/search/search?keyword=${tag.tagContent}`);
@@ -227,7 +227,7 @@ const readLayout = (() => {
     const showReplyList = (replyListData) => {
         const replyContainer = document.querySelector(".reply-container");
 
-        replyListData.forEach((reply)=> {
+        replyListData.forEach((reply) => {
             const newDiv = document.createElement("div");
             newDiv.classList.add("diary_div_001");
             newDiv.innerHTML = `
@@ -284,7 +284,7 @@ const readLayout = (() => {
             const replyDiv = document.createElement("div");
             replyDiv.classList.add("reply-imgWrap");
 
-            if(reply.replyFileName){
+            if (reply.replyFileName) {
                 replyDiv.innerHTML = `
                     <img class="reply-img" src="/files/display?path=${reply.replyFilePath}/${reply.replyFileName}" alt="">
                 `;
@@ -292,16 +292,16 @@ const readLayout = (() => {
                 replyImgWrap.appendChild(replyDiv);
             }
 
-            if(reply.memberFilePath){
+            if (reply.memberFilePath) {
                 memberImgWrap.innerHTML = `
                     <img alt="" src="/files/display?path=${reply.memberFilePath}/${reply.memberFileName}" loading="lazy" class="aTag_divImg_01"></div></a>
                 `;
             } else {
                 memberImgWrap.innerHTML = `
-                    <img alt="" src="/images/avatar_blank.png" loading="lazy" class="aTag_divImg_01"></div></a>
+                    <img alt="" src="/images/channel_banner.png" loading="lazy" class="aTag_divImg_01"></div></a>
                 `;
             }
-            if(reply.liked){
+            if (reply.liked) {
                 likeSvg.classList.remove("like_svg_01");
                 likeSvg.classList.add("joy-fkbdob");
                 likeSvg.innerHTML = `
@@ -311,10 +311,10 @@ const readLayout = (() => {
         })
     }
 
-    return{
-        showNextPost:showNextPost,
-        showPreviousPost:showPreviousPost,
-        showRandomPost:showRandomPost,
-        showReplyList:showReplyList
+    return {
+        showNextPost: showNextPost,
+        showPreviousPost: showPreviousPost,
+        showRandomPost: showRandomPost,
+        showReplyList: showReplyList
     }
 })()

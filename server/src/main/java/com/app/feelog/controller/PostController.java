@@ -61,7 +61,7 @@ public class PostController {
 
         model.addAttribute("post", post);
 
-        return "/post/read";
+        return "post/read";
     }
 
     ;

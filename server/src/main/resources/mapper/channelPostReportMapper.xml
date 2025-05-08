@@ -3,14 +3,18 @@
 <mapper namespace="com.app.feelog.mapper.ChannelPostReportMapper">
     <insert id="insertPostReport">
         insert into tbl_channel_post_report (id, member_id, post_id)
-        value (#{id} ,#{reportMemberId}, #{postId});
+            value (#{id}, #{reportMemberId}, #{postId});
     </insert>
 
-    <insert id="insertReport" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="ReportVO">
-        INSERT INTO tbl_report() VALUES ();
+    <insert id="insertReport" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO tbl_report()
+        VALUES ();
     </insert>
 
     <select id="selectReportByMemberId" resultType="channelPostReportVO">
-        select * from tbl_channel_post_report pr join tbl_report r on pr.id = r.id where pr.member_id = #{memberId}
+        select *
+        from tbl_channel_post_report pr
+                 join tbl_report r on pr.id = r.id
+        where pr.member_id = #{memberId}
     </select>
 </mapper>

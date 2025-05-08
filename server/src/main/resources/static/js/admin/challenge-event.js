@@ -1,7 +1,7 @@
 const writeChallengeButton = document.querySelector(".add-challenge");
 const challengeListButton = document.querySelector(".challenge-list");
 
-writeChallengeButton.addEventListener("click", (e) =>{
+writeChallengeButton.addEventListener("click", (e) => {
     htmlWrap.innerHTML = `
     <main class="FundingPage_container_challengeWrite">
         <div id="FundingPage_Content" class="FundingPage_box_challengeWrite">
@@ -87,15 +87,15 @@ challengeListButton.addEventListener("click", async (e) => {
     await challengeService.getList(challengeLayout.showList, 1);
 })
 
-htmlWrap.addEventListener("keyup", (e)=>{
-    if(e.target.classList.contains("challenge-content")){
+htmlWrap.addEventListener("keyup", (e) => {
+    if (e.target.classList.contains("challenge-content")) {
         const contentCount = document.querySelector(".content-count");
         contentCount.innerText = `${e.target.value.length}/1000`
     }
 })
 
 htmlWrap.addEventListener("change", (e) => {
-    if(e.target.files[0]){
+    if (e.target.files[0]) {
         const files = e.target.files[0]; // FileList 객체
 
         const formData = new FormData();
@@ -110,31 +110,31 @@ htmlWrap.addEventListener("click", async (e) => {
     const challengeContent = document.querySelector(".challenge-content")
     const lists = document.querySelectorAll(".lists")
 
-    if(e.target.classList.contains("benIbu")){
+    if (e.target.classList.contains("benIbu")) {
         e.target.closest(".kZTsQf").remove()
     }
 
-    if(e.target.classList.contains("add-imgFile") && imgWrap){
+    if (e.target.classList.contains("add-imgFile") && imgWrap) {
         alert("이미지는 하나만 첨부가능합니다.")
         e.preventDefault()
         return;
     }
 
-    if(e.target.classList.contains("save-button")){
+    if (e.target.closest(".save-button")) {
         const imgContainer = document.querySelector(".kZTsQf");
 
-        if(challengeContent.value === ""){
+        if (challengeContent.value === "") {
             alert("내용을 입력해주세요")
             return;
         }
 
-        if(!imgContainer){
+        if (!imgContainer) {
             await challengeService.insertMemberTaskPool({
-                memberTaskPoolContent:challengeContent.value
+                memberTaskPoolContent: challengeContent.value
             })
 
             alert("저장완료")
-        }else {
+        } else {
             const uploadFile = document.querySelector(".uploadFile")
             const fileName = uploadFile.getAttribute("data-file-name")
             const filePath = uploadFile.getAttribute("data-file-path")
@@ -142,21 +142,21 @@ htmlWrap.addEventListener("click", async (e) => {
             console.log(filePath)
 
             await challengeService.insertMemberTaskPool({
-                memberTaskPoolContent:challengeContent.value,
-                memberTaskPoolFilePath:filePath,
-                memberTaskPoolFileName:fileName
+                memberTaskPoolContent: challengeContent.value,
+                memberTaskPoolFilePath: filePath,
+                memberTaskPoolFileName: fileName
             })
 
             alert("저장완료")
-            await challengeService.getList(challengeLayout.showList,1)
+            await challengeService.getList(challengeLayout.showList, 1)
         }
     }
 
-    if(e.target.classList.contains("challengeButtons")){
+    if (e.target.classList.contains("challengeButtons")) {
         await challengeService.getList(challengeLayout.showList, e.target.getAttribute("data-index"))
     }
 
-    if(e.target.closest(".memberTaskPoolListDiv")){
+    if (e.target.closest(".memberTaskPoolListDiv")) {
         const parent = e.target.closest(".memberTaskPoolListDiv");
         const content = parent.querySelector(".titleDiv");
         const targetId = parent.querySelector(".idDiv").innerText.trim();
@@ -244,7 +244,7 @@ htmlWrap.addEventListener("click", async (e) => {
         </main>
         `;
 
-        if(parent.querySelector(".fileInfo")){
+        if (parent.querySelector(".fileInfo")) {
             const fileName = parent.querySelector(".fileInfo").getAttribute("data-file-name");
             const filePath = parent.querySelector(".fileInfo").getAttribute("data-file-path");
             const encodedFilePath = encodeURIComponent(`${filePath}/${fileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
@@ -267,39 +267,39 @@ htmlWrap.addEventListener("click", async (e) => {
         }
     }
 
-    if(e.target.closest(".delete-button")){
+    if (e.target.closest(".delete-button")) {
         const id = e.target.closest(".delete-button").getAttribute("data-index");
         await challengeService.deleteMemberTaskPool(id);
         alert("삭제 완료")
-        await challengeService.getList(challengeLayout.showList,1)
+        await challengeService.getList(challengeLayout.showList, 1)
     }
 
-    if(e.target.closest(".update-button")){
+    if (e.target.closest(".update-button")) {
         const id = e.target.getAttribute("data-index");
         const updateContent = document.querySelector(".challenge-content");
         const imgWrapper = document.querySelector(".kZTsQf");
         console.log(imgWrapper)
 
-        if(imgWrapper){
+        if (imgWrapper) {
             const uploadFile = document.querySelector(".uploadFile");
             const fileName = uploadFile.getAttribute("data-file-name")
             const filePath = uploadFile.getAttribute("data-file-path")
 
             await challengeService.updateMemberTaskPool({
-                id:id,
-                memberTaskPoolContent:updateContent.value,
+                id: id,
+                memberTaskPoolContent: updateContent.value,
                 memberTaskPoolFilePath: filePath,
                 memberTaskPoolFileName: fileName
             })
-        }else{
-        await challengeService.updateMemberTaskPool({
-            id:id,
-            memberTaskPoolContent:updateContent.value
-        })
+        } else {
+            await challengeService.updateMemberTaskPool({
+                id: id,
+                memberTaskPoolContent: updateContent.value
+            })
 
         }
         alert("수정완료")
 
-        await challengeService.getList(challengeLayout.showList,1)
+        await challengeService.getList(challengeLayout.showList, 1)
     }
 })
