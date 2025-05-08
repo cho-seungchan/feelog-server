@@ -20,29 +20,29 @@ import java.util.UUID;
 public class FileService {
 
     //    파일 업로드
-    public FileVO upload(MultipartFile file){
-        if(file.getOriginalFilename().equals("")){
+    public FileVO upload(MultipartFile file) {
+        if (file.getOriginalFilename().equals("")) {
             return null;
         }
         String todayPath = getPath();
-        String rootPath = "C:/upload/" + todayPath;
+        String rootPath = "/upload/" + todayPath;
         String fileName = null;
         UUID uuid = UUID.randomUUID();
         String originalFileName = file.getOriginalFilename().replaceAll(" ", "");
 
         try {
             File directory = new File(rootPath);
-            if(!directory.exists()){
+            if (!directory.exists()) {
                 directory.mkdirs();
             }
 
             file.transferTo(new File(rootPath, uuid.toString() + "_" + originalFileName));
 
 //            썸네일 가공
-            if(file.getContentType().startsWith("image")){
+            if (file.getContentType().startsWith("image")) {
                 fileName = "t_" + uuid.toString() + "_" + originalFileName;
                 FileOutputStream out = new FileOutputStream(new File(rootPath, fileName));
-                Thumbnailator.createThumbnail(file.getInputStream(), out, 1300,350);
+                Thumbnailator.createThumbnail(file.getInputStream(), out, 1300, 350);
                 out.close();
 
                 FileVO fileVO = new FileVO();  // 객체 생성
@@ -58,7 +58,7 @@ public class FileService {
         return null;
     }
 
-    private String getPath(){
+    private String getPath() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
 }

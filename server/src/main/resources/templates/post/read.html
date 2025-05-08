@@ -43,14 +43,14 @@
                                          style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;"
                                          th:src="${post.memberFilePath != null}
                                           ? '/files/display?path=' + ${post.memberFilePath} + '/' + ${post.memberFileName}
-                                          : '/images/default.png'" />
+                                          : '/images/channel_banner.png'" />
                                 </div
                                 ></a>
                                 <div class="header-div-container">
                                     <div class="diary_container_01">
                                         <a
                                             class="noNameWrap_01"
-                                            href="/profile/@822am3"
+                                            th:href="'/feelog.com/@' + ${post.channelUrl} + '/community'"
                                             ><p
                                                 class="diary_nicknameWrap_01 noName_01"
                                                 th:text="${post.memberNickname}"
@@ -246,7 +246,7 @@
                                                 <img
                                                     th:if="${session.member ==null}"
                                                     alt=""
-                                                    th:src="@{/images/avatar_blank.png}"
+                                                    th:src="@{/images/channel_banner.png}"
                                                     loading="lazy"
                                                     class="aTag_divImg_01"
                                                 />

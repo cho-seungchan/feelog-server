@@ -2,18 +2,12 @@ package com.app.feelog.controller;
 
 import ch.qos.logback.core.model.Model;
 import com.app.feelog.domain.dto.*;
-import com.app.feelog.domain.dto.joinDTO.DiaryReportListDTO;
-import com.app.feelog.domain.dto.joinDTO.PostReportListDTO;
-import com.app.feelog.domain.dto.joinDTO.ReplyReportListDTO;
 import com.app.feelog.domain.dto.joinDTO.ReportListDTO;
-import com.app.feelog.mapper.MemberTaskPoolMapper;
 import com.app.feelog.service.*;
 import com.app.feelog.service.voToDto.ReportService;
-import com.app.feelog.util.Pagination;
 import com.app.feelog.util.pagination.AdminPagination;
 import com.app.feelog.util.pagination.MemberPagination;
 import com.app.feelog.util.pagination.NoticePagination;
-import com.app.feelog.util.pagination.PostPagination;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,15 +34,17 @@ public class AdminController {
     @GetMapping("/admin")
     public String goToAdmin(MemberDTO adminDTO, Model model) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
-        if(loginMember == null) {
+        if (loginMember == null) {
             return "redirect:/login/email-login";
         }
-        return "/admin/admin";
-    };
+        return "admin/admin";
+    }
+
+    ;
 
     @GetMapping("/adminlists")
     @ResponseBody
-    public AdminListDTO adminLists(AdminPagination adminPagination){
+    public AdminListDTO adminLists(AdminPagination adminPagination) {
         return adminServiceImpl.getAdminAll(adminPagination);
     }
 
@@ -58,7 +54,7 @@ public class AdminController {
     }
 
     @PutMapping("/deleteAdmin")
-    public void deleteAdmin(@RequestBody List<String> idList){
+    public void deleteAdmin(@RequestBody List<String> idList) {
         idList.forEach(id -> {
             adminServiceImpl.deleteAdmin(Long.parseLong(id));
         });
@@ -187,7 +183,7 @@ public class AdminController {
 
     @PutMapping("/deleteReport")
     public void deleteReport(@RequestBody List<String> idList) {
-        idList.forEach(id->{
+        idList.forEach(id -> {
             reportService.deleteReportById(Long.parseLong(id));
         });
     }
@@ -195,7 +191,7 @@ public class AdminController {
     @PutMapping("/returnReport")
     public void returnReport(@RequestBody List<String> idList) {
         log.info("ids = {}", idList);
-        idList.forEach(id->{
+        idList.forEach(id -> {
             reportService.returnReport(Long.parseLong(id));
         });
     }

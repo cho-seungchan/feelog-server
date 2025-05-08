@@ -1,7 +1,7 @@
 // 25.04.28 조승찬
 
 // 인풋창에 입력된 파일들을 서버로 보내서 경로와 썸네일 만들기
-function inputFileUpload(formData){
+function inputFileUpload(formData) {
     return fetch("/files/upload/multi", {
         method: "post",
         body: formData
@@ -17,7 +17,7 @@ function inputFileUpload(formData){
 }
 
 // 인풋창에 입력된 파일들을 서버로 보내서 경로와 썸네일 만들기
-function inputFileUploadOne(formData){
+function inputFileUploadOne(formData) {
     return fetch("/files/upload", {
         method: "post",
         body: formData
@@ -44,10 +44,10 @@ function communityPostRead(postId, currentChannelUrl) {
         .then(data => {
             console.log(data.postDTO);
             createUpdateModal(data.postDTO);
-    }).catch(error => {
-        console.error("Error fetching community post:", error);
-        throw error;
-    });
+        }).catch(error => {
+            console.error("Error fetching community post:", error);
+            throw error;
+        });
 }
 
 // 데이타 삭제
@@ -221,7 +221,8 @@ function postCommunityPostReplyReport(replyId, currentChannelUrl) {
             return response.json();
         })
         .then(data => {
-            setReplyReportCount(replyId, data.reportCount);1
+            setReplyReportCount(replyId, data.reportCount);
+            1
         })
         .catch(error => {
             console.error("댓글 신고 요청 중 오류 발생:", error);
@@ -255,12 +256,12 @@ function cancelCommunityPostReplyReport(replyId, currentChannelUrl) {
 // 2025.05.02 조승찬 :: 댓글  비속어 포함여부 확인
 async function replyCheck(content) {
     try {
-        const response = await fetch("http://localhost:8000/api/reply-check", {
+        const response = await fetch("http://13.124.27.211/api/reply-check", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ content })
+            body: JSON.stringify({content})
         });
 
         if (!response.ok) { // 서버 응답 코드가 200~299가 아닐 경우 처리
@@ -287,4 +288,5 @@ async function handleSubmit(content, form) {
 
     form.submit(); // isBadWord가 false일 때만 실행
 }
+
 // 2025.05.02 조승찬 :: 댓글  비속어 포함여부 확인
