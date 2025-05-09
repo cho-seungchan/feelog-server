@@ -59,12 +59,12 @@ public class MyPageController {
         }
 
         // 2025.04.23 조승찬 :: 닉네임 중복 체크
-        Optional<MemberDTO> memberOptional = myPageService.getMemberByNickname(memberDTO.getMemberNickname());
-        if (memberOptional.isPresent() && !memberOptional.get().getId().equals(member.getId())) {
-            model.addAttribute("errorMessage", "중복된 Nickname 입니다.");
-            model.addAttribute("member", memberDTO);
-            return "myPage/setting-profile";
-        }
+//        Optional<MemberDTO> memberOptional = myPageService.getMemberByNickname(memberDTO.getMemberNickname());
+//        if (memberOptional.isPresent() && !memberOptional.get().getId().equals(member.getId())) {
+//            model.addAttribute("errorMessage", "중복된 Nickname 입니다.");
+//            model.addAttribute("member", memberDTO);
+//            return "myPage/setting-profile";
+//        }
 
         memberDTO.setId(member.getId());
         myPageService.postSettingProfile(memberDTO);
@@ -268,15 +268,18 @@ public class MyPageController {
 
         // 오늘 작성한 일기의 점수 확인 => 점수가 50점 미만이면 시설 소개하기
         DiaryVO diary = myPageService.getDiaryByMemberId(member.getId()).orElse(null);
+        log.info("diary: {}", diary);
 
         // 50점 미만이면 시설 정보 가져오기
         List<NotifyAdminListDTO> admins = new ArrayList<>();
-        if (diary != null && diary.getDiaryScore() < 50) {
+        if (diary != null && diary.getDiaryScore() < 6) {
             admins = myPageService.getFacilityInfo();
         }
 
         model.addAttribute("admins", admins);
         model.addAttribute("pagination", pagination);
+
+        log.info("admins: {}", admins);
 
         return "myPage/notify-admin-list";
     }

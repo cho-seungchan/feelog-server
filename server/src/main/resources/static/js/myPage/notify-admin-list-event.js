@@ -1,5 +1,7 @@
 //  2025.04.06 조승찬
 
+console.log(admin)
+
 document.addEventListener("DOMContentLoaded", () => {
     // 타이틀(댓글, 커뮤니티, 관리자알림) 클릭 이벤트
     document.querySelectorAll(".FeelogListItem-variantPlain").forEach((title) => {

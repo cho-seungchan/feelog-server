@@ -258,7 +258,7 @@ async function replyCheck(content) {
 
     console.log("into replyCheck ::  ")
     try {
-        const response = await fetch("http://3.34.124.202/api/reply-check", {
+        const response = await fetch("http://13.125.248.28/api/reply-check", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

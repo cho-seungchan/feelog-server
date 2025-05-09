@@ -45,15 +45,15 @@
 
     <select id="getRecentDiaries" resultType="com.app.feelog.domain.dto.DiarySearchDTO">
         SELECT d.id,
-        d.diary_title                                     AS title,
-        m.member_nickname                                 AS nickname,
+        d.diary_title AS title,
+        m.member_nickname AS nickname,
         CONCAT(d.diary_file_path, '/', d.diary_file_name) AS thumbnailUrl,
         d.created_date,
         (SELECT GROUP_CONCAT(t.contents)
         FROM tbl_diary_tag dt
         JOIN tbl_tag t ON dt.id = t.id
         WHERE dt.diary_id = d.id
-        AND t.tag_status = 'ACTIVE')                   AS tags
+        AND t.tag_status = 'ACTIVE') AS tags
         FROM tbl_diary d
         JOIN tbl_member m ON d.member_id = m.id
         WHERE d.diary_status = '정상'
@@ -65,18 +65,18 @@
 
     <select id="searchDiaries" resultType="com.app.feelog.domain.dto.DiarySearchDTO">
         SELECT d.id,
-        d.diary_title                                       AS title,
-        d.diary_content                                     AS content,
-        m.member_nickname                                   AS nickname,
-        CONCAT(d.diary_file_path, '/', d.diary_file_name)   AS thumbnailUrl,
+        d.diary_title AS title,
+        d.diary_content AS content,
+        m.member_nickname AS nickname,
+        CONCAT(d.diary_file_path, '/', d.diary_file_name) AS thumbnailUrl,
         CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImg,
-        m.id                                                AS memberId,
-        d.created_date                                      AS createdDate,
+        m.id AS memberId,
+        d.created_date AS createdDate,
         (SELECT GROUP_CONCAT(t.contents)
         FROM tbl_diary_tag dt
         JOIN tbl_tag t ON dt.id = t.id
         WHERE dt.diary_id = d.id
-        AND t.tag_status = 'ACTIVE')                     AS tags
+        AND t.tag_status = 'ACTIVE') AS tags
         FROM tbl_diary d
         JOIN tbl_member m ON d.member_id = m.id
         LEFT JOIN tbl_diary_tag dt ON d.id = dt.diary_id
@@ -98,19 +98,19 @@
 
     <select id="searchMoreDiaries" resultType="com.app.feelog.domain.dto.DiarySearchDTO">
         SELECT d.id,
-        d.diary_title                                       AS title,
-        d.diary_content                                     AS content,
-        d.diary_open                                        AS openStatus,
-        d.created_date                                      AS createdDate,
-        m.id                                                AS memberId,
-        m.member_nickname                                   AS nickname,
+        d.diary_title AS title,
+        d.diary_content AS content,
+        d.diary_open AS openStatus,
+        d.created_date AS createdDate,
+        m.id AS memberId,
+        m.member_nickname AS nickname,
         CONCAT(m.member_file_path, '/', m.member_file_name) AS memberProfileImg,
-        CONCAT(d.diary_file_path, '/', d.diary_file_name)   AS thumbnailUrl,
+        CONCAT(d.diary_file_path, '/', d.diary_file_name) AS thumbnailUrl,
         (SELECT GROUP_CONCAT(t.contents)
         FROM tbl_diary_tag dt
         JOIN tbl_tag t ON dt.id = t.id
         WHERE dt.diary_id = d.id
-        AND t.tag_status = '정상')                         AS tags
+        AND t.tag_status = '정상') AS tags
         FROM tbl_diary d
         JOIN tbl_member m ON d.member_id = m.id
         WHERE d.diary_status = '정상'
@@ -135,8 +135,7 @@
     <select id="selectDiaryListPagination" resultType="diaryJoinDTO">
         select *
         from view_diary
-        where diary_open = '비공개'
-          and member_id = #{memberId}
+        where member_id = #{memberId}
         order by id desc
         limit #{postPagination.offset}, #{postPagination.rowCount}
     </select>

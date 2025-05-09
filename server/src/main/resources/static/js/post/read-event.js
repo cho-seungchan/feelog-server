@@ -10,6 +10,7 @@ const subscribe = document.querySelector(".subscribe-button");
 const moreButton = document.querySelector(".more_diaryButton_02");
 const addImg = document.querySelector(".upload_buttonContainer_02");
 const footerButtons = document.querySelector(".footer_navBar");
+const tagWrapper = document.querySelectorAll(".tag_wrap_01");
 
 reportDiv.id = "report-button";
 
