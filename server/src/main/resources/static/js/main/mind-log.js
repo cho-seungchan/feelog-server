@@ -136,10 +136,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const plainTextContent = stripHtmlTags(contentHtml);
         const contents = title.trim() + " " + plainTextContent.trim();
 
-        fetch("http://3.34.124.202/api/feeling-check", {
+        fetch("http://13.125.248.28/api/feeling-check", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ contents })
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({contents})
         })
             .then(res => {
                 if (!res.ok) {
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(data => {
                 console.log("서버 응답 데이터:", data);
-                const { score } = data;
+                const {score} = data;
                 if (!score) {
                     throw new Error("서버에서 score 값이 반환되지 않았습니다.");
                 }
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function renderEmotionFeedback(container, scoreData) {
-    const { scoreMessage, scoreFilePath, scoreFileName, id } = scoreData;
+    const {scoreMessage, scoreFilePath, scoreFileName, id} = scoreData;
 
     // 기존 hiddenScoreInput 제거 (중복 방지)
     const oldHidden = container.querySelector("input[name='diaryScore']");

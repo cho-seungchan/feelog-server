@@ -90,7 +90,7 @@
                                     >
                                                 <img
                                                         alt=""
-                                                        src="https://d33pksfia2a94m.cloudfront.net/assets/img/brand/symbol-80.png?w=100&amp;h=100&amp;q=65"
+                                                        src="/images/favicon.ico"
                                                         loading="lazy"
                                                         class="FeelogAvatar-img flog-img-1"
                                                 /></div></a
@@ -156,6 +156,7 @@
     <script th:inline="javascript">
         const loginMember = [[${session.member}]]
         const loginMemberId = Number(loginMember.id);
+        const admin = [[${admins}]]
     </script>
     <script src="/js/myPage/notify-admin-list-event.js"></script>
     <script src="/js/main/main-modal.js"></script>

@@ -66,7 +66,7 @@ public class DiaryServiceImpl implements DiaryService {
                 diaryTagServiceImpl.save(diaryTagDTO);
             }
         }
-
+        diaryDTO.setId(diaryVO.getId());
         return diaryId;
     }
 

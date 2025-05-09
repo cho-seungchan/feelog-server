@@ -20,7 +20,7 @@ const diaryLayout = (() => {
 
             let channelMainImg = null;
             let diaryMainImg = null;
-            const defaultImg = "/images/avatar_blank.png"
+            const defaultImg = "/images/channel_banner.png"
 
             if (diary.memberFilePath !== null && diary.memberFileName !== null) {
                 channelMainImg = encodeURIComponent(`${diary.memberFilePath}/${diary.memberFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공
@@ -308,7 +308,7 @@ const diaryLayout = (() => {
                 `;
             } else {
                 diaryMainImgWrap.innerHTML = `
-                    <img class="" src=${defaultImg} alt="" draggable="false" loading="lazy">
+                    <img class="" src=${defaultImg} alt="" draggable="false" loading="lazy" style="max-width: 500px; max-height: 500px">
                 `;
             }
 
@@ -413,7 +413,7 @@ const diaryLayout = (() => {
 
             let channelMainImg = null;
             let diaryMainImg = null;
-            let defaultImg = "/images/avatar_blank.png"
+            let defaultImg = "/images/channel_banner.png"
 
             if (diary.channelFilePath != null && diary.channelFileName != null) {
                 channelMainImg = encodeURIComponent(`${diary.channelFilePath}/${diary.channelFileName}`);   // 이미지 파일이 아닌경우 별도의 이미지 파일 제공

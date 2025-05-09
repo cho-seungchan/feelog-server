@@ -2,54 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mypage.mapper.MyPageMapper">
     <select id="getMemberById" resultType="memberVO">
-        SELECT
-            id,
-            member_email,
-            member_password,
-            member_nickname,
-            member_introduce,
-            member_file_path,
-            member_file_name,
-            member_notification_post_reply,
-            member_notification_post_reply_like,
-            member_notification_post_like,
-            member_notification_subscribe,
-            member_notification_community_post,
-            member_notification_message,
-            created_date,
-            updated_date
-        from   tbl_member
-        where  id = #{id}
+        SELECT id,
+               member_email,
+               member_password,
+               member_nickname,
+               member_introduce,
+               member_file_path,
+               member_file_name,
+               member_notification_post_reply,
+               member_notification_post_reply_like,
+               member_notification_post_like,
+               member_notification_subscribe,
+               member_notification_community_post,
+               member_notification_message,
+               created_date,
+               updated_date
+        from tbl_member
+        where id = #{id}
     </select>
 
     <select id="getMemberByNickname" resultType="memberVO">
-        SELECT
-            id,
-            member_email,
-            member_password,
-            member_nickname,
-            member_introduce,
-            member_file_path,
-            member_file_name,
-            member_notification_post_reply,
-            member_notification_post_reply_like,
-            member_notification_post_like,
-            member_notification_subscribe,
-            member_notification_community_post,
-            member_notification_message,
-            created_date,
-            updated_date
-        from   tbl_member
-        where  member_nickname = #{memberNickname}
+        SELECT id,
+               member_email,
+               member_password,
+               member_nickname,
+               member_introduce,
+               member_file_path,
+               member_file_name,
+               member_notification_post_reply,
+               member_notification_post_reply_like,
+               member_notification_post_like,
+               member_notification_subscribe,
+               member_notification_community_post,
+               member_notification_message,
+               created_date,
+               updated_date
+        from tbl_member
+        where member_nickname = #{memberNickname}
     </select>
 
     <select id="getCommunityPostFileList" resultType="communityPostFileVO">
-        select
-            f.id,
-            f.file_path,
-            f.file_name,
-            f.created_date as file_created_date,
-            f.updated_date as file_updated_date
+        select f.id,
+               f.file_path,
+               f.file_name,
+               f.created_date as file_created_date,
+               f.updated_date as file_updated_date
         from tbl_file f
                  join tbl_community_post_file cpf on f.id = cpf.id
         where cpf.post_id = #{communityPostId}
@@ -67,17 +64,16 @@
     </select>
 
     <select id="getNotifyCommunityList" resultType="communityPostVO">
-        select
-            p.id as id,
-            p.post_title,
-            p.post_content,
-            p.created_date as created_date,
-            p.updated_date as updated_date,
-            cp.channel_id  as channel_id,
-            cp.member_id   as member_id,
-            ch.created_date as channel_created_date,
-            ch.updated_date as channel_updated_date,
-            cp.id as community_post_id
+        select p.id            as id,
+               p.post_title,
+               p.post_content,
+               p.created_date  as created_date,
+               p.updated_date  as updated_date,
+               cp.channel_id   as channel_id,
+               cp.member_id    as member_id,
+               ch.created_date as channel_created_date,
+               ch.updated_date as channel_updated_date,
+               cp.id           as community_post_id
         from tbl_channel ch
                  join tbl_community_post cp on ch.id = cp.channel_id
                  join tbl_post p on cp.id = p.id
@@ -113,9 +109,9 @@
                member_id,
                created_date,
                updated_date
-        from   tbl_channel
-        where   member_id = #{memberId}
-          and   channel_status = '정상'
+        from tbl_channel
+        where member_id = #{memberId}
+          and channel_status = '정상'
     </select>
 
     <select id="getNotifyReplyListTotalCount" resultType="_int">
@@ -129,15 +125,14 @@
     </select>
 
     <select id="getNotifyReplyList" resultType="channelPostReplyVO">
-        select
-            r.id,
-            r.reply_content,
-            cp.post_type,
-            cpr.member_id,
-            cp.channel_id,
-            cpr.post_id,
-            r.created_date,
-            r.updated_date
+        select r.id,
+               r.reply_content,
+               cp.post_type,
+               cpr.member_id,
+               cp.channel_id,
+               cpr.post_id,
+               r.created_date,
+               r.updated_date
         from tbl_channel_post cp
                  join tbl_channel_post_reply cpr on cp.id = cpr.post_id
                  join tbl_reply r on cpr.id = r.id
@@ -148,60 +143,56 @@
     </select>
 
     <select id="getChannelPostById" resultType="channelPostVO">
-        select
-            p.id,
-            p.post_title,
-            p.post_content,
-            p.created_date,
-            p.updated_date,
-            cp.post_read_count,
-            cp.post_file_path,
-            cp.post_file_name
-       from   tbl_post p
-       join   tbl_channel_post cp
-       on     p.id  = cp.id
-       where  p.id          =  #{id}
-       and    p.post_status = '정상'
+        select p.id,
+               p.post_title,
+               p.post_content,
+               p.created_date,
+               p.updated_date,
+               cp.post_read_count,
+               cp.post_file_path,
+               cp.post_file_name
+        from tbl_post p
+                 join tbl_channel_post cp
+                      on p.id = cp.id
+        where p.id = #{id}
+          and p.post_status = '정상'
     </select>
 
     <select id="getPostById" resultType="postVO">
-        select
-            id,
-            post_title,
-            post_content,
-            created_date,
-            updated_date
+        select id,
+               post_title,
+               post_content,
+               created_date,
+               updated_date
         from tbl_post
         where id = #{id}
     </select>
 
     <select id="getNotifyAdminListTotalCount" resultType="_int">
-        SELECT
-              count(*)
+        SELECT count(*)
         FROM tbl_notice
         WHERE notice_status = '정상'
     </select>
 
     <select id="getDiaryByMemberId" resultType="diaryVO">
-        select
-            id,
-            diary_title,
-            diary_content,
-            diary_open,
-            diary_name_open,
-            diary_file_path,
-            diary_file_name,
-            diary_file_size,
-            diary_weather,
-            diary_score,
-            member_id,
-            feel_id,
-            created_date,
-            updated_date
-        from   tbl_diary
-        where  diary_status = '정상'
-          and  member_id  = #{memberId}
-          and  date(created_date) = current_date()
+        select id,
+               diary_title,
+               diary_content,
+               diary_open,
+               diary_name_open,
+               diary_file_path,
+               diary_file_name,
+               diary_file_size,
+               diary_score,
+               member_id,
+               created_date,
+               updated_date
+        from tbl_diary
+        where diary_status = '정상'
+          and member_id = #{memberId}
+          and date(created_date) = current_date()
+        order by diary_score asc
+        limit 1
     </select>
 
     <select id="getNotifySubscribeTotalCount" resultType="_int">
@@ -216,16 +207,15 @@
     </select>
 
     <select id="getNotifySubscribe" resultType="memberVO">
-        SELECT
-            m.id,
-            m.member_email,
-            m.member_nickname,
-            m.member_introduce,
-            m.member_file_path,
-            m.member_file_name,
-            m.member_status,
-            s.created_date,
-            s.updated_date
+        SELECT m.id,
+               m.member_email,
+               m.member_nickname,
+               m.member_introduce,
+               m.member_file_path,
+               m.member_file_name,
+               m.member_status,
+               s.created_date,
+               s.updated_date
         FROM tbl_channel c
                  JOIN tbl_subscribe s ON c.id = s.channel_id
                  JOIN tbl_member m ON s.member_id = m.id
@@ -233,40 +223,40 @@
           AND c.channel_status = '정상'
           AND s.subscribe_status = '정상'
           AND m.member_status = '정상'
-        order by  s.created_date  desc
+        order by s.created_date desc
         limit #{pagination.offset}, #{pagination.rowCount}
     </select>
 
-<!--    <select id="getNotifySubscribeTotalCount" resultType="_int">-->
-<!--        SELECT count(*)-->
-<!--        FROM tbl_subscribe s-->
-<!--                 JOIN tbl_channel c1 ON s.channel_id = c1.id-->
-<!--                 JOIN tbl_channel c2 ON s.member_id = c2.member_id-->
-<!--        WHERE c1.member_id = #{memberId}-->
-<!--          AND s.subscribe_status = '정상'-->
-<!--          AND c2.channel_status = '정상';-->
-<!--    </select>-->
+    <!--    <select id="getNotifySubscribeTotalCount" resultType="_int">-->
+    <!--        SELECT count(*)-->
+    <!--        FROM tbl_subscribe s-->
+    <!--                 JOIN tbl_channel c1 ON s.channel_id = c1.id-->
+    <!--                 JOIN tbl_channel c2 ON s.member_id = c2.member_id-->
+    <!--        WHERE c1.member_id = #{memberId}-->
+    <!--          AND s.subscribe_status = '정상'-->
+    <!--          AND c2.channel_status = '정상';-->
+    <!--    </select>-->
 
-<!--    <select id="getNotifySubscribe" resultType="channelVO">-->
-<!--        SELECT-->
-<!--            c2.id,-->
-<!--            c2.channel_title,-->
-<!--            c2.channel_introduce,-->
-<!--            c2.channel_url,-->
-<!--            c2.channel_file_path,-->
-<!--            c2.channel_file_name,-->
-<!--            c2.member_id,-->
-<!--            c2.created_date,-->
-<!--            c2.updated_date-->
-<!--        FROM tbl_subscribe s-->
-<!--                 JOIN tbl_channel c1 ON s.channel_id = c1.id-->
-<!--                 JOIN tbl_channel c2 ON s.member_id = c2.member_id-->
-<!--        WHERE c1.member_id = #{memberId}-->
-<!--          AND s.subscribe_status = '정상'-->
-<!--          AND c2.channel_status = '정상'-->
-<!--        order by s.id desc-->
-<!--        limit #{pagination.offset}, #{pagination.rowCount};-->
-<!--    </select>-->
+    <!--    <select id="getNotifySubscribe" resultType="channelVO">-->
+    <!--        SELECT-->
+    <!--            c2.id,-->
+    <!--            c2.channel_title,-->
+    <!--            c2.channel_introduce,-->
+    <!--            c2.channel_url,-->
+    <!--            c2.channel_file_path,-->
+    <!--            c2.channel_file_name,-->
+    <!--            c2.member_id,-->
+    <!--            c2.created_date,-->
+    <!--            c2.updated_date-->
+    <!--        FROM tbl_subscribe s-->
+    <!--                 JOIN tbl_channel c1 ON s.channel_id = c1.id-->
+    <!--                 JOIN tbl_channel c2 ON s.member_id = c2.member_id-->
+    <!--        WHERE c1.member_id = #{memberId}-->
+    <!--          AND s.subscribe_status = '정상'-->
+    <!--          AND c2.channel_status = '정상'-->
+    <!--        order by s.id desc-->
+    <!--        limit #{pagination.offset}, #{pagination.rowCount};-->
+    <!--    </select>-->
 
     <select id="getStorageSubscribeTotalCount" resultType="_int">
         SELECT count(*)
@@ -278,42 +268,40 @@
     </select>
 
     <select id="getStorageSubscribe" resultType="channelVO">
-        SELECT
-            c.id,
-            c.channel_title,
-            c.channel_introduce,
-            c.channel_url,
-            c.channel_file_path,
-            c.channel_file_name,
-            c.member_id,
-            c.created_date,
-            c.updated_date
+        SELECT c.id,
+               c.channel_title,
+               c.channel_introduce,
+               c.channel_url,
+               c.channel_file_path,
+               c.channel_file_name,
+               c.member_id,
+               c.created_date,
+               c.updated_date
         FROM tbl_subscribe s
                  JOIN tbl_channel c ON s.channel_id = c.id
         WHERE s.member_id = #{memberId}
           AND s.subscribe_status = '정상'
           AND c.channel_status = '정상'
         order by s.id desc
-            limit #{pagination.offset}, #{pagination.rowCount}
+        limit #{pagination.offset}, #{pagination.rowCount}
     </select>
 
     <select id="getStorageScrapTotalCount" resultType="_int">
         select count(*)
-        from   tbl_channel_post_scrap
-        where  member_id = #{memberId}
-          and    channel_post_scrap_status = '정상'
+        from tbl_channel_post_scrap
+        where member_id = #{memberId}
+          and channel_post_scrap_status = '정상'
     </select>
 
-    <select id="getStorageScrap" resultType="scrapVO">
-        select
-            id,
-            member_id,
-            post_id
-        from   tbl_channel_post_scrap
-        where  member_id = #{memberId}
-          and    channel_post_scrap_status = '정상'
+    <select id="getStorageScrap" resultType="channelPostScrapVO">
+        select id,
+               member_id,
+               post_id
+        from tbl_channel_post_scrap
+        where member_id = #{memberId}
+          and channel_post_scrap_status = '정상'
         order by id desc
-            limit #{pagination.offset}, #{pagination.rowCount};
+        limit #{pagination.offset}, #{pagination.rowCount};
     </select>
 
     <select id="getLikeCount" resultType="_int">
@@ -336,88 +324,83 @@
 
     <select id="getStorageLikeTotalCount" resultType="_int">
         select count(*)
-        from   tbl_like l
-        join   tbl_channel_post_like cpl
-        on     l.id  =  cpl.id
-        where  cpl.member_id = #{memberId}
-        and    l.like_status = '정상'
+        from tbl_like l
+                 join tbl_channel_post_like cpl
+                      on l.id = cpl.id
+        where cpl.member_id = #{memberId}
+          and l.like_status = '정상'
     </select>
 
     <select id="getStorageLike" resultType="channelPostLikeVO">
         select cpl.id,
                cpl.member_id,
                cpl.post_id
-        from   tbl_like l
-                   join   tbl_channel_post_like cpl
-                          on     l.id  =  cpl.id
-        where  cpl.member_id = #{memberId}
-          and    l.like_status = '정상'
+        from tbl_like l
+                 join tbl_channel_post_like cpl
+                      on l.id = cpl.id
+        where cpl.member_id = #{memberId}
+          and l.like_status = '정상'
         order by id desc
-            limit #{pagination.offset}, #{pagination.rowCount};
+        limit #{pagination.offset}, #{pagination.rowCount};
     </select>
 
     <select id="getStorageReplyTotalCount" resultType="_int">
         select count(*)
-        from   tbl_channel_post_reply cpr
-        join   tbl_reply r
-        on     r.id           =  cpr.id
-        where  cpr.member_id  =  #{memberId}
-        and    r.reply_status = '정상'
+        from tbl_channel_post_reply cpr
+                 join tbl_reply r
+                      on r.id = cpr.id
+        where cpr.member_id = #{memberId}
+          and r.reply_status = '정상'
     </select>
 
     <select id="getStorageReply" resultType="channelPostReplyVO">
         select r.id,
                r.reply_content,
                cpr.post_id
-        from   tbl_channel_post_reply cpr
-                   join   tbl_reply r
-                          on     r.id           =  cpr.id
-        where  cpr.member_id  =  #{memberId}
-          and    r.reply_status = '정상'
+        from tbl_channel_post_reply cpr
+                 join tbl_reply r
+                      on r.id = cpr.id
+        where cpr.member_id = #{memberId}
+          and r.reply_status = '정상'
         order by id desc
-            limit #{pagination.offset}, #{pagination.rowCount};
+        limit #{pagination.offset}, #{pagination.rowCount};
     </select>
 
     <insert id="postMakingChannel">
-        insert into tbl_channel (
-            channel_title,
-            channel_introduce,
-            channel_url,
-            channel_file_path,
-            channel_file_name,
-            member_id
-        ) values (
-            #{channelTitle},
-            #{channelIntroduce},
-            #{channelUrl},
-            #{channelFilePath},
-            #{channelFileName},
-            #{memberId}
-        );
+        insert into tbl_channel (channel_title,
+                                 channel_introduce,
+                                 channel_url,
+                                 channel_file_path,
+                                 channel_file_name,
+                                 member_id)
+        values (#{channelTitle},
+                #{channelIntroduce},
+                #{channelUrl},
+                #{channelFilePath},
+                #{channelFileName},
+                #{memberId});
     </insert>
 
     <update id="postSettingProfile">
         update tbl_member
-        set
-            member_password = #{memberPassword},
-            member_nickname = #{memberNickname},
+        set member_password  = #{memberPassword},
+            member_nickname  = #{memberNickname},
             member_introduce = #{memberIntroduce},
             member_file_path = #{memberFilePath},
             member_file_name = #{memberFileName},
-            updated_date = current_timestamp
+            updated_date     = current_timestamp
         where id = #{id}
     </update>
 
     <update id="postSettingNotify">
         update tbl_member
-        set
-            member_notification_post_reply     = #{memberNotificationPostReply},
+        set member_notification_post_reply      = #{memberNotificationPostReply},
             member_notification_post_reply_like = #{memberNotificationPostReplyLike},
-            member_notification_post_like      = #{memberNotificationPostLike},
-            member_notification_subscribe      = #{memberNotificationSubscribe},
-            member_notification_community_post = #{memberNotificationCommunityPost},
-            member_notification_message        = #{memberNotificationMessage},
-            updated_date = current_timestamp
+            member_notification_post_like       = #{memberNotificationPostLike},
+            member_notification_subscribe       = #{memberNotificationSubscribe},
+            member_notification_community_post  = #{memberNotificationCommunityPost},
+            member_notification_message         = #{memberNotificationMessage},
+            updated_date                        = current_timestamp
         where id = #{id}
     </update>
 
@@ -428,57 +411,57 @@
             channel_url       = #{channelUrl},
             channel_file_path = #{channelFilePath},
             channel_file_name = #{channelFileName},
-            updated_date      =  current_timestamp
+            updated_date      = current_timestamp
         where id = #{id}
     </update>
 
     <update id="postDeleteChannel">
-        update  tbl_channel
-        set     channel_status  = '삭제',
-                updated_date = current_timestamp
-        where   id         = #{id}
+        update tbl_channel
+        set channel_status = '삭제',
+            updated_date   = current_timestamp
+        where id = #{id}
     </update>
 
     <update id="cancelSubscribe">
-        update   tbl_subscribe
-        set      subscribe_status = '삭제',
-                 updated_date = current_timestamp
-        where    member_id  = #{memberId}
-        and      channel_id = #{channelId}
+        update tbl_subscribe
+        set subscribe_status = '삭제',
+            updated_date     = current_timestamp
+        where member_id = #{memberId}
+          and channel_id = #{channelId}
     </update>
 
     <update id="storageOnScrap">
-        update   tbl_channel_post_scrap
-        set      channel_post_scrap_status = '정상',
-                 updated_date = current_timestamp
-        where    id  = #{id}
+        update tbl_channel_post_scrap
+        set channel_post_scrap_status = '정상',
+            updated_date              = current_timestamp
+        where id = #{id}
     </update>
 
     <update id="storageOffScrap">
-        update   tbl_channel_post_scrap
-        set      channel_post_scrap_status = '삭제',
-                 updated_date = current_timestamp
-        where    id  = #{id}
+        update tbl_channel_post_scrap
+        set channel_post_scrap_status = '삭제',
+            updated_date              = current_timestamp
+        where id = #{id}
     </update>
 
     <update id="storageOnLike">
-        update   tbl_Like
-        set      like_status = '정상',
-                 updated_date = current_timestamp
-        where    id  = #{id}
+        update tbl_Like
+        set like_status  = '정상',
+            updated_date = current_timestamp
+        where id = #{id}
     </update>
 
     <update id="storageOffLike">
-        update   tbl_Like
-        set      like_status = '삭제',
-                 updated_date = current_timestamp
-        where    id  = #{id}
+        update tbl_Like
+        set like_status  = '삭제',
+            updated_date = current_timestamp
+        where id = #{id}
     </update>
 
     <update id="deleteStorageReply">
-        update    tbl_reply
-        set       reply_status = '삭제',
-                  updated_date = current_timestamp
-        where     id   =   #{id}
+        update tbl_reply
+        set reply_status = '삭제',
+            updated_date = current_timestamp
+        where id = #{id}
     </update>
 </mapper>

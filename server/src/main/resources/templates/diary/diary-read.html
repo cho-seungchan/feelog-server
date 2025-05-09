@@ -47,7 +47,7 @@
                                                     th:alt="${diary.channelTitle}"
                                                     th:src="${diary.memberFilePath != null}
                                                       ? '/files/display?path=' + ${diary.memberFilePath} + '/' + ${diary.memberFileName}
-                                                      : '/images/avatar_blank.png'" />
+                                                      : '/images/avatar_blank.png'"
                                                     loading="lazy"
                                                     class="aTag_divImg_01"
                                             /></div
@@ -72,7 +72,7 @@
                                         <a
                                             th:if="${diary.diaryNameOpen == T(com.app.feelog.domain.enumeration.DiaryNameOpen).KNOWN}"
                                             class="noNameWrap_01"
-                                            th:href="@{/feelog.com/{channelUrl}/community(channelUrl=${diary.channelUrl})}"
+                                            th:href="'/feelog.com/@' + ${diary.channelUrl} + '/community'"
                                         ><p
                                                 class="noName_01"
                                                 th:text="${diary.memberNickname}"
@@ -159,7 +159,7 @@
                     </div>
                     <section class="tag_container_01">
                         <div th:each="tag : ${diary.tags}">
-                            <a th:href="@{/search/post(keyword=${tag})}" class="aTag_myDiary_01 aTag_myDiary_03 tag_wrap_01">
+                            <a th:href="@{/search/search(keyword=${tag})}" class="aTag_myDiary_01 aTag_myDiary_03 tag_wrap_01">
                                 <span class="Md aTag_span_01">[[${tag}]]</span>
                             </a>
                         </div>

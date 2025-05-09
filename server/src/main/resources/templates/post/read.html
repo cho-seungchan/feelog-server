@@ -113,18 +113,14 @@
                         </div>
                     </div>
                     <section class="tag_container_01">
-                        <h6 class="tag_h6_01" th:text="${post.tags}">태그</h6>
-<!--                        검색 url 추가-->
-                        <a
-                            href="/search/post?keyword=소설&amp;options_tags=1"
-                            class="aTag_myDiary_01 aTag_myDiary_03 tag_wrap_01"
-                            th:each="tag : ${post.tags}"
-                            ><span
-                                class="Md aTag_span_01"
-                                id=":Rq7aekvffafl7lqakq:"
-                                th:text="${tag}"
-                                ></span
-                            ></a>
+                        <h6 class="tag_h6_01">태그</h6>
+
+                        <!-- 검색 URL 추가 -->
+                        <div th:each="tag : ${post.tags}">
+                            <a th:href="@{/search/search(keyword=${tag})}" class="aTag_myDiary_01 aTag_myDiary_03 tag_wrap_01">
+                                <span class="Md aTag_span_01">[[${tag}]]</span>
+                            </a>
+                        </div>
                     </section>
                     <section class="post-navigation post_section_01 channel-posts">
                         <div class="nextButton_container_01"></div>

@@ -25,26 +25,25 @@
             AND DATE(created_date) = CURDATE()
         </if>
         ORDER BY created_date DESC
-        LIMIT 5
+        LIMIT 3
     </select>
 
     <select id="findNoticePage" resultType="com.app.feelog.domain.dto.OfficialContentPreviewDTO">
-        SELECT
-            id,
-            title,
-            file_path,
-            file_name,
-            task_url,
-            notice_content,
-            created_date,
-            channel_url,
-            channel_file_path,
-            channel_file_name,
-            channel_title,
-            channel_introduce,
-            content_type,
-            member_id,
-            member_nickname
+        SELECT id,
+               title,
+               file_path,
+               file_name,
+               task_url,
+               notice_content,
+               created_date,
+               channel_url,
+               channel_file_path,
+               channel_file_name,
+               channel_title,
+               channel_introduce,
+               content_type,
+               member_id,
+               member_nickname
         FROM view_official_content_preview
         WHERE content_type = 'NOTICE'
         ORDER BY created_date DESC
@@ -52,7 +51,8 @@
     </select>
 
     <select id="countNotices" resultType="int">
-        SELECT COUNT(*) FROM view_official_content_preview
+        SELECT COUNT(*)
+        FROM view_official_content_preview
         WHERE content_type = 'NOTICE'
     </select>
 

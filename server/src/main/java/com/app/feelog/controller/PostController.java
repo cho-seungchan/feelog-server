@@ -2,6 +2,7 @@ package com.app.feelog.controller;
 
 import com.app.feelog.domain.dto.*;
 import com.app.feelog.service.ChannelPostService;
+import com.app.feelog.service.ChannelService;
 import com.app.feelog.service.NotificationService;
 import com.app.feelog.service.SubscribeService;
 import com.app.feelog.service.voToDto.*;
@@ -29,6 +30,7 @@ public class PostController {
     private final ChannelPostLikeService channelPostLikeService;
     private final ChannelPostScrapService channelPostScrapService;
     private final ChannelPostReplyDTO channelPostReplyDTO;
+    private final ChannelService channelService;
 
     @GetMapping("/read")
     public String goToRead(Model model, @RequestParam Long id) {
@@ -93,7 +95,7 @@ public class PostController {
         log.info("channelId: {}", channelId);
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
 
-        channelPostService.addSubscriber(loginMember.getId(), channelId);
+        subscribeService.subscribe(loginMember.getId(), channelId);
     }
 
     @PutMapping("deleteSubscribe")

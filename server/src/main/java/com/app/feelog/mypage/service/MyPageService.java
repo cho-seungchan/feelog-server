@@ -14,6 +14,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -149,7 +151,7 @@ public class MyPageService implements ToDTO {
             StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088");
             urlBuilder.append("/" + URLEncoder.encode("70424f77426a666b3130336468497559", "UTF-8")); // 인증키
             urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8")); // 요청파일타입
-            urlBuilder.append("/" + URLEncoder.encode("fcltOpenInfo", "UTF-8")); // 서비스명
+            urlBuilder.append("/" + URLEncoder.encode("fcltOpenInfo_HHSC", "UTF-8")); // 서비스명
             urlBuilder.append("/" + URLEncoder.encode(String.valueOf(startIndex), "UTF-8")); // 요청 시작위치
             urlBuilder.append("/" + URLEncoder.encode(String.valueOf(endIndex), "UTF-8")); // 요청 종료위치
 
@@ -162,8 +164,10 @@ public class MyPageService implements ToDTO {
 
             BufferedReader rd;
             if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+                log.info("성공");
                 rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             } else {
+                log.info("실패");
                 rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
             }
 
@@ -178,8 +182,11 @@ public class MyPageService implements ToDTO {
             // JSON 데이터 처리
             String jsonData = sb.toString();
             JSONObject jsonObject = new JSONObject(jsonData);
-            JSONObject culturalEventInfo = jsonObject.getJSONObject("fcltOpenInfo");
+            JSONObject culturalEventInfo = jsonObject.getJSONObject("fcltOpenInfo_HHSC");
             String resultCode = culturalEventInfo.getJSONObject("RESULT").getString("CODE");
+
+            log.info("jsonData: {}", culturalEventInfo);
+            log.info("resultCode: {}", resultCode);
 
             // "CODE" 값이 "INFO-000"이 아니면 중단
             if (!"INFO-000".equals(resultCode)) {
@@ -191,7 +198,7 @@ public class MyPageService implements ToDTO {
             JSONArray rows = culturalEventInfo.getJSONArray("row");
             for (int i = 0; i < rows.length(); i++) {
                 JSONObject row = rows.getJSONObject(i);
-                if (row.getString("FCLT_KIND_DTL_NM").trim().contains("정신")) {
+                if (row.getString("FCLT_KIND_DTL_NM").trim().contains("건강")) {
 
                     NotifyAdminListDTO admin = new NotifyAdminListDTO();
                     admin.setFacilityName(row.getString("FCLT_NM"));
@@ -211,12 +218,16 @@ public class MyPageService implements ToDTO {
 
             // 전체 데이터 개수 확인
             int totalCount = culturalEventInfo.getInt("list_total_count");
+            log.info("totalCount: {}", totalCount);
+
             if (startIndex > totalCount) {
+                log.info("totalcount 들어옴");
                 System.out.println("모든 데이터를 처리했습니다.");
                 continueProcessing = false;
             }
         }
-
+        log.info("startIndex: {}", startIndex);
+        log.info("endIndex: {}", endIndex);
         return admins;
     }
 
@@ -297,11 +308,21 @@ public class MyPageService implements ToDTO {
             // dto로 변환하기
             scrapList.add(toStorageScrapListDTO(scrap, member, post, timeAgo, replys, likes));
         });
+        scrapList.forEach(scrap -> {
+            if (scrap.getPostContent() != null && !scrap.getPostContent().isEmpty()) {
+                scrap.setPostContent(extractTextOnly(scrap.getPostContent()));
+            }
+        });
 
         return scrapList;
     }
 
-    ;
+    private String extractTextOnly(String html) {
+        Document doc = Jsoup.parse(html);
+        doc.select("img").remove();
+
+        return doc.body().text();
+    }
 
     // 2025.04.25 스크랩 취소하기
     public void storageOffScrap(Long id) {
@@ -337,7 +358,11 @@ public class MyPageService implements ToDTO {
             // dto로 변환하기
             likeList.add(toStorageLikeListDTO(like, member, post, timeAgo, replys, likes));
         });
-
+        likeList.forEach(like -> {
+            if (like.getPostContent() != null && !like.getPostContent().isEmpty()) {
+                like.setPostContent(extractTextOnly(like.getPostContent()));
+            }
+        });
         return likeList;
     }
 
