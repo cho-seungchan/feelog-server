@@ -42,6 +42,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? `/files/display?path=${d.diaryFilePath}/${d.diaryFileName}`
                 : '/images/default-thumbnail.png';
 
+            // Null 체크와 빈 값 체크
+            const profilePath = (d.memberProfilePath && d.memberProfilePath.trim() !== '' && d.memberProfilePath !== 'null' && d.memberProfilePath !== 'undefined')
+                ? d.memberProfilePath
+                : null;
+
+            const profileName = (d.memberProfileName && d.memberProfileName.trim() !== '' && d.memberProfileName !== 'null' && d.memberProfileName !== 'undefined')
+                ? d.memberProfileName
+                : null;
+
+            // 경로 설정
+            const profileUrl = (profilePath && profileName)
+                ? `/files/display?path=${profilePath}/${profileName}`
+                : '/images/avatar_blank.png';
+
             const tags = d.tags?.map(tag => `
                 <a href="/search/post?keyword=${tag}&options_tags=1"
                    class="FlgChip-root-need FlgChip-colorNeutral-need FlgChip-sizeSm-need FlgChip-variantSoft-need jk-feelog-a-004">
@@ -85,9 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </a>
                             </div>
                             <div class="FlgStack-root-need jk-feelog-div059">
-                                <a href="/profile/${d.memberNickname}" class="jk-feelog-a-007">
+                                <a href="/feelog.com/@${d.memberNickname}" class="jk-feelog-a-007">
                                     <div class="jk-feelog-div060">
-                                        <img alt="${d.memberNickname}" src="/files/display?path=${d.memberProfilePath}/${d.memberProfileName}"
+                                        <img alt="${d.memberNickname}" src="${profileUrl}"
                                              loading="lazy" class="jk-feelog-img001" />
                                     </div>
                                 </a>

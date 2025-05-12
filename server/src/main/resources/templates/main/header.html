@@ -196,10 +196,18 @@
                                 >
                                     <div class="feelog-header-topDiv02">
                                         <img
-                                            alt=""
-                                            src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=100&amp;h=100&amp;q=65"
-                                            loading="lazy"
-                                            class="feelog-header-topImages"
+                                                alt=""
+                                                th:if="${session.member != null and session.member.memberFilePath != null}"
+                                                th:src="@{'/files/display?path=' + ${session.member.memberFilePath} + '/' + ${session.member.memberFileName}}"
+                                                loading="lazy"
+                                                class="feelog-header-topImages"
+                                        />
+                                        <img
+                                                alt=""
+                                                th:unless="${session.member != null and session.member.memberFilePath != null}"
+                                                th:src="@{/images/avatar_blank.png}"
+                                                loading="lazy"
+                                                class="feelog-header-topImages"
                                         />
                                     </div>
                                 </button>
@@ -215,11 +223,19 @@
                                     >
                                         <div class="feelog-header-topDiv04">
                                             <img
-                                                alt=""
-                                                src="https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/avatar_blank.png?w=50&amp;h=50&amp;q=65"
-                                                loading="lazy"
-                                                class="feelog-header-topImages"
+                                                    alt=""
+                                                    th:if="${session.member != null and session.member.memberFilePath != null}"
+                                                    th:src="@{'/files/display?path=' + ${session.member.memberFilePath} + '/' + ${session.member.memberFileName}}"
+                                                    loading="lazy"
+                                                    class="feelog-header-topImages"
                                             />
+                                <img
+                                        alt=""
+                                        th:unless="${session.member != null and session.member.memberFilePath != null}"
+                                        th:src="@{/images/avatar_blank.png}"
+                                        loading="lazy"
+                                        class="feelog-header-topImages"
+                                />
                                         </div></button
                                 ></span>
                             </div>

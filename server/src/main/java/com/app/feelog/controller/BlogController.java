@@ -35,7 +35,7 @@ public class BlogController {
                               @SessionAttribute(value = "member", required = false) MemberDTO sessionMember,
                               Model model) {
 
-        if ("official".equals(channelUrl)) {
+        if ("official".equalsIgnoreCase(channelUrl) || "feelog".equalsIgnoreCase(channelUrl)) {
             return "redirect:/feelog/official";
         }
 
@@ -231,7 +231,6 @@ public class BlogController {
     public String redirectOfficialDiary() {
         return "redirect:/feelog/official";
     }
-
     @GetMapping("/@official/post")
     public String redirectOfficialPost() {
         return "redirect:/feelog/official";
@@ -242,6 +241,23 @@ public class BlogController {
     }
     @GetMapping("/@official/community")
     public String redirectOfficialCommunity() {
+        return "redirect:/feelog/official";
+    }
+
+    @GetMapping("/@feelog/diary")
+    public String redirectFeelogDiary() {
+        return "redirect:/feelog/official";
+    }
+    @GetMapping("/@feelog/post")
+    public String redirectFeelogPost() {
+        return "redirect:/feelog/official";
+    }
+    @GetMapping("/@feelog/cheers")
+    public String redirectFeelogCheers() {
+        return "redirect:/feelog/official";
+    }
+    @GetMapping("/@feelog/community")
+    public String redirectFeelogCommunity() {
         return "redirect:/feelog/official";
     }
 }

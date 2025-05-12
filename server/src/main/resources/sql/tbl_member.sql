@@ -21,7 +21,7 @@ create table tbl_member
 );
 
 ALTER TABLE tbl_member
-    MODIFY COLUMN member_notification_message VARCHAR(50) DEFAULT '설정';
+    MODIFY COLUMN  member_notification_post_reply_like VARCHAR(50) DEFAULT '설정';
 
 ALTER TABLE tbl_member
     MODIFY member_file_path VARCHAR(500) NULL;

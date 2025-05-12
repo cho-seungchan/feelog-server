@@ -1,37 +1,62 @@
-create or replace view view_diary_preview as
-select
+CREATE OR REPLACE VIEW view_diary_preview AS
+SELECT
     d.id,
     d.diary_title,
     d.diary_content,
     d.diary_file_path,
     d.diary_file_name,
     d.updated_date,
-    d.diary_read_count as view_count,
+    d.diary_read_count AS view_count,
     d.diary_open,
     d.diary_name_open,
     c.channel_title,
     c.channel_file_path,
     c.channel_file_name,
     c.channel_url AS channel_url,
+
+    -- 멤버 정보 추가
     m.member_nickname,
-    ifnull(dl.like_count, 0) as like_count,
+    m.member_file_path as member_profile_path,
+    m.member_file_name as member_profile_name,
+    m.member_email,
+    m.member_status,
+    m.created_date AS member_created_date,
+    m.updated_date AS member_updated_date,
+
+    -- 좋아요 수
+    IFNULL(dl.like_count, 0) AS like_count,
+
+    -- 태그 리스트
     dt.tag_list
-from tbl_diary d
-         join tbl_member m on d.member_id = m.id
-         join tbl_channel c on m.id = c.member_id
-         left join (
-    select diary_id, count(*) as like_count
-    from tbl_diary_like
-    group by diary_id
-) dl on d.id = dl.diary_id
-         left join (
-    select dt.diary_id, group_concat(t.contents) as tag_list
-    from tbl_diary_tag dt
-             join tbl_tag t on dt.id = t.id
-    where t.tag_status = 'ACTIVE'
-    group by dt.diary_id
-) dt on d.id = dt.diary_id
-where d.diary_status = '정상' and c.channel_status = '정상';
+
+FROM tbl_diary d
+         JOIN tbl_member m ON d.member_id = m.id
+         JOIN tbl_channel c ON m.id = c.member_id
+
+-- 좋아요 수 조인
+         LEFT JOIN (
+    SELECT
+        diary_id,
+        COUNT(*) AS like_count
+    FROM tbl_diary_like
+    GROUP BY diary_id
+) dl ON d.id = dl.diary_id
+
+-- 태그 리스트 조인
+         LEFT JOIN (
+    SELECT
+        dt.diary_id,
+        GROUP_CONCAT(t.contents SEPARATOR ', ') AS tag_list
+    FROM tbl_diary_tag dt
+             JOIN tbl_tag t ON dt.id = t.id
+    WHERE t.tag_status = 'ACTIVE'
+    GROUP BY dt.diary_id
+) dt ON d.id = dt.diary_id
+
+WHERE
+    d.diary_status = '정상'
+  AND c.channel_status = '정상';
+
 
 
 select *

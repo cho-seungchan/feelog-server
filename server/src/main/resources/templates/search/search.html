@@ -387,7 +387,11 @@
                                             <div class="joy-1mszhh9">
                                                 <div class="jk-feelog-div055">
                                                     <div class="FlgBox-root-need jk-feelog-div056" data-first-child="">
-                                                        <img th:src="@{'/files/display?path=' + ${channel.thumbnailUrl}}"
+                                                        <img th:src="${#strings.isEmpty(channel.thumbnailUrl)
+            || channel.thumbnailUrl == '/'
+            || channel.thumbnailUrl == null
+            ? '/images/channel_banner.png'
+            : '/files/display?path=' + channel.thumbnailUrl}"
                                                              alt="채널 대표 이미지" loading="lazy" decoding="async"
                                                              style="position:absolute;height:100%;width:100%;inset:0;object-fit:cover;" />
                                                     </div>
@@ -410,7 +414,7 @@
                                         <div class="FlgStack-root-need joy-1x7p52c">
                                             <div class="FlgStack-root-need joy-187jtt">
                                                 <div class="FlgStack-root-need joy-1n1ctis">
-                                                    <a th:href="@{'/channel/' + ${channel.id}}">
+                                                    <a th:href="@{'/feelog.com/@' + ${channel.channelUrl}}">
                                                         <h3 class="joy-1wgv3md" th:text="${channel.title}">채널 제목</h3>
                                                     </a>
                                                     <p class="joy-1xn91ef">
