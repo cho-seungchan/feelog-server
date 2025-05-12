@@ -14,8 +14,6 @@ public interface JoinLogMapper {
     // 2025.04.17 조승찬 :: 카카오 회원 가입시 멤버 이메일, 닉네임 저장
     void kakaoJoin(MemberVO memberVO);
 
-    void insertMemberTask(Long id);
-
     // 2025.04.18 조승찬 :: 닉네임으로 멤버 정보 가져오기
     Optional<MemberVO> getMemberByNickname(String memberNickname);
 

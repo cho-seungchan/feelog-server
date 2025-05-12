@@ -92,11 +92,4 @@
                current_date
     </insert>
 
-    <insert id="insertMemberTask">
-        INSERT INTO tbl_member_task (member_id, task_pool_id , created_date, updated_date)
-        SELECT #{id}, (
-            SELECT id FROM tbl_member_task_pool
-            ORDER BY RAND()
-            LIMIT 1   ) , current_date, current_date
-    </insert>
 </mapper>
