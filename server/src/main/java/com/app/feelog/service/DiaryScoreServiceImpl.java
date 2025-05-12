@@ -33,7 +33,7 @@ public class DiaryScoreServiceImpl implements DiaryScoreService {
 
         // 호출할 API의 URL 설정
 
-        String url = "http://13.209.68.9/api/feeling-check";
+        String url = "http://13.125.248.28/api/feeling-check";
 
         // 요청 바디에 보낼 데이터 구성 (JSON으로 직렬화될 Map 형태)
         Map<String, String> body = new HashMap<>();
