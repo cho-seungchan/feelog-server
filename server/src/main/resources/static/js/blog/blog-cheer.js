@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </a>
                             </div>
                             <div class="FlgStack-root-need jk-feelog-div059">
-                                <a href="/feelog.com/@${d.memberNickname}" class="jk-feelog-a-007">
+                                <a href="/feelog.com/@${d.channelUrl}" class="jk-feelog-a-007">
                                     <div class="jk-feelog-div060">
                                         <img alt="${d.memberNickname}" src="${profileUrl}" loading="lazy" class="jk-feelog-img001" />
                                     </div>
