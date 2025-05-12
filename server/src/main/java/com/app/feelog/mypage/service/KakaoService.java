@@ -33,13 +33,8 @@ public class KakaoService {
             connection.setDoOutput(true);
 
             stringBuilder.append("grant_type=authorization_code");
-<<<<<<< HEAD
             stringBuilder.append("&client_id=1f0eec6d921e399c7940b9689a7896e3");
             stringBuilder.append("&redirect_uri=http://43.203.69.19:10000/kakao/login");
-=======
-            stringBuilder.append("&client_id=3c94a5c05aa2286086a11146856039c4");
-            stringBuilder.append("&redirect_uri=http://feelog.shop/kakao/login");
->>>>>>> 96b16e1ac5ef40f7e3506f837253994ca9780848
             stringBuilder.append("&code=" + code);
 
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
