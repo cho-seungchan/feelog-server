@@ -1,7 +1,6 @@
 package com.app.feelog.mapper;
 
 import com.app.feelog.domain.dto.joinDTO.InsertMessageDTO;
-import com.app.feelog.domain.dto.joinDTO.MessageListDTO;
 import com.app.feelog.domain.dto.joinDTO.ReceivceMessageMemberListDTO;
 import com.app.feelog.service.voToDto.MessageService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,23 +28,23 @@ public class MessageTests {
         receiveMessageVO.forEach(System.out::println);
     }
 
-    @Test
-    public void selectReceiveMessageByMemberId2() {
-        List<MessageListDTO> messageList = messageMapper.selectMessageListByParticipantId(23L);
-        messageList.forEach(System.out::println);
-    }
+//    @Test
+//    public void selectReceiveMessageByMemberId2() {
+//        List<MessageListDTO> messageList = messageMapper.selectMessageListByParticipantId(23L);
+//        messageList.forEach(System.out::println);
+//    }
 
-    @Test
-    public void selectReceiveMessageByMemberId3() {
-        List<MessageListDTO> messageList = messageService.getMessageListByParticipantId(23L);
-        messageList.forEach(System.out::println);
-    }
+//    @Test
+//    public void selectReceiveMessageByMemberId3() {
+//        List<MessageListDTO> messageList = messageService.getMessageListByParticipantId(23L);
+//        messageList.forEach(System.out::println);
+//    }
 
     @Test
     public void insertTest2() {
         InsertMessageDTO insertMessageDTO = new InsertMessageDTO();
 
-        insertMessageDTO.setContent("test");
+        insertMessageDTO.setMessageContent("test");
         insertMessageDTO.setMemberId(24L);
         insertMessageDTO.setParticipantId(23L);
 

@@ -33,7 +33,8 @@ public class MessageController {
     @GetMapping("/messageList")
     @ResponseBody
     public List<MessageListDTO> getMessageListByParticipantId(Long participantId) {
-        return messageService.getMessageListByParticipantId(participantId);
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
+        return messageService.getMessageListByParticipantId(participantId, loginMember.getId());
     }
 
     @PostMapping("/insertMessage")
@@ -41,7 +42,7 @@ public class MessageController {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("member");
 
         messageService.insertMessage(insertMessageDTO);
-        
+
         Long senderId = loginMember.getId();
         Long receiverId = insertMessageDTO.getParticipantId();
 

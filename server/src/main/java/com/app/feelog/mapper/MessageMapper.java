@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface MessageMapper {
-    public List<MessageListDTO> selectMessageListByParticipantId(Long participantId);
+    public List<MessageListDTO> selectMessageListByParticipantId(Long participantId, Long memberId);
 
     public void insertSuperMessage(MessageVO messageVO);
 

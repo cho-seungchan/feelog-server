@@ -119,7 +119,7 @@ public class joinController {
         }
 
         // 발급받은 토큰이 동일하다면 쿠키 초기화
-        if(token.equals(code)) {
+        if (token.equals(code)) {
             Cookie cookie = new Cookie("token", "");
             cookie.setMaxAge(0);
             cookie.setPath("/");
@@ -134,6 +134,7 @@ public class joinController {
 
             // 로그인 상태 유지
             MemberDTO member = joinService.getMemberByEmail(memberDTO.getMemberEmail()).get();
+            joinService.insertMemberTask(memberDTO.getId());
             session.setAttribute("memberStatus", "email");
             session.setAttribute("member", member);
 
