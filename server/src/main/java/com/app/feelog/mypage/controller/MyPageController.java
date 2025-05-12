@@ -3,11 +3,13 @@
 package com.app.feelog.mypage.controller;
 
 import com.app.feelog.domain.dto.ChannelDTO;
+import com.app.feelog.domain.dto.FindJopDTO;
 import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.domain.dto.SubscribeDTO;
 import com.app.feelog.domain.vo.DiaryVO;
 import com.app.feelog.mypage.dto.*;
 import com.app.feelog.mypage.service.MyPageService;
+import com.app.feelog.service.FindJopService;
 import com.app.feelog.util.SixRowPagination;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +31,7 @@ public class MyPageController {
     private final HttpSession session;
     private final HttpServletRequest request;
     private final MyPageService myPageService;
+    private final FindJopService findJopService;
 
     // 2025.04.21  조승찬 :: 프로필 조회
     @GetMapping("/setting-profile")
@@ -474,5 +477,10 @@ public class MyPageController {
         return "redirect:/myPage/storage-reply?page=" + pagination.getPage();
     }
 
-
+    @GetMapping("/findJobList")
+    @ResponseBody
+    public List<FindJopDTO> getFindJopList() throws IOException {
+        log.info("요청들어옴");
+        return findJopService.getFindJopData();
+    }
 }

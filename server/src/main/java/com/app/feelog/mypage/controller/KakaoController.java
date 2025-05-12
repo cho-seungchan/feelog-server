@@ -43,6 +43,7 @@ public class KakaoController {
             log.info("member not found");
             joinService.kakaoJoin(memberDTO);
             foundMember = joinService.getMemberByEmail(memberDTO.getMemberEmail());
+            joinService.insertMemberTask(foundMember.get().getId());
         }
 
         session.setAttribute("memberStatus", "kakao");

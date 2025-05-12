@@ -1,7 +1,7 @@
 package com.app.feelog.mypage.service;
 
-import com.app.feelog.mypage.repository.JoinLogDAO;
 import com.app.feelog.domain.dto.MemberDTO;
+import com.app.feelog.mypage.repository.JoinLogDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -37,5 +37,10 @@ public class JoinService implements ToDTO {
     // 2025.04.18 조승찬 :: 이메일 회원가입시 멤버 이메일, 닉네임, 비밀번호 저장
     public void emailJoin(MemberDTO memberDTO) {
         joinLogDAO.emailJoin(memberDTO.toVO());
+    }
+
+    // 2025.05.09 조승찬 :: 신규 가입시 멤버 타스크 설정
+    public void insertMemberTask(Long id) {
+        joinLogDAO.insertMemberTask(id);
     }
 }

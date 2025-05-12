@@ -10,7 +10,7 @@ import java.util.List;
 public interface MessageService {
     public List<ReceivceMessageMemberListDTO> getReceiveMessageByMemberId(Long memberId);
 
-    public List<MessageListDTO> getMessageListByParticipantId(Long participantId);
+    public List<MessageListDTO> getMessageListByParticipantId(Long participantId, Long memberId);
 
     public void insertMessage(InsertMessageDTO insertMessageDTO);
 

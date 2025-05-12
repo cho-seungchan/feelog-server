@@ -12,6 +12,7 @@
                                   FROM tbl_receive_message rm
                                            JOIN tbl_message m ON rm.id = m.id
                                   WHERE rm.sender_id = #{participantId}
+                                    and member_id = #{memberId}
                                     AND rm.receive_message_status = '정상'
 
                                   UNION ALL
@@ -26,11 +27,13 @@
                                   FROM tbl_send_message sm
                                            JOIN tbl_message m ON sm.id = m.id
                                   WHERE sm.receiver_id = #{participantId}
+                                    and member_id = #{memberId}
                                     AND sm.receive_message_status = '정상')
 
         SELECT *
         FROM CombinedMessages
         WHERE participant_id = #{participantId}
+          and member_id = #{memberId}
         ORDER BY updated_date, row_num;
     </select>
 

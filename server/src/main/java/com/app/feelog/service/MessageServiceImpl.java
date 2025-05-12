@@ -37,8 +37,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<MessageListDTO> getMessageListByParticipantId(Long participantId) {
-        return messageDAO.findMessageListByParticipantId(participantId);
+    public List<MessageListDTO> getMessageListByParticipantId(Long participantId, Long memberId) {
+        return messageDAO.findMessageListByParticipantId(participantId, memberId);
     }
 
     @Override
