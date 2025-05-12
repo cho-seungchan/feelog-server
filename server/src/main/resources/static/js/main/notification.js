@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 html += `
                     <div class="FlgBox-root-need joy-fwihks">
                         <span class="jk-feelog-span012">
-                            <a href="/profile/@${n.senderNickname}" class="jk-feelog-a-012">
+                            <a href="/feelog.com/@${n.senderNickname}" class="jk-feelog-a-012">
                                 <div class="FlgBox-root-need joy-1725qqy">
                                     <div class="FlgBox-root-need jk-feelog-div056">
                                         <img src="${profileImg}" alt="" style="position: absolute; height: 100%; width: 100%; object-fit: cover;">
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="FlgStack-root-need joy-1ofqig9">
                             <div class="FlgStack-root-need joy-4c2guu">
                                 <p class="joy-suf4y6">
-                                    <a href="/profile/@${n.senderNickname}" class="FlgLink-inherit joy-ko48tn">
+                                    <a href="/feelog.com/@${n.senderNickname}" class="FlgLink-inherit joy-ko48tn">
                                         <span class="FlgTypography-title-sm joy-9avztx">${n.senderNickname}</span>
                                     </a>
                                     <span class="joy-colylv">${n.messageSummary}</span>

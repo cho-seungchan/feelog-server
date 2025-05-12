@@ -1,0 +1,45 @@
+server:
+  port: 10000
+  servlet:
+    session:
+      tracking-modes: cookie
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://13.209.68.9:3306/feelog?serverTimezone=Asia/Seoul&useSSL=false&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: feelog
+    password: 1234
+
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 40MB
+      max-file-size: 10MB
+      file-size-threshold: 100MB
+      location: ${java.io.tmpdir}
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: feelogfl@gmail.com
+    password: qcnc kbed hynl onnn
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+mybatis:
+  config-location: classpath:/config/config.xml
+  mapper-locations:
+    - classpath*:/mapper/*.xml
+  type-aliases-package: com.app.feelog.domain.**, com.app.feelog.mypage.dto.**
+  type-handlers-package: com.app.feelog.mybatis
+
+openai:
+  model: gpt-3.5-turbo
+  secret-key:
+  api:
+    url: https://api.openai.com/v1/chat/completions
+

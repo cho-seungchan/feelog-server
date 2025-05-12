@@ -24,6 +24,8 @@ public class DiaryPreviewDTO {
     private String diaryFileName;
     private String updatedDate;
     private String memberNickname;
+    private String memberProfilePath;
+    private String memberProfileName;
 
     // 채널 정보
     private String channelTitle;

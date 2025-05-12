@@ -4,7 +4,7 @@ create table tbl_channel_post (
                                   post_type 		    varchar(50) default '포스트',
                                   post_read_count       int default 0,
                                   channel_post_status varchar(50) default '정상',
-                                  post_file_path 		varchar(500) default '',
+                                  post_file_path 		varchar(500) default null,
                                   post_file_name 		varchar(500) default '',
                                   member_id             bigint not null,
                                   channel_id 		    bigint not null,
@@ -15,6 +15,9 @@ create table tbl_channel_post (
                                   constraint fk_channel_post_channel foreign key (channel_id)
                                       references tbl_channel (id)
 );
+
+ALTER TABLE tbl_channel_post
+    MODIFY post_file_path VARCHAR(500) DEFAULT NULL;
 
 INSERT INTO tbl_post (post_title, post_content)
 VALUES ('테스트 포스트 제목', '테스트 포스트 내용');
