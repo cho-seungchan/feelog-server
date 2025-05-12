@@ -182,11 +182,10 @@ public class MyPageService implements ToDTO {
             // JSON 데이터 처리
             String jsonData = sb.toString();
             JSONObject jsonObject = new JSONObject(jsonData);
+            log.info("jsonData: {}", jsonObject);
+
             JSONObject culturalEventInfo = jsonObject.getJSONObject("fcltOpenInfo_HHSC");
             String resultCode = culturalEventInfo.getJSONObject("RESULT").getString("CODE");
-
-            log.info("jsonData: {}", culturalEventInfo);
-            log.info("resultCode: {}", resultCode);
 
             // "CODE" 값이 "INFO-000"이 아니면 중단
             if (!"INFO-000".equals(resultCode)) {
@@ -196,6 +195,7 @@ public class MyPageService implements ToDTO {
 
             // 서울시 데이타를 DTO로 옮기기
             JSONArray rows = culturalEventInfo.getJSONArray("row");
+            log.info("rows: {}", rows);
             for (int i = 0; i < rows.length(); i++) {
                 JSONObject row = rows.getJSONObject(i);
                 if (row.getString("FCLT_KIND_DTL_NM").trim().contains("건강")) {

@@ -1,8 +1,5 @@
 //  2025.04.06 조승찬
-
-console.log(admin)
-
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     // 타이틀(댓글, 커뮤니티, 관리자알림) 클릭 이벤트
     document.querySelectorAll(".FeelogListItem-variantPlain").forEach((title) => {
         title.addEventListener("click", (e) => {
@@ -40,4 +37,55 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     // 2025.04.24  조승찬 ::  페이징 처리
+
+    // 구직정보
+    async function getFindJobList(callback) {
+        const response = await fetch("/myPage/findJobList")
+        const jobListData = await response.json()
+        if (callback) {
+            callback(jobListData)
+        }
+    }
+
+    document.querySelector(".joy-3ys6m0").addEventListener("click", async (e) => {
+        if (e.target.closest(".find-button")) {
+            console.log(diary);
+            const jobListWrap = document.querySelector(".flog-div-61");
+            const anotherTarget = document.querySelector(".joy-90lb7v")
+            const target = e.target.closest(".find-button");
+
+            anotherTarget.classList.replace("joy-90lb7v", "joy-14fbtec");
+            target.classList.replace("joy-14fbtec", "joy-90lb7v")
+            jobListWrap.innerHTML = ``;
+
+            await getFindJobList((jobListData) => {
+                jobListData.forEach((job) => {
+                    const newDiv = document.createElement("div")
+                    const newHr = document.createElement("hr");
+                    newHr.classList.add("FeelogDivider-root", "FeelogDivider-horizontal", "flog-hr-2")
+                    newDiv.classList.add("FeelogBox-root", "flog-div-62");
+                    newDiv.innerHTML = `
+                <span class="FeelogBadge-root flog-span-4">
+                    <a class="FeelogLink-root FeelogLink-colorPrimary FeelogLink-body-md FeelogLink-underlineNone flog-a-18">
+                        <div class="FeelogAvatar-root FeelogAvatar-variantSoft FeelogAvatar-colorNeutral FeelogAvatar-sizeLg flog-div-63">
+                            <img alt="" src="/images/favicon.ico" loading="lazy" class="FeelogAvatar-img flog-img-1">
+                        </div>
+                    </a>
+                    <span class="FeelogBadge-badge FeelogBadge-invisible FeelogBadge-anchorOriginTopLeft FeelogBadge-variantSolid FeelogBadge-colorDanger FeelogBadge-sizeSm flog-span-11">
+                    </span>
+                </span>
+                <div class="FeelogStack-root flog-article-1">
+                    <h3 class="FeelogTypography-root FeelogTypography-h4 flog-h3-1">${job.title}</h3>
+                    <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6">${job.nation}, ${job.companyName}</p>
+                    <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6">상세 : ${job.industry}</p>
+                    <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6">자격요건 : ${job.lang}, ${job.visaNm}, ${job.careerStyle}</p>
+                    <p class="FeelogTypography-root FeelogTypography-body-md flog-p-6">모집일 : ${job.startDate} ~ ${job.endDate}, 모집인원 : ${job.recruitCount}명</p>
+                </div>
+                `;
+                    jobListWrap.appendChild(newDiv)
+                    jobListWrap.appendChild(newHr)
+                })
+            })
+        }
+    })
 });

@@ -2,92 +2,94 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mypage.mapper.JoinLogMapper">
     <select id="getMemberByEmail" resultType="memberVO">
-        SELECT
-            id,
-            member_email,
-            member_password,
-            member_nickname,
-            member_introduce,
-            member_file_path,
-            member_file_name,
-            member_notification_post_reply,
-            member_notification_post_reply_like,
-            member_notification_post_like,
-            member_notification_subscribe,
-            member_notification_community_post,
-            member_notification_message,
-            created_date,
-            updated_date
-        from   tbl_member
-        where  member_email = #{memberEmail}
+        SELECT id,
+               member_email,
+               member_password,
+               member_nickname,
+               member_introduce,
+               member_file_path,
+               member_file_name,
+               member_notification_post_reply,
+               member_notification_post_reply_like,
+               member_notification_post_like,
+               member_notification_subscribe,
+               member_notification_community_post,
+               member_notification_message,
+               created_date,
+               updated_date
+        from tbl_member
+        where member_email = #{memberEmail}
     </select>
 
     <select id="getMemberByNickname" resultType="memberVO">
-        SELECT
-            id,
-            member_email,
-            member_password,
-            member_nickname,
-            member_introduce,
-            member_file_path,
-            member_file_name,
-            member_notification_post_reply,
-            member_notification_post_reply_like,
-            member_notification_post_like,
-            member_notification_subscribe,
-            member_notification_community_post,
-            member_notification_message,
-            created_date,
-            updated_date
-        from   tbl_member
-        where  member_nickname = #{memberNickname}
+        SELECT id,
+               member_email,
+               member_password,
+               member_nickname,
+               member_introduce,
+               member_file_path,
+               member_file_name,
+               member_notification_post_reply,
+               member_notification_post_reply_like,
+               member_notification_post_like,
+               member_notification_subscribe,
+               member_notification_community_post,
+               member_notification_message,
+               created_date,
+               updated_date
+        from tbl_member
+        where member_nickname = #{memberNickname}
     </select>
 
     <select id="getMemberByEmailAndPassword" resultType="memberVO">
-        SELECT
-            id,
-            member_email,
-            member_password,
-            member_nickname,
-            member_introduce,
-            member_type,
-            member_file_path,
-            member_file_name,
-            member_notification_post_reply,
-            member_notification_post_reply_like,
-            member_notification_post_like,
-            member_notification_subscribe,
-            member_notification_community_post,
-            member_notification_message,
-            created_date,
-            updated_date
-        from   tbl_member
-        where  member_email     = #{memberEmail}
-        and    member_password  = #{memberPassword}
+        SELECT id,
+               member_email,
+               member_password,
+               member_nickname,
+               member_introduce,
+               member_type,
+               member_file_path,
+               member_file_name,
+               member_notification_post_reply,
+               member_notification_post_reply_like,
+               member_notification_post_like,
+               member_notification_subscribe,
+               member_notification_community_post,
+               member_notification_message,
+               created_date,
+               updated_date
+        from tbl_member
+        where member_email = #{memberEmail}
+          and member_password = #{memberPassword}
     </select>
 
     <insert id="kakaoJoin">
         insert into tbl_member
-            ( member_email,
-              member_nickname
-              )
-        values (
-                #{memberEmail},
-                #{memberNickname}
-               )
+        (member_email,
+         member_nickname)
+        values (#{memberEmail},
+                #{memberNickname})
     </insert>
 
     <insert id="emailJoin">
         insert into tbl_member
-        ( member_email,
-          member_password,
-          member_nickname
-        )
-        values (
-                   #{memberEmail},
-                   #{memberPassword},
-                   #{memberNickname}
-               )
+        (member_email,
+         member_password,
+         member_nickname)
+        values (#{memberEmail},
+                #{memberPassword},
+                #{memberNickname})
+    </insert>
+
+    <insert id="insertMemberTask">
+        INSERT INTO tbl_member_task (member_id, task_pool_id, created_date, updated_date)
+        SELECT #{id},
+               (SELECT id
+                FROM tbl_member_task_pool
+                ORDER BY RAND()
+                LIMIT 1),
+               current_date,
+               current_date
     </insert>
 
     <insert id="insertMemberTask">

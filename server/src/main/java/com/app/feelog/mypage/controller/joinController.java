@@ -119,7 +119,7 @@ public class joinController {
         }
 
         // 발급받은 토큰이 동일하다면 쿠키 초기화
-        if(token.equals(code)) {
+        if (token.equals(code)) {
             Cookie cookie = new Cookie("token", "");
             cookie.setMaxAge(0);
             cookie.setPath("/");

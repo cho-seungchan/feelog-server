@@ -15,8 +15,8 @@ import java.util.List;
 public class MessageDAO {
     private final MessageMapper messageMapper;
 
-    public List<MessageListDTO> findMessageListByParticipantId(Long participantId) {
-        return messageMapper.selectMessageListByParticipantId(participantId);
+    public List<MessageListDTO> findMessageListByParticipantId(Long participantId, Long memberId) {
+        return messageMapper.selectMessageListByParticipantId(participantId, memberId);
     }
 
     ;
