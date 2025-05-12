@@ -38,9 +38,4 @@ public class JoinService implements ToDTO {
     public void emailJoin(MemberDTO memberDTO) {
         joinLogDAO.emailJoin(memberDTO.toVO());
     }
-
-    // 2025.05.09 조승찬 :: 신규 가입시 멤버 타스크 설정
-    public void insertMemberTask(Long id) {
-        joinLogDAO.insertMemberTask(id);
-    }
 }

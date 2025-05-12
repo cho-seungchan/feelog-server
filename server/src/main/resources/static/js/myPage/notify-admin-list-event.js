@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.querySelector(".joy-3ys6m0").addEventListener("click", async (e) => {
         if (e.target.closest(".find-button")) {
-            console.log(diary);
             const jobListWrap = document.querySelector(".flog-div-61");
             const anotherTarget = document.querySelector(".joy-90lb7v")
             const target = e.target.closest(".find-button");
