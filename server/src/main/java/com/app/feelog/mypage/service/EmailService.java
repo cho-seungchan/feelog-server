@@ -74,8 +74,8 @@ public class EmailService {
         mimeMessageHelper.setSubject(title);    // 이메일 제목
         mimeMessageHelper.setText(emailBody, true);   // emailBody는 이메일 내용, true는 html 형식인지 묻는거
 
-        // 로고 이미지 첨부
-//        FileSystemResource fileSystemResource = new FileSystemResource(new File("D:\\gb_0900_jfk\\teamproject2\\feelog-server\\server\\src\\main\\resources\\static\\images\\kakao.webp"));
+//        // 로고 이미지 첨부
+//        FileSystemResource fileSystemResource = new FileSystemResource(new File("src/main/resources/static/images/logo3.png"));
 //        mimeMessageHelper.addInline("logoImage", fileSystemResource);
 
         javaMailSender.send(mimeMessage);
