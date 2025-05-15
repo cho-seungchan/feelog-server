@@ -118,7 +118,9 @@ if (writeReplyButton) {
         replyCountText.innerText = replyCount
         replyWrap.innerHTML = "";
         replyContent.value = "";
-        addImg.querySelector(".joy-jj02o9").remove();
+        if (addImg.querySelector(".joy-jj02o9")) {
+            addImg.querySelector(".joy-jj02o9").remove();
+        }
 
         await readService.getReplyList(readLayout.showReplyList);
     })

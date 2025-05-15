@@ -2,13 +2,11 @@ package com.app.feelog.service;
 
 import com.app.feelog.domain.dto.joinDTO.DiaryDetailDTO;
 import com.app.feelog.domain.dto.joinDTO.DiaryJoinDTO;
-import com.app.feelog.domain.dto.joinDTO.DiaryPaginationDTO;
-import com.app.feelog.domain.enumeration.DiaryOpen;
-import com.app.feelog.domain.vo.DiaryReplyLikeVO;
 import com.app.feelog.mapper.DiaryMapper;
 import com.app.feelog.mapper.DiaryReplyLikeMapper;
 import com.app.feelog.mapper.DiaryReplyReportMapper;
 import com.app.feelog.mapper.SubscribeMapper;
+import com.app.feelog.repository.DiaryDAO;
 import com.app.feelog.service.voToDto.ReportService;
 import com.app.feelog.util.pagination.PostPagination;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +33,8 @@ public class DiaryTests {
     private ReportService reportService;
     @Autowired
     private DiaryReplyReportMapper diaryReplyReportMapper;
+    @Autowired
+    private DiaryDAO diaryDAO;
 
 
     @Test
@@ -54,7 +54,7 @@ public class DiaryTests {
     @Test
     public void subscribeIds() {
         List<Long> ids = subscribeMapper.selectSubscribeIdsByMemberId(24L);
-        log.info("ids : {}",ids);
+        log.info("ids : {}", ids);
     }
 
     @Test
@@ -75,6 +75,6 @@ public class DiaryTests {
 
     @Test
     public void selectDiaryREplyLike() {
-        log.info(diaryReplyReportMapper.selectReportListByMemberId(24L).toString());
+        log.info("count {}", diaryDAO.findDiaryReplyCount(13L));
     }
 }

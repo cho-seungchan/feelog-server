@@ -127,22 +127,25 @@ public class LoginController {
                           @SessionAttribute(name = "member", required = false) MemberDTO member,
                           @RequestParam String code,
                           HttpServletResponse response, Model model) {
+        log.info("token " + token);
+
         // 토큰이 만료되었을 때(유효기간이 지났을 때)
         if (token == null || token.isEmpty()) {
+            log.info("token is null");
             model.addAttribute("errorMessage", "초대 링크가 만료되었습니다.");
             return "/login/password-issue";
         }
 
         // 발급받은 토큰이 동일하다면 쿠키 초기화
         if (token.equals(code)) {
+            log.info("token = code");
             Cookie cookie = new Cookie("token", "");
             cookie.setMaxAge(0);
             cookie.setPath("/");
             response.addCookie(cookie);
 
             // 프로필 설정 화면으로 이동
-            return "redirect:/mypage/setting-profile";
-
+            return "redirect:/myPage/setting-profile";
         }
 
         log.info("정보 불일치. 비밀번호 재발급로 이동합니다.");
