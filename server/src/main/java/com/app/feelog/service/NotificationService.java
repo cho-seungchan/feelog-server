@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface NotificationService {
 
-    void sendSubscribeNotification(Long senderId, Long receiverId, Long subscribeId);
+    void sendSubscribeNotification(Long senderId, Long channelId, Long subscribeId);
 
     void sendCommunityPostNotification(Long senderId, Long receiverId, Long communityPostId);
 

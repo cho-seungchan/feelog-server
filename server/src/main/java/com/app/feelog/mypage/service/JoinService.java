@@ -22,12 +22,6 @@ public class JoinService implements ToDTO {
                         .orElse(null)));
     }
 
-
-    // 2025.05.09 조승찬 :: 신규 가입시 멤버 타스크 설정
-    public void insertMemberTask(Long id) {
-        joinLogDAO.insertMemberTask(id);
-    }
-
     // 2025.04.17 조승찬 :: 카카오 회원가입시 멤버 이메일, 닉네임 저장
     public void kakaoJoin(MemberDTO memberDTO) {
         joinLogDAO.kakaoJoin(memberDTO.toVO());
@@ -44,4 +38,9 @@ public class JoinService implements ToDTO {
     public void emailJoin(MemberDTO memberDTO) {
         joinLogDAO.emailJoin(memberDTO.toVO());
     }
+
+    public void insertMemberTask(Long id) {
+        joinLogDAO.insertMemberTask(id);
+    }
+
 }

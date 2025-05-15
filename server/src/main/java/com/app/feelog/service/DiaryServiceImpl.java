@@ -35,6 +35,9 @@ public class DiaryServiceImpl implements DiaryService {
     private final DiaryFileDAO diaryFileDAO;
     private final DiaryLikeDAO diaryLikeDAO;
     private final DiaryReportDAO diaryReportDAO;
+    private final DiaryFileService diaryFileService;
+    private final TagService tagService;
+    private final DiaryTagService diaryTagService;
 
     @Override
     @Transactional
@@ -49,7 +52,7 @@ public class DiaryServiceImpl implements DiaryService {
                 DiaryFileDTO dto = new DiaryFileDTO();
                 dto.setDiaryId(diaryId);
                 dto.setId(fileId);
-                diaryFileServiceImpl.addDiaryFile(dto);
+                diaryFileService.addDiaryFile(dto);
             }
         }
 
@@ -58,12 +61,12 @@ public class DiaryServiceImpl implements DiaryService {
             for (String content : diaryDTO.getTags()) {
                 TagDTO tagDTO = new TagDTO();
                 tagDTO.setContents(content);
-                tagServiceImpl.saveTag(tagDTO);
+                tagService.saveTag(tagDTO);
 
                 DiaryTagDTO diaryTagDTO = new DiaryTagDTO();
                 diaryTagDTO.setTagId(tagDTO.getId());
                 diaryTagDTO.setDiaryId(diaryId);
-                diaryTagServiceImpl.save(diaryTagDTO);
+                diaryTagService.save(diaryTagDTO);
             }
         }
         diaryDTO.setId(diaryVO.getId());
@@ -91,27 +94,27 @@ public class DiaryServiceImpl implements DiaryService {
         DiaryVO diaryVO = diaryDTO.toVO();
         diaryDAO.update(diaryVO);
 
-        diaryFileServiceImpl.removeAllFilesByDiaryId(diaryVO.getId());
+        diaryFileService.removeAllFilesByDiaryId(diaryVO.getId());
         if (diaryDTO.getFileIds() != null) {
             for (Long fileId : diaryDTO.getFileIds()) {
                 DiaryFileDTO dto = new DiaryFileDTO();
                 dto.setDiaryId(diaryVO.getId());
                 dto.setId(fileId);
-                diaryFileServiceImpl.addDiaryFile(dto);
+                diaryFileService.addDiaryFile(dto);
             }
         }
 
-        diaryTagServiceImpl.removeAllTagsByDiaryId(diaryVO.getId());
+        diaryTagService.removeAllTagsByDiaryId(diaryVO.getId());
         if (diaryDTO.getTags() != null) {
             for (String content : diaryDTO.getTags()) {
                 TagDTO tagDTO = new TagDTO();
                 tagDTO.setContents(content);
-                tagServiceImpl.saveTag(tagDTO);
+                tagService.saveTag(tagDTO);
 
                 DiaryTagDTO diaryTagDTO = new DiaryTagDTO();
                 diaryTagDTO.setTagId(tagDTO.getId());
                 diaryTagDTO.setDiaryId(diaryVO.getId());
-                diaryTagServiceImpl.save(diaryTagDTO);
+                diaryTagService.save(diaryTagDTO);
             }
         }
     }

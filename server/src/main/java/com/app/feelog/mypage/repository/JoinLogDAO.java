@@ -22,10 +22,6 @@ public class JoinLogDAO {
                         .orElse(null));
     }
 
-    public void insertMemberTask(Long id) {
-        joinLogMapper.insertMemberTask(id);
-    }
-
     // 2025.04.17 조승찬 :: 카카오 회원 가입시 멤버 이메일, 닉네임 저장
     public void kakaoJoin(MemberVO memberVO) {
         joinLogMapper.kakaoJoin(memberVO);
@@ -48,5 +44,9 @@ public class JoinLogDAO {
         return Optional.ofNullable(
                 joinLogMapper.getMemberByEmailAndPassword(memberVO)
                         .orElse(null));
+    }
+
+    public void insertMemberTask(Long id) {
+        joinLogMapper.insertMemberTask(id);
     }
 }

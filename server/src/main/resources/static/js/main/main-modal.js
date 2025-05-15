@@ -151,140 +151,58 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // // 검색 필터 모달 열기
-    // if (searchFilterBtn && searchFilterModal && searchBackdrop) {
-    //     searchFilterBtn.addEventListener("click", () => {
-    //         searchFilterModal.classList.remove("hidden");
-    //         searchBackdrop.classList.remove("hidden");
-    //     });
-    // }
-    //
-    // // 검색 필터 모달 닫기 (닫기 버튼 클릭)
-    // if (
-    //     searchFilterCloseBtn &&
-    //     searchFilterModal &&
-    //     searchFilterCloseBtn2 &&
-    //     searchBackdrop
-    // ) {
-    //     searchFilterCloseBtn.addEventListener("click", () => {
-    //         searchFilterModal.classList.add("hidden");
-    //         searchBackdrop.classList.add("hidden");
-    //     });
-    //     searchFilterCloseBtn2.addEventListener("click", () => {
-    //         searchFilterModal.classList.add("hidden");
-    //         searchBackdrop.classList.add("hidden");
-    //     });
-    // }
-    //
-    // // 검색 필터 모달 닫기 (회색 배경 클릭)
-    // if (searchBackdrop && searchFilterModal) {
-    //     searchBackdrop.addEventListener("click", () => {
-    //         searchFilterModal.classList.add("hidden");
-    //         searchBackdrop.classList.add("hidden");
-    //     });
-    // }
+    fetch("/main/channel/my")
+        .then(res => {
+            if (!res.ok || res.status === 204) return null;
+            return res.json();
+        })
+        .then(data => {
+            const menuList = document.querySelector(".feelog-header-menuUi.menu-ui03");
+            if (!menuList) return;
 
-    // ======= 추가된 검색 모달 기능 끝 =======
-    // const button = document.getElementById("notificationBtn");
-    // const menu = document.getElementById("notificationMenu");
-    //
-    // if (button && menu) {
-    //     button.addEventListener("click", toggleMenu);
-    //     document.addEventListener("click", function (e) {
-    //         if (!menu.contains(e.target) && !button.contains(e.target)) {
-    //             closeMenu();
-    //         }
-    //     });
-    // }
-    //
-    // // 메뉴 열림 상태 체크 변수
-    // let isOpen = false;
-    //
-    // function toggleProfileMenu(e) {
-    //     e.stopPropagation();
-    //
-    //     // 알림 메뉴가 열려 있으면 닫기
-    //     if (isOpen) {
-    //         closeMenu(); // 메뉴 상태값까지 같이 닫기
-    //     }
-    //
-    //     const isVisible = !profileMenu.classList.contains("hidden");
-    //     if (isVisible) {
-    //         profileMenu.classList.add("hidden");
-    //     } else {
-    //         updateMenuPosition();
-    //         profileMenu.classList.remove("hidden");
-    //     }
-    // }
-    //
-    // // 메뉴 닫기
-    // function closeMenu() {
-    //     if (isOpen) {
-    //         isOpen = false;
-    //         menu.style.display = "none";
-    //     }
-    // }
-    //
-    // // 버튼 클릭 시 토글
-    // button.addEventListener("click", toggleMenu);
-    //
-    // // 메뉴 바깥 클릭 시 닫기
-    // document.addEventListener("click", function (e) {
-    //     const isClickInside =
-    //         menu.contains(e.target) || button.contains(e.target);
-    //     if (!isClickInside) {
-    //         closeMenu();
-    //     }
-    // });
-    //
-    // function updateNotificationMenuPosition() {
-    //     const rect = button.getBoundingClientRect();
-    //     const menuWidth = menu.offsetWidth;
-    //     const viewportWidth = window.innerWidth;
-    //
-    //     const left = rect.left - 440;
-    //     const top = rect.bottom + 14; // 버튼 아래 8px 정도
-    //
-    //     const adjustedLeft = Math.min(left, viewportWidth - menuWidth - 8);
-    //
-    //     menu.style.position = "absolute";
-    //     menu.style.left = `${adjustedLeft}px`;
-    //     menu.style.top = `${top}px`;
-    // }
-    //
-    // function toggleMenu(e) {
-    //     e.stopPropagation();
-    //
-    //     // 프로필 메뉴가 열려 있으면 닫기
-    //     if (!profileMenu.classList.contains("hidden")) {
-    //         profileMenu.classList.add("hidden");
-    //     }
-    //
-    //     isOpen = !isOpen;
-    //     if (isOpen) {
-    //         updateNotificationMenuPosition();
-    //         menu.style.display = "block";
-    //     } else {
-    //         menu.style.display = "none";
-    //     }
-    // }
-    //
-    // window.addEventListener("resize", () => {
-    //     if (isOpen) {
-    //         updateNotificationMenuPosition();
-    //     }
-    // });
-    //
-    // const markAllAsReadBtn = document.querySelector(".joy-fsdjpg");
-    // const allBadges = document.querySelectorAll(".joy-yhhqut");
-    // const topCount = document.querySelector(".feelog-header-topSpan01");
-    //
-    // if (markAllAsReadBtn) {
-    //     markAllAsReadBtn.addEventListener("click", () => {
-    //         allBadges.forEach((badge) => (badge.style.display = "none"));
-    //         if (topCount) topCount.style.display = "none";
-    //     });
-    // }
+            // 기존 채널 li 제거
+            const oldLi = menuList.querySelector(".feelog-header-profileMenu");
+            if (oldLi) oldLi.remove();
+
+            // 새 li 생성
+            const li = document.createElement("li");
+            li.setAttribute("role", "presentation");
+            li.className = "feelog-header-profileMenu menu-li02";
+
+            const a = document.createElement("a");
+            a.href = data && data.channelUrl ? `/feelog.com/@${data.channelUrl}` : "/myPage/make-channel";
+            a.className = "feelog-header-topA02";
+            a.setAttribute("data-first-child", "");
+
+            a.innerHTML = `
+            <div class="feelog-header-topDiv10">
+                <div class="feelog-header-topDiv11">
+                    <div class="feelog-header-topDiv12" data-first-child="">
+                        <img alt="channel" loading="lazy" decoding="async"
+                            src="${data && data.channelFilePath && data.channelFileName
+                ? `/files/display?path=${data.channelFilePath}/${data.channelFileName}`
+                : 'https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png?w=50&h=50&q=65'}"
+                            style="position: absolute; height: 100%; width: 100%; object-fit: cover; color: transparent;">
+                    </div>
+                </div>
+            </div>
+            <span class="feelog-header-topSpan05">${data && data.channelTitle ? data.channelTitle : "채널 만들기"}</span>
+        `;
+
+            const div = document.createElement("div");
+            div.className = "feelog-header-topDiv13";
+
+            li.appendChild(a);
+            li.appendChild(div);
+
+            // 구분선 앞에 삽입
+            const separator = menuList.querySelector(".menu-li03");
+            menuList.insertBefore(li, separator);
+        })
+        .catch(err => {
+            console.error("채널 정보 불러오기 실패", err);
+        });
+
     // =========================메세지 창==========================//
     const messageButton = document.querySelector(".message-button");
     const messageList = document.querySelector(".message-listContainer");
