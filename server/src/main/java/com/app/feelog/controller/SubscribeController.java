@@ -22,26 +22,36 @@ public class SubscribeController {
     @PostMapping("/{channelId}")
     public ResponseEntity<String> toggleSubscribe(@PathVariable("channelId") Long channelId,
                                                   @SessionAttribute(value = "member", required = false) MemberDTO member) {
-        if (member == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
-        }
+        try {
+            if (member == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+            }
 
-        Long memberId = member.getId();
-        Long channelOwnerId = channelService.findChannelOwnerId(channelId);
+            Long memberId = member.getId();
+            Long channelOwnerId = channelService.findChannelOwnerId(channelId);
 
-        if (memberId.equals(channelOwnerId)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("자기 채널은 구독할 수 없습니다.");
-        }
+            System.out.println("[SUBSCRIBE] memberId: " + memberId);
+            System.out.println("[SUBSCRIBE] channelId: " + channelId);
+            System.out.println("[SUBSCRIBE] channelOwnerId: " + channelOwnerId);
 
-        boolean isSubscribed = subscribeService.isSubscribed(memberId, channelId);
+            if (memberId.equals(channelOwnerId)) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("자기 채널은 구독할 수 없습니다.");
+            }
 
-        if (isSubscribed) {
-            subscribeService.unsubscribe(memberId, channelId);
-            return ResponseEntity.ok("구독 취소");
-        } else {
-            subscribeService.subscribe(memberId, channelId);
-            return ResponseEntity.ok("구독 완료");
+            boolean isSubscribed = subscribeService.isSubscribed(memberId, channelId);
+            System.out.println("[SUBSCRIBE] isSubscribed: " + isSubscribed);
+
+            if (isSubscribed) {
+                subscribeService.unsubscribe(memberId, channelId);
+                return ResponseEntity.ok("구독 취소");
+            } else {
+                subscribeService.subscribe(memberId, channelId);
+                return ResponseEntity.ok("구독 완료");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace(); // 콘솔에 전체 stack trace 출력
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("에러 발생: " + e.getMessage());
         }
     }
-
 }

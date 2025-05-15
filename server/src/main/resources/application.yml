@@ -39,7 +39,7 @@ mybatis:
 
 openai:
   model: gpt-3.5-turbo
-  secret-key: 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
+  secret-key: 
   api:
     url: https://api.openai.com/v1/chat/completions
 

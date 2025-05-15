@@ -26,13 +26,15 @@ public class NotificationServiceImpl implements NotificationService {
     private final PostReplyLikeNotificationDAO postReplyLikeNotificationDAO;
     private final PostLikeNotificationDAO postLikeNotificationDAO;
     private final ReceiveMessageNotificationDAO receiveMessageNotificationDAO;
+    private final ChannelService channelService;
 
     @Override
     @Transactional
     public void sendSubscribeNotification(Long senderId, Long receiverId, Long subscribeId) {
+
         NotificationDTO notificationDTO = new NotificationDTO();
         notificationDTO.setSenderId(senderId);
-        notificationDTO.setReceiverId(receiverId);
+        notificationDTO.setReceiverId(channelService.findChannelOwnerId(receiverId));
         notificationDTO.setNotificationChecked(NotificationChecked.UNREAD);
 
         NotificationVO notificationVO = notificationDTO.toVO();
