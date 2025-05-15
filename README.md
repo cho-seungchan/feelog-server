@@ -3,7 +3,6 @@
 <h1>함께쓰는 마음일기 - 'Feelog'</h1>
 
 <h2>1. 기획 의도</h2>
-![스크린샷 2025-05-12 152219](https://github.com/user-attachments/assets/0560e041-2cc7-44d7-ba6d-848b4ea0b412)
 
 <img src="[https://github.com/user-attachments/assets/0560e041-2cc7-44d7-ba6d-848b4ea0b412"/>
 
@@ -11,7 +10,6 @@
 단순 기록에 그치는 <strong>기존 일기의 한계</strong>를 해결하고 혼자 감당해야 하는 감정의 무게를 사용자들과 <strong>감정을 공유하고 소통</strong>하면 위와 같은 문제들을 해결 하는데 도움이 되고자 이 프로젝트를 설계했습니다.
 
 <h2>2. 기대 효과</h2>
-![스크린샷 2025-05-15 135420]()
 
 <img src="[https://github.com/user-attachments/assets/7216d8d2-99a1-4cbd-a2e8-6c8cbd878cab"/>
 
