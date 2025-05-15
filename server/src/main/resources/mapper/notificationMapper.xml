@@ -19,7 +19,8 @@
         checked AS notificationChecked,
         created_date AS createdDate,
         thumbnail_path AS thumbnailPath,
-        thumbnail_name AS thumbnailName
+        thumbnail_name AS thumbnailName,
+        channel_url AS channel_url
         FROM view_notification
         WHERE receiver_id = #{receiverId}
         ORDER BY created_date DESC

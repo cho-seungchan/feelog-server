@@ -80,7 +80,7 @@ public class LoginController {
             if (session.getAttribute("memberStatus").equals("kakao")) {
 
                 String kakaoLogoutUrl = "https://kauth.kakao.com/oauth/logout?"
-                        + "client_id=" + "3c94a5c05aa2286086a11146856039c4"
+                        + "client_id=" + "1f0eec6d921e399c7940b9689a7896e3"
                         + "&logout_redirect_uri=" + "http://43.203.69.19:10000/login/login";
             }
 
@@ -141,7 +141,7 @@ public class LoginController {
             response.addCookie(cookie);
 
             // 프로필 설정 화면으로 이동
-            return "redirect:/mypage/setting-profile";
+            return "redirect:/myPage/setting-profile";
 
         }
 

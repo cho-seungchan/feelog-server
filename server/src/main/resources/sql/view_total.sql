@@ -168,9 +168,13 @@ SELECT
     n.id AS notification_id,
     n.sender_id,
     sender.member_nickname AS sender_nickname,
-    sender.member_file_path,
-    sender.member_file_name,
+
+    -- 보낸 사람의 프로필 경로
+    sender.member_file_path AS sender_file_path,
+    sender.member_file_name AS sender_file_name,
+
     n.receiver_id,
+
     CASE
         WHEN sn.id IS NOT NULL THEN 'SUBSCRIBE'
         WHEN cpn.id IS NOT NULL THEN 'COMMUNITY_POST'
@@ -180,10 +184,11 @@ SELECT
         WHEN rmn.id IS NOT NULL THEN 'RECEIVE_MESSAGE'
         ELSE 'UNKNOWN'
         END AS notification_type,
+
     n.checked,
     n.created_date,
 
-    -- 썸네일 처리
+    -- 콘텐츠 또는 채널 썸네일 (기존 그대로 유지)
     CASE
         WHEN sn.id IS NOT NULL THEN c.channel_file_path
         WHEN cpn.id IS NOT NULL THEN c.channel_file_path
@@ -208,7 +213,6 @@ SELECT
 FROM tbl_notification n
          JOIN tbl_member sender ON n.sender_id = sender.id
 
-    -- 다양한 알림 유형 테이블
          LEFT JOIN tbl_subscribe_notification sn ON n.id = sn.id
          LEFT JOIN tbl_community_post_notification cpn ON n.id = cpn.id
          LEFT JOIN tbl_post_reply_notification prn ON n.id = prn.id
@@ -216,7 +220,6 @@ FROM tbl_notification n
          LEFT JOIN tbl_post_like_notification pln ON n.id = pln.id
          LEFT JOIN tbl_receive_message_notification rmn ON n.id = rmn.id
 
-    -- 기존 썸네일용 채널/포스트
          LEFT JOIN tbl_channel c ON (
     sn.subscribe_id = c.id OR
     cpn.community_post_id = c.id OR
@@ -224,96 +227,16 @@ FROM tbl_notification n
     prln.post_reply_like_id = c.id OR
     pln.post_like_id = c.id
     )
+
          LEFT JOIN tbl_channel_post cp ON (
     prn.post_reply_id = cp.id OR
     prln.post_reply_like_id = cp.id OR
     pln.post_like_id = cp.id
     )
 
-    -- sender → 자신의 채널 연결
+    -- 보낸 사람의 채널 정보 (url만 사용)
          LEFT JOIN tbl_channel sender_channel ON sender.id = sender_channel.member_id;
 
-
-create view view_official_content_preview as
-select `n`.`id`                AS `id`,
-    `n`.`notice_title`      AS `title`,
-    `n`.`notice_file_path`  AS `file_path`,
-    `n`.`notice_file_name`  AS `file_name`,
-        NULL                    AS `task_url`,
-    `n`.`notice_content`    AS `notice_content`,
-    `n`.`created_date`      AS `created_date`,
-    `c`.`channel_url`       AS `channel_url`,
-    `c`.`channel_file_path` AS `channel_file_path`,
-    `c`.`channel_file_name` AS `channel_file_name`,
-    `c`.`channel_title`     AS `channel_title`,
-    `c`.`channel_introduce` AS `channel_introduce`,
-        'NOTICE'                AS `content_type`,
-    `m`.`id`                AS `member_id`,
-    `m`.`member_nickname`   AS `member_nickname`
-from ((`feelog`.`tbl_notice` `n` join `feelog`.`tbl_member` `m`
-        on ((`n`.`member_id` = `m`.`id`))) join `feelog`.`tbl_channel` `c` on ((`c`.`channel_url` = 'official')))
-where (`n`.`notice_status` = '정상')
-union all
-select `t`.`id`                AS `id`,
-    `t`.`common_task_name`  AS `title`,
-        NULL                    AS `file_path`,
-    `t`.`common_task_img`   AS `file_name`,
-    `t`.`common_task_url`   AS `task_url`,
-        NULL                    AS `notice_content`,
-    `t`.`created_date`      AS `created_date`,
-    `c`.`channel_url`       AS `channel_url`,
-    `c`.`channel_file_path` AS `channel_file_path`,
-    `c`.`channel_file_name` AS `channel_file_name`,
-    `c`.`channel_title`     AS `channel_title`,
-    `c`.`channel_introduce` AS `channel_introduce`,
-        'CHALLENGE'             AS `content_type`,
-        NULL                    AS `member_id`,
-        NULL                    AS `member_nickname`
-from (`feelog`.`tbl_common_task` `t` join `feelog`.`tbl_channel` `c` on ((`c`.`channel_url` = 'official')))
-where (`t`.`common_task_name` is not null);
-
-create view view_post_info as
-select `p`.`post_id`                 AS `id`,
-    `p`.`post_type`               AS `post_type`,
-    `p`.`post_main_file_name`     AS `post_main_file_name`,
-    `p`.`post_main_file_path`     AS `post_main_file_path`,
-    `p`.`post_read_count`         AS `post_read_count`,
-    `p`.`channel_id`              AS `channel_id`,
-    `p`.`post_title`              AS `post_title`,
-    `p`.`post_content`            AS `post_content`,
-    `p`.`post_status`             AS `post_status`,
-    `p`.`updated_date`            AS `updated_date`,
-    `c`.`channel_member_id`       AS `channel_member_id`,
-    `c`.`channel_title`           AS `channel_title`,
-    `c`.`channel_file_path`       AS `channel_file_path`,
-    `c`.`channel_file_name`       AS `channel_file_name`,
-    `c`.`channel_url`             AS `channel_url`,
-    `c`.`channel_member_nickname` AS `channel_member_nickname`,
-    `c`.`member_file_path`        AS `member_file_path`,
-    `c`.`member_file_name`        AS `member_file_name`
-from ((select `cp`.`id`              AS `post_id`,
-           `cp`.`post_type`       AS `post_type`,
-           `cp`.`post_file_name`  AS `post_main_file_name`,
-           `cp`.`post_file_path`  AS `post_main_file_path`,
-           `cp`.`post_read_count` AS `post_read_count`,
-           `cp`.`channel_id`      AS `channel_id`,
-           `p`.`post_title`       AS `post_title`,
-           `p`.`post_content`     AS `post_content`,
-           `p`.`post_status`      AS `post_status`,
-           `p`.`updated_date`     AS `updated_date`
-       from (`feelog`.`tbl_channel_post` `cp` join `feelog`.`tbl_post` `p` on ((`cp`.`id` = `p`.`id`)))
-       where ((`p`.`post_status` = '정상') and (`cp`.`channel_post_status` = '정상'))) `p` join (select `c`.`id`                AS `channel_id`,
-                                                                                                 `m`.`id`                AS `channel_member_id`,
-                                                                                                 `c`.`channel_title`     AS `channel_title`,
-                                                                                                 `c`.`channel_file_path` AS `channel_file_path`,
-                                                                                                 `c`.`channel_file_name` AS `channel_file_name`,
-                                                                                                 `c`.`channel_url`       AS `channel_url`,
-                                                                                                 `m`.`member_nickname`   AS `channel_member_nickname`,
-                                                                                                 `m`.`member_file_name`  AS `member_file_name`,
-                                                                                                 `m`.`member_file_path`  AS `member_file_path`
-                                                                                             from (`feelog`.`tbl_channel` `c` join `feelog`.`tbl_member` `m`
-                                                                                                    on ((`c`.`member_id` = `m`.`id`)))) `c`
-      on ((`p`.`channel_id` = `c`.`channel_id`)));
 
 create view view_post_info_detail as
 select `p`.`id`                AS `id`,

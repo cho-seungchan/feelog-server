@@ -34,7 +34,7 @@
                                                  th:src="@{'/files/display?path=' + ${channelInfo.channelFilePath} + '/' + ${channelInfo.channelFileName}}"
                                                  style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;" />
                                             <img th:if="${channelInfo.channelFilePath == null}"
-                                                 th:src="@{/images/default_thumbnail.png}"
+                                                 th:src="@{/images/channel_banner.png}"
                                                  style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; color: transparent;" />
                                         </div>
                                     </div>
@@ -737,7 +737,7 @@
     <script src="/js/community/community-service.js"></script>
     <script src="/js/community/community-layout.js"></script>
     <script src="/js/main/main-modal.js"></script>
-    <script src="/js/main/notification.js"></script>
+    <script src="/js/main/notificationInterceptor.js"></script>
     <script src="/js/main/main-search-modal.js"></script>
     <script src="/js/subscribe/subscribe.js"></script>
 </html>
