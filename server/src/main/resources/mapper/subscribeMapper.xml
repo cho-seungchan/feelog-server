@@ -2,39 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.feelog.mapper.SubscribeMapper">
 
-    <insert id="subscribe" parameterType="com.app.feelog.domain.dto.SubscribeDTO" useGeneratedKeys="true" keyProperty="id">
+    <insert id="subscribe" parameterType="com.app.feelog.domain.dto.SubscribeDTO" useGeneratedKeys="true"
+            keyProperty="id">
         INSERT INTO tbl_subscribe (member_id, channel_id)
         VALUES (#{memberId}, #{channelId})
     </insert>
 
     <select id="isSubscribed" resultType="boolean">
-        SELECT EXISTS (
-            SELECT 1
-            FROM tbl_subscribe
-            WHERE member_id = #{memberId}
-              AND channel_id = #{channelId}
-        )
+        SELECT EXISTS (SELECT 1
+                       FROM tbl_subscribe
+                       WHERE member_id = #{memberId}
+                         AND channel_id = #{channelId})
     </select>
 
     <delete id="unsubscribe">
-        DELETE FROM tbl_subscribe
+        DELETE
+        FROM tbl_subscribe
         WHERE member_id = #{memberId}
           AND channel_id = #{channelId}
     </delete>
 
     <select id="selectSubscribeOne" resultType="subscribeVO">
-        select * from tbl_subscribe where member_id = #{memberId} and channel_id = #{channelId} limit 1
+        select *
+        from tbl_subscribe
+        where member_id = #{memberId}
+          and channel_id = #{channelId}
+          and subscribe_status = '정상'
+        limit 1
     </select>
 
     <select id="selectSubscribeCount" resultType="_int">
-        select count(*) from tbl_subscribe where channel_id = #{channelId} and subscribe_status = '정상'
+        select count(*)
+        from tbl_subscribe
+        where channel_id = #{channelId}
+          and subscribe_status = '정상'
     </select>
 
     <delete id="deleteSubscribe">
-        delete from tbl_subscribe where member_id = #{memberId} and channel_id = #{channelId}
+        delete
+        from tbl_subscribe
+        where member_id = #{memberId}
+          and channel_id = #{channelId}
     </delete>
 
     <select id="selectSubscribeIdsByMemberId" resultType="long">
-        select channel_id from tbl_subscribe where member_id = #{memberId}
+        select channel_id
+        from tbl_subscribe
+        where member_id = #{memberId}
+          and subscribe_status = '정상'
     </select>
 </mapper>

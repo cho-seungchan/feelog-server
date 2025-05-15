@@ -20,6 +20,7 @@ import java.util.List;
 public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationDAO notificationDAO;
+    private final ChannelDAO channelDAO;
     private final SubscribeNotificationDAO subscribeNotificationDAO;
     private final CommunityPostNotificationDAO communityPostNotificationDAO;
     private final PostReplyNotificationDAO postReplyNotificationDAO;
@@ -30,9 +31,11 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     @Transactional
     public void sendSubscribeNotification(Long senderId, Long receiverId, Long subscribeId) {
+        log.info("receiverId {}", receiverId);
         NotificationDTO notificationDTO = new NotificationDTO();
         notificationDTO.setSenderId(senderId);
-        notificationDTO.setReceiverId(receiverId);
+        Long newReceiverId = channelDAO.findChannelOwnerId(receiverId);
+        notificationDTO.setReceiverId(newReceiverId);
         notificationDTO.setNotificationChecked(NotificationChecked.UNREAD);
 
         NotificationVO notificationVO = notificationDTO.toVO();
