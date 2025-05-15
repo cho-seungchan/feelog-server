@@ -134,7 +134,7 @@ public class joinController {
 
             // 로그인 상태 유지
             MemberDTO member = joinService.getMemberByEmail(memberDTO.getMemberEmail()).get();
-            joinService.insertMemberTask(memberDTO.getId());
+            joinService.insertMemberTask(member.getId());
             session.setAttribute("memberStatus", "email");
             session.setAttribute("member", member);
 
