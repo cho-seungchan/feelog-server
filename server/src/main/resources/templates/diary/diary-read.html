@@ -219,7 +219,8 @@
                         <div class="reply_container_01">
                             <p
                                 class="reply_count_01"
-                            >0개의댓글 </p>
+                                th:text="${diary.diaryReplyCount}+'개의 댓글'"
+                            ></p>
                             <div class="comment-list comment_container_01" th:if="${session.member != null}">
                                 <label for="comment" class="tag_h6_01"
                                 >작가에게 힘이 되는 한마디 남기기</label

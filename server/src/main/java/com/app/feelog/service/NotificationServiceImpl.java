@@ -20,6 +20,7 @@ import java.util.List;
 public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationDAO notificationDAO;
+    private final ChannelDAO channelDAO;
     private final SubscribeNotificationDAO subscribeNotificationDAO;
     private final CommunityPostNotificationDAO communityPostNotificationDAO;
     private final PostReplyNotificationDAO postReplyNotificationDAO;

@@ -491,6 +491,9 @@
                 th:replace="~{main/footer.html :: #main-footer}"></footer>
         <!-- footer 넣을 곳 -->
     </body>
+    <script th:inline="javascript">
+        const loginMember = [[${session.member}]]
+    </script>
     <script src="/js/main/main-modal.js"></script>
     <script src="/js/search/search.js"></script>
     <script src="/js/subscribe/subscribe.js"></script>

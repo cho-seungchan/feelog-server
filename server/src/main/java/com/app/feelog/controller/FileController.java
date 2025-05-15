@@ -62,13 +62,12 @@ public class FileController {
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String path) throws IOException {
-        log.info(path);
         byte[] file = null;
         try {
             file = FileCopyUtils.copyToByteArray(new File("/upload/" + path));
 
-        }catch (NoSuchFileException e){
-          
+        } catch (NoSuchFileException e) {
+
             throw new RuntimeException();
         }
         return file;
@@ -76,7 +75,7 @@ public class FileController {
 
     @GetMapping("download")
 
-    public ResponseEntity<Resource> download(String path) throws IOException{
+    public ResponseEntity<Resource> download(String path) throws IOException {
 
         Resource resource = new FileSystemResource("/upload/" + path);
         HttpHeaders headers = new HttpHeaders();
@@ -84,15 +83,3 @@ public class FileController {
         return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
