@@ -6,14 +6,14 @@
 
 <img src="https://github.com/user-attachments/assets/0560e041-2cc7-44d7-ba6d-848b4ea0b412"/>
 
-전 세계 우울증, 자살률은 대체적으로 낮아졌지만 우리나라는 <strong>여전히 높은 자살률과 우울증 유병률</strong>을 기록하고 있습니다. 
+전 세계 우울증, 자살률은 대체적으로 낮아졌지만 우리나라는 <strong>여전히 높은 자살률과 우울증 유병률</strong>을 기록하고 있습니다. </br>
 단순 기록에 그치는 <strong>기존 일기의 한계</strong>를 해결하고 혼자 감당해야 하는 감정의 무게를 사용자들과 <strong>감정을 공유하고 소통</strong>하면 위와 같은 문제들을 해결 하는데 도움이 되고자 이 프로젝트를 설계했습니다.
 
 <h2>2. 기대 효과</h2>
 
 <img src="https://github.com/user-attachments/assets/7216d8d2-99a1-4cbd-a2e8-6c8cbd878cab"/>
 
-<strong>감정 관리 습관 형성 및 정서적 회복</strong>을 유도하고 커뮤니티 기반의 공감과 응원을 통한 <strong>정서적 안정감을 제공</strong> 할 수 있습니다.
+<strong>감정 관리 습관 형성 및 정서적 회복</strong>을 유도하고 커뮤니티 기반의 공감과 응원을 통한 <strong>정서적 안정감을 제공</strong> 할 수 있습니다.</br>
 일상 속 힐링을 돕는 챌린지 참여를 권장하고, 응원 메시지와 이모티콘을 통한 <strong>감정 환기와 긍정적인 경험</strong>을 제공합니다.
 
 <h2>3. 프로젝트 사용 툴</h2>
