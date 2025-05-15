@@ -163,48 +163,76 @@ create view view_find_reply_count as
 select `r`.`post_id` AS `post_id`
 from (`feelog`.`tbl_channel_post` `p` join `feelog`.`tbl_channel_post_reply` `r` on ((`p`.`id` = `r`.`post_id`)));
 
-create view view_notification as
-select `n`.`id`                    AS `notification_id`,
-    `n`.`sender_id`             AS `sender_id`,
-    `sender`.`member_nickname`  AS `sender_nickname`,
-    `sender`.`member_file_path` AS `sender_file_path`,
-    `sender`.`member_file_name` AS `sender_file_name`,
-    `n`.`receiver_id`           AS `receiver_id`,
-        (case
-             when (`sn`.`id` is not null) then 'SUBSCRIBE'
-             when (`cpn`.`id` is not null) then 'COMMUNITY_POST'
-             when (`prn`.`id` is not null) then 'POST_REPLY'
-             when (`prln`.`id` is not null) then 'POST_REPLY_LIKE'
-             when (`pln`.`id` is not null) then 'POST_LIKE'
-             when (`rmn`.`id` is not null) then 'RECEIVE_MESSAGE'
-             else 'UNKNOWN' end)    AS `notification_type`,
-    `n`.`checked`               AS `checked`,
-    `n`.`created_date`          AS `created_date`,
-        (case
-             when (`sn`.`id` is not null) then `c`.`channel_file_path`
-             when (`cpn`.`id` is not null) then `c`.`channel_file_path`
-             when (`prn`.`id` is not null) then `cp`.`post_file_path`
-             when (`prln`.`id` is not null) then `cp`.`post_file_path`
-             when (`pln`.`id` is not null) then `cp`.`post_file_path`
-             else NULL end)         AS `thumbnail_path`,
-        (case
-             when (`sn`.`id` is not null) then `c`.`channel_file_name`
-             when (`cpn`.`id` is not null) then `c`.`channel_file_name`
-             when (`prn`.`id` is not null) then `cp`.`post_file_name`
-             when (`prln`.`id` is not null) then `cp`.`post_file_name`
-             when (`pln`.`id` is not null) then `cp`.`post_file_name`
-             else NULL end)         AS `thumbnail_name`
-from (((((((((`feelog`.`tbl_notification` `n` join `feelog`.`tbl_member` `sender`
-               on ((`n`.`sender_id` = `sender`.`id`))) left join `feelog`.`tbl_subscribe_notification` `sn`
-             on ((`n`.`id` = `sn`.`id`))) left join `feelog`.`tbl_community_post_notification` `cpn`
-            on ((`n`.`id` = `cpn`.`id`))) left join `feelog`.`tbl_post_reply_notification` `prn`
-           on ((`n`.`id` = `prn`.`id`))) left join `feelog`.`tbl_post_reply_like_notification` `prln`
-          on ((`n`.`id` = `prln`.`id`))) left join `feelog`.`tbl_post_like_notification` `pln`
-         on ((`n`.`id` = `pln`.`id`))) left join `feelog`.`tbl_receive_message_notification` `rmn`
-        on ((`n`.`id` = `rmn`.`id`))) left join `feelog`.`tbl_channel` `c` on (((`sn`.`subscribe_id` = `c`.`id`) or
-                                                                                (`cpn`.`community_post_id` = `c`.`id`)))) left join `feelog`.`tbl_channel_post` `cp`
-      on (((`prn`.`post_reply_id` = `cp`.`id`) or (`prln`.`post_reply_like_id` = `cp`.`id`) or
-           (`pln`.`post_like_id` = `cp`.`id`))));
+CREATE OR REPLACE VIEW view_notification AS
+SELECT
+    n.id AS notification_id,
+    n.sender_id,
+    sender.member_nickname AS sender_nickname,
+    sender.member_file_path,
+    sender.member_file_name,
+    n.receiver_id,
+    CASE
+        WHEN sn.id IS NOT NULL THEN 'SUBSCRIBE'
+        WHEN cpn.id IS NOT NULL THEN 'COMMUNITY_POST'
+        WHEN prn.id IS NOT NULL THEN 'POST_REPLY'
+        WHEN prln.id IS NOT NULL THEN 'POST_REPLY_LIKE'
+        WHEN pln.id IS NOT NULL THEN 'POST_LIKE'
+        WHEN rmn.id IS NOT NULL THEN 'RECEIVE_MESSAGE'
+        ELSE 'UNKNOWN'
+        END AS notification_type,
+    n.checked,
+    n.created_date,
+
+    -- 썸네일 처리
+    CASE
+        WHEN sn.id IS NOT NULL THEN c.channel_file_path
+        WHEN cpn.id IS NOT NULL THEN c.channel_file_path
+        WHEN prn.id IS NOT NULL THEN cp.post_file_path
+        WHEN prln.id IS NOT NULL THEN cp.post_file_path
+        WHEN pln.id IS NOT NULL THEN cp.post_file_path
+        ELSE NULL
+        END AS thumbnail_path,
+
+    CASE
+        WHEN sn.id IS NOT NULL THEN c.channel_file_name
+        WHEN cpn.id IS NOT NULL THEN c.channel_file_name
+        WHEN prn.id IS NOT NULL THEN cp.post_file_name
+        WHEN prln.id IS NOT NULL THEN cp.post_file_name
+        WHEN pln.id IS NOT NULL THEN cp.post_file_name
+        ELSE NULL
+        END AS thumbnail_name,
+
+    -- sender 기준 채널 URL
+    sender_channel.channel_url AS channel_url
+
+FROM tbl_notification n
+         JOIN tbl_member sender ON n.sender_id = sender.id
+
+    -- 다양한 알림 유형 테이블
+         LEFT JOIN tbl_subscribe_notification sn ON n.id = sn.id
+         LEFT JOIN tbl_community_post_notification cpn ON n.id = cpn.id
+         LEFT JOIN tbl_post_reply_notification prn ON n.id = prn.id
+         LEFT JOIN tbl_post_reply_like_notification prln ON n.id = prln.id
+         LEFT JOIN tbl_post_like_notification pln ON n.id = pln.id
+         LEFT JOIN tbl_receive_message_notification rmn ON n.id = rmn.id
+
+    -- 기존 썸네일용 채널/포스트
+         LEFT JOIN tbl_channel c ON (
+    sn.subscribe_id = c.id OR
+    cpn.community_post_id = c.id OR
+    prn.post_reply_id = c.id OR
+    prln.post_reply_like_id = c.id OR
+    pln.post_like_id = c.id
+    )
+         LEFT JOIN tbl_channel_post cp ON (
+    prn.post_reply_id = cp.id OR
+    prln.post_reply_like_id = cp.id OR
+    pln.post_like_id = cp.id
+    )
+
+    -- sender → 자신의 채널 연결
+         LEFT JOIN tbl_channel sender_channel ON sender.id = sender_channel.member_id;
+
 
 create view view_official_content_preview as
 select `n`.`id`                AS `id`,

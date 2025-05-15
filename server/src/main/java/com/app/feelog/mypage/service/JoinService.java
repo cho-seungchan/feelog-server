@@ -38,4 +38,9 @@ public class JoinService implements ToDTO {
     public void emailJoin(MemberDTO memberDTO) {
         joinLogDAO.emailJoin(memberDTO.toVO());
     }
+
+    public void insertMemberTask(Long id) {
+        joinLogDAO.insertMemberTask(id);
+    }
+
 }

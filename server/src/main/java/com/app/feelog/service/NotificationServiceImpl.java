@@ -144,6 +144,77 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
 
+//    @Override
+//    public List<NotificationResponseDTO> getNotificationsByReceiver(Long receiverId) {
+//        List<NotificationResponseDTO> notifications = notificationDAO.findAllByReceiverId(receiverId);
+//
+//        if (notifications == null) {
+//            notifications = new ArrayList<>();
+//        }
+//
+//        List<NotificationResponseDTO> filteredNotifications = new ArrayList<>();
+//        for (NotificationResponseDTO dto : notifications) {
+//            if (dto == null) {
+//                continue;
+//            }
+//
+//            // 0. 프로필 기본값 세팅
+//            if (dto.getSenderFilePath() == null || dto.getSenderFileName() == null) {
+//                dto.setSenderFilePath("/images");
+//                dto.setSenderFileName("avatar_blank.png");
+//            }
+//
+//            // 1. 읽음 상태 세팅
+//            if (dto.getNotificationChecked() == NotificationChecked.READ) {
+//                dto.setNotificationChecked(NotificationChecked.READ);
+//            } else {
+//                dto.setNotificationChecked(NotificationChecked.UNREAD);
+//            }
+//
+//            // 2. 메세지 서머리 세팅
+//            String summary = "새 알림이 도착했어요.";
+//
+//            NotificationType notificationType = null;
+//            if (dto.getNotificationType() != null) {
+//                try {
+//                    notificationType = NotificationType.valueOf(dto.getNotificationType().toString());
+//                } catch (IllegalArgumentException e) {
+//
+//                }
+//            }
+//
+//            if (notificationType != null) {
+//                switch (notificationType) {
+//                    case SUBSCRIBE:
+//                        summary = dto.getSenderNickname() + "님이 회원님의 채널을 구독했어요.";
+//                        break;
+//                    case COMMUNITY_POST:
+//                        summary = dto.getSenderNickname() + "님의 채널에서 커뮤니티 글이 작성됐어요.";
+//                        break;
+//                    case POST_REPLY:
+//                        summary = dto.getSenderNickname() + "님이 댓글을 남겼어요.";
+//                        break;
+//                    case POST_REPLY_LIKE:
+//                        summary = dto.getSenderNickname() + "님이 댓글에 좋아요를 눌렀어요.";
+//                        break;
+//                    case POST_LIKE:
+//                        summary = dto.getSenderNickname() + "님이 포스트에 좋아요를 눌렀어요.";
+//                        break;
+//                    case RECEIVE_MESSAGE:
+//                        summary = dto.getSenderNickname() + "님에게 메시지가 도착했어요.";
+//                        break;
+//                }
+//                System.out.println("notificationType 실제 타입: " + (dto.getNotificationType() == null ? "null" : dto.getNotificationType().getClass().getName()));
+//            }
+//
+//            dto.setMessageSummary(summary);
+//
+//            filteredNotifications.add(dto);
+//        }
+//
+//        return filteredNotifications;
+//    }
+
     @Override
     public List<NotificationResponseDTO> getNotificationsByReceiver(Long receiverId) {
         List<NotificationResponseDTO> notifications = notificationDAO.findAllByReceiverId(receiverId);
@@ -187,21 +258,44 @@ public class NotificationServiceImpl implements NotificationService {
                 switch (notificationType) {
                     case SUBSCRIBE:
                         summary = dto.getSenderNickname() + "님이 회원님의 채널을 구독했어요.";
+                        dto.setSubSummary("채널 구독");
+                        dto.setSubSubSummary(dto.getSenderNickname());
+                        dto.setSubLink("/");
                         break;
+
                     case COMMUNITY_POST:
                         summary = dto.getSenderNickname() + "님의 채널에서 커뮤니티 글이 작성됐어요.";
+                        dto.setSubSummary("새 커뮤니티 글");
+                        dto.setSubSubSummary(dto.getSenderNickname());
+                        dto.setSubLink("/");
                         break;
+
                     case POST_REPLY:
                         summary = dto.getSenderNickname() + "님이 댓글을 남겼어요.";
+                        dto.setSubSummary("댓글 알림");
+                        dto.setSubSubSummary(dto.getSenderNickname());
+                        dto.setSubLink("/");
                         break;
+
                     case POST_REPLY_LIKE:
                         summary = dto.getSenderNickname() + "님이 댓글에 좋아요를 눌렀어요.";
+                        dto.setSubSummary("댓글 좋아요");
+                        dto.setSubSubSummary(dto.getSenderNickname());
+                        dto.setSubLink("/");
                         break;
+
                     case POST_LIKE:
                         summary = dto.getSenderNickname() + "님이 포스트에 좋아요를 눌렀어요.";
+                        dto.setSubSummary("포스트 좋아요");
+                        dto.setSubSubSummary(dto.getSenderNickname());
+                        dto.setSubLink("/");
                         break;
+
                     case RECEIVE_MESSAGE:
                         summary = dto.getSenderNickname() + "님에게 메시지가 도착했어요.";
+                        dto.setSubSummary("쪽지 알림");
+                        dto.setSubSubSummary(dto.getSenderNickname());
+                        dto.setSubLink("/");
                         break;
                 }
                 System.out.println("notificationType 실제 타입: " + (dto.getNotificationType() == null ? "null" : dto.getNotificationType().getClass().getName()));

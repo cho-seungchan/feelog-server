@@ -81,7 +81,7 @@ public class LoginController {
 
                 String kakaoLogoutUrl = "https://kauth.kakao.com/oauth/logout?"
                         + "client_id=" + "3c94a5c05aa2286086a11146856039c4"
-                        + "&logout_redirect_uri=" + "http://13.124.27.211:10000/login/login";
+                        + "&logout_redirect_uri=" + "http://43.203.69.19:10000/login/login";
             }
 
             session.invalidate();

@@ -91,8 +91,5 @@
                current_date,
                current_date
     </insert>
-<<<<<<< HEAD
 
-=======
->>>>>>> 78be3dd36f29f8c14032d059321c89ef5aa0d754
 </mapper>

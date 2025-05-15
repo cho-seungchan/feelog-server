@@ -45,4 +45,8 @@ public class JoinLogDAO {
                 joinLogMapper.getMemberByEmailAndPassword(memberVO)
                         .orElse(null));
     }
+
+    public void insertMemberTask(Long id) {
+        joinLogMapper.insertMemberTask(id);
+    }
 }

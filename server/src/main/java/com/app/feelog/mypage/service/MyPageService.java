@@ -407,4 +407,5 @@ public class MyPageService implements ToDTO {
     public void deleteStorageReply(Long id) {
         myPageDAO.deleteStorageReply(id);
     }
+
 }

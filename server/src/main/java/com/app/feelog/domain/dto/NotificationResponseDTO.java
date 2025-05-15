@@ -23,4 +23,9 @@ public class NotificationResponseDTO {
     private NotificationChecked notificationChecked;           // 읽음 여부
     private String thumbnailPath;
     private String thumbnailName;
+
+    private String subSummary;
+    private String subSubSummary;
+    private String subLink;
+    private String channelUrl;
 }

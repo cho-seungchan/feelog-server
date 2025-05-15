@@ -178,8 +178,6 @@
                                         ></path>
                                     </svg>
                                     <span class="feelog-header-topSpan01"
-                                          th:if="${unreadNotificationCount > 0}"
-                                          th:text="${unreadNotificationCount}">
                                         >1</span
                                     ></span
                                 >
@@ -1677,11 +1675,10 @@
                         <hr class="jk-feelog-hr01" />
                     </div>
                     <div class="FlgStack-root-need joy-14vbmfy">
-                        <div class="FlgBox-root-need joy-fwihks"
-                             th:each="n : ${latestNotifications}">
+                        <div class="FlgBox-root-need joy-fwihks">
                         <span class="jk-feelog-span012"
                         ><a
-                                th:href="'/feelog.com/@' + ${n.channelUrl}"
+                                href="/profile/@9tesnt"
                                 target=""
                                 rel="noreferrer"
                                 referrerpolicy=""
@@ -1690,13 +1687,12 @@
                                     <div
                                             class="FlgBox-root-need jk-feelog-div056"
                                     >
-                                    <th:block th:if="${n.senderFileName != null and n.senderFileName != 'avatar_blank.png'}">
                                         <img
+                                                alt=""
                                                 loading="lazy"
                                                 decoding="async"
                                                 data-nimg="fill"
-                                                th:src="@{'/files/display?path=' + ${n.senderFilePath} + '/' + ${n.senderFileName}}"
-                                                alt="알림 이미지"
+                                                src="https://d3mcojo3jv0dbr.cloudfront.net/2024/05/12/12/26/c7fd377e15a9763e15ec151905b4d508.jpeg?w=50&amp;h=50&amp;q=65"
                                                 style="
                                                 position: absolute;
                                                 height: 100%;
@@ -1706,54 +1702,34 @@
                                                 color: transparent;
                                             "
                                         />
-                                        </th:block>
-                                        <th:block th:unless="${n.senderFileName != null and n.senderFileName != 'avatar_blank.png'}">
-                                        <img
-                                                loading="lazy"
-                                                decoding="async"
-                                                data-nimg="fill"
-                                                th:src="@{/images/avatar_blank.png}"
-                                                alt="알림 이미지"
-                                                style="
-                                                position: absolute;
-                                                height: 100%;
-                                                width: 100%;
-                                                inset: 0px;
-                                                object-fit: cover;
-                                                color: transparent;
-                                            "
-                                        />
-                                            </th:block>
                                     </div></div></a
                         ><span
                                 class="FlgBadge-anchorOriginTopLeft joy-yhhqut"
-                                th:if="${n.notificationChecked.name() == 'UNREAD'}"
                         ></span
                         ></span>
                             <div class="FlgStack-root-need joy-1ofqig9">
                                 <div class="FlgStack-root-need joy-4c2guu">
                                     <p class="joy-suf4y6">
                                         <a
-                                                th:href="'/feelog.com/@' + ${n.senderNickname}"
+                                                href="/profile/@9tesnt"
                                                 target=""
                                                 rel="noreferrer"
                                                 referrerpolicy=""
-                                                class="FlgLink-inherit joy-ko48tn">
-                                            <!--<span class="FlgTypography-title-sm joy-9avztx" th:text="${n.senderNickname}" >청</span>-->
-                                        </a
+                                                class="FlgLink-inherit joy-ko48tn"
+                                        ><span
+                                                class="FlgTypography-title-sm joy-9avztx"
+                                        >청</span
+                                        ></a
                                         ><span class="joy-colylv"
-                                               th:text="${n.messageSummary}"
                                     >님의 채널에서 커뮤니티 글이
                                         작성됐어요.</span
-                                    ><span class="joy-ap3vt9"
-                                           th:text="${n.createdDate}">32분 전</span>
+                                    ><span class="joy-ap3vt9">32분 전</span>
                                     </p>
                                 </div>
-                                <!--<div class="FlgStack-root-need joy-1ofqig9"
-                                     th:if="${n.subSummary}">
+                                <div class="FlgStack-root-need joy-1ofqig9">
                                     <div class="FlgStack-root-need joy-1efus4g">
                                         <a
-                                                th:href="${n.subLink != null ? n.subLink : '#'}"
+                                                href="/subscriptions/community"
                                                 target=""
                                                 rel="noreferrer"
                                                 referrerpolicy=""
@@ -1763,27 +1739,23 @@
                                         >
                                             <div
                                                     class="FlgStack-root-need joy-mbssy4"
-
                                             >
                                                 <span
                                                         class="FlgTypography-title-sm joy-1uuuh8o"
-                                                        th:text="${n.subSummary}"
                                                 >BLAUSHUT</span
                                                 ><span class="joy-16ts1gy"
-                                                       th:if="${n.subSubSummary}" th:text="${n.subSubSummary}"
                                             >청</span
                                             >
                                             </div>
                                             <div
                                                     class="FlgBox-root-need joy-3rf2es"
-                                                    th:if="${n.thumbnailPath != null and n.thumbnailName != null}"
                                             >
                                                 <img
                                                         alt="https://d3mcojo3jv0dbr.cloudfront.net/2024/12/22/19/35/1d40eb12705723657438204856.jpg"
                                                         loading="lazy"
                                                         decoding="async"
                                                         data-nimg="fill"
-                                                        th:src="'/files/display?path=' + ${n.thumbnailPath} + '/' + ${n.thumbnailName}"
+                                                        src="https://d3mcojo3jv0dbr.cloudfront.net/2024/12/22/19/35/1d40eb12705723657438204856.jpg?w=50&amp;h=50&amp;q=65"
                                                         style="
                                                         position: absolute;
                                                         height: 100%;
@@ -1796,7 +1768,7 @@
                                             </div></div
                                         ></a>
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
                         </div>
 
