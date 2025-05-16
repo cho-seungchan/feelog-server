@@ -173,6 +173,12 @@ modal.addEventListener("click", async (e) => {
 
     if (e.target.classList.contains("noticeUpdateBtn")) {
         const uploadFile = document.querySelector(".uploadFile");
+        const noticeTitle = modal.querySelector(".noticeModal-TitleInput");
+        const noticeContent = modal.querySelector(".noticeModal-ContentInput");
+        console.log(noticeTitle)
+        console.log(noticeContent)
+        console.log(noticeTitle.value)
+        console.log(noticeContent.value)
         console.log(uploadFile)
         const id = document.querySelector(".noticeModal-TitleDiv").getAttribute("data-index");
 
@@ -182,16 +188,16 @@ modal.addEventListener("click", async (e) => {
 
             await noticeService.update({
                 id: id,
-                noticeTitle: changeTitle,
-                noticeContent: changeContent,
+                noticeTitle: noticeTitle.value,
+                noticeContent: noticeContent.value,
                 noticeFileName: fileName,
                 noticeFilePath: filePath
             })
         } else {
             await noticeService.update({
                 id: id,
-                noticeTitle: changeTitle,
-                noticeContent: changeContent
+                noticeTitle: noticeTitle.value,
+                noticeContent: noticeContent.value
             })
         }
 

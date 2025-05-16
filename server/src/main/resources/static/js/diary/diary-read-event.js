@@ -158,29 +158,37 @@ if (writeReplyButton) {
         const uploadFile = e.target.closest(".upload_buttonContainer_02").querySelector(".upload-file");
         let replyCount = diaryInfo.replyCount;
 
-        if (uploadFile) {
-            const filePath = uploadFile.getAttribute("data-file-path")
-            const fileName = uploadFile.getAttribute("data-file-name")
+        const IsBadWord = await replyCheck(replyContent.value);
 
-            await replyService.insertDiaryReply({
-                diaryId: diaryInfo.id,
-                memberId: loginMember.id,
-                replyContent: replyContent.value,
-                replyFilePath: filePath,
-                replyFileName: fileName,
-                diaryMemberId: diaryInfo.memberId
-            })
+        if (!IsBadWord) {
+            if (uploadFile) {
+                const filePath = uploadFile.getAttribute("data-file-path")
+                const fileName = uploadFile.getAttribute("data-file-name")
+
+                await replyService.insertDiaryReply({
+                    diaryId: diaryInfo.id,
+                    memberId: loginMember.id,
+                    replyContent: replyContent.value,
+                    replyFilePath: filePath,
+                    replyFileName: fileName,
+                    diaryMemberId: diaryInfo.memberId
+                })
+            } else {
+                await replyService.insertDiaryReply({
+                    diaryId: diaryInfo.id,
+                    memberId: loginMember.id,
+                    replyContent: replyContent.value,
+                    diaryMemberId: diaryInfo.memberId
+                })
+            }
         } else {
-            await replyService.insertDiaryReply({
-                diaryId: diaryInfo.id,
-                memberId: loginMember.id,
-                replyContent: replyContent.value,
-                diaryMemberId: diaryInfo.memberId
-            })
+            alert("비속어 사용이 감지되었습니다.")
+            return;
         }
+
         alert("댓글이 등록됐습니다.")
         replyCount += 1;
-        replyCountText.innerText = replyCount
+        replyCountText.value = replyCount
         replyWrap.innerHTML = "";
         replyContent.value = "";
 

@@ -255,10 +255,10 @@ function cancelCommunityPostReplyReport(replyId, currentChannelUrl) {
 
 // 2025.05.02 조승찬 :: 댓글  비속어 포함여부 확인
 async function replyCheck(content) {
-
+    console.log(content)
     console.log("into replyCheck ::  ")
     try {
-        const response = await fetch("http://13.209.68.9/api/reply-check", {
+        const response = await fetch("http://13.125.248.28/api/reply-check", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

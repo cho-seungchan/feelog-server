@@ -25,12 +25,18 @@ public class EmailService {
     // 2025.04.18 조승찬 :: 이메일 회원가입을 위한 이메일 발송
     public void sendCertifyingEmail(String email, HttpServletResponse response) throws MessagingException {
         String code = createCode(); // 인증 코드 생성
+        log.info("code {}", code);
+
+
+//        세션에 code 저장
+        session.setAttribute("token", code);
+        session.setMaxInactiveInterval(10 * 60);
 
         //  쿠키에 인증코드 저장
-        Cookie cookie = new Cookie("token", code);
-        cookie.setMaxAge(60 * 10);   // 10분동안 유효
-        cookie.setPath("/");    // 모든 경로에서 접근 가능
-        response.addCookie(cookie);
+//        Cookie cookie = new Cookie("token", code);
+//        cookie.setMaxAge(60 * 10);   // 10분동안 유효
+//        cookie.setPath("/");    // 모든 경로에서 접근 가능
+//        response.addCookie(cookie);
 
         //  세션에 사용자 이메일 저장
         session.setAttribute("email", email);
@@ -77,6 +83,7 @@ public class EmailService {
 //        // 로고 이미지 첨부
 //        FileSystemResource fileSystemResource = new FileSystemResource(new File("src/main/resources/static/images/logo3.png"));
 //        mimeMessageHelper.addInline("logoImage", fileSystemResource);
+        log.info("session token {}", session.getAttribute("token"));
 
         javaMailSender.send(mimeMessage);
     }
