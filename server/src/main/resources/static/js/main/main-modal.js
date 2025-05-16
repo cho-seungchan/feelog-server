@@ -6,8 +6,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     const backdrop = document.querySelector(".feelog-header-mdl-div01");
 
     if (modal && openBtn && closeBtn && backdrop) {
-        openBtn.addEventListener("click", () => {
-            modal.style.display = "flex";
+        // 작성하기 버튼 클릭 시
+        openBtn.addEventListener("click", async () => {
+            try {
+                const res = await fetch("/main/channel/my");
+                if (res.status === 204) {
+                    // 채널이 없는 경우
+                    window.location.href = "/myPage/make-channel";
+                    return;
+                }
+                if (!res.ok) throw new Error("채널 확인 실패");
+
+                const data = await res.json();
+
+                // 채널이 있는 경우 모달 열기
+                modal.style.display = "flex";
+            } catch (err) {
+                console.error("채널 확인 중 오류 발생:", err);
+                // 오류 발생 시도 채널 생성 페이지로 리디렉션
+                window.location.href = "/myPage/make-channel";
+            }
         });
 
         closeBtn.addEventListener("click", () => {
@@ -178,11 +196,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="feelog-header-topDiv10">
                 <div class="feelog-header-topDiv11">
                     <div class="feelog-header-topDiv12" data-first-child="">
-                        <img alt="channel" loading="lazy" decoding="async"
+                        <img alt="channel" loading="lazy" decoding="async" data-nimg="fill"
                             src="${data && data.channelFilePath && data.channelFileName
                 ? `/files/display?path=${data.channelFilePath}/${data.channelFileName}`
                 : 'https://d33pksfia2a94m.cloudfront.net/assets/img/avatar/blog_blank.png?w=50&h=50&q=65'}"
-                            style="position: absolute; height: 100%; width: 100%; object-fit: cover; color: transparent;">
+                            style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent;">
                     </div>
                 </div>
             </div>
