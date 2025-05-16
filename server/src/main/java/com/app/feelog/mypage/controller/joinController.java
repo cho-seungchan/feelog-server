@@ -6,7 +6,6 @@ import com.app.feelog.domain.dto.MemberDTO;
 import com.app.feelog.mypage.service.EmailService;
 import com.app.feelog.mypage.service.JoinService;
 import jakarta.mail.MessagingException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -108,47 +107,46 @@ public class joinController {
 
     // 2025.04.18 조승찬 :: 이메일에서 보내온 토큰 일치 확인
     @GetMapping("/certified")
-    public String getCertified(@CookieValue(name = "token", required = false) String token,
-                               @RequestParam String code,
-                               HttpServletResponse response, HttpSession session, Model model) {
+    public String getCertified(@RequestParam String code, HttpSession session, Model model) {
+        log.info("session token {}", session.getAttribute("token"));
 
-        // 토큰이 만료되었을 때(유효기간이 지났을 때)
-        if (token == null || token.isEmpty()) {
-            model.addAttribute("errorMessage", "10분이 지났습니다.");
+        String sessionToken = (String) session.getAttribute("token");
+
+        log.info("세션 토큰: {}", sessionToken);
+
+        // **토큰이 만료되었거나 존재하지 않는 경우**
+        if (sessionToken == null || sessionToken.isEmpty()) {
+            log.info("토큰 만료 또는 없음");
+            model.addAttribute("errorMessage", "10분이 지났습니다. 다시 시도해주세요.");
             return "join/certifying";
         }
 
-        // 발급받은 토큰이 동일하다면 쿠키 초기화
-        if (token.equals(code)) {
-            Cookie cookie = new Cookie("token", "");
-            cookie.setMaxAge(0);
-            cookie.setPath("/");
-            response.addCookie(cookie);
-
-            // 입력된 값 받아와서 멤버 테이블에 저장
+        // **입력받은 인증 코드가 일치하는지 확인**
+        if (sessionToken.equals(code)) {
+            // **회원 정보 저장**
             MemberDTO memberDTO = new MemberDTO();
             memberDTO.setMemberEmail((String) session.getAttribute("signupEmail"));
             memberDTO.setMemberNickname((String) session.getAttribute("signupNickname"));
             memberDTO.setMemberPassword((String) session.getAttribute("signupPassword"));
             joinService.emailJoin(memberDTO);
 
-            // 로그인 상태 유지
+            // **로그인 상태 유지**
             MemberDTO member = joinService.getMemberByEmail(memberDTO.getMemberEmail()).get();
             joinService.insertMemberTask(member.getId());
             session.setAttribute("memberStatus", "email");
             session.setAttribute("member", member);
 
+            // **세션에서 인증 코드 및 가입 정보 삭제**
+            session.removeAttribute("token");
+            session.removeAttribute("signupEmail");
+            session.removeAttribute("signupNickname");
+            session.removeAttribute("signupPassword");
+
+            return "join/certified";
         } else {
-            model.addAttribute("errorMessage", "정보가 불일치 합니다.");
+            model.addAttribute("errorMessage", "인증 코드가 일치하지 않습니다.");
             return "join/certifying";
         }
-
-        // 세션 클리어
-        session.removeAttribute("signupEmail");
-        session.removeAttribute("signupNickname");
-        session.removeAttribute("signupPassword");
-
-        return "join/certified";
     }
 
 }

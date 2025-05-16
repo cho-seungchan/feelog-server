@@ -93,29 +93,36 @@ if (writeReplyButton) {
         const uploadFile = e.target.closest(".upload_buttonContainer_02").querySelector(".upload-file");
         let replyCount = postInfo.replyCount;
 
-        if (uploadFile) {
-            const filePath = uploadFile.getAttribute("data-file-path")
-            const fileName = uploadFile.getAttribute("data-file-name")
+        const isBadWord = await replyCheck(replyContent.value);
+        if (!isBadWord) {
+            if (uploadFile) {
+                const filePath = uploadFile.getAttribute("data-file-path")
+                const fileName = uploadFile.getAttribute("data-file-name")
 
-            await readService.addReply({
-                postId: postInfo.id,
-                memberId: loginMember.id,
-                replyContent: replyContent.value,
-                replyFilePath: filePath,
-                replyFileName: fileName,
-                postMemberId: postInfo.memberId
-            })
+                await readService.addReply({
+                    postId: postInfo.id,
+                    memberId: loginMember.id,
+                    replyContent: replyContent.value,
+                    replyFilePath: filePath,
+                    replyFileName: fileName,
+                    postMemberId: postInfo.memberId
+                })
+            } else {
+                await readService.addReply({
+                    postId: postInfo.id,
+                    memberId: loginMember.id,
+                    replyContent: replyContent.value,
+                    postMemberId: postInfo.memberId
+                })
+            }
         } else {
-            await readService.addReply({
-                postId: postInfo.id,
-                memberId: loginMember.id,
-                replyContent: replyContent.value,
-                postMemberId: postInfo.memberId
-            })
+            alert("비속어 사용이 감지되었습니다.")
+            return;
         }
+
         alert("댓글이 등록됐습니다.")
         replyCount += 1;
-        replyCountText.innerText = replyCount
+        replyCountText.value = replyCount
         replyWrap.innerHTML = "";
         replyContent.value = "";
         if (addImg.querySelector(".joy-jj02o9")) {

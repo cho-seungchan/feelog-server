@@ -10,6 +10,7 @@ body {
     overflow-y: auto;
     background-color: #ffffff;
 }
+
 body {
     margin: 0;
     color: #202022;
@@ -18,11 +19,13 @@ body {
     font-weight: 400;
     background-color: #ffffff;
 }
+
 *,
 *::before,
 *::after {
     box-sizing: inherit;
 }
+
 .flog-div-1 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -37,6 +40,7 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
+
 /* 헤더 여기서 부터 */
 .flog-header-1 {
     position: -webkit-sticky;
@@ -54,6 +58,7 @@ body {
     width: 100%;
     background-color: #ffffff;
 }
+
 .flog-nav-1 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -72,18 +77,21 @@ body {
     -webkit-justify-content: space-between;
     justify-content: space-between;
 }
+
 @media (min-width: 0px) {
     .flog-nav-1 {
         padding: 4px 8px;
         height: 48px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-nav-1 {
         padding: 12px 32px;
         height: 64px;
     }
 }
+
 .flog-div-2 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -98,16 +106,19 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
+
 @media (min-width: 0px) {
     .flog-div-2 {
         gap: 0px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-2 {
         gap: 8px;
     }
 }
+
 .sr-only {
     border: 0;
     clip: rect(0, 0, 0, 0);
@@ -119,15 +130,18 @@ body {
     width: 1px;
     white-space: nowrap;
 }
+
 .flog-a-1 {
     cursor: pointer;
 }
+
 @media (min-width: 0px) {
     .flog-a-1 {
         display: none;
         padding: 11px 8px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-a-1 {
         display: -webkit-box;
@@ -137,6 +151,7 @@ body {
         padding: 0 8px 0 0;
     }
 }
+
 .flog-button-10.FeelogButton-sizeMd {
     min-height: 40px;
     font-size: 16px;
@@ -146,6 +161,7 @@ body {
     cursor: pointer;
     padding: 8px;
 }
+
 @media (min-width: 0px) {
     .flog-a-2 {
         display: -webkit-box;
@@ -154,11 +170,13 @@ body {
         display: flex;
     }
 }
+
 @media (min-width: 744px) {
     .flog-a-2 {
         display: none;
     }
 }
+
 .flog-svg-2 {
     user-select: none;
     margin: initial;
@@ -173,23 +191,28 @@ body {
     height: 24px;
     color: #1976d2;
 }
+
 .flog-svg-2 g > rect {
     fill: #1976d2;
 }
+
 .flog-svg-2 clipPath rect {
     fill: #f2f2f3;
 }
+
 .flog-h2-1 {
     position: absolute;
     margin: 0px;
     z-index: 500;
 }
+
 @media (min-width: 0px) {
     .flog-h2-1 {
         left: 32px;
         padding: 8.75px 12px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-h2-1 {
         top: 60px;
@@ -197,6 +220,7 @@ body {
         padding: 7.5px 8px;
     }
 }
+
 .flog-h2-5 {
     font-size: calc(1em * 1.25);
     margin: 20px 0px 0px 0px;
@@ -209,6 +233,7 @@ body {
     text-decoration: none;
     white-space: nowrap;
 }
+
 .flog-div-3 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -225,21 +250,25 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
+
 @media (min-width: 0px) {
     .flog-div-3 {
         gap: 4px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-3 {
         gap: 8px;
     }
 }
+
 @media (min-width: 0px) {
     .flog-div-4 {
         display: none;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-4 {
         display: -webkit-box;
@@ -248,6 +277,7 @@ body {
         display: flex;
     }
 }
+
 .flog-button-1 {
     margin: initial;
     color: #202022;
@@ -270,14 +300,17 @@ body {
     line-height: 1.5;
     font-weight: 500;
 }
+
 .flog-button-1.FeelogMenuButton-sizeMd {
     min-height: 40px;
 }
+
 .flog-span-1 {
     margin: 0 0 0 calc(0.5rem / -2);
     display: inherit;
     margin-right: 0.5rem;
 }
+
 .flog-svg-3 {
     user-select: none;
     margin: initial;
@@ -289,6 +322,7 @@ body {
     font-size: 24px;
     color: #202022;
 }
+
 .flog-button-2 {
     margin: initial;
     color: #202022;
@@ -309,11 +343,13 @@ body {
     justify-content: center;
     position: relative;
 }
+
 .flog-button-2.FeelogIconButton-sizeMd {
     font-size: calc(40px / 1.667);
     min-width: 40px;
     min-height: 40px;
 }
+
 .flog-div-5 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -328,6 +364,7 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
+
 .flog-div-6 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -342,11 +379,13 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
+
 @media (min-width: 0px) {
     .flog-div-6 {
         display: none;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-6 {
         display: -webkit-box;
@@ -355,6 +394,7 @@ body {
         display: flex;
     }
 }
+
 .flog-span-15 {
     min-height: 1.25rem;
     padding-inline: 0.375rem;
@@ -364,6 +404,7 @@ body {
     flex-shrink: 0;
     box-shadow: 0 0 0 0px #f2f2f3;
 }
+
 .flog-span-16 {
     color: currentColor;
     font-size: calc(1em * 1.5);
@@ -392,6 +433,7 @@ body {
     font-weight: 500;
     white-space: nowrap;
 }
+
 .flog-span-3 {
     min-height: 0.75rem;
     padding-inline: 0.375rem;
@@ -401,6 +443,7 @@ body {
     flex-shrink: 0;
     box-shadow: 0 0 0 0px #f2f2f3;
 }
+
 .flog-span-2 {
     color: currentColor;
     font-size: calc(1em * 1.5);
@@ -429,9 +472,11 @@ body {
     font-weight: 500;
     white-space: nowrap;
 }
+
 .flog-span-2.FeelogBadge-invisible {
     transform: scale(0) translateX(50%) translateY(-50%);
 }
+
 .flog-div-7 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -451,16 +496,19 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
+
 @media (min-width: 0px) {
     .flog-div-8 {
         display: none;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-8 {
         display: initial;
     }
 }
+
 .flog-button-3 {
     margin: initial;
     color: #202022;
@@ -485,9 +533,11 @@ body {
     padding-left: 6px;
     padding-right: 6px;
 }
+
 .flog-button-3.FeelogMenuButton-sizeSm {
     min-height: 32px;
 }
+
 .flog-button-3 {
     margin: initial;
     color: #202022;
@@ -512,9 +562,11 @@ body {
     padding-left: 6px;
     padding-right: 6px;
 }
+
 .flog-button-3.FeelogMenuButton-sizeSm {
     min-height: 32px;
 }
+
 .flog-img-1 {
     width: 100%;
     height: 100%;
@@ -523,16 +575,19 @@ body {
     color: transparent;
     text-indent: 10000px;
 }
+
 @media (min-width: 0px) {
     .flog-div-10 {
         display: initial;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-10 {
         display: none;
     }
 }
+
 .flog-div-9 {
     color: #202022;
     font-family: "Postype Sans-serif KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -553,6 +608,7 @@ body {
     user-select: none;
     cursor: pointer;
 }
+
 .flog-button-4 {
     font-size: 1.25em;
     color: currentColor;
@@ -577,6 +633,7 @@ body {
     appearance: none;
     position: relative;
 }
+
 .flog-span-18 {
     color: currentColor;
     font-size: calc(1em * 1.5);
@@ -605,6 +662,7 @@ body {
     color: #ffffff;
     white-space: nowrap;
 }
+
 /* 헤더 여기까지 */
 /* 2단 헤더 시작 */
 .flog-div-12 {
@@ -621,6 +679,7 @@ body {
     flex: 1;
     min-height: 240px;
 }
+
 .flog-div-13 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -648,12 +707,14 @@ body {
     border-bottom: 1px solid;
     border-color: rgba(118 118 127 / 0.15);
 }
+
 @media (min-width: 0px) {
     .flog-nav-2 {
         padding-left: 10px;
         top: 48px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-nav-2 {
         padding-left: 0px;
@@ -661,6 +722,7 @@ body {
         top: 56px;
     }
 }
+
 .flog-ul-1 {
     --ListDivider-gap: 0.375rem;
     --ListItem-minHeight: 2.25rem;
@@ -712,6 +774,7 @@ body {
     flex-direction: row;
     scrollbar-width: none;
 }
+
 @media (min-width: 0px) {
     .flog-ul-1 {
         padding-inline: 16px;
@@ -722,6 +785,7 @@ body {
         justify-content: flex-start;
     }
 }
+
 @media (min-width: 744px) {
     .flog-ul-1 {
         padding-inline: 24px;
@@ -732,6 +796,7 @@ body {
         justify-content: center;
     }
 }
+
 .flog-a-7:not([hidden]) {
     --_ListItem-display: flex;
 }
@@ -769,6 +834,7 @@ body {
     -webkit-text-decoration: none;
     text-decoration: none;
 }
+
 @media (min-width: 0px) {
     .flog-a-7 {
         height: 48px;
@@ -784,6 +850,7 @@ body {
 .flog-ul-1.FeelogList-sizeMd {
     --ListItem-minHeight: 40px;
 }
+
 .flog-a-6 {
     --ListItemButton-marginInline: calc(-1 * 12px) calc(-1 * 12px);
     --ListItemButton-marginBlock: calc(-1 * 8px);
@@ -818,19 +885,23 @@ body {
     -webkit-text-decoration: none;
     text-decoration: none;
 }
+
 @media (min-width: 0px) {
     .flog-a-6 {
         height: 48px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-a-6 {
         height: 56px;
     }
 }
+
 .flog-a-6:not([hidden]) {
     --_ListItem-display: flex;
 }
+
 .flog-p-4 {
     --Icon-fontSize: calc(1em * 1.5);
     margin: 0px;
@@ -845,6 +916,7 @@ body {
     text-decoration: none;
     white-space: nowrap;
 }
+
 .flog-p-5 {
     --Icon-fontSize: calc(1em * 1.5);
     margin: 0px;
@@ -857,6 +929,7 @@ body {
     white-space: nowrap;
     font-weight: 700;
 }
+
 /* 2단 헤더 끝 */
 .flog-main-1 {
     display: -webkit-box;
@@ -869,16 +942,19 @@ body {
     width: 100%;
     max-width: 1144px;
 }
+
 @media (min-width: 0px) {
     .flog-main-1 {
         padding: 65px 16px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-main-1 {
         padding: 85px 32px;
     }
 }
+
 @media (min-width: 1132px) {
     .flog-main-1 {
         padding: 85px 32px;
@@ -898,18 +974,21 @@ body {
     height: -moz-max-content;
     height: max-content;
 }
+
 @media (min-width: 0px) {
     .flog-section-2 {
         margin-left: 15px;
         gap: 12px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-section-2 {
         margin-left: 0px;
         gap: 24px;
     }
 }
+
 .flog-div-25 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -931,11 +1010,13 @@ body {
     justify-content: space-between;
     margin-bottom: 15px;
 }
+
 @media (min-width: 0px) {
     .flog-section-2 {
         gap: 12px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-section-2 {
         gap: 24px;
@@ -959,12 +1040,14 @@ body {
         font-size: 16px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-h2-3 {
         margin-left: 0px;
         font-size: 24px;
     }
 }
+
 .flog-div-26 {
     --Grid-columns: 1;
     --Grid-columnSpacing: 24px;
@@ -984,22 +1067,26 @@ body {
     flex-wrap: wrap;
     margin: calc(24px / -2) calc(24px / -2);
 }
+
 @media (min-width: 744px) {
     .flog-div-26 {
         --Grid-columns: 2;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-26 {
         --Grid-rowSpacing: 24px;
     }
 }
+
 @media (min-width: 0px) {
     .flog-div-26 {
         margin-bottom: 4px;
         gap: 0px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-26 {
         margin-left: 0px;
@@ -1007,6 +1094,7 @@ body {
         gap: 24px;
     }
 }
+
 .flog-div-26 {
     display: flex;
     flex-wrap: wrap;
@@ -1033,12 +1121,14 @@ body {
         box-sizing: border-box;
     }
 }
+
 @media (min-width: 744px) {
     .flog-section-3 {
         flex: 0 0 calc(50% - 12px);
         box-sizing: border-box;
     }
 }
+
 .flog-section-2 {
     display: flex;
     flex-direction: column;
@@ -1060,6 +1150,7 @@ body {
     height: max-content;
     position: relative;
 }
+
 .flog-div-28 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1069,20 +1160,24 @@ body {
     -ms-flex-direction: row;
     flex-direction: row;
 }
+
 @media (min-width: 0px) {
     .flog-div-28 {
         gap: 12px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-28 {
         gap: 20px;
     }
 }
+
 .flog-a-8 {
     overflow: hidden;
     position: relative;
 }
+
 @media (min-width: 0px) {
     .flog-a-8 {
         min-width: 72px;
@@ -1091,6 +1186,7 @@ body {
         border-radius: 8px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-a-8 {
         min-width: 128px;
@@ -1099,12 +1195,14 @@ body {
         border-radius: 12px;
     }
 }
+
 .flog-div-29 {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
+
 .flog-a-8:after {
     display: block;
     content: "";
@@ -1116,6 +1214,7 @@ body {
     border-radius: inherit;
     border: 1px solid rgba(0, 0, 0, 7.5%);
 }
+
 .flog-div-30 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1127,28 +1226,33 @@ body {
     width: 100%;
     overflow: hidden;
 }
+
 @media (min-width: 0px) {
     .flog-div-30 {
         gap: 12px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-30 {
         gap: 13px;
     }
 }
+
 @media (min-width: 0px) {
     .flog-div-30 {
         padding-top: 4px;
         padding-bottom: 4px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-div-30 {
         padding-top: 6px;
         padding-bottom: 6px;
     }
 }
+
 .flog-a-9 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1163,6 +1267,7 @@ body {
     -webkit-text-decoration: none;
     text-decoration: none;
 }
+
 .flog-h3-1 {
     --Icon-fontSize: 1.5em;
     margin: 0px;
@@ -1185,11 +1290,13 @@ body {
         font-size: 16px;
     }
 }
+
 @media (min-width: 744px) {
     .flog-h3-1 {
         font-size: 20px;
     }
 }
+
 .flog-p-6 {
     --Icon-fontSize: 1.5em;
     margin: 0px;
@@ -1200,6 +1307,7 @@ body {
     font-weight: 400;
     color: #757575;
 }
+
 @media (min-width: 0px) {
     .flog-p-6 {
         margin-bottom: 6px;
@@ -1225,6 +1333,7 @@ body {
         line-clamp: 3;
     }
 }
+
 .flog-p-7 {
     --Icon-fontSize: calc(1em * 1.5);
     margin: 0px;
@@ -1251,6 +1360,7 @@ body {
     -webkit-justify-content: center;
     justify-content: center;
 }
+
 .flog-button-6 {
     --Icon-margin: initial;
     --Icon-color: #76767f;
@@ -1280,17 +1390,20 @@ body {
     color: #202022;
     --IconButton-size: 32px;
 }
+
 .flog-button-6:disabled {
     pointer-events: none;
     cursor: default;
     --Icon-color: currentColor;
     color: #a4a4a8;
 }
+
 .flog-button-6.FeelogIconButton-sizeSm {
     --Icon-fontSize: 20px;
     min-width: 32px;
     min-height: 32px;
 }
+
 .flog-button-6 {
     --Icon-margin: initial;
     --Icon-color: #76767f;
@@ -1320,12 +1433,14 @@ body {
     color: #202022;
     --IconButton-size: 32px;
 }
+
 .flog-button-6:disabled {
     pointer-events: none;
     cursor: default;
     --Icon-color: currentColor;
     color: #a4a4a8;
 }
+
 .flog-button-7 {
     --Icon-margin: initial;
     --Icon-color: #76767f;
@@ -1354,11 +1469,13 @@ body {
     --variant-borderWidth: 0px;
     color: #202022;
 }
+
 .flog-button-7.FeelogIconButton-sizeSm {
     --Icon-fontSize: 20px;
     min-width: 32px;
     min-height: 32px;
 }
+
 /*도전하기 버튼*/
 .challenge-common-task,
 .challenge-member-task,
@@ -1384,9 +1501,10 @@ body {
 .challenge-member-task.selected,
 .complete-common-task.selected,
 .complete-member-task.selected {
-    color : red;
+    color: red;
     font-weight: bold;
 }
+
 /*도전하기 버튼*/
 /*페이지 처리부분 시작*/
 .pagination-container {
@@ -1396,11 +1514,13 @@ body {
     align-items: center;
     width: 100%;
 }
+
 .change-page code,
-.change-page + code{
+.change-page + code {
     margin: 0 10px;
     font-size: 16px;
 }
+
 .iItkLq {
     border: none;
     width: 40px;
@@ -1419,29 +1539,35 @@ body {
     align-items: center;
     outline: none;
 }
+
 .jVxRns {
     transform-origin: center center;
     transform: rotate(180deg);
 }
+
 .PaginationButtonGroup__Icon-x0iffd-2 {
     filter: grayscale(100%) brightness(50%);
 }
+
 /*페이지 처리부분 끝*/
 /* 링크 버튼 */
 .custom-link {
     font-style: italic; /* 이탤릭체 적용 */
     color: lightblue;
 }
+
 .custom-link:hover {
     color: blue;
     transform: scale(1.1); /* 살짝 커지게 */
     text-decoration: underline;
 }
+
 /* 링크 버튼 */
 /* 이미지에 커서 포인터로 보이게 하기*/
 .flog-a-8:hover {
     cursor: pointer;
 }
+
 /* 이미지에 커서 포인터로 보이게 하기*/
 .flog-div-29 {
     position: relative;
@@ -1453,13 +1579,13 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*background-color: rgba(0, 0, 0, 0.7);*/
+    background-color: #FFFFFF;
     color: black;
     padding: 8px 12px;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
-    opacity: 0;  /* 기본적으로 숨김 */
+    opacity: 0; /* 기본적으로 숨김 */
     transition: opacity 0.3s ease-in-out;
     z-index: 10;
     white-space: nowrap;
