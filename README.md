@@ -60,7 +60,8 @@
 
 <h2>4. ERD</h2>
 
-<img src="https://github.com/user-attachments/assets/3cc006e4-171b-4004-a4a2-04af2f342e03"/>
+
+![KakaoTalk_20250520_141913976](https://github.com/user-attachments/assets/db70783b-5c2a-40d7-a575-f484912c7519)
 
 <h2>5. 담당 업무</h2>
 5-1 publishing
